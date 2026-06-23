@@ -1,0 +1,104 @@
+<div
+    [style.display]="'flex'"
+    [style.gap.px]='8'
+>
+    <!-- ENABLED -->
+    <mv-lib-button
+        [settings]="{
+            type: 'primary',
+            textColor: 'white',
+            onClickEffect: 'ripple',
+        }"
+    >
+        <span
+            class="material-symbols-outlined"
+        >
+            touch_app
+        </span>
+        <span
+            [style.font-weight]="'bold'"
+        >
+            Click
+        </span>
+    </mv-lib-button>
+
+    <mv-lib-button
+        [settings]="{
+            type: 'secondary',
+            textColor: 'white',
+            onClickEffect: 'ripple',
+        }"
+    >
+        <span
+            class="material-symbols-outlined"
+        >
+            touch_app
+        </span>
+        <span
+            [style.font-weight]="'bold'"
+        >
+            Click
+        </span>
+    </mv-lib-button>
+
+    <mv-lib-button
+        [settings]="{
+            backgroundColor: 'green',
+            hoverBackgroundColor: 'darkgreen',
+            textColor: 'white',
+            onClickEffect: 'ripple',
+        }"
+    >
+        <span
+            class="material-symbols-outlined"
+        >
+            touch_app
+        </span>
+        <span
+            [style.font-weight]="'bold'"
+        >
+            Click
+        </span>
+    </mv-lib-button>
+
+    <!-- DISABLED -->
+    <mv-lib-button
+        [settings]="{
+            type: 'primary',
+            textColor: 'white',
+            onClickEffect: 'ripple',
+            disabled: true,
+        }"
+    >
+        <span
+            class="material-symbols-outlined"
+        >
+            touch_app
+        </span>
+        <span
+            [style.font-weight]="'bold'"
+        >
+            Click
+        </span>
+    </mv-lib-button>
+
+    <mv-lib-button
+        [settings]="{
+            type: 'secondary',
+            textColor: 'white',
+            onClickEffect: 'ripple',
+            disabled: true,
+        }"
+    >
+        <span
+            class="material-symbols-outlined"
+        >
+            touch_app
+        </span>
+        <span
+            [style.font-weight]="'bold'"
+        >
+            Click
+        </span>
+    </mv-lib-button>
+</div>
