@@ -1,80 +1,45 @@
-<mv-lib-button
-    [settings]="{
-        widthPx: 100,
-        heightPx: 25,
-    }"
-    (onClick)="disabled.set(!disabled())"
->
-    <span [style.font-weight]="'bold'">
-        {{ disabled() ? 'Enable' : 'Disable' }}
-    </span>
-</mv-lib-button>
+<div>
+    <header>
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'left'"
+            [style.gap.px]="8"
+        >
+            <mv-lib-button
+                routerLink="/"
+                [settings]="{
+                    heightPx: 32,
+                    backgroundColor: 'var(--button-blue-color)',
+                    hoverBackgroundColor: 'var(--button-blue-color-hover)',
+                    onClickEffect: 'push',
+                }"
+            >
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </mv-lib-button>
 
-<div
-    [style.display]="'flex'"
-    [style.flex-direction]="'column'"
-    [style.gap.px]='8'
-    [style.margin-top.px]='8'
->
-    <mv-lib-button
-        [settings]="{
-            onClickEffect: 'ripple',
-        }"
-        [disabled]="disabled()"
-    >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            Ripple
-        </span>
-    </mv-lib-button>
+            <mv-lib-button
+                routerLink="/buttons"
+                [settings]="{
+                    heightPx: 32,
+                    backgroundColor: 'var(--button-blue-color)',
+                    hoverBackgroundColor: 'var(--button-blue-color-hover)',
+                    onClickEffect: 'push',
+                }"
+            >
+                <span
+                    [style.font-weight]="'bold'"
+                >
+                    Buttons
+                </span>
+            </mv-lib-button>
+        </div>
+    </header>
 
-    <mv-lib-button
-        [settings]="{
-            backgroundColor: 'var(--button-blue-color)',
-            hoverBackgroundColor: 'var(--button-blue-color-hover)',
-            onClickEffect: 'push',
-        }"
-        [disabled]="disabled()"
-    >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            Push
-        </span>
-    </mv-lib-button>
+    <hr />
 
-    <mv-lib-button
-        [settings]="{
-            backgroundColor: 'var(--button-green-color)',
-            hoverBackgroundColor: 'var(--button-green-color-hover)',
-            onClickEffect: 'ripple',
-        }"
-        [disabled]="disabled()"
-    >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            Ripple
-        </span>
-    </mv-lib-button>
-
-    <mv-lib-button
-        [settings]="{
-            backgroundColor: 'var(--button-red-color)',
-            hoverBackgroundColor: 'var(--button-red-color-hover)',
-            onClickEffect: 'push',
-        }"
-        [disabled]="disabled()"
-    >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            Push
-        </span>
-    </mv-lib-button>
+    <main>
+        <router-outlet />
+    </main>
 </div>

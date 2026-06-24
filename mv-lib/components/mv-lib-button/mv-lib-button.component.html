@@ -1,5 +1,8 @@
 <button
-    [ngClass]="classes()"
+    [ngClass]="[
+        'mv-lib-button',
+        computedSettings().onClickEffect,
+    ]"
 
     [style.width.px]="computedSettings().widthPx"
     [style.height.px]="computedSettings().heightPx"
@@ -10,7 +13,7 @@
 
     [disabled]="disabled()"
 
-    (click)="click($event)"
+    (click)="onClick.emit($event)"
 
     (mouseenter)="hover.set(true)"
     (mouseleave)="hover.set(false)"
