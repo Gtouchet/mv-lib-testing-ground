@@ -8,9 +8,9 @@
     [style.color]="computedSettings().textColor"
     [style.border]="computedSettings().border"
 
-    [disabled]="computedSettings().disabled"
+    [disabled]="disabled()"
 
-    (click)="onClick($event)"
+    (click)="click($event)"
 
     (mouseenter)="hover.set(true)"
     (mouseleave)="hover.set(false)"

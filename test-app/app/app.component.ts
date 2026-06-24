@@ -9,5 +9,5 @@ import { MvLibButtonComponent } from '../../mv-lib/public-api';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  public x = signal(0);
+  protected disabled = signal(false);
 }

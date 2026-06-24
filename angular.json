@@ -37,7 +37,7 @@
               }
             ],
             "styles": [
-              "mv-lib/styles/styles-white-theme.scss"
+              "test-app/styles/styles-white-theme.scss"
             ],
             "scripts": []
           },

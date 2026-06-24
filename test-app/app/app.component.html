@@ -1,104 +1,80 @@
+<mv-lib-button
+    [settings]="{
+        widthPx: 100,
+        heightPx: 25,
+    }"
+    (onClick)="disabled.set(!disabled())"
+>
+    <span [style.font-weight]="'bold'">
+        {{ disabled() ? 'Enable' : 'Disable' }}
+    </span>
+</mv-lib-button>
+
 <div
     [style.display]="'flex'"
+    [style.flex-direction]="'column'"
     [style.gap.px]='8'
+    [style.margin-top.px]='8'
 >
-    <!-- ENABLED -->
     <mv-lib-button
         [settings]="{
-            type: 'primary',
-            textColor: 'white',
             onClickEffect: 'ripple',
         }"
+        [disabled]="disabled()"
     >
-        <span
-            class="material-symbols-outlined"
-        >
+        <span class="material-symbols-outlined">
             touch_app
         </span>
-        <span
-            [style.font-weight]="'bold'"
-        >
-            Click
+        <span [style.font-weight]="'bold'">
+            Ripple
         </span>
     </mv-lib-button>
 
     <mv-lib-button
         [settings]="{
-            type: 'secondary',
-            textColor: 'white',
-            onClickEffect: 'ripple',
+            backgroundColor: 'var(--button-blue-color)',
+            hoverBackgroundColor: 'var(--button-blue-color-hover)',
+            onClickEffect: 'push',
         }"
+        [disabled]="disabled()"
     >
-        <span
-            class="material-symbols-outlined"
-        >
+        <span class="material-symbols-outlined">
             touch_app
         </span>
-        <span
-            [style.font-weight]="'bold'"
-        >
-            Click
+        <span [style.font-weight]="'bold'">
+            Push
         </span>
     </mv-lib-button>
 
     <mv-lib-button
         [settings]="{
-            backgroundColor: 'green',
-            hoverBackgroundColor: 'darkgreen',
-            textColor: 'white',
+            backgroundColor: 'var(--button-green-color)',
+            hoverBackgroundColor: 'var(--button-green-color-hover)',
             onClickEffect: 'ripple',
         }"
+        [disabled]="disabled()"
     >
-        <span
-            class="material-symbols-outlined"
-        >
+        <span class="material-symbols-outlined">
             touch_app
         </span>
-        <span
-            [style.font-weight]="'bold'"
-        >
-            Click
-        </span>
-    </mv-lib-button>
-
-    <!-- DISABLED -->
-    <mv-lib-button
-        [settings]="{
-            type: 'primary',
-            textColor: 'white',
-            onClickEffect: 'ripple',
-            disabled: true,
-        }"
-    >
-        <span
-            class="material-symbols-outlined"
-        >
-            touch_app
-        </span>
-        <span
-            [style.font-weight]="'bold'"
-        >
-            Click
+        <span [style.font-weight]="'bold'">
+            Ripple
         </span>
     </mv-lib-button>
 
     <mv-lib-button
         [settings]="{
-            type: 'secondary',
-            textColor: 'white',
-            onClickEffect: 'ripple',
-            disabled: true,
+            backgroundColor: 'var(--button-red-color)',
+            hoverBackgroundColor: 'var(--button-red-color-hover)',
+            onClickEffect: 'push',
         }"
+        [disabled]="disabled()"
     >
-        <span
-            class="material-symbols-outlined"
-        >
+        <span class="material-symbols-outlined">
             touch_app
         </span>
-        <span
-            [style.font-weight]="'bold'"
-        >
-            Click
+        <span [style.font-weight]="'bold'">
+            Push
         </span>
     </mv-lib-button>
 </div>
