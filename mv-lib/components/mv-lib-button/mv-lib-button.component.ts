@@ -1,4 +1,4 @@
-import { Component, input, output, computed, signal } from '@angular/core';
+import { Component, input, output, computed, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MvLibButtonSettings } from './mv-lib-button.settings';
 
@@ -9,10 +9,11 @@ export interface MvLibButtonClickEvent {
 
 @Component({
   selector: 'mv-lib-button',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './mv-lib-button.component.html',
   styleUrls: ['./mv-lib-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class MvLibButtonComponent {
 
