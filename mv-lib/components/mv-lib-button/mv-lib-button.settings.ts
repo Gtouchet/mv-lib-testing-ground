@@ -1,21 +1,21 @@
-export type MvLibOnClickEffect = 'none' | 'push' | 'ripple';
+export type MvLibSettingsOnClickEffect = 'push' | 'ripple';
 
 export class MvLibButtonSettings {
     public widthPx: number | undefined;
     public heightPx: number | undefined;
     public backgroundColor: string;
-    public hoverBackgroundColor: string;
+    public backgroundColorHover: string;
     public textColor: string;
     public border: string;
-    public onClickEffect: MvLibOnClickEffect;
+    public onClickEffects: MvLibSettingsOnClickEffect[];
 
     constructor(settings: Partial<MvLibButtonSettings> = {}) {
         this.widthPx = settings.widthPx ?? undefined;
-        this.heightPx = settings.heightPx ?? undefined;
+        this.heightPx = settings.heightPx ?? 32;
         this.backgroundColor = settings.backgroundColor ?? 'gray';
-        this.hoverBackgroundColor = settings.hoverBackgroundColor ?? 'dimgray';
+        this.backgroundColorHover = settings.backgroundColorHover ?? 'dimgray';
         this.textColor = settings.textColor ?? 'white';
         this.border = settings.border ?? 'none';
-        this.onClickEffect = settings.onClickEffect ?? 'none';
+        this.onClickEffects = settings.onClickEffects ?? [];
     }
 }

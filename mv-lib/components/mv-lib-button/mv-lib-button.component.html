@@ -1,19 +1,19 @@
 <button
-    [ngClass]="[
-        'mv-lib-button',
-        computedSettings().onClickEffect,
-    ]"
+    [ngClass]="computedClasses()"
 
     [style.width.px]="computedSettings().widthPx"
     [style.height.px]="computedSettings().heightPx"
 
-    [style.background-color]="hover() ? computedSettings().hoverBackgroundColor : computedSettings().backgroundColor"
+    [style.background-color]="hover() ? computedSettings().backgroundColorHover : computedSettings().backgroundColor"
     [style.color]="computedSettings().textColor"
     [style.border]="computedSettings().border"
 
     [disabled]="disabled()"
 
-    (click)="onClick.emit($event)"
+    (click)="onClick.emit({
+        buttonSettings: computedSettings(),
+        event: $event,
+    })"
 
     (mouseenter)="hover.set(true)"
     (mouseleave)="hover.set(false)"

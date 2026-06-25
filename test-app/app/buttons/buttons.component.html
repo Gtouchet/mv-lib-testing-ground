@@ -1,79 +1,346 @@
 <mv-lib-button
     [settings]="{
         widthPx: 100,
-        heightPx: 25,
     }"
     (onClick)="disabled.set(!disabled())"
 >
-    <span [style.font-weight]="'bold'">
-        {{ disabled() ? 'Enable' : 'Disable' }}
+    <span
+        [style.font-weight]="'bold'"
+    >
+        {{ disabled() ? 'Enable all' : 'Disable all' }}
     </span>
 </mv-lib-button>
 
+<span
+    [style.margin-left.px]='8'
+    [style.color]="logColor()"
+>
+    {{ log() }}
+</span>
+
 <div
     [style.display]="'flex'"
-    [style.flex-direction]="'column'"
+    [style.flex-direction]="'row'"
     [style.gap.px]='8'
     [style.margin-top.px]='8'
 >
-    <mv-lib-button
-        [settings]="{
-            onClickEffect: 'ripple',
-        }"
-        [disabled]="disabled()"
+    <!-- Gray buttons -->
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.gap.px]='8'
+        [style.margin-top.px]='8'
     >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            Ripple
-        </span>
-    </mv-lib-button>
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                No effect
+            </span>
+        </mv-lib-button>
 
-    <mv-lib-button
-        [settings]="{
-            backgroundColor: 'var(--button-blue-color)',
-            hoverBackgroundColor: 'var(--button-blue-color-hover)',
-            onClickEffect: 'push',
-        }"
-        [disabled]="disabled()"
-    >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            Push
-        </span>
-    </mv-lib-button>
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                onClickEffects: ['push'],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Push effect
+            </span>
+        </mv-lib-button>
+        
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                onClickEffects: ['ripple'],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Ripple effect
+            </span>
+        </mv-lib-button>
+        
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                onClickEffects: [
+                    'push',
+                    'ripple'
+                ],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Push and ripple effect
+            </span>
+        </mv-lib-button>
+    </div>
 
-    <mv-lib-button
-        [settings]="{
-            backgroundColor: 'var(--button-green-color)',
-            hoverBackgroundColor: 'var(--button-green-color-hover)',
-        }"
-        [disabled]="disabled()"
+    <!-- Blue buttons -->
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.gap.px]='8'
+        [style.margin-top.px]='8'
     >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            None
-        </span>
-    </mv-lib-button>
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-blue-color)',
+                backgroundColorHover: 'var(--button-blue-color-hover)',
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                No effect
+            </span>
+        </mv-lib-button>
 
-    <mv-lib-button
-        [settings]="{
-            backgroundColor: 'var(--button-red-color)',
-            hoverBackgroundColor: 'var(--button-red-color-hover)',
-            onClickEffect: 'push',
-        }"
-        [disabled]="disabled()"
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-blue-color)',
+                backgroundColorHover: 'var(--button-blue-color-hover)',
+                onClickEffects: ['push'],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Push effect
+            </span>
+        </mv-lib-button>
+        
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-blue-color)',
+                backgroundColorHover: 'var(--button-blue-color-hover)',
+                onClickEffects: ['ripple'],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Ripple effect
+            </span>
+        </mv-lib-button>
+        
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-blue-color)',
+                backgroundColorHover: 'var(--button-blue-color-hover)',
+                onClickEffects: [
+                    'push',
+                    'ripple'
+                ],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Push and ripple effect
+            </span>
+        </mv-lib-button>
+    </div>
+
+    <!-- Green buttons -->
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.gap.px]='8'
+        [style.margin-top.px]='8'
     >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            Push
-        </span>
-    </mv-lib-button>
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-green-color)',
+                backgroundColorHover: 'var(--button-green-color-hover)',
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                No effect
+            </span>
+        </mv-lib-button>
+
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-green-color)',
+                backgroundColorHover: 'var(--button-green-color-hover)',
+                onClickEffects: ['push'],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Push effect
+            </span>
+        </mv-lib-button>
+        
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-green-color)',
+                backgroundColorHover: 'var(--button-green-color-hover)',
+                onClickEffects: ['ripple'],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Ripple effect
+            </span>
+        </mv-lib-button>
+        
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-green-color)',
+                backgroundColorHover: 'var(--button-green-color-hover)',
+                onClickEffects: [
+                    'push',
+                    'ripple'
+                ],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Push and ripple effect
+            </span>
+        </mv-lib-button>
+    </div>
+    
+    <!-- Red buttons -->
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.gap.px]='8'
+        [style.margin-top.px]='8'
+    >
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-red-color)',
+                backgroundColorHover: 'var(--button-red-color-hover)',
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                No effect
+            </span>
+        </mv-lib-button>
+
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-red-color)',
+                backgroundColorHover: 'var(--button-red-color-hover)',
+                onClickEffects: ['push'],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Push effect
+            </span>
+        </mv-lib-button>
+        
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-red-color)',
+                backgroundColorHover: 'var(--button-red-color-hover)',
+                onClickEffects: ['ripple'],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Ripple effect
+            </span>
+        </mv-lib-button>
+        
+        <mv-lib-button
+            [settings]="{
+                widthPx: 200,
+                backgroundColor: 'var(--button-red-color)',
+                backgroundColorHover: 'var(--button-red-color-hover)',
+                onClickEffects: [
+                    'push',
+                    'ripple'
+                ],
+            }"
+            [disabled]="disabled()"
+            (onClick)="setLog($event)"
+        >
+            <span class="material-symbols-outlined">
+                touch_app
+            </span>
+            <span [style.font-weight]="'bold'">
+                Push and ripple effect
+            </span>
+        </mv-lib-button>
+    </div>
 </div>

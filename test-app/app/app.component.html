@@ -8,10 +8,9 @@
             <mv-lib-button
                 routerLink="/"
                 [settings]="{
-                    heightPx: 32,
                     backgroundColor: 'var(--button-blue-color)',
-                    hoverBackgroundColor: 'var(--button-blue-color-hover)',
-                    onClickEffect: 'push',
+                    backgroundColorHover: 'var(--button-blue-color-hover)',
+                    onClickEffects: ['push'],
                 }"
             >
                 <span class="material-symbols-outlined">
@@ -22,10 +21,9 @@
             <mv-lib-button
                 routerLink="/buttons"
                 [settings]="{
-                    heightPx: 32,
                     backgroundColor: 'var(--button-blue-color)',
-                    hoverBackgroundColor: 'var(--button-blue-color-hover)',
-                    onClickEffect: 'push',
+                    backgroundColorHover: 'var(--button-blue-color-hover)',
+                    onClickEffects: ['push'],
                 }"
             >
                 <span
@@ -35,9 +33,12 @@
                 </span>
             </mv-lib-button>
         </div>
-    </header>
 
-    <hr />
+        <hr
+            [style.margin-left.px]="-8"
+            [style.margin-right.px]="-8"
+        />
+    </header>
 
     <main>
         <router-outlet />
