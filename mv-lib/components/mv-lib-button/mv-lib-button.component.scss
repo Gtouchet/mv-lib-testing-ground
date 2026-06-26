@@ -1,13 +1,33 @@
 .mv-lib-button {
-  padding: 4px 8px;
-  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  padding: 8px;
+  border-radius: 5px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-color: transparent;
+  border: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--background-color);
+    transition: background-color 200ms ease, filter 200ms ease;
+  }
+
+  &.darken:enabled:hover::before {
+    filter: brightness(0.9);
+  }
+
+  &.shadow:enabled {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
 
   &:enabled {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     cursor: pointer;
   }
 
@@ -16,9 +36,6 @@
   }
 }
 
-/**
-* Effects
-*/
 .push {
   transition: transform 80ms ease, box-shadow 80ms ease;
 

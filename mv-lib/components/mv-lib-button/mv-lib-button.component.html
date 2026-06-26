@@ -1,22 +1,17 @@
 <button
     [ngClass]="computedClasses()"
-
+    
+    [style.--background-color]="computedSettings().backgroundColor"
     [style.width.px]="computedSettings().widthPx"
     [style.height.px]="computedSettings().heightPx"
-
-    [style.background-color]="hover() && !disabled() ? computedSettings().backgroundColorHover : computedSettings().backgroundColor"
     [style.color]="computedSettings().textColor"
-    [style.border]="computedSettings().border"
 
     [disabled]="disabled()"
-
     (click)="onClick.emit({
         settings: computedSettings(),
+        effects: computedEffects(),
         event: $event,
     })"
-
-    (mouseenter)="hover.set(true)"
-    (mouseleave)="hover.set(false)"
 >
     <ng-content />
 </button>

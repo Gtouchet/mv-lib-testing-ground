@@ -45,9 +45,6 @@ input:checked + .slider:before {
   transform: translateX(var(--translate-distance));
 }
 
-/**
-* Effects
-*/
 .push {
   transition: transform 80ms ease, box-shadow 80ms ease;
 

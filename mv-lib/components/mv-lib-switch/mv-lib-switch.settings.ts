@@ -1,6 +1,7 @@
 export type MvLibSettingsOnClickEffect = '';
 
 export class MvLibSwitchSettings {
+    
     public widthPx: number;
     public heightPx: number;
     public offColor: string;
