@@ -1,0 +1,77 @@
+<mv-lib-switch
+    [settings]="{
+        
+    }"
+    [active]="true"
+    (onClick)="disabled.set(!$event.active)"
+/>
+{{ disabled() ? 'All disabled' : 'All enabled' }}
+
+<span
+    [style.margin-left.px]='8'
+    [style.color]="logColor()"
+>
+    {{ log() }}
+</span>
+
+<div
+    [style.display]="'flex'"
+    [style.flex-direction]="'column'"
+    [style.gap.px]='8'
+    [style.margin-top.px]='8'
+>
+    <div
+        [style.display]="'flex'"
+        [style.gap.px]='8'
+        [style.margin-top.px]='8'
+    >
+        <mv-lib-switch
+            [settings]="{
+                
+            }"
+            [active]="switch1_active()"
+            [disabled]="disabled()"
+            (onClick)="
+                switch1_active.set($event.active);
+                setLog($event);
+            "
+        />
+        {{ switch1_active() ? 'ON' : 'OFF' }}
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.gap.px]='8'
+    >
+        <mv-lib-switch
+            [settings]="{
+                onColor: styles.var['switch-blue-color-on'],
+            }"
+            [active]="switch2_active()"
+            [disabled]="disabled()"
+            (onClick)="
+                switch2_active.set($event.active);
+                setLog($event);
+            "
+        />
+        {{ switch2_active() ? 'ON' : 'OFF' }}
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.gap.px]='8'
+    >
+        <mv-lib-switch
+            [settings]="{
+                onColor: styles.var['switch-red-color-on'],
+            }"
+            [active]="switch3_active()"
+            [disabled]="disabled()"
+            (onClick)="
+                switch3_active.set($event.active);
+                setLog($event);
+            "
+        />
+        {{ switch3_active() ? 'ON' : 'OFF' }}
+    </div>
+</div>

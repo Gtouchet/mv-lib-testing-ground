@@ -2,7 +2,7 @@ export type MvLibSettingsOnClickEffect = 'push' | 'ripple';
 
 export class MvLibButtonSettings {
     public widthPx: number | undefined;
-    public heightPx: number | undefined;
+    public heightPx: number;
     public backgroundColor: string;
     public backgroundColorHover: string;
     public textColor: string;

@@ -32,6 +32,21 @@
                     Buttons
                 </span>
             </mv-lib-button>
+
+            <mv-lib-button
+                routerLink="/switches"
+                [settings]="{
+                    backgroundColor: 'var(--button-blue-color)',
+                    backgroundColorHover: 'var(--button-blue-color-hover)',
+                    onClickEffects: ['push'],
+                }"
+            >
+                <span
+                    [style.font-weight]="'bold'"
+                >
+                    Switches
+                </span>
+            </mv-lib-button>
         </div>
 
         <hr

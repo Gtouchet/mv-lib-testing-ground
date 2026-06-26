@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MvLibButtonSettings } from './mv-lib-button.settings';
 
 export interface MvLibButtonClickEvent {
-  readonly buttonSettings: Readonly<Partial<MvLibButtonSettings>>;
-  readonly event: Readonly<Event>;
+  readonly settings: Partial<MvLibButtonSettings>;
+  readonly event: Event;
 }
 
 @Component({
@@ -23,21 +23,6 @@ export class MvLibButtonComponent {
   
   protected hover = signal(false);
 
-  protected computedSettings = computed(() => this.computeSettings());
-  protected computedClasses = computed(() => this.computeClasses());
-  
-  private computeSettings(): MvLibButtonSettings {
-    const computedSettings = new MvLibButtonSettings(this.settings());
-    if (this.disabled()) {
-      computedSettings.backgroundColorHover = computedSettings.backgroundColor;
-    }
-    return computedSettings;
-  }
-
-  private computeClasses(): string[] {
-    return [
-      'mv-lib-button',
-      ...this.computedSettings().onClickEffects,
-    ];
-  }
+  protected computedSettings = computed(() => new MvLibButtonSettings(this.settings()));
+  protected computedClasses = computed(() => ['mv-lib-button', ...this.computedSettings().onClickEffects]);
 }

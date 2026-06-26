@@ -1,0 +1,35 @@
+<label
+  class="toggle"
+  [class.disabled]="disabled()"
+  [style.height.px]="computedSettings().heightPx"
+  [style.width.px]="computedSettings().widthPx"
+  [style.--translate-distance.px]="computedSettings().widthPx"
+>
+  <input
+    class="checkbox"
+    type="checkbox"
+    [disabled]="disabled()"
+    [checked]="_active()"
+    (click)="
+      _active.set(!_active());
+      onClick.emit({
+        active: _active(),
+        settings: computedSettings(),
+        event: $event,
+      });
+    "
+  />
+  <span
+    class="slider"
+    [style.height.px]="computedSettings().heightPx!"
+    [style.width.px]="computedSettings().widthPx!"
+    [style.border-radius.px]="computedSettings().heightPx"
+    [style.--slider-before-height]="(computedSettings().heightPx! - 8) + 'px'"
+    [style.--slider-on-color]="computedSettings().onColor"
+    [style.--slider-off-color]="computedSettings().offColor"
+    [style.--slider-before-color]="_active() ? computedSettings().sliderOnColor : computedSettings().sliderOffColor"
+    [style.--translate-distance]="(computedSettings().widthPx! - computedSettings().heightPx!) + 'px'"
+    [style.border]="computedSettings().border"
+  >
+  </span>
+</label>

@@ -1,0 +1,39 @@
+.toggle {
+  position: relative;
+  display: inline-block;
+
+  &.disabled {
+    opacity: 0.6;
+  }
+}
+
+.slider {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  transition: 0.25s;
+  background-color: var(--slider-off-color);
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: var(--slider-before-height);
+  width: var(--slider-before-height);
+  background-color: var(--slider-before-color);
+  left: 4px;
+  bottom: 4px;
+  transition: 0.25s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--slider-on-color);
+}
+input:checked + .slider:before {
+  transform: translateX(var(--translate-distance));
+}
+
+.checkbox {
+  visibility: hidden;
+}

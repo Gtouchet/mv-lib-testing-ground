@@ -15,11 +15,11 @@ export class ButtonsComponent {
   protected styles = inject(StylesService);
 
   protected disabled = signal(false);
-  protected log = signal('Click on a button to see the onClick event');
+  protected log = signal('Click on a button to see the button\'s settings');
   protected logColor = signal('black');
 
   protected setLog(event: MvLibButtonClickEvent) {
-    this.log.set(`${new Date().toLocaleTimeString()} - Button settings ${JSON.stringify(event.buttonSettings)}`);
-    this.logColor.set(event.buttonSettings.backgroundColor ?? 'black');
+    this.log.set(`${new Date().toLocaleTimeString()} - Button settings ${JSON.stringify(event.settings)}`);
+    this.logColor.set(event.settings.backgroundColor ?? 'black');
   }
 }

@@ -4,14 +4,14 @@
     [style.width.px]="computedSettings().widthPx"
     [style.height.px]="computedSettings().heightPx"
 
-    [style.background-color]="hover() ? computedSettings().backgroundColorHover : computedSettings().backgroundColor"
+    [style.background-color]="hover() && !disabled() ? computedSettings().backgroundColorHover : computedSettings().backgroundColor"
     [style.color]="computedSettings().textColor"
     [style.border]="computedSettings().border"
 
     [disabled]="disabled()"
 
     (click)="onClick.emit({
-        buttonSettings: computedSettings(),
+        settings: computedSettings(),
         event: $event,
     })"
 
