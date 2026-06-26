@@ -14,16 +14,14 @@ export class SwitchesComponent {
 
   protected styles = inject(StylesService);
   
-  protected switch1_active = signal(false);
-  protected switch2_active = signal(false);
-  protected switch3_active = signal(false);
+  protected switchesStates = signal<boolean[]>([
+    false, false, false, false, false, false, false, false, false,
+  ]);
 
   protected disabled = signal(false);
-  protected log = signal('Click on a button to see the button\'s settings');
-  protected logColor = signal('black');
+  protected log = signal('Click on a switch to see the switch\'s settings');
 
   protected setLog(event: MvLibSwitchClickEvent) {
-    this.log.set(`${new Date().toLocaleTimeString()} - Button settings ${JSON.stringify(event.settings)}`);
-    this.logColor.set(event.settings.onColor ?? 'black');
+    this.log.set(`Switch clicked at ${new Date().toLocaleTimeString()}\n${JSON.stringify(event.settings, null, 4)}`);
   }
 }

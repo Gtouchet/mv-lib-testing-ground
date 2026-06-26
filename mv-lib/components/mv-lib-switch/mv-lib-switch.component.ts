@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal } from '@angular/core';
 import { MvLibSwitchSettings } from './mv-lib-switch.settings';
+import { CommonModule } from '@angular/common';
 
 export interface MvLibSwitchClickEvent {
   readonly active: boolean;
@@ -9,7 +10,7 @@ export interface MvLibSwitchClickEvent {
 
 @Component({
   selector: 'mv-lib-switch',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './mv-lib-switch.component.html',
   styleUrl: './mv-lib-switch.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,7 +25,9 @@ export class MvLibSwitchComponent {
   public onClick = output<MvLibSwitchClickEvent>();
 
   protected _active = signal(this.active());
+  
   protected computedSettings = computed(() => new MvLibSwitchSettings(this.settings()));
+  protected computedClasses = computed(() => ['toggle', ...this.computedSettings().onClickEffects]);
 
   constructor() {
     effect(() => this._active.set(this.active()));

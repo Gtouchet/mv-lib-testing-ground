@@ -19,6 +19,7 @@ export class MvLibButtonComponent {
 
   public settings = input<Partial<MvLibButtonSettings>>();
   public disabled = input<boolean>(false);
+  
   public onClick = output<MvLibButtonClickEvent>();
   
   protected hover = signal(false);

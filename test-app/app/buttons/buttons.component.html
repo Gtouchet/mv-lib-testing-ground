@@ -11,25 +11,17 @@
     </span>
 </mv-lib-button>
 
-<span
-    [style.margin-left.px]='8'
-    [style.color]="logColor()"
->
-    {{ log() }}
-</span>
-
 <div
     [style.display]="'flex'"
     [style.gap.px]='8'
-    [style.margin-top.px]='8'
 >
-    <!-- Gray buttons -->
     <div
         [style.display]="'flex'"
         [style.flex-direction]="'column'"
         [style.gap.px]='8'
         [style.margin-top.px]='8'
     >
+        <!-- Gray buttons -->
         <mv-lib-button
             [settings]="{
                 widthPx: 200,
@@ -343,3 +335,12 @@
         </mv-lib-button>
     </div>
 </div>
+
+<span
+    [style.margin-left.px]='8'
+    [style.margin-top.px]='16'
+    [style.display]="'block'"
+    [style.white-space]="'pre-wrap'"
+>
+    {{ log() }}
+</span>

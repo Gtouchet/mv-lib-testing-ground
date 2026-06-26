@@ -16,10 +16,8 @@ export class ButtonsComponent {
 
   protected disabled = signal(false);
   protected log = signal('Click on a button to see the button\'s settings');
-  protected logColor = signal('black');
 
   protected setLog(event: MvLibButtonClickEvent) {
-    this.log.set(`${new Date().toLocaleTimeString()} - Button settings ${JSON.stringify(event.settings)}`);
-    this.logColor.set(event.settings.backgroundColor ?? 'black');
+    this.log.set(`Button clicked at ${new Date().toLocaleTimeString()}\n${JSON.stringify(event.settings, null, 4)}`);
   }
 }
