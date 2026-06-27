@@ -51,30 +51,26 @@ Button clicked at ${this.lastClickedTime()}
     `);
   }
 
-protected updateSetting(
-  key: 'widthPx' | 'heightPx' | 'backgroundColor' | 'textColor',
-  event: any,
-) {
-  const value =
-    key === 'widthPx' || key === 'heightPx'
-      ? Number(event.target.value)
-      : String(event.target.value);
-  this.buttonSettings.update(current => ({
-    ...current,
-    [key]: value,
-  }));
-  this.refreshLog();
-}
+  protected updateSetting(
+    key: 'widthPx' | 'heightPx' | 'backgroundColor' | 'textColor',
+    event: any,
+  ) {
+    this.buttonSettings.update(current => ({
+      ...current,
+      [key]: event.target.value,
+    }));
+    this.refreshLog();
+  }
 
   protected updateEffect(event: any) {
-    const [effectType, effectValue] = event.target.getAttribute('effect').split('.');
     this.buttonEffects.update(current => {
-      const currentValues = current[effectType as keyof typeof current] ?? [];
+      const [type, value] = event.target.getAttribute('effect').split('.');
+      const currentValues = current[type as keyof typeof current] ?? [];
       return {
         ...current,
-        [effectType]: event.target.checked
-          ? [...currentValues, effectValue]
-          : currentValues.filter(v => v !== effectValue),
+        [type]: event.target.checked
+          ? [...currentValues, value]
+          : currentValues.filter(effect => effect !== value),
       };
     });
     this.refreshLog();
