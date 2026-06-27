@@ -1,5 +1,5 @@
 <label
-  [ngClass]="computedClasses()"
+  [ngClass]="computedLabelClasses()"
   [class.disabled]="disabled()"
   [style.height.px]="computedSettings().heightPx"
   [style.width.px]="computedSettings().widthPx"
@@ -8,14 +8,13 @@
   <input
     class="checkbox"
     type="checkbox"
-    [style.visibility]="'hidden'";
+    [style.visibility]="'hidden'"
     [disabled]="disabled()"
     [checked]="_active()"
     (click)="
       _active.set(!_active());
       onClick.emit({
         active: _active(),
-        settings: computedSettings(),
         event: $event,
       });
     "
@@ -30,7 +29,7 @@
     [style.--slider-off-color]="computedSettings().offColor"
     [style.--slider-before-color]="_active() ? computedSettings().sliderOnColor : computedSettings().sliderOffColor"
     [style.--translate-distance]="(computedSettings().widthPx! - computedSettings().heightPx!) + 'px'"
-    [style.border]="computedSettings().border"
+    [style.border]="'none'"
   >
   </span>
 </label>

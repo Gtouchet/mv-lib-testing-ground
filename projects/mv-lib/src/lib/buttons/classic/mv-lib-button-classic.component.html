@@ -7,11 +7,7 @@
     [style.color]="computedSettings().textColor"
 
     [disabled]="disabled()"
-    (click)="onClick.emit({
-        settings: computedSettings(),
-        effects: computedEffects(),
-        event: $event,
-    })"
+    (click)="onClick.emit($event)"
 >
     <ng-content />
 </button>

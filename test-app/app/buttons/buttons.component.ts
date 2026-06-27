@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { MvLibButtonComponent } from '../../../mv-lib/components';
-import { MvLibButtonSettings } from '../../../mv-lib/components/mv-lib-button/mv-lib-button.settings';
-import { MvLibButtonEffects } from '../../../mv-lib/components/mv-lib-button/mv-lib-button.effects';
+import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings } from 'mv-lib';
 
 @Component({
   selector: 'app-buttons-test',
-  imports: [MvLibButtonComponent],
+  imports: [MvLibButtonClassicComponent],
   templateUrl: './buttons.component.html',
   styleUrl: './buttons.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,14 +11,16 @@ import { MvLibButtonEffects } from '../../../mv-lib/components/mv-lib-button/mv-
 })
 export class ButtonsComponent {
 
-  protected buttonSettings = signal<Partial<MvLibButtonSettings>>({
+  protected buttonSettings = signal<Partial<MvLibButtonClassicSettings>>({
     widthPx: 100,
     heightPx: 40,
-    backgroundColor: 'gray',
+    backgroundColor: 'dodgerblue',
     textColor: 'white',
   });
-  protected buttonEffects = signal<Partial<MvLibButtonEffects>>({
-
+  protected buttonEffects = signal<Partial<MvLibButtonClassicEffects>>({
+    idle: [],
+    hover: ['darken'],
+    click: ['push'],
   });
 
   protected disabled = signal(false);
@@ -30,7 +30,7 @@ export class ButtonsComponent {
   constructor() {
     this.refreshLog();
   }
-
+  
   protected setLastClickedTime() {
     this.lastClickedTime.set(new Date().toLocaleTimeString());
     this.refreshLog();

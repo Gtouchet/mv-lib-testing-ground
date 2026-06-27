@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { MvLibButtonComponent } from '../../mv-lib/components';
+import { MvLibButtonClassicComponent } from 'mv-lib';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
     RouterLink,
-    MvLibButtonComponent,
+    MvLibButtonClassicComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
