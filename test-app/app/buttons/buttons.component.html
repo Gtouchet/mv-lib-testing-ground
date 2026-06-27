@@ -8,12 +8,25 @@
     </b>
     <div
         [style.display]="'flex'"
+    >
+        <input
+            type="checkbox"
+            [checked]="disabled()"
+            (click)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        Disabled
+    </div>
+    <div
+        [style.display]="'flex'"
         [style.align-items]="'center'"
     >
         <input
             type="number"
             [value]="buttonSettings().widthPx ?? ''"
-            (input)="updateWidth($event)"
+            (input)="updateSetting('widthPx', $event)"
             [style.width.px]="50"
             [style.margin-top.px]="4"
             [style.margin-right.px]="4"
@@ -28,7 +41,7 @@
         <input
             type="number"
             [value]="buttonSettings().heightPx ?? ''"
-            (input)="updateHeight($event)"
+            (input)="updateSetting('heightPx', $event)"
             [style.width.px]="50"
             [style.margin-top.px]="4"
             [style.margin-right.px]="4"
@@ -44,7 +57,7 @@
         <input
             type="color"
             [value]="buttonSettings().backgroundColor"
-            (input)="updateBackgroundColor($event)"
+            (input)="updateSetting('backgroundColor', $event)"
             [style.width.px]="58"
             [style.height.px]="24"
             [style.margin-right.px]="4"
@@ -60,7 +73,7 @@
         <input
             type="color"
             [value]="buttonSettings().textColor"
-            (input)="updateTextColor($event)"
+            (input)="updateSetting('textColor', $event)"
             [style.width.px]="58"
             [style.height.px]="24"
             [style.margin-right.px]="4"
@@ -88,8 +101,9 @@
         >
             <input
                 type="checkbox"
+                effect="idle.shadow"
                 [checked]="buttonEffects().idle?.includes('shadow')"
-                (click)="changeIdleEffect($event, 'shadow')"
+                (click)="updateEffect($event)"
             />
             Shadow
         </div>
@@ -108,8 +122,9 @@
         >
             <input
                 type="checkbox"
+                effect="hover.darken"
                 [checked]="buttonEffects().hover?.includes('darken')"
-                (click)="changeHoverEffect($event, 'darken')"
+                (click)="updateEffect($event)"
             />
             Darken
         </div>
@@ -128,8 +143,9 @@
         >
             <input
                 type="checkbox"
+                effect="click.push"
                 [checked]="buttonEffects().click?.includes('push')"
-                (click)="changeClickEffect($event, 'push')"
+                (click)="updateEffect($event)"
             />
             Push
         </div>
@@ -139,8 +155,9 @@
         >
             <input
                 type="checkbox"
+                effect="click.ripple"
                 [checked]="buttonEffects().click?.includes('ripple')"
-                (click)="changeClickEffect($event, 'ripple')"
+                (click)="updateEffect($event)"
             />
             Ripple
         </div>
@@ -149,14 +166,14 @@
 
 <!-- Button -->
 <div
-    [style.display]="'flex'"
+    [style.margin-top.px]="8"
     [style.margin-bottom.px]="8"
 >
     <mv-lib-button
         [settings]="buttonSettings()"
         [effects]="buttonEffects()"
         [disabled]="disabled()"
-        (onClick)="onButtonClick($event)"
+        (onClick)="setLastClickedTime()"
     >
         <span class="material-symbols-outlined">
             touch_app
@@ -168,9 +185,6 @@
 </div>
 
 <!-- Log -->
-<b>
-    Click on the button to refresh the log
-</b>
 <span
     [style.display]="'block'"
     [style.white-space]="'pre-wrap'"

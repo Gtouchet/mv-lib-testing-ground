@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { MvLibButtonComponent, MvLibButtonOnClickEvent } from '../../../mv-lib/components';
+import { MvLibButtonComponent } from '../../../mv-lib/components';
 import { MvLibButtonSettings } from '../../../mv-lib/components/mv-lib-button/mv-lib-button.settings';
-import { MvLibButtonClickEffect, MvLibButtonEffects, MvLibButtonHoverEffect, MvLibButtonIdleEffect } from '../../../mv-lib/components/mv-lib-button/mv-lib-button.effects';
+import { MvLibButtonEffects } from '../../../mv-lib/components/mv-lib-button/mv-lib-button.effects';
 
 @Component({
   selector: 'app-buttons-test',
@@ -24,78 +24,59 @@ export class ButtonsComponent {
   });
 
   protected disabled = signal(false);
+  protected lastClickedTime = signal<string>('00:00:00');
   protected log = signal('');
 
-  protected onButtonClick(event: MvLibButtonOnClickEvent) {
+  constructor() {
+    this.refreshLog();
+  }
+
+  protected setLastClickedTime() {
+    this.lastClickedTime.set(new Date().toLocaleTimeString());
+    this.refreshLog();
+  }
+
+  protected refreshLog() {
+    const settings = JSON.stringify(this.buttonSettings(), null, 4)
+      .replace(/"([^\"]+)":/g, '$1:')
+      .replace(/"/g, "'");
+    const effects = JSON.stringify(this.buttonEffects(), null, 4)
+      .replace(/"([^\"]+)":/g, '$1:')
+      .replace(/"/g, "'");
     this.log.set(`
-Button clicked at ${new Date().toLocaleTimeString()}
-settings: ${JSON.stringify(event.settings, null, 4)}
-effects: ${JSON.stringify(event.effects, null, 4)}
+Button clicked at ${this.lastClickedTime()}
+[disabled]=\"${this.disabled()}\"
+[settings]=\"${settings}\",
+[effects]=\"${effects}\"
     `);
   }
 
-  /**
-   * Settings update functions
-   */
-  protected updateWidth(event: Event) {
-    const target = event.target as HTMLInputElement | null;
-    this.buttonSettings.update(current => ({
-      ...current,
-      widthPx: Number(target?.value),
-    }));
-  }
+protected updateSetting(
+  key: 'widthPx' | 'heightPx' | 'backgroundColor' | 'textColor',
+  event: any,
+) {
+  const value =
+    key === 'widthPx' || key === 'heightPx'
+      ? Number(event.target.value)
+      : String(event.target.value);
+  this.buttonSettings.update(current => ({
+    ...current,
+    [key]: value,
+  }));
+  this.refreshLog();
+}
 
-  protected updateHeight(event: Event) {
-    const target = event.target as HTMLInputElement | null;
-    this.buttonSettings.update(current => ({
-      ...current,
-      heightPx: Number(target?.value),
-    }));
-  }
-
-  protected updateBackgroundColor(event: Event) {
-    const target = event.target as HTMLInputElement | null;
-    this.buttonSettings.update(current => ({
-      ...current,
-      backgroundColor: target?.value ?? current.backgroundColor,
-    }));
-  }
-
-  protected updateTextColor(event: Event) {
-    const target = event.target as HTMLInputElement | null;
-    this.buttonSettings.update(current => ({
-      ...current,
-      textColor: target?.value ?? current.textColor,
-    }));
-  }
-
-  /**
-   * Effects update functions
-   */
-  protected changeIdleEffect(event: any, effect: MvLibButtonIdleEffect) {
-    this.buttonEffects.update(current => ({
-      ...current,
-      idle: event.target.checked
-        ? [...(current.idle ?? []), effect]
-        : (current.idle ?? []).filter(e => e !== effect),
-    }));
-  }
-
-  protected changeHoverEffect(event: any, effect: MvLibButtonHoverEffect) {
-    this.buttonEffects.update(current => ({
-      ...current,
-      hover: event.target.checked
-        ? [...(current.hover ?? []), effect]
-        : (current.hover ?? []).filter(e => e !== effect),
-    }));
-  }
-
-  protected changeClickEffect(event: any, effect: MvLibButtonClickEffect) {
-    this.buttonEffects.update(current => ({
-      ...current,
-      click: event.target.checked
-        ? [...(current.click ?? []), effect]
-        : (current.click ?? []).filter(e => e !== effect),
-    }));
+  protected updateEffect(event: any) {
+    const [effectType, effectValue] = event.target.getAttribute('effect').split('.');
+    this.buttonEffects.update(current => {
+      const currentValues = current[effectType as keyof typeof current] ?? [];
+      return {
+        ...current,
+        [effectType]: event.target.checked
+          ? [...currentValues, effectValue]
+          : currentValues.filter(v => v !== effectValue),
+      };
+    });
+    this.refreshLog();
   }
 }
