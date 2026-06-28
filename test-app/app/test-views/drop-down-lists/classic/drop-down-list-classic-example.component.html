@@ -1,0 +1,11 @@
+<mv-lib-drop-down-list-classic
+    [data]="data()"
+    [settings]="{
+        placeHolder: 'Select a person',
+    }"
+    (onSelect)="onSelect($event)"
+>
+    <ng-template mvLibDropDownListTemplate let-item>
+        {{ item.id }} - {{ item.name }}
+    </ng-template>
+</mv-lib-drop-down-list-classic>

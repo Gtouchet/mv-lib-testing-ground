@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MvLibSwitchClassicSettings } from './mv-lib-switch-classic.settings';
-import { MvLibSwitchClassicEffects } from './mv-lib-switch-classic.effects';
+import { MvLibSwitchClassicSettings } from './switch-classic.settings';
+import { MvLibSwitchClassicEffects } from './switch-classic.effects';
 
 export interface MvLibSwitchClassicClickEvent {
   readonly active: boolean;
@@ -11,8 +11,8 @@ export interface MvLibSwitchClassicClickEvent {
 @Component({
   selector: 'mv-lib-switch-classic',
   imports: [CommonModule],
-  templateUrl: './mv-lib-switch-classic.component.html',
-  styleUrl: './mv-lib-switch-classic.component.scss',
+  templateUrl: './switch-classic.component.html',
+  styleUrl: './switch-classic.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

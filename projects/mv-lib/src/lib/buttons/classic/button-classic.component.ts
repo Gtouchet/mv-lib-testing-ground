@@ -1,13 +1,13 @@
 import { Component, input, output, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MvLibButtonClassicSettings } from './mv-lib-button-classic.settings';
-import { MvLibButtonClassicEffects } from './mv-lib-button-classic.effects';
+import { MvLibButtonClassicSettings } from './button-classic.settings';
+import { MvLibButtonClassicEffects } from './button-classic.effects';
 
 @Component({
   selector: 'mv-lib-button-classic',
   imports: [CommonModule],
-  templateUrl: './mv-lib-button-classic.component.html',
-  styleUrls: ['./mv-lib-button-classic.component.scss'],
+  templateUrl: './button-classic.component.html',
+  styleUrls: ['./button-classic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

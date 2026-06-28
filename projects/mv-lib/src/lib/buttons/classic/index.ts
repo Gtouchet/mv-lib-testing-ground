@@ -1,3 +1,3 @@
-export * from './mv-lib-button-classic.component';
-export * from './mv-lib-button-classic.settings';
-export * from './mv-lib-button-classic.effects';
+export * from './button-classic.component';
+export * from './button-classic.settings';
+export * from './button-classic.effects';

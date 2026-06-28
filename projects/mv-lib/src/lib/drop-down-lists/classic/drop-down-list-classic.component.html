@@ -1,0 +1,21 @@
+<select
+    (change)="onSelectionChange($event)"
+>
+    <option
+        [style.display]="'none'"
+    >
+        {{ computedSettings().placeHolder }}
+    </option>
+    @for (item of data(); track item) {
+        <option>
+            @if (itemTemplate) {
+                <ng-container
+                    [ngTemplateOutlet]="itemTemplate.templateRef"
+                    [ngTemplateOutletContext]="{ $implicit: item }"
+                ></ng-container>
+            } @else {
+                {{ item }}
+            }
+        </option>
+    }
+</select>

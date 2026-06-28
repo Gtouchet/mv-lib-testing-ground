@@ -80,9 +80,9 @@ input:checked + .slider:before {
     background-position: 50% 50%;
     transform: scale(7.5);
     opacity: 0;
-    transition: 
-      transform 800ms calc(var(--slider-motion-duration) / 3),
-      opacity 800ms calc(var(--slider-motion-duration) / 3);
+    transition:
+      transform 800ms calc(var(--slider-motion-duration) / 2.5),
+      opacity 800ms calc(var(--slider-motion-duration) / 2.5);
   }
 
   .toggle:not(.disabled):active .checkbox:not(:checked) + &::after {
