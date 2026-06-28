@@ -31,7 +31,7 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
     this.effects = signal<Partial<MvLibSwitchClassicEffects>>({
       idle: ['shadow'],
       hover: ['enlarge-slider'],
-      click: [],
+      click: ['ripple'],
     });
   }
 }

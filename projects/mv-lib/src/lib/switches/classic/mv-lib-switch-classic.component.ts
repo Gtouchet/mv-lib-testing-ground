@@ -23,7 +23,7 @@ export class MvLibSwitchClassicComponent {
   public disabled = input<boolean>(false);
   public active = input<boolean>(false);
 
-  public onClick = output<MvLibSwitchClassicClickEvent>();
+  public onToggle = output<MvLibSwitchClassicClickEvent>();
   
   protected computedSettings = computed(() => new MvLibSwitchClassicSettings(this.settings()));
   protected computedEffects = computed(() => new MvLibSwitchClassicEffects(this.effects()));
@@ -42,4 +42,12 @@ export class MvLibSwitchClassicComponent {
     const thumbSizePx = this.computedSettings().heightPx ?? 0;
     return thumbSizePx <= 0 ? '1' : String(Math.min(1.2, 1 + (5 / thumbSizePx)));
   });
+
+  protected handleToggle(event: Event): void {
+    if (this.disabled()) return;
+    this.onToggle.emit({
+      active: !this.active(),
+      event: event,
+    });
+  }
 }

@@ -151,7 +151,6 @@
         >
             <input
                 type="checkbox"
-                effect="idle.shadow"
                 [checked]="effects().idle?.includes('shadow')"
                 (click)="updateEffect('idle', 'shadow', $event)"
             />
@@ -173,7 +172,6 @@
         >
             <input
                 type="checkbox"
-                effect="hover.enlarge-slider"
                 [checked]="effects().hover?.includes('enlarge-slider')"
                 (click)="updateEffect('hover', 'enlarge-slider', $event)"
             />
@@ -195,19 +193,28 @@
         >
             <input
                 type="checkbox"
-                effect="click.push"
                 [checked]="effects().click?.includes('push')"
                 (click)="updateEffect('click', 'push', $event)"
             />
             Push
+        </div>
+
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'center'"
+        >
+            <input
+                type="checkbox"
+                [checked]="effects().click?.includes('ripple')"
+                (click)="updateEffect('click', 'ripple', $event)"
+            />
+            Ripple
         </div>
     </div>
 </div>
 
 <!-- Switch -->
 <div
-    [style.display]="'flex'"
-    [style.align-items]="'center'"
     [style.margin-top.px]="8"
 >
     <mv-lib-switch-classic
@@ -215,7 +222,7 @@
         [effects]="effects()"
         [disabled]="disabled()"
         [active]="active()"
-        (onClick)="
+        (onToggle)="
             active.set($event.active);
             setLastInteractionTime();
         "
@@ -227,12 +234,6 @@
             Click
         </span>
     </mv-lib-switch-classic>
-    <span
-        [style.margin-left.px]="8"
-        [style.font-weight]="'bold'"
-    >
-        {{ active() ? 'Active' : 'Inactive' }}
-    </span>
 </div>
 
 <!-- Log -->

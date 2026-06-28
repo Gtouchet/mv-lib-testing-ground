@@ -2,6 +2,7 @@
   position: relative;
   display: inline-block;
 
+
   &.disabled {
     opacity: 0.6;
 
@@ -23,11 +24,14 @@
 }
 
 .slider {
+  --slider-motion-duration: 0.25s;
+
   cursor: pointer;
   position: absolute;
   left: 0;
-  transition: 0.25s;
+  transition: background-color var(--slider-motion-duration);
   background-color: var(--slider-off-color);
+  overflow: hidden;
 
   &.shadow {
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -37,13 +41,14 @@
 .slider:before {
   content: "";
   position: absolute;
+  z-index: 1;
   height: var(--slider-before-height);
   width: var(--slider-before-height);
   background-color: var(--slider-before-color);
   left: 4px;
   bottom: 4px;
   transform-origin: center;
-  transition: 0.25s;
+  transition: transform var(--slider-motion-duration), background-color var(--slider-motion-duration);
   border-radius: 50%;
 }
 
@@ -61,5 +66,26 @@ input:checked + .slider:before {
   .toggle:not(.disabled) &:active {
     transform: translateY(1px) scale(0.98);
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+.ripple {
+  &::after {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 100%;
+    background-image: radial-gradient(circle, #fff 20%, transparent 10%);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    transform: scale(7.5);
+    opacity: 0;
+    transition: transform 800ms, opacity 800ms;
+  }
+
+  .toggle:not(.disabled):active .checkbox:not(:checked) + &::after {
+    transform: scale(0);
+    opacity: 0.5;
+    transition: 0s;
   }
 }

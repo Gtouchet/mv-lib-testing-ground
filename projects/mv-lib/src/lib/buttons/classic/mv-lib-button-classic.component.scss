@@ -61,14 +61,14 @@
     background-image: radial-gradient(circle, #fff 20%, transparent 10%);
     background-repeat: no-repeat;
     background-position: 50%;
-    transform: scale(10, 10);
+    transform: scale(7.5, 7.5);
     opacity: 0;
-    transition: transform 0.8s, opacity 0.8s;
+    transition: transform 800ms, opacity 800ms;
   }
 
   &:enabled:active::after {
     transform: scale(0, 0);
-    opacity: 0.3;
+    opacity: 0.5;
     transition: 0s;
   }
 }

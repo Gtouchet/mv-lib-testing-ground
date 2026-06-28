@@ -4,6 +4,7 @@
   [style.height.px]="computedSettings().heightPx"
   [style.width.px]="computedSettings().widthPx"
   [style.--translate-distance.px]="computedSettings().widthPx"
+  (click)="handleToggle($event)"
 >
   <input
     class="checkbox"
@@ -11,10 +12,6 @@
     [style.visibility]="'hidden'"
     [disabled]="disabled()"
     [checked]="active()"
-    (click)="onClick.emit({
-      active: !this.active(),
-      event: $event,
-    })"
   />
   <span
     [ngClass]="computedSliderClasses()"
