@@ -19,7 +19,7 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
 
   constructor() {
     super();
-    this.logProperties = ['disabled', 'active', 'settings', 'effects'];
+    this.logProperties.set(['disabled', 'active', 'settings', 'effects']);
     this.settings = signal<Partial<MvLibSwitchClassicSettings>>({
       widthPx: 64,
       heightPx: 32,

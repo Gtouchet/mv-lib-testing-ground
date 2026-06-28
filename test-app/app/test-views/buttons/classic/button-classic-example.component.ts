@@ -17,6 +17,7 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
 
   constructor() {
     super();
+    this.logProperties.set(['disabled', 'settings', 'effects']);
     this.settings = signal<Partial<MvLibButtonClassicSettings>>({
       widthPx: 100,
       heightPx: 40,
