@@ -21,6 +21,7 @@ export class MvLibButtonClassicComponent {
 
   protected computedSettings = computed(() => new MvLibButtonClassicSettings(this.settings()));
   protected computedEffects = computed(() => new MvLibButtonClassicEffects(this.effects()));
+  
   protected computedClasses = computed(() => [
     'mv-lib-button',
     ...this.computedEffects().idle,

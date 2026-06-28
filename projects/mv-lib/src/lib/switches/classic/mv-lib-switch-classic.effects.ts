@@ -1,5 +1,5 @@
 export type MvLibSwitchClassicIdleEffect = 'shadow';
-export type MvLibSwitchClassicHoverEffect = '';
+export type MvLibSwitchClassicHoverEffect = 'enlarge-slider';
 export type MvLibSwitchClassicClickEffect = '';
 
 export class MvLibSwitchClassicEffects {

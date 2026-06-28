@@ -10,6 +10,16 @@
       box-shadow: none;
     }
   }
+
+  &:not(.disabled) {
+    .slider.enlarge-slider:hover:before {
+      transform: scale(var(--thumb-hover-scale, 1.15));
+    }
+
+    input:checked + .slider.enlarge-slider:hover:before {
+      transform: translateX(var(--translate-distance)) scale(var(--thumb-hover-scale, 1.15));
+    }
+  }
 }
 
 .slider {
@@ -32,6 +42,7 @@
   background-color: var(--slider-before-color);
   left: 4px;
   bottom: 4px;
+  transform-origin: center;
   transition: 0.25s;
   border-radius: 50%;
 }

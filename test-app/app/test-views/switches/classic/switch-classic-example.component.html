@@ -158,6 +158,28 @@
             Shadow
         </div>
     </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.margin-bottom.px]="8"
+    >
+        <b>
+            Hover effects
+        </b>
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'center'"
+        >
+            <input
+                type="checkbox"
+                effect="hover.enlarge-slider"
+                [checked]="effects().hover?.includes('enlarge-slider')"
+                (click)="updateEffect('hover', 'enlarge-slider', $event)"
+            />
+            Enlarge slider
+        </div>
+    </div>
 </div>
 
 <!-- Switch -->

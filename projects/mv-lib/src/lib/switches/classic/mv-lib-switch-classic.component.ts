@@ -27,11 +27,22 @@ export class MvLibSwitchClassicComponent {
   
   protected computedSettings = computed(() => new MvLibSwitchClassicSettings(this.settings()));
   protected computedEffects = computed(() => new MvLibSwitchClassicEffects(this.effects()));
+
   protected computedLabelClasses = computed(() => [
     'toggle',
   ]);
   protected computedSliderClasses = computed(() => [
     'slider',
     ...this.computedEffects().idle,
+    ...this.computedEffects().hover,
   ]);
+
+  protected computedThumbHoverScale = computed(() => {
+    const thumbSizePx = (this.computedSettings().heightPx ?? 0) - 8;
+    if (thumbSizePx <= 0) {
+      return '1';
+    }
+    const adaptiveScale = 1 + (5 / thumbSizePx);
+    return String(Math.min(1.15, adaptiveScale));
+  });
 }
