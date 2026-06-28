@@ -10,6 +10,7 @@ export abstract class BaseExampleComponent<
     protected effects = signal<Partial<Effects>>({});
     protected disabled = signal(false);
     protected lastInteractionTime = signal<string>('00:00:00.00');
+    protected logProperties: string[] = ['disabled', 'settings', 'effects'];
     protected log = signal('');
 
     ngOnInit() {
@@ -48,12 +49,11 @@ export abstract class BaseExampleComponent<
     }
 
     protected refreshLog() {
-        this.log.set(`
-Last interacted at ${this.lastInteractionTime()}\n
-[disabled]=\"${this.disabled()}\",
-[settings]=\"${this.prettify(this.settings())}\",
-[effects]=\"${this.prettify(this.effects())}\"
-        `);
+        var result = `\nLast interacted at ${this.lastInteractionTime()}\n\n`;
+        this.logProperties.forEach(property => {
+            result += `[${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
+        });
+        this.log.set(result);
     }
 
     protected setLastInteractionTime() {
@@ -66,8 +66,8 @@ Last interacted at ${this.lastInteractionTime()}\n
         this.refreshLog();
     }
 
-    protected prettify(object: any): string {
-        return JSON.stringify(object, null, 4)
+    private prettify(property: any): string {
+        return JSON.stringify(property, null, 4)
             .replace(/"([^\"]+)":/g, '$1:')
             .replace(/"/g, "'");
     }

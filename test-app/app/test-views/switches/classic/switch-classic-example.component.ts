@@ -19,6 +19,7 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
 
   constructor() {
     super();
+    this.logProperties = ['disabled', 'active', 'settings', 'effects'];
     this.settings = signal<Partial<MvLibSwitchClassicSettings>>({
       widthPx: 64,
       heightPx: 32,
@@ -32,15 +33,5 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
       hover: [],
       click: [],
     });
-  }
-
-  protected override refreshLog() {
-    this.log.set(`
-Last interacted at ${this.lastInteractionTime()}\n
-[disabled]=\"${this.disabled()}\",
-[active]=\"${this.active()}\",
-[settings]=\"${this.prettify(this.settings())}\",
-[effects]=\"${this.prettify(this.effects())}\"
-    `);
   }
 }
