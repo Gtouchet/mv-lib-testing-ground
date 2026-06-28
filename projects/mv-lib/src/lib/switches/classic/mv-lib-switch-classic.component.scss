@@ -13,11 +13,11 @@
 
   &:not(.disabled) {
     .slider.enlarge-slider:hover:before {
-      transform: scale(var(--thumb-hover-scale, 1.15));
+      transform: scale(var(--thumb-hover-scale, 1.2));
     }
 
     input:checked + .slider.enlarge-slider:hover:before {
-      transform: translateX(var(--translate-distance)) scale(var(--thumb-hover-scale, 1.15));
+      transform: translateX(var(--translate-distance)) scale(var(--thumb-hover-scale, 1.2));
     }
   }
 }
@@ -58,7 +58,8 @@ input:checked + .slider:before {
 .push {
   transition: transform 80ms ease, box-shadow 80ms ease;
 
-  &:not(.disabled):active {
+  .toggle:not(.disabled) &:active {
     transform: translateY(1px) scale(0.98);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
   }
 }

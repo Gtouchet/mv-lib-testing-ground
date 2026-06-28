@@ -180,6 +180,28 @@
             Enlarge slider
         </div>
     </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.margin-bottom.px]="8"
+    >
+        <b>
+            Click effects
+        </b>
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'center'"
+        >
+            <input
+                type="checkbox"
+                effect="click.push"
+                [checked]="effects().click?.includes('push')"
+                (click)="updateEffect('click', 'push', $event)"
+            />
+            Push
+        </div>
+    </div>
 </div>
 
 <!-- Switch -->

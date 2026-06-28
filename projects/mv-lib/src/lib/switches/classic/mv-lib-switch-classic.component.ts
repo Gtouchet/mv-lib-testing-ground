@@ -35,14 +35,11 @@ export class MvLibSwitchClassicComponent {
     'slider',
     ...this.computedEffects().idle,
     ...this.computedEffects().hover,
+    ...this.computedEffects().click,
   ]);
 
   protected computedThumbHoverScale = computed(() => {
-    const thumbSizePx = (this.computedSettings().heightPx ?? 0) - 8;
-    if (thumbSizePx <= 0) {
-      return '1';
-    }
-    const adaptiveScale = 1 + (5 / thumbSizePx);
-    return String(Math.min(1.15, adaptiveScale));
+    const thumbSizePx = this.computedSettings().heightPx ?? 0;
+    return thumbSizePx <= 0 ? '1' : String(Math.min(1.2, 1 + (5 / thumbSizePx)));
   });
 }
