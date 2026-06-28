@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { ButtonsComponent } from './buttons/buttons.component';
-import { SwitchesComponent } from './switches/switches.component';
+import { ButtonClassicExampleComponent } from './test-views/buttons/classic/button-classic-example.component';
+import { SwitchClassicExampleComponent } from './test-views/switches/classic/switch-classic-example.component';
 
 export const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: '' },
-	{ path: 'buttons', component: ButtonsComponent },
-	{ path: 'switches', component: SwitchesComponent },
+	{ path: 'button-classic-example', component: ButtonClassicExampleComponent },
+	{ path: 'switch-classic-example', component: SwitchClassicExampleComponent },
 ];

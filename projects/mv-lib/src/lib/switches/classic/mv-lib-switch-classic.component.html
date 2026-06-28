@@ -10,24 +10,21 @@
     type="checkbox"
     [style.visibility]="'hidden'"
     [disabled]="disabled()"
-    [checked]="_active()"
-    (click)="
-      _active.set(!_active());
-      onClick.emit({
-        active: _active(),
-        event: $event,
-      });
-    "
+    [checked]="active()"
+    (click)="onClick.emit({
+      active: !this.active(),
+      event: $event,
+    })"
   />
   <span
-    class="slider"
+    [ngClass]="computedSliderClasses()"
     [style.height.px]="computedSettings().heightPx!"
     [style.width.px]="computedSettings().widthPx!"
     [style.border-radius.px]="computedSettings().heightPx"
     [style.--slider-before-height]="(computedSettings().heightPx! - 8) + 'px'"
     [style.--slider-on-color]="computedSettings().onColor"
     [style.--slider-off-color]="computedSettings().offColor"
-    [style.--slider-before-color]="_active() ? computedSettings().sliderOnColor : computedSettings().sliderOffColor"
+    [style.--slider-before-color]="active() ? computedSettings().sliderOnColor : computedSettings().sliderOffColor"
     [style.--translate-distance]="(computedSettings().widthPx! - computedSettings().heightPx!) + 'px'"
     [style.border]="'none'"
   >

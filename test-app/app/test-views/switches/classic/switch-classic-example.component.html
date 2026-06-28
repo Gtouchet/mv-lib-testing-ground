@@ -24,10 +24,25 @@
     <div
         [style.display]="'flex'"
         [style.align-items]="'center'"
+        [style.margin-left.px]="-4"
+    >
+        <input
+            type="checkbox"
+            [checked]="active()"
+            (click)="
+                active.set(!active());
+                refreshLog();
+            "
+        />
+        Activated
+    </div>
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
     >
         <input
             type="number"
-            [value]="buttonSettings().widthPx ?? ''"
+            [value]="settings().widthPx ?? ''"
             (input)="updateSetting('widthPx', $event)"
             [style.width.px]="50"
             [style.margin-top.px]="4"
@@ -42,7 +57,7 @@
     >
         <input
             type="number"
-            [value]="buttonSettings().heightPx ?? ''"
+            [value]="settings().heightPx ?? ''"
             (input)="updateSetting('heightPx', $event)"
             [style.width.px]="50"
             [style.margin-top.px]="4"
@@ -58,13 +73,13 @@
     >
         <input
             type="color"
-            [value]="buttonSettings().backgroundColor"
-            (input)="updateSetting('backgroundColor', $event)"
+            [value]="settings().offColor"
+            (input)="updateSetting('offColor', $event)"
             [style.width.px]="58"
             [style.height.px]="24"
             [style.margin-right.px]="4"
         />
-        Background color
+        Off color
     </div>
 
     <div
@@ -74,13 +89,45 @@
     >
         <input
             type="color"
-            [value]="buttonSettings().textColor"
-            (input)="updateSetting('textColor', $event)"
+            [value]="settings().onColor"
+            (input)="updateSetting('onColor', $event)"
             [style.width.px]="58"
             [style.height.px]="24"
             [style.margin-right.px]="4"
         />
-        Text color
+        On color
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+        [style.margin-top.px]="4"
+    >
+        <input
+            type="color"
+            [value]="settings().sliderOffColor"
+            (input)="updateSetting('sliderOffColor', $event)"
+            [style.width.px]="58"
+            [style.height.px]="24"
+            [style.margin-right.px]="4"
+        />
+        Slider off color
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+        [style.margin-top.px]="4"
+    >
+        <input
+            type="color"
+            [value]="settings().sliderOnColor"
+            (input)="updateSetting('sliderOnColor', $event)"
+            [style.width.px]="58"
+            [style.height.px]="24"
+            [style.margin-right.px]="4"
+        />
+        Slider on color
     </div>
 </div>
 
@@ -105,80 +152,29 @@
             <input
                 type="checkbox"
                 effect="idle.shadow"
-                [checked]="buttonEffects().idle?.includes('shadow')"
-                (click)="updateEffect($event)"
+                [checked]="effects().idle?.includes('shadow')"
+                (click)="updateEffect('idle', 'shadow', $event)"
             />
             Shadow
         </div>
     </div>
-
-    <div
-        [style.display]="'flex'"
-        [style.flex-direction]="'column'"
-        [style.margin-bottom.px]="8"
-    >
-        <b>
-            Hover effects
-        </b>
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'center'"
-        >
-            <input
-                type="checkbox"
-                effect="hover.darken"
-                [checked]="buttonEffects().hover?.includes('darken')"
-                (click)="updateEffect($event)"
-            />
-            Darken
-        </div>
-    </div>
-
-    <div
-        [style.display]="'flex'"
-        [style.flex-direction]="'column'"
-        [style.margin-bottom.px]="8"
-    >
-        <b>
-            Click effects
-        </b>
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'center'"
-        >
-            <input
-                type="checkbox"
-                effect="click.push"
-                [checked]="buttonEffects().click?.includes('push')"
-                (click)="updateEffect($event)"
-            />
-            Push
-        </div>
-
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'center'"
-        >
-            <input
-                type="checkbox"
-                effect="click.ripple"
-                [checked]="buttonEffects().click?.includes('ripple')"
-                (click)="updateEffect($event)"
-            />
-            Ripple
-        </div>
-    </div>
 </div>
 
-<!-- Button -->
+<!-- Switch -->
 <div
+    [style.display]="'flex'"
+    [style.align-items]="'center'"
     [style.margin-top.px]="8"
 >
-    <mv-lib-button-classic
-        [settings]="buttonSettings()"
-        [effects]="buttonEffects()"
+    <mv-lib-switch-classic
+        [settings]="settings()"
+        [effects]="effects()"
         [disabled]="disabled()"
-        (onClick)="setLastClickedTime()"
+        [active]="active()"
+        (onClick)="
+            active.set($event.active);
+            setLastInteractionTime();
+        "
     >
         <span class="material-symbols-outlined">
             touch_app
@@ -186,7 +182,13 @@
         <span [style.font-weight]="'bold'">
             Click
         </span>
-    </mv-lib-button-classic>
+    </mv-lib-switch-classic>
+    <span
+        [style.margin-left.px]="8"
+        [style.font-weight]="'bold'"
+    >
+        {{ active() ? 'Active' : 'Inactive' }}
+    </span>
 </div>
 
 <!-- Log -->

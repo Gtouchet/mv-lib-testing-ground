@@ -10,10 +10,6 @@
       box-shadow: none;
     }
   }
-
-  &:not(.disabled) .slider {
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-  }
 }
 
 .slider {
@@ -22,6 +18,10 @@
   left: 0;
   transition: 0.25s;
   background-color: var(--slider-off-color);
+
+  &.shadow {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
 }
 
 .slider:before {
@@ -38,7 +38,6 @@
 
 input:checked + .slider {
   background-color: var(--slider-on-color);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 input:checked + .slider:before {

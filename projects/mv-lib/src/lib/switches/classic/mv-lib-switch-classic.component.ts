@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MvLibSwitchClassicSettings } from './mv-lib-switch-classic.settings';
 import { MvLibSwitchClassicEffects } from './mv-lib-switch-classic.effects';
@@ -24,16 +24,14 @@ export class MvLibSwitchClassicComponent {
   public active = input<boolean>(false);
 
   public onClick = output<MvLibSwitchClassicClickEvent>();
-
-  protected _active = signal(this.active());
   
   protected computedSettings = computed(() => new MvLibSwitchClassicSettings(this.settings()));
   protected computedEffects = computed(() => new MvLibSwitchClassicEffects(this.effects()));
   protected computedLabelClasses = computed(() => [
     'toggle',
   ]);
-
-  constructor() {
-    effect(() => this._active.set(this.active()));
-  }
+  protected computedSliderClasses = computed(() => [
+    'slider',
+    ...this.computedEffects().idle,
+  ]);
 }
