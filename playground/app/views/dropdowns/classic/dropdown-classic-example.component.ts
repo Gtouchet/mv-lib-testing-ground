@@ -57,11 +57,11 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       listColor: 'lightgray',
       listTextColor: 'black',
       placeholder: 'Select a user',
-      closeAfterSelect: true,
+      closeOnSelect: true,
       closeOnOutsideClick: true,
     });
     this.effects = signal<Partial<MvLibDropdownClassicEffects>>({
-
+      idle: ['shadow'],
     });
   }
 

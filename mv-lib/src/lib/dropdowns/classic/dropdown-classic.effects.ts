@@ -9,7 +9,7 @@ export class MvLibDropdownClassicEffects {
     public click: MvLibDropdownClassicClickEffect[];
 
     constructor(settings: Partial<MvLibDropdownClassicEffects> = {}) {
-        this.idle = settings.idle ?? [];
+        this.idle = settings.idle ?? ['shadow'];
         this.hover = settings.hover ?? [];
         this.click = settings.click ?? [];
     }

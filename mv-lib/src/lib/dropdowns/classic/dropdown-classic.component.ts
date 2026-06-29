@@ -17,6 +17,7 @@ import {
 } from "@angular/core";
 import { MvLibDropdownClassicSettings } from "./dropdown-classic.settings";
 import { MvLibDropdownItemTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "../dropdown.directives";
+import { MvLibDropdownClassicEffects } from "./dropdown-classic.effects";
 
 export interface MvLibDropdownClassicSelectEvent<T> {
   readonly selectedItem: T;
@@ -43,10 +44,11 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   private dropdownRoot = viewChild<ElementRef<HTMLElement>>("dropdownRoot");
   private dropdownButton = viewChild<ElementRef<HTMLButtonElement>>("dropdownButton");
 
-  protected selectedTemplate = contentChild(MvLibDropdownSelectedTemplateDirective<T>);
-  protected itemTemplate = contentChild(MvLibDropdownItemTemplateDirective<T>);
+  protected selectedTemplate? = contentChild(MvLibDropdownSelectedTemplateDirective<T>);
+  protected itemTemplate? = contentChild(MvLibDropdownItemTemplateDirective<T>);
 
   public settings = input<Partial<MvLibDropdownClassicSettings>>();
+  public effects = input<Partial<MvLibDropdownClassicEffects>>();
   public items = input<T[]>([]);
   public disabled = input<boolean>(false);
   public opened = input<boolean>(false);
@@ -59,6 +61,20 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   protected isOpen = signal(false);
 
   protected computedSettings = computed(() => new MvLibDropdownClassicSettings(this.settings()));
+  protected computedEffects = computed(() => new MvLibDropdownClassicEffects(this.effects()));
+
+  protected computedButtonClasses = computed(() => [
+    'dropdown-button',
+    ... this.computedEffects().idle,
+    ... this.computedEffects().hover,
+    ... this.computedEffects().click,
+  ]);
+  protected computedListClasses = computed(() => [
+    'dropdown-list',
+    ... this.computedEffects().idle,
+    ... this.computedEffects().hover,
+    ... this.computedEffects().click,
+  ]);
 
   constructor() {
     effect(() => {
@@ -92,7 +108,7 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
 
   protected selectItem(item: T, event: Event): void {
     this.selectedItem.set(item);
-    if (this.computedSettings().closeAfterSelect) {
+    if (this.computedSettings().closeOnSelect) {
       this.isOpen.set(false);
     }
     this.onSelect.emit({

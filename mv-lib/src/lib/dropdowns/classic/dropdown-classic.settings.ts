@@ -9,7 +9,7 @@ export class MvLibDropdownClassicSettings {
     public listColor: string;
     public listTextColor: string;
     public placeholder: string;
-    public closeAfterSelect: boolean;
+    public closeOnSelect: boolean;
     public closeOnOutsideClick: boolean;
 
     constructor(settings: Partial<MvLibDropdownClassicSettings> = {}) {
@@ -22,7 +22,7 @@ export class MvLibDropdownClassicSettings {
         this.listColor = settings.listColor ?? 'darkgray';
         this.listTextColor = settings.listTextColor ?? 'white';
         this.placeholder = settings.placeholder ?? 'Select an item';
-        this.closeAfterSelect = settings.closeAfterSelect ?? true;
+        this.closeOnSelect = settings.closeOnSelect ?? true;
         this.closeOnOutsideClick = settings.closeOnOutsideClick ?? true;
     }
 }

@@ -30,13 +30,13 @@
     <div>
         <input
             type="checkbox"
-            [checked]="settings().closeAfterSelect"
+            [checked]="settings().closeOnSelect"
             (click)="
-                updateSetting('closeAfterSelect', $event);
+                updateSetting('closeOnSelect', $event);
                 refreshLog();
             "
         />
-        Close after select
+        Close on select
     </div>
     
     <div>
@@ -184,6 +184,7 @@
     [disabled]="disabled()"
     [opened]="opened()"
     [settings]="settings()"
+    [effects]="effects()"
     (onSelect)="
         selectedItem.set($event.selectedItem);
         this.refreshLog();
