@@ -10,7 +10,7 @@ export class MvLibButtonClassicEffects {
 
     constructor(settings: Partial<MvLibButtonClassicEffects> = {}) {
         this.idle = settings.idle ?? [];
-        this.hover = settings.hover ?? ['darken'];
-        this.click = settings.click ?? ['push'];
+        this.hover = settings.hover ?? [];
+        this.click = settings.click ?? [];
     }
 }

@@ -1,32 +1,224 @@
-<div>
-    <mv-lib-dropdown-classic
-        [items]="items()"
-        (onSelect)="onSelect($event)"
-    >
-        <ng-template mvLibDropdownSelectedTemplate let-item>
-            <div
-                [style.display]="'flex'"
-                [style.alignItems]="'center'"
-                [style.gap.px]="4"
-            >
-                <span class="material-symbols-outlined">
-                    check
-                </span>
-                {{ item.name }}
-            </div>
-        </ng-template>
+<!-- Settings -->
+<div class="settings">
+    <b>
+        Settings
+    </b>
+    <div>
+        <input
+            type="checkbox"
+            [checked]="disabled()"
+            (click)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        Disabled
+    </div>
 
-        <ng-template mvLibDropdownItemTemplate let-item>
-            <div
-                [style.display]="'flex'"
-                [style.alignItems]="'center'"
-                [style.gap.px]="4"
-            >
-                <span class="material-symbols-outlined">
-                    person
-                </span>
-                {{ item.name }}
-            </div>
-        </ng-template>
-    </mv-lib-dropdown-classic>
+    <div>
+        <input
+            type="checkbox"
+            [checked]="opened()"
+            (click)="
+                opened.set(!opened());
+                refreshLog();
+            "
+        />
+        Opened
+    </div>
+
+    <div>
+        <input
+            type="checkbox"
+            [checked]="settings().closeAfterSelect"
+            (click)="
+                updateSetting('closeAfterSelect', $event);
+                refreshLog();
+            "
+        />
+        Close after select
+    </div>
+    
+    <div>
+        <input
+            type="checkbox"
+            [checked]="settings().closeOnOutsideClick"
+            (click)="
+                updateSetting('closeOnOutsideClick', $event);
+                refreshLog();
+            "
+        />
+        Close on outside click
+    </div>
+    
+    <div>
+        <input
+            type="number"
+            [value]="settings().widthPx"
+            (input)="updateSetting('widthPx', $event)"
+        />
+        Width px
+    </div>
+
+    <div>
+        <input
+            type="number"
+            [value]="settings().buttonHeightPx"
+            (input)="updateSetting('buttonHeightPx', $event)"
+        />
+        Button height px
+    </div>
+
+    <div>
+        <input
+            type="number"
+            [value]="settings().itemHeightPx"
+            (input)="updateSetting('itemHeightPx', $event)"
+        />
+        Item height px
+    </div>
+
+    <div>
+        <input
+            type="number"
+            [value]="settings().listMaxHeightPx"
+            (input)="updateSetting('listMaxHeightPx', $event)"
+        />
+        List max height px
+    </div>
+
+    <div>
+        <input
+            type="color"
+            [value]="settings().buttonColor"
+            (input)="updateSetting('buttonColor', $event)"
+        />
+        Button color
+    </div>
+    
+    <div>
+        <input
+            type="color"
+            [value]="settings().buttonTextColor"
+            (input)="updateSetting('buttonTextColor', $event)"
+        />
+        Button text color
+    </div>
+    
+    <div>
+        <input
+            type="color"
+            [value]="settings().listColor"
+            (input)="updateSetting('listColor', $event)"
+        />
+        List color
+    </div>
+    
+    <div>
+        <input
+            type="color"
+            [value]="settings().listTextColor"
+            (input)="updateSetting('listTextColor', $event)"
+        />
+        List text color
+    </div>
 </div>
+
+<!-- Effects -->
+<div class="effects">
+    <div>
+        <b>
+            Idle effects
+        </b>
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().idle?.includes('shadow')"
+                (click)="updateEffect('idle', 'shadow', $event)"
+            />
+            Shadow
+        </div>
+    </div>
+
+    <div>
+        <b>
+            Hover effects
+        </b>
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().hover?.includes('darken')"
+                (click)="updateEffect('hover', 'darken', $event)"
+            />
+            Darken
+        </div>
+    </div>
+
+    <div>
+        <b>
+            Click effects
+        </b>
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().click?.includes('push')"
+                (click)="updateEffect('click', 'push', $event)"
+            />
+            Push
+        </div>
+
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().click?.includes('ripple')"
+                (click)="updateEffect('click', 'ripple', $event)"
+            />
+            Ripple
+        </div>
+    </div>
+</div>
+
+<!-- Dropdown -->
+<mv-lib-dropdown-classic
+    [items]="items()"
+    [disabled]="disabled()"
+    [opened]="opened()"
+    [settings]="settings()"
+    (onSelect)="
+        selectedItem.set($event.selectedItem);
+        this.refreshLog();
+    "
+    (onOpen)="
+        opened.set($event.opened);
+        this.refreshLog();
+    "
+>
+    <ng-template mvLibDropdownSelectedTemplate let-item>
+        <div
+            [style.display]="'flex'"
+            [style.alignItems]="'center'"
+            [style.gap.px]="4"
+        >
+            <span class="material-symbols-outlined">
+                check
+            </span>
+            {{ item.name }}
+        </div>
+    </ng-template>
+
+    <ng-template mvLibDropdownItemTemplate let-item>
+        <div
+            [style.display]="'flex'"
+            [style.alignItems]="'center'"
+            [style.gap.px]="4"
+        >
+            <span class="material-symbols-outlined">
+                person
+            </span>
+            {{ item.name }}
+        </div>
+    </ng-template>
+</mv-lib-dropdown-classic>
+
+<br/><br/> selectedItem <pre>{{ selectedItem() | json }}</pre>
+<pre> {{ log() }} </pre>

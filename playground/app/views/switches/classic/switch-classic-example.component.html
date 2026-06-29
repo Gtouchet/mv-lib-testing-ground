@@ -1,16 +1,9 @@
 <!-- Settings -->
-<div
-    [style.display]="'flex'"
-    [style.flex-direction]="'column'"
->
+<div class="settings">
     <b>
         Settings
     </b>
-    <div
-        [style.display]="'flex'"
-        [style.align-items]="'center'"
-        [style.margin-left.px]="-4"
-    >
+    <div>
         <input
             type="checkbox"
             [checked]="disabled()"
@@ -21,11 +14,7 @@
         />
         Disabled
     </div>
-    <div
-        [style.display]="'flex'"
-        [style.align-items]="'center'"
-        [style.margin-left.px]="-4"
-    >
+    <div>
         <input
             type="checkbox"
             [checked]="active()"
@@ -36,119 +25,68 @@
         />
         Activated
     </div>
-    <div
-        [style.display]="'flex'"
-        [style.align-items]="'center'"
-    >
+    <div>
         <input
             type="number"
             [value]="settings().widthPx ?? ''"
             (input)="updateSetting('widthPx', $event)"
-            [style.width.px]="50"
-            [style.margin-top.px]="4"
-            [style.margin-right.px]="4"
         />
-        WidthPx
+        Width px
     </div>
 
-    <div
-        [style.display]="'flex'"
-        [style.align-items]="'center'"
-    >
+    <div>
         <input
             type="number"
             [value]="settings().heightPx ?? ''"
             (input)="updateSetting('heightPx', $event)"
-            [style.width.px]="50"
-            [style.margin-top.px]="4"
-            [style.margin-right.px]="4"
         />
-        HeightPx
+        Height px
     </div>
 
-    <div
-        [style.display]="'flex'"
-        [style.align-items]="'center'"
-        [style.margin-top.px]="4"
-    >
+    <div>
         <input
             type="color"
             [value]="settings().offColor"
             (input)="updateSetting('offColor', $event)"
-            [style.width.px]="58"
-            [style.height.px]="24"
-            [style.margin-right.px]="4"
         />
         Off color
     </div>
 
-    <div
-        [style.display]="'flex'"
-        [style.align-items]="'center'"
-        [style.margin-top.px]="4"
-    >
+    <div>
         <input
             type="color"
             [value]="settings().onColor"
             (input)="updateSetting('onColor', $event)"
-            [style.width.px]="58"
-            [style.height.px]="24"
-            [style.margin-right.px]="4"
         />
         On color
     </div>
 
-    <div
-        [style.display]="'flex'"
-        [style.align-items]="'center'"
-        [style.margin-top.px]="4"
-    >
+    <div>
         <input
             type="color"
             [value]="settings().sliderOffColor"
             (input)="updateSetting('sliderOffColor', $event)"
-            [style.width.px]="58"
-            [style.height.px]="24"
-            [style.margin-right.px]="4"
         />
         Slider off color
     </div>
 
-    <div
-        [style.display]="'flex'"
-        [style.align-items]="'center'"
-        [style.margin-top.px]="4"
-    >
+    <div>
         <input
             type="color"
             [value]="settings().sliderOnColor"
             (input)="updateSetting('sliderOnColor', $event)"
-            [style.width.px]="58"
-            [style.height.px]="24"
-            [style.margin-right.px]="4"
         />
         Slider on color
     </div>
 </div>
 
 <!-- Effects -->
-<div
-    [style.display]="'flex'"
-    [style.gap.px]="16"
-    [style.margin-top.px]="8"
->
-    <div
-        [style.display]="'flex'"
-        [style.flex-direction]="'column'"
-        [style.margin-bottom.px]="8"
-    >
+<div class="effects">
+    <div>
         <b>
             Idle effects
         </b>
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'center'"
-        >
+        <div>
             <input
                 type="checkbox"
                 [checked]="effects().idle?.includes('shadow')"
@@ -158,18 +96,11 @@
         </div>
     </div>
 
-    <div
-        [style.display]="'flex'"
-        [style.flex-direction]="'column'"
-        [style.margin-bottom.px]="8"
-    >
+    <div>
         <b>
             Hover effects
         </b>
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'center'"
-        >
+        <div>
             <input
                 type="checkbox"
                 [checked]="effects().hover?.includes('enlarge-slider')"
@@ -179,18 +110,11 @@
         </div>
     </div>
 
-    <div
-        [style.display]="'flex'"
-        [style.flex-direction]="'column'"
-        [style.margin-bottom.px]="8"
-    >
+    <div>
         <b>
             Click effects
         </b>
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'center'"
-        >
+        <div>
             <input
                 type="checkbox"
                 [checked]="effects().click?.includes('push')"
@@ -199,10 +123,7 @@
             Push
         </div>
 
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'center'"
-        >
+        <div>
             <input
                 type="checkbox"
                 [checked]="effects().click?.includes('ripple')"
@@ -214,31 +135,22 @@
 </div>
 
 <!-- Switch -->
-<div
-    [style.margin-top.px]="8"
+<mv-lib-switch-classic
+    [settings]="settings()"
+    [effects]="effects()"
+    [disabled]="disabled()"
+    [active]="active()"
+    (onToggle)="
+        active.set($event.active);
+        setLastInteractionTime();
+    "
 >
-    <mv-lib-switch-classic
-        [settings]="settings()"
-        [effects]="effects()"
-        [disabled]="disabled()"
-        [active]="active()"
-        (onToggle)="
-            active.set($event.active);
-            setLastInteractionTime();
-        "
-    >
-        <span class="material-symbols-outlined">
-            touch_app
-        </span>
-        <span [style.font-weight]="'bold'">
-            Click
-        </span>
-    </mv-lib-switch-classic>
-</div>
+    <span class="material-symbols-outlined">
+        touch_app
+    </span>
+    <span [style.font-weight]="'bold'">
+        Click
+    </span>
+</mv-lib-switch-classic>
 
-<!-- Log -->
-<span
-    [style.white-space]="'pre-wrap'"
->
-    {{ log() }}
-</span>
+<pre> {{ log() }} </pre>

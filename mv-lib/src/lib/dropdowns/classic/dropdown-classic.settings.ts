@@ -9,7 +9,8 @@ export class MvLibDropdownClassicSettings {
     public listColor: string;
     public listTextColor: string;
     public placeholder: string;
-    public autoCloseAfterSelect: boolean;
+    public closeAfterSelect: boolean;
+    public closeOnOutsideClick: boolean;
 
     constructor(settings: Partial<MvLibDropdownClassicSettings> = {}) {
         this.widthPx = settings.widthPx ?? undefined;
@@ -21,6 +22,7 @@ export class MvLibDropdownClassicSettings {
         this.listColor = settings.listColor ?? 'darkgray';
         this.listTextColor = settings.listTextColor ?? 'white';
         this.placeholder = settings.placeholder ?? 'Select an item';
-        this.autoCloseAfterSelect = settings.autoCloseAfterSelect ?? true;
+        this.closeAfterSelect = settings.closeAfterSelect ?? true;
+        this.closeOnOutsideClick = settings.closeOnOutsideClick ?? true;
     }
 }

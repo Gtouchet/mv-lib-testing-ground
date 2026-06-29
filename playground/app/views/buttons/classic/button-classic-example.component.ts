@@ -6,7 +6,10 @@ import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClas
   selector: 'app-button-classic-example',
   imports: [MvLibButtonClassicComponent],
   templateUrl: './button-classic-example.component.html',
-  styleUrl: './button-classic-example.component.scss',
+  styleUrls: [
+    './button-classic-example.component.scss',
+    '../../playground.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

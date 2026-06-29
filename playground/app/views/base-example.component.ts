@@ -1,6 +1,10 @@
 import { Directive, OnInit, signal } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
-@Directive()
+@Directive({
+    standalone: true,
+    providers: [FormsModule],
+})
 export abstract class BaseExampleComponent<
     Settings,
     Effects extends { [K in keyof Effects]: unknown[] }
@@ -26,7 +30,9 @@ export abstract class BaseExampleComponent<
             ...current,
             [key]: target?.type === 'number'
                 ? Number.isNaN(target.valueAsNumber) ? undefined : target.valueAsNumber
-                : target?.value,
+                : target?.type === 'checkbox'
+                    ? target?.checked
+                    : target?.value,
         }));
         this.refreshLog();
     }
@@ -59,7 +65,7 @@ export abstract class BaseExampleComponent<
     }
 
     protected refreshLog() {
-        var result = `\nLast interacted at ${this.lastInteractionTime()}\n\n`;
+        var result = `Last interacted at ${this.lastInteractionTime()}\n\n`;
         this.logProperties().forEach(property => {
             result += `[${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
         });

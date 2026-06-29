@@ -9,9 +9,14 @@
         [style.height.px]="computedSettings().buttonHeightPx"
         [style.background]="computedSettings().buttonColor"
         [style.color]="computedSettings().buttonTextColor"
+        [disabled]="disabled()"
         (click)="
             $event.stopPropagation();
             isOpen.set(!isOpen());
+            onOpen.emit({
+                opened: isOpen(),
+                event: $event,
+            });
         "
     >
         <span

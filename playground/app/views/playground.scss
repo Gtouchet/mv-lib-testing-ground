@@ -1,0 +1,49 @@
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    input[type='checkbox'] {
+        margin: 0 0 0 0;
+    }
+
+    input[type='number'] {
+        width: 50px;
+        margin-top: 0;
+    }
+
+    input[type='color'] {
+        width: 58px;
+        height: 24px;
+    }
+}
+
+.effects {
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    gap: 16px;
+
+    input[type='checkbox'] {
+        margin: 0;
+    }
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 8px;
+    }
+
+    > div > div {
+        display: flex;
+        align-items: center;
+        margin-top: 4px;
+        gap: 4px;
+    }
+}

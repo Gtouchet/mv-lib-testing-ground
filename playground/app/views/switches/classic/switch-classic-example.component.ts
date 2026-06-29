@@ -6,7 +6,10 @@ import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClas
   selector: 'app-switch-classic-example',
   imports: [MvLibSwitchClassicComponent],
   templateUrl: './switch-classic-example.component.html',
-  styleUrl: './switch-classic-example.component.scss',
+  styleUrls: [
+    './switch-classic-example.component.scss',
+    '../../playground.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
