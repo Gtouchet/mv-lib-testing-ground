@@ -17,17 +17,17 @@
         <span
             class="hide-overflow"
         >
-            @if (computedSelectedItem()) {
+            @if (selectedItem()) {
                 <span
                     class="hide-overflow"
                 >
                     @if (selectedTemplate()) {
                         <ng-container
                             [ngTemplateOutlet]="selectedTemplate()!.templateRef"
-                            [ngTemplateOutletContext]="{ $implicit: computedSelectedItem() }"
+                            [ngTemplateOutletContext]="{ $implicit: selectedItem() }"
                         ></ng-container>
                     } @else {
-                        {{ computedSelectedItem() }}
+                        {{ selectedItem() }}
                     }
                 </span>
             } @else {
@@ -47,6 +47,7 @@
         <ul
             class="dropdown-list"
             [style.width.px]="computedSettings().widthPx"
+            [style.max-height.px]="computedSettings().listMaxHeightPx"
         >
             @for (item of items(); track item) {
                 <li>

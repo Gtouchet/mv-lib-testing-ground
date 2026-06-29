@@ -7,11 +7,12 @@ import {
   HostListener,
   inject,
   input,
+  model,
   OnInit,
   output,
-  signal,
   viewChild,
   contentChild,
+  signal,
 } from "@angular/core";
 import { MvLibDropdownClassicSettings } from "./dropdown-classic.settings";
 import { MvLibDropdownItemTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "../dropdown.directives";
@@ -32,6 +33,7 @@ export interface MvLibDropdownClassicClickEvent {
 export class MvLibDropdownClassicComponent<T> implements OnInit {
 
   private hostElement = inject(ElementRef<HTMLElement>);
+  
   private dropdownRoot = viewChild<ElementRef<HTMLElement>>("dropdownRoot");
   private dropdownButton = viewChild<ElementRef<HTMLButtonElement>>("dropdownButton");
 
@@ -39,16 +41,15 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   protected itemTemplate = contentChild(MvLibDropdownItemTemplateDirective<T>);
 
   public items = input<T[]>([]);
-  public selectedItem = input<T | undefined>(undefined);
   public settings = input<Partial<MvLibDropdownClassicSettings>>();
+
+  public selectedItem = model<T | undefined>(undefined);
 
   public onSelect = output<MvLibDropdownClassicClickEvent>();
 
   protected isOpen = signal(false);
-  protected selectedItemInternal = signal<T | undefined>(undefined);
 
   protected computedSettings = computed(() => new MvLibDropdownClassicSettings(this.settings()));
-  protected computedSelectedItem = computed(() => this.selectedItem() ?? this.selectedItemInternal());
 
   ngOnInit() {
     this.initializeAutoWidth();
@@ -68,7 +69,7 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   }
 
   protected selectItem(item: T, event: Event): void {
-    this.selectedItemInternal.set(item);
+    this.selectedItem.set(item);
     if (this.computedSettings().autoCloseAfterSelect) {
       this.isOpen.set(false);
     }
@@ -79,7 +80,7 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   }
 
   // protected isSelected(item: T): boolean {
-  //   return Object.is(this.computedSelectedItem(), item);
+  //   return Object.is(this.selectedItem(), item);
   // }
 
   @HostListener('document:click', ['$event'])

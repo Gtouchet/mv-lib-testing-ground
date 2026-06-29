@@ -21,9 +21,15 @@ interface User {
 export class DropdownClassicExampleComponent {
 
   protected items = signal<User[]>([
-    { id: 1, name: 'Alice' },
+    { id: 1, name: 'Person with a long name' },
     { id: 2, name: 'Bob' },
-    { id: 3, name: 'A dude with a long name' },
+    { id: 3, name: 'Charlie' },
+    { id: 4, name: 'David' },
+    { id: 5, name: 'Eve' },
+    { id: 6, name: 'Frank' },
+    { id: 7, name: 'Grace' },
+    { id: 8, name: 'Hannah' },
+    { id: 9, name: 'Ivy' },
   ]);
 
   protected onSelect(e: MvLibDropdownClassicClickEvent) {
