@@ -1,0 +1,39 @@
+.dropdown-root {
+	display: inline-block;
+	width: fit-content;
+}
+
+.dropdown-button {
+	cursor: pointer;
+	position: relative;
+	align-items: center;
+	border: 0;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.dropdown-list {
+	list-style: none;
+	overflow: hidden;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+	box-sizing: border-box;
+}
+
+.dropdown-item {
+	cursor: pointer;
+	border: 0;
+	display: flex;
+	width: 100%;
+}
+
+.placeholder {
+	padding-left: 4px;
+}
+
+.hide-overflow {
+	overflow: hidden;
+	white-space: nowrap;
+}

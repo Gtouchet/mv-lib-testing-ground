@@ -1,0 +1,73 @@
+.mv-lib-button {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--background-color);
+    transition: background-color 200ms ease, filter 200ms ease;
+  }
+
+  &.darken:enabled:hover::before {
+    filter: brightness(0.9);
+  }
+
+  &.shadow:enabled {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+
+  &:enabled {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.push {
+  transition: transform 80ms ease, box-shadow 80ms ease;
+
+  &:enabled:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 5px;
+
+  &:enabled::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: radial-gradient(circle, #fff 20%, transparent 10%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(7.5, 7.5);
+    opacity: 0;
+    transition: transform 800ms, opacity 800ms;
+  }
+
+  &:enabled:active::after {
+    transform: scale(0, 0);
+    opacity: 0.5;
+    transition: 0s;
+  }
+}

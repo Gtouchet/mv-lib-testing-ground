@@ -1,0 +1,199 @@
+<!-- Settings -->
+<div
+    [style.display]="'flex'"
+    [style.flex-direction]="'column'"
+>
+    <b>
+        Settings
+    </b>
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+        [style.margin-left.px]="-4"
+    >
+        <input
+            type="checkbox"
+            [checked]="disabled()"
+            (click)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        Disabled
+    </div>
+    
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+    >
+        <input
+            type="number"
+            [value]="settings().widthPx ?? ''"
+            (input)="updateSetting('widthPx', $event)"
+            [style.width.px]="50"
+            [style.margin-top.px]="4"
+            [style.margin-right.px]="4"
+        />
+        WidthPx
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+    >
+        <input
+            type="number"
+            [value]="settings().heightPx ?? ''"
+            (input)="updateSetting('heightPx', $event)"
+            [style.width.px]="50"
+            [style.margin-top.px]="4"
+            [style.margin-right.px]="4"
+        />
+        HeightPx
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+        [style.margin-top.px]="4"
+    >
+        <input
+            type="color"
+            [value]="settings().backgroundColor"
+            (input)="updateSetting('backgroundColor', $event)"
+            [style.width.px]="58"
+            [style.height.px]="24"
+            [style.margin-right.px]="4"
+        />
+        Background color
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+        [style.margin-top.px]="4"
+    >
+        <input
+            type="color"
+            [value]="settings().textColor"
+            (input)="updateSetting('textColor', $event)"
+            [style.width.px]="58"
+            [style.height.px]="24"
+            [style.margin-right.px]="4"
+        />
+        Text color
+    </div>
+</div>
+
+<!-- Effects -->
+<div
+    [style.display]="'flex'"
+    [style.gap.px]="16"
+    [style.margin-top.px]="8"
+>
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.margin-bottom.px]="8"
+    >
+        <b>
+            Idle effects
+        </b>
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'center'"
+        >
+            <input
+                type="checkbox"
+                [checked]="effects().idle?.includes('shadow')"
+                (click)="updateEffect('idle', 'shadow', $event)"
+            />
+            Shadow
+        </div>
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.margin-bottom.px]="8"
+    >
+        <b>
+            Hover effects
+        </b>
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'center'"
+        >
+            <input
+                type="checkbox"
+                [checked]="effects().hover?.includes('darken')"
+                (click)="updateEffect('hover', 'darken', $event)"
+            />
+            Darken
+        </div>
+    </div>
+
+    <div
+        [style.display]="'flex'"
+        [style.flex-direction]="'column'"
+        [style.margin-bottom.px]="8"
+    >
+        <b>
+            Click effects
+        </b>
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'center'"
+        >
+            <input
+                type="checkbox"
+                [checked]="effects().click?.includes('push')"
+                (click)="updateEffect('click', 'push', $event)"
+            />
+            Push
+        </div>
+
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'center'"
+        >
+            <input
+                type="checkbox"
+                [checked]="effects().click?.includes('ripple')"
+                (click)="updateEffect('click', 'ripple', $event)"
+            />
+            Ripple
+        </div>
+    </div>
+</div>
+
+<!-- Button -->
+<div
+    [style.margin-top.px]="8"
+>
+    <mv-lib-button-classic
+        [settings]="settings()"
+        [effects]="effects()"
+        [disabled]="disabled()"
+        (onClick)="setLastInteractionTime()"
+    >
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'center'"
+        >
+        </div>
+        <span class="material-symbols-outlined">
+            touch_app
+        </span>
+        <span [style.font-weight]="'bold'">
+            Click
+        </span>
+    </mv-lib-button-classic>
+</div>
+
+<!-- Log -->
+<span
+    [style.white-space]="'pre-wrap'"
+>
+    {{ log() }}
+</span>

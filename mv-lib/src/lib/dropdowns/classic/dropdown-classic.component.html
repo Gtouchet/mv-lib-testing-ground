@@ -1,0 +1,77 @@
+<div
+    #dropdownRoot
+    class="dropdown-root"
+>
+    <button
+        #dropdownButton
+        class="dropdown-button"
+        [style.width.px]="computedSettings().widthPx"
+        [style.height.px]="computedSettings().buttonHeightPx"
+        [style.background]="computedSettings().buttonColor"
+        [style.color]="computedSettings().buttonTextColor"
+        (click)="
+            $event.stopPropagation();
+            isOpen.set(!isOpen());
+        "
+    >
+        <span
+            class="hide-overflow"
+        >
+            @if (computedSelectedItem()) {
+                <span
+                    class="hide-overflow"
+                >
+                    @if (selectedTemplate()) {
+                        <ng-container
+                            [ngTemplateOutlet]="selectedTemplate()!.templateRef"
+                            [ngTemplateOutletContext]="{ $implicit: computedSelectedItem() }"
+                        ></ng-container>
+                    } @else {
+                        {{ computedSelectedItem() }}
+                    }
+                </span>
+            } @else {
+                <span
+                    class="placeholder"
+                >
+                    {{ computedSettings().placeholder }}
+                </span>
+            }
+        </span>
+        <span class="material-symbols-outlined">
+            {{ isOpen() ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+        </span>
+    </button>
+
+    @if (isOpen()) {
+        <ul
+            class="dropdown-list"
+            [style.width.px]="computedSettings().widthPx"
+        >
+            @for (item of items(); track item) {
+                <li>
+                    <button
+                        class="dropdown-item"
+                        [style.height.px]="computedSettings().itemHeightPx"
+                        [style.background]="computedSettings().listColor"
+                        [style.color]="computedSettings().listTextColor"
+                        (click)="selectItem(item, $event)"
+                    >
+                        <div
+                            class="hide-overflow"
+                        >
+                            @if (itemTemplate()) {
+                                <ng-container
+                                    [ngTemplateOutlet]="itemTemplate()!.templateRef"
+                                    [ngTemplateOutletContext]="{ $implicit: item }"
+                                ></ng-container>
+                            } @else {
+                                {{ item }}
+                            }
+                        </div>
+                    </button>
+                </li>
+            }
+        </ul>
+    }
+</div>

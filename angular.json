@@ -11,21 +11,21 @@
         }
       },
       "root": "",
-      "sourceRoot": "test-app",
+      "sourceRoot": "playground",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/angular-workshop",
-              "index": "test-app/index.html",
-            "browser": "test-app/main.ts",
+              "index": "playground/index.html",
+            "browser": "playground/main.ts",
             "polyfills": [
               "zone.js"
             ],
               "stylePreprocessorOptions": {
               "includePaths": [
-                "test-app/styles"
+                "playground/styles"
               ]
             },
             "tsConfig": "tsconfig.app.json",
@@ -37,7 +37,7 @@
               }
             ],
             "styles": [
-              "test-app/styles/styles-white-theme.scss"
+              "playground/styles/styles-white-theme.scss"
             ],
             "scripts": []
           },
@@ -91,7 +91,7 @@
             "inlineStyleLanguage": "scss",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "test-app/styles"
+                "playground/styles"
               ]
             },
             "assets": [
@@ -101,64 +101,30 @@
               }
             ],
             "styles": [
-              "test-app/styles/styles.scss",
-              "test-lib/styles.scss"
+              "playground/styles/styles-white-theme.scss"
             ],
             "scripts": []
           }
         }
       }
     },
-    "test-lib": {
-      "projectType": "library",
-      "root": "projects/test-lib",
-      "sourceRoot": "projects/test-lib/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/test-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/test-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/test-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/test-lib/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
-    },
     "mv-lib": {
       "projectType": "library",
-      "root": "projects/mv-lib",
-      "sourceRoot": "projects/mv-lib/src",
+      "root": "mv-lib",
+      "sourceRoot": "mv-lib/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/mv-lib/ng-package.json"
+            "project": "mv-lib/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/mv-lib/tsconfig.lib.prod.json"
+              "tsConfig": "mv-lib/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/mv-lib/tsconfig.lib.json"
+              "tsConfig": "mv-lib/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -166,7 +132,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/mv-lib/tsconfig.spec.json",
+            "tsConfig": "mv-lib/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

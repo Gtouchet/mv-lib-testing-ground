@@ -4,7 +4,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "mv-lib": ["./projects/mv-lib/src/public-api.ts"]
+      "mv-lib": ["./mv-lib/src/public-api.ts"]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

@@ -1,0 +1,32 @@
+<div>
+    <mv-lib-dropdown-classic
+        [items]="items()"
+        (onSelect)="onSelect($event)"
+    >
+        <ng-template mvLibDropdownSelectedTemplate let-item>
+            <div
+                [style.display]="'flex'"
+                [style.alignItems]="'center'"
+                [style.gap.px]="4"
+            >
+                <span class="material-symbols-outlined">
+                    check
+                </span>
+                {{ item.name }}
+            </div>
+        </ng-template>
+
+        <ng-template mvLibDropdownItemTemplate let-item>
+            <div
+                [style.display]="'flex'"
+                [style.alignItems]="'center'"
+                [style.gap.px]="4"
+            >
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+                {{ item.name }}
+            </div>
+        </ng-template>
+    </mv-lib-dropdown-classic>
+</div>

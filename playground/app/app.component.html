@@ -1,0 +1,68 @@
+<div>
+    <header>
+        <div
+            [style.display]="'flex'"
+            [style.align-items]="'left'"
+            [style.gap.px]="8"
+        >
+            <mv-lib-button-classic
+                routerLink="/"
+                [settings]="{
+                    backgroundColor: 'var(--button-blue-color)',
+                }"
+            >
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </mv-lib-button-classic>
+
+            <mv-lib-button-classic
+                routerLink="/button-classic-example"
+                [settings]="{
+                    backgroundColor: 'var(--button-blue-color)',
+                }"
+            >
+                <span
+                    [style.font-weight]="'bold'"
+                >
+                    Buttons
+                </span>
+            </mv-lib-button-classic>
+
+            <mv-lib-button-classic
+                routerLink="/switch-classic-example"
+                [settings]="{
+                    backgroundColor: 'var(--button-blue-color)',
+                }"
+            >
+                <span
+                    [style.font-weight]="'bold'"
+                >
+                    Switches
+                </span>
+            </mv-lib-button-classic>
+
+            <mv-lib-button-classic
+                routerLink="/dropdown-classic-example"
+                [settings]="{
+                    backgroundColor: 'var(--button-blue-color)',
+                }"
+            >
+                <span
+                    [style.font-weight]="'bold'"
+                >
+                    Drop-down lists
+                </span>
+            </mv-lib-button-classic>
+        </div>
+
+        <hr
+            [style.margin-left.px]="-8"
+            [style.margin-right.px]="-8"
+        />
+    </header>
+
+    <main>
+        <router-outlet />
+    </main>
+</div>
