@@ -1,14 +1,17 @@
-<div>
-    <header>
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'left'"
-            [style.gap.px]="8"
-        >
+<div class="app-shell">
+    <header class="header">
+        <div class="buttons">
             <mv-lib-button-classic
                 routerLink="/"
                 [settings]="{
+                    widthPx: 48,
+                    heightPx: 32,
                     backgroundColor: 'var(--button-blue-color)',
+                }",
+                [effects]="{
+                    idle: ['shadow'],
+                    hover: ['darken'],
+                    click: ['push']
                 }"
             >
                 <span class="material-symbols-outlined">
@@ -19,50 +22,67 @@
             <mv-lib-button-classic
                 routerLink="/button-classic-example"
                 [settings]="{
+                    widthPx: 96,
+                    heightPx: 32,
                     backgroundColor: 'var(--button-blue-color)',
+                }",
+                [effects]="{
+                    idle: ['shadow'],
+                    hover: ['darken'],
+                    click: ['push']
                 }"
             >
                 <span
                     [style.font-weight]="'bold'"
                 >
-                    Buttons
+                    Button
                 </span>
             </mv-lib-button-classic>
 
             <mv-lib-button-classic
                 routerLink="/switch-classic-example"
                 [settings]="{
+                    widthPx: 96,
+                    heightPx: 32,
                     backgroundColor: 'var(--button-blue-color)',
+                }",
+                [effects]="{
+                    idle: ['shadow'],
+                    hover: ['darken'],
+                    click: ['push']
                 }"
             >
                 <span
                     [style.font-weight]="'bold'"
                 >
-                    Switches
+                    Switch
                 </span>
             </mv-lib-button-classic>
 
             <mv-lib-button-classic
                 routerLink="/dropdown-classic-example"
                 [settings]="{
+                    widthPx: 128,
+                    heightPx: 32,
                     backgroundColor: 'var(--button-blue-color)',
+                }",
+                [effects]="{
+                    idle: ['shadow'],
+                    hover: ['darken'],
+                    click: ['push']
                 }"
             >
                 <span
                     [style.font-weight]="'bold'"
                 >
-                    Drop-down lists
+                    Drop-down
                 </span>
             </mv-lib-button-classic>
         </div>
-
-        <hr
-            [style.margin-left.px]="-8"
-            [style.margin-right.px]="-8"
-        />
+        <hr/>
     </header>
 
-    <main>
+    <main class="app-content">
         <router-outlet />
     </main>
 </div>
