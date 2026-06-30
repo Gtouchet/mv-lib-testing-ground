@@ -44,8 +44,8 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   private dropdownRoot = viewChild<ElementRef<HTMLElement>>("dropdownRoot");
   private dropdownButton = viewChild<ElementRef<HTMLButtonElement>>("dropdownButton");
 
-  protected selectedTemplate? = contentChild(MvLibDropdownSelectedTemplateDirective<T>);
-  protected itemTemplate? = contentChild(MvLibDropdownItemTemplateDirective<T>);
+  protected selectedTemplate = contentChild(MvLibDropdownSelectedTemplateDirective<T>);
+  protected itemTemplate = contentChild(MvLibDropdownItemTemplateDirective<T>);
 
   public settings = input<Partial<MvLibDropdownClassicSettings>>();
   public effects = input<Partial<MvLibDropdownClassicEffects>>();
@@ -64,16 +64,18 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   protected computedEffects = computed(() => new MvLibDropdownClassicEffects(this.effects()));
 
   protected computedButtonClasses = computed(() => [
-    'dropdown-button',
+    'button',
     ... this.computedEffects().idle,
-    ... this.computedEffects().hover,
-    ... this.computedEffects().click,
+    ... this.computedEffects().buttonHover,
+    ... this.computedEffects().buttonClick,
   ]);
   protected computedListClasses = computed(() => [
-    'dropdown-list',
+    'list',
     ... this.computedEffects().idle,
-    ... this.computedEffects().hover,
-    ... this.computedEffects().click,
+  ]);
+  protected computedItemClasses = computed(() => [
+    'item',
+    ... this.computedEffects().itemHover,
   ]);
 
   constructor() {
@@ -116,10 +118,6 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
       event: event,
     });
   }
-
-  // protected isSelected(item: T): boolean {
-  //   return Object.is(this.selectedItem(), item);
-  // }
 
   @HostListener('document:click', ['$event'])
   protected onDocumentClick(event: Event): void {

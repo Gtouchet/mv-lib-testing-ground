@@ -1,16 +1,19 @@
 export type MvLibDropdownClassicIdleEffect = 'shadow';
-export type MvLibDropdownClassicHoverEffect = 'darken';
-export type MvLibDropdownClassicClickEffect = 'push' | 'ripple';
+export type MvLibDropdownClassicButtonHoverEffect = 'darken';
+export type MvLibDropdownClassicItemHoverEffect = 'darken';
+export type MvLibDropdownClassicButtonClickEffect = 'push' | 'ripple';
 
 export class MvLibDropdownClassicEffects {
 
     public idle: MvLibDropdownClassicIdleEffect[];
-    public hover: MvLibDropdownClassicHoverEffect[];
-    public click: MvLibDropdownClassicClickEffect[];
+    public buttonHover: MvLibDropdownClassicButtonHoverEffect[];
+    public itemHover: MvLibDropdownClassicItemHoverEffect[];
+    public buttonClick: MvLibDropdownClassicButtonClickEffect[];
 
     constructor(settings: Partial<MvLibDropdownClassicEffects> = {}) {
-        this.idle = settings.idle ?? ['shadow'];
-        this.hover = settings.hover ?? [];
-        this.click = settings.click ?? [];
+        this.idle = settings.idle ?? [];
+        this.buttonHover = settings.buttonHover ?? [];
+        this.itemHover = settings.itemHover ?? [];
+        this.buttonClick = settings.buttonClick ?? [];
     }
 }

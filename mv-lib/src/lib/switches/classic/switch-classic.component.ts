@@ -28,7 +28,7 @@ export class MvLibSwitchClassicComponent {
   protected computedSettings = computed(() => new MvLibSwitchClassicSettings(this.settings()));
   protected computedEffects = computed(() => new MvLibSwitchClassicEffects(this.effects()));
 
-  protected computedLabelClasses = computed(() => [
+  protected computedToggleClasses = computed(() => [
     'toggle',
   ]);
   protected computedSliderClasses = computed(() => [

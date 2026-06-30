@@ -147,10 +147,19 @@
         <div>
             <input
                 type="checkbox"
-                [checked]="effects().hover?.includes('darken')"
-                (click)="updateEffect('hover', 'darken', $event)"
+                [checked]="effects().buttonHover?.includes('darken')"
+                (click)="updateEffect('buttonHover', 'darken', $event)"
             />
-            Darken
+            Button darken
+        </div>
+
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().itemHover?.includes('darken')"
+                (click)="updateEffect('itemHover', 'darken', $event)"
+            />
+            Item darken
         </div>
     </div>
 
@@ -161,19 +170,19 @@
         <div>
             <input
                 type="checkbox"
-                [checked]="effects().click?.includes('push')"
-                (click)="updateEffect('click', 'push', $event)"
+                [checked]="effects().buttonClick?.includes('push')"
+                (click)="updateEffect('buttonClick', 'push', $event)"
             />
-            Push
+            Button push
         </div>
 
         <div>
             <input
                 type="checkbox"
-                [checked]="effects().click?.includes('ripple')"
-                (click)="updateEffect('click', 'ripple', $event)"
+                [checked]="effects().buttonClick?.includes('ripple')"
+                (click)="updateEffect('buttonClick', 'ripple', $event)"
             />
-            Ripple
+            Button ripple
         </div>
     </div>
 </div>

@@ -1,0 +1,3 @@
+$disabled: ":is(:disabled, [disabled], [aria-disabled='true'], .disabled)";
+$enabled: ":is(:enabled, [aria-disabled='false'], .enabled)";
+$not-disabled: ":not(:where(:disabled, [disabled], [aria-disabled='true'], .disabled))";

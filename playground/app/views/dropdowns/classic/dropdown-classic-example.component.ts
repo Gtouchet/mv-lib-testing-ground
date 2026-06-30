@@ -52,8 +52,8 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       buttonHeightPx: 40,
       itemHeightPx: 25,
       listMaxHeightPx: 150,
-      buttonColor: 'dodgerblue',
-      buttonTextColor: 'white',
+      buttonColor: 'lightgray',
+      buttonTextColor: 'black',
       listColor: 'lightgray',
       listTextColor: 'black',
       placeholder: 'Select a user',
@@ -62,10 +62,9 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
     });
     this.effects = signal<Partial<MvLibDropdownClassicEffects>>({
       idle: ['shadow'],
+      buttonHover: ['darken'],
+      itemHover: ['darken'],
+      buttonClick: ['push'],
     });
-  }
-
-  protected onSelect(e: MvLibDropdownClassicSelectEvent<User>) {
-    console.log('Selected item:', e.selectedItem);
   }
 }

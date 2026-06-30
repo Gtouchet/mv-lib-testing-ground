@@ -1,0 +1,23 @@
+@use './state.selectors' as state;
+
+#{state.$disabled} {
+  opacity: 0.6;
+  cursor: default;
+}
+
+#{state.$disabled} .shadow {
+  box-shadow: none;
+}
+
+#{state.$disabled} .push,
+#{state.$disabled} .ripple {
+  pointer-events: none;
+}
+
+#{state.$disabled} .ripple::after {
+  content: none;
+}
+
+#{state.$enabled} {
+  cursor: pointer;
+}

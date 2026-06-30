@@ -23,7 +23,7 @@ export class MvLibButtonClassicComponent {
   protected computedEffects = computed(() => new MvLibButtonClassicEffects(this.effects()));
   
   protected computedClasses = computed(() => [
-    'mv-lib-button',
+    'button',
     ...this.computedEffects().idle,
     ...this.computedEffects().hover,
     ...this.computedEffects().click,

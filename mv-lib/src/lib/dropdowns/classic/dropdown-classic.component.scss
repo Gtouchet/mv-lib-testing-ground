@@ -1,31 +1,22 @@
-.dropdown-root {
+@use '../../styles/effects';
+
+.root {
 	display: inline-block;
 	width: fit-content;
 }
 
-.dropdown-button {
+.button {
 	position: relative;
 	z-index: 1;
+	overflow: hidden;
 	align-items: center;
 	border: 0;
 	border-radius: 5px;
 	display: flex;
 	justify-content: space-between;
-
-	&.shadow:enabled {
-		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-	}
-
-	&:enabled {
-		cursor: pointer;
-	}
-
-	&:disabled {
-		opacity: 0.6;
-	}
 }
 
-.dropdown-list {
+.list {
 	position: relative;
 	z-index: 2;
 	list-style: none;
@@ -34,17 +25,17 @@
     padding: 0;
     margin: 0;
 	box-sizing: border-box;
-
-	&.shadow {
-		box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-	}
 }
 
-.dropdown-item {
+.item {
 	cursor: pointer;
+	position: relative;
+	overflow: hidden;
 	border: 0;
 	display: flex;
 	width: 100%;
+	background-color: var(--background-color);
+	appearance: none;
 }
 
 .placeholder {
