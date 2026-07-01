@@ -70,7 +70,6 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       idle: ['shadow'],
       buttonHover: ['darken'],
       itemHover: ['darken'],
-      buttonClick: ['push'],
     });
     this.settings = signal<Partial<MvLibDropdownClassicSettings>>({
       closeOnSelect: true,

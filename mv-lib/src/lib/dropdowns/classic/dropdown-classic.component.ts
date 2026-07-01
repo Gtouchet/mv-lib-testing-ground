@@ -21,7 +21,7 @@ import { MvLibDropdownClassicStyles } from "./dropdown-classic.styles";
 import { MvLibDropdownItemTemplateDirective, MvLibDropdownPlaceholderTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "../dropdown.directives";
 
 export interface MvLibDropdownClassicSelectEvent<T> {
-  readonly selectedItem: T;
+  readonly selectedItem: T | undefined;
   readonly event: Readonly<Event>;
 }
 
@@ -125,7 +125,7 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
     });
   }
 
-  protected selectItem(item: T, event: Event): void {
+  protected setSelectItem(item: T | undefined, event: Event): void {
     this.selectedItem.set(item);
     if (this.computedSettings().closeOnSelect) {
       this.isOpen.set(false);

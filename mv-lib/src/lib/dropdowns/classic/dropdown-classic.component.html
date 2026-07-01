@@ -19,7 +19,7 @@
                 [style.background-color]="computedStyles().buttonColor"
                 [style.color]="computedStyles().buttonTextColor"
                 [disabled]="disabled()"
-                (click)="selectedItem.set(undefined)"
+                (click)="setSelectItem(undefined, $event)"
             >
                 <span class="material-symbols-outlined">
                     close
@@ -42,7 +42,6 @@
                 <span class="hide-overflow">
                     @if (selectedTemplate()) {
                         <ng-container
-                            
                             [ngTemplateOutlet]="selectedTemplate()!.templateRef"
                             [ngTemplateOutletContext]="{ $implicit: selectedItem() }"
                         />
@@ -83,7 +82,7 @@
                         [style.height.px]="computedStyles().itemHeightPx"
                         [style.--background-color]="computedStyles().itemColor"
                         [style.color]="computedStyles().itemTextColor"
-                        (click)="selectItem(item, $event)"
+                        (click)="setSelectItem(item, $event)"
                     >
                         <div class="hide-overflow">
                             @if (itemTemplate()) {
