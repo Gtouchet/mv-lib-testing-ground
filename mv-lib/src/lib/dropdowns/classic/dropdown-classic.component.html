@@ -6,6 +6,7 @@
         [ngClass]="computedButtonsClasses()"
         [class.disabled]="disabled()"
         [class.enabled]="!disabled()"
+
         [style.width.px]="computedStyles().widthPx"
         [style.height.px]="computedStyles().buttonHeightPx"
         [style.background-color]="computedStyles().buttonColor"
@@ -13,9 +14,11 @@
         @if (computedSettings().resetButton && selectedItem()) {
             <button
                 type="button"
+
                 [ngClass]="computedResetButtonClasses()"
                 [class.disabled]="disabled()"
                 [class.enabled]="!disabled()"
+
                 [style.background-color]="computedStyles().buttonColor"
                 [style.color]="computedStyles().buttonTextColor"
                 [disabled]="disabled()"
@@ -29,9 +32,11 @@
         <button
             #dropdownButton
             type="button"
+
             [ngClass]="computedDropdownButtonClasses()"
             [class.disabled]="disabled()"
             [class.enabled]="!disabled()"
+            
             [style.background-color]="computedStyles().buttonColor"
             [style.color]="computedStyles().buttonTextColor"
             [disabled]="disabled()"

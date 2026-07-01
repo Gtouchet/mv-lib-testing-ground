@@ -2,14 +2,16 @@
   [ngClass]="computedToggleClasses()"
   [class.disabled]="disabled()"
   [class.enabled]="!disabled()"
+
   [style.height.px]="computedStyles().heightPx"
   [style.width.px]="computedStyles().widthPx"
   [style.--translate-distance.px]="computedStyles().widthPx"
   (click)="handleToggle($event)"
 >
   <input
-    class="checkbox"
     type="checkbox"
+
+    class="checkbox"
     [style.visibility]="'hidden'"
     [disabled]="disabled()"
     [checked]="active()"
@@ -18,6 +20,7 @@
     [ngClass]="computedSliderClasses()"
     [class.disabled]="disabled()"
     [class.enabled]="!disabled()"
+    
     [style.height.px]="computedStyles().heightPx!"
     [style.width.px]="computedStyles().widthPx!"
     [style.border-radius.px]="computedStyles().heightPx"
