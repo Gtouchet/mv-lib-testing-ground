@@ -1,5 +1,7 @@
 <button
     [ngClass]="computedClasses()"
+    [class.disabled]="disabled()"
+    [class.enabled]="!disabled()"
     
     [style.width.px]="computedStyles().widthPx"
     [style.height.px]="computedStyles().heightPx"

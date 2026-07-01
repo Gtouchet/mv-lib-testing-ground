@@ -5,6 +5,9 @@
     <button
         #dropdownButton
         [ngClass]="computedButtonClasses()"
+        [class.disabled]="disabled()"
+        [class.enabled]="!disabled()"
+
         [style.width.px]="computedStyles().widthPx"
         [style.height.px]="computedStyles().buttonHeightPx"
         [style.background-color]="computedStyles().buttonColor"
@@ -46,6 +49,9 @@
     @if (isOpen()) {
         <ul
             [ngClass]="computedListClasses()"
+            [class.disabled]="disabled()"
+            [class.enabled]="!disabled()"
+
             [style.width.px]="computedStyles().widthPx"
             [style.max-height.px]="computedStyles().listMaxHeightPx"
         >
@@ -53,6 +59,9 @@
                 <li>
                     <button
                         [ngClass]="computedItemClasses()"
+                        [class.disabled]="disabled()"
+                        [class.enabled]="!disabled()"
+                        
                         [style.height.px]="computedStyles().itemHeightPx"
                         [style.--background-color]="computedStyles().itemColor"
                         [style.color]="computedStyles().itemTextColor"

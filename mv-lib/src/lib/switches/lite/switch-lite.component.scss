@@ -5,7 +5,7 @@
   display: inline-block;
 
   // Enlarge the slider effect
-  &:not(.disabled) {
+  &.enabled {
     .slider.enlarge-slider:hover {
       --thumb-scale: var(--slider-hover-scale, 1.2);
     }
@@ -38,11 +38,11 @@
   border-radius: 50%;
 }
 
-.toggle:not(.disabled) .slider.shadow {
+.toggle.enabled .slider.shadow {
   box-shadow: none;
 }
 
-.toggle:not(.disabled) .slider.shadow:before {
+.toggle.enabled .slider.shadow:before {
   box-shadow: var(--shadow);
 }
 
@@ -62,7 +62,7 @@ input:checked + .slider:before {
 }
 
 // Activate ripple effect only when toggling the switch on
-.toggle:not(.disabled) .checkbox:checked + .ripple:active::after {
+.toggle.enabled .checkbox:checked + .ripple:active::after {
   transform: scale(7.5);
   opacity: 0;
   transition: transform 800ms var(--delay), opacity 800ms var(--delay);

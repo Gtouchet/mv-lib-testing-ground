@@ -1,5 +1,3 @@
-@use './state.selectors' as state;
-
 .ripple {
   --origin-x: 50%;
   --origin-y: 50%;
@@ -11,7 +9,7 @@
   border: none;
   border-radius: 5px;
 
-  &#{state.$not-disabled}::after {
+  &.enabled::after {
     content: "";
     position: absolute;
     width: var(--size);
@@ -29,7 +27,7 @@
       opacity 800ms var(--delay);
   }
 
-  &#{state.$not-disabled}:active::after {
+  &.enabled:active::after {
     transform: scale(0);
     opacity: 0.5;
     transition: 0s;

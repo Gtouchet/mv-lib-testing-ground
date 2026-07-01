@@ -1,9 +1,7 @@
-@use './state.selectors' as state;
-
 .darken {
 	transition: filter 200ms ease;
 
-	&#{state.$enabled}:hover {
+	&.enabled:hover {
 		filter: brightness(0.9);
 	}
 }
