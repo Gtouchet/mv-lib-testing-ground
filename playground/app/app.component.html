@@ -2,82 +2,115 @@
     <header class="header">
         <div class="buttons">
             <mv-lib-button-classic
-                routerLink="/"
                 [styles]="{
                     widthPx: 48,
                     heightPx: 32,
-                    backgroundColor: 'var(--button-blue-color)',
-                }",
+                    color: styles.var('component-primary'),
+                }"
                 [effects]="{
                     idle: ['shadow'],
                     hover: ['darken'],
                     click: ['push']
                 }"
+                (onClick)="router.navigateByUrl('/')"
             >
                 <span class="material-symbols-outlined">
                     home
                 </span>
             </mv-lib-button-classic>
 
-            <mv-lib-button-classic
-                routerLink="/button-classic-example"
-                [styles]="{
-                    widthPx: 96,
-                    heightPx: 32,
-                    backgroundColor: 'var(--button-blue-color)',
-                }",
+            <mv-lib-dropdown-classic
+                [items]="buttonItems"
+                [(selectedItem)]="selectedButtonItem"
+                [styles]="buttonDropdownStyles"
                 [effects]="{
                     idle: ['shadow'],
-                    hover: ['darken'],
-                    click: ['push']
+                    buttonHover: ['darken'],
+                    itemHover: ['darken'],
                 }"
+                (onSelect)="onButtonSelect($event.selectedItem)"
             >
-                <span
-                    [style.font-weight]="'bold'"
-                >
-                    Button
-                </span>
-            </mv-lib-button-classic>
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        <span class="material-symbols-outlined">
+                            trackpad_input
+                        </span>
+                        Buttons
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        {{ item.selectedName }}
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
 
-            <mv-lib-button-classic
-                routerLink="/switch-classic-example"
-                [styles]="{
-                    widthPx: 96,
-                    heightPx: 32,
-                    backgroundColor: 'var(--button-blue-color)',
-                }",
+            <mv-lib-dropdown-classic
+                [items]="switchItems"
+                [(selectedItem)]="selectedSwitchItem"
+                [styles]="switchDropdownStyles"
                 [effects]="{
                     idle: ['shadow'],
-                    hover: ['darken'],
-                    click: ['push']
+                    buttonHover: ['darken'],
+                    itemHover: ['darken'],
                 }"
+                (onSelect)="onSwitchSelect($event.selectedItem)"
             >
-                <span
-                    [style.font-weight]="'bold'"
-                >
-                    Switch
-                </span>
-            </mv-lib-button-classic>
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        <span class="material-symbols-outlined">
+                            toggle_on
+                        </span>
+                        Switches
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        {{ item.selectedName }}
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
 
-            <mv-lib-button-classic
-                routerLink="/dropdown-classic-example"
-                [styles]="{
-                    widthPx: 128,
-                    heightPx: 32,
-                    backgroundColor: 'var(--button-blue-color)',
-                }",
+            <mv-lib-dropdown-classic
+                [items]="dropdownItems"
+                [(selectedItem)]="selectedDropdownItem"
+                [styles]="menuDropdownStyles"
                 [effects]="{
                     idle: ['shadow'],
-                    hover: ['darken'],
-                    click: ['push']
+                    buttonHover: ['darken'],
+                    itemHover: ['darken'],
                 }"
+                (onSelect)="onDropdownSelect($event.selectedItem)"
             >
-                <span
-                    [style.font-weight]="'bold'"
-                >
-                    Drop-down
-                </span>
-            </mv-lib-button-classic>
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        <span class="material-symbols-outlined">
+                            dropdown_menu
+                        </span>
+                        Dropdowns
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        {{ item.selectedName }}
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
         </div>
         <hr/>
     </header>
@@ -86,3 +119,4 @@
         <router-outlet />
     </main>
 </div>
+

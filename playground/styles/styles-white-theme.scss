@@ -1,17 +1,10 @@
 :root {
-	/**
-     * Buttons styles
-     */
-	--button-blue-color: dodgerblue;
-	--button-blue-color-hover: royalblue;
-	--button-green-color: green;
-	--button-green-color-hover: darkgreen;
-	--button-red-color: red;
-	--button-red-color-hover: rgb(226, 0, 0);
+	--component-primary: dodgerblue;
+	--component-secondary: green;
+	--component-tertiary: silver;
 
-	/**
-	 * Switches
-	 */
-	--switch-blue-color-on: royalblue;
-	--switch-red-color-on: rgb(226, 0, 0);
+	--warning: orange;
+	--error: red;
+
+	--background: lightgray;
 }

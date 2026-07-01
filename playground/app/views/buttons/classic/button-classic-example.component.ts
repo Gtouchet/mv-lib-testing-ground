@@ -25,7 +25,7 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
     this.styles = signal<Partial<MvLibButtonClassicStyles>>({
       widthPx: 80,
       heightPx: 40,
-      backgroundColor: 'dodgerblue',
+      color: 'dodgerblue',
       textColor: 'white',
     });
     this.effects = signal<Partial<MvLibButtonClassicEffects>>({

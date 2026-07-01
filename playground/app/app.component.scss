@@ -32,3 +32,20 @@
     padding-left: 8px;
     padding-top: 4px;
 }
+
+.dropdown-placeholder {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	gap: 4px;
+}
+
+.dropdown-selected {
+	font-weight: bold;
+}
+
+.dropdown-item {
+	display: flex;
+	align-items: center;
+	height: 100%;
+}

@@ -1,10 +1,18 @@
-import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
-import { MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownItemTemplateDirective, MvLibDropdownSelectedTemplateDirective, MvLibDropdownClassicStyles } from "mv-lib";
+import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
+import {
+  MvLibDropdownClassicComponent,
+  MvLibDropdownClassicEffects,
+  MvLibDropdownClassicSettings,
+  MvLibDropdownClassicStyles,
+  MvLibDropdownDirectives,
+} from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
+import { Router } from "@angular/router";
 
 interface User {
   id: number;
+  icon: string;
   name: string;
 }
 
@@ -12,8 +20,7 @@ interface User {
   selector: 'app-dropdown-classic-example',
   imports: [
     MvLibDropdownClassicComponent,
-    MvLibDropdownSelectedTemplateDirective,
-    MvLibDropdownItemTemplateDirective,
+    MvLibDropdownDirectives,
     JsonPipe,
   ],
   templateUrl: './dropdown-classic-example.component.html',
@@ -29,20 +36,21 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
   MvLibDropdownClassicEffects,
   MvLibDropdownClassicSettings
 > {
+  private router = inject(Router);
 
   protected opened = signal(false);
 
-  protected selectedItem = signal<User | undefined>(undefined);
+  protected selectedUser = signal<User | undefined>(undefined);
   protected items = signal<User[]>([
-    { id: 1, name: 'Person with a long name' },
-    { id: 2, name: 'Bob' },
-    { id: 3, name: 'Charlie' },
-    { id: 4, name: 'David' },
-    { id: 5, name: 'Eve' },
-    { id: 6, name: 'Frank' },
-    { id: 7, name: 'Grace' },
-    { id: 8, name: 'Hannah' },
-    { id: 9, name: 'Ivy' },
+    { id: 1, icon: 'person', name: 'Alice', },
+    { id: 2, icon: 'person', name: 'Bob' },
+    { id: 3, icon: 'person', name: 'Charlie' },
+    { id: 4, icon: 'person', name: 'David' },
+    { id: 5, icon: 'person', name: 'Eve' },
+    { id: 6, icon: 'person', name: 'Frank' },
+    { id: 7, icon: 'person', name: 'Grace' },
+    { id: 8, icon: 'person', name: 'Henry' },
+    { id: 9, icon: 'person', name: 'Ivy' },
   ]);
 
   constructor() {
@@ -55,8 +63,8 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       listMaxHeightPx: 150,
       buttonColor: 'lightgray',
       buttonTextColor: 'black',
-      listColor: 'lightgray',
-      listTextColor: 'black',
+      itemColor: 'lightgray',
+      itemTextColor: 'black',
     });
     this.effects = signal<Partial<MvLibDropdownClassicEffects>>({
       idle: ['shadow'],
@@ -65,7 +73,6 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       buttonClick: ['push'],
     });
     this.settings = signal<Partial<MvLibDropdownClassicSettings>>({
-      placeholder: 'Select a user',
       closeOnSelect: true,
       closeOnOutsideClick: true,
     });

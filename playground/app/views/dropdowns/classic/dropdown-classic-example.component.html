@@ -60,19 +60,19 @@
     <div>
         <input
             type="color"
-            [value]="styles().listColor"
-            (input)="updateStyle('listColor', $event)"
+            [value]="styles().itemColor"
+            (input)="updateStyle('itemColor', $event)"
         />
-        List color
+        Item color
     </div>
     
     <div>
         <input
             type="color"
-            [value]="styles().listTextColor"
-            (input)="updateStyle('listTextColor', $event)"
+            [value]="styles().itemTextColor"
+            (input)="updateStyle('itemTextColor', $event)"
         />
-        List text color
+        Item text color
     </div>
 </div>
 
@@ -202,15 +202,16 @@
     [items]="items()"
     [disabled]="disabled()"
     [opened]="opened()"
-    (onSelect)="
-        selectedItem.set($event.selectedItem);
-        this.refreshLog();
-    "
+    (onSelect)="selectedUser.set($event.selectedItem)"
     (onOpen)="
         opened.set($event.opened);
         this.refreshLog();
     "
 >
+    <ng-template mvLibDropdownPlaceholderTemplate>
+        Select a user
+    </ng-template>
+
     <ng-template mvLibDropdownSelectedTemplate let-item>
         <div
             [style.display]="'flex'"
@@ -231,7 +232,7 @@
             [style.gap.px]="4"
         >
             <span class="material-symbols-outlined">
-                person
+                {{ item.icon }}
             </span>
             {{ item.name }}
         </div>
@@ -239,7 +240,7 @@
 </mv-lib-dropdown-classic>
 
 <pre>
-selectedItem: {{ selectedItem() | json }}
+selectedUser: {{ selectedUser() | json }}
 
 {{ log() }}
 </pre>

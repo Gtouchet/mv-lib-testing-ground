@@ -1,5 +1,18 @@
 import { Directive, TemplateRef } from "@angular/core";
 
+export interface MvLibDropdownPlaceholderTemplateContext {
+
+}
+@Directive({
+  selector: 'ng-template[mvLibDropdownPlaceholderTemplate]',
+  standalone: true,
+})
+export class MvLibDropdownPlaceholderTemplateDirective {
+  public constructor(
+    public readonly templateRef: TemplateRef<MvLibDropdownPlaceholderTemplateContext>,
+  ) {}
+}
+
 export interface MvLibDropdownSelectedTemplateContext<T> {
   $implicit: T;
 }
@@ -25,3 +38,9 @@ export class MvLibDropdownItemTemplateDirective<T> {
     public readonly templateRef: TemplateRef<MvLibDropdownItemTemplateContext<T>>,
   ) {}
 }
+
+export const MvLibDropdownDirectives = [
+  MvLibDropdownPlaceholderTemplateDirective,
+  MvLibDropdownSelectedTemplateDirective,
+  MvLibDropdownItemTemplateDirective,
+];

@@ -16,9 +16,9 @@ import {
   effect,
 } from "@angular/core";
 import { MvLibDropdownClassicSettings } from "./dropdown-classic.settings";
-import { MvLibDropdownItemTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "../dropdown.directives";
 import { MvLibDropdownClassicEffects } from "./dropdown-classic.effects";
 import { MvLibDropdownClassicStyles } from "./dropdown-classic.styles";
+import { MvLibDropdownItemTemplateDirective, MvLibDropdownPlaceholderTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "../dropdown.directives";
 
 export interface MvLibDropdownClassicSelectEvent<T> {
   readonly selectedItem: T;
@@ -32,7 +32,12 @@ export interface MvLibDropdownClassicOpenEvent {
 
 @Component({
   selector: 'mv-lib-dropdown-classic',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MvLibDropdownPlaceholderTemplateDirective,
+    MvLibDropdownSelectedTemplateDirective,
+    MvLibDropdownItemTemplateDirective,
+  ],
   templateUrl: './dropdown-classic.component.html',
   styleUrl: './dropdown-classic.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,6 +50,7 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   private dropdownRoot = viewChild<ElementRef<HTMLElement>>("dropdownRoot");
   private dropdownButton = viewChild<ElementRef<HTMLButtonElement>>("dropdownButton");
 
+  protected placeholderTemplate = contentChild(MvLibDropdownPlaceholderTemplateDirective);
   protected selectedTemplate = contentChild(MvLibDropdownSelectedTemplateDirective<T>);
   protected itemTemplate = contentChild(MvLibDropdownItemTemplateDirective<T>);
 

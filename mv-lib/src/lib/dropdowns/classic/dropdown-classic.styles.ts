@@ -6,8 +6,8 @@ export class MvLibDropdownClassicStyles {
     public listMaxHeightPx: number | undefined;
     public buttonColor: string;
     public buttonTextColor: string;
-    public listColor: string;
-    public listTextColor: string;
+    public itemColor: string;
+    public itemTextColor: string;
 
     constructor(settings: Partial<MvLibDropdownClassicStyles> = {}) {
         this.widthPx = settings.widthPx ?? undefined;
@@ -16,7 +16,7 @@ export class MvLibDropdownClassicStyles {
         this.listMaxHeightPx = settings.listMaxHeightPx ?? 150;
         this.buttonColor = settings.buttonColor ?? 'gray';
         this.buttonTextColor = settings.buttonTextColor ?? 'white';
-        this.listColor = settings.listColor ?? 'darkgray';
-        this.listTextColor = settings.listTextColor ?? 'white';
+        this.itemColor = settings.itemColor ?? 'darkgray';
+        this.itemTextColor = settings.itemTextColor ?? 'white';
     }
 }
