@@ -6,15 +6,30 @@
 	position: relative;
 }
 
-.button {
+.buttons {
+	display: flex;
+	align-items: stretch;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.dropdown-button {
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
 	align-items: center;
 	border: 0;
-	border-radius: 5px;
 	display: flex;
 	justify-content: space-between;
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.reset-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 0;
 }
 
 .list {

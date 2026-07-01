@@ -75,6 +75,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
     this.settings = signal<Partial<MvLibDropdownClassicSettings>>({
       closeOnSelect: true,
       closeOnOutsideClick: true,
+      resetButton: true,
     });
   }
 }

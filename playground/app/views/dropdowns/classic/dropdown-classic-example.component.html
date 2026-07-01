@@ -191,7 +191,18 @@
         />
         Close on outside click
     </div>
-    
+
+    <div>
+        <input
+            type="checkbox"
+            [checked]="settings().resetButton"
+            (click)="
+                updateSetting('resetButton', $event);
+                refreshLog();
+            "
+        />
+        Reset button
+    </div>
 </div>
 
 <!-- Dropdown -->
@@ -217,16 +228,7 @@
     </ng-template>
 
     <ng-template mvLibDropdownSelectedTemplate let-item>
-        <div
-            [style.display]="'flex'"
-            [style.alignItems]="'center'"
-            [style.gap.px]="4"
-        >
-            <span class="material-symbols-outlined">
-                check
-            </span>
-            {{ item.name }}
-        </div>
+        {{ item.name }}
     </ng-template>
 
     <ng-template mvLibDropdownItemTemplate let-item>

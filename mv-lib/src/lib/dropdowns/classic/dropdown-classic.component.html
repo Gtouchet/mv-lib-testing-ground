@@ -2,33 +2,54 @@
     #dropdownRoot
     class="root"
 >
-    <button
-        #dropdownButton
-        [ngClass]="computedButtonClasses()"
+    <div
+        [ngClass]="computedButtonsClasses()"
         [class.disabled]="disabled()"
         [class.enabled]="!disabled()"
-
         [style.width.px]="computedStyles().widthPx"
         [style.height.px]="computedStyles().buttonHeightPx"
         [style.background-color]="computedStyles().buttonColor"
-        [style.color]="computedStyles().buttonTextColor"
-        [disabled]="disabled()"
-        (click)="
-            isOpen.set(!isOpen());
-            onOpen.emit({
-                opened: isOpen(),
-                event: $event,
-            });
-        "
     >
+        @if (computedSettings().resetButton && selectedItem()) {
+            <button
+                type="button"
+                [ngClass]="computedResetButtonClasses()"
+                [class.disabled]="disabled()"
+                [class.enabled]="!disabled()"
+                [style.background-color]="computedStyles().buttonColor"
+                [style.color]="computedStyles().buttonTextColor"
+                [disabled]="disabled()"
+                (click)="selectedItem.set(undefined)"
+            >
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </button>
+        }
+        <button
+            #dropdownButton
+            type="button"
+            [ngClass]="computedDropdownButtonClasses()"
+            [class.disabled]="disabled()"
+            [class.enabled]="!disabled()"
+            [style.background-color]="computedStyles().buttonColor"
+            [style.color]="computedStyles().buttonTextColor"
+            [disabled]="disabled()"
+            (click)="toggleDropdown($event)"
+        >
         <span class="hide-overflow">
             @if (selectedItem()) {
                 <span class="hide-overflow">
                     @if (selectedTemplate()) {
-                        <ng-container
-                            [ngTemplateOutlet]="selectedTemplate()!.templateRef"
-                            [ngTemplateOutletContext]="{ $implicit: selectedItem() }"
-                        />
+                        <div
+                            [style.margin-left.px]="6"
+                        >
+                            <ng-container
+                                
+                                [ngTemplateOutlet]="selectedTemplate()!.templateRef"
+                                [ngTemplateOutletContext]="{ $implicit: selectedItem() }"
+                            />
+                        </div>
                     } @else {
                         {{ selectedItem() }}
                     }
@@ -44,7 +65,8 @@
         <span class="material-symbols-outlined">
             {{ isOpen() ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
         </span>
-    </button>
+        </button>
+    </div>
 
     @if (isOpen()) {
         <ul

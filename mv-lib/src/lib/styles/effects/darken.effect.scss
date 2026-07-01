@@ -1,7 +1,9 @@
 .darken {
+	--brightness: 0.9;
+	
 	transition: filter 200ms ease;
 
 	&.enabled:hover {
-		filter: brightness(0.9);
+		filter: brightness(var(--brightness));
 	}
 }

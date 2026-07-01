@@ -68,19 +68,26 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   protected computedEffects = computed(() => new MvLibDropdownClassicEffects(this.effects()));
   protected computedSettings = computed(() => new MvLibDropdownClassicSettings(this.settings()));
 
-  protected computedButtonClasses = computed(() => [
-    'button',
-    ... this.computedEffects().idle,
-    ... this.computedEffects().buttonHover,
-    ... this.computedEffects().buttonClick,
+  protected computedButtonsClasses = computed(() => [
+    'buttons',
+    ...this.computedEffects().idle,
+  ]);
+  protected computedResetButtonClasses = computed(() => [
+    'reset-button',
+    ...this.computedEffects().buttonHover,
+  ]);
+  protected computedDropdownButtonClasses = computed(() => [
+    'dropdown-button',
+    ...this.computedEffects().buttonHover,
+    ...this.computedEffects().buttonClick,
   ]);
   protected computedListClasses = computed(() => [
     'list',
-    ... this.computedEffects().idle,
+    ...this.computedEffects().idle,
   ]);
   protected computedItemClasses = computed(() => [
     'item',
-    ... this.computedEffects().itemHover,
+    ...this.computedEffects().itemHover,
   ]);
 
   constructor() {
@@ -96,6 +103,19 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
 
   ngOnInit() {
     this.initializeAutoWidth();
+  }
+
+  protected toggleDropdown(event: Event): void {
+    this.isOpen.set(!this.isOpen());
+    this.onOpen.emit({
+      opened: this.isOpen(),
+      event: event,
+    });
+  }
+
+  protected resetSelection(event: Event): void {
+    event.stopPropagation();
+    this.selectedItem.set(undefined);
   }
 
   private initializeAutoWidth(): void {
