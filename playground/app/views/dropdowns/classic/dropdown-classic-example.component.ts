@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
-import { MvLibDropdownClassicSelectEvent, MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownItemTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "mv-lib";
+import { MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownItemTemplateDirective, MvLibDropdownSelectedTemplateDirective, MvLibDropdownClassicStyles } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
 
@@ -25,8 +25,9 @@ interface User {
   standalone: true,
 })
 export class DropdownClassicExampleComponent extends BaseExampleComponent<
-  MvLibDropdownClassicSettings,
-  MvLibDropdownClassicEffects
+  MvLibDropdownClassicStyles,
+  MvLibDropdownClassicEffects,
+  MvLibDropdownClassicSettings
 > {
 
   protected opened = signal(false);
@@ -46,8 +47,8 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
 
   constructor() {
     super();
-    this.logProperties.set(['disabled', 'opened', 'settings', 'effects']);
-    this.settings = signal<Partial<MvLibDropdownClassicSettings>>({
+    this.logProperties.set(['disabled', 'opened', 'styles', 'effects', 'settings']);
+    this.styles = signal<Partial<MvLibDropdownClassicStyles>>({
       widthPx: 150,
       buttonHeightPx: 40,
       itemHeightPx: 25,
@@ -56,15 +57,17 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       buttonTextColor: 'black',
       listColor: 'lightgray',
       listTextColor: 'black',
-      placeholder: 'Select a user',
-      closeOnSelect: true,
-      closeOnOutsideClick: true,
     });
     this.effects = signal<Partial<MvLibDropdownClassicEffects>>({
       idle: ['shadow'],
       buttonHover: ['darken'],
       itemHover: ['darken'],
       buttonClick: ['push'],
+    });
+    this.settings = signal<Partial<MvLibDropdownClassicSettings>>({
+      placeholder: 'Select a user',
+      closeOnSelect: true,
+      closeOnOutsideClick: true,
     });
   }
 }

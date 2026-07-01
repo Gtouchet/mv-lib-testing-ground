@@ -1,6 +1,6 @@
 import { BaseExampleComponent } from '../../base-example.component';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings } from 'mv-lib';
+import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from 'mv-lib';
 
 @Component({
   selector: 'app-button-classic-example',
@@ -14,14 +14,15 @@ import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClas
   standalone: true,
 })
 export class ButtonClassicExampleComponent extends BaseExampleComponent<
-  MvLibButtonClassicSettings,
-  MvLibButtonClassicEffects
+  MvLibButtonClassicStyles,
+  MvLibButtonClassicEffects,
+  MvLibButtonClassicSettings
 > {
 
   constructor() {
     super();
-    this.logProperties.set(['disabled', 'settings', 'effects']);
-    this.settings = signal<Partial<MvLibButtonClassicSettings>>({
+    this.logProperties.set(['disabled', 'styles', 'effects', 'settings']);
+    this.styles = signal<Partial<MvLibButtonClassicStyles>>({
       widthPx: 80,
       heightPx: 40,
       backgroundColor: 'dodgerblue',
@@ -31,6 +32,9 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
       idle: ['shadow'],
       hover: ['darken'],
       click: ['push'],
+    });
+    this.settings = signal<Partial<MvLibButtonClassicSettings>>({
+
     });
   }
 }

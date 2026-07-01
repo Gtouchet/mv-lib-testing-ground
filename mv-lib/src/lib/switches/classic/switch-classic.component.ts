@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 import { CommonModule } from '@angular/common';
 import { MvLibSwitchClassicSettings } from './switch-classic.settings';
 import { MvLibSwitchClassicEffects } from './switch-classic.effects';
+import { MvLibSwitchClassicStyles } from './switch-classic.styles';
 
 export interface MvLibSwitchClassicClickEvent {
   readonly active: boolean;
@@ -18,15 +19,18 @@ export interface MvLibSwitchClassicClickEvent {
 })
 export class MvLibSwitchClassicComponent {
 
-  public settings = input<Partial<MvLibSwitchClassicSettings>>();
+  public styles = input<Partial<MvLibSwitchClassicStyles>>();
   public effects = input<Partial<MvLibSwitchClassicEffects>>();
+  public settings = input<Partial<MvLibSwitchClassicSettings>>();
+
   public disabled = input<boolean>(false);
   public active = input<boolean>(false);
 
   public onToggle = output<MvLibSwitchClassicClickEvent>();
   
-  protected computedSettings = computed(() => new MvLibSwitchClassicSettings(this.settings()));
+  protected computedStyles = computed(() => new MvLibSwitchClassicStyles(this.styles()));
   protected computedEffects = computed(() => new MvLibSwitchClassicEffects(this.effects()));
+  protected computedSettings = computed(() => new MvLibSwitchClassicSettings(this.settings()));
 
   protected computedToggleClasses = computed(() => [
     'toggle',
@@ -39,7 +43,7 @@ export class MvLibSwitchClassicComponent {
   ]);
 
   protected computedThumbHoverScale = computed(() => {
-    const thumbSizePx = this.computedSettings().heightPx ?? 0;
+    const thumbSizePx = this.computedStyles().heightPx ?? 0;
     return thumbSizePx <= 0 ? '1' : String(Math.min(1.2, 1 + (5 / thumbSizePx)));
   });
 

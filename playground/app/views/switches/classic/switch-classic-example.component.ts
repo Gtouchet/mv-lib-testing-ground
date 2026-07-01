@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
-import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings } from 'mv-lib';
+import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from 'mv-lib';
 
 @Component({
   selector: 'app-switch-classic-example',
@@ -14,16 +14,17 @@ import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClas
   standalone: true,
 })
 export class SwitchClassicExampleComponent extends BaseExampleComponent<
-  MvLibSwitchClassicSettings,
-  MvLibSwitchClassicEffects
+  MvLibSwitchClassicStyles,
+  MvLibSwitchClassicEffects,
+  MvLibSwitchClassicSettings
 > {
 
   protected active = signal(true);
 
   constructor() {
     super();
-    this.logProperties.set(['disabled', 'active', 'settings', 'effects']);
-    this.settings = signal<Partial<MvLibSwitchClassicSettings>>({
+    this.logProperties.set(['disabled', 'active', 'styles', 'effects', 'settings']);
+    this.styles = signal<Partial<MvLibSwitchClassicStyles>>({
       widthPx: 64,
       heightPx: 32,
       offColor: 'gray',
@@ -35,6 +36,9 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
       idle: ['shadow'],
       hover: ['enlarge-slider'],
       click: ['ripple'],
+    });
+    this.settings = signal<Partial<MvLibSwitchClassicSettings>>({
+      
     });
   }
 }

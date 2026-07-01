@@ -1,26 +1,10 @@
 export class MvLibDropdownClassicSettings {
     
-    public widthPx: number | undefined;
-    public buttonHeightPx: number | undefined;
-    public itemHeightPx: number | undefined;
-    public listMaxHeightPx: number | undefined;
-    public buttonColor: string;
-    public buttonTextColor: string;
-    public listColor: string;
-    public listTextColor: string;
     public placeholder: string;
     public closeOnSelect: boolean;
     public closeOnOutsideClick: boolean;
 
     constructor(settings: Partial<MvLibDropdownClassicSettings> = {}) {
-        this.widthPx = settings.widthPx ?? undefined;
-        this.buttonHeightPx = settings.buttonHeightPx ?? undefined;
-        this.itemHeightPx = settings.itemHeightPx ?? undefined;
-        this.listMaxHeightPx = settings.listMaxHeightPx ?? 150;
-        this.buttonColor = settings.buttonColor ?? 'gray';
-        this.buttonTextColor = settings.buttonTextColor ?? 'white';
-        this.listColor = settings.listColor ?? 'darkgray';
-        this.listTextColor = settings.listTextColor ?? 'white';
         this.placeholder = settings.placeholder ?? 'Select an item';
         this.closeOnSelect = settings.closeOnSelect ?? true;
         this.closeOnOutsideClick = settings.closeOnOutsideClick ?? true;

@@ -1,10 +1,10 @@
 <button
     [ngClass]="computedClasses()"
     
-    [style.background-color]="computedSettings().backgroundColor"
-    [style.width.px]="computedSettings().widthPx"
-    [style.height.px]="computedSettings().heightPx"
-    [style.color]="computedSettings().textColor"
+    [style.width.px]="computedStyles().widthPx"
+    [style.height.px]="computedStyles().heightPx"
+    [style.background-color]="computedStyles().backgroundColor"
+    [style.color]="computedStyles().textColor"
 
     [disabled]="disabled()"
     (click)="onClick.emit($event)"

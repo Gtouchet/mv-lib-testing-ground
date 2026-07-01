@@ -1,25 +1,13 @@
-<!-- Settings -->
-<div class="settings">
+<!-- Styles -->
+<div class="styles">
     <b>
-        Settings
+        Styles
     </b>
     <div>
         <input
-            type="checkbox"
-            [checked]="disabled()"
-            (click)="
-                disabled.set(!disabled());
-                refreshLog();
-            "
-        />
-        Disabled
-    </div>
-    
-    <div>
-        <input
             type="number"
-            [value]="settings().widthPx"
-            (input)="updateSetting('widthPx', $event)"
+            [value]="styles().widthPx"
+            (input)="updateStyle('widthPx', $event)"
         />
         Width px
     </div>
@@ -27,8 +15,8 @@
     <div>
         <input
             type="number"
-            [value]="settings().heightPx"
-            (input)="updateSetting('heightPx', $event)"
+            [value]="styles().heightPx"
+            (input)="updateStyle('heightPx', $event)"
         />
         Height px
     </div>
@@ -36,8 +24,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().backgroundColor"
-            (input)="updateSetting('backgroundColor', $event)"
+            [value]="styles().backgroundColor"
+            (input)="updateStyle('backgroundColor', $event)"
         />
         Background color
     </div>
@@ -45,8 +33,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().textColor"
-            (input)="updateSetting('textColor', $event)"
+            [value]="styles().textColor"
+            (input)="updateStyle('textColor', $event)"
         />
         Text color
     </div>
@@ -106,10 +94,29 @@
     </div>
 </div>
 
+<!-- Settings -->
+<div class="settings">
+    <b>
+        Settings
+    </b>
+    <div>
+        <input
+            type="checkbox"
+            [checked]="disabled()"
+            (click)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        Disabled
+    </div>
+</div>
+
 <!-- Button -->
 <mv-lib-button-classic
-    [settings]="settings()"
+    [styles]="styles()"
     [effects]="effects()"
+    [settings]="settings()"
     [disabled]="disabled()"
     (onClick)="setLastInteractionTime()"
 >

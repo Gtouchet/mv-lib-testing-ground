@@ -5,10 +5,10 @@
     <button
         #dropdownButton
         [ngClass]="computedButtonClasses()"
-        [style.width.px]="computedSettings().widthPx"
-        [style.height.px]="computedSettings().buttonHeightPx"
-        [style.background-color]="computedSettings().buttonColor"
-        [style.color]="computedSettings().buttonTextColor"
+        [style.width.px]="computedStyles().widthPx"
+        [style.height.px]="computedStyles().buttonHeightPx"
+        [style.background-color]="computedStyles().buttonColor"
+        [style.color]="computedStyles().buttonTextColor"
         [disabled]="disabled()"
         [style.border]="'1px solid'"
         (click)="
@@ -52,16 +52,16 @@
     @if (isOpen()) {
         <ul
             [ngClass]="computedListClasses()"
-            [style.width.px]="computedSettings().widthPx"
-            [style.max-height.px]="computedSettings().listMaxHeightPx"
+            [style.width.px]="computedStyles().widthPx"
+            [style.max-height.px]="computedStyles().listMaxHeightPx"
         >
             @for (item of items(); track item) {
                 <li>
                     <button
                         [ngClass]="computedItemClasses()"
-                        [style.height.px]="computedSettings().itemHeightPx"
-                        [style.--background-color]="computedSettings().listColor"
-                        [style.color]="computedSettings().listTextColor"
+                        [style.height.px]="computedStyles().itemHeightPx"
+                        [style.--background-color]="computedStyles().listColor"
+                        [style.color]="computedStyles().listTextColor"
                         (click)="selectItem(item, $event)"
                     >
                         <div

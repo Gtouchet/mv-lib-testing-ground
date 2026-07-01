@@ -1,61 +1,13 @@
-<!-- Settings -->
-<div class="settings">
+<!-- Styles -->
+<div class="styles">
     <b>
-        Settings
+        Styles
     </b>
     <div>
         <input
-            type="checkbox"
-            [checked]="disabled()"
-            (click)="
-                disabled.set(!disabled());
-                refreshLog();
-            "
-        />
-        Disabled
-    </div>
-
-    <div>
-        <input
-            type="checkbox"
-            [checked]="opened()"
-            (click)="
-                opened.set(!opened());
-                refreshLog();
-            "
-        />
-        Opened
-    </div>
-
-    <div>
-        <input
-            type="checkbox"
-            [checked]="settings().closeOnSelect"
-            (click)="
-                updateSetting('closeOnSelect', $event);
-                refreshLog();
-            "
-        />
-        Close on select
-    </div>
-    
-    <div>
-        <input
-            type="checkbox"
-            [checked]="settings().closeOnOutsideClick"
-            (click)="
-                updateSetting('closeOnOutsideClick', $event);
-                refreshLog();
-            "
-        />
-        Close on outside click
-    </div>
-    
-    <div>
-        <input
             type="number"
-            [value]="settings().widthPx"
-            (input)="updateSetting('widthPx', $event)"
+            [value]="styles().widthPx"
+            (input)="updateStyle('widthPx', $event)"
         />
         Width px
     </div>
@@ -63,8 +15,8 @@
     <div>
         <input
             type="number"
-            [value]="settings().buttonHeightPx"
-            (input)="updateSetting('buttonHeightPx', $event)"
+            [value]="styles().buttonHeightPx"
+            (input)="updateStyle('buttonHeightPx', $event)"
         />
         Button height px
     </div>
@@ -72,8 +24,8 @@
     <div>
         <input
             type="number"
-            [value]="settings().itemHeightPx"
-            (input)="updateSetting('itemHeightPx', $event)"
+            [value]="styles().itemHeightPx"
+            (input)="updateStyle('itemHeightPx', $event)"
         />
         Item height px
     </div>
@@ -81,8 +33,8 @@
     <div>
         <input
             type="number"
-            [value]="settings().listMaxHeightPx"
-            (input)="updateSetting('listMaxHeightPx', $event)"
+            [value]="styles().listMaxHeightPx"
+            (input)="updateStyle('listMaxHeightPx', $event)"
         />
         List max height px
     </div>
@@ -90,8 +42,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().buttonColor"
-            (input)="updateSetting('buttonColor', $event)"
+            [value]="styles().buttonColor"
+            (input)="updateStyle('buttonColor', $event)"
         />
         Button color
     </div>
@@ -99,8 +51,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().buttonTextColor"
-            (input)="updateSetting('buttonTextColor', $event)"
+            [value]="styles().buttonTextColor"
+            (input)="updateStyle('buttonTextColor', $event)"
         />
         Button text color
     </div>
@@ -108,8 +60,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().listColor"
-            (input)="updateSetting('listColor', $event)"
+            [value]="styles().listColor"
+            (input)="updateStyle('listColor', $event)"
         />
         List color
     </div>
@@ -117,8 +69,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().listTextColor"
-            (input)="updateSetting('listTextColor', $event)"
+            [value]="styles().listTextColor"
+            (input)="updateStyle('listTextColor', $event)"
         />
         List text color
     </div>
@@ -187,13 +139,69 @@
     </div>
 </div>
 
+<!-- Settings -->
+<div class="settings">
+    <b>
+        Settings
+    </b>
+    <div>
+        <input
+            type="checkbox"
+            [checked]="disabled()"
+            (click)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        Disabled
+    </div>
+
+    <div>
+        <input
+            type="checkbox"
+            [checked]="opened()"
+            (click)="
+                opened.set(!opened());
+                refreshLog();
+            "
+        />
+        Opened
+    </div>
+
+    <div>
+        <input
+            type="checkbox"
+            [checked]="settings().closeOnSelect"
+            (click)="
+                updateSetting('closeOnSelect', $event);
+                refreshLog();
+            "
+        />
+        Close on select
+    </div>
+    
+    <div>
+        <input
+            type="checkbox"
+            [checked]="settings().closeOnOutsideClick"
+            (click)="
+                updateSetting('closeOnOutsideClick', $event);
+                refreshLog();
+            "
+        />
+        Close on outside click
+    </div>
+    
+</div>
+
 <!-- Dropdown -->
 <mv-lib-dropdown-classic
+    [styles]="styles()"
+    [effects]="effects()"
+    [settings]="settings()"
     [items]="items()"
     [disabled]="disabled()"
     [opened]="opened()"
-    [settings]="settings()"
-    [effects]="effects()"
     (onSelect)="
         selectedItem.set($event.selectedItem);
         this.refreshLog();

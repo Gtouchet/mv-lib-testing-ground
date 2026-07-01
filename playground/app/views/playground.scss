@@ -1,17 +1,7 @@
-.settings {
+.styles {
     display: flex;
     flex-direction: column;
     gap: 4px;
-
-    > div {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-
-    input[type='checkbox'] {
-        margin: 0 0 0 0;
-    }
 
     input[type='number'] {
         width: 50px;
@@ -27,7 +17,6 @@
 .effects {
     display: flex;
     margin-top: 8px;
-    margin-bottom: 8px;
     gap: 16px;
 
     input[type='checkbox'] {
@@ -45,5 +34,22 @@
         align-items: center;
         margin-top: 4px;
         gap: 4px;
+    }
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    gap: 4px;
+
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    input[type='checkbox'] {
+        margin: 0 0 0 0;
     }
 }

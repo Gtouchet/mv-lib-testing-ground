@@ -18,6 +18,7 @@ import {
 import { MvLibDropdownClassicSettings } from "./dropdown-classic.settings";
 import { MvLibDropdownItemTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "../dropdown.directives";
 import { MvLibDropdownClassicEffects } from "./dropdown-classic.effects";
+import { MvLibDropdownClassicStyles } from "./dropdown-classic.styles";
 
 export interface MvLibDropdownClassicSelectEvent<T> {
   readonly selectedItem: T;
@@ -47,8 +48,10 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   protected selectedTemplate = contentChild(MvLibDropdownSelectedTemplateDirective<T>);
   protected itemTemplate = contentChild(MvLibDropdownItemTemplateDirective<T>);
 
-  public settings = input<Partial<MvLibDropdownClassicSettings>>();
+  public styles = input<Partial<MvLibDropdownClassicStyles>>();
   public effects = input<Partial<MvLibDropdownClassicEffects>>();
+  public settings = input<Partial<MvLibDropdownClassicSettings>>();
+  
   public items = input<T[]>([]);
   public disabled = input<boolean>(false);
   public opened = input<boolean>(false);
@@ -60,8 +63,9 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
 
   protected isOpen = signal(false);
 
-  protected computedSettings = computed(() => new MvLibDropdownClassicSettings(this.settings()));
+  protected computedStyles = computed(() => new MvLibDropdownClassicStyles(this.styles()));
   protected computedEffects = computed(() => new MvLibDropdownClassicEffects(this.effects()));
+  protected computedSettings = computed(() => new MvLibDropdownClassicSettings(this.settings()));
 
   protected computedButtonClasses = computed(() => [
     'button',
@@ -85,9 +89,7 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
       }
     });
     effect(() => {
-      if (this.opened()) {
-        this.isOpen.set(this.opened());
-      }
+      this.isOpen.set(this.opened());
     });
   }
 
@@ -97,13 +99,12 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
 
   private initializeAutoWidth(): void {
     requestAnimationFrame(() => {
-      const computedSettings = this.computedSettings();
-      if (computedSettings.widthPx !== undefined) {
+      if (this.computedStyles().widthPx !== undefined) {
         return;
       }
       const width = this.dropdownButton()?.nativeElement.getBoundingClientRect().width ?? 0;
       if (width > 0) {
-        computedSettings.widthPx = Math.ceil(width);
+        this.computedStyles().widthPx = Math.ceil(width);
       }
     });
   }
@@ -112,6 +113,10 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
     this.selectedItem.set(item);
     if (this.computedSettings().closeOnSelect) {
       this.isOpen.set(false);
+      this.onOpen.emit({
+        opened: this.isOpen(),
+        event: event,
+      });
     }
     this.onSelect.emit({
       selectedItem: item,

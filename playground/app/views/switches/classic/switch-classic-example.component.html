@@ -1,35 +1,13 @@
-<!-- Settings -->
-<div class="settings">
+<!-- Styles -->
+<div class="styles">
     <b>
-        Settings
+        Styles
     </b>
     <div>
         <input
-            type="checkbox"
-            [checked]="disabled()"
-            (click)="
-                disabled.set(!disabled());
-                refreshLog();
-            "
-        />
-        Disabled
-    </div>
-    <div>
-        <input
-            type="checkbox"
-            [checked]="active()"
-            (click)="
-                active.set(!active());
-                refreshLog();
-            "
-        />
-        Activated
-    </div>
-    <div>
-        <input
             type="number"
-            [value]="settings().widthPx ?? ''"
-            (input)="updateSetting('widthPx', $event)"
+            [value]="styles().widthPx ?? ''"
+            (input)="updateStyle('widthPx', $event)"
         />
         Width px
     </div>
@@ -37,8 +15,8 @@
     <div>
         <input
             type="number"
-            [value]="settings().heightPx ?? ''"
-            (input)="updateSetting('heightPx', $event)"
+            [value]="styles().heightPx ?? ''"
+            (input)="updateStyle('heightPx', $event)"
         />
         Height px
     </div>
@@ -46,8 +24,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().offColor"
-            (input)="updateSetting('offColor', $event)"
+            [value]="styles().offColor"
+            (input)="updateStyle('offColor', $event)"
         />
         Off color
     </div>
@@ -55,8 +33,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().onColor"
-            (input)="updateSetting('onColor', $event)"
+            [value]="styles().onColor"
+            (input)="updateStyle('onColor', $event)"
         />
         On color
     </div>
@@ -64,8 +42,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().sliderOffColor"
-            (input)="updateSetting('sliderOffColor', $event)"
+            [value]="styles().sliderOffColor"
+            (input)="updateStyle('sliderOffColor', $event)"
         />
         Slider off color
     </div>
@@ -73,8 +51,8 @@
     <div>
         <input
             type="color"
-            [value]="settings().sliderOnColor"
-            (input)="updateSetting('sliderOnColor', $event)"
+            [value]="styles().sliderOnColor"
+            (input)="updateStyle('sliderOnColor', $event)"
         />
         Slider on color
     </div>
@@ -134,10 +112,40 @@
     </div>
 </div>
 
+<!-- Settings -->
+<div class="settings">
+    <b>
+        Settings
+    </b>
+    <div>
+        <input
+            type="checkbox"
+            [checked]="disabled()"
+            (click)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        Disabled
+    </div>
+    <div>
+        <input
+            type="checkbox"
+            [checked]="active()"
+            (click)="
+                active.set(!active());
+                refreshLog();
+            "
+        />
+        Activated
+    </div>
+</div>
+
 <!-- Switch -->
 <mv-lib-switch-classic
-    [settings]="settings()"
+    [styles]="styles()"
     [effects]="effects()"
+    [settings]="settings()"
     [disabled]="disabled()"
     [active]="active()"
     (onToggle)="

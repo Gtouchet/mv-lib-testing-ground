@@ -6,13 +6,17 @@ import { FormsModule } from "@angular/forms";
     providers: [FormsModule],
 })
 export abstract class BaseExampleComponent<
-    Settings,
-    Effects extends { [K in keyof Effects]: unknown[] }
+    Styles,
+    Effects extends { [K in keyof Effects]: unknown[] },
+    Settings
 > implements OnInit {
 
-    protected settings = signal<Partial<Settings>>({});
+    protected styles = signal<Partial<Styles>>({});
     protected effects = signal<Partial<Effects>>({});
+    protected settings = signal<Partial<Settings>>({});
+
     protected disabled = signal(false);
+
     protected lastInteractionTime = signal<string>('00:00:00.00');
     protected logProperties = signal<string[]>([]);
     protected log = signal('');
@@ -21,18 +25,16 @@ export abstract class BaseExampleComponent<
         this.refreshLog();
     }
 
-    protected updateSetting(
-        key: keyof Settings,
+    protected updateStyle(
+        key: keyof Styles,
         event: any,
     ) {
         const target = event.target as HTMLInputElement | null;
-        this.settings.update(current => ({
+        this.styles.update(current => ({
             ...current,
             [key]: target?.type === 'number'
                 ? Number.isNaN(target.valueAsNumber) ? undefined : target.valueAsNumber
-                : target?.type === 'checkbox'
-                    ? target?.checked
-                    : target?.value,
+                : target?.value,
         }));
         this.refreshLog();
     }
@@ -51,6 +53,22 @@ export abstract class BaseExampleComponent<
                     : currentValues.filter(e => e !== effect),
             } as Partial<Effects>;
         });
+        this.refreshLog();
+    }
+
+    protected updateSetting(
+        key: keyof Settings,
+        event: any,
+    ) {
+        const target = event.target as HTMLInputElement | null;
+        this.settings.update(current => ({
+            ...current,
+            [key]: target?.type === 'number'
+                ? Number.isNaN(target.valueAsNumber) ? undefined : target.valueAsNumber
+                : target?.type === 'checkbox'
+                    ? target?.checked
+                    : target?.value,
+        }));
         this.refreshLog();
     }
 
