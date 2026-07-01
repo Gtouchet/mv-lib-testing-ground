@@ -1,32 +1,32 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MvLibSwitchClassicSettings } from './switch-classic.settings';
-import { MvLibSwitchClassicEffects } from './switch-classic.effects';
-import { MvLibSwitchClassicStyles } from './switch-classic.styles';
+import { MvLibSwitchLiteEffects } from './switch-lite.effects';
+import { MvLibSwitchLiteSettings } from './switch-lite.settings';
+import { MvLibSwitchLiteStyles } from './switch-lite.styles';
 import { MvLibSwitchToggleEvent } from '../switch.event';
 
 @Component({
-  selector: 'mv-lib-switch-classic',
+  selector: 'mv-lib-switch-lite',
   imports: [CommonModule],
-  templateUrl: './switch-classic.component.html',
-  styleUrl: './switch-classic.component.scss',
+  templateUrl: './switch-lite.component.html',
+  styleUrl: './switch-lite.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class MvLibSwitchClassicComponent {
+export class MvLibSwitchLiteComponent {
 
-  public styles = input<Partial<MvLibSwitchClassicStyles>>();
-  public effects = input<Partial<MvLibSwitchClassicEffects>>();
-  public settings = input<Partial<MvLibSwitchClassicSettings>>();
+  public styles = input<Partial<MvLibSwitchLiteStyles>>();
+  public effects = input<Partial<MvLibSwitchLiteEffects>>();
+  public settings = input<Partial<MvLibSwitchLiteSettings>>();
 
   public disabled = input<boolean>(false);
   public active = input<boolean>(false);
 
   public onToggle = output<MvLibSwitchToggleEvent>();
   
-  protected computedStyles = computed(() => new MvLibSwitchClassicStyles(this.styles()));
-  protected computedEffects = computed(() => new MvLibSwitchClassicEffects(this.effects()));
-  protected computedSettings = computed(() => new MvLibSwitchClassicSettings(this.settings()));
+  protected computedStyles = computed(() => new MvLibSwitchLiteStyles(this.styles()));
+  protected computedEffects = computed(() => new MvLibSwitchLiteEffects(this.effects()));
+  protected computedSettings = computed(() => new MvLibSwitchLiteSettings(this.settings()));
 
   protected computedToggleClasses = computed(() => [
     'toggle',
@@ -39,7 +39,7 @@ export class MvLibSwitchClassicComponent {
   ]);
 
   protected computedSliderHoverScale = computed(() => {
-    const thumbSizePx = this.computedStyles().heightPx ?? 0;
+    const thumbSizePx = this.computedStyles().heightPx;
     return thumbSizePx <= 0 ? '1' : String(Math.min(1.2, 1 + (5 / thumbSizePx)));
   });
 

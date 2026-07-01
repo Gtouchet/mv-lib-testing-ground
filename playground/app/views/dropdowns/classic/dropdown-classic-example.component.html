@@ -209,7 +209,11 @@
     "
 >
     <ng-template mvLibDropdownPlaceholderTemplate>
-        Select a user
+        <div
+            [style.margin-left.px]="8"
+        >
+            Select a user
+        </div>
     </ng-template>
 
     <ng-template mvLibDropdownSelectedTemplate let-item>

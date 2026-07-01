@@ -10,7 +10,6 @@ import {
 import { StylesService } from '../styles/styles.service';
 
 interface Item {
-  selectedName: string;
   name: string;
   routerLink?: string;
 }
@@ -31,27 +30,29 @@ interface Item {
 export class AppComponent {
   
   protected router = inject(Router);
-  protected styles = inject(StylesService);
+  protected appStyles = inject(StylesService);
 
   protected selectedButtonItem = signal<Item | undefined>(undefined);
   protected selectedSwitchItem = signal<Item | undefined>(undefined);
   protected selectedDropdownItem = signal<Item | undefined>(undefined);
 
   protected buttonItems: Item[] = [
-    { selectedName: 'Button classic', name: 'Classic', routerLink: '/button-classic-example' },
-  ];
-  protected switchItems: Item[] = [
-    { selectedName: 'Switch classic', name: 'Classic', routerLink: '/switch-classic-example' },
+    { name: 'Classic', routerLink: '/button-classic-example' },
   ];
   protected dropdownItems: Item[] = [
-    { selectedName: 'Dropdown classic', name: 'Classic', routerLink: '/dropdown-classic-example' },
+    { name: 'Classic', routerLink: '/dropdown-classic-example' },
   ];
+  protected switchItems: Item[] = [
+    { name: 'Classic', routerLink: '/switch-classic-example' },
+    { name: 'Lite', routerLink: '/switch-lite-example' },
+  ];
+
 
   protected dropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     buttonHeightPx: 32,
     itemHeightPx: 32,
     listMaxHeightPx: 150,
-    buttonColor: this.styles.var('component-primary'),
+    buttonColor: this.appStyles.var('component-primary'),
     itemColor: '#68b3ff',
     itemTextColor: 'white',
   };
@@ -59,15 +60,15 @@ export class AppComponent {
     ...this.dropdownStyles,
     widthPx: 175,
   };
-  protected switchDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
-    ...this.dropdownStyles,
-    widthPx: 175,
-  };
   protected menuDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     ...this.dropdownStyles,
     widthPx: 175,
   };
-  protected effects: Partial<MvLibDropdownClassicEffects> = {
+  protected switchDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
+    ...this.dropdownStyles,
+    widthPx: 175,
+  };
+  protected dropdownEffects: Partial<MvLibDropdownClassicEffects> = {
     idle: ['shadow'],
     buttonHover: ['darken'],
     itemHover: ['darken'],

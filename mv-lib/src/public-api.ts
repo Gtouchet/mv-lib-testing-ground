@@ -1,3 +1,3 @@
-export * from './lib/buttons/classic/index'
-export * from './lib/switches/classic/index';
-export * from './lib/dropdowns/classic/index';
+export * from './lib/buttons/index'
+export * from './lib/dropdowns/index';
+export * from './lib/switches/index';

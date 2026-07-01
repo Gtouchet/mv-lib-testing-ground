@@ -32,12 +32,7 @@ export interface MvLibDropdownClassicOpenEvent {
 
 @Component({
   selector: 'mv-lib-dropdown-classic',
-  imports: [
-    CommonModule,
-    MvLibDropdownPlaceholderTemplateDirective,
-    MvLibDropdownSelectedTemplateDirective,
-    MvLibDropdownItemTemplateDirective,
-  ],
+  imports: [CommonModule],
   templateUrl: './dropdown-classic.component.html',
   styleUrl: './dropdown-classic.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

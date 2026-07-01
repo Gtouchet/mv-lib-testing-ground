@@ -8,7 +8,7 @@ import {
 } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
-import { Router } from "@angular/router";
+import { StylesService } from "../../../../styles/styles.service";
 
 interface User {
   id: number;
@@ -36,8 +36,8 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
   MvLibDropdownClassicEffects,
   MvLibDropdownClassicSettings
 > {
-  private router = inject(Router);
-
+  protected appStyles = inject(StylesService);
+  
   protected opened = signal(false);
 
   protected selectedUser = signal<User | undefined>(undefined);
@@ -61,10 +61,10 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       buttonHeightPx: 40,
       itemHeightPx: 25,
       listMaxHeightPx: 150,
-      buttonColor: 'lightgray',
-      buttonTextColor: 'black',
-      itemColor: 'lightgray',
-      itemTextColor: 'black',
+      buttonColor: this.appStyles.var('component-primary'),
+      buttonTextColor: 'white',
+      itemColor: '#68b3ff',
+      itemTextColor: 'white',
     });
     this.effects = signal<Partial<MvLibDropdownClassicEffects>>({
       idle: ['shadow'],

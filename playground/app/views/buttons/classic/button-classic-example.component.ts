@@ -1,6 +1,7 @@
 import { BaseExampleComponent } from '../../base-example.component';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from 'mv-lib';
+import { StylesService } from '../../../../styles/styles.service';
 
 @Component({
   selector: 'app-button-classic-example',
@@ -19,13 +20,15 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
   MvLibButtonClassicSettings
 > {
 
+  protected appStyles = inject(StylesService);
+
   constructor() {
     super();
     this.logProperties.set(['disabled', 'styles', 'effects', 'settings']);
     this.styles = signal<Partial<MvLibButtonClassicStyles>>({
       widthPx: 80,
       heightPx: 40,
-      color: 'dodgerblue',
+      color: this.appStyles.var('component-primary'),
       textColor: 'white',
     });
     this.effects = signal<Partial<MvLibButtonClassicEffects>>({

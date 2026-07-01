@@ -3,7 +3,6 @@
   [class.disabled]="disabled()"
   [style.height.px]="computedStyles().heightPx"
   [style.width.px]="computedStyles().widthPx"
-  [style.--translate-distance.px]="computedStyles().widthPx"
   (click)="handleToggle($event)"
 >
   <input
@@ -18,12 +17,12 @@
     [style.height.px]="computedStyles().heightPx!"
     [style.width.px]="computedStyles().widthPx!"
     [style.border-radius.px]="computedStyles().heightPx"
-    [style.--slider-before-height]="(computedStyles().heightPx! - 8) + 'px'"
+    [style.--slider-before-size]="computedStyles().sliderSizePx + 'px'"
     [style.--slider-on-color]="computedStyles().onColor"
     [style.--slider-off-color]="computedStyles().offColor"
     [style.--slider-before-color]="active() ? computedStyles().sliderOnColor : computedStyles().sliderOffColor"
     [style.--thumb-hover-scale]="computedSliderHoverScale()"
-    [style.--translate-distance]="(computedStyles().widthPx! - computedStyles().heightPx!) + 'px'"
+    [style.--translate-distance]="(this.computedStyles().widthPx - this.computedStyles().sliderSizePx + 4 + 'px')"
   >
   </span>
 </label>

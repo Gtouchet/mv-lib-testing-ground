@@ -6,12 +6,8 @@
 
   // Enlarge the slider effect
   &:not(.disabled) {
-    .slider.enlarge-slider:hover:before {
-      transform: scale(var(--slider-hover-scale, 1.2));
-    }
-
-    input:checked + .slider.enlarge-slider:hover:before {
-      transform: translateX(var(--translate-distance)) scale(var(--slider-hover-scale, 1.2));
+    .slider.enlarge-slider:hover {
+      --thumb-scale: var(--slider-hover-scale, 1.2);
     }
   }
 }
@@ -24,21 +20,30 @@
   left: 0;
   transition: background-color var(--slider-motion-duration);
   background-color: var(--slider-off-color);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .slider:before {
   content: "";
   position: absolute;
   z-index: 1;
-  height: var(--slider-before-height);
-  width: var(--slider-before-height);
+  height: var(--slider-before-size);
+  width: var(--slider-before-size);
   background-color: var(--slider-before-color);
-  left: 4px;
-  bottom: 4px;
+  left: 0;
+  top: 50%;
   transform-origin: center;
+  transform: translate(var(--thumb-translate-x, 0), -50%) scale(var(--thumb-scale, 1));
   transition: transform var(--slider-motion-duration), background-color var(--slider-motion-duration);
   border-radius: 50%;
+}
+
+.toggle:not(.disabled) .slider.shadow {
+  box-shadow: none;
+}
+
+.toggle:not(.disabled) .slider.shadow:before {
+  box-shadow: var(--shadow);
 }
 
 input:checked + .slider {
@@ -46,7 +51,7 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(var(--translate-distance));
+  --thumb-translate-x: var(--translate-distance);
 }
 
 .ripple {

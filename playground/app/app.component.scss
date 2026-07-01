@@ -37,15 +37,21 @@
 	display: flex;
 	align-items: center;
 	height: 100%;
-	gap: 4px;
+	gap: 8px;
+	margin-left: 6px;
 }
 
 .dropdown-selected {
-	font-weight: bold;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	gap: 8px;
+	margin-left: 6px;
 }
 
 .dropdown-item {
 	display: flex;
 	align-items: center;
 	height: 100%;
+	margin-left: 6px;
 }

@@ -2,10 +2,10 @@ export class MvLibDropdownClassicStyles {
     
     public widthPx: number | undefined;
     public buttonHeightPx: number | undefined;
-    public itemHeightPx: number | undefined;
-    public listMaxHeightPx: number | undefined;
     public buttonColor: string;
     public buttonTextColor: string;
+    public listMaxHeightPx: number | undefined;
+    public itemHeightPx: number | undefined;
     public itemColor: string;
     public itemTextColor: string;
 

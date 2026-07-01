@@ -12,6 +12,7 @@
         Width px
     </div>
 
+
     <div>
         <input
             type="number"
@@ -19,6 +20,15 @@
             (input)="updateStyle('heightPx', $event)"
         />
         Height px
+    </div>
+
+    <div>
+        <input
+            type="number"
+            [value]="styles().sliderSizePx ?? ''"
+            (input)="updateStyle('sliderSizePx', $event)"
+        />
+        Slider size px
     </div>
 
     <div>
@@ -142,7 +152,7 @@
 </div>
 
 <!-- Switch -->
-<mv-lib-switch-classic
+<mv-lib-switch-lite
     [styles]="styles()"
     [effects]="effects()"
     [settings]="settings()"
@@ -161,7 +171,7 @@
     >
         Click
     </span>
-</mv-lib-switch-classic>
+</mv-lib-switch-lite>
 
 <pre>
 {{ log() }}

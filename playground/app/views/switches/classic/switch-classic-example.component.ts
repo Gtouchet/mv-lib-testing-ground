@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from 'mv-lib';
+import { StylesService } from '../../../../styles/styles.service';
 
 @Component({
   selector: 'app-switch-classic-example',
@@ -19,6 +20,8 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
   MvLibSwitchClassicSettings
 > {
 
+  protected appStyles = inject(StylesService);
+  
   protected active = signal(true);
 
   constructor() {
@@ -28,7 +31,7 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
       widthPx: 64,
       heightPx: 32,
       offColor: 'gray',
-      onColor: 'dodgerblue',
+      onColor: this.appStyles.var('component-primary'),
       sliderOffColor: 'darkgray',
       sliderOnColor: 'white',
     });
