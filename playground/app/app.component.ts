@@ -3,6 +3,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import {
   MvLibButtonClassicComponent,
   MvLibDropdownClassicComponent,
+  MvLibDropdownClassicEffects,
   MvLibDropdownClassicStyles,
   MvLibDropdownDirectives,
 } from 'mv-lib';
@@ -65,6 +66,11 @@ export class AppComponent {
   protected menuDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     ...this.dropdownStyles,
     widthPx: 175,
+  };
+  protected effects: Partial<MvLibDropdownClassicEffects> = {
+    idle: ['shadow'],
+    buttonHover: ['darken'],
+    itemHover: ['darken'],
   };
 
   protected onButtonSelect(item: Item): void {

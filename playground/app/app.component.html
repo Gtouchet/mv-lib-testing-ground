@@ -23,11 +23,7 @@
                 [items]="buttonItems"
                 [(selectedItem)]="selectedButtonItem"
                 [styles]="buttonDropdownStyles"
-                [effects]="{
-                    idle: ['shadow'],
-                    buttonHover: ['darken'],
-                    itemHover: ['darken'],
-                }"
+                [effects]="effects"
                 (onSelect)="onButtonSelect($event.selectedItem)"
             >
                 <ng-template mvLibDropdownPlaceholderTemplate>
@@ -54,11 +50,7 @@
                 [items]="switchItems"
                 [(selectedItem)]="selectedSwitchItem"
                 [styles]="switchDropdownStyles"
-                [effects]="{
-                    idle: ['shadow'],
-                    buttonHover: ['darken'],
-                    itemHover: ['darken'],
-                }"
+                [effects]="effects"
                 (onSelect)="onSwitchSelect($event.selectedItem)"
             >
                 <ng-template mvLibDropdownPlaceholderTemplate>
@@ -85,11 +77,7 @@
                 [items]="dropdownItems"
                 [(selectedItem)]="selectedDropdownItem"
                 [styles]="menuDropdownStyles"
-                [effects]="{
-                    idle: ['shadow'],
-                    buttonHover: ['darken'],
-                    itemHover: ['darken'],
-                }"
+                [effects]="effects"
                 (onSelect)="onDropdownSelect($event.selectedItem)"
             >
                 <ng-template mvLibDropdownPlaceholderTemplate>
