@@ -41,15 +41,11 @@
             @if (selectedItem()) {
                 <span class="hide-overflow">
                     @if (selectedTemplate()) {
-                        <div
-                            [style.margin-left.px]="6"
-                        >
-                            <ng-container
-                                
-                                [ngTemplateOutlet]="selectedTemplate()!.templateRef"
-                                [ngTemplateOutletContext]="{ $implicit: selectedItem() }"
-                            />
-                        </div>
+                        <ng-container
+                            
+                            [ngTemplateOutlet]="selectedTemplate()!.templateRef"
+                            [ngTemplateOutletContext]="{ $implicit: selectedItem() }"
+                        />
                     } @else {
                         {{ selectedItem() }}
                     }

@@ -113,11 +113,6 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
     });
   }
 
-  protected resetSelection(event: Event): void {
-    event.stopPropagation();
-    this.selectedItem.set(undefined);
-  }
-
   private initializeAutoWidth(): void {
     requestAnimationFrame(() => {
       if (this.computedStyles().widthPx !== undefined) {
