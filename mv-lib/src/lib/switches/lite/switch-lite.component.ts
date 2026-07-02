@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MvLibSwitchLiteEffects } from './switch-lite.effects';
-import { MvLibSwitchLiteSettings } from './switch-lite.settings';
-import { MvLibSwitchLiteStyles } from './switch-lite.styles';
 import { MvLibSwitchToggleEvent } from '../switch.event';
+import { MvLibSwitchLiteEffects, MvLibSwitchLiteSettings, MvLibSwitchLiteStyles } from '..';
 
 @Component({
   selector: 'mv-lib-switch-lite',

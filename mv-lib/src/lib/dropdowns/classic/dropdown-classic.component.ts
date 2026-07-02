@@ -15,10 +15,8 @@ import {
   signal,
   effect,
 } from "@angular/core";
-import { MvLibDropdownClassicSettings } from "./dropdown-classic.settings";
-import { MvLibDropdownClassicEffects } from "./dropdown-classic.effects";
-import { MvLibDropdownClassicStyles } from "./dropdown-classic.styles";
-import { MvLibDropdownItemTemplateDirective, MvLibDropdownPlaceholderTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "../dropdown.directives";
+import { MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyles } from "..";
+import { MvLibDropdownItemTemplateDirective, MvLibDropdownPlaceholderTemplateDirective, MvLibDropdownSelectedTemplateDirective } from "..";
 
 export interface MvLibDropdownClassicSelectEvent<T> {
   readonly selectedItem: T | undefined;

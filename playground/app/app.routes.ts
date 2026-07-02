@@ -7,6 +7,8 @@ import { DropdownClassicExampleComponent } from './views/dropdowns/classic/dropd
 import { SwitchClassicExampleComponent } from './views/switches/classic/switch-classic-example.component';
 import { SwitchLiteExampleComponent } from './views/switches/lite/switch-lite-example.component';
 
+import { TextboxClassicExampleComponent } from './views/textboxes/classic/textbox-classic-example.component';
+
 export const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: '' },
 
@@ -16,4 +18,6 @@ export const routes: Routes = [
 
 	{ path: 'switch-classic-example', component: SwitchClassicExampleComponent },
 	{ path: 'switch-lite-example', component: SwitchLiteExampleComponent },
+
+	{ path: 'textbox-classic-example', component: TextboxClassicExampleComponent },
 ];

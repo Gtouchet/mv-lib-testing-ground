@@ -1,8 +1,6 @@
 import { Component, input, output, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MvLibButtonClassicStyles } from './button-classic.styles';
-import { MvLibButtonClassicEffects } from './button-classic.effects';
-import { MvLibButtonClassicSettings } from './button-classic.settings';
+import { MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from '..';
 
 @Component({
   selector: 'mv-lib-button-classic',

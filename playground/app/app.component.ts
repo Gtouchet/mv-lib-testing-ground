@@ -35,6 +35,7 @@ export class AppComponent {
   protected selectedButtonItem = signal<Item | undefined>(undefined);
   protected selectedSwitchItem = signal<Item | undefined>(undefined);
   protected selectedDropdownItem = signal<Item | undefined>(undefined);
+  protected selectedTextboxItem = signal<Item | undefined>(undefined);
 
   protected buttonItems: Item[] = [
     { name: 'Classic', routerLink: '/button-classic-example' },
@@ -46,7 +47,9 @@ export class AppComponent {
     { name: 'Classic', routerLink: '/switch-classic-example' },
     { name: 'Lite', routerLink: '/switch-lite-example' },
   ];
-
+  protected textboxItems: Item[] = [
+    { name: 'Classic', routerLink: '/textbox-classic-example' },
+  ];
 
   protected dropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     buttonHeightPx: 32,
@@ -68,6 +71,10 @@ export class AppComponent {
     ...this.dropdownStyles,
     widthPx: 175,
   };
+  protected textboxDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
+    ...this.dropdownStyles,
+    widthPx: 175,
+  };
   protected dropdownEffects: Partial<MvLibDropdownClassicEffects> = {
     idle: ['shadow'],
     buttonHover: ['darken'],
@@ -78,6 +85,7 @@ export class AppComponent {
     this.selectedButtonItem.set(item);
     this.selectedSwitchItem.set(undefined);
     this.selectedDropdownItem.set(undefined);
+    this.selectedTextboxItem.set(undefined);
     if (item.routerLink) {
       this.router.navigateByUrl(item.routerLink);
     }
@@ -87,6 +95,7 @@ export class AppComponent {
     this.selectedSwitchItem.set(item);
     this.selectedButtonItem.set(undefined);
     this.selectedDropdownItem.set(undefined);
+    this.selectedTextboxItem.set(undefined);
     if (item.routerLink) {
       this.router.navigateByUrl(item.routerLink);
     }
@@ -96,6 +105,17 @@ export class AppComponent {
     this.selectedDropdownItem.set(item);
     this.selectedButtonItem.set(undefined);
     this.selectedSwitchItem.set(undefined);
+    this.selectedTextboxItem.set(undefined);
+    if (item.routerLink) {
+      this.router.navigateByUrl(item.routerLink);
+    }
+  }
+
+  protected onTextboxSelect(item: Item): void {
+    this.selectedTextboxItem.set(item);
+    this.selectedButtonItem.set(undefined);
+    this.selectedSwitchItem.set(undefined);
+    this.selectedDropdownItem.set(undefined);
     if (item.routerLink) {
       this.router.navigateByUrl(item.routerLink);
     }

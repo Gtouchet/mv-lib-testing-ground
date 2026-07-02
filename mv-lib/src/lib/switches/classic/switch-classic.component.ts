@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MvLibSwitchClassicSettings } from './switch-classic.settings';
-import { MvLibSwitchClassicEffects } from './switch-classic.effects';
-import { MvLibSwitchClassicStyles } from './switch-classic.styles';
 import { MvLibSwitchToggleEvent } from '../switch.event';
+import { MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from '..';
 
 @Component({
   selector: 'mv-lib-switch-classic',
