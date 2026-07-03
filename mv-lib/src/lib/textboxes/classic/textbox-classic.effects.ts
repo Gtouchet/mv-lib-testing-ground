@@ -1,13 +1,13 @@
-export type MvLibTextboxClassicIdleEffect = 'shadow';
 export type MvLibTextboxClassicHoverEffect = 'darken';
+export type MvLibTextboxClassicSelectedEffect = 'outline';
 
 export class MvLibTextboxClassicEffects {
     
-    public idle: MvLibTextboxClassicIdleEffect[];
     public hover: MvLibTextboxClassicHoverEffect[];
+    public selected: MvLibTextboxClassicSelectedEffect[];
 
     constructor(settings: Partial<MvLibTextboxClassicEffects> = {}) {
-        this.idle = settings.idle ?? [];
         this.hover = settings.hover ?? [];
+        this.selected = settings.selected ?? [];
     }
 }

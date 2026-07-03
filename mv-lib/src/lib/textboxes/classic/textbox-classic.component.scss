@@ -1,2 +1,19 @@
 @use '../../styles/effects';
 
+.textbox {
+    padding-left: 8px;
+    border-radius: 5px;
+}
+
+.textbox:focus:not(.outline),
+.textbox:focus-visible:not(.outline) {
+    outline: none;
+}
+
+.selected.outline {
+    --outline: 1px solid var(--selected-outline-color);
+}
+
+.not-selected.outline {
+    --outline: none;
+}

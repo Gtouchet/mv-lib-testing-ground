@@ -39,7 +39,6 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
   protected appStyles = inject(StylesService);
   
   protected opened = signal(false);
-
   protected selectedUser = signal<User | undefined>(undefined);
   protected items = signal<User[]>([
     { id: 1, icon: 'person', name: 'Alice', },

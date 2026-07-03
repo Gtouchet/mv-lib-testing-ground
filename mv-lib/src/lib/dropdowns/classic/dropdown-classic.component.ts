@@ -8,7 +8,6 @@ import {
   inject,
   input,
   model,
-  OnInit,
   output,
   viewChild,
   contentChild,
@@ -36,16 +35,15 @@ export interface MvLibDropdownClassicOpenEvent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class MvLibDropdownClassicComponent<T> implements OnInit {
+export class MvLibDropdownClassicComponent<T> {
 
-  private hostElement = inject(ElementRef<HTMLElement>);
-  
   private dropdownRoot = viewChild<ElementRef<HTMLElement>>("dropdownRoot");
-  private dropdownButton = viewChild<ElementRef<HTMLButtonElement>>("dropdownButton");
 
   protected placeholderTemplate = contentChild(MvLibDropdownPlaceholderTemplateDirective);
   protected selectedTemplate = contentChild(MvLibDropdownSelectedTemplateDirective<T>);
   protected itemTemplate = contentChild(MvLibDropdownItemTemplateDirective<T>);
+
+  private hostElement = inject(ElementRef<HTMLElement>);
 
   public styles = input<Partial<MvLibDropdownClassicStyles>>();
   public effects = input<Partial<MvLibDropdownClassicEffects>>();
@@ -69,6 +67,7 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   protected computedButtonsClasses = computed(() => [
     'buttons',
     ...this.computedEffects().idle,
+    ...this.computedEffects().buttonClick.filter((effect) => effect !== 'ripple'),
   ]);
   protected computedResetButtonClasses = computed(() => [
     'reset-button',
@@ -77,7 +76,7 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
   protected computedDropdownButtonClasses = computed(() => [
     'dropdown-button',
     ...this.computedEffects().buttonHover,
-    ...this.computedEffects().buttonClick,
+    ...this.computedEffects().buttonClick.filter((effect) => effect !== 'push'),
   ]);
   protected computedListClasses = computed(() => [
     'list',
@@ -99,27 +98,11 @@ export class MvLibDropdownClassicComponent<T> implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.initializeAutoWidth();
-  }
-
   protected toggleDropdown(event: Event): void {
     this.isOpen.set(!this.isOpen());
     this.onOpen.emit({
       opened: this.isOpen(),
       event: event,
-    });
-  }
-
-  private initializeAutoWidth(): void {
-    requestAnimationFrame(() => {
-      if (this.computedStyles().widthPx !== undefined) {
-        return;
-      }
-      const width = this.dropdownButton()?.nativeElement.getBoundingClientRect().width ?? 0;
-      if (width > 0) {
-        this.computedStyles().widthPx = Math.ceil(width);
-      }
     });
   }
 

@@ -1,0 +1,32 @@
+<input
+    #textboxInput
+
+    type="text"
+
+    [ngClass]="computedClasses()"
+    [class.disabled]="disabled()"
+    [class.enabled]="!disabled()"
+    [class.selected]="selected()"
+    [class.not-selected]="!selected()"
+
+    [style.width.px]="computedStyles().widthPx"
+    [style.height.px]="computedStyles().heightPx"
+    [style.background-color]="computedStyles().backgroundColor"
+    [style.color]="computedStyles().textColor"
+    [style.border]="'1px solid ' + computedStyles().borderColor"
+
+    [style.--selected-outline-color]="computedStyles().selectedOutlineColor"
+
+    (focus)="setSelected(true, $event)"
+    (blur)="setSelected(false, $event)"
+
+    [disabled]="disabled()"
+    [value]="value()"
+    (input)="
+        value.set($any($event.target).value);
+        onChange.emit({
+            value: $any($event.target).value,
+            event: $event,
+        });
+    "
+/>

@@ -30,4 +30,5 @@ export class MvLibButtonClassicComponent {
     ...this.computedEffects().hover,
     ...this.computedEffects().click,
   ]);
+
 }
