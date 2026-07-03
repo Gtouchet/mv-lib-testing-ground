@@ -10,10 +10,11 @@
     outline: none;
 }
 
-.selected.outline {
-    --outline: 1px solid var(--selected-outline-color);
-}
-
-.not-selected.outline {
-    --outline: none;
+.outline {
+    &.selected {
+        --color: var(--selected-outline-color);
+    }
+    &.not-selected {
+        --size: none;
+    }
 }
