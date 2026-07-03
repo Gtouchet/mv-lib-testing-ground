@@ -1,10 +1,14 @@
 :root {
-	--component-primary: dodgerblue;
-	--component-secondary: green;
-	--component-tertiary: silver;
+	--button-primary: DodgerBlue;
+	--button-primary-text: White;
 
-	--warning: orange;
-	--error: red;
+	--button-secondary: rgb(81, 168, 255);
+	--button-secondary-text: White;
 
-	--background: lightgray;
+	--switch-on: LightGray;
+	--switch-off: DarkGray;
+	--switch-slider-on: DodgerBlue;
+	--switch-slider-off: Gray;
+
+	--outline-primary: DodgerBlue;
 }

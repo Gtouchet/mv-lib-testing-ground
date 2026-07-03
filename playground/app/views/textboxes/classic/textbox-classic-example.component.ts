@@ -34,7 +34,7 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
       backgroundColor: 'white',
       textColor: 'black',
       borderColor: 'black',
-      selectedOutlineColor: 'lightskyblue',
+      selectedOutlineColor: this.appStyles.var('outline-primary'),
     });
     this.effects = signal<Partial<MvLibTextboxClassicEffects>>({
       hover: ['darken'],

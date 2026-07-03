@@ -55,9 +55,9 @@ export class AppComponent {
     buttonHeightPx: 32,
     itemHeightPx: 32,
     listMaxHeightPx: 150,
-    buttonColor: this.appStyles.var('component-primary'),
-    itemColor: '#68b3ff',
-    itemTextColor: 'white',
+    buttonColor: this.appStyles.var('button-primary'),
+    itemColor: this.appStyles.var('button-secondary'),
+    itemTextColor: this.appStyles.var('button-primary-text'),
   };
   protected buttonDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     ...this.dropdownStyles,

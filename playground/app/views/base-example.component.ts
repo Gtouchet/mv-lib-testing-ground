@@ -16,6 +16,7 @@ export abstract class BaseExampleComponent<
     protected settings = signal<Partial<Settings>>({});
 
     protected disabled = signal(false);
+    protected error = signal(false);
 
     protected lastInteractionTime = signal<string>('00:00:00.00');
     protected logProperties = signal<string[]>([]);

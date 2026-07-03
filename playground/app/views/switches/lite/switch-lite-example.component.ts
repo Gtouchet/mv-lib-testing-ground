@@ -30,11 +30,11 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<
     this.styles = signal<Partial<MvLibSwitchLiteStyles>>({
       widthPx: 48,
       heightPx: 12,
-      offColor: 'gray',
-      onColor: this.appStyles.var('component-primary'),
+      offColor: this.appStyles.var('switch-off'),
+      onColor: this.appStyles.var('switch-on'),
       sliderSizePx: 24,
-      sliderOffColor: 'darkgray',
-      sliderOnColor: '#68b3ff',
+      sliderOffColor: this.appStyles.var('switch-slider-off'),
+      sliderOnColor: this.appStyles.var('switch-slider-on'),
     });
     this.effects = signal<Partial<MvLibSwitchLiteEffects>>({
       idle: ['shadow'],

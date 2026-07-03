@@ -33,6 +33,7 @@ export class MvLibTextboxClassicComponent {
 
   public disabled = input(false);
   public selected = model(false);
+  public error = input(false);
 
   public value = model<string | undefined>(undefined);
   

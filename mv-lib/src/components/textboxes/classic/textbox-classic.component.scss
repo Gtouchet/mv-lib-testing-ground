@@ -1,0 +1,21 @@
+@use '../../../styles/effects.scss';
+
+.textbox {
+    padding-left: 8px;
+    border-radius: 5px;
+}
+
+.outline {
+    &.selected {
+        --color: var(--selected-outline-color);
+    }
+    &.not-selected {
+        --color: none;
+    }
+}
+
+// Disabled the default HTML input text outline
+.textbox:focus:not(.outline),
+.textbox:focus-visible:not(.outline) {
+    outline: none;
+}

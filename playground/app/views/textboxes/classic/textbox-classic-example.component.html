@@ -118,6 +118,19 @@
         />
         Selected
     </div>
+
+    <div>
+        <input
+            type="checkbox"
+            [checked]="error()"
+            (click)="
+                error.set(!error());
+                refreshLog();
+            "
+            (mousedown)="$event.preventDefault()"
+        />
+        Error
+    </div>
 </div>
 
 <mv-lib-textbox-classic
@@ -127,6 +140,7 @@
     [value]="value()"
     [disabled]="disabled()"
     [selected]="selected()"
+    [error]="error()"
     (onChange)="value.set($event.value)"
     (onSelect)="
         selected.set($event.selected);

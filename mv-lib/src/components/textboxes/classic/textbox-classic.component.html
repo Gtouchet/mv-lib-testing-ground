@@ -8,12 +8,13 @@
     [class.enabled]="!disabled()"
     [class.selected]="selected()"
     [class.not-selected]="!selected()"
+    [class.error]="error()"
 
     [style.width.px]="computedStyles().widthPx"
     [style.height.px]="computedStyles().heightPx"
     [style.background-color]="computedStyles().backgroundColor"
     [style.color]="computedStyles().textColor"
-    [style.border]="'1px solid ' + computedStyles().borderColor"
+    [style.border]="'1px solid var(--border-color, ' + computedStyles().borderColor + ')'"
 
     [style.--selected-outline-color]="computedStyles().selectedOutlineColor"
 

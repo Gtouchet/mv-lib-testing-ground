@@ -60,10 +60,10 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       buttonHeightPx: 40,
       itemHeightPx: 25,
       listMaxHeightPx: 150,
-      buttonColor: this.appStyles.var('component-primary'),
-      buttonTextColor: 'white',
-      itemColor: '#68b3ff',
-      itemTextColor: 'white',
+      buttonColor: this.appStyles.var('button-primary'),
+      buttonTextColor: this.appStyles.var('button-primary-text'),
+      itemColor: this.appStyles.var('button-secondary'),
+      itemTextColor: this.appStyles.var('button-secondary-text'),
     });
     this.effects = signal<Partial<MvLibDropdownClassicEffects>>({
       idle: ['shadow'],

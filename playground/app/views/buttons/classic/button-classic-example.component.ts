@@ -28,8 +28,8 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
     this.styles = signal<Partial<MvLibButtonClassicStyles>>({
       widthPx: 80,
       heightPx: 40,
-      color: this.appStyles.var('component-primary'),
-      textColor: 'white',
+      color: this.appStyles.var('button-primary'),
+      textColor: this.appStyles.var('button-primary-text'),
     });
     this.effects = signal<Partial<MvLibButtonClassicEffects>>({
       idle: ['shadow'],
