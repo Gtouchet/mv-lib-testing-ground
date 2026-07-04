@@ -1,24 +1,18 @@
 @use 'sass:list';
 
 $outline-layers:
-5;
+3;
 $outline-opacities:
 34,
-26,
 18,
-11,
 6;
 $outline-spread-multipliers:
 0.9,
-1.6,
 2.5,
-3.5,
 4.7;
 $outline-blur-multipliers:
 1.6,
-2.3,
 3.2,
-4.4,
 5.8;
 
 .outline {
