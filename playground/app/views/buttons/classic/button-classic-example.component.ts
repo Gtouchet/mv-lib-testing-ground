@@ -40,4 +40,8 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
 
     });
   }
+
+  protected initForm() {
+    
+  }
 }

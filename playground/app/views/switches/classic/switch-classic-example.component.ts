@@ -44,4 +44,8 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
       
     });
   }
+
+  protected initForm() {
+    
+  }
 }

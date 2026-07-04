@@ -45,4 +45,8 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<
       
     });
   }
+
+  protected initForm() {
+    
+  }
 }

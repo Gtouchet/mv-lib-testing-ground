@@ -1,9 +1,10 @@
-import { Component, input, output, computed, ChangeDetectionStrategy, HostListener, viewChild, ElementRef, inject, model, effect } from '@angular/core';
+import { Component, input, output, computed, ChangeDetectionStrategy, HostListener, viewChild, ElementRef, inject, model, effect, signal, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from '..';
 
 export interface MvLibTextboxClassicChangeEvent {
-  readonly value: string | undefined;
+  readonly input: string | undefined;
   readonly event: Readonly<Event>;
 }
 
@@ -19,8 +20,15 @@ export interface MvLibTextboxClassicSelectedEvent {
   styleUrls: ['./textbox-classic.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => MvLibTextboxClassicComponent),
+      multi: true,
+    },
+  ],
 })
-export class MvLibTextboxClassicComponent {
+export class MvLibTextboxClassicComponent implements ControlValueAccessor {
   
   private inputElement = viewChild<ElementRef<HTMLInputElement>>('textboxInput');
   private dropdownRoot = viewChild<ElementRef<HTMLElement>>("dropdownRoot");
@@ -33,9 +41,8 @@ export class MvLibTextboxClassicComponent {
 
   public disabled = input(false);
   public selected = model(false);
-  public error = input(false);
 
-  public value = model<string | undefined>(undefined);
+  public input = model<string | undefined>(undefined);
   
   public onChange = output<MvLibTextboxClassicChangeEvent>();
   public onSelect = output<MvLibTextboxClassicSelectedEvent>();
@@ -43,6 +50,12 @@ export class MvLibTextboxClassicComponent {
   protected computedStyles = computed(() => new MvLibTextboxClassicStyles(this.styles()));
   protected computedEffects = computed(() => new MvLibTextboxClassicEffects(this.effects()));
   protected computedSettings = computed(() => new MvLibTextboxClassicSettings(this.settings()));
+  private formDisabled = signal(false);
+
+  private onFormValueChange: (value: string | undefined) => void = () => undefined;
+  private onFormTouched: () => void = () => undefined;
+
+  protected isDisabled = computed(() => this.disabled() || this.formDisabled());
   
   protected computedClasses = computed(() => [
     'textbox',
@@ -53,7 +66,7 @@ export class MvLibTextboxClassicComponent {
   constructor() {
     effect(() => {
       const inputElement = this.inputElement()?.nativeElement;
-      if (!inputElement || this.disabled()) {
+      if (!inputElement || this.isDisabled()) {
         return;
       }
       if (this.selected() && document.activeElement !== inputElement) {
@@ -67,8 +80,30 @@ export class MvLibTextboxClassicComponent {
 
   protected onInput(event: Event): void {
     const v = (event.target as HTMLInputElement).value;
-    this.value.set(v);
-    this.onChange.emit({ value: v, event });
+    this.input.set(v);
+    this.onFormValueChange(v);
+    this.onChange.emit({ input: v, event });
+  }
+
+  protected onBlur(event: Event): void {
+    this.setSelected(false, event);
+    this.onFormTouched();
+  }
+
+  writeValue(value: string | null): void {
+    this.input.set(value ?? undefined);
+  }
+
+  registerOnChange(fn: (value: string | undefined) => void): void {
+    this.onFormValueChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onFormTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.formDisabled.set(isDisabled);
   }
 
   protected setSelected(selected: boolean, event: Event): void {

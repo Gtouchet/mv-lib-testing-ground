@@ -4,11 +4,10 @@
     type="text"
 
     [ngClass]="computedClasses()"
-    [class.disabled]="disabled()"
-    [class.enabled]="!disabled()"
+    [class.disabled]="isDisabled()"
+    [class.enabled]="!isDisabled()"
     [class.selected]="selected()"
     [class.not-selected]="!selected()"
-    [class.error]="error()"
 
     [style.width.px]="computedStyles().widthPx"
     [style.height.px]="computedStyles().heightPx"
@@ -19,15 +18,9 @@
     [style.--selected-outline-color]="computedStyles().selectedOutlineColor"
 
     (focus)="setSelected(true, $event)"
-    (blur)="setSelected(false, $event)"
+    (blur)="onBlur($event)"
 
-    [disabled]="disabled()"
-    [value]="value()"
-    (input)="
-        value.set($any($event.target).value);
-        onChange.emit({
-            value: $any($event.target).value,
-            event: $event,
-        });
-    "
+    [disabled]="isDisabled()"
+    [value]="input()"
+    (input)="onInput($event)"
 />

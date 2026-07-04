@@ -1,162 +1,204 @@
-<!-- Styles -->
-<div class="styles">
-    <b>
-        Styles
-    </b>
+<div class="controls">
     <div>
-        <input
-            type="number"
-            [value]="styles().widthPx"
-            (input)="updateStyle('widthPx', $event)"
-        />
-        Width px
-    </div>
+        <!-- Styles -->
+        <div class="styles">
+            <b>
+                Styles
+            </b>
+            <div>
+                <input
+                    type="number"
+                    [value]="styles().widthPx"
+                    (input)="updateStyle('widthPx', $event)"
+                />
+                Width px
+            </div>
 
-    <div>
-        <input
-            type="number"
-            [value]="styles().heightPx"
-            (input)="updateStyle('heightPx', $event)"
-        />
-        Height px
-    </div>
-    
-    <div>
-        <input
-            type="color"
-            [value]="styles().backgroundColor"
-            (input)="updateStyle('backgroundColor', $event)"
-        />
-        Background color
-    </div>
-    
-    <div>
-        <input
-            type="color"
-            [value]="styles().textColor"
-            (input)="updateStyle('textColor', $event)"
-        />
-        Text color
-    </div>
+            <div>
+                <input
+                    type="number"
+                    [value]="styles().heightPx"
+                    (input)="updateStyle('heightPx', $event)"
+                />
+                Height px
+            </div>
+            
+            <div>
+                <input
+                    type="color"
+                    [value]="styles().backgroundColor"
+                    (input)="updateStyle('backgroundColor', $event)"
+                />
+                Background color
+            </div>
+            
+            <div>
+                <input
+                    type="color"
+                    [value]="styles().textColor"
+                    (input)="updateStyle('textColor', $event)"
+                />
+                Text color
+            </div>
 
-    <div>
-        <input
-            type="color"
-            [value]="styles().borderColor"
-            (input)="updateStyle('borderColor', $event)"
-        />
-        Border color
-    </div>
+            <div>
+                <input
+                    type="color"
+                    [value]="styles().borderColor"
+                    (input)="updateStyle('borderColor', $event)"
+                />
+                Border color
+            </div>
 
-    <div>
-        <input
-            type="color"
-            [value]="styles().selectedOutlineColor"
-            (input)="updateStyle('selectedOutlineColor', $event)"
-        />
-        Selected outline color
-    </div>
-</div>
+            <div>
+                <input
+                    type="color"
+                    [value]="styles().selectedOutlineColor"
+                    (input)="updateStyle('selectedOutlineColor', $event)"
+                />
+                Selected outline color
+            </div>
+        </div>
 
-<!-- Effects -->
-<div class="effects">
-    <div>
-        <b>
-            Hover effects
-        </b>
-        <div>
-            <input
-                type="checkbox"
-                [checked]="effects().hover?.includes('darken')"
-                (click)="updateEffect('hover', 'darken', $event)"
-            />
-            Darken
+        <!-- Effects -->
+        <div class="effects">
+            <div>
+                <b>
+                    Hover effects
+                </b>
+                <div>
+                    <input
+                        type="checkbox"
+                        [checked]="effects().hover?.includes('darken')"
+                        (click)="updateEffect('hover', 'darken', $event)"
+                    />
+                    Darken
+                </div>
+            </div>
+
+            <div>
+                <b>
+                    Selected effects
+                </b>
+                <div>
+                    <input
+                        type="checkbox"
+                        [checked]="effects().selected?.includes('outline')"
+                        (click)="updateEffect('selected', 'outline', $event)"
+                    />
+                    Outline
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="settings">
+            <b>
+                Settings
+            </b>
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="disabled()"
+                    (click)="
+                        disabled.set(!disabled());
+                        refreshLog();
+                    "
+                />
+                Disabled
+            </div>
+
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="selected()"
+                    (click)="
+                        selected.set(!selected());
+                        refreshLog();
+                    "
+                    (mousedown)="$event.preventDefault()"
+                />
+                Selected
+            </div>
         </div>
     </div>
 
-    <div>
+    <!-- Form controls -->
+    <div class="form-controls">
         <b>
-            Selected effects
+            Form controls
         </b>
-        <div>
+        <div
+            [class.has-errors]="form.get('input')?.hasError('required')"
+        >
             <input
                 type="checkbox"
-                [checked]="effects().selected?.includes('outline')"
-                (click)="updateEffect('selected', 'outline', $event)"
+                [checked]="required()"
+                (input)="
+                    required.set($any($event.target).checked);
+                    updateFormValidator(
+                        'input', 
+                        'required', 
+                        required());
+                "
             />
-            Outline
+            Required
+        </div>
+
+        <div
+            [class.has-errors]="form.get('input')?.hasError('minlength')"
+        >
+            <input
+                type="number"
+                [value]="minLength()"
+                (input)="
+                    minLength.set($any($event.target).valueAsNumber);
+                    updateFormValidator(
+                        'input', 
+                        'minLength', 
+                        minLength());
+                "
+            />
+            Min length
+        </div>
+
+        <div
+            [class.has-errors]="form.get('input')?.hasError('pattern')"
+        >
+            <input
+                type="checkbox"
+                [checked]="onlyCharacters()"
+                (input)="
+                    onlyCharacters.set($any($event.target).checked);
+                    updateFormValidator(
+                        'input', 
+                        'pattern-only-characters', 
+                        onlyCharacters());
+                "
+            />
+            Only characters
         </div>
     </div>
 </div>
 
-<!-- Settings -->
-<div class="settings">
-    <b>
-        Settings
-    </b>
-    <div>
-        <input
-            type="checkbox"
-            [checked]="disabled()"
-            (click)="
-                disabled.set(!disabled());
-                refreshLog();
-            "
-        />
-        Disabled
-    </div>
-
-    <div>
-        <input
-            type="checkbox"
-            [checked]="selected()"
-            (click)="
-                selected.set(!selected());
-                refreshLog();
-            "
-            (mousedown)="$event.preventDefault()"
-        />
-        Selected
-    </div>
-
-    <div>
-        <input
-            type="checkbox"
-            [checked]="error()"
-            (click)="
-                error.set(!error());
-                refreshLog();
-            "
-            (mousedown)="$event.preventDefault()"
-        />
-        Error
-    </div>
-</div>
-
-<mv-lib-textbox-classic
-    [styles]="styles()"
-    [effects]="effects()"
-    [settings]="settings()"
-    [value]="value()"
-    [disabled]="disabled()"
-    [selected]="selected()"
-    [error]="error()"
-    (onChange)="value.set($event.value)"
-    (onSelect)="
-        selected.set($event.selected);
-        refreshLog();
-    "
-/>
-
-<!--
-    [value]="value()"
-    (onChange)="value.set($event.value)"
-OR
-    [(value)]="value"
--->
+<form [formGroup]="form">
+    <mv-lib-textbox-classic
+        formControlName="input"
+        [styles]="styles()"
+        [effects]="effects()"
+        [settings]="settings()"
+        [disabled]="disabled()"
+        [selected]="selected()"
+        (onChange)="form.get('input')?.setValue($event.input)"
+        (onSelect)="
+            selected.set($event.selected);
+            refreshLog();
+        "
+    />
+</form>
 
 <pre>
-value: {{ value() }}
+input: {{ form.get('input')?.value }}
 
 {{ log() }}
 </pre>

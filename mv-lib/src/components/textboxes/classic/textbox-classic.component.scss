@@ -5,6 +5,11 @@
     border-radius: 5px;
 }
 
+:host.ng-invalid.ng-touched .textbox,
+:host.ng-invalid.ng-dirty .textbox {
+    --border-color: red;
+}
+
 .outline {
     &.selected {
         --color: var(--selected-outline-color);

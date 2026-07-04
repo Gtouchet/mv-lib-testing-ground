@@ -1,9 +1,8 @@
 import { Directive, OnInit, signal } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 
 @Directive({
     standalone: true,
-    providers: [FormsModule],
 })
 export abstract class BaseExampleComponent<
     Styles,
@@ -11,20 +10,20 @@ export abstract class BaseExampleComponent<
     Settings
 > implements OnInit {
 
+    ngOnInit() {
+        this.initForm();
+        this.refreshLog();
+    }
+
+    /**
+     * Styles, Effects, Settings
+     */
     protected styles = signal<Partial<Styles>>({});
     protected effects = signal<Partial<Effects>>({});
     protected settings = signal<Partial<Settings>>({});
 
     protected disabled = signal(false);
     protected error = signal(false);
-
-    protected lastInteractionTime = signal<string>('00:00:00.00');
-    protected logProperties = signal<string[]>([]);
-    protected log = signal('');
-
-    ngOnInit() {
-        this.refreshLog();
-    }
 
     protected updateStyle(
         key: keyof Styles,
@@ -72,6 +71,51 @@ export abstract class BaseExampleComponent<
         }));
         this.refreshLog();
     }
+
+    /**
+     * Forms
+     */
+    protected form = new UntypedFormGroup({});
+    protected validators: ValidatorFn[] = [];
+    protected onlyCharactersRegex = '^[a-zA-ZÀ-ÿ ]+$';
+    
+    protected abstract initForm(): void;
+
+    protected updateFormValidator(
+        formName: string,
+        validator: 'required' | 'minLength' | 'pattern-only-characters',
+        value: any,
+    ) {
+        console.log(`Updating form validator: ${validator} = ${value}`);
+        switch (validator) {
+            case 'required':
+                this.validators = value ?
+                    [...this.validators, Validators.required] :
+                    this.validators.filter(v => v !== Validators.required);
+                break;
+            case 'minLength':
+                this.validators = [
+                    ...this.validators.filter(v => v !== Validators.minLength(value)),
+                    Validators.minLength(value)
+                ];
+                break;
+            case 'pattern-only-characters':
+                this.validators = value ? [
+                    ...this.validators.filter(v => v !== Validators.pattern(this.onlyCharactersRegex)),
+                    Validators.pattern(this.onlyCharactersRegex)
+                ] : this.validators.filter(v => v !== Validators.pattern(this.onlyCharactersRegex));
+                break;
+        }
+        this.form.get(formName)?.setValidators(this.validators);
+        this.form.get(formName)?.updateValueAndValidity();
+    }
+
+    /**
+     * Logs
+     */
+    protected lastInteractionTime = signal<string>('00:00:00.00');
+    protected logProperties = signal<string[]>([]);
+    protected log = signal('');
 
     protected setLastInteractionTime() {
         const now = new Date();

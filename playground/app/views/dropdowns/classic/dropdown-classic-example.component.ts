@@ -76,4 +76,8 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       resetButton: true,
     });
   }
+
+  protected initForm() {
+    
+  }
 }

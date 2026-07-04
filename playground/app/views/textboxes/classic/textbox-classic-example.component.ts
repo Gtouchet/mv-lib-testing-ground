@@ -2,10 +2,11 @@ import { BaseExampleComponent } from '../../base-example.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { StylesService } from '../../../../styles/styles.service';
 import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from 'mv-lib';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-textbox-classic-example',
-  imports: [MvLibTextboxClassicComponent],
+  imports: [MvLibTextboxClassicComponent, ReactiveFormsModule],
   templateUrl: './textbox-classic-example.component.html',
   styleUrls: [
     './textbox-classic-example.component.scss',
@@ -23,7 +24,10 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
   protected appStyles = inject(StylesService);
 
   protected selected = signal(false);
-  protected value = signal<string | undefined>('Enter text here');
+
+  protected required = signal(true);
+  protected minLength = signal(3);
+  protected onlyCharacters = signal(true);
 
   constructor() {
     super();
@@ -43,5 +47,13 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
     this.settings = signal<Partial<MvLibTextboxClassicSettings>>({
       selected: false,
     });
+  }
+
+  protected initForm() {
+    this.form.addControl('input', new FormControl('Enter text', [
+      this.required() ? Validators.required : Validators.nullValidator,
+      Validators.minLength(this.minLength()),
+      this.onlyCharacters() ? Validators.pattern(this.onlyCharactersRegex) : Validators.nullValidator,
+    ]));
   }
 }
