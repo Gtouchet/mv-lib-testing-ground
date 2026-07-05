@@ -31,5 +31,11 @@
     [style.--thumb-hover-scale]="computedSliderHoverScale()"
     [style.--translate-distance]="(computedStyles().widthPx! - computedStyles().heightPx!) + 'px'"
   >
+    <span 
+      class="material-symbols-outlined slider-icon"
+      [style.color]="active() ? computedStyles().sliderOnIconColor : computedStyles().sliderOffIconColor"
+    >
+      {{ active() ? computedStyles().sliderOnIcon : computedStyles().sliderOffIcon }}
+    </span>
   </span>
 </label>

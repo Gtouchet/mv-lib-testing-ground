@@ -34,6 +34,10 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
       onColor: this.appStyles.var('switch-on'),
       sliderOffColor: this.appStyles.var('switch-slider-off'),
       sliderOnColor: this.appStyles.var('switch-slider-on'),
+      sliderOffIcon: 'close',
+      sliderOnIcon: 'check',
+      sliderOffIconColor: 'Black',
+      sliderOnIconColor: 'DodgerBlue',
     });
     this.effects = signal<Partial<MvLibSwitchClassicEffects>>({
       idle: ['shadow'],
