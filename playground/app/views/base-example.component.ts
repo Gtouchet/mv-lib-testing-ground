@@ -77,6 +77,8 @@ export abstract class BaseExampleComponent<
      */
     protected form = new UntypedFormGroup({});
     protected validators: ValidatorFn[] = [];
+    protected touched = signal(false);
+
     protected onlyCharactersRegex = '^[a-zA-ZÀ-ÿ ]+$';
     
     protected abstract initForm(): void;
@@ -86,7 +88,6 @@ export abstract class BaseExampleComponent<
         validator: 'required' | 'minLength' | 'pattern-only-characters',
         value: any,
     ) {
-        console.log(`Updating form validator: ${validator} = ${value}`);
         switch (validator) {
             case 'required':
                 this.validators = value ?

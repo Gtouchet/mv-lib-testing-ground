@@ -1,5 +1,13 @@
 @use 'sass:list';
 
+.outline-solid {
+  --outline-size: var(--size, 1px);
+  --outline-color: var(--color, gray);
+
+  outline: none;
+  box-shadow: 0 0 0 var(--outline-size) var(--outline-color);
+}
+
 $outline-layers:
 3;
 $outline-opacities:
@@ -15,7 +23,7 @@ $outline-blur-multipliers:
 3.2,
 5.8;
 
-.outline {
+.outline-blur {
   --outline-size: var(--size, 1px);
   --outline-color: var(--color, gray);
 

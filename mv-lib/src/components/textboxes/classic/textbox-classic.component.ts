@@ -1,7 +1,8 @@
-import { Component, input, output, computed, ChangeDetectionStrategy, HostListener, viewChild, ElementRef, inject, model, effect, signal, forwardRef } from '@angular/core';
+import { Component, input, output, computed, ChangeDetectionStrategy, HostListener, viewChild, ElementRef, inject, model, effect, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from '..';
+import { MvLibBaseComponent } from '../../mv-lib-base-component.components';
 
 export interface MvLibTextboxClassicChangeEvent {
   readonly input: string | undefined;
@@ -28,7 +29,7 @@ export interface MvLibTextboxClassicSelectedEvent {
     },
   ],
 })
-export class MvLibTextboxClassicComponent implements ControlValueAccessor {
+export class MvLibTextboxClassicComponent extends MvLibBaseComponent<string> {
   
   private inputElement = viewChild<ElementRef<HTMLInputElement>>('textboxInput');
   private dropdownRoot = viewChild<ElementRef<HTMLElement>>("dropdownRoot");
@@ -39,6 +40,8 @@ export class MvLibTextboxClassicComponent implements ControlValueAccessor {
   public effects = input<Partial<MvLibTextboxClassicEffects>>();
   public settings = input<Partial<MvLibTextboxClassicSettings>>();
 
+  // Only use the disabled input if not using a form
+  // Otherwise use the form control to set the disabled state
   public disabled = input(false);
   public selected = model(false);
 
@@ -50,12 +53,7 @@ export class MvLibTextboxClassicComponent implements ControlValueAccessor {
   protected computedStyles = computed(() => new MvLibTextboxClassicStyles(this.styles()));
   protected computedEffects = computed(() => new MvLibTextboxClassicEffects(this.effects()));
   protected computedSettings = computed(() => new MvLibTextboxClassicSettings(this.settings()));
-  private formDisabled = signal(false);
-
-  private onFormValueChange: (value: string | undefined) => void = () => undefined;
-  private onFormTouched: () => void = () => undefined;
-
-  protected isDisabled = computed(() => this.disabled() || this.formDisabled());
+  protected isDisabled = computed(() => this.disabled() || this.isFormDisabled());
   
   protected computedClasses = computed(() => [
     'textbox',
@@ -64,6 +62,7 @@ export class MvLibTextboxClassicComponent implements ControlValueAccessor {
   ]);
 
   constructor() {
+    super();
     effect(() => {
       const inputElement = this.inputElement()?.nativeElement;
       if (!inputElement || this.isDisabled()) {
@@ -78,39 +77,33 @@ export class MvLibTextboxClassicComponent implements ControlValueAccessor {
     });
   }
 
+  /**
+   * 
+   * @param event 
+   */
   protected onInput(event: Event): void {
-    const v = (event.target as HTMLInputElement).value;
-    this.input.set(v);
-    this.onFormValueChange(v);
-    this.onChange.emit({ input: v, event });
+    const value = (event.target as HTMLInputElement).value;
+    this.input.set(value);
+    this.emitFormValueChange(value);
+    this.onChange.emit({ 
+      input: value,
+      event: event,
+    });
   }
 
   protected onBlur(event: Event): void {
     this.setSelected(false, event);
-    this.onFormTouched();
+    this.emitFormTouched();
   }
 
-  writeValue(value: string | null): void {
-    this.input.set(value ?? undefined);
-  }
-
-  registerOnChange(fn: (value: string | undefined) => void): void {
-    this.onFormValueChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onFormTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.formDisabled.set(isDisabled);
+  protected setControlValue(value: string | undefined): void {
+    this.input.set(value);
   }
 
   protected setSelected(selected: boolean, event: Event): void {
     if (this.selected() === selected) {
       return;
     }
-
     this.selected.set(selected);
     this.onSelect.emit({
       selected: selected,

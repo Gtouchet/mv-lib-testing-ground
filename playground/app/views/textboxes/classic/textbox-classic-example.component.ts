@@ -42,7 +42,7 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
     });
     this.effects = signal<Partial<MvLibTextboxClassicEffects>>({
       hover: ['darken'],
-      selected: ['outline'],
+      selected: ['outline-solid'],
     });
     this.settings = signal<Partial<MvLibTextboxClassicSettings>>({
       selected: false,
@@ -50,7 +50,10 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
   }
 
   protected initForm() {
-    this.form.addControl('input', new FormControl('Enter text', [
+    this.form.addControl('input', new FormControl({
+      value: 'Enter text',
+      disabled: false,
+    }, [
       this.required() ? Validators.required : Validators.nullValidator,
       Validators.minLength(this.minLength()),
       this.onlyCharacters() ? Validators.pattern(this.onlyCharactersRegex) : Validators.nullValidator,

@@ -1,5 +1,5 @@
 export type MvLibTextboxClassicHoverEffect = 'darken';
-export type MvLibTextboxClassicSelectedEffect = 'outline';
+export type MvLibTextboxClassicSelectedEffect = 'outline-solid' | 'outline-blur';
 
 export class MvLibTextboxClassicEffects {
     

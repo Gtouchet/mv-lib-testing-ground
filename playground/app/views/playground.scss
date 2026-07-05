@@ -84,3 +84,13 @@
 		color: red;
 	}
 }
+
+.form-state {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    > span {
+        width: 100%;
+    }
+}

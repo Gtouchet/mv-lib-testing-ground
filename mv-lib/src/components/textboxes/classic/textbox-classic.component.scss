@@ -8,9 +8,10 @@
 :host.ng-invalid.ng-touched .textbox,
 :host.ng-invalid.ng-dirty .textbox {
     --border-color: red;
+    --selected-outline-color: red !important;
 }
 
-.outline {
+.outline-solid, .outline-blur {
     &.selected {
         --color: var(--selected-outline-color);
     }
@@ -20,7 +21,6 @@
 }
 
 // Disabled the default HTML input text outline
-.textbox:focus:not(.outline),
-.textbox:focus-visible:not(.outline) {
+.textbox:focus, .textbox:focus-visible {
     outline: none;
 }

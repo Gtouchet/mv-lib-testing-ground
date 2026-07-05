@@ -83,10 +83,19 @@
                 <div>
                     <input
                         type="checkbox"
-                        [checked]="effects().selected?.includes('outline')"
-                        (click)="updateEffect('selected', 'outline', $event)"
+                        [checked]="effects().selected?.includes('outline-solid')"
+                        (click)="updateEffect('selected', 'outline-solid', $event)"
                     />
-                    Outline
+                    Outline solid
+                </div>
+
+                <div>
+                    <input
+                        type="checkbox"
+                        [checked]="effects().selected?.includes('outline-blur')"
+                        (click)="updateEffect('selected', 'outline-blur', $event)"
+                    />
+                    Outline blur
                 </div>
             </div>
         </div>
@@ -99,9 +108,9 @@
             <div>
                 <input
                     type="checkbox"
-                    [checked]="disabled()"
+                    [checked]="form.get('input')?.disabled"
                     (click)="
-                        disabled.set(!disabled());
+                        form.get('input')?.disabled ? form.get('input')?.enable() : form.get('input')?.disable();
                         refreshLog();
                     "
                 />
@@ -128,6 +137,11 @@
         <b>
             Form controls
         </b>
+        <div class="form-state">
+            <span>{{ form.touched ? 'Touched' : 'Untouched' }}</span>
+            <span>{{ form.dirty ? 'Dirty' : 'Pristine' }}</span>
+            <span>{{ form.valid ? 'Valid' : 'Invalid' }}</span>
+        </div>
         <div
             [class.has-errors]="form.get('input')?.hasError('required')"
         >
@@ -137,8 +151,8 @@
                 (input)="
                     required.set($any($event.target).checked);
                     updateFormValidator(
-                        'input', 
-                        'required', 
+                        'input',
+                        'required',
                         required());
                 "
             />
@@ -154,8 +168,8 @@
                 (input)="
                     minLength.set($any($event.target).valueAsNumber);
                     updateFormValidator(
-                        'input', 
-                        'minLength', 
+                        'input',
+                        'minLength',
                         minLength());
                 "
             />
@@ -171,8 +185,8 @@
                 (input)="
                     onlyCharacters.set($any($event.target).checked);
                     updateFormValidator(
-                        'input', 
-                        'pattern-only-characters', 
+                        'input',
+                        'pattern-only-characters',
                         onlyCharacters());
                 "
             />
@@ -187,7 +201,6 @@
         [styles]="styles()"
         [effects]="effects()"
         [settings]="settings()"
-        [disabled]="disabled()"
         [selected]="selected()"
         (onChange)="form.get('input')?.setValue($event.input)"
         (onSelect)="
