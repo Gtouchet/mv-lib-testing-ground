@@ -88,26 +88,41 @@ export abstract class BaseExampleComponent<
         validator: 'required' | 'minLength' | 'pattern-only-characters',
         value: any,
     ) {
+        const requiredSignal = (this as any).required;
+        const minLengthSignal = (this as any).minLength;
+        const onlyCharactersSignal = (this as any).onlyCharacters;
+
+        let requiredEnabled = typeof requiredSignal === 'function'
+            ? !!requiredSignal()
+            : false;
+        let minLengthValue = typeof minLengthSignal === 'function'
+            ? Number(minLengthSignal())
+            : undefined;
+        let onlyCharactersEnabled = typeof onlyCharactersSignal === 'function'
+            ? !!onlyCharactersSignal()
+            : false;
+
         switch (validator) {
             case 'required':
-                this.validators = value ?
-                    [...this.validators, Validators.required] :
-                    this.validators.filter(v => v !== Validators.required);
+                requiredEnabled = !!value;
                 break;
             case 'minLength':
-                this.validators = [
-                    ...this.validators.filter(v => v !== Validators.minLength(value)),
-                    Validators.minLength(value)
-                ];
+                minLengthValue = Number(value);
                 break;
             case 'pattern-only-characters':
-                this.validators = value ? [
-                    ...this.validators.filter(v => v !== Validators.pattern(this.onlyCharactersRegex)),
-                    Validators.pattern(this.onlyCharactersRegex)
-                ] : this.validators.filter(v => v !== Validators.pattern(this.onlyCharactersRegex));
+                onlyCharactersEnabled = !!value;
                 break;
         }
-        this.form.get(formName)?.setValidators(this.validators);
+
+        this.validators = [
+            requiredEnabled ? Validators.required : null,
+            Number.isFinite(minLengthValue) && (minLengthValue as number) >= 0
+                ? Validators.minLength(minLengthValue as number)
+                : null,
+            onlyCharactersEnabled ? Validators.pattern(this.onlyCharactersRegex) : null,
+        ].filter((v): v is ValidatorFn => v !== null);
+
+        this.form.get(formName)?.setValidators(this.validators.length > 0 ? this.validators : null);
         this.form.get(formName)?.updateValueAndValidity();
     }
 
