@@ -1,0 +1,138 @@
+<!-- Styles -->
+<div class="styles">
+    <b>
+        Styles
+    </b>
+    <div>
+        <input
+            type="number"
+            [value]="styles().widthPx"
+            (input)="updateStyle('widthPx', $event)"
+        />
+        Width px
+    </div>
+
+    <div>
+        <input
+            type="number"
+            [value]="styles().heightPx"
+            (input)="updateStyle('heightPx', $event)"
+        />
+        Height px
+    </div>
+
+    <div>
+        <input
+            type="color"
+            [value]="styles().color"
+            (input)="updateStyle('color', $event)"
+        />
+        Background color
+    </div>
+
+    <div>
+        <input
+            type="color"
+            [value]="styles().textColor"
+            (input)="updateStyle('textColor', $event)"
+        />
+        Text color
+    </div>
+</div>
+
+<!-- Effects -->
+<div class="effects">
+    <div>
+        <b>
+            Idle effects
+        </b>
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().idle?.includes('shadow')"
+                (click)="updateEffect('idle', 'shadow', $event)"
+            />
+            Shadow
+        </div>
+    </div>
+
+    <div>
+        <b>
+            Hover effects
+        </b>
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().hover?.includes('darken')"
+                (click)="updateEffect('hover', 'darken', $event)"
+            />
+            Darken
+        </div>
+    </div>
+
+    <div>
+        <b>
+            Click effects
+        </b>
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().click?.includes('push')"
+                (click)="updateEffect('click', 'push', $event)"
+            />
+            Push
+        </div>
+
+        <div>
+            <input
+                type="checkbox"
+                [checked]="effects().click?.includes('ripple')"
+                (click)="updateEffect('click', 'ripple', $event)"
+            />
+            Ripple
+        </div>
+    </div>
+</div>
+
+<!-- Settings -->
+<div class="settings">
+    <b>
+        Settings
+    </b>
+    <div>
+        <input
+            type="checkbox"
+            [checked]="disabled()"
+            (click)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        Disabled
+    </div>
+</div>
+
+<!-- Button -->
+<mv-lib-button-classic
+    [styles]="styles()"
+    [effects]="effects()"
+    [settings]="settings()"
+    [disabled]="disabled()"
+    (onClick)="setLastInteractionTime()"
+>
+    <div
+        [style.display]="'flex'"
+        [style.align-items]="'center'"
+    >
+    </div>
+    <span class="material-symbols-outlined">
+        touch_app
+    </span>
+    <span [style.font-weight]="'bold'">
+        Click
+    </span>
+</mv-lib-button-classic>
+
+<pre>
+{{ log() }}
+</pre>

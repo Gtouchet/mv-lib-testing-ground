@@ -1,0 +1,149 @@
+<div class="app-shell">
+    <header class="header">
+        <div class="buttons">
+            <mv-lib-button-classic
+                [styles]="{
+                    widthPx: 48,
+                    heightPx: 32,
+                    color: 'dodgerblue',
+                }"
+                [effects]="{
+                    idle: ['shadow'],
+                    hover: ['darken'],
+                    click: ['push']
+                }"
+                (onClick)="router.navigateByUrl('/')"
+            >
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </mv-lib-button-classic>
+
+            <mv-lib-dropdown-classic
+                [items]="buttonItems"
+                [(selectedItem)]="selectedButtonItem"
+                [styles]="buttonDropdownStyles"
+                [effects]="dropdownEffects"
+                (onSelect)="onButtonSelect($event.selectedItem!)"
+            >
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        <span class="material-symbols-outlined">
+                            trackpad_input
+                        </span>
+                        Buttons
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        <span class="material-symbols-outlined">
+                            trackpad_input
+                        </span>
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
+
+            <mv-lib-dropdown-classic
+                [items]="dropdownItems"
+                [(selectedItem)]="selectedDropdownItem"
+                [styles]="menuDropdownStyles"
+                [effects]="dropdownEffects"
+                (onSelect)="onDropdownSelect($event.selectedItem!)"
+            >
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        <span class="material-symbols-outlined">
+                            dropdown_menu
+                        </span>
+                        Dropdowns
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        <span class="material-symbols-outlined">
+                            dropdown_menu
+                        </span>
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
+
+            <mv-lib-dropdown-classic
+                [items]="switchItems"
+                [(selectedItem)]="selectedSwitchItem"
+                [styles]="switchDropdownStyles"
+                [effects]="dropdownEffects"
+                (onSelect)="onSwitchSelect($event.selectedItem!)"
+            >
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        <span class="material-symbols-outlined">
+                            toggle_on
+                        </span>
+                        Switches
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        <span class="material-symbols-outlined">
+                            toggle_on
+                        </span>
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
+
+            <mv-lib-dropdown-classic
+                [items]="textboxItems"
+                [(selectedItem)]="selectedTextboxItem"
+                [styles]="textboxDropdownStyles"
+                [effects]="dropdownEffects"
+                (onSelect)="onTextboxSelect($event.selectedItem!)"
+            >
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        <span class="material-symbols-outlined">
+                            crop_16_9
+                        </span>
+                        Textboxes
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        <span class="material-symbols-outlined">
+                            crop_16_9
+                        </span>
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
+        </div>
+        <hr/>
+    </header>
+
+    <main class="app-content">
+        <router-outlet />
+    </main>
+</div>
+
