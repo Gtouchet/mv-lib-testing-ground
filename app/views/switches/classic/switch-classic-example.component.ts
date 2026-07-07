@@ -9,7 +9,7 @@ import { StylesService } from '../../../../styles/styles.service';
   templateUrl: './switch-classic-example.component.html',
   styleUrls: [
     './switch-classic-example.component.scss',
-    '../../playground.scss',
+    '../../testing-ground.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -30,18 +30,18 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
     this.styles = signal<Partial<MvLibSwitchClassicStyles>>({
       widthPx: 64,
       heightPx: 32,
-      offColor: this.appStyles.var('switch-off'),
-      onColor: this.appStyles.var('switch-on'),
-      sliderOffColor: this.appStyles.var('switch-slider-off'),
-      sliderOnColor: this.appStyles.var('switch-slider-on'),
-      sliderOffIcon: 'close',
-      sliderOnIcon: 'check',
-      sliderOffIconColor: 'Black',
-      sliderOnIconColor: 'DodgerBlue',
+      trackColorOn: this.appStyles.var('switch-classic-track-color-on'),
+      trackColorOff: this.appStyles.var('switch-classic-track-color-off'),
+      cursorColorOn: this.appStyles.var('switch-classic-cursor-color-on'),
+      cursorColorOff: this.appStyles.var('switch-classic-cursor-color-off'),
+      cursorIconOn: this.appStyles.var('switch-classic-cursor-icon-on'),
+      cursorIconOff: this.appStyles.var('switch-classic-cursor-icon-off'),
+      cursorIconColorOn: this.appStyles.var('switch-classic-cursor-icon-on-color'),
+      cursorIconColorOff: this.appStyles.var('switch-classic-cursor-icon-off-color'),
     });
     this.effects = signal<Partial<MvLibSwitchClassicEffects>>({
       idle: ['shadow'],
-      hover: ['enlarge-slider'],
+      hover: ['enlarge-cursor'],
       click: ['ripple'],
     });
     this.settings = signal<Partial<MvLibSwitchClassicSettings>>({
@@ -53,3 +53,4 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
     
   }
 }
+

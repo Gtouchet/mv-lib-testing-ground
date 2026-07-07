@@ -28,9 +28,10 @@
 }
 
 .app-content {
-	overflow: auto;
-    padding-left: 8px;
-    padding-top: 4px;
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: hidden;
+    padding: 4px;
 }
 
 .dropdown-placeholder {

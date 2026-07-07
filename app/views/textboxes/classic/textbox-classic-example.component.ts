@@ -10,7 +10,7 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   templateUrl: './textbox-classic-example.component.html',
   styleUrls: [
     './textbox-classic-example.component.scss',
-    '../../playground.scss',
+    '../../testing-ground.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -35,10 +35,10 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
     this.styles = signal<Partial<MvLibTextboxClassicStyles>>({
       widthPx: 150,
       heightPx: 32,
-      backgroundColor: 'white',
-      textColor: 'black',
-      borderColor: 'black',
-      selectedOutlineColor: this.appStyles.var('outline-primary'),
+      backgroundColor: this.appStyles.var('textbox-classic-color'),
+      textColor: this.appStyles.var('textbox-classic-text-color'),
+      borderColor: this.appStyles.var('textbox-classic-border-color'),
+      selectedOutlineColor: this.appStyles.var('outline'),
     });
     this.effects = signal<Partial<MvLibTextboxClassicEffects>>({
       hover: ['darken'],

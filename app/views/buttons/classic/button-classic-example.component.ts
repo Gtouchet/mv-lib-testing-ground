@@ -9,7 +9,7 @@ import { StylesService } from '../../../../styles/styles.service';
   templateUrl: './button-classic-example.component.html',
   styleUrls: [
     './button-classic-example.component.scss',
-    '../../playground.scss',
+    '../../testing-ground.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -28,8 +28,8 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
     this.styles = signal<Partial<MvLibButtonClassicStyles>>({
       widthPx: 80,
       heightPx: 40,
-      color: this.appStyles.var('button-primary'),
-      textColor: this.appStyles.var('button-primary-text'),
+      backgroundColor: this.appStyles.var('button-classic-background-color'),
+      textColor: this.appStyles.var('button-classic-text-color'),
     });
     this.effects = signal<Partial<MvLibButtonClassicEffects>>({
       idle: ['shadow'],

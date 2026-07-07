@@ -1,169 +1,176 @@
-<!-- Styles -->
-<div class="styles">
-    <b>
-        Styles
-    </b>
-    <div>
-        <input
-            type="number"
-            [value]="styles().widthPx ?? ''"
-            (input)="updateStyle('widthPx', $event)"
-        />
-        Width px
-    </div>
-
-
-    <div>
-        <input
-            type="number"
-            [value]="styles().heightPx ?? ''"
-            (input)="updateStyle('heightPx', $event)"
-        />
-        Height px
-    </div>
-
-    <div>
-        <input
-            type="number"
-            [value]="styles().sliderSizePx ?? ''"
-            (input)="updateStyle('sliderSizePx', $event)"
-        />
-        Slider size px
-    </div>
-
-    <div>
-        <input
-            type="color"
-            [value]="styles().offColor"
-            (input)="updateStyle('offColor', $event)"
-        />
-        Off color
-    </div>
-
-    <div>
-        <input
-            type="color"
-            [value]="styles().onColor"
-            (input)="updateStyle('onColor', $event)"
-        />
-        On color
-    </div>
-
-    <div>
-        <input
-            type="color"
-            [value]="styles().sliderOffColor"
-            (input)="updateStyle('sliderOffColor', $event)"
-        />
-        Slider off color
-    </div>
-
-    <div>
-        <input
-            type="color"
-            [value]="styles().sliderOnColor"
-            (input)="updateStyle('sliderOnColor', $event)"
-        />
-        Slider on color
-    </div>
-</div>
-
-<!-- Effects -->
-<div class="effects">
-    <div>
+<div class="configuration">
+    <!-- Styles -->
+    <div class="styles">
         <b>
-            Idle effects
+            Styles
+        </b>
+        <div>
+            <input
+                type="number"
+                [value]="styles().widthPx ?? ''"
+                (input)="updateStyle('widthPx', $event)"
+            />
+            Width px
+        </div>
+
+        <div>
+            <input
+                type="number"
+                [value]="styles().heightPx ?? ''"
+                (input)="updateStyle('heightPx', $event)"
+            />
+            Height px
+        </div>
+
+        <div>
+            <input
+                type="number"
+                [value]="styles().cursorSizePx ?? ''"
+                (input)="updateStyle('cursorSizePx', $event)"
+            />
+            Cursor size px
+        </div>
+
+        <div>
+            <input
+                type="color"
+                [value]="styles().trackColorOn"
+                (input)="updateStyle('trackColorOn', $event)"
+            />
+            Track color on
+        </div>
+
+        <div>
+            <input
+                type="color"
+                [value]="styles().cursorColorOn"
+                (input)="updateStyle('cursorColorOn', $event)"
+            />
+            Cursor color on
+        </div>
+
+        TODO icons on
+
+        <div>
+            <input
+                type="color"
+                [value]="styles().trackColorOff"
+                (input)="updateStyle('trackColorOff', $event)"
+            />
+            Track color off
+        </div>
+
+        <div>
+            <input
+                type="color"
+                [value]="styles().cursorColorOff"
+                (input)="updateStyle('cursorColorOff', $event)"
+            />
+            Cursor color off
+        </div>
+
+        TODO icons off
+    </div>
+
+    <!-- Effects -->
+    <div class="effects">
+        <div>
+            <b>
+                Idle effects
+            </b>
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().idle?.includes('shadow')"
+                    (click)="updateEffect('idle', 'shadow', $event)"
+                />
+                Shadow
+            </div>
+        </div>
+
+        <div>
+            <b>
+                Hover effects
+            </b>
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().hover?.includes('enlarge-cursor')"
+                    (click)="updateEffect('hover', 'enlarge-cursor', $event)"
+                />
+                Enlarge cursor
+            </div>
+        </div>
+
+        <div>
+            <b>
+                Click effects
+            </b>
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().click?.includes('push')"
+                    (click)="updateEffect('click', 'push', $event)"
+                />
+                Push
+            </div>
+
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().click?.includes('ripple')"
+                    (click)="updateEffect('click', 'ripple', $event)"
+                />
+                Ripple
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="settings">
+        <b>
+            Settings
         </b>
         <div>
             <input
                 type="checkbox"
-                [checked]="effects().idle?.includes('shadow')"
-                (click)="updateEffect('idle', 'shadow', $event)"
+                [checked]="disabled()"
+                (click)="
+                    disabled.set(!disabled());
+                    refreshLog();
+                "
             />
-            Shadow
+            Disabled
         </div>
-    </div>
-
-    <div>
-        <b>
-            Hover effects
-        </b>
         <div>
             <input
                 type="checkbox"
-                [checked]="effects().hover?.includes('enlarge-slider')"
-                (click)="updateEffect('hover', 'enlarge-slider', $event)"
+                [checked]="active()"
+                (click)="
+                    active.set(!active());
+                    refreshLog();
+                "
             />
-            Enlarge slider
-        </div>
-    </div>
-
-    <div>
-        <b>
-            Click effects
-        </b>
-        <div>
-            <input
-                type="checkbox"
-                [checked]="effects().click?.includes('push')"
-                (click)="updateEffect('click', 'push', $event)"
-            />
-            Push
-        </div>
-
-        <div>
-            <input
-                type="checkbox"
-                [checked]="effects().click?.includes('ripple')"
-                (click)="updateEffect('click', 'ripple', $event)"
-            />
-            Ripple
+            Activated
         </div>
     </div>
 </div>
 
-<!-- Settings -->
-<div class="settings">
-    <b>
-        Settings
-    </b>
-    <div>
-        <input
-            type="checkbox"
-            [checked]="disabled()"
-            (click)="
-                disabled.set(!disabled());
-                refreshLog();
-            "
-        />
-        Disabled
-    </div>
-    <div>
-        <input
-            type="checkbox"
-            [checked]="active()"
-            (click)="
-                active.set(!active());
-                refreshLog();
-            "
-        />
-        Activated
-    </div>
-</div>
+<div class="visual">
+    <mv-lib-switch-lite
+        class="component"
+        [styles]="styles()"
+        [effects]="effects()"
+        [settings]="settings()"
+        [disabled]="disabled()"
+        [active]="active()"
+        (onToggle)="
+            active.set($event.active);
+            setLastInteractionTime();
+        "
+    />
 
-<!-- Switch -->
-<mv-lib-switch-lite
-    [styles]="styles()"
-    [effects]="effects()"
-    [settings]="settings()"
-    [disabled]="disabled()"
-    [active]="active()"
-    (onToggle)="
-        active.set($event.active);
-        setLastInteractionTime();
-    "
-/>
-
-<pre>
+    <pre class="log">
 {{ log() }}
-</pre>
+    </pre>
+</div>

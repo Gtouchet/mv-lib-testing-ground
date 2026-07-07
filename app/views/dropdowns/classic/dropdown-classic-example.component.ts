@@ -26,7 +26,7 @@ interface User {
   templateUrl: './dropdown-classic-example.component.html',
   styleUrls: [
     './dropdown-classic-example.component.scss',
-    '../../playground.scss'
+    '../../testing-ground.scss'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -41,7 +41,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
   protected opened = signal(false);
   protected selectedUser = signal<User | undefined>(undefined);
   protected items = signal<User[]>([
-    { id: 1, icon: 'person', name: 'Alice', },
+    { id: 1, icon: 'person', name: 'Alice' },
     { id: 2, icon: 'person', name: 'Bob' },
     { id: 3, icon: 'person', name: 'Charlie' },
     { id: 4, icon: 'person', name: 'David' },
@@ -56,22 +56,25 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
     super();
     this.logProperties.set(['disabled', 'opened', 'styles', 'effects', 'settings']);
     this.styles = signal<Partial<MvLibDropdownClassicStyles>>({
-      widthPx: 150,
+      buttonWidthPx: 150,
       buttonHeightPx: 40,
       itemHeightPx: 25,
       listMaxHeightPx: 150,
-      buttonColor: this.appStyles.var('button-primary'),
-      buttonTextColor: this.appStyles.var('button-primary-text'),
-      itemColor: this.appStyles.var('button-secondary'),
-      itemTextColor: this.appStyles.var('button-secondary-text'),
+      buttonBackgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
+      buttonTextColor: this.appStyles.var('dropdown-classic-button-text-color'),
+      itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
+      itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
     });
     this.effects = signal<Partial<MvLibDropdownClassicEffects>>({
-      idle: ['shadow'],
+      buttonIdle: ['shadow'],
       buttonHover: ['darken'],
+      buttonClick: ['ripple'],
+      listIdle: ['shadow'],
       itemHover: ['darken'],
+      itemClick: [],
     });
     this.settings = signal<Partial<MvLibDropdownClassicSettings>>({
-      closeOnSelect: true,
+      closeOnItemSelect: true,
       closeOnOutsideClick: true,
       resetButton: true,
     });

@@ -1,14 +1,5 @@
-:root {
-	--button-primary: DodgerBlue;
-	--button-primary-text: White;
-
-	--button-secondary: rgb(81, 168, 255);
-	--button-secondary-text: White;
-
-	--switch-on: DodgerBlue;
-	--switch-off: DarkGray;
-	--switch-slider-on: LightGray;
-	--switch-slider-off: Gray;
-
-	--outline-primary: DodgerBlue;
-}
+@use 'white-theme/buttons';
+@use 'white-theme/dropdowns';
+@use 'white-theme/switches';
+@use 'white-theme/textboxes';
+@use 'white-theme/effects';

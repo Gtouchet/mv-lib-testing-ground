@@ -1,252 +1,256 @@
-<!-- Styles -->
-<div class="styles">
-    <b>
-        Styles
-    </b>
-    <div>
-        <input
-            type="number"
-            [value]="styles().widthPx"
-            (input)="updateStyle('widthPx', $event)"
-        />
-        Width px
-    </div>
-
-    <div>
-        <input
-            type="number"
-            [value]="styles().buttonHeightPx"
-            (input)="updateStyle('buttonHeightPx', $event)"
-        />
-        Button height px
-    </div>
-
-    <div>
-        <input
-            type="number"
-            [value]="styles().itemHeightPx"
-            (input)="updateStyle('itemHeightPx', $event)"
-        />
-        Item height px
-    </div>
-
-    <div>
-        <input
-            type="number"
-            [value]="styles().listMaxHeightPx"
-            (input)="updateStyle('listMaxHeightPx', $event)"
-        />
-        List max height px
-    </div>
-
-    <div>
-        <input
-            type="color"
-            [value]="styles().buttonColor"
-            (input)="updateStyle('buttonColor', $event)"
-        />
-        Button color
-    </div>
-    
-    <div>
-        <input
-            type="color"
-            [value]="styles().buttonTextColor"
-            (input)="updateStyle('buttonTextColor', $event)"
-        />
-        Button text color
-    </div>
-    
-    <div>
-        <input
-            type="color"
-            [value]="styles().itemColor"
-            (input)="updateStyle('itemColor', $event)"
-        />
-        Item color
-    </div>
-    
-    <div>
-        <input
-            type="color"
-            [value]="styles().itemTextColor"
-            (input)="updateStyle('itemTextColor', $event)"
-        />
-        Item text color
-    </div>
-</div>
-
-<!-- Effects -->
-<div class="effects">
-    <div>
+<div class="configuration">
+    <!-- Styles -->
+    <div class="styles">
         <b>
-            Idle effects
+            Styles
+        </b>
+        <div>
+            <input
+                type="number"
+                [value]="styles().buttonWidthPx"
+                (input)="updateStyle('buttonWidthPx', $event)"
+            />
+            Button width px
+        </div>
+
+        <div>
+            <input
+                type="number"
+                [value]="styles().buttonHeightPx"
+                (input)="updateStyle('buttonHeightPx', $event)"
+            />
+            Button height px
+        </div>
+
+        <div>
+            <input
+                type="number"
+                [value]="styles().itemHeightPx"
+                (input)="updateStyle('itemHeightPx', $event)"
+            />
+            Item height px
+        </div>
+
+        <div>
+            <input
+                type="number"
+                [value]="styles().listMaxHeightPx"
+                (input)="updateStyle('listMaxHeightPx', $event)"
+            />
+            List max height px
+        </div>
+
+        <!-- <div>
+            <input
+                type="color"
+                [value]="styles().buttonColor"
+                (input)="updateStyle('buttonColor', $event)"
+            />
+            Button color
+        </div> -->
+        
+        <div>
+            <input
+                type="color"
+                [value]="styles().buttonTextColor"
+                (input)="updateStyle('buttonTextColor', $event)"
+            />
+            Button text color
+        </div>
+        
+        <!-- <div>
+            <input
+                type="color"
+                [value]="styles().itemColor"
+                (input)="updateStyle('itemColor', $event)"
+            />
+            Item color
+        </div> -->
+        
+        <div>
+            <input
+                type="color"
+                [value]="styles().itemTextColor"
+                (input)="updateStyle('itemTextColor', $event)"
+            />
+            Item text color
+        </div>
+    </div>
+
+    <!-- Effects -->
+    <div class="effects">
+        <div>
+            <b>
+                Idle effects
+            </b>
+            <!-- <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().idle?.includes('shadow')"
+                    (click)="updateEffect('idle', 'shadow', $event)"
+                />
+                Shadow
+            </div> -->
+        </div>
+
+        <div>
+            <b>
+                Hover effects
+            </b>
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().buttonHover?.includes('darken')"
+                    (click)="updateEffect('buttonHover', 'darken', $event)"
+                />
+                Button darken
+            </div>
+
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().itemHover?.includes('darken')"
+                    (click)="updateEffect('itemHover', 'darken', $event)"
+                />
+                Item darken
+            </div>
+        </div>
+
+        <div>
+            <b>
+                Click effects
+            </b>
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().buttonClick?.includes('push')"
+                    (click)="updateEffect('buttonClick', 'push', $event)"
+                />
+                Button push
+            </div>
+
+            <div>
+                <input
+                    type="checkbox"
+                    [checked]="effects().buttonClick?.includes('ripple')"
+                    (click)="updateEffect('buttonClick', 'ripple', $event)"
+                />
+                Button ripple
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="settings">
+        <b>
+            Settings
         </b>
         <div>
             <input
                 type="checkbox"
-                [checked]="effects().idle?.includes('shadow')"
-                (click)="updateEffect('idle', 'shadow', $event)"
+                [checked]="disabled()"
+                (click)="
+                    disabled.set(!disabled());
+                    refreshLog();
+                "
             />
-            Shadow
-        </div>
-    </div>
-
-    <div>
-        <b>
-            Hover effects
-        </b>
-        <div>
-            <input
-                type="checkbox"
-                [checked]="effects().buttonHover?.includes('darken')"
-                (click)="updateEffect('buttonHover', 'darken', $event)"
-            />
-            Button darken
+            Disabled
         </div>
 
         <div>
             <input
                 type="checkbox"
-                [checked]="effects().itemHover?.includes('darken')"
-                (click)="updateEffect('itemHover', 'darken', $event)"
+                [checked]="opened()"
+                (click)="
+                    opened.set(!opened());
+                    refreshLog();
+                "
             />
-            Item darken
-        </div>
-    </div>
-
-    <div>
-        <b>
-            Click effects
-        </b>
-        <div>
-            <input
-                type="checkbox"
-                [checked]="effects().buttonClick?.includes('push')"
-                (click)="updateEffect('buttonClick', 'push', $event)"
-            />
-            Button push
+            Opened
         </div>
 
         <div>
             <input
                 type="checkbox"
-                [checked]="effects().buttonClick?.includes('ripple')"
-                (click)="updateEffect('buttonClick', 'ripple', $event)"
+                [checked]="settings().closeOnItemSelect"
+                (click)="
+                    updateSetting('closeOnItemSelect', $event);
+                    refreshLog();
+                "
             />
-            Button ripple
+            Close on item select
+        </div>
+        
+        <div>
+            <input
+                type="checkbox"
+                [checked]="settings().closeOnOutsideClick"
+                (click)="
+                    updateSetting('closeOnOutsideClick', $event);
+                    refreshLog();
+                "
+            />
+            Close on outside click
+        </div>
+
+        <div>
+            <input
+                type="checkbox"
+                [checked]="settings().resetButton"
+                (click)="
+                    updateSetting('resetButton', $event);
+                    refreshLog();
+                "
+            />
+            Reset button
         </div>
     </div>
 </div>
 
-<!-- Settings -->
-<div class="settings">
-    <b>
-        Settings
-    </b>
-    <div>
-        <input
-            type="checkbox"
-            [checked]="disabled()"
-            (click)="
-                disabled.set(!disabled());
-                refreshLog();
-            "
-        />
-        Disabled
-    </div>
+<div class="visual">
+    <mv-lib-dropdown-classic
+        class="component"
+        [styles]="styles()"
+        [effects]="effects()"
+        [settings]="settings()"
+        [items]="items()"
+        [disabled]="disabled()"
+        [opened]="opened()"
+        (onSelect)="selectedUser.set($event.selectedItem)"
+        (onOpen)="
+            opened.set($event.opened);
+            this.refreshLog();
+        "
+    >
+        <ng-template mvLibDropdownPlaceholderTemplate>
+            <div
+                [style.margin-left.px]="8"
+            >
+                Select a user
+            </div>
+        </ng-template>
 
-    <div>
-        <input
-            type="checkbox"
-            [checked]="opened()"
-            (click)="
-                opened.set(!opened());
-                refreshLog();
-            "
-        />
-        Opened
-    </div>
-
-    <div>
-        <input
-            type="checkbox"
-            [checked]="settings().closeOnSelect"
-            (click)="
-                updateSetting('closeOnSelect', $event);
-                refreshLog();
-            "
-        />
-        Close on select
-    </div>
-    
-    <div>
-        <input
-            type="checkbox"
-            [checked]="settings().closeOnOutsideClick"
-            (click)="
-                updateSetting('closeOnOutsideClick', $event);
-                refreshLog();
-            "
-        />
-        Close on outside click
-    </div>
-
-    <div>
-        <input
-            type="checkbox"
-            [checked]="settings().resetButton"
-            (click)="
-                updateSetting('resetButton', $event);
-                refreshLog();
-            "
-        />
-        Reset button
-    </div>
-</div>
-
-<!-- Dropdown -->
-<mv-lib-dropdown-classic
-    [styles]="styles()"
-    [effects]="effects()"
-    [settings]="settings()"
-    [items]="items()"
-    [disabled]="disabled()"
-    [opened]="opened()"
-    (onSelect)="selectedUser.set($event.selectedItem)"
-    (onOpen)="
-        opened.set($event.opened);
-        this.refreshLog();
-    "
->
-    <ng-template mvLibDropdownPlaceholderTemplate>
-        <div
-            [style.margin-left.px]="8"
-        >
-            Select a user
-        </div>
-    </ng-template>
-
-    <ng-template mvLibDropdownSelectedTemplate let-item>
-        {{ item.name }}
-    </ng-template>
-
-    <ng-template mvLibDropdownItemTemplate let-item>
-        <div
-            [style.display]="'flex'"
-            [style.alignItems]="'center'"
-            [style.gap.px]="4"
-        >
-            <span class="material-symbols-outlined">
-                {{ item.icon }}
-            </span>
+        <ng-template mvLibDropdownSelectedTemplate let-item>
             {{ item.name }}
-        </div>
-    </ng-template>
-</mv-lib-dropdown-classic>
+        </ng-template>
 
-<pre>
+        <ng-template mvLibDropdownItemTemplate let-item>
+            <div
+                [style.display]="'flex'"
+                [style.alignItems]="'center'"
+                [style.gap.px]="4"
+            >
+                <span class="material-symbols-outlined">
+                    {{ item.icon }}
+                </span>
+                {{ item.name }}
+            </div>
+        </ng-template>
+    </mv-lib-dropdown-classic>
+
+    <pre class="log">
 selectedUser: {{ selectedUser() | json }}
 
 {{ log() }}
-</pre>
+    </pre>
+</div>

@@ -129,7 +129,7 @@ export abstract class BaseExampleComponent<
     /**
      * Logs
      */
-    protected lastInteractionTime = signal<string>('00:00:00.00');
+    protected lastInteractionTime = signal<string>('--:--:--.--');
     protected logProperties = signal<string[]>([]);
     protected log = signal('');
 

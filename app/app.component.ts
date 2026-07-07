@@ -55,28 +55,29 @@ export class AppComponent {
     buttonHeightPx: 32,
     itemHeightPx: 32,
     listMaxHeightPx: 150,
-    buttonColor: this.appStyles.var('button-primary'),
-    itemColor: this.appStyles.var('button-secondary'),
-    itemTextColor: this.appStyles.var('button-primary-text'),
+    buttonBackgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
+    buttonTextColor: this.appStyles.var('dropdown-classic-button-text-color'),
+    itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
+    itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
   };
   protected buttonDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     ...this.dropdownStyles,
-    widthPx: 175,
+    buttonWidthPx: 175,
   };
   protected menuDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     ...this.dropdownStyles,
-    widthPx: 175,
+    buttonWidthPx: 175,
   };
   protected switchDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     ...this.dropdownStyles,
-    widthPx: 175,
+    buttonWidthPx: 175,
   };
   protected textboxDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
     ...this.dropdownStyles,
-    widthPx: 175,
+    buttonWidthPx: 175,
   };
   protected dropdownEffects: Partial<MvLibDropdownClassicEffects> = {
-    idle: ['shadow'],
+    buttonIdle: ['shadow'],
     buttonHover: ['darken'],
     itemHover: ['darken'],
   };
