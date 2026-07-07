@@ -204,7 +204,10 @@
         [effects]="effects()"
         [settings]="settings()"
         [selected]="selected()"
-        (onChange)="form.get('input')?.setValue($event.input)"
+        (onChange)="
+            form.get('input')?.setValue($event.input);
+            refreshLog();
+        "
         (onSelect)="
             selected.set($event.selected);
             refreshLog();
@@ -212,8 +215,8 @@
     />
 
     <pre class="log">
-input: {{ form.get('input')?.value }}
-
+Last interaction time: {{ lastInteractionTime() }}<br/>
+input: {{ form.get('input')?.value }}<br/>
 {{ log() }}
     </pre>
 </form>

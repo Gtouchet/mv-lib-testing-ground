@@ -133,18 +133,17 @@ export abstract class BaseExampleComponent<
     protected logProperties = signal<string[]>([]);
     protected log = signal('');
 
-    protected setLastInteractionTime() {
+    protected refreshLastInteractionTime() {
         const now = new Date();
         const hours = String(now.getHours()).padStart(2, '0');
         const minutes = String(now.getMinutes()).padStart(2, '0');
         const seconds = String(now.getSeconds()).padStart(2, '0');
         const centiseconds = String(Math.floor(now.getMilliseconds() / 10)).padStart(2, '0');
         this.lastInteractionTime.set(`${hours}:${minutes}:${seconds}.${centiseconds}`);
-        this.refreshLog();
     }
 
     protected refreshLog() {
-        var result = `Last interacted at ${this.lastInteractionTime()}\n\n`;
+        var result = '';
         this.logProperties().forEach(property => {
             result += `[${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
         });

@@ -157,11 +157,12 @@
         [active]="active()"
         (onToggle)="
             active.set($event.active);
-            setLastInteractionTime();
+            refreshLog();
         "
     />
 
     <pre class="log">
+Last interaction time: {{ lastInteractionTime() }}<br/>
 {{ log() }}
     </pre>
 </div>

@@ -124,7 +124,7 @@
         [effects]="effects()"
         [settings]="settings()"
         [disabled]="disabled()"
-        (onClick)="setLastInteractionTime()"
+        (onClick)="refreshLastInteractionTime()"
     >
         <div
             [style.display]="'flex'"
@@ -140,6 +140,7 @@
     </mv-lib-button-classic>
 
     <pre class="log">
+Last interaction time: {{ lastInteractionTime() }}<br/>
 {{ log() }}
     </pre>
 </div>

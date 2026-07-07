@@ -216,10 +216,13 @@
         [items]="items()"
         [disabled]="disabled()"
         [opened]="opened()"
-        (onSelect)="selectedUser.set($event.selectedItem)"
+        (onSelect)="
+            selectedUser.set($event.selectedItem);
+            refreshLastInteractionTime();
+        "
         (onOpen)="
             opened.set($event.opened);
-            this.refreshLog();
+            refreshLastInteractionTime();
         "
     >
         <ng-template mvLibDropdownPlaceholderTemplate>
@@ -249,8 +252,8 @@
     </mv-lib-dropdown-classic>
 
     <pre class="log">
-selectedUser: {{ selectedUser() | json }}
-
+Last interaction time: {{ lastInteractionTime() }}<br/>
+selectedUser: {{ selectedUser() | json }}<br/>
 {{ log() }}
     </pre>
 </div>
