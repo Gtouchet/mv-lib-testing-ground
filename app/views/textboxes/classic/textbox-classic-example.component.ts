@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { StylesService } from '../../../../styles/styles.service';
 import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { InputCheckboxComponent } from '../../../shared/input-checkbox.component';
 
 @Component({
   selector: 'app-textbox-classic-example',
-  imports: [MvLibTextboxClassicComponent, ReactiveFormsModule],
+  imports: [MvLibTextboxClassicComponent, ReactiveFormsModule, InputCheckboxComponent],
   templateUrl: './textbox-classic-example.component.html',
   styleUrls: [
     './textbox-classic-example.component.scss',

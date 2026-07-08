@@ -1,7 +1,7 @@
 <div class="configuration">
     <!-- Styles -->
     <div class="styles">
-        <b>
+        <b class="title">
             Styles
         </b>
         <div>
@@ -43,64 +43,52 @@
 
     <!-- Effects -->
     <div class="effects">
-        <b>
+        <b class="title">
             Effects
         </b>
         <div>
             <b>
                 Idle
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().idle?.includes('shadow')"
-                    (click)="updateEffect('idle', 'shadow', $event)"
-                />
-                Shadow
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().idle?.includes('shadow')"
+                label="Shadow"
+                (toggled)="updateEffect('idle', 'shadow', $event)"
+            />
         </div>
 
         <div>
             <b>
                 Hover
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().hover?.includes('darken')"
-                    (click)="updateEffect('hover', 'darken', $event)"
-                />
-                Darken
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().hover?.includes('darken')"
+                label="Darken"
+                (toggled)="updateEffect('hover', 'darken', $event)"
+            />
         </div>
 
         <div>
             <b>
                 Click
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().click?.includes('push')"
-                    (click)="updateEffect('click', 'push', $event)"
-                />
-                Push
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().click?.includes('push')"
+                label="Push"
+                (toggled)="updateEffect('click', 'push', $event)"
+            />
 
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().click?.includes('ripple')"
-                    (click)="updateEffect('click', 'ripple', $event)"
-                />
-                Ripple
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().click?.includes('ripple')"
+                label="Ripple"
+                (toggled)="updateEffect('click', 'ripple', $event)"
+            />
         </div>
     </div>
 
     <!-- Settings -->
     <div class="settings">
-        <b>
+        <b class="title">
             Settings
         </b>
         <div>
@@ -139,8 +127,8 @@
         </span>
     </mv-lib-button-classic>
 
-    <pre class="log">
+<pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
 {{ log() }}
-    </pre>
+</pre>
 </div>

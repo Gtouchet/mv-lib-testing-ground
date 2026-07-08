@@ -22,6 +22,8 @@
             Height px
         </div>
 
+        Track
+
         <div>
             <input
                 type="color"
@@ -34,23 +36,43 @@
         <div>
             <input
                 type="color"
-                [value]="styles().cursorColorOn"
-                (input)="updateStyle('cursorColorOn', $event)"
-            />
-            Cursor color on
-        </div>
-
-        TODO icons on
-
-        <div>
-            <input
-                type="color"
                 [value]="styles().trackColorOff"
                 (input)="updateStyle('trackColorOff', $event)"
             />
             Track color off
         </div>
 
+        Cursor on
+
+        <div>
+            <input
+                type="color"
+                [value]="styles().cursorColorOn"
+                (input)="updateStyle('cursorColorOn', $event)"
+            />
+            Cursor color on
+        </div>
+
+        <div>
+            <input
+                type="textbox"
+                [value]="styles().cursorIconOn"
+                (input)="updateStyle('cursorIconOn', $event)"
+            />
+            Cursor icon on
+        </div>
+
+        <div>
+            <input
+                type="color"
+                [value]="styles().cursorIconColorOn"
+                (input)="updateStyle('cursorIconColorOn', $event)"
+            />
+            Cursor icon color on
+        </div>
+
+        Cursor off
+        
         <div>
             <input
                 type="color"
@@ -60,7 +82,23 @@
             Cursor color off
         </div>
 
-        TODO icons off
+        <div>
+            <input
+                type="textbox"
+                [value]="styles().cursorIconOff"
+                (input)="updateStyle('cursorIconOff', $event)"
+            />
+            Cursor icon off
+        </div>
+
+        <div>
+            <input
+                type="color"
+                [value]="styles().cursorIconColorOff"
+                (input)="updateStyle('cursorIconColorOff', $event)"
+            />
+            Cursor icon color off
+        </div>
     </div>
 
     <!-- Effects -->
@@ -69,51 +107,39 @@
             <b>
                 Idle effects
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().idle?.includes('shadow')"
-                    (click)="updateEffect('idle', 'shadow', $event)"
-                />
-                Shadow
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().idle?.includes('shadow')"
+                label="Shadow"
+                (toggled)="updateEffect('idle', 'shadow', $event)"
+            />
         </div>
 
         <div>
             <b>
                 Hover effects
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().hover?.includes('enlarge-cursor')"
-                    (click)="updateEffect('hover', 'enlarge-cursor', $event)"
-                />
-                Enlarge cursor
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().hover?.includes('enlarge-cursor')"
+                label="Enlarge cursor"
+                (toggled)="updateEffect('hover', 'enlarge-cursor', $event)"
+            />
         </div>
 
         <div>
             <b>
                 Click effects
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().click?.includes('push')"
-                    (click)="updateEffect('click', 'push', $event)"
-                />
-                Push
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().click?.includes('push')"
+                label="Push"
+                (toggled)="updateEffect('click', 'push', $event)"
+            />
 
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().click?.includes('ripple')"
-                    (click)="updateEffect('click', 'ripple', $event)"
-                />
-                Ripple
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().click?.includes('ripple')"
+                label="Ripple"
+                (toggled)="updateEffect('click', 'ripple', $event)"
+            />
         </div>
     </div>
 
@@ -139,6 +165,7 @@
                 [checked]="active()"
                 (click)="
                     active.set(!active());
+                    refreshLastInteractionTime();
                     refreshLog();
                 "
             />
@@ -157,12 +184,13 @@
         [active]="active()"
         (onToggle)="
             active.set($event.active);
+            refreshLastInteractionTime();
             refreshLog();
         "
     />
 
-    <pre class="log">
+<pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
 {{ log() }}
-    </pre>
+</pre>
 </div>

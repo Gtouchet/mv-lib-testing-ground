@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchLiteComponent, MvLibSwitchLiteEffects, MvLibSwitchLiteSettings, MvLibSwitchLiteStyles } from 'mv-lib';
 import { StylesService } from '../../../../styles/styles.service';
+import { InputCheckboxComponent } from '../../../shared/input-checkbox.component';
 
 @Component({
   selector: 'app-switch-lite-example',
-  imports: [MvLibSwitchLiteComponent],
+  imports: [MvLibSwitchLiteComponent, InputCheckboxComponent],
   templateUrl: './switch-lite-example.component.html',
   styleUrls: [
     './switch-lite-example.component.scss',

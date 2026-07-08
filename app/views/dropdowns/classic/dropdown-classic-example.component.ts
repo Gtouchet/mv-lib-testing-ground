@@ -9,6 +9,7 @@ import {
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
 import { StylesService } from "../../../../styles/styles.service";
+import { InputCheckboxComponent } from "../../../shared/input-checkbox.component";
 
 interface User {
   id: number;
@@ -22,6 +23,7 @@ interface User {
     MvLibDropdownClassicComponent,
     MvLibDropdownDirectives,
     JsonPipe,
+    InputCheckboxComponent,
   ],
   templateUrl: './dropdown-classic-example.component.html',
   styleUrls: [
@@ -58,10 +60,12 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
     this.styles = signal<Partial<MvLibDropdownClassicStyles>>({
       buttonWidthPx: 150,
       buttonHeightPx: 40,
-      itemHeightPx: 25,
-      listMaxHeightPx: 150,
       buttonBackgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
       buttonTextColor: this.appStyles.var('dropdown-classic-button-text-color'),
+
+      listMaxHeightPx: 150,
+      
+      itemHeightPx: 25,
       itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
       itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
     });

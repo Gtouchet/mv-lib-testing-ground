@@ -1,9 +1,14 @@
 <div class="configuration">
     <!-- Styles -->
     <div class="styles">
-        <b>
+        <b class="title">
             Styles
         </b>
+        
+        <b>
+            Button
+        </b>
+
         <div>
             <input
                 type="number"
@@ -24,12 +29,25 @@
 
         <div>
             <input
-                type="number"
-                [value]="styles().itemHeightPx"
-                (input)="updateStyle('itemHeightPx', $event)"
+                type="color"
+                [value]="styles().buttonBackgroundColor"
+                (input)="updateStyle('buttonBackgroundColor', $event)"
             />
-            Item height px
+            Button background color
         </div>
+
+        <div>
+            <input
+                type="color"
+                [value]="styles().buttonTextColor"
+                (input)="updateStyle('buttonTextColor', $event)"
+            />
+            Button text color
+        </div>
+
+        <b>
+            List
+        </b>
 
         <div>
             <input
@@ -40,32 +58,27 @@
             List max height px
         </div>
 
-        <!-- <div>
+        <b>
+            Item
+        </b>
+
+        <div>
             <input
-                type="color"
-                [value]="styles().buttonColor"
-                (input)="updateStyle('buttonColor', $event)"
+                type="number"
+                [value]="styles().itemHeightPx"
+                (input)="updateStyle('itemHeightPx', $event)"
             />
-            Button color
-        </div> -->
-        
+            Item height px
+        </div>
+
         <div>
             <input
                 type="color"
-                [value]="styles().buttonTextColor"
-                (input)="updateStyle('buttonTextColor', $event)"
+                [value]="styles().itemBackgroundColor"
+                (input)="updateStyle('itemBackgroundColor', $event)"
             />
-            Button text color
+            Item background color
         </div>
-        
-        <!-- <div>
-            <input
-                type="color"
-                [value]="styles().itemColor"
-                (input)="updateStyle('itemColor', $event)"
-            />
-            Item color
-        </div> -->
         
         <div>
             <input
@@ -79,70 +92,88 @@
 
     <!-- Effects -->
     <div class="effects">
-        <div>
+        <b class="title">
+            Effects
+        </b>
+        <div class="effect-types">
+
             <b>
-                Idle effects
+                Button idle
             </b>
-            <!-- <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().idle?.includes('shadow')"
-                    (click)="updateEffect('idle', 'shadow', $event)"
-                />
-                Shadow
-            </div> -->
-        </div>
 
-        <div>
+            <app-input-checkbox
+                [checked]="!!effects().buttonIdle?.includes('shadow')"
+                label="Shadow"
+                (toggled)="updateEffect('buttonIdle', 'shadow', $event)"
+            />
+
             <b>
-                Hover effects
+                Button hover
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().buttonHover?.includes('darken')"
-                    (click)="updateEffect('buttonHover', 'darken', $event)"
-                />
-                Button darken
-            </div>
+            
+            <app-input-checkbox
+                [checked]="!!effects().buttonHover?.includes('darken')"
+                label="Darken"
+                (toggled)="updateEffect('buttonHover', 'darken', $event)"
+            />
 
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().itemHover?.includes('darken')"
-                    (click)="updateEffect('itemHover', 'darken', $event)"
-                />
-                Item darken
-            </div>
-        </div>
-
-        <div>
             <b>
-                Click effects
+                Button click
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().buttonClick?.includes('push')"
-                    (click)="updateEffect('buttonClick', 'push', $event)"
-                />
-                Button push
-            </div>
 
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().buttonClick?.includes('ripple')"
-                    (click)="updateEffect('buttonClick', 'ripple', $event)"
-                />
-                Button ripple
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().buttonClick?.includes('push')"
+                label="Push"
+                (toggled)="updateEffect('buttonClick', 'push', $event)"
+            />
+
+            <app-input-checkbox
+                [checked]="!!effects().buttonClick?.includes('ripple')"
+                label="Ripple"
+                (toggled)="updateEffect('buttonClick', 'ripple', $event)"
+            />
+
+            <b>
+                List idle
+            </b>
+
+            <app-input-checkbox
+                [checked]="!!effects().listIdle?.includes('shadow')"
+                label="Shadow"
+                (toggled)="updateEffect('listIdle', 'shadow', $event)"
+            />
+
+            <b>
+                Item hover
+            </b>
+
+            <app-input-checkbox
+                [checked]="!!effects().itemHover?.includes('darken')"
+                label="Darken"
+                (toggled)="updateEffect('itemHover', 'darken', $event)"
+            />
+
+            <b>
+                Item click
+            </b>
+
+            <app-input-checkbox
+                [checked]="!!effects().itemClick?.includes('push')"
+                label="Push"
+                (toggled)="updateEffect('itemClick', 'push', $event)"
+            />
+
+            <app-input-checkbox
+                [checked]="!!effects().itemClick?.includes('ripple')"
+                label="Ripple"
+                (toggled)="updateEffect('itemClick', 'ripple', $event)"
+            />
         </div>
     </div>
 
     <!-- Settings -->
     <div class="settings">
-        <b>
+        <b class="title">
             Settings
         </b>
         <div>
@@ -251,9 +282,9 @@
         </ng-template>
     </mv-lib-dropdown-classic>
 
-    <pre class="log">
+<pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
 selectedUser: {{ selectedUser() | json }}<br/>
 {{ log() }}
-    </pre>
+</pre>
 </div>

@@ -78,51 +78,39 @@
             <b>
                 Idle effects
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().idle?.includes('shadow')"
-                    (click)="updateEffect('idle', 'shadow', $event)"
-                />
-                Shadow
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().idle?.includes('shadow')"
+                label="Shadow"
+                (toggled)="updateEffect('idle', 'shadow', $event)"
+            />
         </div>
 
         <div>
             <b>
                 Hover effects
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().hover?.includes('enlarge-cursor')"
-                    (click)="updateEffect('hover', 'enlarge-cursor', $event)"
-                />
-                Enlarge cursor
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().hover?.includes('enlarge-cursor')"
+                label="Enlarge cursor"
+                (toggled)="updateEffect('hover', 'enlarge-cursor', $event)"
+            />
         </div>
 
         <div>
             <b>
                 Click effects
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().click?.includes('push')"
-                    (click)="updateEffect('click', 'push', $event)"
-                />
-                Push
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().click?.includes('push')"
+                label="Push"
+                (toggled)="updateEffect('click', 'push', $event)"
+            />
 
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().click?.includes('ripple')"
-                    (click)="updateEffect('click', 'ripple', $event)"
-                />
-                Ripple
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().click?.includes('ripple')"
+                label="Ripple"
+                (toggled)="updateEffect('click', 'ripple', $event)"
+            />
         </div>
     </div>
 
@@ -148,6 +136,7 @@
                 [checked]="active()"
                 (click)="
                     active.set(!active());
+                    refreshLastInteractionTime();
                     refreshLog();
                 "
             />
@@ -166,12 +155,13 @@
         [active]="active()"
         (onToggle)="
             active.set($event.active);
+            refreshLastInteractionTime();
             refreshLog();
         "
     />
 
-    <pre class="log">
+<pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
 {{ log() }}
-    </pre>
+</pre>
 </div>

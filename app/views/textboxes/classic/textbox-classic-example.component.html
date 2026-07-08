@@ -1,4 +1,5 @@
 <div class="configuration">
+
     <!-- Styles -->
     <div class="styles">
         <b>
@@ -65,37 +66,28 @@
             <b>
                 Hover effects
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().hover?.includes('darken')"
-                    (click)="updateEffect('hover', 'darken', $event)"
-                />
-                Darken
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().hover?.includes('darken')"
+                label="Darken"
+                (toggled)="updateEffect('hover', 'darken', $event)"
+            />
         </div>
 
         <div>
             <b>
                 Selected effects
             </b>
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().selected?.includes('outline-solid')"
-                    (click)="updateEffect('selected', 'outline-solid', $event)"
-                />
-                Outline solid
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().selected?.includes('outline-solid')"
+                label="Outline solid"
+                (toggled)="updateEffect('selected', 'outline-solid', $event)"
+            />
 
-            <div>
-                <input
-                    type="checkbox"
-                    [checked]="effects().selected?.includes('outline-blur')"
-                    (click)="updateEffect('selected', 'outline-blur', $event)"
-                />
-                Outline blur
-            </div>
+            <app-input-checkbox
+                [checked]="!!effects().selected?.includes('outline-blur')"
+                label="Outline blur"
+                (toggled)="updateEffect('selected', 'outline-blur', $event)"
+            />
         </div>
     </div>
 
@@ -122,6 +114,7 @@
                 [checked]="selected()"
                 (click)="
                     selected.set(!selected());
+                    refreshLastInteractionTime();
                     refreshLog();
                 "
                 (mousedown)="$event.preventDefault()"
@@ -138,7 +131,7 @@
         <div class="form-state">
             <span>{{ form.touched ? 'Touched' : 'Untouched' }}</span>
             <span>{{ form.dirty ? 'Dirty' : 'Pristine' }}</span>
-            <span>{{ form.valid ? 'Valid' : 'Invalid' }}</span>
+            <span>{{ form.disabled ? 'Disabled' : (form.valid ? 'Valid' : 'Invalid') }}</span>
         </div>
         <div
             [class.has-errors]="form.get('input')?.hasError('required')"
@@ -206,17 +199,19 @@
         [selected]="selected()"
         (onChange)="
             form.get('input')?.setValue($event.input);
+            refreshLastInteractionTime();
             refreshLog();
         "
         (onSelect)="
             selected.set($event.selected);
+            refreshLastInteractionTime();
             refreshLog();
         "
     />
 
-    <pre class="log">
+<pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
 input: {{ form.get('input')?.value }}<br/>
 {{ log() }}
-    </pre>
+</pre>
 </form>
