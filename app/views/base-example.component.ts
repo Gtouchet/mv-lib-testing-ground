@@ -42,13 +42,13 @@ export abstract class BaseExampleComponent<
     protected updateEffect<Type extends keyof Effects>(
         type: Type,
         effect: Effects[Type][number],
-        event: any,
+        checked: boolean,
     ) {
         this.effects.update(current => {
             const currentValues = (current[type] ?? []) as Effects[Type];
             return {
                 ...current,
-                [type]: event.target.checked
+                [type]: checked
                     ? [...currentValues, effect]
                     : currentValues.filter(e => e !== effect),
             } as Partial<Effects>;
@@ -58,16 +58,11 @@ export abstract class BaseExampleComponent<
 
     protected updateSetting(
         key: keyof Settings,
-        event: any,
+        checked: boolean,
     ) {
-        const target = event.target as HTMLInputElement | null;
         this.settings.update(current => ({
             ...current,
-            [key]: target?.type === 'number'
-                ? Number.isNaN(target.valueAsNumber) ? undefined : target.valueAsNumber
-                : target?.type === 'checkbox'
-                    ? target?.checked
-                    : target?.value,
+            [key]: checked,
         }));
         this.refreshLog();
     }

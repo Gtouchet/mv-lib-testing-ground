@@ -2,11 +2,14 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from 'mv-lib';
 import { StylesService } from '../../../../styles/styles.service';
-import { InputCheckboxComponent } from '../../../shared/input-checkbox.component';
+import { INPUTS } from '../../../shared/inputs.export';
 
 @Component({
   selector: 'app-switch-classic-example',
-  imports: [MvLibSwitchClassicComponent, InputCheckboxComponent],
+  imports: [
+    MvLibSwitchClassicComponent,
+    INPUTS,
+  ],
   templateUrl: './switch-classic-example.component.html',
   styleUrls: [
     './switch-classic-example.component.scss',
@@ -35,12 +38,12 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
       trackColorOn: this.appStyles.var('switch-classic-track-color-on'),
       trackColorOff: this.appStyles.var('switch-classic-track-color-off'),
 
-      cursorColorOn: this.appStyles.var('switch-classic-cursor-color-on'),
       cursorIconOn: this.appStyles.var('switch-classic-cursor-icon-on'),
+      cursorColorOn: this.appStyles.var('switch-classic-cursor-color-on'),
       cursorIconColorOn: this.appStyles.var('switch-classic-cursor-icon-on-color'),
 
-      cursorColorOff: this.appStyles.var('switch-classic-cursor-color-off'),
       cursorIconOff: this.appStyles.var('switch-classic-cursor-icon-off'),
+      cursorColorOff: this.appStyles.var('switch-classic-cursor-color-off'),
       cursorIconColorOff: this.appStyles.var('switch-classic-cursor-icon-off-color'),
     });
     this.effects = signal<Partial<MvLibSwitchClassicEffects>>({

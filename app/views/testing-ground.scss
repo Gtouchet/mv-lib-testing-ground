@@ -38,20 +38,6 @@
     flex-direction: column;
     gap: 4px;
     overflow: auto;
-
-    input[type='number'] {
-        width: 50px;
-        margin-top: 0;
-    }
-
-    input[type='color'] {
-        width: 58px;
-        height: 24px;
-    }
-
-    input[type='textbox'] {
-        width: 50px;
-    }
 }
 
 .effects {
@@ -102,15 +88,6 @@
         display: flex;
         align-items: center;
         gap: 4px;
-    }
-
-    > div input[type='checkbox'] {
-        margin: 0;
-    }
-
-    > div input[type='number'] {
-        width: 50px;
-        margin-top: 0;
     }
 
     > div.has-errors {

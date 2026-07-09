@@ -1,107 +1,81 @@
 <div class="configuration">
+
     <!-- Styles -->
     <div class="styles">
-        <b class="title">
+        <b [style.align-self]="'center'">
             Styles
         </b>
-        <div>
-            <input
-                type="number"
-                [value]="styles().widthPx"
-                (input)="updateStyle('widthPx', $event)"
-            />
-            Width px
-        </div>
-
-        <div>
-            <input
-                type="number"
-                [value]="styles().heightPx"
-                (input)="updateStyle('heightPx', $event)"
-            />
-            Height px
-        </div>
-
-        <div>
-            <input
-                type="color"
-                [value]="styles().backgroundColor"
-                (input)="updateStyle('backgroundColor', $event)"
-            />
-            Background color
-        </div>
-
-        <div>
-            <input
-                type="color"
-                [value]="styles().textColor"
-                (input)="updateStyle('textColor', $event)"
-            />
-            Text color
-        </div>
+        <app-input-number
+            [value]="styles().widthPx"
+            label="Width px"
+            (input)="updateStyle('widthPx', $event)"
+        />
+        <app-input-number
+            [value]="styles().heightPx"
+            label="Height px"
+            (input)="updateStyle('heightPx', $event)"
+        />
+        <app-input-color
+            [value]="styles().backgroundColor"
+            label="Background color"
+            (input)="updateStyle('backgroundColor', $event)"
+        />
+        <app-input-color
+            [value]="styles().textColor"
+            label="Text color"
+            (input)="updateStyle('textColor', $event)"
+        />
     </div>
 
     <!-- Effects -->
     <div class="effects">
-        <b class="title">
+        <b [style.align-self]="'center'">
             Effects
         </b>
-        <div>
-            <b>
-                Idle
-            </b>
-            <app-input-checkbox
-                [checked]="!!effects().idle?.includes('shadow')"
-                label="Shadow"
-                (toggled)="updateEffect('idle', 'shadow', $event)"
-            />
-        </div>
-
-        <div>
-            <b>
-                Hover
-            </b>
-            <app-input-checkbox
-                [checked]="!!effects().hover?.includes('darken')"
-                label="Darken"
-                (toggled)="updateEffect('hover', 'darken', $event)"
-            />
-        </div>
-
-        <div>
-            <b>
-                Click
-            </b>
-            <app-input-checkbox
-                [checked]="!!effects().click?.includes('push')"
-                label="Push"
-                (toggled)="updateEffect('click', 'push', $event)"
-            />
-
-            <app-input-checkbox
-                [checked]="!!effects().click?.includes('ripple')"
-                label="Ripple"
-                (toggled)="updateEffect('click', 'ripple', $event)"
-            />
-        </div>
+        <b>
+            Idle
+        </b>
+        <app-input-checkbox
+            [checked]="!!effects().idle?.includes('shadow')"
+            label="Shadow"
+            (toggled)="updateEffect('idle', 'shadow', $event)"
+        />
+        <b>
+            Hover
+        </b>
+        <app-input-checkbox
+            [checked]="!!effects().hover?.includes('darken')"
+            label="Darken"
+            (toggled)="updateEffect('hover', 'darken', $event)"
+        />
+        <b>
+            Click
+        </b>
+        <app-input-checkbox
+            [checked]="!!effects().click?.includes('push')"
+            label="Push"
+            (toggled)="updateEffect('click', 'push', $event)"
+        />
+        <app-input-checkbox
+            [checked]="!!effects().click?.includes('ripple')"
+            label="Ripple"
+            (toggled)="updateEffect('click', 'ripple', $event)"
+        />
     </div>
 
     <!-- Settings -->
     <div class="settings">
-        <b class="title">
+        <b [style.align-self]="'center'">
             Settings
         </b>
-        <div>
-            <input
-                type="checkbox"
-                [checked]="disabled()"
-                (click)="
-                    disabled.set(!disabled());
-                    refreshLog();
-                "
-            />
-            Disabled
-        </div>
+        <app-input-checkbox
+            [checked]="disabled()"
+            label="Disabled"
+            (toggled)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
     </div>
 </div>
 

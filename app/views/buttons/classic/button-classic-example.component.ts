@@ -2,11 +2,14 @@ import { BaseExampleComponent } from '../../base-example.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from 'mv-lib';
 import { StylesService } from '../../../../styles/styles.service';
-import { InputCheckboxComponent } from '../../../shared/input-checkbox.component';
+import { INPUTS } from '../../../shared/inputs.export';
 
 @Component({
   selector: 'app-button-classic-example',
-  imports: [MvLibButtonClassicComponent, InputCheckboxComponent],
+  imports: [
+    MvLibButtonClassicComponent,
+    INPUTS,
+  ],
   templateUrl: './button-classic-example.component.html',
   styleUrls: [
     './button-classic-example.component.scss',

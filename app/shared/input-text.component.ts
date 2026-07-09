@@ -2,27 +2,27 @@ import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
-  selector: 'app-input-color',
+  selector: 'app-input-text',
   standalone: true,
   imports: [NgTemplateOutlet],
   template: `
-    <ng-template #inputColorTemplate>
+    <ng-template #inputTextTemplate>
       <input
-        type="color"
+        type="text"
         [value]="value()"
         (input)="valueChanged.emit($event)"
-        [style.width.px]="58"
-        [style.height.px]="24"
+        [style.width.px]="50"
+        [style.height.px]="16"
       />
       {{ label() }}
     </ng-template>
     <ng-container
-      [ngTemplateOutlet]="inputColorTemplate"
+      [ngTemplateOutlet]="inputTextTemplate"
     />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputColorComponent {
+export class InputTextComponent {
   public value = input<string | undefined>(undefined);
   public label = input('');
   public valueChanged = output<Event>();

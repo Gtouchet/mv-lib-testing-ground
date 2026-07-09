@@ -9,7 +9,7 @@ import {
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
 import { StylesService } from "../../../../styles/styles.service";
-import { InputCheckboxComponent } from "../../../shared/input-checkbox.component";
+import { INPUTS } from "../../../shared/inputs.export";
 
 interface User {
   id: number;
@@ -22,8 +22,8 @@ interface User {
   imports: [
     MvLibDropdownClassicComponent,
     MvLibDropdownDirectives,
+    INPUTS,
     JsonPipe,
-    InputCheckboxComponent,
   ],
   templateUrl: './dropdown-classic-example.component.html',
   styleUrls: [

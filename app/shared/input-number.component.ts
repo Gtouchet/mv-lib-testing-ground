@@ -7,18 +7,15 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   imports: [NgTemplateOutlet],
   template: `
     <ng-template #inputNumberTemplate>
-      <div class="effect-checkbox">
-        <div>
-          <input
-            type="number"
-            [value]="value()"
-            (input)="valueChanged.emit($event)"
-          />
-          {{ label() }}
-        </div>
-      </div>
+      <input
+        type="number"
+        [value]="value()"
+        (input)="valueChanged.emit($event)"
+        [style.width.px]="50"
+        [style.height.px]="16"
+      />
+      {{ label() }}
     </ng-template>
-
     <ng-container
       [ngTemplateOutlet]="inputNumberTemplate"
     />

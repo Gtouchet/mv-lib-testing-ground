@@ -30,15 +30,19 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<
     this.logProperties.set(['disabled', 'active', 'styles', 'effects', 'settings']);
     this.styles = signal<Partial<MvLibSwitchLiteStyles>>({
       widthPx: 48,
-      heightPx: 12,      
+      heightPx: 12,   
+
       trackColorOn: this.appStyles.var('switch-lite-track-color-on'),
       trackColorOff: this.appStyles.var('switch-lite-track-color-off'),
+
+      cursorIconOn: this.appStyles.var('switch-lite-cursor-icon-on'),
       cursorColorOn: this.appStyles.var('switch-lite-cursor-color-on'),
       cursorColorOff: this.appStyles.var('switch-lite-cursor-color-off'),
-      cursorIconOn: this.appStyles.var('switch-lite-cursor-icon-on'),
+      
       cursorIconOff: this.appStyles.var('switch-lite-cursor-icon-off'),
       cursorIconColorOn: this.appStyles.var('switch-lite-cursor-icon-on-color'),
       cursorIconColorOff: this.appStyles.var('switch-lite-cursor-icon-off-color'),
+      
       cursorSizePx: 24,
     });
     this.effects = signal<Partial<MvLibSwitchLiteEffects>>({
