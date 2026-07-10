@@ -2,130 +2,96 @@
 
     <!-- Styles -->
     <div class="styles">
-        <b>
+        <b [style.align-self]="'center'">
             Styles
         </b>
-        <div>
-            <input
-                type="number"
-                [value]="styles().widthPx"
-                (input)="updateStyle('widthPx', $event)"
-            />
-            Width px
-        </div>
-
-        <div>
-            <input
-                type="number"
-                [value]="styles().heightPx"
-                (input)="updateStyle('heightPx', $event)"
-            />
-            Height px
-        </div>
-        
-        <div>
-            <input
-                type="color"
-                [value]="styles().backgroundColor"
-                (input)="updateStyle('backgroundColor', $event)"
-            />
-            Background color
-        </div>
-        
-        <div>
-            <input
-                type="color"
-                [value]="styles().textColor"
-                (input)="updateStyle('textColor', $event)"
-            />
-            Text color
-        </div>
-
-        <div>
-            <input
-                type="color"
-                [value]="styles().borderColor"
-                (input)="updateStyle('borderColor', $event)"
-            />
-            Border color
-        </div>
-
-        <div>
-            <input
-                type="color"
-                [value]="styles().selectedOutlineColor"
-                (input)="updateStyle('selectedOutlineColor', $event)"
-            />
-            Selected outline color
-        </div>
+        <app-input-number
+            [value]="styles().widthPx"
+            label="Width px"
+            (input)="updateStyle('widthPx', $event)"
+        />
+        <app-input-number
+            [value]="styles().heightPx"
+            label="Height px"
+            (input)="updateStyle('heightPx', $event)"
+        />
+        <app-input-color
+            [value]="styles().backgroundColor"
+            label="Background color"
+            (input)="updateStyle('backgroundColor', $event)"
+        />
+        <app-input-color
+            [value]="styles().textColor"
+            label="Text color"
+            (input)="updateStyle('textColor', $event)"
+        />
+        <app-input-color
+            [value]="styles().borderColor"
+            label="Border color"
+            (input)="updateStyle('borderColor', $event)"
+        />        
+        <app-input-color
+            [value]="styles().selectedOutlineColor"
+            label="Selected outline color"
+            (input)="updateStyle('selectedOutlineColor', $event)"
+        />
     </div>
 
     <!-- Effects -->
     <div class="effects">
-        <div>
-            <b>
-                Hover effects
-            </b>
-            <app-input-checkbox
-                [checked]="!!effects().hover?.includes('darken')"
-                label="Darken"
-                (toggled)="updateEffect('hover', 'darken', $event)"
-            />
-        </div>
-
-        <div>
-            <b>
-                Selected effects
-            </b>
-            <app-input-checkbox
-                [checked]="!!effects().selected?.includes('outline-solid')"
-                label="Outline solid"
-                (toggled)="updateEffect('selected', 'outline-solid', $event)"
-            />
-
-            <app-input-checkbox
-                [checked]="!!effects().selected?.includes('outline-blur')"
-                label="Outline blur"
-                (toggled)="updateEffect('selected', 'outline-blur', $event)"
-            />
-        </div>
+        <b [style.align-self]="'center'">
+            Effects
+        </b>
+        <b>
+            Idle effects
+        </b>
+        <app-input-checkbox
+            [checked]="!!effects().hover?.includes('darken')"
+            label="Darken"
+            (toggled)="updateEffect('hover', 'darken', $event)"
+        />
+        <b>
+            Selected effects
+        </b>
+        <app-input-checkbox
+            [checked]="!!effects().selected?.includes('outline-solid')"
+            label="Outline solid"
+            (toggled)="updateEffect('selected', 'outline-solid', $event)"
+        />
+        <app-input-checkbox
+            [checked]="!!effects().selected?.includes('outline-blur')"
+            label="Outline blur"
+            (toggled)="updateEffect('selected', 'outline-blur', $event)"
+        />
     </div>
 
     <!-- Settings -->
     <div class="settings">
-        <b>
+        <b [style.align-self]="'center'">
             Settings
         </b>
-        <div>
-            <input
-                type="checkbox"
-                [checked]="form.get('input')?.disabled"
-                (click)="
-                    form.get('input')?.disabled ? form.get('input')?.enable() : form.get('input')?.disable();
-                    refreshLog();
-                "
-            />
-            Disabled
-        </div>
-
-        <div>
-            <input
-                type="checkbox"
-                [checked]="selected()"
-                (click)="
-                    selected.set(!selected());
-                    refreshLastInteractionTime();
-                    refreshLog();
-                "
-                (mousedown)="$event.preventDefault()"
-            />
-            Selected
-        </div>
+        <app-input-checkbox
+            [checked]="disabled()"
+            label="Disabled"
+            (toggled)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        <app-input-checkbox
+            [checked]="selected()"
+            label="Selected"
+            (toggled)="
+                selected.set(!selected());
+                refreshLastInteractionTime();
+                refreshLog();
+            "
+        />
     </div>
 
     <!-- Form controls -->
     <div class="form-controls">
-        <b>
+        <b [style.align-self]="'center'">
             Form controls
         </b>
         <div class="form-state">
@@ -133,56 +99,42 @@
             <span>{{ form.dirty ? 'Dirty' : 'Pristine' }}</span>
             <span>{{ form.disabled ? 'Disabled' : (form.valid ? 'Valid' : 'Invalid') }}</span>
         </div>
-        <div
-            [class.has-errors]="form.get('input')?.hasError('required')"
-        >
-            <input
-                type="checkbox"
-                [checked]="required()"
-                (input)="
-                    required.set($any($event.target).checked);
-                    updateFormValidator(
-                        'input',
-                        'required',
-                        required());
-                "
-            />
-            Required
-        </div>
-
-        <div
-            [class.has-errors]="form.get('input')?.hasError('minlength')"
-        >
-            <input
-                type="number"
-                [value]="minLength()"
-                (input)="
-                    minLength.set($any($event.target).valueAsNumber);
-                    updateFormValidator(
-                        'input',
-                        'minLength',
-                        minLength());
-                "
-            />
-            Min length
-        </div>
-
-        <div
-            [class.has-errors]="form.get('input')?.hasError('pattern')"
-        >
-            <input
-                type="checkbox"
-                [checked]="onlyCharacters()"
-                (input)="
-                    onlyCharacters.set($any($event.target).checked);
-                    updateFormValidator(
-                        'input',
-                        'pattern-only-characters',
-                        onlyCharacters());
-                "
-            />
-            Only characters
-        </div>
+        <app-input-checkbox
+            [checked]="required()"
+            label="Required"
+            [style.color]="form.get('input')?.hasError('required') ? 'red' : 'black'"
+            (toggled)="
+                required.set($event);
+                updateFormValidator(
+                    'input',
+                    'required',
+                    required());
+            "
+        />
+        <app-input-number
+            [value]="minLength()"
+            label="Min length"
+            [style.color]="form.get('input')?.hasError('minlength') ? 'red' : 'black'"
+            (input)="
+                minLength.set($any($event.target).valueAsNumber);
+                updateFormValidator(
+                    'input',
+                    'minLength',
+                    minLength());
+            "
+        />
+        <app-input-checkbox
+            [checked]="onlyCharacters()"
+            label="Only characters"
+            [style.color]="form.get('input')?.hasError('pattern') ? 'red' : 'black'"
+            (toggled)="
+                onlyCharacters.set($event);
+                updateFormValidator(
+                    'input',
+                    'pattern-only-characters',
+                    onlyCharacters());
+            "
+        />
     </div>
 </div>
 

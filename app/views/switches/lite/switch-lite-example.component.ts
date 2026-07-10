@@ -2,11 +2,14 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchLiteComponent, MvLibSwitchLiteEffects, MvLibSwitchLiteSettings, MvLibSwitchLiteStyles } from 'mv-lib';
 import { StylesService } from '../../../../styles/styles.service';
-import { InputCheckboxComponent } from '../../../shared/input-checkbox.component';
+import { INPUTS } from '../../../shared/inputs.export';
 
 @Component({
   selector: 'app-switch-lite-example',
-  imports: [MvLibSwitchLiteComponent, InputCheckboxComponent],
+  imports: [
+    MvLibSwitchLiteComponent,
+    INPUTS,
+  ],
   templateUrl: './switch-lite-example.component.html',
   styleUrls: [
     './switch-lite-example.component.scss',
@@ -30,20 +33,19 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<
     this.logProperties.set(['disabled', 'active', 'styles', 'effects', 'settings']);
     this.styles = signal<Partial<MvLibSwitchLiteStyles>>({
       widthPx: 48,
-      heightPx: 12,   
+      heightPx: 12,
+      cursorSizePx: 24,
 
       trackColorOn: this.appStyles.var('switch-lite-track-color-on'),
       trackColorOff: this.appStyles.var('switch-lite-track-color-off'),
 
       cursorIconOn: this.appStyles.var('switch-lite-cursor-icon-on'),
       cursorColorOn: this.appStyles.var('switch-lite-cursor-color-on'),
-      cursorColorOff: this.appStyles.var('switch-lite-cursor-color-off'),
-      
-      cursorIconOff: this.appStyles.var('switch-lite-cursor-icon-off'),
       cursorIconColorOn: this.appStyles.var('switch-lite-cursor-icon-on-color'),
+
+      cursorIconOff: this.appStyles.var('switch-lite-cursor-icon-off'),
+      cursorColorOff: this.appStyles.var('switch-lite-cursor-color-off'),
       cursorIconColorOff: this.appStyles.var('switch-lite-cursor-icon-off-color'),
-      
-      cursorSizePx: 24,
     });
     this.effects = signal<Partial<MvLibSwitchLiteEffects>>({
       idle: ['shadow'],
