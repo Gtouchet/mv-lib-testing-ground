@@ -1,0 +1,134 @@
+<div class="configuration">
+
+    <!-- Styles -->
+    <div class="styles">
+        <b [style.align-self]="'center'">
+            Styles
+        </b>
+        <!-- <app-input-number
+            [value]="styles().widthPx"
+            label="Width px"
+            (input)="updateStyle('widthPx', $event)"
+        />
+        <app-input-number
+            [value]="styles().heightPx"
+            label="Height px"
+            (input)="updateStyle('heightPx', $event)"
+        />
+        <app-input-color
+            [value]="styles().backgroundColor"
+            label="Background color"
+            (input)="updateStyle('backgroundColor', $event)"
+        />
+        <app-input-color
+            [value]="styles().textColor"
+            label="Text color"
+            (input)="updateStyle('textColor', $event)"
+        />
+        <app-input-color
+            [value]="styles().borderColor"
+            label="Border color"
+            (input)="updateStyle('borderColor', $event)"
+        />        
+        <app-input-color
+            [value]="styles().selectedOutlineColor"
+            label="Selected outline color"
+            (input)="updateStyle('selectedOutlineColor', $event)"
+        /> -->
+    </div>
+
+    <!-- Effects -->
+    <div class="effects">
+        <b [style.align-self]="'center'">
+            Effects
+        </b>
+        <b>
+            Idle effects
+        </b>
+        <!-- <app-input-checkbox
+            [checked]="!!effects().hover?.includes('darken')"
+            label="Darken"
+            (toggled)="updateEffect('hover', 'darken', $event)"
+        /> -->
+        <b>
+            Hover effects
+        </b>
+        <!-- <app-input-checkbox
+            [checked]="!!effects().selected?.includes('outline-solid')"
+            label="Outline solid"
+            (toggled)="updateEffect('selected', 'outline-solid', $event)"
+        />
+        <app-input-checkbox
+            [checked]="!!effects().selected?.includes('outline-blur')"
+            label="Outline blur"
+            (toggled)="updateEffect('selected', 'outline-blur', $event)"
+        /> -->
+    </div>
+
+    <!-- Settings -->
+    <div class="settings">
+        <b [style.align-self]="'center'">
+            Settings
+        </b>
+        <!-- <app-input-checkbox
+            [checked]="disabled()"
+            label="Disabled"
+            (toggled)="
+                disabled.set(!disabled());
+                refreshLog();
+            "
+        />
+        <app-input-checkbox
+            [checked]="selected()"
+            label="Selected"
+            (toggled)="
+                selected.set(!selected());
+                refreshLastInteractionTime();
+                refreshLog();
+            "
+        /> -->
+    </div>
+</div>
+
+<div class="visual">
+    <div
+        class="component"
+        [style.gap.px]="8"
+    >
+        <mv-lib-button-classic
+            [styles]="{
+                widthPx: 100,
+                backgroundColor: 'green',
+            }"
+            (onClick)="toastService.success()"
+        >
+            Success
+        </mv-lib-button-classic>
+
+        <mv-lib-button-classic
+            [styles]="{
+                widthPx: 100,
+                backgroundColor: 'orange',
+            }"
+            (onClick)="toastService.warning()"
+        >
+            Warning
+        </mv-lib-button-classic>
+
+        <mv-lib-button-classic
+            [styles]="{
+                widthPx: 100,
+                backgroundColor: 'red',
+            }"
+            (onClick)="toastService.error()"
+        >
+            Error
+        </mv-lib-button-classic>
+    </div>
+
+<pre class="log">
+Last interaction time: {{ lastInteractionTime() }}<br/>
+input: {{ form.get('input')?.value }}<br/>
+{{ log() }}
+</pre>
+</div>

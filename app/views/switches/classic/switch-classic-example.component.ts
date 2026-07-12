@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from 'mv-lib';
 import { StylesService } from '../../../../styles/styles.service';
-import { INPUTS } from '../../../shared/inputs.export';
+import { INPUTS } from '../../../shared/inputs/inputs.export';
 
 @Component({
   selector: 'app-switch-classic-example',

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ToastClassicExampleComponent } from './views/toasts/classic/toast-classic-example.component';
 
 import { ButtonClassicExampleComponent } from './views/buttons/classic/button-classic-example.component';
 
@@ -20,4 +21,6 @@ export const routes: Routes = [
 	{ path: 'switch-lite-example', component: SwitchLiteExampleComponent },
 
 	{ path: 'textbox-classic-example', component: TextboxClassicExampleComponent },
+
+	{ path: 'toast-classic-example', component: ToastClassicExampleComponent },
 ];

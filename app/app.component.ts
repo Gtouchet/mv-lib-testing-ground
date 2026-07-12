@@ -6,12 +6,20 @@ import {
   MvLibDropdownClassicEffects,
   MvLibDropdownClassicStyles,
   MvLibDropdownDirectives,
+  MvLibToastClassicComponent,
 } from 'mv-lib';
 import { StylesService } from '../styles/styles.service';
 
 interface Item {
-  name: string;
+  type: string;
   routerLink?: string;
+}
+
+interface DropdownGroup {
+  name: string;
+  icon: string;
+  selected?: Item;
+  items: Item[];
 }
 
 @Component({
@@ -21,6 +29,7 @@ interface Item {
     MvLibButtonClassicComponent,
     MvLibDropdownClassicComponent,
     MvLibDropdownDirectives,
+    MvLibToastClassicComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -32,26 +41,52 @@ export class AppComponent {
   protected router = inject(Router);
   protected appStyles = inject(StylesService);
 
-  protected selectedButtonItem = signal<Item | undefined>(undefined);
-  protected selectedSwitchItem = signal<Item | undefined>(undefined);
-  protected selectedDropdownItem = signal<Item | undefined>(undefined);
-  protected selectedTextboxItem = signal<Item | undefined>(undefined);
+  protected dropdowns = signal<DropdownGroup[]>([
+    {
+      name: 'Buttons',
+      icon: 'trackpad_input',
+      selected: undefined,
+      items: [
+        { type: 'Classic', routerLink: '/button-classic-example' },
+      ],
+    },
+    { 
+      name: 'Dropdowns',
+      icon: 'dropdown_menu',
+      selected: undefined,
+      items: [
+        { type: 'Classic', routerLink: '/dropdown-classic-example' },
+      ],
+    },
+    { 
+      name: 'Switches',
+      icon: 'switches', 
+      selected: undefined,
+      items: [
+        { type: 'Classic', routerLink: '/switch-classic-example' },
+        { type: 'Lite', routerLink: '/switch-lite-example' },
+      ],
+    },
+    { 
+      name: 'Textboxes',
+      icon: 'crop_16_9',
+      selected: undefined,
+      items: [
+        { type: 'Classic', routerLink: '/textbox-classic-example' },
+      ],
+    },
+    {
+      name: 'Toasts',
+      icon: 'notifications',
+      selected: undefined,
+      items: [
+        { type: 'Classic', routerLink: '/toast-classic-example' },
+      ],
+    },
+  ]);
 
-  protected buttonItems: Item[] = [
-    { name: 'Classic', routerLink: '/button-classic-example' },
-  ];
-  protected dropdownItems: Item[] = [
-    { name: 'Classic', routerLink: '/dropdown-classic-example' },
-  ];
-  protected switchItems: Item[] = [
-    { name: 'Classic', routerLink: '/switch-classic-example' },
-    { name: 'Lite', routerLink: '/switch-lite-example' },
-  ];
-  protected textboxItems: Item[] = [
-    { name: 'Classic', routerLink: '/textbox-classic-example' },
-  ];
-
-  protected dropdownStyles: Partial<MvLibDropdownClassicStyles> = {
+  protected dropdownsStyles: Partial<MvLibDropdownClassicStyles> = {
+    buttonWidthPx: 175,
     buttonHeightPx: 32,
     itemHeightPx: 32,
     listMaxHeightPx: 150,
@@ -60,63 +95,19 @@ export class AppComponent {
     itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
     itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
   };
-  protected buttonDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
-    ...this.dropdownStyles,
-    buttonWidthPx: 175,
-  };
-  protected menuDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
-    ...this.dropdownStyles,
-    buttonWidthPx: 175,
-  };
-  protected switchDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
-    ...this.dropdownStyles,
-    buttonWidthPx: 175,
-  };
-  protected textboxDropdownStyles: Partial<MvLibDropdownClassicStyles> = {
-    ...this.dropdownStyles,
-    buttonWidthPx: 175,
-  };
-  protected dropdownEffects: Partial<MvLibDropdownClassicEffects> = {
+  protected dropdownsEffects: Partial<MvLibDropdownClassicEffects> = {
     buttonIdle: ['shadow'],
     buttonHover: ['darken'],
     itemHover: ['darken'],
   };
 
-  protected onButtonSelect(item: Item): void {
-    this.selectedButtonItem.set(item);
-    this.selectedSwitchItem.set(undefined);
-    this.selectedDropdownItem.set(undefined);
-    this.selectedTextboxItem.set(undefined);
-    if (item.routerLink) {
-      this.router.navigateByUrl(item.routerLink);
-    }
-  }
-
-  protected onSwitchSelect(item: Item): void {
-    this.selectedSwitchItem.set(item);
-    this.selectedButtonItem.set(undefined);
-    this.selectedDropdownItem.set(undefined);
-    this.selectedTextboxItem.set(undefined);
-    if (item.routerLink) {
-      this.router.navigateByUrl(item.routerLink);
-    }
-  }
-
-  protected onDropdownSelect(item: Item): void {
-    this.selectedDropdownItem.set(item);
-    this.selectedButtonItem.set(undefined);
-    this.selectedSwitchItem.set(undefined);
-    this.selectedTextboxItem.set(undefined);
-    if (item.routerLink) {
-      this.router.navigateByUrl(item.routerLink);
-    }
-  }
-
-  protected onTextboxSelect(item: Item): void {
-    this.selectedTextboxItem.set(item);
-    this.selectedButtonItem.set(undefined);
-    this.selectedSwitchItem.set(undefined);
-    this.selectedDropdownItem.set(undefined);
+  protected onItemSelect(item: Item, dropdownName: string): void {
+    this.dropdowns.update((dropdowns) =>
+      dropdowns.map((dropdown) => ({
+        ...dropdown,
+        selected: dropdown.name === dropdownName ? item : undefined,
+      })),
+    );
     if (item.routerLink) {
       this.router.navigateByUrl(item.routerLink);
     }

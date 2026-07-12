@@ -9,7 +9,7 @@ import {
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
 import { StylesService } from "../../../../styles/styles.service";
-import { INPUTS } from "../../../shared/inputs.export";
+import { INPUTS } from '../../../shared/inputs/inputs.export';
 
 interface User {
   id: number;

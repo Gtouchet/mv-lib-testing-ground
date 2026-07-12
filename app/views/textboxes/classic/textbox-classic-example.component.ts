@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { StylesService } from '../../../../styles/styles.service';
 import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { INPUTS } from '../../../shared/inputs.export';
+import { INPUTS } from '../../../shared/inputs/inputs.export';
 
 @Component({
   selector: 'app-textbox-classic-example',
@@ -26,7 +26,7 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
   MvLibTextboxClassicSettings
 > {
 
-  protected appStyles = inject(StylesService);
+  private appStyles = inject(StylesService);
 
   protected selected = signal(false);
 
