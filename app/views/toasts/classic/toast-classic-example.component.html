@@ -45,24 +45,52 @@
         <b>
             Idle effects
         </b>
-        <!-- <app-input-checkbox
-            [checked]="!!effects().hover?.includes('darken')"
-            label="Darken"
-            (toggled)="updateEffect('hover', 'darken', $event)"
-        /> -->
+        <app-input-checkbox
+            [checked]="idleEffect_progressBar()"
+            label="Progress bar"
+            (toggled)="
+                idleEffect_progressBar.set($event);
+                toastService.setEffect('progress-bar', $event);
+            "
+        />
         <b>
             Hover effects
         </b>
-        <!-- <app-input-checkbox
-            [checked]="!!effects().selected?.includes('outline-solid')"
+        <app-input-checkbox
+            [checked]="hoverEffect_hoverOutlineSolid()"
             label="Outline solid"
-            (toggled)="updateEffect('selected', 'outline-solid', $event)"
+            (toggled)="
+                hoverEffect_hoverOutlineSolid.set($event);
+                toastService.setEffect('hover-outline-solid', $event);
+            "
         />
         <app-input-checkbox
-            [checked]="!!effects().selected?.includes('outline-blur')"
+            [checked]="hoverEffect_hoverOutlineBlur()"
             label="Outline blur"
-            (toggled)="updateEffect('selected', 'outline-blur', $event)"
-        /> -->
+            (toggled)="
+                hoverEffect_hoverOutlineBlur.set($event);
+                toastService.setEffect('hover-outline-blur', $event);
+            "
+        />
+        <b>
+            Lifecycle effects
+        </b>
+        <app-input-checkbox
+            [checked]="lifecycleEffect_fade()"
+            label="Fade"
+            (toggled)="
+                lifecycleEffect_fade.set($event);
+                toastService.setEffect('fade', $event);
+            "
+        />
+        <app-input-checkbox
+            [checked]="lifecycleEffect_slide()"
+            label="Slide"
+            (toggled)="
+                lifecycleEffect_slide.set($event);
+                toastService.setEffect('slide', $event);
+            "
+        />
     </div>
 
     <!-- Settings -->
@@ -70,23 +98,35 @@
         <b [style.align-self]="'center'">
             Settings
         </b>
-        <!-- <app-input-checkbox
-            [checked]="disabled()"
-            label="Disabled"
-            (toggled)="
-                disabled.set(!disabled());
-                refreshLog();
+        <b>
+            Position
+        </b>
+        <app-input-radio
+            [values]="['top-left', 'top-right', 'bottom-left', 'bottom-right']"
+            [selected]="position()"
+            (onChange)="
+                position.set($any($event));
+                toastService.setPosition(position());
             "
         />
-        <app-input-checkbox
-            [checked]="selected()"
-            label="Selected"
-            (toggled)="
-                selected.set(!selected());
-                refreshLastInteractionTime();
-                refreshLog();
-            "
-        /> -->
+        <b>
+            Lifespans {{ lifespan_success() }} / {{ lifespan_warning() }} / {{ lifespan_error() }}
+        </b>
+        <app-input-number
+            [value]="lifespan_success()"
+            label="Success"
+            (onChange)="lifespan_success.set($event)"
+        />
+        <app-input-number
+            [value]="lifespan_warning()"
+            label="Warning"
+            (onChange)="lifespan_warning.set($event)"
+        />
+        <app-input-number
+            [value]="lifespan_error()"
+            label="Error"
+            (onChange)="lifespan_error.set($event)"
+        />
     </div>
 </div>
 

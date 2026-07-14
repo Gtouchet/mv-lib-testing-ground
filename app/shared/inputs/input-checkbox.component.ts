@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-input-checkbox',
@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, input, model, output } from '@angul
     <ng-template #inputCheckboxTemplate>
       <input
         type="checkbox"
+        [name]="id()"
         [checked]="checked()"
         (click)="onToggle($event)"
         [style.margin]="0"
@@ -22,6 +23,7 @@ import { ChangeDetectionStrategy, Component, input, model, output } from '@angul
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputCheckboxComponent {
+  public id = input<number>();
   public checked = input(false);
   public label = input('');
   public toggled = output<boolean>();
