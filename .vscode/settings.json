@@ -1,3 +1,9 @@
 {
-  "workbench.editor.wrapTabs": true
+  "workbench.editor.wrapTabs": true,
+  "git.autoRepositoryDetection": "subFolders",
+  "git.repositoryScanMaxDepth": 3,
+  "git.scanRepositories": [
+    "mv-lib",
+    "mv-lib-testing-ground"
+  ]
 }

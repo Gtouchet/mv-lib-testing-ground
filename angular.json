@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-workshop": {
+    "mv-lib-testing-ground": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -11,21 +11,21 @@
         }
       },
       "root": "",
-      "sourceRoot": "playground",
+      "sourceRoot": "mv-lib-testing-ground",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-workshop",
-              "index": "playground/index.html",
-            "browser": "playground/main.ts",
+            "outputPath": "dist/mv-lib-testing-ground",
+              "index": "mv-lib-testing-ground/index.html",
+            "browser": "mv-lib-testing-ground/main.ts",
             "polyfills": [
               "zone.js"
             ],
               "stylePreprocessorOptions": {
               "includePaths": [
-                "playground/styles"
+                "mv-lib-testing-ground/styles"
               ]
             },
             "tsConfig": "tsconfig.app.json",
@@ -37,7 +37,7 @@
               }
             ],
             "styles": [
-              "playground/styles/styles-white-theme.scss"
+              "mv-lib-testing-ground/styles/styles-white-theme.scss"
             ],
             "scripts": []
           },
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-workshop:build:production"
+              "buildTarget": "mv-lib-testing-ground:build:production"
             },
             "development": {
-              "buildTarget": "angular-workshop:build:development"
+              "buildTarget": "mv-lib-testing-ground:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,7 +91,7 @@
             "inlineStyleLanguage": "scss",
             "stylePreprocessorOptions": {
               "includePaths": [
-                "playground/styles"
+                "mv-lib-testing-ground/styles"
               ]
             },
             "assets": [
@@ -101,7 +101,7 @@
               }
             ],
             "styles": [
-              "playground/styles/styles-white-theme.scss"
+              "mv-lib-testing-ground/styles/styles-white-theme.scss"
             ],
             "scripts": []
           }

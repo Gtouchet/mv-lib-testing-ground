@@ -7,9 +7,9 @@
     "types": []
   },
   "files": [
-    "playground/main.ts"
+    "mv-lib-testing-ground/main.ts"
   ],
   "include": [
-    "playground/**/*.d.ts"
+    "mv-lib-testing-ground/**/*.d.ts"
   ]
 }
