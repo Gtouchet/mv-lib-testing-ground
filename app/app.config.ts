@@ -6,25 +6,17 @@ import { routes } from './app.routes';
 const toastServiceConfiguration: MvLibToastServiceConfiguration = {
   position: 'bottom-right',
   success: {
-    styles: {
-      backgroundColor: 'Green',
-      textColor: 'White',
-    },
+    styles: { backgroundColor: 'Green', textColor: 'White', },
   },
   warning: {
-    styles: {
-      backgroundColor: 'Orange',
-      textColor: 'White',
-    },
+    styles: { backgroundColor: 'Orange', textColor: 'White', },
   },
   error: {
-    styles: {
-      backgroundColor: 'Red',
-      textColor: 'White',
-    },
-    settings: {
-      lifespan: 6_000,
-    },
+    styles: { backgroundColor: 'Red', textColor: 'White', },
+    settings: { lifespan: 6_000, },
+  },
+  info: {
+    styles: { backgroundColor: 'SkyBlue', textColor: 'Black', },
   },
 }
 

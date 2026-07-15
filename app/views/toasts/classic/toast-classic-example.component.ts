@@ -68,6 +68,16 @@ export class ToastClassicExampleComponent extends BaseExampleComponent<
       borderColor: '',
       hoveredOutlineColor: 'Red',
     });
+    protected infoConfiguration = signal<ExampleToastConfiguration>({
+      forcedWidthPx: undefined,
+      forcedHeightPx: undefined,
+      icon: 'info',
+      text: 'Info',
+      backgroundColor: 'SkyBlue',
+      textColor: 'Black',
+      borderColor: '',
+      hoveredOutlineColor: 'SkyBlue',
+    });
 
     /**
      * Effects
@@ -85,11 +95,7 @@ export class ToastClassicExampleComponent extends BaseExampleComponent<
     protected lifespan_success = signal(3_000);
     protected lifespan_warning = signal(3_000);
     protected lifespan_error = signal(6_000);
-
-    constructor() {
-        super();
-
-    }
+    protected lifespan_info = signal(3_000);
 
     protected initForm() {
 
