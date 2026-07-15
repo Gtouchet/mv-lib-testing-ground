@@ -71,10 +71,10 @@
             Settings
         </b>
         <app-input-checkbox
-            [checked]="disabled()"
+            [checked]="!!form.get('input')?.disabled"
             label="Disabled"
             (toggled)="
-                disabled.set(!disabled());
+                $event ? form.get('input')?.disable() : form.get('input')?.enable();
                 refreshLog();
             "
         />
