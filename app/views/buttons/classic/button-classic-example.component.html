@@ -8,22 +8,22 @@
         <app-input-number
             [value]="styles().widthPx"
             label="Width px"
-            (input)="updateStyle('widthPx', $event)"
+            (onChange)="updateStyle('widthPx', $event)"
         />
         <app-input-number
             [value]="styles().heightPx"
             label="Height px"
-            (input)="updateStyle('heightPx', $event)"
+            (onChange)="updateStyle('heightPx', $event)"
         />
         <app-input-color
             [value]="styles().backgroundColor"
             label="Background color"
-            (input)="updateStyle('backgroundColor', $event)"
+            (onChange)="updateStyle('backgroundColor', $event)"
         />
         <app-input-color
             [value]="styles().textColor"
             label="Text color"
-            (input)="updateStyle('textColor', $event)"
+            (onChange)="updateStyle('textColor', $event)"
         />
     </div>
 
@@ -38,7 +38,7 @@
         <app-input-checkbox
             [checked]="!!effects().idle?.includes('shadow')"
             label="Shadow"
-            (toggled)="updateEffect('idle', 'shadow', $event)"
+            (onChange)="updateEffect('idle', 'shadow', $event)"
         />
         <b>
             Hover
@@ -46,7 +46,7 @@
         <app-input-checkbox
             [checked]="!!effects().hover?.includes('darken')"
             label="Darken"
-            (toggled)="updateEffect('hover', 'darken', $event)"
+            (onChange)="updateEffect('hover', 'darken', $event)"
         />
         <b>
             Click
@@ -54,12 +54,12 @@
         <app-input-checkbox
             [checked]="!!effects().click?.includes('push')"
             label="Push"
-            (toggled)="updateEffect('click', 'push', $event)"
+            (onChange)="updateEffect('click', 'push', $event)"
         />
         <app-input-checkbox
             [checked]="!!effects().click?.includes('ripple')"
             label="Ripple"
-            (toggled)="updateEffect('click', 'ripple', $event)"
+            (onChange)="updateEffect('click', 'ripple', $event)"
         />
     </div>
 
@@ -71,8 +71,8 @@
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
-            (toggled)="
-                disabled.set(!disabled());
+            (onChange)="
+                disabled.set($event);
                 refreshLog();
             "
         />

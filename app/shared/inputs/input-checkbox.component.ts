@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         type="checkbox"
         [name]="id()"
         [checked]="checked()"
-        (click)="onToggle($event)"
+        (click)="handleClick($event)"
         [style.margin]="0"
       />
       {{ label() }}
@@ -26,9 +26,10 @@ export class InputCheckboxComponent {
   public id = input<number>();
   public checked = input(false);
   public label = input('');
-  public toggled = output<boolean>();
+  public onChange = output<boolean>();
 
-  protected onToggle(event: Event) {
-    this.toggled.emit((event.target as HTMLInputElement).checked);
+  protected handleClick(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.onChange.emit(input.checked);
   }
 }

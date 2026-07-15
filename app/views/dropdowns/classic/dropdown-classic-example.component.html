@@ -11,22 +11,22 @@
         <app-input-number
             [value]="styles().buttonWidthPx"
             label="Button width px"
-            (input)="updateStyle('buttonWidthPx', $event)"
+            (onChange)="updateStyle('buttonWidthPx', $event)"
         />
         <app-input-number
             [value]="styles().buttonHeightPx"
             label="Button height px"
-            (input)="updateStyle('buttonHeightPx', $event)"
+            (onChange)="updateStyle('buttonHeightPx', $event)"
         />
         <app-input-color
             [value]="styles().buttonBackgroundColor"
             label="Button background color"
-            (input)="updateStyle('buttonBackgroundColor', $event)"
+            (onChange)="updateStyle('buttonBackgroundColor', $event)"
         />
         <app-input-color
             [value]="styles().buttonTextColor"
             label="Button text color"
-            (input)="updateStyle('buttonTextColor', $event)"
+            (onChange)="updateStyle('buttonTextColor', $event)"
         />
         <b>
             List
@@ -34,7 +34,7 @@
         <app-input-number
             [value]="styles().listMaxHeightPx"
             label="List max height px"
-            (input)="updateStyle('listMaxHeightPx', $event)"
+            (onChange)="updateStyle('listMaxHeightPx', $event)"
         />
         <b>
             Item
@@ -42,17 +42,17 @@
         <app-input-number
             [value]="styles().itemHeightPx"
             label="Item height px"
-            (input)="updateStyle('itemHeightPx', $event)"
+            (onChange)="updateStyle('itemHeightPx', $event)"
         />        
         <app-input-color
             [value]="styles().itemBackgroundColor"
             label="Item background color"
-            (input)="updateStyle('itemBackgroundColor', $event)"
+            (onChange)="updateStyle('itemBackgroundColor', $event)"
         />
         <app-input-color
             [value]="styles().itemTextColor"
             label="Item text color"
-            (input)="updateStyle('itemTextColor', $event)"
+            (onChange)="updateStyle('itemTextColor', $event)"
         />
     </div>
 
@@ -68,7 +68,7 @@
             <app-input-checkbox
                 [checked]="!!effects().buttonIdle?.includes('shadow')"
                 label="Shadow"
-                (toggled)="updateEffect('buttonIdle', 'shadow', $event)"
+                (onChange)="updateEffect('buttonIdle', 'shadow', $event)"
             />
             <b>
                 Button hover
@@ -76,7 +76,7 @@
             <app-input-checkbox
                 [checked]="!!effects().buttonHover?.includes('darken')"
                 label="Darken"
-                (toggled)="updateEffect('buttonHover', 'darken', $event)"
+                (onChange)="updateEffect('buttonHover', 'darken', $event)"
             />
             <b>
                 Button click
@@ -84,12 +84,12 @@
             <app-input-checkbox
                 [checked]="!!effects().buttonClick?.includes('push')"
                 label="Push"
-                (toggled)="updateEffect('buttonClick', 'push', $event)"
+                (onChange)="updateEffect('buttonClick', 'push', $event)"
             />
             <app-input-checkbox
                 [checked]="!!effects().buttonClick?.includes('ripple')"
                 label="Ripple"
-                (toggled)="updateEffect('buttonClick', 'ripple', $event)"
+                (onChange)="updateEffect('buttonClick', 'ripple', $event)"
             />
             <b>
                 List idle
@@ -97,7 +97,7 @@
             <app-input-checkbox
                 [checked]="!!effects().listIdle?.includes('shadow')"
                 label="Shadow"
-                (toggled)="updateEffect('listIdle', 'shadow', $event)"
+                (onChange)="updateEffect('listIdle', 'shadow', $event)"
             />
             <b>
                 Item hover
@@ -105,7 +105,7 @@
             <app-input-checkbox
                 [checked]="!!effects().itemHover?.includes('darken')"
                 label="Darken"
-                (toggled)="updateEffect('itemHover', 'darken', $event)"
+                (onChange)="updateEffect('itemHover', 'darken', $event)"
             />
             <b>
                 Item click
@@ -113,12 +113,12 @@
             <app-input-checkbox
                 [checked]="!!effects().itemClick?.includes('push')"
                 label="Push"
-                (toggled)="updateEffect('itemClick', 'push', $event)"
+                (onChange)="updateEffect('itemClick', 'push', $event)"
             />
             <app-input-checkbox
                 [checked]="!!effects().itemClick?.includes('ripple')"
                 label="Ripple"
-                (toggled)="updateEffect('itemClick', 'ripple', $event)"
+                (onChange)="updateEffect('itemClick', 'ripple', $event)"
             />
         </div>
     </div>
@@ -131,23 +131,23 @@
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
-            (toggled)="
-                disabled.set(!disabled());
+            (onChange)="
+                disabled.set($event);
                 refreshLog();
             "
         />
         <app-input-checkbox
             [checked]="opened()"
             label="Opened"
-            (toggled)="
-                opened.set(!opened());
+            (onChange)="
+                opened.set($event);
                 refreshLog();
             "
         />
         <app-input-checkbox
             [checked]="!!settings().closeOnItemSelect"
             label="Close on item select"
-            (toggled)="
+            (onChange)="
                 updateSetting('closeOnItemSelect', $event);
                 refreshLog();
             "
@@ -155,7 +155,7 @@
         <app-input-checkbox
             [checked]="!!settings().closeOnOutsideClick"
             label="Close on outside click"
-            (toggled)="
+            (onChange)="
                 updateSetting('closeOnOutsideClick', $event);
                 refreshLog();
             "
@@ -163,7 +163,7 @@
         <app-input-checkbox
             [checked]="!!settings().resetButton"
             label="Reset button"
-            (toggled)="
+            (onChange)="
                 updateSetting('resetButton', $event);
                 refreshLog();
             "

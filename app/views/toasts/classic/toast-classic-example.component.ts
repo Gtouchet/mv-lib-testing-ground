@@ -92,6 +92,7 @@ export class ToastClassicExampleComponent extends BaseExampleComponent<
      * Settings
      */
     protected position = signal<ToastPosition>('bottom-right');
+    protected adaptWidth = signal(false);
     protected lifespan_success = signal(3_000);
     protected lifespan_warning = signal(3_000);
     protected lifespan_error = signal(6_000);

@@ -35,8 +35,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 export class InputRadioComponent<Type> {
   public values = input<Type[]>([]);
   public selected = input<Type>();
-  
-  readonly onChange = output<Type>();
+  public onChange = output<Type>();
 
   protected handleChange(event: Event) {
     const input = event.target as HTMLInputElement;

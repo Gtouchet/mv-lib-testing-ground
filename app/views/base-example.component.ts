@@ -27,14 +27,11 @@ export abstract class BaseExampleComponent<
 
     protected updateStyle(
         key: keyof Styles,
-        event: any,
+        value: any,
     ) {
-        const target = event.target as HTMLInputElement | null;
         this.styles.update(current => ({
             ...current,
-            [key]: target?.type === 'number'
-                ? Number.isNaN(target.valueAsNumber) ? undefined : target.valueAsNumber
-                : target?.value,
+            [key]: value,
         }));
         this.refreshLog();
     }

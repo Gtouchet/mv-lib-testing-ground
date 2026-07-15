@@ -214,7 +214,7 @@
         <app-input-checkbox
             [checked]="idleEffect_progressBar()"
             label="Progress bar"
-            (toggled)="
+            (onChange)="
                 idleEffect_progressBar.set($event);
                 toastService.setEffect('progress-bar', $event);
             "
@@ -225,7 +225,7 @@
         <app-input-checkbox
             [checked]="hoverEffect_hoverOutlineSolid()"
             label="Outline solid"
-            (toggled)="
+            (onChange)="
                 hoverEffect_hoverOutlineSolid.set($event);
                 toastService.setEffect('hover-outline-solid', $event);
             "
@@ -233,7 +233,7 @@
         <app-input-checkbox
             [checked]="hoverEffect_hoverOutlineBlur()"
             label="Outline blur"
-            (toggled)="
+            (onChange)="
                 hoverEffect_hoverOutlineBlur.set($event);
                 toastService.setEffect('hover-outline-blur', $event);
             "
@@ -244,7 +244,7 @@
         <app-input-checkbox
             [checked]="lifecycleEffect_fade()"
             label="Fade"
-            (toggled)="
+            (onChange)="
                 lifecycleEffect_fade.set($event);
                 toastService.setEffect('fade', $event);
             "
@@ -252,7 +252,7 @@
         <app-input-checkbox
             [checked]="lifecycleEffect_slide()"
             label="Slide"
-            (toggled)="
+            (onChange)="
                 lifecycleEffect_slide.set($event);
                 toastService.setEffect('slide', $event);
             "
@@ -275,6 +275,14 @@
                 toastService.setPosition(position());
             "
         />
+        <app-input-checkbox
+            [checked]="adaptWidth()"
+            label="Adapt width"
+            (onChange)="
+                adaptWidth.set($event);
+                toastService.setAdaptWidth($event);
+            "
+        />
         <b>
             Lifespans (ms)
         </b>
@@ -284,7 +292,7 @@
             [widthPx]="65"
             (onChange)="
                 lifespan_success.set($event);
-                toastService.setSetting('lifespan', lifespan_success());
+                toastService.setSetting('success', 'lifespan', lifespan_success());
             "
         />
         <app-input-number
@@ -293,7 +301,7 @@
             [widthPx]="65"
             (onChange)="
                 lifespan_warning.set($event);
-                toastService.setSetting('lifespan', lifespan_warning());
+                toastService.setSetting('warning', 'lifespan', lifespan_warning());
             "
         />
         <app-input-number
@@ -302,7 +310,7 @@
             [widthPx]="65"
             (onChange)="
                 lifespan_error.set($event);
-                toastService.setSetting('lifespan', lifespan_error());
+                toastService.setSetting('error', 'lifespan', lifespan_error());
             "
         />
         <app-input-number
@@ -311,7 +319,7 @@
             [widthPx]="65"
             (onChange)="
                 lifespan_info.set($event);
-                toastService.setSetting('lifespan', lifespan_info());
+                toastService.setSetting('info', 'lifespan', lifespan_info());
             "
         />
     </div>

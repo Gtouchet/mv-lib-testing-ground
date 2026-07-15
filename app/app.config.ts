@@ -4,7 +4,6 @@ import { MvLibToastService, MvLibToastServiceConfiguration } from 'mv-lib';
 import { routes } from './app.routes';
 
 const toastServiceConfiguration: MvLibToastServiceConfiguration = {
-  position: 'bottom-right',
   success: {
     styles: { backgroundColor: 'Green', textColor: 'White', },
   },

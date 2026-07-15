@@ -8,17 +8,17 @@
         <app-input-number
             [value]="styles().widthPx"
             label="Width px"
-            (input)="updateStyle('widthPx', $event)"
+            (onChange)="updateStyle('widthPx', $event)"
         />        
         <app-input-number
             [value]="styles().heightPx"
             label="Height px"
-            (input)="updateStyle('heightPx', $event)"
+            (onChange)="updateStyle('heightPx', $event)"
         />
         <app-input-number
             [value]="styles().cursorSizePx"
             label="Cursor size px"
-            (input)="updateStyle('cursorSizePx', $event)"
+            (onChange)="updateStyle('cursorSizePx', $event)"
         />
         <b>
             Track
@@ -26,12 +26,12 @@
         <app-input-color
             [value]="styles().trackColorOn"
             label="Track color on"
-            (input)="updateStyle('trackColorOn', $event)"
+            (onChange)="updateStyle('trackColorOn', $event)"
         />        
         <app-input-color
             [value]="styles().trackColorOff"
             label="Track color off"
-            (input)="updateStyle('trackColorOff', $event)"
+            (onChange)="updateStyle('trackColorOff', $event)"
         />
         <b>
             Cursor on
@@ -39,17 +39,17 @@
         <app-input-text
             [value]="styles().cursorIconOn"
             label="Cursor icon on"
-            (input)="updateStyle('cursorIconOn', $event)"
+            (onChange)="updateStyle('cursorIconOn', $event)"
         />
         <app-input-color
             [value]="styles().cursorColorOn"
             label="Cursor color on"
-            (input)="updateStyle('cursorColorOn', $event)"
+            (onChange)="updateStyle('cursorColorOn', $event)"
         />
         <app-input-color
             [value]="styles().cursorIconColorOn"
             label="Cursor icon color on"
-            (input)="updateStyle('cursorIconColorOn', $event)"
+            (onChange)="updateStyle('cursorIconColorOn', $event)"
         />
         <b>
             Cursor off
@@ -57,17 +57,17 @@
         <app-input-text
             [value]="styles().cursorIconOff"
             label="Cursor icon off"
-            (input)="updateStyle('cursorIconOff', $event)"
+            (onChange)="updateStyle('cursorIconOff', $event)"
         />
         <app-input-color
             [value]="styles().cursorColorOff"
             label="Cursor color off"
-            (input)="updateStyle('cursorColorOff', $event)"
+            (onChange)="updateStyle('cursorColorOff', $event)"
         />
         <app-input-color
             [value]="styles().cursorIconColorOff"
             label="Cursor icon color off"
-            (input)="updateStyle('cursorIconColorOff', $event)"
+            (onChange)="updateStyle('cursorIconColorOff', $event)"
         />
     </div>
 
@@ -82,7 +82,7 @@
         <app-input-checkbox
             [checked]="!!effects().idle?.includes('shadow')"
             label="Shadow"
-            (toggled)="updateEffect('idle', 'shadow', $event)"
+            (onChange)="updateEffect('idle', 'shadow', $event)"
         />
         <b>
             Hover effects
@@ -90,7 +90,7 @@
         <app-input-checkbox
             [checked]="!!effects().hover?.includes('enlarge-cursor')"
             label="Enlarge cursor"
-            (toggled)="updateEffect('hover', 'enlarge-cursor', $event)"
+            (onChange)="updateEffect('hover', 'enlarge-cursor', $event)"
         />
         <b>
             Click effects
@@ -98,12 +98,12 @@
         <app-input-checkbox
             [checked]="!!effects().click?.includes('push')"
             label="Push"
-            (toggled)="updateEffect('click', 'push', $event)"
+            (onChange)="updateEffect('click', 'push', $event)"
         />
         <app-input-checkbox
             [checked]="!!effects().click?.includes('ripple')"
             label="Ripple"
-            (toggled)="updateEffect('click', 'ripple', $event)"
+            (onChange)="updateEffect('click', 'ripple', $event)"
         />
     </div>
 
@@ -115,16 +115,16 @@
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
-            (toggled)="
-                disabled.set(!disabled());
+            (onChange)="
+                disabled.set($event);
                 refreshLog();
             "
         />
         <app-input-checkbox
             [checked]="active()"
             label="Activated"
-            (toggled)="
-                active.set(!active());
+            (onChange)="
+                active.set($event);
                 refreshLog();
             "
         />
