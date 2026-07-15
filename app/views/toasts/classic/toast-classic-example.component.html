@@ -8,81 +8,147 @@
         <b>
             Success
         </b>
+        <app-input-number
+            [value]="successConfiguration().forcedWidthPx"
+            label="Width px"
+            (onChange)="successConfiguration.update(c => ({ ...c, forcedWidthPx: $event }))"
+        />
+        <app-input-number
+            [value]="successConfiguration().forcedHeightPx"
+            label="Height px"
+            (onChange)="successConfiguration.update(c => ({ ...c, forcedHeightPx: $event }))"
+        />
+        <app-input-text
+            [value]="successConfiguration().icon"
+            label="Icon"
+            [widthPx]="150"
+            (onChange)="successConfiguration.update(c => ({ ...c, icon: $event }))"
+        />
+        <app-input-text
+            [value]="successConfiguration().text"
+            label="Text"
+            [widthPx]="150"
+            (onChange)="successConfiguration.update(c => ({ ...c, text: $event }))"
+        />
         <app-input-color
-            [value]="success_backgroundColor()"
+            [value]="successConfiguration().backgroundColor"
             label="Background color"
             (onChange)="
-                success_backgroundColor.set($event);
+                successConfiguration.update(c => ({ ...c, backgroundColor: $event }));
                 toastService.setStyle('success', 'backgroundColor', $event);
             "
         />
         <app-input-color
-            [value]="success_textColor()"
+            [value]="successConfiguration().textColor"
             label="Text color"
             (onChange)="
-                success_textColor.set($event);
+                successConfiguration.update(c => ({ ...c, textColor: $event }));
                 toastService.setStyle('success', 'textColor', $event);
             "
         />
         <app-input-color
-            [value]="success_hoveredOutlineColor()"
+            [value]="successConfiguration().hoveredOutlineColor"
             label="Hovered outline color"
             (onChange)="
-                success_hoveredOutlineColor.set($event);
+                successConfiguration.update(c => ({ ...c, hoveredOutlineColor: $event }));
                 toastService.setStyle('success', 'hoveredOutlineColor', $event);
             "
         />
         <b>
             Warning
         </b>
+        <app-input-number
+            [value]="warningConfiguration().forcedWidthPx"
+            label="Width px"
+            (onChange)="warningConfiguration.update(c => ({ ...c, forcedWidthPx: $event }))"
+        />
+        <app-input-number
+            [value]="warningConfiguration().forcedHeightPx"
+            label="Height px"
+            (onChange)="warningConfiguration.update(c => ({ ...c, forcedHeightPx: $event }))"
+        />
+        <app-input-text
+            [value]="warningConfiguration().icon"
+            label="Icon"
+            [widthPx]="150"
+            (onChange)="warningConfiguration.update(c => ({ ...c, icon: $event }))"
+        />
+        <app-input-text
+            [value]="warningConfiguration().text"
+            label="Text"
+            [widthPx]="150"
+            (onChange)="warningConfiguration.update(c => ({ ...c, text: $event }))"
+        />
         <app-input-color
-            [value]="warning_backgroundColor()"
+            [value]="warningConfiguration().backgroundColor"
             label="Background color"
             (onChange)="
-                warning_backgroundColor.set($event);
+                warningConfiguration.update(c => ({ ...c, backgroundColor: $event }));
                 toastService.setStyle('warning', 'backgroundColor', $event);
             "
         />
         <app-input-color
-            [value]="warning_textColor()"
+            [value]="warningConfiguration().textColor"
             label="Text color"
             (onChange)="
-                warning_textColor.set($event);
+                warningConfiguration.update(c => ({ ...c, textColor: $event }));
                 toastService.setStyle('warning', 'textColor', $event);
             "
         />
         <app-input-color
-            [value]="warning_hoveredOutlineColor()"
+            [value]="warningConfiguration().hoveredOutlineColor"
             label="Hovered outline color"
             (onChange)="
-                warning_hoveredOutlineColor.set($event);
+                warningConfiguration.update(c => ({ ...c, hoveredOutlineColor: $event }));
                 toastService.setStyle('warning', 'hoveredOutlineColor', $event);
             "
         />
         <b>
             Error
         </b>
+        <app-input-number
+            [value]="errorConfiguration().forcedWidthPx"
+            label="Width px"
+            (onChange)="errorConfiguration.update(c => ({ ...c, forcedWidthPx: $event }))"
+        />
+        <app-input-number
+            [value]="errorConfiguration().forcedHeightPx"
+            label="Height px"
+            (onChange)="errorConfiguration.update(c => ({ ...c, forcedHeightPx: $event }))"
+        />
+        <app-input-text
+            [value]="errorConfiguration().icon"
+            label="Icon"
+            [widthPx]="150"
+            (onChange)="errorConfiguration.update(c => ({ ...c, icon: $event }))"
+        />
+        <app-input-text
+            [value]="errorConfiguration().text"
+            label="Text"
+            [widthPx]="150"
+            (onChange)="errorConfiguration.update(c => ({ ...c, text: $event }))"
+        />
         <app-input-color
-            [value]="error_backgroundColor()"
+            [value]="errorConfiguration().backgroundColor"
             label="Background color"
             (onChange)="
-                error_backgroundColor.set($event);
+                errorConfiguration.update(c => ({ ...c, backgroundColor: $event }));
                 toastService.setStyle('error', 'backgroundColor', $event);
             "
         />
         <app-input-color
-            [value]="error_textColor()"
+            [value]="errorConfiguration().textColor"
             label="Text color"
             (onChange)="
-                error_textColor.set($event);
+                errorConfiguration.update(c => ({ ...c, textColor: $event }));
                 toastService.setStyle('error', 'textColor', $event);
             "
         />
         <app-input-color
-            [value]="error_hoveredOutlineColor()"
+            [value]="errorConfiguration().hoveredOutlineColor"
             label="Hovered outline color"
             (onChange)="
-                error_hoveredOutlineColor.set($event);
+                errorConfiguration.update(c => ({ ...c, hoveredOutlineColor: $event }));
                 toastService.setStyle('error', 'hoveredOutlineColor', $event);
             "
         />
@@ -201,9 +267,16 @@
         <mv-lib-button-classic
             [styles]="{
                 widthPx: 100,
-                backgroundColor: success_backgroundColor(),
+                backgroundColor: successConfiguration().backgroundColor,
             }"
-            (onClick)="toastService.success()"
+            (onClick)="toastService.success(
+                successConfiguration().text,
+                successConfiguration().icon,
+                {
+                    widthPx: successConfiguration().forcedWidthPx,
+                    heightPx: successConfiguration().forcedHeightPx,
+                }
+            )"
         >
             Success
         </mv-lib-button-classic>
@@ -211,19 +284,33 @@
         <mv-lib-button-classic
             [styles]="{
                 widthPx: 100,
-                backgroundColor: warning_backgroundColor(),
+                backgroundColor: warningConfiguration().backgroundColor,
             }"
-            (onClick)="toastService.warning()"
+            (onClick)="toastService.warning(
+                warningConfiguration().text,
+                warningConfiguration().icon,
+                {
+                    widthPx: warningConfiguration().forcedWidthPx,
+                    heightPx: warningConfiguration().forcedHeightPx,
+                }
+            )"
         >
             Warning
         </mv-lib-button-classic>
 
         <mv-lib-button-classic
-            [styles]="{
+           [styles]="{
                 widthPx: 100,
-                backgroundColor: error_backgroundColor(),
+                backgroundColor: errorConfiguration().backgroundColor,
             }"
-            (onClick)="toastService.error()"
+            (onClick)="toastService.error(
+                errorConfiguration().text,
+                errorConfiguration().icon,
+                {
+                    widthPx: errorConfiguration().forcedWidthPx,
+                    heightPx: errorConfiguration().forcedHeightPx,
+                }
+            )"
         >
             Error
         </mv-lib-button-classic>

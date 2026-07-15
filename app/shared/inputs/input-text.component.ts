@@ -10,8 +10,8 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       <input
         type="text"
         [value]="value()"
-        (input)="valueChanged.emit($event)"
-        [style.width.px]="50"
+        (input)="handleInput($event)"
+        [style.width.px]="widthPx()"
         [style.height.px]="16"
       />
       {{ label() }}
@@ -25,5 +25,11 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 export class InputTextComponent {
   public value = input<string | undefined>(undefined);
   public label = input('');
-  public valueChanged = output<Event>();
+  public widthPx = input<number>(50);
+  public onChange = output<string>();
+
+  protected handleInput(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    this.onChange.emit(inputElement.value);
+  }
 }
