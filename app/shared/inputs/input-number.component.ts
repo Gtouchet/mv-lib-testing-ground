@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         type="number"
         [value]="value()"
         (input)="handleInput($event)"
-        [style.width.px]="50"
+        [style.width.px]="widthPx()"
         [style.height.px]="16"
       />
       {{ label() }}
@@ -25,6 +25,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 export class InputNumberComponent {
   public value = input<number | undefined>(undefined);
   public label = input('');
+  public widthPx = input<number>(50);
   public onChange = output<number>();
 
   protected handleInput(event: Event) {
