@@ -1,34 +1,27 @@
-import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-input-radio',
   standalone: true,
-  imports: [NgTemplateOutlet],
   template: `
-    <ng-template #inputRadioTemplate>
-      <div
-        [style.display]="'flex'"
-        [style.flex-direction]="'column'"
-        [style.align-items]="'flex-start'"
-      >
-        @for (value of values(); track $index) {
-          <div>
-            <input
-              type="radio"
-              [value]="value"
-              [checked]="value == selected()"
-              (change)="handleChange($event)"
-              [style.margin]="0"
-            />
-            {{ value }}
-          </div>
-        }
-      </div>
-    </ng-template>
-    <ng-container
-      [ngTemplateOutlet]="inputRadioTemplate"
-    />
+    <div
+      [style.display]="'flex'"
+      [style.flex-direction]="'column'"
+      [style.align-items]="'flex-start'"
+    >
+      @for (value of values(); track $index) {
+        <div>
+          <input
+            type="radio"
+            [value]="value"
+            [checked]="value == selected()"
+            (change)="handleChange($event)"
+            [style.margin]="0"
+          />
+          {{ value }}
+        </div>
+      }
+    </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

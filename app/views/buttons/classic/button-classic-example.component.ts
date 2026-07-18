@@ -1,6 +1,6 @@
 import { BaseExampleComponent } from '../../base-example.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles, MvLibToastService } from 'mv-lib';
+import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles, MvLibRadioButtonsClassicComponent, MvLibToastService } from 'mv-lib';
 import { StylesService } from '../../../../styles/styles.service';
 import { INPUTS } from '../../../shared/inputs/inputs.export';
 
@@ -9,6 +9,7 @@ import { INPUTS } from '../../../shared/inputs/inputs.export';
   imports: [
     MvLibButtonClassicComponent,
     INPUTS,
+    MvLibRadioButtonsClassicComponent,
   ],
   templateUrl: './button-classic-example.component.html',
   styleUrls: [
