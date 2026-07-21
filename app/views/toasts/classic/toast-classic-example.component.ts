@@ -26,10 +26,10 @@ export class ToastClassicExampleComponent extends BaseExampleComponent<
 > {
     protected toastService = inject(MvLibToastService);
 
-    protected success = signal<{ icon: string, message: string }>({ icon: 'check_circle', message: 'Success' });
-    protected warning = signal<{ icon: string, message: string }>({ icon: 'warning', message: 'Warning' });
-    protected error = signal<{ icon: string, message: string }>({ icon: 'error', message: 'Error' });
-    protected info = signal<{ icon: string, message: string }>({ icon: 'info', message: 'Info' });
+    protected success = signal<{ icon: string, message: string }>({ icon: 'check_circle', message: 'Success message' });
+    protected warning = signal<{ icon: string, message: string }>({ icon: 'warning', message: 'Warning message' });
+    protected error = signal<{ icon: string, message: string }>({ icon: 'error', message: 'Error message' });
+    protected info = signal<{ icon: string, message: string }>({ icon: 'info', message: 'Info message' });
     
     protected initForm() {
 

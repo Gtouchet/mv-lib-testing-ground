@@ -24,16 +24,22 @@
             [widthPx]="150"
             (onChange)="success().icon = $event;"
         />
-        <app-input-color
-            [value]="toastService.configuration().success!.styles!.backgroundColor"
-            label="Background color"
-            (onChange)="toastService.configuration().success!.styles!.backgroundColor = $event"
+        <app-input-text
+            [value]="success().message"
+            label="Message"
+            [widthPx]="150"
+            (onChange)="success().message = $event;"
         />
         <app-input-text
             [value]="toastService.configuration().success!.styles!.textColor"
             label="Text color"
             [widthPx]="150"
             (onChange)="toastService.configuration().success!.styles!.textColor = $event"
+        />
+        <app-input-color
+            [value]="toastService.configuration().success!.styles!.backgroundColor"
+            label="Background color"
+            (onChange)="toastService.configuration().success!.styles!.backgroundColor = $event"
         />
         <app-input-color
             [value]="toastService.configuration().success!.styles!.hoveredOutlineColor"
@@ -59,16 +65,22 @@
             [widthPx]="150"
             (onChange)="warning().icon = $event;"
         />
-        <app-input-color
-            [value]="toastService.configuration().warning!.styles!.backgroundColor"
-            label="Background color"
-            (onChange)="toastService.configuration().warning!.styles!.backgroundColor = $event"
+        <app-input-text
+            [value]="warning().message"
+            label="Message"
+            [widthPx]="150"
+            (onChange)="warning().message = $event;"
         />
         <app-input-text
             [value]="toastService.configuration().warning!.styles!.textColor"
             label="Text color"
             [widthPx]="150"
             (onChange)="toastService.configuration().warning!.styles!.textColor = $event"
+        />
+        <app-input-color
+            [value]="toastService.configuration().warning!.styles!.backgroundColor"
+            label="Background color"
+            (onChange)="toastService.configuration().warning!.styles!.backgroundColor = $event"
         />
         <app-input-color
             [value]="toastService.configuration().warning!.styles!.hoveredOutlineColor"
@@ -94,16 +106,22 @@
             [widthPx]="150"
             (onChange)="error().icon = $event;"
         />
-        <app-input-color
-            [value]="toastService.configuration().error!.styles!.backgroundColor"
-            label="Background color"
-            (onChange)="toastService.configuration().error!.styles!.backgroundColor = $event"
+        <app-input-text
+            [value]="error().message"
+            label="Message"
+            [widthPx]="150"
+            (onChange)="error().message = $event;"
         />
         <app-input-text
             [value]="toastService.configuration().error!.styles!.textColor"
             label="Text color"
             [widthPx]="150"
             (onChange)="toastService.configuration().error!.styles!.textColor = $event"
+        />
+        <app-input-color
+            [value]="toastService.configuration().error!.styles!.backgroundColor"
+            label="Background color"
+            (onChange)="toastService.configuration().error!.styles!.backgroundColor = $event"
         />
         <app-input-color
             [value]="toastService.configuration().error!.styles!.hoveredOutlineColor"
@@ -129,16 +147,22 @@
             [widthPx]="150"
             (onChange)="info().icon = $event;"
         />
-        <app-input-color
-            [value]="toastService.configuration().info!.styles!.backgroundColor"
-            label="Background color"
-            (onChange)="toastService.configuration().info!.styles!.backgroundColor = $event"
+        <app-input-text
+            [value]="info().message"
+            label="Message"
+            [widthPx]="150"
+            (onChange)="info().message = $event;"
         />
         <app-input-text
             [value]="toastService.configuration().info!.styles!.textColor"
             label="Text color"
             [widthPx]="150"
             (onChange)="toastService.configuration().info!.styles!.textColor = $event"
+        />
+        <app-input-color
+            [value]="toastService.configuration().info!.styles!.backgroundColor"
+            label="Background color"
+            (onChange)="toastService.configuration().info!.styles!.backgroundColor = $event"
         />
         <app-input-color
             [value]="toastService.configuration().info!.styles!.hoveredOutlineColor"
@@ -306,7 +330,7 @@
         <app-input-checkbox
             [checked]="toastService.configuration().adaptWidth"
             label="Adapt width"
-            (onChange)="toastService.configuration().adaptWidth = $event"
+            (onChange)="toastService.setAdaptWidth($event)"
         />
         <b>
             Lifespans (ms)
