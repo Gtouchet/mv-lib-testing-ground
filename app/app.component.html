@@ -22,7 +22,7 @@
             @for (dropdown of dropdowns(); track dropdown.name) {
                 <mv-lib-dropdown-classic
                     [items]="dropdown.items"
-                    [selectedItem]="dropdown.selected"
+                    [selected]="dropdown.selected"
                     [styles]="dropdownsStyles"
                     [effects]="dropdownsEffects"
                     (onSelect)="onItemSelect($event.selectedItem!, dropdown.name)"

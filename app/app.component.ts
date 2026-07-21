@@ -61,7 +61,7 @@ export class AppComponent {
     },
     { 
       name: 'Radio buttons',
-      icon: 'radio',
+      icon: 'radio_button_checked',
       selected: undefined,
       items: [
         { type: 'Classic', routerLink: '/radio-buttons-classic-example', wip: true },
@@ -89,7 +89,7 @@ export class AppComponent {
       icon: 'notifications',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/toast-classic-example' },
+        { type: 'Classic', routerLink: '/toast-classic-example', wip: true },
       ],
     },
   ]);

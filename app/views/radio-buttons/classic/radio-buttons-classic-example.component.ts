@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, contentChild, inject, signal } from "@angular/core";
 import { BaseExampleComponent } from "../../base-example.component";
 import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyles, MvLibRadioButtonsDirectives } from "mv-lib";
 import { INPUTS } from "../../../shared/inputs/inputs.export";
+import { StylesService } from "../../../../styles/styles.service";
+import { JsonPipe } from "@angular/common";
 
 interface User {
   id: number;
@@ -14,6 +16,7 @@ interface User {
         MvLibRadioButtonsClassicComponent,
         MvLibRadioButtonsDirectives,
         INPUTS,
+        JsonPipe,
     ],
     templateUrl: './radio-buttons-classic-example.component.html',
     styleUrls: [
@@ -28,6 +31,11 @@ export class RadioButtonsClassicExample extends BaseExampleComponent<
     MvLibRadioButtonsClassicEffects,
     MvLibRadioButtonsClassicSettings
 > {
+    protected radioButtons = contentChild('radioButtons');
+
+    protected appStyles = inject(StylesService);
+  
+    protected selectedItem = signal<User | undefined>(undefined);
     protected items = signal<User[]>([
         { id: 1, name: 'Alice' },
         { id: 2, name: 'Bob' },
@@ -42,13 +50,19 @@ export class RadioButtonsClassicExample extends BaseExampleComponent<
 
     constructor() {
         super();
-        this.logProperties.set([]);
+        this.logProperties.set(['disabled', 'styles', 'effects', 'settings']);
         this.styles = signal<Partial<MvLibRadioButtonsClassicStyles>>({
+            sizePx: 16,
+            backgroundColor: this.appStyles.var('radio-buttons-classic-background-color'),
+            selectedBackgroundColor: this.appStyles.var('radio-buttons-classic-selected-background-color'),
 
+            groupGapPx: 4,
+            contentGapPx: 6,
         });
         this.effects = signal<Partial<MvLibRadioButtonsClassicEffects>>({
             idle: ['shadow'],
             hover: ['enlarge'],
+            selected: [],
         });
         this.settings = signal<Partial<MvLibRadioButtonsClassicSettings>>({
             orientation: 'vertical',

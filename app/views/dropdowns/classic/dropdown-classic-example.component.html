@@ -178,12 +178,10 @@
         [effects]="effects()"
         [settings]="settings()"
         [items]="items()"
+        [(selected)]="selectedItem"
         [disabled]="disabled()"
         [opened]="opened()"
-        (onSelect)="
-            selectedUser.set($event.selectedItem);
-            refreshLastInteractionTime();
-        "
+        (onSelect)="refreshLastInteractionTime()"
         (onOpen)="
             opened.set($event.opened);
             refreshLastInteractionTime();
@@ -217,7 +215,7 @@
 
 <pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
-selectedUser: {{ selectedUser() | json }}<br/>
+selected: {{ selectedItem() | json }}<br/>
 {{ log() }}
 </pre>
 </div>

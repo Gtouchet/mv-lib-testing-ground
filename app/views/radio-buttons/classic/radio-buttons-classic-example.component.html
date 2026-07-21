@@ -5,15 +5,10 @@
         <b [style.align-self]="'center'">
             Styles
         </b>
-        <!-- <app-input-number
-            [value]="styles().widthPx"
-            label="Width px"
-            (onChange)="updateStyle('widthPx', $event)"
-        />
         <app-input-number
-            [value]="styles().heightPx"
-            label="Height px"
-            (onChange)="updateStyle('heightPx', $event)"
+            [value]="styles().sizePx"
+            label="Size px"
+            (onChange)="updateStyle('sizePx', $event)"
         />
         <app-input-color
             [value]="styles().backgroundColor"
@@ -21,10 +16,20 @@
             (onChange)="updateStyle('backgroundColor', $event)"
         />
         <app-input-color
-            [value]="styles().textColor"
-            label="Text color"
-            (onChange)="updateStyle('textColor', $event)"
-        /> -->
+            [value]="styles().selectedBackgroundColor"
+            label="Selected background color"
+            (onChange)="updateStyle('selectedBackgroundColor', $event)"
+        />
+        <app-input-number
+            [value]="styles().groupGapPx"
+            label="Group gap px"
+            (onChange)="updateStyle('groupGapPx', $event)"
+        />
+        <app-input-number
+            [value]="styles().contentGapPx"
+            label="Content gap px"
+            (onChange)="updateStyle('contentGapPx', $event)"
+        />
     </div>
 
     <!-- Effects -->
@@ -47,6 +52,14 @@
             [checked]="!!effects().hover?.includes('enlarge')"
             label="Enlarge"
             (onChange)="updateEffect('hover', 'enlarge', $event)"
+        />
+        <b>
+            Selected
+        </b>
+        <app-input-checkbox
+            [checked]="!!effects().selected?.includes('brighten')"
+            label="Brighten"
+            (onChange)="updateEffect('selected', 'brighten', $event)"
         />
     </div>
 
@@ -90,17 +103,35 @@
                 refreshLog();
             "
         />
+        <app-input-button
+            label="Reset selection"
+            (onClick)="
+                radioButtons.setSelected(undefined);
+                refreshLastInteractionTime();
+            "
+        />
+        <app-input-number
+            label="Select item n°"
+            [value]="items().findIndex(item => item === selectedItem()) + 1"
+            (onChange)="
+                radioButtons.setSelected(items()[$event - 1]);
+                refreshLastInteractionTime();
+            "
+        />
     </div>
 </div>
 
 <div class="visual">
     <mv-lib-radio-buttons-classic
+        #radioButtons
         class="component"
         [styles]="styles()"
         [effects]="effects()"
         [settings]="settings()"
         [disabled]="disabled()"
         [items]="items()"
+        [(selected)]="selectedItem"
+        (onSelect)="refreshLastInteractionTime()"
     >
         <ng-template mvLibRadioButtonTemplate let-user>
             {{ user.id }} - {{ user.name }}
@@ -109,6 +140,7 @@
 
 <pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
+selected: {{ selectedItem() | json }}<br/>
 {{ log() }}
 </pre>
 </div>

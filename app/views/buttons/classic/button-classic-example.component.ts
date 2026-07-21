@@ -1,6 +1,6 @@
 import { BaseExampleComponent } from '../../base-example.component';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles, MvLibRadioButtonsClassicComponent, MvLibRadioButtonsDirectives, MvLibToastService } from 'mv-lib';
+import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from 'mv-lib';
 import { StylesService } from '../../../../styles/styles.service';
 import { INPUTS } from '../../../shared/inputs/inputs.export';
 
@@ -25,7 +25,6 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
 > {
 
   protected appStyles = inject(StylesService);
-  protected toastService = inject(MvLibToastService);
 
   constructor() {
     super();
