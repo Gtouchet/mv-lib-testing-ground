@@ -46,7 +46,7 @@
             Hover effects
         </b>
         <app-input-checkbox
-            [checked]="!!effects().hover?.includes('darken')"
+            [checked]="effects().hover?.includes('darken')"
             label="Darken"
             (onChange)="updateEffect('hover', 'darken', $event)"
         />
@@ -54,12 +54,12 @@
             Selected effects
         </b>
         <app-input-checkbox
-            [checked]="!!effects().selected?.includes('outline-solid')"
+            [checked]="effects().selected?.includes('outline-solid')"
             label="Outline solid"
             (onChange)="updateEffect('selected', 'outline-solid', $event)"
         />
         <app-input-checkbox
-            [checked]="!!effects().selected?.includes('outline-blur')"
+            [checked]="effects().selected?.includes('outline-blur')"
             label="Outline blur"
             (onChange)="updateEffect('selected', 'outline-blur', $event)"
         />
@@ -71,7 +71,7 @@
             Settings
         </b>
         <app-input-checkbox
-            [checked]="!!form.get('input')?.disabled"
+            [checked]="form.get('input')?.disabled"
             label="Disabled"
             (onChange)="
                 $event ? form.get('input')?.disable() : form.get('input')?.enable();

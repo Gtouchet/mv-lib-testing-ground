@@ -75,7 +75,7 @@
             Idle effects
         </b>
         <app-input-checkbox
-            [checked]="!!effects().idle?.includes('shadow')"
+            [checked]="effects().idle?.includes('shadow')"
             label="Shadow"
             (onChange)="updateEffect('idle', 'shadow', $event)"
         />
@@ -83,7 +83,7 @@
             Hover effects
         </b>
         <app-input-checkbox
-            [checked]="!!effects().hover?.includes('enlarge-cursor')"
+            [checked]="effects().hover?.includes('enlarge-cursor')"
             label="Enlarge cursor"
             (onChange)="updateEffect('hover', 'enlarge-cursor', $event)"
         />
@@ -91,12 +91,12 @@
             Click effects
         </b>
         <app-input-checkbox
-            [checked]="!!effects().click?.includes('push')"
+            [checked]="effects().click?.includes('push')"
             label="Push"
             (onChange)="updateEffect('click', 'push', $event)"
         />
         <app-input-checkbox
-            [checked]="!!effects().click?.includes('ripple')"
+            [checked]="effects().click?.includes('ripple')"
             label="Ripple"
             (onChange)="updateEffect('click', 'ripple', $event)"
         />

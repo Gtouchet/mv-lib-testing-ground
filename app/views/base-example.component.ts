@@ -23,7 +23,6 @@ export abstract class BaseExampleComponent<
     protected settings = signal<Partial<Settings>>({});
 
     protected disabled = signal(false);
-    protected error = signal(false);
 
     protected updateStyle(
         key: keyof Styles,

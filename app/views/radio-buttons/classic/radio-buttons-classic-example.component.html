@@ -41,7 +41,7 @@
             Idle
         </b>
         <app-input-checkbox
-            [checked]="!!effects().idle?.includes('shadow')"
+            [checked]="effects().idle?.includes('shadow')"
             label="Shadow"
             (onChange)="updateEffect('idle', 'shadow', $event)"
         />
@@ -49,7 +49,7 @@
             Hover
         </b>
         <app-input-checkbox
-            [checked]="!!effects().hover?.includes('enlarge')"
+            [checked]="effects().hover?.includes('enlarge')"
             label="Enlarge"
             (onChange)="updateEffect('hover', 'enlarge', $event)"
         />
@@ -57,7 +57,7 @@
             Selected
         </b>
         <app-input-checkbox
-            [checked]="!!effects().selected?.includes('brighten')"
+            [checked]="effects().selected?.includes('brighten')"
             label="Brighten"
             (onChange)="updateEffect('selected', 'brighten', $event)"
         />
@@ -88,7 +88,7 @@
             "
         />
         <app-input-checkbox
-            [checked]="!!settings().selectOnLabelClick"
+            [checked]="settings().selectOnLabelClick"
             label="Select on label click"
             (onChange)="
                 updateSetting('selectOnLabelClick', $event);
@@ -96,7 +96,7 @@
             "
         />
         <app-input-checkbox
-            [checked]="!!settings().unselectable"
+            [checked]="settings().unselectable"
             label="Unselectable"
             (onChange)="
                 updateSetting('unselectable', $event);
@@ -117,6 +117,8 @@
                 radioButtons.setSelected(items()[$event - 1]);
                 refreshLastInteractionTime();
             "
+            [min]="1"
+            [max]="items().length"
         />
     </div>
 </div>

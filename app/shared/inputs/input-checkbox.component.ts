@@ -6,7 +6,6 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   template: `
     <input
       type="checkbox"
-      [name]="id()"
       [checked]="checked()"
       (click)="handleClick($event)"
       [style.margin]="0"
@@ -16,8 +15,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputCheckboxComponent {
-  public id = input<number>();
-  public checked = input(false);
+  public checked = input<boolean | undefined>(undefined);
   public label = input('');
   public onChange = output<boolean>();
 

@@ -1,24 +1,15 @@
 import { Component, ChangeDetectionStrategy, inject, signal } from "@angular/core";
-import { MvLibToastService, MvLibToastStyles, MvLibToastEffects, MvLibToastSettings, MvLibButtonClassicComponent, ToastPosition } from "mv-lib";
+import { MvLibToastService, MvLibToastStyles, MvLibToastEffects, MvLibToastSettings, MvLibButtonClassicComponent, MvLibToastType } from "mv-lib";
 import { INPUTS } from "../../../shared/inputs/inputs.export";
 import { BaseExampleComponent } from "../../base-example.component";
-
-interface ExampleToastConfiguration {
-  forcedWidthPx?: number;
-  forcedHeightPx?: number;
-  icon?: string;
-  text?: string;
-  backgroundColor?: string;
-  textColor?: string;
-  borderColor?: string;
-  hoveredOutlineColor?: string;
-}
+import { JsonPipe } from "@angular/common";
 
 @Component({
   selector: 'app-toast-classic-example',
   imports: [
     MvLibButtonClassicComponent,
     INPUTS,
+    JsonPipe,
 ],
   templateUrl: './toast-classic-example.component.html',
   styleUrls: [
@@ -35,69 +26,11 @@ export class ToastClassicExampleComponent extends BaseExampleComponent<
 > {
     protected toastService = inject(MvLibToastService);
 
-    /**
-     * Styles
-     */
-    protected successConfiguration = signal<ExampleToastConfiguration>({
-      forcedWidthPx: undefined,
-      forcedHeightPx: undefined,
-      icon: 'check_circle',
-      text: 'Success',
-      backgroundColor: 'Green',
-      textColor: 'White',
-      borderColor: '',
-      hoveredOutlineColor: 'Green',
-    });
-    protected warningConfiguration = signal<ExampleToastConfiguration>({
-      forcedWidthPx: undefined,
-      forcedHeightPx: undefined,
-      icon: 'warning',
-      text: 'Warning',
-      backgroundColor: 'Orange',
-      textColor: 'White',
-      borderColor: '',
-      hoveredOutlineColor: 'Orange',
-    });
-    protected errorConfiguration = signal<ExampleToastConfiguration>({
-      forcedWidthPx: undefined,
-      forcedHeightPx: undefined,
-      icon: 'error',
-      text: 'Error',
-      backgroundColor: 'Red',
-      textColor: 'White',
-      borderColor: '',
-      hoveredOutlineColor: 'Red',
-    });
-    protected infoConfiguration = signal<ExampleToastConfiguration>({
-      forcedWidthPx: undefined,
-      forcedHeightPx: undefined,
-      icon: 'info',
-      text: 'Info',
-      backgroundColor: 'SkyBlue',
-      textColor: 'Black',
-      borderColor: '',
-      hoveredOutlineColor: 'SkyBlue',
-    });
-
-    /**
-     * Effects
-     */
-    protected idleEffect_progressBar = signal(true);
-    protected hoverEffect_hoverOutlineSolid = signal(false);
-    protected hoverEffect_hoverOutlineBlur = signal(true);
-    protected lifecycleEffect_fade = signal(true);
-    protected lifecycleEffect_slide = signal(true);
-
-    /**
-     * Settings
-     */
-    protected position = signal<ToastPosition>('bottom-right');
-    protected adaptWidth = signal(false);
-    protected lifespan_success = signal(3_000);
-    protected lifespan_warning = signal(3_000);
-    protected lifespan_error = signal(6_000);
-    protected lifespan_info = signal(3_000);
-
+    protected success = signal<{ icon: string, message: string }>({ icon: 'check_circle', message: 'Success' });
+    protected warning = signal<{ icon: string, message: string }>({ icon: 'warning', message: 'Warning' });
+    protected error = signal<{ icon: string, message: string }>({ icon: 'error', message: 'Error' });
+    protected info = signal<{ icon: string, message: string }>({ icon: 'info', message: 'Info' });
+    
     protected initForm() {
 
     }

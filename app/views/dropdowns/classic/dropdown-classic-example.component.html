@@ -66,7 +66,7 @@
                 Button idle
             </b>
             <app-input-checkbox
-                [checked]="!!effects().buttonIdle?.includes('shadow')"
+                [checked]="effects().buttonIdle?.includes('shadow')"
                 label="Shadow"
                 (onChange)="updateEffect('buttonIdle', 'shadow', $event)"
             />
@@ -74,7 +74,7 @@
                 Button hover
             </b>
             <app-input-checkbox
-                [checked]="!!effects().buttonHover?.includes('darken')"
+                [checked]="effects().buttonHover?.includes('darken')"
                 label="Darken"
                 (onChange)="updateEffect('buttonHover', 'darken', $event)"
             />
@@ -82,12 +82,12 @@
                 Button click
             </b>
             <app-input-checkbox
-                [checked]="!!effects().buttonClick?.includes('push')"
+                [checked]="effects().buttonClick?.includes('push')"
                 label="Push"
                 (onChange)="updateEffect('buttonClick', 'push', $event)"
             />
             <app-input-checkbox
-                [checked]="!!effects().buttonClick?.includes('ripple')"
+                [checked]="effects().buttonClick?.includes('ripple')"
                 label="Ripple"
                 (onChange)="updateEffect('buttonClick', 'ripple', $event)"
             />
@@ -95,7 +95,7 @@
                 List idle
             </b>
             <app-input-checkbox
-                [checked]="!!effects().listIdle?.includes('shadow')"
+                [checked]="effects().listIdle?.includes('shadow')"
                 label="Shadow"
                 (onChange)="updateEffect('listIdle', 'shadow', $event)"
             />
@@ -103,7 +103,7 @@
                 Item hover
             </b>
             <app-input-checkbox
-                [checked]="!!effects().itemHover?.includes('darken')"
+                [checked]="effects().itemHover?.includes('darken')"
                 label="Darken"
                 (onChange)="updateEffect('itemHover', 'darken', $event)"
             />
@@ -111,12 +111,12 @@
                 Item click
             </b>
             <app-input-checkbox
-                [checked]="!!effects().itemClick?.includes('push')"
+                [checked]="effects().itemClick?.includes('push')"
                 label="Push"
                 (onChange)="updateEffect('itemClick', 'push', $event)"
             />
             <app-input-checkbox
-                [checked]="!!effects().itemClick?.includes('ripple')"
+                [checked]="effects().itemClick?.includes('ripple')"
                 label="Ripple"
                 (onChange)="updateEffect('itemClick', 'ripple', $event)"
             />
@@ -145,7 +145,7 @@
             "
         />
         <app-input-checkbox
-            [checked]="!!settings().closeOnItemSelect"
+            [checked]="settings().closeOnItemSelect"
             label="Close on item select"
             (onChange)="
                 updateSetting('closeOnItemSelect', $event);
@@ -153,7 +153,7 @@
             "
         />
         <app-input-checkbox
-            [checked]="!!settings().closeOnOutsideClick"
+            [checked]="settings().closeOnOutsideClick"
             label="Close on outside click"
             (onChange)="
                 updateSetting('closeOnOutsideClick', $event);
@@ -161,7 +161,7 @@
             "
         />
         <app-input-checkbox
-            [checked]="!!settings().resetButton"
+            [checked]="settings().resetButton"
             label="Reset button"
             (onChange)="
                 updateSetting('resetButton', $event);
