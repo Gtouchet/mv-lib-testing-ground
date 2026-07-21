@@ -1,0 +1,115 @@
+<div class="configuration">
+
+    <!-- Styles -->
+    <div class="styles">
+        <b [style.align-self]="'center'">
+            Styles
+        </b>
+        <!-- <app-input-number
+            [value]="styles().widthPx"
+            label="Width px"
+            (onChange)="updateStyle('widthPx', $event)"
+        />
+        <app-input-number
+            [value]="styles().heightPx"
+            label="Height px"
+            (onChange)="updateStyle('heightPx', $event)"
+        />
+        <app-input-color
+            [value]="styles().backgroundColor"
+            label="Background color"
+            (onChange)="updateStyle('backgroundColor', $event)"
+        />
+        <app-input-color
+            [value]="styles().textColor"
+            label="Text color"
+            (onChange)="updateStyle('textColor', $event)"
+        /> -->
+    </div>
+
+    <!-- Effects -->
+    <div class="effects">
+        <b [style.align-self]="'center'">
+            Effects
+        </b>
+        <b>
+            Idle
+        </b>
+        <app-input-checkbox
+            [checked]="!!effects().idle?.includes('shadow')"
+            label="Shadow"
+            (onChange)="updateEffect('idle', 'shadow', $event)"
+        />
+        <b>
+            Hover
+        </b>
+        <app-input-checkbox
+            [checked]="!!effects().hover?.includes('enlarge')"
+            label="Enlarge"
+            (onChange)="updateEffect('hover', 'enlarge', $event)"
+        />
+    </div>
+
+    <!-- Settings -->
+    <div class="settings">
+        <b [style.align-self]="'center'">
+            Settings
+        </b>
+        <app-input-checkbox
+            [checked]="disabled()"
+            label="Disabled"
+            (onChange)="
+                disabled.set($event);
+                refreshLog();
+            "
+        />
+        <b>
+            Orientation
+        </b>
+        <app-input-radio
+            [values]="['vertical', 'horizontal']"
+            [selected]="settings().orientation"
+            (onChange)="
+                updateSetting('orientation', $any($event));
+                refreshLog();
+            "
+        />
+        <app-input-checkbox
+            [checked]="!!settings().selectOnLabelClick"
+            label="Select on label click"
+            (onChange)="
+                updateSetting('selectOnLabelClick', $event);
+                refreshLog();
+            "
+        />
+        <app-input-checkbox
+            [checked]="!!settings().unselectable"
+            label="Unselectable"
+            (onChange)="
+                updateSetting('unselectable', $event);
+                refreshLog();
+            "
+        />
+    </div>
+</div>
+
+<div class="visual">
+    <mv-lib-radio-buttons-classic
+        class="component"
+        [styles]="styles()"
+        [effects]="effects()"
+        [settings]="settings()"
+        [disabled]="disabled()"
+        [items]="items()"
+    >
+        <ng-template mvLibRadioButtonTemplate let-user>
+            {{ user.id }} - {{ user.name }}
+        </ng-template>
+    </mv-lib-radio-buttons-classic>
+
+<pre class="log">
+Last interaction time: {{ lastInteractionTime() }}<br/>
+{{ log() }}
+</pre>
+</div>
+

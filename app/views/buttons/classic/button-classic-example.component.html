@@ -80,19 +80,6 @@
 </div>
 
 <div class="visual">
-
-    <mv-lib-radio-buttons-classic
-        [elements]="[
-            { id: 1, label: 'un' },
-            { id: 2, label: 'deux' },
-            { id: 3, label: 'trois' },
-        ]"
-    >
-        <ng-template mvLibRadioButtonTemplate let-item>
-            {{ item.id }} - {{ item.label }}
-        </ng-template>
-    </mv-lib-radio-buttons-classic>
-    
     <mv-lib-button-classic
         class="component"
         [styles]="styles()"

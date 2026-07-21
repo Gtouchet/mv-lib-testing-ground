@@ -14,7 +14,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
           <input
             type="radio"
             [value]="value"
-            [checked]="value == selected()"
+            [checked]="value === selected()"
             (change)="handleChange($event)"
             [style.margin]="0"
           />

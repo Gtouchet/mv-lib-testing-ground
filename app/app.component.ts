@@ -13,6 +13,7 @@ import { StylesService } from '../styles/styles.service';
 interface Item {
   type: string;
   routerLink?: string;
+  wip?: boolean;
 }
 
 interface DropdownGroup {
@@ -56,6 +57,14 @@ export class AppComponent {
       selected: undefined,
       items: [
         { type: 'Classic', routerLink: '/dropdown-classic-example' },
+      ],
+    },
+    { 
+      name: 'Radio buttons',
+      icon: 'radio',
+      selected: undefined,
+      items: [
+        { type: 'Classic', routerLink: '/radio-buttons-classic-example', wip: true },
       ],
     },
     { 

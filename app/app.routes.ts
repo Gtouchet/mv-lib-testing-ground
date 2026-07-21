@@ -5,6 +5,8 @@ import { ButtonClassicExampleComponent } from './views/buttons/classic/button-cl
 
 import { DropdownClassicExampleComponent } from './views/dropdowns/classic/dropdown-classic-example.component';
 
+import { RadioButtonsClassicExample } from './views/radio-buttons/classic/radio-buttons-classic-example.component';
+
 import { SwitchClassicExampleComponent } from './views/switches/classic/switch-classic-example.component';
 import { SwitchLiteExampleComponent } from './views/switches/lite/switch-lite-example.component';
 
@@ -16,6 +18,8 @@ export const routes: Routes = [
 	{ path: 'button-classic-example', component: ButtonClassicExampleComponent },
 
 	{ path: 'dropdown-classic-example', component: DropdownClassicExampleComponent },
+
+	{ path: 'radio-buttons-classic-example', component: RadioButtonsClassicExample },
 
 	{ path: 'switch-classic-example', component: SwitchClassicExampleComponent },
 	{ path: 'switch-lite-example', component: SwitchLiteExampleComponent },

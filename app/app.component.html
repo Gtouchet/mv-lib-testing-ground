@@ -10,7 +10,7 @@
                 [effects]="{
                     idle: ['shadow'],
                     hover: ['darken'],
-                    click: ['push']
+                    click: ['push'],
                 }"
                 (onClick)="router.navigateByUrl('/')"
             >
@@ -42,12 +42,12 @@
                             <span class="material-symbols-outlined">
                                 {{ dropdown.icon }}
                             </span>
-                            {{ item.type }}
+                            {{ item.type + (item.wip ? ' (WIP)' : '') }}
                         </div>
                     </ng-template>
                     <ng-template mvLibDropdownItemTemplate let-item>
                         <div class="dropdown-item">
-                            {{ item.type }}
+                            {{ item.type + (item.wip ? ' (WIP)' : '') }}
                         </div>
                     </ng-template>
                 </mv-lib-dropdown-classic>
