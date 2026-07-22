@@ -114,7 +114,7 @@
             label="Select item n°"
             [value]="items().findIndex(item => item === selectedItem()) + 1"
             (onChange)="
-                radioButtons.setSelected(items()[$event - 1]);
+                radioButtons.setSelected(items()[$event! - 1]);
                 refreshLastInteractionTime();
             "
             [min]="1"

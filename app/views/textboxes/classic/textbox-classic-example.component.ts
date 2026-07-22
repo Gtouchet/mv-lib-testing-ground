@@ -31,7 +31,7 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
   protected selected = signal(false);
 
   protected required = signal(true);
-  protected minLength = signal(3);
+  protected minLength = signal<number | undefined>(3);
   protected onlyCharacters = signal(true);
 
   constructor() {
@@ -60,7 +60,7 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
       disabled: false,
     }, [
       this.required() ? Validators.required : Validators.nullValidator,
-      Validators.minLength(this.minLength()),
+      this.minLength() !== undefined ? Validators.minLength(this.minLength()!) : Validators.nullValidator,
       this.onlyCharacters() ? Validators.pattern(this.onlyCharactersRegex) : Validators.nullValidator,
     ]));
   }

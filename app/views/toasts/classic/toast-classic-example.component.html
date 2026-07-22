@@ -5,16 +5,16 @@
         <b [style.align-self]="'center'">
             Styles
         </b>
-        <b [style.color]="toastService.configuration().success!.styles!.backgroundColor">
+        <b [style.color]="toastService.configuration().success?.styles?.backgroundColor">
             SUCCESS
         </b>
         <app-input-number
-            [value]="toastService.configuration().success!.styles!.forcedWidthPx"
+            [value]="toastService.configuration().success?.styles?.forcedWidthPx"
             label="Forced width px"
             (onChange)="toastService.configuration().success!.styles!.forcedWidthPx = $event"
         />
         <app-input-number
-            [value]="toastService.configuration().success!.styles!.forcedHeightPx"
+            [value]="toastService.configuration().success?.styles?.forcedHeightPx"
             label="Forced height px"
             (onChange)="toastService.configuration().success!.styles!.forcedHeightPx = $event"
         />
@@ -31,31 +31,31 @@
             (onChange)="success().message = $event;"
         />
         <app-input-text
-            [value]="toastService.configuration().success!.styles!.textColor"
+            [value]="toastService.configuration().success?.styles?.textColor"
             label="Text color"
             [widthPx]="150"
             (onChange)="toastService.configuration().success!.styles!.textColor = $event"
         />
         <app-input-color
-            [value]="toastService.configuration().success!.styles!.backgroundColor"
+            [value]="toastService.configuration().success?.styles?.backgroundColor"
             label="Background color"
             (onChange)="toastService.configuration().success!.styles!.backgroundColor = $event"
         />
         <app-input-color
-            [value]="toastService.configuration().success!.styles!.hoveredOutlineColor"
+            [value]="toastService.configuration().success?.styles?.hoveredOutlineColor"
             label="Hovered outline color"
             (onChange)="toastService.configuration().success!.styles!.hoveredOutlineColor = $event;"
         />
-        <b [style.color]="toastService.configuration().warning!.styles!.backgroundColor">
+        <b [style.color]="toastService.configuration().warning?.styles?.backgroundColor">
             WARNING
         </b>
         <app-input-number
-            [value]="toastService.configuration().warning!.styles!.forcedWidthPx"
+            [value]="toastService.configuration().warning?.styles?.forcedWidthPx"
             label="Forced width px"
             (onChange)="toastService.configuration().warning!.styles!.forcedWidthPx = $event"
         />
         <app-input-number
-            [value]="toastService.configuration().warning!.styles!.forcedHeightPx"
+            [value]="toastService.configuration().warning?.styles?.forcedHeightPx"
             label="Forced height px"
             (onChange)="toastService.configuration().warning!.styles!.forcedHeightPx = $event"
         />
@@ -72,31 +72,31 @@
             (onChange)="warning().message = $event;"
         />
         <app-input-text
-            [value]="toastService.configuration().warning!.styles!.textColor"
+            [value]="toastService.configuration().warning?.styles?.textColor"
             label="Text color"
             [widthPx]="150"
             (onChange)="toastService.configuration().warning!.styles!.textColor = $event"
         />
         <app-input-color
-            [value]="toastService.configuration().warning!.styles!.backgroundColor"
+            [value]="toastService.configuration().warning?.styles?.backgroundColor"
             label="Background color"
             (onChange)="toastService.configuration().warning!.styles!.backgroundColor = $event"
         />
         <app-input-color
-            [value]="toastService.configuration().warning!.styles!.hoveredOutlineColor"
+            [value]="toastService.configuration().warning?.styles?.hoveredOutlineColor"
             label="Hovered outline color"
             (onChange)="toastService.configuration().warning!.styles!.hoveredOutlineColor = $event;"
         />
-        <b [style.color]="toastService.configuration().error!.styles!.backgroundColor">
+        <b [style.color]="toastService.configuration().error?.styles?.backgroundColor">
             ERROR
         </b>
         <app-input-number
-            [value]="toastService.configuration().error!.styles!.forcedWidthPx"
+            [value]="toastService.configuration().error?.styles?.forcedWidthPx"
             label="Forced width px"
             (onChange)="toastService.configuration().error!.styles!.forcedWidthPx = $event"
         />
         <app-input-number
-            [value]="toastService.configuration().error!.styles!.forcedHeightPx"
+            [value]="toastService.configuration().error?.styles?.forcedHeightPx"
             label="Forced height px"
             (onChange)="toastService.configuration().error!.styles!.forcedHeightPx = $event"
         />
@@ -113,31 +113,31 @@
             (onChange)="error().message = $event;"
         />
         <app-input-text
-            [value]="toastService.configuration().error!.styles!.textColor"
+            [value]="toastService.configuration().error?.styles?.textColor"
             label="Text color"
             [widthPx]="150"
             (onChange)="toastService.configuration().error!.styles!.textColor = $event"
         />
         <app-input-color
-            [value]="toastService.configuration().error!.styles!.backgroundColor"
+            [value]="toastService.configuration().error?.styles?.backgroundColor"
             label="Background color"
             (onChange)="toastService.configuration().error!.styles!.backgroundColor = $event"
         />
         <app-input-color
-            [value]="toastService.configuration().error!.styles!.hoveredOutlineColor"
+            [value]="toastService.configuration().error?.styles?.hoveredOutlineColor"
             label="Hovered outline color"
             (onChange)="toastService.configuration().error!.styles!.hoveredOutlineColor = $event;"
         />
-        <b [style.color]="toastService.configuration().info!.styles!.backgroundColor">
+        <b [style.color]="toastService.configuration().info?.styles?.backgroundColor">
             INFO
         </b>
         <app-input-number
-            [value]="toastService.configuration().info!.styles!.forcedWidthPx"
+            [value]="toastService.configuration().info?.styles?.forcedWidthPx"
             label="Forced width px"
             (onChange)="toastService.configuration().info!.styles!.forcedWidthPx = $event"
         />
         <app-input-number
-            [value]="toastService.configuration().info!.styles!.forcedHeightPx"
+            [value]="toastService.configuration().info?.styles?.forcedHeightPx"
             label="Forced height px"
             (onChange)="toastService.configuration().info!.styles!.forcedHeightPx = $event"
         />
@@ -154,18 +154,18 @@
             (onChange)="info().message = $event;"
         />
         <app-input-text
-            [value]="toastService.configuration().info!.styles!.textColor"
+            [value]="toastService.configuration().info?.styles?.textColor"
             label="Text color"
             [widthPx]="150"
             (onChange)="toastService.configuration().info!.styles!.textColor = $event"
         />
         <app-input-color
-            [value]="toastService.configuration().info!.styles!.backgroundColor"
+            [value]="toastService.configuration().info?.styles?.backgroundColor"
             label="Background color"
             (onChange)="toastService.configuration().info!.styles!.backgroundColor = $event"
         />
         <app-input-color
-            [value]="toastService.configuration().info!.styles!.hoveredOutlineColor"
+            [value]="toastService.configuration().info?.styles?.hoveredOutlineColor"
             label="Hovered outline color"
             (onChange)="toastService.configuration().info!.styles!.hoveredOutlineColor = $event;"
         />
@@ -176,7 +176,7 @@
         <b [style.align-self]="'center'">
             Effects
         </b>
-        <b [style.color]="toastService.configuration().success!.styles!.backgroundColor">
+        <b [style.color]="toastService.configuration().success?.styles?.backgroundColor">
             SUCCESS
         </b>
         <b>
@@ -210,7 +210,7 @@
             label="Slide"
             (onChange)="toastService.setEffect('success', 'slide', $event)"
         />
-        <b [style.color]="toastService.configuration().warning!.styles!.backgroundColor">
+        <b [style.color]="toastService.configuration().warning?.styles?.backgroundColor">
             WARNING
         </b>
         <b>
@@ -244,7 +244,7 @@
             label="Slide"
             (onChange)="toastService.setEffect('warning', 'slide', $event)"
         />
-        <b [style.color]="toastService.configuration().error!.styles!.backgroundColor">
+        <b [style.color]="toastService.configuration().error?.styles?.backgroundColor">
             ERROR
         </b>
         <b>
@@ -278,7 +278,7 @@
             label="Slide"
             (onChange)="toastService.setEffect('error', 'slide', $event)"
         />
-        <b [style.color]="toastService.configuration().info!.styles!.backgroundColor">
+        <b [style.color]="toastService.configuration().info?.styles?.backgroundColor">
             INFO
         </b>
         <b>
@@ -336,25 +336,25 @@
             Lifespans (ms)
         </b>
         <app-input-number
-            [value]="toastService.configuration().success!.settings!.lifespan"
+            [value]="toastService.configuration().success?.settings?.lifespan"
             label="Success"
             [widthPx]="65"
             (onChange)="toastService.configuration().success!.settings!.lifespan = $event"
         />
         <app-input-number
-            [value]="toastService.configuration().warning!.settings!.lifespan"
+            [value]="toastService.configuration().warning?.settings?.lifespan"
             label="Warning"
             [widthPx]="65"
             (onChange)="toastService.configuration().warning!.settings!.lifespan = $event"
         />
         <app-input-number
-            [value]="toastService.configuration().error!.settings!.lifespan"
+            [value]="toastService.configuration().error?.settings?.lifespan"
             label="Error"
             [widthPx]="65"
             (onChange)="toastService.configuration().error!.settings!.lifespan = $event"
         />
         <app-input-number
-            [value]="toastService.configuration().info!.settings!.lifespan"
+            [value]="toastService.configuration().info?.settings?.lifespan"
             label="Info"
             [widthPx]="65"
             (onChange)="toastService.configuration().info!.settings!.lifespan = $event"
@@ -370,7 +370,7 @@
         <mv-lib-button-classic
             [styles]="{
                 widthPx: 100,
-                backgroundColor: toastService.configuration().success!.styles!.backgroundColor,
+                backgroundColor: toastService.configuration().success?.styles?.backgroundColor,
             }"
             (onClick)="
                 refreshLastInteractionTime();
@@ -378,13 +378,13 @@
                     success().message,
                     success().icon,
                     {
-                        widthPx: toastService.configuration().success!.styles!.forcedWidthPx,
-                        heightPx: toastService.configuration().success!.styles!.forcedHeightPx,
+                        widthPx: toastService.configuration().success?.styles?.forcedWidthPx,
+                        heightPx: toastService.configuration().success?.styles?.forcedHeightPx,
                     }
                 )
             "
         >
-            <span [style.color]="toastService.configuration().success!.styles!.textColor">
+            <span [style.color]="toastService.configuration().success?.styles?.textColor">
                 Success
             </span>
         </mv-lib-button-classic>
@@ -392,7 +392,7 @@
         <mv-lib-button-classic
             [styles]="{
                 widthPx: 100,
-                backgroundColor: toastService.configuration().warning!.styles!.backgroundColor,
+                backgroundColor: toastService.configuration().warning?.styles?.backgroundColor,
             }"
             (onClick)="
                 refreshLastInteractionTime();
@@ -400,13 +400,13 @@
                     warning().message,
                     warning().icon,
                     {
-                        widthPx: toastService.configuration().warning!.styles!.forcedWidthPx,
-                        heightPx: toastService.configuration().warning!.styles!.forcedHeightPx,
+                        widthPx: toastService.configuration().warning?.styles?.forcedWidthPx,
+                        heightPx: toastService.configuration().warning?.styles?.forcedHeightPx,
                     }
                 )
             "
         >
-            <span [style.color]="toastService.configuration().warning!.styles!.textColor">
+            <span [style.color]="toastService.configuration().warning?.styles?.textColor">
                 Warning
             </span>
         </mv-lib-button-classic>
@@ -414,7 +414,7 @@
         <mv-lib-button-classic
            [styles]="{
                 widthPx: 100,
-                backgroundColor: toastService.configuration().error!.styles!.backgroundColor,
+                backgroundColor: toastService.configuration().error?.styles?.backgroundColor,
             }"
             (onClick)="
                 refreshLastInteractionTime();
@@ -422,13 +422,13 @@
                     error().message,
                     error().icon,
                     {
-                        widthPx: toastService.configuration().error!.styles!.forcedWidthPx,
-                        heightPx: toastService.configuration().error!.styles!.forcedHeightPx,
+                        widthPx: toastService.configuration().error?.styles?.forcedWidthPx,
+                        heightPx: toastService.configuration().error?.styles?.forcedHeightPx,
                     }
                 )
             "
         >
-            <span [style.color]="toastService.configuration().error!.styles!.textColor">
+            <span [style.color]="toastService.configuration().error?.styles?.textColor">
                 Error
             </span>
         </mv-lib-button-classic>
@@ -436,7 +436,7 @@
         <mv-lib-button-classic
            [styles]="{
                 widthPx: 100,
-                backgroundColor: toastService.configuration().info!.styles!.backgroundColor,
+                backgroundColor: toastService.configuration().info?.styles?.backgroundColor,
             }"
             (onClick)="
                 refreshLastInteractionTime();
@@ -444,13 +444,13 @@
                     info().message,
                     info().icon,
                     {
-                        widthPx: toastService.configuration().info!.styles!.forcedWidthPx,
-                        heightPx: toastService.configuration().info!.styles!.forcedHeightPx,
+                        widthPx: toastService.configuration().info?.styles?.forcedWidthPx,
+                        heightPx: toastService.configuration().info?.styles?.forcedHeightPx,
                     }
                 )
             "
         >
-            <span [style.color]="toastService.configuration().info!.styles!.textColor">
+            <span [style.color]="toastService.configuration().info?.styles?.textColor">
                 Info
             </span>
         </mv-lib-button-classic>
@@ -458,6 +458,6 @@
 
 <pre class="log">
 Last toast time: {{ lastInteractionTime() }}<br/>
-var configuration: MvLibToastServiceConfiguration = {{ toastService.configuration() | json }}
+const configuration: MvLibToastServiceConfiguration = {{ toastService.configuration() | json }}
 </pre>
 </div>
