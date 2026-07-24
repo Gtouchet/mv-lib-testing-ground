@@ -13,21 +13,20 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       [style.width.px]="widthPx()"
       [style.height.px]="16"
     />
-    {{ label() }}
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputNumberComponent {
-  public value = input<number | undefined>(undefined);
+  public value = input<number | string | undefined>(undefined);
   public label = input('');
   public min = input<number | undefined>(undefined);
   public max = input<number | undefined>(undefined);
   public widthPx = input<number>(50);
-  public onChange = output<number | undefined>();
+  public onChange = output<number>();
 
   protected handleInput(event: Event) {
     const input = event.target as HTMLInputElement;
     const value = !Number.isNaN(input.valueAsNumber) ? input.valueAsNumber : undefined;
-    this.onChange.emit(value);
+    this.onChange.emit(value ?? 0);
   }
 }

@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
-import { MvLibSwitchLiteComponent, MvLibSwitchLiteEffects, MvLibSwitchLiteSettings, MvLibSwitchLiteStyles } from 'mv-lib';
-import { StylesService } from '../../../../styles/styles.service';
-import { INPUTS } from '../../../shared/inputs/inputs.export';
+import { MvLibSwitchLiteComponent, MvLibSwitchLiteEffects, MvLibSwitchLiteEffectsStyles, MvLibSwitchLiteSettings, MvLibSwitchLiteStyles } from 'mv-lib';
+import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
 
 @Component({
   selector: 'app-switch-lite-example',
@@ -21,13 +20,9 @@ import { INPUTS } from '../../../shared/inputs/inputs.export';
 export class SwitchLiteExampleComponent extends BaseExampleComponent<
   MvLibSwitchLiteStyles,
   MvLibSwitchLiteEffects,
+  MvLibSwitchLiteEffectsStyles,
   MvLibSwitchLiteSettings
 > {
-  
-  protected appStyles = inject(StylesService);
-
-  protected active = signal(true);
-
   constructor() {
     super();
     this.logProperties.set(['disabled', 'active', 'styles', 'effects', 'settings']);

@@ -5,35 +5,40 @@
         <b [style.align-self]="'center'">
             Styles
         </b>
-        <app-input-number
-            [value]="styles().widthPx"
-            label="Width px"
-            (onChange)="updateStyle('widthPx', $event)"
+        <app-input-text
+            [value]="styles().width"
+            label="Width"
+            (onChange)="updateStyle('width', $event)"
         />
-        <app-input-number
-            [value]="styles().heightPx"
-            label="Height px"
-            (onChange)="updateStyle('heightPx', $event)"
+        <app-input-text
+            [value]="styles().height"
+            label="Height"
+            (onChange)="updateStyle('height', $event)"
         />
         <app-input-color
             [value]="styles().backgroundColor"
             label="Background color"
             (onChange)="updateStyle('backgroundColor', $event)"
         />
-        <app-input-color
-            [value]="styles().textColor"
-            label="Text color"
-            (onChange)="updateStyle('textColor', $event)"
+        <app-border-inputs
+            [width]="styles().border?.width"
+            [style]="styles().border?.style"
+            [color]="styles().border?.color"
+            [radius]="styles().border?.radius"
+            (onWidthChange)="updateStyle('border.width', $event)"
+            (onStyleChange)="updateStyle('border.style', $event)"
+            (onColorChange)="updateStyle('border.color', $event)"
+            (onRadiusChange)="updateStyle('border.radius', $event)"
         />
-        <app-input-color
-            [value]="styles().borderColor"
-            label="Border color"
-            (onChange)="updateStyle('borderColor', $event)"
-        />        
-        <app-input-color
-            [value]="styles().selectedOutlineColor"
-            label="Selected outline color"
-            (onChange)="updateStyle('selectedOutlineColor', $event)"
+        <app-font-inputs
+            [size]="styles().font?.size"
+            [weight]="styles().font?.weight"
+            [style]="styles().font?.style"
+            [color]="styles().font?.color"
+            (onSizeChange)="updateStyle('font.size', $event)"
+            (onWeightChange)="updateStyle('font.weight', $event)"
+            (onStyleChange)="updateStyle('font.style', $event)"
+            (onColorChange)="updateStyle('font.color', $event)"
         />
     </div>
 
@@ -63,6 +68,18 @@
             label="Outline blur"
             (onChange)="updateEffect('selected', 'outline-blur', $event)"
         />
+        <app-effect-styles-inputs>
+            Darken percentage
+            <app-input-number
+                [value]="effectsStyles().hover_darkenPercentage"
+                (onChange)="updateEffectStyle('hover_darkenPercentage', $event)"
+            />
+            Outline color
+            <app-input-color
+                [value]="effectsStyles().selected_outlineColor"
+                (onChange)="updateEffectStyle('selected_outlineColor', $event)"
+            />
+        </app-effect-styles-inputs>
     </div>
 
     <!-- Settings -->
@@ -111,18 +128,6 @@
                     required());
             "
         />
-        <app-input-number
-            [value]="minLength()"
-            label="Min length"
-            [style.color]="form.get('input')?.hasError('minlength') ? 'red' : 'black'"
-            (onChange)="
-                minLength.set($event);
-                updateFormValidator(
-                    'input',
-                    'minLength',
-                    minLength());
-            "
-        />
         <app-input-checkbox
             [checked]="onlyCharacters()"
             label="Only characters"
@@ -135,6 +140,18 @@
                     onlyCharacters());
             "
         />
+        <app-input-number
+            [value]="minLength()"
+            label="Min length"
+            [style.color]="form.get('input')?.hasError('minlength') ? 'red' : 'black'"
+            (onChange)="
+                minLength.set($event);
+                updateFormValidator(
+                    'input',
+                    'minLength',
+                    minLength());
+            "
+        />
     </div>
 </div>
 
@@ -143,8 +160,8 @@
     class="visual"
 >
     <mv-lib-textbox-classic
-        class="component"
         formControlName="input"
+        class="component"
         [styles]="styles()"
         [effects]="effects()"
         [settings]="settings()"

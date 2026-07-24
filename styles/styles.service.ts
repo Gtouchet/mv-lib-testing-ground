@@ -8,7 +8,7 @@ export class StylesService {
     public styles: Record<string, string> = this.initStyles();
 
     public var(name: string) {
-        return this.styles[name];
+        return this.styles[name]!;
     }
 
     private initStyles(): Record<string, string> {

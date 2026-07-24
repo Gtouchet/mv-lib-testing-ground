@@ -89,7 +89,7 @@ export class AppComponent {
       icon: 'notifications',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/toast-classic-example', wip: true },
+        { type: 'Classic', routerLink: '/toast-classic-example' },
       ],
     },
   ]);

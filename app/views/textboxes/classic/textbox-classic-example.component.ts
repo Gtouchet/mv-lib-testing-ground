@@ -1,9 +1,9 @@
 import { BaseExampleComponent } from '../../base-example.component';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { StylesService } from '../../../../styles/styles.service';
-import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from 'mv-lib';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicEffectsStyles, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { INPUTS } from '../../../shared/inputs/inputs.export';
+import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
+import { SPECIFIC_INPUTS } from '../../../shared/specific-inputs/sepcific-inputs.export';
 
 @Component({
   selector: 'app-textbox-classic-example',
@@ -11,7 +11,8 @@ import { INPUTS } from '../../../shared/inputs/inputs.export';
     MvLibTextboxClassicComponent,
     ReactiveFormsModule,
     INPUTS,
-  ],
+    SPECIFIC_INPUTS,
+],
   templateUrl: './textbox-classic-example.component.html',
   styleUrls: [
     './textbox-classic-example.component.scss',
@@ -23,31 +24,40 @@ import { INPUTS } from '../../../shared/inputs/inputs.export';
 export class TextboxClassicExampleComponent extends BaseExampleComponent<
   MvLibTextboxClassicStyles,
   MvLibTextboxClassicEffects,
+  MvLibTextboxClassicEffectsStyles,
   MvLibTextboxClassicSettings
 > {
-
-  private appStyles = inject(StylesService);
-
-  protected selected = signal(false);
-
-  protected required = signal(true);
-  protected minLength = signal<number | undefined>(3);
-  protected onlyCharacters = signal(true);
-
   constructor() {
     super();
     this.logProperties.set(['disabled', 'selected', 'styles', 'effects', 'settings']);
     this.styles = signal<Partial<MvLibTextboxClassicStyles>>({
-      widthPx: 150,
-      heightPx: 32,
+      width: '150px',
+      height: '32px',
       backgroundColor: this.appStyles.var('textbox-classic-color'),
-      textColor: this.appStyles.var('textbox-classic-text-color'),
-      borderColor: this.appStyles.var('textbox-classic-border-color'),
-      selectedOutlineColor: this.appStyles.var('textbox-outline-effect-color'),
+
+      border: {
+        width: this.appStyles.var('textbox-classic-border-width'),
+        style: this.appStyles.var('textbox-classic-border-style'),
+        color: this.appStyles.var('textbox-classic-border-color'),
+        radius: this.appStyles.var('textbox-classic-border-radius'),
+      },
+
+      font: {
+        size: this.appStyles.var('textbox-classic-font-size'),
+        weight: this.appStyles.var('textbox-classic-font-weight'),
+        style: this.appStyles.var('textbox-classic-font-style'),
+        color: this.appStyles.var('textbox-classic-font-color'),
+      },
     });
     this.effects = signal<Partial<MvLibTextboxClassicEffects>>({
       hover: ['darken'],
       selected: ['outline-solid'],
+    });
+    this.effectsStyles = signal<Partial<MvLibTextboxClassicEffectsStyles>>({
+      hover_darkenPercentage: '10',
+      selected_outlineColor: this.appStyles.var('textbox-outline-effect-color'),
+      selected_outlineSolidWidth: this.appStyles.var('textbox-outline-effect-solid-width'),
+      selected_outlineBlurRadius: this.appStyles.var('textbox-outline-effect-blur-radius'),
     });
     this.settings = signal<Partial<MvLibTextboxClassicSettings>>({
       selected: false,

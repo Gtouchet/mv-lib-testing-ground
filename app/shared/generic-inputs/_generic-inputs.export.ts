@@ -3,6 +3,7 @@ import { InputCheckboxComponent } from "./input-checkbox.component";
 import { InputColorComponent } from "./input-color.component";
 import { InputNumberComponent } from "./input-number.component";
 import { InputRadioComponent } from "./input-radio.component";
+import { InputSelectComponent } from "./input-select.component";
 import { InputTextComponent } from "./input-text.component";
 
 export const INPUTS = [
@@ -11,5 +12,6 @@ export const INPUTS = [
     InputColorComponent,
     InputNumberComponent,
     InputRadioComponent,
+    InputSelectComponent,
     InputTextComponent,
 ];

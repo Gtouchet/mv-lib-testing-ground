@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, contentChild, inject, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, contentChild, signal } from "@angular/core";
 import { BaseExampleComponent } from "../../base-example.component";
-import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyles, MvLibRadioButtonsDirectives } from "mv-lib";
-import { INPUTS } from "../../../shared/inputs/inputs.export";
-import { StylesService } from "../../../../styles/styles.service";
+import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicEffectsStyles, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyles, MvLibRadioButtonsDirectives } from "mv-lib";
+import { INPUTS } from "../../../shared/generic-inputs/_generic-inputs.export";
 import { JsonPipe } from "@angular/common";
 
 interface User {
@@ -29,12 +28,11 @@ interface User {
 export class RadioButtonsClassicExample extends BaseExampleComponent<
     MvLibRadioButtonsClassicStyles,
     MvLibRadioButtonsClassicEffects,
+    MvLibRadioButtonsClassicEffectsStyles,
     MvLibRadioButtonsClassicSettings
 > {
     protected radioButtons = contentChild('radioButtons');
 
-    protected appStyles = inject(StylesService);
-  
     protected selectedItem = signal<User | undefined>(undefined);
     protected items = signal<User[]>([
         { id: 1, name: 'Alice' },

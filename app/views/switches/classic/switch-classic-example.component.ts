@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
-import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from 'mv-lib';
+import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicEffectsStyles, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from 'mv-lib';
 import { StylesService } from '../../../../styles/styles.service';
-import { INPUTS } from '../../../shared/inputs/inputs.export';
+import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
 
 @Component({
   selector: 'app-switch-classic-example',
@@ -21,13 +21,9 @@ import { INPUTS } from '../../../shared/inputs/inputs.export';
 export class SwitchClassicExampleComponent extends BaseExampleComponent<
   MvLibSwitchClassicStyles,
   MvLibSwitchClassicEffects,
+  MvLibSwitchClassicEffectsStyles,
   MvLibSwitchClassicSettings
 > {
-
-  protected appStyles = inject(StylesService);
-  
-  protected active = signal(true);
-
   constructor() {
     super();
     this.logProperties.set(['disabled', 'active', 'styles', 'effects', 'settings']);

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject, signal } from "@angular/core";
-import { MvLibToastService, MvLibToastStyles, MvLibToastEffects, MvLibToastSettings, MvLibButtonClassicComponent, MvLibToastType } from "mv-lib";
-import { INPUTS } from "../../../shared/inputs/inputs.export";
+import { MvLibToastService, MvLibToastStyles, MvLibToastEffects, MvLibToastSettings, MvLibButtonClassicComponent, MvLibToastType, MvLibToastEffectsStyles } from "mv-lib";
+import { INPUTS } from "../../../shared/generic-inputs/_generic-inputs.export";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
 
@@ -22,6 +22,7 @@ import { JsonPipe } from "@angular/common";
 export class ToastClassicExampleComponent extends BaseExampleComponent<
   MvLibToastStyles,
   MvLibToastEffects,
+  MvLibToastEffectsStyles,
   MvLibToastSettings
 > {
     protected toastService = inject(MvLibToastService);

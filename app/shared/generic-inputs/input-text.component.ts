@@ -16,9 +16,9 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputTextComponent {
-  public value = input<string | undefined>(undefined);
+  public value = input<string | number| undefined>(undefined);
   public label = input('');
-  public widthPx = input<number>(50);
+  public widthPx = input<number | undefined>(undefined);
   public onChange = output<string>();
 
   protected handleInput(event: Event) {

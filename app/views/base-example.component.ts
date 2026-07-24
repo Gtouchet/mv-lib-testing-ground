@@ -1,5 +1,6 @@
-import { Directive, OnInit, signal } from "@angular/core";
+import { Directive, inject, OnInit, signal } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { StylesService } from "../../styles/styles.service";
 
 @Directive({
     standalone: true,
@@ -7,10 +8,14 @@ import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 export abstract class BaseExampleComponent<
     Styles,
     Effects extends { [K in keyof Effects]: unknown[] },
+    EffectsStyles,
     Settings
 > implements OnInit {
 
+    protected appStyles = inject(StylesService);
+
     ngOnInit() {
+        this.logProperties.set(['disabled', 'styles', 'effects', 'effectsStyles', 'settings']);
         this.initForm();
         this.refreshLog();
     }
@@ -20,18 +25,35 @@ export abstract class BaseExampleComponent<
      */
     protected styles = signal<Partial<Styles>>({});
     protected effects = signal<Partial<Effects>>({});
+    protected effectsStyles = signal<Partial<EffectsStyles>>({});
     protected settings = signal<Partial<Settings>>({});
 
     protected disabled = signal(false);
+    protected selected = signal(false);
+    protected opened = signal(false);
+    protected active = signal(true);
 
     protected updateStyle(
-        key: keyof Styles,
+        path: string,
         value: any,
     ) {
-        this.styles.update(current => ({
-            ...current,
-            [key]: value,
-        }));
+        this.styles.update(current => {
+            const keys = path.split('.');
+            const update = (obj: any, index: number): any => {
+                const key = keys[index];
+                if (index === keys.length - 1) {
+                    return {
+                        ...obj,
+                        [key]: value,
+                    };
+                }
+                return {
+                    ...obj,
+                    [key]: update(obj?.[key] ?? {}, index + 1),
+                };
+            };
+            return update(current, 0);
+        });
         this.refreshLog();
     }
 
@@ -52,6 +74,17 @@ export abstract class BaseExampleComponent<
         this.refreshLog();
     }
 
+    protected updateEffectStyle(
+        effect: keyof EffectsStyles,
+        value: any,
+    ) {
+        this.effectsStyles.update(current => ({
+            ...current,
+            [effect]: value,
+        }));
+        this.refreshLog();
+    }
+
     protected updateSetting(
         key: keyof Settings,
         checked: boolean,
@@ -66,13 +99,17 @@ export abstract class BaseExampleComponent<
     /**
      * Forms
      */
+    protected abstract initForm(): void;
+
     protected form = new UntypedFormGroup({});
     protected validators: ValidatorFn[] = [];
-    protected touched = signal(false);
 
+    //protected touched = signal(false);
+
+    protected required = signal(true);
+    protected minLength = signal<number | undefined>(3);
+    protected onlyCharacters = signal(true);
     protected onlyCharactersRegex = '^[a-zA-ZÀ-ÿ ]+$';
-    
-    protected abstract initForm(): void;
 
     protected updateFormValidator(
         formName: string,

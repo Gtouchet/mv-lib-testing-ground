@@ -1,8 +1,7 @@
 import { BaseExampleComponent } from '../../base-example.component';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from 'mv-lib';
-import { StylesService } from '../../../../styles/styles.service';
-import { INPUTS } from '../../../shared/inputs/inputs.export';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicEffectsStyles, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from 'mv-lib';
+import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
 
 @Component({
   selector: 'app-button-classic-example',
@@ -21,11 +20,9 @@ import { INPUTS } from '../../../shared/inputs/inputs.export';
 export class ButtonClassicExampleComponent extends BaseExampleComponent<
   MvLibButtonClassicStyles,
   MvLibButtonClassicEffects,
+  MvLibButtonClassicEffectsStyles,
   MvLibButtonClassicSettings
 > {
-
-  protected appStyles = inject(StylesService);
-
   constructor() {
     super();
     this.logProperties.set(['disabled', 'styles', 'effects', 'settings']);

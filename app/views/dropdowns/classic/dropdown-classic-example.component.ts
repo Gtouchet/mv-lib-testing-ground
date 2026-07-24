@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import {
   MvLibDropdownClassicComponent,
   MvLibDropdownClassicEffects,
+  MvLibDropdownClassicEffectsStyles,
   MvLibDropdownClassicSettings,
   MvLibDropdownClassicStyles,
   MvLibDropdownDirectives,
 } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
-import { StylesService } from "../../../../styles/styles.service";
-import { INPUTS } from '../../../shared/inputs/inputs.export';
+import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
 
 interface User {
   id: number;
@@ -36,11 +36,9 @@ interface User {
 export class DropdownClassicExampleComponent extends BaseExampleComponent<
   MvLibDropdownClassicStyles,
   MvLibDropdownClassicEffects,
+  MvLibDropdownClassicEffectsStyles,
   MvLibDropdownClassicSettings
 > {
-  protected appStyles = inject(StylesService);
-  
-  protected opened = signal(false);
   protected selectedItem = signal<User | undefined>(undefined);
   protected items = signal<User[]>([
     { id: 1, icon: 'person', name: 'Alice' },
@@ -81,6 +79,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       closeOnItemSelect: true,
       closeOnOutsideClick: true,
       resetButton: true,
+      filterBy: 'name',
     });
   }
 

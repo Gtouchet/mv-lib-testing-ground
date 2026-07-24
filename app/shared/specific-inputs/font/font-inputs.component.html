@@ -1,0 +1,94 @@
+<div
+    [ngStyle]="{
+        'display': 'flex',
+        'align-items': 'center',
+        'gap.px': 8,
+        'margin-bottom.px': 4,
+    }"
+>
+    <b>
+        Font
+    </b>
+    <hr
+        [ngStyle]="{
+            'flex': '1',
+            'margin': '0',
+            'margin-right.px': 6,
+        }"
+    />
+</div>
+<div
+    [ngStyle]="{
+        'display': 'grid',
+        'grid-template-columns': 'max-content 1fr',
+        'column-gap.px': 8,
+        'row-gap.px': 4,
+        'align-items': 'center',
+    }"
+>
+    Size
+    <div
+        [ngStyle]="{
+            'display': 'flex',
+            'align-items': 'center',
+            'gap.px': 4,
+        }"
+    >
+        <app-input-select
+            [values]="cssFontSizes"
+            [selectedValues]="[size()]"
+            [widthPx]="100"
+            (onChange)="onSizeChange.emit($event)"
+        />
+        or free input
+        <app-input-text
+            [value]="size()"
+            (onChange)="onSizeChange.emit($event)"
+        />
+    </div>
+    Weight
+    <div
+        [ngStyle]="{
+            'display': 'flex',
+            'align-items': 'center',
+            'gap.px': 4,
+        }"
+    >
+        <app-input-select
+            [values]="cssFontWeights"
+            [selectedValues]="[weight()]"
+            [widthPx]="100"
+            (onChange)="onWeightChange.emit($event)"
+        />
+        or free input
+        <app-input-text
+            [value]="weight()"
+            (onChange)="onWeightChange.emit($event)"
+        />
+    </div>
+    Style
+    <div
+        [ngStyle]="{
+            'display': 'flex',
+            'align-items': 'center',
+            'gap.px': 4,
+        }"
+    >
+        <app-input-select
+            [values]="cssFontStyles"
+            [selectedValues]="[style()]"
+            [widthPx]="100"
+            (onChange)="onStyleChange.emit($event)"
+        />
+        or free input
+        <app-input-text
+            [value]="style()"
+            (onChange)="onStyleChange.emit($event)"
+        />
+    </div>
+    Color
+    <app-input-color
+        [value]="color()"
+        (onChange)="onColorChange.emit($event)"
+    />
+</div>
