@@ -10,7 +10,10 @@ import { CommonModule } from "@angular/common";
     INPUTS,
   ],
   templateUrl: './border-inputs.component.html',
-  styleUrl: './border-inputs.component.scss',
+  styleUrls: [
+    './border-inputs.component.scss',
+    '../specific-inputs.component.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

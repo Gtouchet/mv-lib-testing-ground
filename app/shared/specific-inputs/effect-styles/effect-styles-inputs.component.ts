@@ -4,8 +4,15 @@ import { CommonModule } from "@angular/common";
 @Component({
   selector: 'app-effect-styles-inputs',
   imports: [CommonModule],
-  templateUrl: './effect-styles-inputs.component.html',
-  styleUrl: './effect-styles-inputs.component.scss',
+  template: `
+  <div class="inputs-group">
+    <ng-content/>
+  </div>
+  `,
+  styleUrls: [
+    './effect-styles-inputs.component.scss',
+    '../specific-inputs.component.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

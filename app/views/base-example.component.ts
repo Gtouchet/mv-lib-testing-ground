@@ -78,6 +78,7 @@ export abstract class BaseExampleComponent<
         effect: keyof EffectsStyles,
         value: any,
     ) {
+        console.log(effect, value);
         this.effectsStyles.update(current => ({
             ...current,
             [effect]: value,
@@ -103,8 +104,6 @@ export abstract class BaseExampleComponent<
 
     protected form = new UntypedFormGroup({});
     protected validators: ValidatorFn[] = [];
-
-    //protected touched = signal(false);
 
     protected required = signal(true);
     protected minLength = signal<number | undefined>(3);

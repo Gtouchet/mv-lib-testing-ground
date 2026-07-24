@@ -20,6 +20,7 @@
             label="Background color"
             (onChange)="updateStyle('backgroundColor', $event)"
         />
+        <app-inputs-separator label="Border" />
         <app-border-inputs
             [width]="styles().border?.width"
             [style]="styles().border?.style"
@@ -30,6 +31,7 @@
             (onColorChange)="updateStyle('border.color', $event)"
             (onRadiusChange)="updateStyle('border.radius', $event)"
         />
+        <app-inputs-separator label="Font" />
         <app-font-inputs
             [size]="styles().font?.size"
             [weight]="styles().font?.weight"
@@ -68,16 +70,29 @@
             label="Outline blur"
             (onChange)="updateEffect('selected', 'outline-blur', $event)"
         />
+        <app-inputs-separator label="Styles" />
         <app-effect-styles-inputs>
             Darken percentage
             <app-input-number
-                [value]="effectsStyles().hover_darkenPercentage"
-                (onChange)="updateEffectStyle('hover_darkenPercentage', $event)"
+                [value]="effectsStyles().hover_darken_percentage"
+                [min]="0"
+                [max]="100"
+                (onChange)="updateEffectStyle('hover_darken_percentage', $event)"
             />
             Outline color
             <app-input-color
-                [value]="effectsStyles().selected_outlineColor"
-                (onChange)="updateEffectStyle('selected_outlineColor', $event)"
+                [value]="effectsStyles().selected_outline_color"
+                (onChange)="updateEffectStyle('selected_outline_color', $event)"
+            />
+            Outline solid width
+            <app-input-text
+                [value]="effectsStyles().selected_outlineSolid_width"
+                (onChange)="updateEffectStyle('selected_outlineSolid_width', $event)"
+            />
+            Outline blur radius
+            <app-input-text
+                [value]="effectsStyles().selected_outlineBlur_radius"
+                (onChange)="updateEffectStyle('selected_outlineBlur_radius', $event)"
             />
         </app-effect-styles-inputs>
     </div>
@@ -164,6 +179,7 @@
         class="component"
         [styles]="styles()"
         [effects]="effects()"
+        [effectsStyles]="effectsStyles()"
         [settings]="settings()"
         [selected]="selected()"
         (onChange)="

@@ -10,7 +10,10 @@ import { CssFontSize, CssFontStyle, CssFontWeight } from "../../css-values/font.
     INPUTS,
   ],
   templateUrl: './font-inputs.component.html',
-  styleUrl: './font-inputs.component.scss',
+    styleUrls: [
+    './font-inputs.component.scss',
+    '../specific-inputs.component.scss',
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

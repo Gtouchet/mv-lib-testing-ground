@@ -3,15 +3,17 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicEffectsStyles, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
-import { SPECIFIC_INPUTS } from '../../../shared/specific-inputs/sepcific-inputs.export';
+import { GROUP_INPUTS } from '../../../shared/specific-inputs/sepcific-inputs.export';
+import { InputsSeparatorComponent } from '../../../shared/inputs-separator.component';
 
 @Component({
   selector: 'app-textbox-classic-example',
   imports: [
     MvLibTextboxClassicComponent,
     ReactiveFormsModule,
+    InputsSeparatorComponent,
     INPUTS,
-    SPECIFIC_INPUTS,
+    GROUP_INPUTS,
 ],
   templateUrl: './textbox-classic-example.component.html',
   styleUrls: [
@@ -54,10 +56,10 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<
       selected: ['outline-solid'],
     });
     this.effectsStyles = signal<Partial<MvLibTextboxClassicEffectsStyles>>({
-      hover_darkenPercentage: '10',
-      selected_outlineColor: this.appStyles.var('textbox-outline-effect-color'),
-      selected_outlineSolidWidth: this.appStyles.var('textbox-outline-effect-solid-width'),
-      selected_outlineBlurRadius: this.appStyles.var('textbox-outline-effect-blur-radius'),
+      hover_darken_percentage: this.appStyles.var('textbox-classic-hover-darken-percentage'),
+      selected_outline_color: this.appStyles.var('textbox-classic-selected-outline-color'),
+      selected_outlineSolid_width: this.appStyles.var('textbox-classic-selected-outline-solid-width'),
+      selected_outlineBlur_radius: this.appStyles.var('textbox-classic-selected-outline-blur-radius'),
     });
     this.settings = signal<Partial<MvLibTextboxClassicSettings>>({
       selected: false,
