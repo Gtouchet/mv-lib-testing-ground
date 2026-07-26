@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, contentChild, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchLiteComponent, MvLibSwitchLiteEffects, MvLibSwitchLiteEffectsStyles, MvLibSwitchLiteSettings, MvLibSwitchLiteStyles } from 'mv-lib';
-import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
+import { INPUTS } from '../../../shared/inputs.export';
 
 @Component({
   selector: 'app-switch-lite-example',
@@ -23,9 +23,11 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<
   MvLibSwitchLiteEffectsStyles,
   MvLibSwitchLiteSettings
 > {
+  override mvLibComponent = contentChild<MvLibSwitchLiteComponent>('mvLibComponent');
+  
   constructor() {
     super();
-    this.logProperties.set(['disabled', 'active', 'styles', 'effects', 'settings']);
+    this.additionalLogProperties.set(['active']);
     this.styles = signal<Partial<MvLibSwitchLiteStyles>>({
       widthPx: 48,
       heightPx: 12,
@@ -50,10 +52,6 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<
     this.settings = signal<Partial<MvLibSwitchLiteSettings>>({
       
     });
-  }
-
-  protected initForm() {
-    
   }
 }
 

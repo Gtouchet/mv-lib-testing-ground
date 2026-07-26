@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, contentChild, signal } from "@angular/core";
 import { BaseExampleComponent } from "../../base-example.component";
 import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicEffectsStyles, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyles, MvLibRadioButtonsDirectives } from "mv-lib";
-import { INPUTS } from "../../../shared/generic-inputs/_generic-inputs.export";
 import { JsonPipe } from "@angular/common";
+import { INPUTS } from "../../../shared/inputs.export";
 
 interface User {
   id: number;
@@ -25,13 +25,13 @@ interface User {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class RadioButtonsClassicExample extends BaseExampleComponent<
+export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<
     MvLibRadioButtonsClassicStyles,
     MvLibRadioButtonsClassicEffects,
     MvLibRadioButtonsClassicEffectsStyles,
     MvLibRadioButtonsClassicSettings
 > {
-    protected radioButtons = contentChild('radioButtons');
+    override mvLibComponent = contentChild<MvLibRadioButtonsClassicComponent<User>>('mvLibComponent');
 
     protected selectedItem = signal<User | undefined>(undefined);
     protected items = signal<User[]>([
@@ -48,7 +48,6 @@ export class RadioButtonsClassicExample extends BaseExampleComponent<
 
     constructor() {
         super();
-        this.logProperties.set(['disabled', 'styles', 'effects', 'settings']);
         this.styles = signal<Partial<MvLibRadioButtonsClassicStyles>>({
             sizePx: 16,
             backgroundColor: this.appStyles.var('radio-buttons-classic-background-color'),
@@ -67,9 +66,5 @@ export class RadioButtonsClassicExample extends BaseExampleComponent<
             selectOnLabelClick: true,
             unselectable: false,
         });
-    }
-
-    protected initForm() {
-    
     }
 }

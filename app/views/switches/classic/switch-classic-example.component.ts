@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, contentChild, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicEffectsStyles, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from 'mv-lib';
-import { StylesService } from '../../../../styles/styles.service';
-import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
+import { INPUTS } from '../../../shared/inputs.export';
 
 @Component({
   selector: 'app-switch-classic-example',
@@ -24,9 +23,11 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
   MvLibSwitchClassicEffectsStyles,
   MvLibSwitchClassicSettings
 > {
+  override mvLibComponent = contentChild<MvLibSwitchClassicComponent>('mvLibComponent');
+  
   constructor() {
     super();
-    this.logProperties.set(['disabled', 'active', 'styles', 'effects', 'settings']);
+    this.additionalLogProperties.set(['active']);
     this.styles = signal<Partial<MvLibSwitchClassicStyles>>({
       widthPx: 64,
       heightPx: 32,
@@ -50,10 +51,6 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
     this.settings = signal<Partial<MvLibSwitchClassicSettings>>({
       
     });
-  }
-
-  protected initForm() {
-    
   }
 }
 

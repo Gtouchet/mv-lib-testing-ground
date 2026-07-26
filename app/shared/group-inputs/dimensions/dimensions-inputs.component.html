@@ -1,0 +1,33 @@
+<app-inputs-separator label="Dimensions" />
+<div class="inputs-group">
+    Width
+    <app-input-text
+        [value]="width()"
+        (onChange)="onWidthChange.emit($event)"
+    />
+    Min width
+    <app-input-text
+        [value]="minWidth()"
+        (onChange)="onMinWidthChange.emit($event)"
+    />
+    Max width
+    <app-input-text
+        [value]="maxWidth()"
+        (onChange)="onMaxWidthChange.emit($event)"
+    />
+    Height
+    <app-input-text
+        [value]="height()"
+        (onChange)="onHeightChange.emit($event)"
+    />
+    Min height
+    <app-input-text
+        [value]="minHeight()"
+        (onChange)="onMinHeightChange.emit($event)"
+    />
+    Max height
+    <app-input-text
+        [value]="maxHeight()"
+        (onChange)="onMaxHeightChange.emit($event)"
+    />
+</div>

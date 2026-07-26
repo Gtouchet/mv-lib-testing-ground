@@ -1,7 +1,7 @@
 import { BaseExampleComponent } from '../../base-example.component';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, contentChild, signal } from '@angular/core';
 import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicEffectsStyles, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from 'mv-lib';
-import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
+import { INPUTS } from '../../../shared/inputs.export';
 
 @Component({
   selector: 'app-button-classic-example',
@@ -23,9 +23,10 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
   MvLibButtonClassicEffectsStyles,
   MvLibButtonClassicSettings
 > {
+  override mvLibComponent = contentChild<MvLibButtonClassicComponent>('mvLibComponent');
+
   constructor() {
     super();
-    this.logProperties.set(['disabled', 'styles', 'effects', 'settings']);
     this.styles = signal<Partial<MvLibButtonClassicStyles>>({
       widthPx: 80,
       heightPx: 40,
@@ -40,9 +41,5 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<
     this.settings = signal<Partial<MvLibButtonClassicSettings>>({
 
     });
-  }
-
-  protected initForm() {
-    
   }
 }

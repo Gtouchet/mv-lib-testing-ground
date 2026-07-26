@@ -1,18 +1,18 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from "@angular/core";
-import { INPUTS } from "../../generic-inputs/_generic-inputs.export";
+import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CssFontSize, CssFontStyle, CssFontWeight } from "../../css-values/font.values";
+import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
 
 @Component({
   selector: 'app-font-inputs',
   imports: [
     CommonModule,
-    INPUTS,
+    GENERIC_INPUTS,
   ],
   templateUrl: './font-inputs.component.html',
     styleUrls: [
     './font-inputs.component.scss',
-    '../specific-inputs.component.scss',
+    '../group-inputs.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

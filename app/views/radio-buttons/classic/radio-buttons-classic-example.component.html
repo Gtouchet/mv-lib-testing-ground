@@ -1,7 +1,7 @@
 <div class="configuration">
 
     <!-- Styles -->
-    <div class="styles">
+    <div>
         <b [style.align-self]="'center'">
             Styles
         </b>
@@ -33,7 +33,7 @@
     </div>
 
     <!-- Effects -->
-    <div class="effects">
+    <div>
         <b [style.align-self]="'center'">
             Effects
         </b>
@@ -64,7 +64,7 @@
     </div>
 
     <!-- Settings -->
-    <div class="settings">
+    <div>
         <b [style.align-self]="'center'">
             Settings
         </b>
@@ -106,7 +106,7 @@
         <app-input-button
             label="Reset selection"
             (onClick)="
-                radioButtons.setSelected(undefined);
+                mvLibComponent?.setSelected(undefined);
                 refreshLastInteractionTime();
             "
         />
@@ -114,7 +114,7 @@
             label="Select item n°"
             [value]="items().findIndex(item => item === selectedItem()) + 1"
             (onChange)="
-                radioButtons.setSelected(items()[$event! - 1]);
+                mvLibComponent?.setSelected(items()[$event! - 1]);
                 refreshLastInteractionTime();
             "
             [min]="1"
@@ -125,7 +125,7 @@
 
 <div class="visual">
     <mv-lib-radio-buttons-classic
-        #radioButtons
+        #mvLibComponent
         class="component"
         [styles]="styles()"
         [effects]="effects()"

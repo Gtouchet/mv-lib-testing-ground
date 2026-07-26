@@ -11,7 +11,7 @@ import { CommonModule } from "@angular/common";
   `,
   styleUrls: [
     './effect-styles-inputs.component.scss',
-    '../specific-inputs.component.scss',
+    '../group-inputs.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

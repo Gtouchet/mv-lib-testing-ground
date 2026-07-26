@@ -3,8 +3,15 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
 @Component({
     selector: 'app-home',
     template: `
-        This is a test application for the MvLib library. It is used to test the components and their functionalities.<br/>
-        Choose a component from the header to see the examples and test the components styles, effects and settings.
+        <h3>
+            Welcome to the MvLib Testing Ground
+        </h3>
+        <p>
+            This is a test application for the MvLib library. It is used to test it's components and their functionalities.<br/>
+            Choose a component from the header to see the examples and test the components styles, effects and settings.<br/>
+            The project is still in its early stages, so you may encounter some bugs or missing features.<br/>
+            I am actively working on fixing issues and adding new functionality.<br/>
+        </p>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,

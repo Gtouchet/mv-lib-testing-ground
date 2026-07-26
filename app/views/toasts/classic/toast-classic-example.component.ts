@@ -1,15 +1,15 @@
-import { Component, ChangeDetectionStrategy, inject, signal } from "@angular/core";
-import { MvLibToastService, MvLibToastStyles, MvLibToastEffects, MvLibToastSettings, MvLibButtonClassicComponent, MvLibToastType, MvLibToastEffectsStyles } from "mv-lib";
-import { INPUTS } from "../../../shared/generic-inputs/_generic-inputs.export";
+import { Component, ChangeDetectionStrategy, inject, signal, viewChild } from "@angular/core";
+import { MvLibToastService, MvLibToastStyles, MvLibToastEffects, MvLibToastSettings, MvLibButtonClassicComponent, MvLibToastEffectsStyles } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
+import { INPUTS } from "../../../shared/inputs.export";
 
 @Component({
   selector: 'app-toast-classic-example',
   imports: [
     MvLibButtonClassicComponent,
-    INPUTS,
     JsonPipe,
+    INPUTS,
 ],
   templateUrl: './toast-classic-example.component.html',
   styleUrls: [
@@ -31,8 +31,4 @@ export class ToastClassicExampleComponent extends BaseExampleComponent<
     protected warning = signal<{ icon: string, message: string }>({ icon: 'warning', message: 'Warning message' });
     protected error = signal<{ icon: string, message: string }>({ icon: 'error', message: 'Error message' });
     protected info = signal<{ icon: string, message: string }>({ icon: 'info', message: 'Info message' });
-    
-    protected initForm() {
-
-    }
 }

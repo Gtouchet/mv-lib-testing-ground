@@ -1,7 +1,7 @@
 <div class="configuration">
 
     <!-- Styles -->
-    <div class="styles">
+    <div>
         <b [style.align-self]="'center'">
             Styles
         </b>
@@ -67,7 +67,7 @@
     </div>
 
     <!-- Effects -->
-    <div class="effects">
+    <div>
         <b [style.align-self]="'center'">
             Effects
         </b>
@@ -103,7 +103,7 @@
     </div>
 
     <!-- Settings -->
-    <div class="settings">
+    <div>
         <b [style.align-self]="'center'">
             Settings
         </b>
@@ -128,6 +128,7 @@
 
 <div class="visual">
     <mv-lib-switch-classic
+        #mvLibComponent
         class="component"
         [styles]="styles()"
         [effects]="effects()"

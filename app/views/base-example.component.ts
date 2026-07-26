@@ -1,4 +1,4 @@
-import { Directive, inject, OnInit, signal } from "@angular/core";
+import { AfterViewInit, Directive, inject, OnInit, Signal, signal } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { StylesService } from "../../styles/styles.service";
 
@@ -10,13 +10,22 @@ export abstract class BaseExampleComponent<
     Effects extends { [K in keyof Effects]: unknown[] },
     EffectsStyles,
     Settings
-> implements OnInit {
+> implements OnInit, AfterViewInit {
 
     protected appStyles = inject(StylesService);
 
+    protected mvLibComponent?: Signal<any>;
+
     ngOnInit() {
-        this.logProperties.set(['disabled', 'styles', 'effects', 'effectsStyles', 'settings']);
         this.initForm();
+        this.refreshLog();
+    }
+
+    ngAfterViewInit() {
+        this.styles.set(this.mvLibComponent?.()?.getStyles() ?? {});
+        this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
+        this.effectsStyles.set(this.mvLibComponent?.()?.getEffectsStyles() ?? {});
+        this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
         this.refreshLog();
     }
 
@@ -100,7 +109,7 @@ export abstract class BaseExampleComponent<
     /**
      * Forms
      */
-    protected abstract initForm(): void;
+    protected initForm(): void {}
 
     protected form = new UntypedFormGroup({});
     protected validators: ValidatorFn[] = [];
@@ -157,7 +166,7 @@ export abstract class BaseExampleComponent<
      * Logs
      */
     protected lastInteractionTime = signal<string>('--:--:--.--');
-    protected logProperties = signal<string[]>([]);
+    protected additionalLogProperties = signal<string[]>([]);
     protected log = signal('');
 
     protected refreshLastInteractionTime() {
@@ -170,8 +179,15 @@ export abstract class BaseExampleComponent<
     }
 
     protected refreshLog() {
-        var result = '';
-        this.logProperties().forEach(property => {
+        var result = 
+`
+[styles]=\"${this.prettify((this as any)['styles']())}\",
+[effects]=\"${this.prettify((this as any)['effects']())}\",
+[effectsStyles]=\"${this.prettify((this as any)['effectsStyles']())}\",
+[settings]=\"${this.prettify((this as any)['settings']())}\",
+[disabled]="${this.prettify(this.form ? this.form.disabled : this.disabled())}",
+`;
+        this.additionalLogProperties().forEach(property => {
             result += `[${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
         });
         this.log.set(result);

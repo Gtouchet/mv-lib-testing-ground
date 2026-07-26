@@ -1,26 +1,29 @@
 <div class="configuration">
 
     <!-- Styles -->
-    <div class="styles">
+    <div>
         <b [style.align-self]="'center'">
             Styles
         </b>
-        <app-input-text
-            [value]="styles().width"
-            label="Width"
-            (onChange)="updateStyle('width', $event)"
-        />
-        <app-input-text
-            [value]="styles().height"
-            label="Height"
-            (onChange)="updateStyle('height', $event)"
-        />
         <app-input-color
             [value]="styles().backgroundColor"
             label="Background color"
             (onChange)="updateStyle('backgroundColor', $event)"
         />
-        <app-inputs-separator label="Border" />
+        <app-dimensions-inputs
+            [width]="styles().dimensions?.width"
+            [minWidth]="styles().dimensions?.minWidth"
+            [maxWidth]="styles().dimensions?.maxWidth"
+            [height]="styles().dimensions?.height"
+            [minHeight]="styles().dimensions?.minHeight"
+            [maxHeight]="styles().dimensions?.maxHeight"
+            (onWidthChange)="updateStyle('dimensions.width', $event)"
+            (onMinWidthChange)="updateStyle('dimensions.minWidth', $event)"
+            (onMaxWidthChange)="updateStyle('dimensions.maxWidth', $event)"
+            (onHeightChange)="updateStyle('dimensions.height', $event)"
+            (onMinHeightChange)="updateStyle('dimensions.minHeight', $event)"
+            (onMaxHeightChange)="updateStyle('dimensions.maxHeight', $event)"
+        />
         <app-border-inputs
             [width]="styles().border?.width"
             [style]="styles().border?.style"
@@ -31,7 +34,6 @@
             (onColorChange)="updateStyle('border.color', $event)"
             (onRadiusChange)="updateStyle('border.radius', $event)"
         />
-        <app-inputs-separator label="Font" />
         <app-font-inputs
             [size]="styles().font?.size"
             [weight]="styles().font?.weight"
@@ -45,7 +47,7 @@
     </div>
 
     <!-- Effects -->
-    <div class="effects">
+    <div>
         <b [style.align-self]="'center'">
             Effects
         </b>
@@ -74,31 +76,36 @@
         <app-effect-styles-inputs>
             Darken percentage
             <app-input-number
-                [value]="effectsStyles().hover_darken_percentage"
+                [value]="effectsStyles().darkenHover_percentage"
                 [min]="0"
                 [max]="100"
-                (onChange)="updateEffectStyle('hover_darken_percentage', $event)"
+                (onChange)="updateEffectStyle('darkenHover_percentage', $event)"
             />
-            Outline color
+            Outline solid color
             <app-input-color
-                [value]="effectsStyles().selected_outline_color"
-                (onChange)="updateEffectStyle('selected_outline_color', $event)"
+                [value]="effectsStyles().outlineSolidSelected_color"
+                (onChange)="updateEffectStyle('outlineSolidSelected_color', $event)"
             />
             Outline solid width
             <app-input-text
-                [value]="effectsStyles().selected_outlineSolid_width"
-                (onChange)="updateEffectStyle('selected_outlineSolid_width', $event)"
+                [value]="effectsStyles().outlineSolidSelected_width"
+                (onChange)="updateEffectStyle('outlineSolidSelected_width', $event)"
+            />
+            Outline blur color
+            <app-input-color
+                [value]="effectsStyles().outlineBlurSelected_color"
+                (onChange)="updateEffectStyle('outlineBlurSelected_color', $event)"
             />
             Outline blur radius
             <app-input-text
-                [value]="effectsStyles().selected_outlineBlur_radius"
-                (onChange)="updateEffectStyle('selected_outlineBlur_radius', $event)"
+                [value]="effectsStyles().outlineBlurSelected_radius"
+                (onChange)="updateEffectStyle('outlineBlurSelected_radius', $event)"
             />
         </app-effect-styles-inputs>
     </div>
 
     <!-- Settings -->
-    <div class="settings">
+    <div>
         <b [style.align-self]="'center'">
             Settings
         </b>
@@ -122,7 +129,7 @@
     </div>
 
     <!-- Form controls -->
-    <div class="form-controls">
+    <div>
         <b [style.align-self]="'center'">
             Form controls
         </b>
@@ -175,6 +182,7 @@
     class="visual"
 >
     <mv-lib-textbox-classic
+        #mvLibComponent
         formControlName="input"
         class="component"
         [styles]="styles()"

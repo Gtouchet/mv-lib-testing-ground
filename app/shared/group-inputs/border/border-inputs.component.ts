@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from "@angular/core";
-import { INPUTS } from "../../generic-inputs/_generic-inputs.export";
 import { CssBorderStyle } from "../../css-values/border.values";
 import { CommonModule } from "@angular/common";
+import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
 
 @Component({
   selector: 'app-border-inputs',
   imports: [
     CommonModule,
-    INPUTS,
+    GENERIC_INPUTS,
   ],
   templateUrl: './border-inputs.component.html',
   styleUrls: [
     './border-inputs.component.scss',
-    '../specific-inputs.component.scss',
+    '../group-inputs.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

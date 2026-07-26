@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, contentChild, signal } from "@angular/core";
 import {
   MvLibDropdownClassicComponent,
   MvLibDropdownClassicEffects,
@@ -9,7 +9,7 @@ import {
 } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
-import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
+import { INPUTS } from "../../../shared/inputs.export";
 
 interface User {
   id: number;
@@ -22,8 +22,8 @@ interface User {
   imports: [
     MvLibDropdownClassicComponent,
     MvLibDropdownDirectives,
-    INPUTS,
     JsonPipe,
+    INPUTS,
   ],
   templateUrl: './dropdown-classic-example.component.html',
   styleUrls: [
@@ -39,6 +39,8 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
   MvLibDropdownClassicEffectsStyles,
   MvLibDropdownClassicSettings
 > {
+  override mvLibComponent = contentChild<MvLibDropdownClassicComponent<User>>('mvLibComponent');
+
   protected selectedItem = signal<User | undefined>(undefined);
   protected items = signal<User[]>([
     { id: 1, icon: 'person', name: 'Alice' },
@@ -54,7 +56,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
 
   constructor() {
     super();
-    this.logProperties.set(['disabled', 'opened', 'styles', 'effects', 'settings']);
+    this.additionalLogProperties.set(['opened']);
     this.styles = signal<Partial<MvLibDropdownClassicStyles>>({
       buttonWidthPx: 150,
       buttonHeightPx: 40,
@@ -81,9 +83,5 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       resetButton: true,
       filterBy: 'name',
     });
-  }
-
-  protected initForm() {
-    
   }
 }

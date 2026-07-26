@@ -1,3 +1,4 @@
+import { InputsSeparatorComponent } from "../inputs-separator.component";
 import { InputButtonComponent } from "./input-button.component";
 import { InputCheckboxComponent } from "./input-checkbox.component";
 import { InputColorComponent } from "./input-color.component";
@@ -6,7 +7,9 @@ import { InputRadioComponent } from "./input-radio.component";
 import { InputSelectComponent } from "./input-select.component";
 import { InputTextComponent } from "./input-text.component";
 
-export const INPUTS = [
+export const GENERIC_INPUTS = [
+    InputsSeparatorComponent,
+    
     InputButtonComponent,
     InputCheckboxComponent,
     InputColorComponent,

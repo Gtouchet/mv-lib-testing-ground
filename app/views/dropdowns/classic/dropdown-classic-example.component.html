@@ -1,7 +1,7 @@
 <div class="configuration">
 
     <!-- Styles -->
-    <div class="styles">
+    <div>
         <b [style.align-self]="'center'">
             Styles
         </b>
@@ -57,74 +57,72 @@
     </div>
 
     <!-- Effects -->
-    <div class="effects">
+    <div>
         <b [style.align-self]="'center'">
             Effects
         </b>
-        <div class="effect-types">
-            <b>
-                Button idle
-            </b>
-            <app-input-checkbox
-                [checked]="effects().buttonIdle?.includes('shadow')"
-                label="Shadow"
-                (onChange)="updateEffect('buttonIdle', 'shadow', $event)"
-            />
-            <b>
-                Button hover
-            </b>
-            <app-input-checkbox
-                [checked]="effects().buttonHover?.includes('darken')"
-                label="Darken"
-                (onChange)="updateEffect('buttonHover', 'darken', $event)"
-            />
-            <b>
-                Button click
-            </b>
-            <app-input-checkbox
-                [checked]="effects().buttonClick?.includes('push')"
-                label="Push"
-                (onChange)="updateEffect('buttonClick', 'push', $event)"
-            />
-            <app-input-checkbox
-                [checked]="effects().buttonClick?.includes('ripple')"
-                label="Ripple"
-                (onChange)="updateEffect('buttonClick', 'ripple', $event)"
-            />
-            <b>
-                List idle
-            </b>
-            <app-input-checkbox
-                [checked]="effects().listIdle?.includes('shadow')"
-                label="Shadow"
-                (onChange)="updateEffect('listIdle', 'shadow', $event)"
-            />
-            <b>
-                Item hover
-            </b>
-            <app-input-checkbox
-                [checked]="effects().itemHover?.includes('darken')"
-                label="Darken"
-                (onChange)="updateEffect('itemHover', 'darken', $event)"
-            />
-            <b>
-                Item click
-            </b>
-            <app-input-checkbox
-                [checked]="effects().itemClick?.includes('push')"
-                label="Push"
-                (onChange)="updateEffect('itemClick', 'push', $event)"
-            />
-            <app-input-checkbox
-                [checked]="effects().itemClick?.includes('ripple')"
-                label="Ripple"
-                (onChange)="updateEffect('itemClick', 'ripple', $event)"
-            />
-        </div>
+        <b>
+            Button idle
+        </b>
+        <app-input-checkbox
+            [checked]="effects().buttonIdle?.includes('shadow')"
+            label="Shadow"
+            (onChange)="updateEffect('buttonIdle', 'shadow', $event)"
+        />
+        <b>
+            Button hover
+        </b>
+        <app-input-checkbox
+            [checked]="effects().buttonHover?.includes('darken')"
+            label="Darken"
+            (onChange)="updateEffect('buttonHover', 'darken', $event)"
+        />
+        <b>
+            Button click
+        </b>
+        <app-input-checkbox
+            [checked]="effects().buttonClick?.includes('push')"
+            label="Push"
+            (onChange)="updateEffect('buttonClick', 'push', $event)"
+        />
+        <app-input-checkbox
+            [checked]="effects().buttonClick?.includes('ripple')"
+            label="Ripple"
+            (onChange)="updateEffect('buttonClick', 'ripple', $event)"
+        />
+        <b>
+            List idle
+        </b>
+        <app-input-checkbox
+            [checked]="effects().listIdle?.includes('shadow')"
+            label="Shadow"
+            (onChange)="updateEffect('listIdle', 'shadow', $event)"
+        />
+        <b>
+            Item hover
+        </b>
+        <app-input-checkbox
+            [checked]="effects().itemHover?.includes('darken')"
+            label="Darken"
+            (onChange)="updateEffect('itemHover', 'darken', $event)"
+        />
+        <b>
+            Item click
+        </b>
+        <app-input-checkbox
+            [checked]="effects().itemClick?.includes('push')"
+            label="Push"
+            (onChange)="updateEffect('itemClick', 'push', $event)"
+        />
+        <app-input-checkbox
+            [checked]="effects().itemClick?.includes('ripple')"
+            label="Ripple"
+            (onChange)="updateEffect('itemClick', 'ripple', $event)"
+        />
     </div>
 
     <!-- Settings -->
-    <div class="settings">
+    <div>
         <b [style.align-self]="'center'">
             Settings
         </b>
@@ -173,6 +171,7 @@
 
 <div class="visual">
     <mv-lib-dropdown-classic
+        #mvLibComponent
         class="component"
         [styles]="styles()"
         [effects]="effects()"

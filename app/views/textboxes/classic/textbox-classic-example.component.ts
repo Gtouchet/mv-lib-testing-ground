@@ -1,19 +1,17 @@
 import { BaseExampleComponent } from '../../base-example.component';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicEffectsStyles, MvLibTextboxClassicSettings, MvLibTextboxClassicStyles } from 'mv-lib';
+import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
+import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicEffectsConfig, MvLibTextboxClassicSettings, MvLibTextboxClassicStyle } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { INPUTS } from '../../../shared/generic-inputs/_generic-inputs.export';
-import { GROUP_INPUTS } from '../../../shared/specific-inputs/sepcific-inputs.export';
-import { InputsSeparatorComponent } from '../../../shared/inputs-separator.component';
+import { INPUTS } from '../../../shared/inputs.export';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-textbox-classic-example',
   imports: [
+    CommonModule,
     MvLibTextboxClassicComponent,
     ReactiveFormsModule,
-    InputsSeparatorComponent,
     INPUTS,
-    GROUP_INPUTS,
 ],
   templateUrl: './textbox-classic-example.component.html',
   styleUrls: [
@@ -24,49 +22,35 @@ import { InputsSeparatorComponent } from '../../../shared/inputs-separator.compo
   standalone: true,
 })
 export class TextboxClassicExampleComponent extends BaseExampleComponent<
-  MvLibTextboxClassicStyles,
+  MvLibTextboxClassicStyle,
   MvLibTextboxClassicEffects,
-  MvLibTextboxClassicEffectsStyles,
+  MvLibTextboxClassicEffectsConfig,
   MvLibTextboxClassicSettings
 > {
+  override mvLibComponent = viewChild<MvLibTextboxClassicComponent>('mvLibComponent');
+
   constructor() {
     super();
-    this.logProperties.set(['disabled', 'selected', 'styles', 'effects', 'settings']);
-    this.styles = signal<Partial<MvLibTextboxClassicStyles>>({
-      width: '150px',
-      height: '32px',
-      backgroundColor: this.appStyles.var('textbox-classic-color'),
-
-      border: {
-        width: this.appStyles.var('textbox-classic-border-width'),
-        style: this.appStyles.var('textbox-classic-border-style'),
-        color: this.appStyles.var('textbox-classic-border-color'),
-        radius: this.appStyles.var('textbox-classic-border-radius'),
-      },
-
-      font: {
-        size: this.appStyles.var('textbox-classic-font-size'),
-        weight: this.appStyles.var('textbox-classic-font-weight'),
-        style: this.appStyles.var('textbox-classic-font-style'),
-        color: this.appStyles.var('textbox-classic-font-color'),
+    this.additionalLogProperties.set(['selected']);
+    this.styles = signal<Partial<MvLibTextboxClassicStyle>>({
+      dimensions: {
+        width: '150px',
+        height: '32px',
       },
     });
     this.effects = signal<Partial<MvLibTextboxClassicEffects>>({
-      hover: ['darken'],
-      selected: ['outline-solid'],
+      
     });
-    this.effectsStyles = signal<Partial<MvLibTextboxClassicEffectsStyles>>({
-      hover_darken_percentage: this.appStyles.var('textbox-classic-hover-darken-percentage'),
-      selected_outline_color: this.appStyles.var('textbox-classic-selected-outline-color'),
-      selected_outlineSolid_width: this.appStyles.var('textbox-classic-selected-outline-solid-width'),
-      selected_outlineBlur_radius: this.appStyles.var('textbox-classic-selected-outline-blur-radius'),
+    this.effectsStyles = signal<Partial<MvLibTextboxClassicEffectsConfig>>({
+      outlineSolidSelected_color: this.appStyles.var('textbox-classic-outline-solid-selected-color'),
+      outlineBlurSelected_color: this.appStyles.var('textbox-classic-outline-blur-selected-color'),
     });
     this.settings = signal<Partial<MvLibTextboxClassicSettings>>({
-      selected: false,
+      
     });
   }
 
-  protected initForm() {
+  protected override initForm() {
     this.form.addControl('input', new FormControl({
       value: 'Enter text',
       disabled: false,
