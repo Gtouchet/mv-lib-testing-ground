@@ -1,0 +1,181 @@
+<div class="configuration">
+
+    <!-- Styles -->
+    <div>
+        <b [style.align-self]="'center'">
+            Styles
+        </b>
+        <app-input-color
+            [value]="styles().backgroundColor"
+            label="Background color"
+            (onChange)="updateStyle('backgroundColor', $event)"
+        />
+        <app-dimensions-inputs
+            [width]="styles().dimensions?.width"
+            [minWidth]="styles().dimensions?.minWidth"
+            [maxWidth]="styles().dimensions?.maxWidth"
+            [height]="styles().dimensions?.height"
+            [minHeight]="styles().dimensions?.minHeight"
+            [maxHeight]="styles().dimensions?.maxHeight"
+            (onWidthChange)="updateStyle('dimensions.width', $event)"
+            (onMinWidthChange)="updateStyle('dimensions.minWidth', $event)"
+            (onMaxWidthChange)="updateStyle('dimensions.maxWidth', $event)"
+            (onHeightChange)="updateStyle('dimensions.height', $event)"
+            (onMinHeightChange)="updateStyle('dimensions.minHeight', $event)"
+            (onMaxHeightChange)="updateStyle('dimensions.maxHeight', $event)"
+        />
+        <app-border-inputs
+            [width]="styles().border?.width"
+            [style]="styles().border?.style"
+            [color]="styles().border?.color"
+            [radius]="styles().border?.radius"
+            (onWidthChange)="updateStyle('border.width', $event)"
+            (onStyleChange)="updateStyle('border.style', $event)"
+            (onColorChange)="updateStyle('border.color', $event)"
+            (onRadiusChange)="updateStyle('border.radius', $event)"
+        />
+        <app-font-inputs
+            [size]="styles().font?.size"
+            [weight]="styles().font?.weight"
+            [style]="styles().font?.style"
+            [color]="styles().font?.color"
+            (onSizeChange)="updateStyle('font.size', $event)"
+            (onWeightChange)="updateStyle('font.weight', $event)"
+            (onStyleChange)="updateStyle('font.style', $event)"
+            (onColorChange)="updateStyle('font.color', $event)"
+        />
+    </div>
+
+    <!-- Effects -->
+    <div>
+        <b [style.align-self]="'center'">
+            Effects
+        </b>
+        <app-darken-hover-inputs
+            [enabled]="effects().hover?.includes('mv-lib-darken-hover')"
+            [percentage]="$any(effectsStyles().darkenHover_percentage)"
+            (onEnabledChange)="updateEffect('hover', 'mv-lib-darken-hover', $event)"
+            (onPercentageChange)="updateEffectStyle('darkenHover_percentage', $event)"
+        />
+        <app-outline-blur-selected-inputs
+            [enabled]="effects().selected?.includes('mv-lib-outline-blur-selected')"
+            [color]="$any(effectsStyles().outlineBlurSelected_color)"
+            [radius]="$any(effectsStyles().outlineBlurSelected_radius)"
+            (onEnabledChange)="updateEffect('selected', 'mv-lib-outline-blur-selected', $event)"
+            (onColorChange)="updateEffectStyle('outlineBlurSelected_color', $event)"
+            (onRadiusChange)="updateEffectStyle('outlineBlurSelected_radius', $event)"
+        />
+        <app-outline-solid-selected-inputs
+            [enabled]="effects().selected?.includes('mv-lib-outline-solid-selected')"
+            [color]="$any(effectsStyles().outlineSolidSelected_color)"
+            [width]="$any(effectsStyles().outlineSolidSelected_width)"
+            (onEnabledChange)="updateEffect('selected', 'mv-lib-outline-solid-selected', $event)"
+            (onColorChange)="updateEffectStyle('outlineSolidSelected_color', $event)"
+            (onWidthChange)="updateEffectStyle('outlineSolidSelected_width', $event)"
+        />
+    </div>
+
+    <!-- Settings -->
+    <div>
+        <b [style.align-self]="'center'">
+            Settings
+        </b>
+        <app-input-checkbox
+            [checked]="form.get('input')?.disabled"
+            label="Disabled"
+            (onChange)="
+                $event ? form.get('input')?.disable() : form.get('input')?.enable();
+                refreshLog();
+            "
+        />
+        <app-input-checkbox
+            [checked]="selected()"
+            label="Selected"
+            (onChange)="
+                selected.set($event);
+                refreshLastInteractionTime();
+                refreshLog();
+            "
+        />
+    </div>
+
+    <!-- Form controls -->
+    <div>
+        <b [style.align-self]="'center'">
+            Form controls
+        </b>
+        <div class="form-state">
+            <span>{{ form.touched ? 'Touched' : 'Untouched' }}</span>
+            <span>{{ form.dirty ? 'Dirty' : 'Pristine' }}</span>
+            <span>{{ form.disabled ? 'Disabled' : (form.valid ? 'Valid' : 'Invalid') }}</span>
+        </div>
+        <app-input-checkbox
+            [checked]="required()"
+            label="Required"
+            [style.color]="form.get('input')?.hasError('required') ? 'red' : 'black'"
+            (onChange)="
+                required.set($event);
+                updateFormValidator(
+                    'input',
+                    'required',
+                    required());
+            "
+        />
+        <app-input-checkbox
+            [checked]="onlyCharacters()"
+            label="Only characters"
+            [style.color]="form.get('input')?.hasError('pattern') ? 'red' : 'black'"
+            (onChange)="
+                onlyCharacters.set($event);
+                updateFormValidator(
+                    'input',
+                    'pattern-only-characters',
+                    onlyCharacters());
+            "
+        />
+        <app-input-number
+            [value]="minLength()"
+            label="Min length"
+            [style.color]="form.get('input')?.hasError('minlength') ? 'red' : 'black'"
+            (onChange)="
+                minLength.set($event);
+                updateFormValidator(
+                    'input',
+                    'minLength',
+                    minLength());
+            "
+        />
+    </div>
+</div>
+
+<form
+    [formGroup]="form"
+    class="visual"
+>
+    <mv-lib-textbox-classic
+        #mvLibComponent
+        formControlName="input"
+        class="component"
+        [styles]="styles()"
+        [effects]="effects()"
+        [effectsStyles]="effectsStyles()"
+        [settings]="settings()"
+        [selected]="selected()"
+        (onChange)="
+            form.get('input')?.setValue($event.input);
+            refreshLastInteractionTime();
+            refreshLog();
+        "
+        (onSelect)="
+            selected.set($event.selected);
+            refreshLastInteractionTime();
+            refreshLog();
+        "
+    />
+
+<pre class="log">
+Last interaction time: {{ lastInteractionTime() }}<br/>
+input: {{ form.get('input')?.value }}<br/>
+{{ log() }}
+</pre>
+</form>

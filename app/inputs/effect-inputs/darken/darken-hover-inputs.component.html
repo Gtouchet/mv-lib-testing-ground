@@ -1,0 +1,14 @@
+<div class="effect">
+    <app-input-checkbox
+        [checked]="enabled()"
+        (onChange)="onEnabledChange.emit($event)"
+    />
+    <app-inputs-separator label="Darken hover" />
+</div>
+<div class="inputs-group">
+    Percentage
+    <app-input-number
+        [value]="percentage()"
+        (onChange)="onPercentageChange.emit($event)"
+    />
+</div>

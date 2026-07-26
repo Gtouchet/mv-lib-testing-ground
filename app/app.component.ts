@@ -8,7 +8,7 @@ import {
   MvLibDropdownDirectives,
   MvLibToastClassicComponent,
 } from 'mv-lib';
-import { StylesService } from '../styles/styles.service';
+import { StylesService } from './styles/styles.service';
 
 interface Item {
   type: string;

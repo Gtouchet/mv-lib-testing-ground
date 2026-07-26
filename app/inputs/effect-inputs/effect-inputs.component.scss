@@ -1,0 +1,17 @@
+.effect {
+    display: flex;
+    gap: 4px;
+}
+
+.inputs-group {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 8px;
+    row-gap: 4px;
+    align-items: center;
+}
+
+.inputs-row {
+    display: flex;
+    gap: 4px;
+}

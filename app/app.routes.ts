@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './views/home/home.component';
-import { ButtonClassicExampleComponent } from './views/buttons/classic/button-classic-example.component';
-import { DropdownClassicExampleComponent } from './views/dropdowns/classic/dropdown-classic-example.component';
-import { RadioButtonsClassicExampleComponent } from './views/radio-buttons/classic/radio-buttons-classic-example.component';
-import { SwitchClassicExampleComponent } from './views/switches/classic/switch-classic-example.component';
-import { SwitchLiteExampleComponent } from './views/switches/lite/switch-lite-example.component';
-import { TextboxClassicExampleComponent } from './views/textboxes/classic/textbox-classic-example.component';
-import { ToastClassicExampleComponent } from './views/toasts/classic/toast-classic-example.component';
+import { HomeComponent } from './examples/home/home.component';
+import { ButtonClassicExampleComponent } from './examples/buttons/classic/button-classic-example.component';
+import { DropdownClassicExampleComponent } from './examples/dropdowns/classic/dropdown-classic-example.component';
+import { RadioButtonsClassicExampleComponent } from './examples/radio-buttons/classic/radio-buttons-classic-example.component';
+import { SwitchClassicExampleComponent } from './examples/switches/classic/switch-classic-example.component';
+import { SwitchLiteExampleComponent } from './examples/switches/lite/switch-lite-example.component';
+import { TextboxClassicExampleComponent } from './examples/textboxes/classic/textbox-classic-example.component';
+import { ToastClassicExampleComponent } from './examples/toasts/classic/toast-classic-example.component';
 
 export const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: '/home' },
