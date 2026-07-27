@@ -16,7 +16,7 @@ import { INPUTS } from '../../../inputs/inputs.export';
   templateUrl: './textbox-classic-example.component.html',
   styleUrls: [
     './textbox-classic-example.component.scss',
-    '../../testing-ground.scss',
+    '../../example.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

@@ -14,7 +14,7 @@ import { INPUTS } from "../../../inputs/inputs.export";
   templateUrl: './toast-classic-example.component.html',
   styleUrls: [
     './toast-classic-example.component.scss',
-    '../../testing-ground.scss',
+    '../../example.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

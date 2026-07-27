@@ -12,7 +12,7 @@ import { INPUTS } from '../../../inputs/inputs.export';
   templateUrl: './switch-classic-example.component.html',
   styleUrls: [
     './switch-classic-example.component.scss',
-    '../../testing-ground.scss',
+    '../../example.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

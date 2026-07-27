@@ -12,7 +12,7 @@ import { INPUTS } from '../../../inputs/inputs.export';
   templateUrl: './button-classic-example.component.html',
   styleUrls: [
     './button-classic-example.component.scss',
-    '../../testing-ground.scss',
+    '../../example.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

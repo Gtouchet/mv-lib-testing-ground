@@ -178,8 +178,7 @@ export abstract class BaseExampleComponent<
     }
 
     protected refreshLog() {
-        var result = 
-`
+        var result = `
 [styles]=\"${this.prettify((this as any)['styles']())}\",
 [effects]=\"${this.prettify((this as any)['effects']())}\",
 [effectsStyles]=\"${this.prettify((this as any)['effectsStyles']())}\",

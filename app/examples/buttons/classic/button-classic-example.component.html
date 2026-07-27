@@ -1,10 +1,6 @@
 <div class="configuration">
 
-    <!-- Styles -->
-    <div>
-        <b [style.align-self]="'center'">
-            Styles
-        </b>
+    <app-configuration-section title="Styles">
         <app-input-number
             [value]="styles().widthPx"
             label="Width px"
@@ -25,13 +21,9 @@
             label="Text color"
             (onChange)="updateStyle('textColor', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Effects -->
-    <div>
-        <b [style.align-self]="'center'">
-            Effects
-        </b>
+    <app-configuration-section title="Effects">
         <b>
             Idle
         </b>
@@ -61,13 +53,9 @@
             label="Ripple"
             (onChange)="updateEffect('click', 'ripple', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Settings -->
-    <div>
-        <b [style.align-self]="'center'">
-            Settings
-        </b>
+    <app-configuration-section title="Settings">
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
@@ -76,7 +64,7 @@
                 refreshLog();
             "
         />
-    </div>
+    </app-configuration-section>
 </div>
 
 <div class="visual">

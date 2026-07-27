@@ -12,7 +12,7 @@ import { INPUTS } from '../../../inputs/inputs.export';
   templateUrl: './switch-lite-example.component.html',
   styleUrls: [
     './switch-lite-example.component.scss',
-    '../../testing-ground.scss',
+    '../../example.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

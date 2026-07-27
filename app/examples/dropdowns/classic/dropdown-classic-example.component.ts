@@ -28,7 +28,7 @@ interface User {
   templateUrl: './dropdown-classic-example.component.html',
   styleUrls: [
     './dropdown-classic-example.component.scss',
-    '../../testing-ground.scss'
+    '../../example.component.scss',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

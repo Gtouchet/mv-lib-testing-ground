@@ -1,10 +1,6 @@
 <div class="configuration">
-
-    <!-- Styles -->
-    <div>
-        <b [style.align-self]="'center'">
-            Styles
-        </b>
+    
+    <app-configuration-section title="Styles">
         <app-input-color
             [value]="styles().backgroundColor"
             label="Background color"
@@ -44,13 +40,9 @@
             (onStyleChange)="updateStyle('font.style', $event)"
             (onColorChange)="updateStyle('font.color', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Effects -->
-    <div>
-        <b [style.align-self]="'center'">
-            Effects
-        </b>
+    <app-configuration-section title="Effects">
         <app-darken-hover-inputs
             [enabled]="effects().hover?.includes('mv-lib-darken-hover')"
             [percentage]="$any(effectsStyles().darkenHover_percentage)"
@@ -73,13 +65,9 @@
             (onColorChange)="updateEffectStyle('outlineSolidSelected_color', $event)"
             (onWidthChange)="updateEffectStyle('outlineSolidSelected_width', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Settings -->
-    <div>
-        <b [style.align-self]="'center'">
-            Settings
-        </b>
+    <app-configuration-section title="Settings">
         <app-input-checkbox
             [checked]="form.get('input')?.disabled"
             label="Disabled"
@@ -97,13 +85,9 @@
                 refreshLog();
             "
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Form controls -->
-    <div>
-        <b [style.align-self]="'center'">
-            Form controls
-        </b>
+    <app-configuration-section title="Form controls">
         <div class="form-state">
             <span>{{ form.touched ? 'Touched' : 'Untouched' }}</span>
             <span>{{ form.dirty ? 'Dirty' : 'Pristine' }}</span>
@@ -145,7 +129,7 @@
                     minLength());
             "
         />
-    </div>
+    </app-configuration-section>
 </div>
 
 <form

@@ -6,6 +6,10 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
         <h3>
             Welcome to the MvLib Testing Ground
         </h3>
+        <h3 style='color: red'>
+            I am currently refactoring the library's styles and effects, so most component are broken,<br/>
+            the textbox component and toast service are the only ones that are working properly at the moment.
+        </h3>
         <p>
             This is a test application for the MvLib library. It is used to test it's components and their functionalities.<br/>
             Choose a component from the header to see the examples and test the components styles, effects and settings.<br/>

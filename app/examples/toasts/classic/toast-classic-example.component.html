@@ -1,10 +1,6 @@
 <div class="configuration">
 
-    <!-- Styles -->
-    <div>
-        <b [style.align-self]="'center'">
-            Styles
-        </b>
+    <app-configuration-section title="Styles">
         <b [style.color]="toastService.configuration().success?.styles?.backgroundColor">
             SUCCESS
         </b>
@@ -169,13 +165,9 @@
             label="Hovered outline color"
             (onChange)="toastService.configuration().info!.styles!.hoveredOutlineColor = $event;"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Effects -->
-    <div>
-        <b [style.align-self]="'center'">
-            Effects
-        </b>
+    <app-configuration-section title="Settings">
         <b [style.color]="toastService.configuration().success?.styles?.backgroundColor">
             SUCCESS
         </b>
@@ -312,13 +304,9 @@
             label="Slide"
             (onChange)="toastService.setEffect('info', 'slide', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Settings -->
-    <div>
-        <b [style.align-self]="'center'">
-            Settings
-        </b>
+    <app-configuration-section title="Settings">
         <b>
             Position
         </b>
@@ -359,7 +347,7 @@
             [widthPx]="65"
             (onChange)="toastService.configuration().info!.settings!.lifespan = $event"
         />
-    </div>
+    </app-configuration-section>
 </div>
 
 <div class="visual">
