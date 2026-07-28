@@ -1,24 +1,31 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-input-text',
   standalone: true,
-  template: `
-    <input
-      type="text"
-      [value]="value()"
-      (input)="handleInput($event)"
-      [style.width.px]="widthPx()"
-      [style.height.px]="16"
-    />
-    {{ label() }}
-  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule],
+  template: `
+    <div
+      [ngStyle]="{
+        'display': 'flex',
+      }"
+    >
+      <input
+        type="text"
+        [value]="value()"
+        (input)="handleInput($event)"
+        [ngStyle]="{
+          'height.px': 16,
+          'flex': 1,
+        }"
+      />
+    </div>
+  `,
 })
 export class InputTextComponent {
   public value = input<string | number| undefined>(undefined);
-  public label = input('');
-  public widthPx = input<number | undefined>(undefined);
   public onChange = output<string>();
 
   protected handleInput(event: Event) {

@@ -3,23 +3,27 @@ import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
 
 @Component({
-  selector: 'app-outline-solid-selected-inputs',
+  selector: 'app-ripple-release-inputs',
   imports: [
     CommonModule,
     GENERIC_INPUTS,
   ],
-  templateUrl: './outline-solid-selected-inputs.component.html',
+  templateUrl: './ripple-release-inputs.component.html',
   styleUrl: '../effect-inputs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class OutlineSolidSelectedInputsComponent {
+export class RippleReleaseInputsComponent {
 
     public enabled = input<boolean>();
-    public color = input<string>();
-    public width = input<string>();
+    public originX = input<string>();
+    public originY = input<string>();
+    public size = input<string>();
+    public delay = input<string>();
 
     public onEnabledChange = output<boolean>();
-    public onColorChange = output<string>();
-    public onWidthChange = output<string>();
+    public onOriginXChange = output<string>();
+    public onOriginYChange = output<string>();
+    public onSizeChange = output<string>();
+    public onDelayChange = output<string>();
 }

@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive, inject, OnInit, signal, viewChild } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { StylesService } from "../styles/styles.service";
-import { EffectsOf, MvLibComponentBase, SettingsOf, StylesOf } from "mv-lib";
+import { EffectsOf, MV_LIB_EFFECTS, MvLibComponentBase, SettingsOf, StylesOf } from "mv-lib";
 
 @Directive({
     standalone: true,
@@ -14,6 +14,8 @@ export abstract class BaseExampleComponent<
 
     protected mvLibComponent = viewChild<MvLibComponent>('mvLibComponent');
 
+    protected mvLibEffects = MV_LIB_EFFECTS;
+    
     ngOnInit() {
         this.initForm();
         this.refreshLog();

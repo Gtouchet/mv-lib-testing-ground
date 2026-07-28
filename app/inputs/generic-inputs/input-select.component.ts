@@ -19,9 +19,8 @@ import {
           {{ label() }}
         </b>
         <select
-          [style.width.px]="widthPx()"
-          [style.height.px]="heightPx()"
           (change)="handleChange($event)"
+          [style.width.px]="width()"
         >
           @for (value of values(); track value) {
             <option
@@ -40,8 +39,7 @@ export class InputSelectComponent {
   public label = input('');
   public values = input.required<string[]>();
   public selectedValues = input<any>([]);
-  public widthPx = input<number | undefined>(undefined);
-  public heightPx = input<number | undefined>(undefined);
+  public width = input<number | undefined>(undefined);
   public onChange = output<string>();
 
   protected handleChange(event: Event): void {

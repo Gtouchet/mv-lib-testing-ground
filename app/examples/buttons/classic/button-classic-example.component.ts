@@ -2,13 +2,15 @@ import { BaseExampleComponent } from '../../base-example.component';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MvLibButtonClassicComponent } from 'mv-lib';
 import { INPUTS } from '../../../inputs/inputs.export';
+import { PushClickInputsComponent } from "../../../inputs/effect-inputs/push/push-click-inputs.component";
 
 @Component({
   selector: 'app-button-classic-example',
   imports: [
     MvLibButtonClassicComponent,
     INPUTS,
-  ],
+    PushClickInputsComponent
+],
   templateUrl: './button-classic-example.component.html',
   styleUrls: [
     './button-classic-example.component.scss',
@@ -27,11 +29,16 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<MvLibBut
         width: '120px',
         height: '40px',
       },
+      font: {
+        color: this.appStyles.var('button-classic-font-color'),
+      },
     });
     this.effects = signal({
       classes: [
-        'mv-lib-shadow-idle',
-        'mv-lib-darken-hover',
+        this.mvLibEffects.idle.shadowIdle,
+        this.mvLibEffects.hover.darkenHover,
+        this.mvLibEffects.click.pushClick,
+        this.mvLibEffects.release.rippleRelease,
       ],
     });
     this.settings = signal({

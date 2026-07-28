@@ -33,14 +33,14 @@
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <app-shadow-hover-inputs
-            [enabled]="effects().classes!.includes('mv-lib-shadow-idle')"
+        <app-shadow-idle-inputs
+            [enabled]="effects().classes!.includes(mvLibEffects.idle.shadowIdle)"
             [shadowX]="effects().styles?.shadowIdle?.shadowX"
             [shadowY]="effects().styles?.shadowIdle?.shadowY"
             [blur]="effects().styles?.shadowIdle?.blur"
             [spread]="effects().styles?.shadowIdle?.spread"
             [color]="effects().styles?.shadowIdle?.color"
-            (onEnabledChange)="setEffect('mv-lib-shadow-idle', $event)"
+            (onEnabledChange)="setEffect(mvLibEffects.idle.shadowIdle, $event)"
             (onShadowXChange)="setEffectStyle('shadowIdle.shadowX', $event)"
             (onShadowYChange)="setEffectStyle('shadowIdle.shadowY', $event)"
             (onBlurChange)="setEffectStyle('shadowIdle.blur', $event)"
@@ -48,10 +48,26 @@
             (onColorChange)="setEffectStyle('shadowIdle.color', $event)"
         />
         <app-darken-hover-inputs
-            [enabled]="effects().classes!.includes('mv-lib-darken-hover')"
+            [enabled]="effects().classes!.includes(mvLibEffects.hover.darkenHover)"
             [percentage]="$any(effects().styles?.darkenHover?.percentage)"
-            (onEnabledChange)="setEffect('mv-lib-darken-hover', $event)"
+            (onEnabledChange)="setEffect(mvLibEffects.hover.darkenHover, $event)"
             (onPercentageChange)="setEffectStyle('darkenHover.percentage', $event)"
+        />
+        <app-push-click-inputs
+            [enabled]="effects().classes!.includes(mvLibEffects.click.pushClick)"
+            (onEnabledChange)="setEffect(mvLibEffects.click.pushClick, $event)"
+        />
+        <app-ripple-release-inputs
+            [enabled]="effects().classes!.includes(mvLibEffects.release.rippleRelease)"
+            [originX]="$any(effects().styles?.rippleRelease?.originX)"
+            [originY]="$any(effects().styles?.rippleRelease?.originY)"
+            [size]="$any(effects().styles?.rippleRelease?.size)"
+            [delay]="$any(effects().styles?.rippleRelease?.delay)"
+            (onEnabledChange)="setEffect(mvLibEffects.release.rippleRelease, $event)"
+            (onOriginXChange)="setEffectStyle('rippleRelease.originX', $event)"
+            (onOriginYChange)="setEffectStyle('rippleRelease.originY', $event)"
+            (onSizeChange)="setEffectStyle('rippleRelease.size', $event)"
+            (onDelayChange)="setEffectStyle('rippleRelease.delay', $event)"
         />
     </app-configuration-section>
 
@@ -85,14 +101,12 @@
         <span class="material-symbols-outlined">
             touch_app
         </span>
-        <span [style.font-weight]="'bold'">
-            Click
-        </span>
+        Click
     </mv-lib-button-classic>
 
 <pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
-{{ log() }}
+&lt;mv-lib-button-classic{{ log() }}/&gt;
 </pre>
 </div>
 

@@ -17,19 +17,16 @@
         <app-input-text
             [value]="success().icon"
             label="Icon"
-            [widthPx]="150"
             (onChange)="success().icon = $event;"
         />
         <app-input-text
             [value]="success().message"
             label="Message"
-            [widthPx]="150"
             (onChange)="success().message = $event;"
         />
         <app-input-text
             [value]="toastService.configuration().success?.styles?.textColor"
             label="Text color"
-            [widthPx]="150"
             (onChange)="toastService.configuration().success!.styles!.textColor = $event"
         />
         <app-input-color
@@ -58,19 +55,16 @@
         <app-input-text
             [value]="warning().icon"
             label="Icon"
-            [widthPx]="150"
             (onChange)="warning().icon = $event;"
         />
         <app-input-text
             [value]="warning().message"
             label="Message"
-            [widthPx]="150"
             (onChange)="warning().message = $event;"
         />
         <app-input-text
             [value]="toastService.configuration().warning?.styles?.textColor"
             label="Text color"
-            [widthPx]="150"
             (onChange)="toastService.configuration().warning!.styles!.textColor = $event"
         />
         <app-input-color
@@ -99,19 +93,16 @@
         <app-input-text
             [value]="error().icon"
             label="Icon"
-            [widthPx]="150"
             (onChange)="error().icon = $event;"
         />
         <app-input-text
             [value]="error().message"
             label="Message"
-            [widthPx]="150"
             (onChange)="error().message = $event;"
         />
         <app-input-text
             [value]="toastService.configuration().error?.styles?.textColor"
             label="Text color"
-            [widthPx]="150"
             (onChange)="toastService.configuration().error!.styles!.textColor = $event"
         />
         <app-input-color
@@ -140,19 +131,16 @@
         <app-input-text
             [value]="info().icon"
             label="Icon"
-            [widthPx]="150"
             (onChange)="info().icon = $event;"
         />
         <app-input-text
             [value]="info().message"
             label="Message"
-            [widthPx]="150"
             (onChange)="info().message = $event;"
         />
         <app-input-text
             [value]="toastService.configuration().info?.styles?.textColor"
             label="Text color"
-            [widthPx]="150"
             (onChange)="toastService.configuration().info!.styles!.textColor = $event"
         />
         <app-input-color

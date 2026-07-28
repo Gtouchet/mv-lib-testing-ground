@@ -23,7 +23,6 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
                 [ngStyle]="{
                     'flex': '1',
                     'margin': '0',
-                    'margin-right.px': 6,
                 }"
             />
         </div>

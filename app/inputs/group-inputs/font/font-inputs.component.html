@@ -5,13 +5,13 @@
         <app-input-select
             [values]="cssFontSizes"
             [selectedValues]="[size()]"
-            [widthPx]="100"
+            [width]="100"
             (onChange)="onSizeChange.emit($event)"
         />
-        or free input
         <app-input-text
             [value]="size()"
             (onChange)="onSizeChange.emit($event)"
+            [style.flex]="1"
         />
     </div>
     Weight
@@ -19,13 +19,13 @@
         <app-input-select
             [values]="cssFontWeights"
             [selectedValues]="[weight()]"
-            [widthPx]="100"
+            [width]="100"
             (onChange)="onWeightChange.emit($event)"
         />
-        or free input
         <app-input-text
             [value]="weight()"
             (onChange)="onWeightChange.emit($event)"
+            [style.flex]="1"
         />
     </div>
     Style
@@ -33,18 +33,19 @@
         <app-input-select
             [values]="cssFontStyles"
             [selectedValues]="[style()]"
-            [widthPx]="100"
+            [width]="100"
             (onChange)="onStyleChange.emit($event)"
         />
-        or free input
         <app-input-text
             [value]="style()"
             (onChange)="onStyleChange.emit($event)"
+            [style.flex]="1"
         />
     </div>
     Color
     <app-input-color
         [value]="color()"
+        [width]="100"
         (onChange)="onColorChange.emit($event)"
     />
 </div>

@@ -9,10 +9,7 @@ import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
     GENERIC_INPUTS,
   ],
   templateUrl: './outline-blur-selected-inputs.component.html',
-  styleUrls: [
-    './outline-blur-selected-inputs.component.scss',
-    '../effect-inputs.component.scss',
-  ],
+  styleUrl: '../effect-inputs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

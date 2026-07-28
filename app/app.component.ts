@@ -48,7 +48,7 @@ export class AppComponent {
       icon: 'trackpad_input',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/button-classic-example', wip: true },
+        { type: 'Classic', routerLink: '/button-classic-example' },
       ],
     },
     { 

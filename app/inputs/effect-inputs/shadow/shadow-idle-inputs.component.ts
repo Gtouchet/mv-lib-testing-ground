@@ -3,20 +3,17 @@ import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
 
 @Component({
-  selector: 'app-shadow-hover-inputs',
+  selector: 'app-shadow-idle-inputs',
   imports: [
     CommonModule,
     GENERIC_INPUTS,
   ],
-  templateUrl: './shadow-hover-inputs.component.html',
-  styleUrls: [
-    './shadow-hover-inputs.component.scss',
-    '../effect-inputs.component.scss',
-  ],
+  templateUrl: './shadow-idle-inputs.component.html',
+  styleUrl: '../effect-inputs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class ShadowHoverInputsComponent {
+export class ShadowIdleInputsComponent {
 
     public enabled = input<boolean>();
     public shadowX = input<string>();
