@@ -36,7 +36,7 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<MvLibTe
       
     });
     this.effects = signal({
-      actives: [
+      classes: [
         'mv-lib-darken-hover',
         'mv-lib-outline-blur-selected',
       ],

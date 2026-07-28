@@ -6,59 +6,52 @@
             label="Background color"
             (onChange)="setStyle('backgroundColor', $event)"
         />
-
-        <!-- <app-dimensions-inputs
-            [width]="styles().widthPx"
-            [heightPx]="styles().heightPx"
-            (onChange)="updateDimensions($event)"
+        <app-dimensions-inputs
+            [width]="styles().dimensions?.width"
+            [minWidth]="styles().dimensions?.minWidth"
+            [maxWidth]="styles().dimensions?.maxWidth"
+            [height]="styles().dimensions?.height"
+            [minHeight]="styles().dimensions?.minHeight"
+            [maxHeight]="styles().dimensions?.maxHeight"
+            (onWidthChange)="setStyle('dimensions.width', $event)"
+            (onMinWidthChange)="setStyle('dimensions.minWidth', $event)"
+            (onMaxWidthChange)="setStyle('dimensions.maxWidth', $event)"
+            (onHeightChange)="setStyle('dimensions.height', $event)"
+            (onMinHeightChange)="setStyle('dimensions.minHeight', $event)"
+            (onMaxHeightChange)="setStyle('dimensions.maxHeight', $event)"
         />
-        <app-input-number
-            [value]="styles().widthPx"
-            label="Width px"
-            (onChange)="updateStyle('widthPx', $event)"
+        <app-font-inputs
+            [size]="styles().font?.size"
+            [weight]="styles().font?.weight"
+            [style]="styles().font?.style"
+            [color]="styles().font?.color"
+            (onSizeChange)="setStyle('font.size', $event)"
+            (onWeightChange)="setStyle('font.weight', $event)"
+            (onStyleChange)="setStyle('font.style', $event)"
+            (onColorChange)="setStyle('font.color', $event)"
         />
-        <app-input-number
-            [value]="styles().heightPx"
-            label="Height px"
-            (onChange)="updateStyle('heightPx', $event)"
-        />
-
-        <app-input-color
-            [value]="styles().textColor"
-            label="Text color"
-            (onChange)="updateStyle('textColor', $event)"
-        /> -->
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <b>
-            Idle
-        </b>
-        <app-input-checkbox
-            
-            label="Shadow"
-            (onChange)="setEffect('shadow', $event)"
+        <app-shadow-hover-inputs
+            [enabled]="effects().classes!.includes('mv-lib-shadow-idle')"
+            [shadowX]="effects().styles?.shadowIdle?.shadowX"
+            [shadowY]="effects().styles?.shadowIdle?.shadowY"
+            [blur]="effects().styles?.shadowIdle?.blur"
+            [spread]="effects().styles?.shadowIdle?.spread"
+            [color]="effects().styles?.shadowIdle?.color"
+            (onEnabledChange)="setEffect('mv-lib-shadow-idle', $event)"
+            (onShadowXChange)="setEffectStyle('shadowIdle.shadowX', $event)"
+            (onShadowYChange)="setEffectStyle('shadowIdle.shadowY', $event)"
+            (onBlurChange)="setEffectStyle('shadowIdle.blur', $event)"
+            (onSpreadChange)="setEffectStyle('shadowIdle.spread', $event)"
+            (onColorChange)="setEffectStyle('shadowIdle.color', $event)"
         />
-        <b>
-            Hover
-        </b>
-        <app-input-checkbox
-            
-            label="Darken"
-            (onChange)="setEffect('mv-lib-darken-hover', $event)"
-        />
-        <b>
-            Click
-        </b>
-        <app-input-checkbox
-        
-            label="Push"
-            (onChange)="setEffect('push', $event)"
-        />
-        <app-input-checkbox
-            
-            label="Ripple"
-            (onChange)="setEffect('ripple', $event)"
+        <app-darken-hover-inputs
+            [enabled]="effects().classes!.includes('mv-lib-darken-hover')"
+            [percentage]="$any(effects().styles?.darkenHover?.percentage)"
+            (onEnabledChange)="setEffect('mv-lib-darken-hover', $event)"
+            (onPercentageChange)="setEffectStyle('darkenHover.percentage', $event)"
         />
     </app-configuration-section>
 

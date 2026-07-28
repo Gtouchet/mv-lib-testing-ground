@@ -44,13 +44,13 @@
 
     <app-configuration-section title="Effects">
         <app-darken-hover-inputs
-            [enabled]="effects().actives!.includes('mv-lib-darken-hover')"
+            [enabled]="effects().classes!.includes('mv-lib-darken-hover')"
             [percentage]="$any(effects().styles?.darkenHover?.percentage)"
             (onEnabledChange)="setEffect('mv-lib-darken-hover', $event)"
             (onPercentageChange)="setEffectStyle('darkenHover.percentage', $event)"
         />
         <app-outline-blur-selected-inputs
-            [enabled]="effects().actives!.includes('mv-lib-outline-blur-selected')"
+            [enabled]="effects().classes!.includes('mv-lib-outline-blur-selected')"
             [color]="$any(effects().styles?.outlineBlurSelected?.color)"
             [radius]="$any(effects().styles?.outlineBlurSelected?.radius)"
             (onEnabledChange)="setEffect('mv-lib-outline-blur-selected', $event)"
@@ -58,7 +58,7 @@
             (onRadiusChange)="setEffectStyle('outlineBlurSelected.radius', $event)"
         />
         <app-outline-solid-selected-inputs
-            [enabled]="effects().actives!.includes('mv-lib-outline-solid-selected')"
+            [enabled]="effects().classes!.includes('mv-lib-outline-solid-selected')"
             [color]="$any(effects().styles?.outlineSolidSelected?.color)"
             [width]="$any(effects().styles?.outlineSolidSelected?.width)"
             (onEnabledChange)="setEffect('mv-lib-outline-solid-selected', $event)"

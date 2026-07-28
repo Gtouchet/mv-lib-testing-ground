@@ -3,13 +3,6 @@ import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { StylesService } from "../styles/styles.service";
 import { EffectsOf, MvLibComponentBase, SettingsOf, StylesOf } from "mv-lib";
 
-type NestedKeyOf<T> = {
-    [K in keyof T & string]:
-        T[K] extends object
-            ? K | `${K}.${NestedKeyOf<T[K]>}`
-            : K
-}[keyof T & string];
-
 @Directive({
     standalone: true,
 })
@@ -27,16 +20,19 @@ export abstract class BaseExampleComponent<
     }
 
     ngAfterViewInit() {
-        this.styles.set(this.mvLibComponent?.()?.getStyle() ?? {});
-        this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
-        this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
+        this.refreshStyle();
+        this.refreshSettings();
+        this.refreshEffects();
         this.refreshLog();
     }
+
+    private refreshStyle = () => this.styles.set(this.mvLibComponent?.()?.getStyle() ?? {});
+    private refreshSettings = () => this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
+    private refreshEffects = () => this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
 
     /**
      * Styles, Effects, Settings
      */
-
     protected styles = signal<Partial<StylesOf<MvLibComponent>>>({});
     protected settings = signal<Partial<SettingsOf<MvLibComponent>>>({});
     protected effects = signal<Partial<EffectsOf<MvLibComponent>>>({});
@@ -46,27 +42,31 @@ export abstract class BaseExampleComponent<
     protected opened = signal(false);
     protected active = signal(true);
 
-    protected setStyle(path: NestedKeyOf<StylesOf<MvLibComponent>>, value: any) {
+    protected setStyle(path: string, value: any) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setStyle(path, value);
+        this.refreshStyle();
         this.refreshLog();
     }
 
-    protected setSettings(settings: keyof SettingsOf<MvLibComponent>, enabled: boolean) {
+    protected setSettings(settings: string, enabled: boolean) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setSettings(settings, enabled);
+        this.refreshSettings();
         this.refreshLog();
     }
 
     protected setEffect(effect: string, enabled: boolean) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setEffect(effect, enabled);
+        this.refreshEffects();
         this.refreshLog();
     }
 
     protected setEffectStyle(path: string, value: any) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setEffectStyle(path, value);
+        this.refreshEffects();
         this.refreshLog();
     }
 

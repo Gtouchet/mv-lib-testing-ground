@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
+import { BaseExampleComponent } from "../../../examples/base-example.component";
 
 @Component({
   selector: 'app-dimensions-inputs',

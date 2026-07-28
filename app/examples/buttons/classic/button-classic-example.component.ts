@@ -23,8 +23,16 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<MvLibBut
     super();
     this.styles = signal({
       backgroundColor: this.appStyles.var('button-classic-background-color'),
+      dimensions: {
+        width: '120px',
+        height: '40px',
+      },
     });
     this.effects = signal({
+      classes: [
+        'mv-lib-shadow-idle',
+        'mv-lib-darken-hover',
+      ],
     });
     this.settings = signal({
 

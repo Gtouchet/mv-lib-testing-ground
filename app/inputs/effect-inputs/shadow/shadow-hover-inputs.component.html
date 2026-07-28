@@ -1,0 +1,35 @@
+<div class="effect">
+    <app-input-checkbox
+        [checked]="enabled()"
+        (onChange)="onEnabledChange.emit($event)"
+    />
+    <app-inputs-separator title="Shadow idle" />
+</div>
+<div class="inputs-group">
+    Shadow x
+    <app-input-text
+        [value]="shadowX()"
+        (onChange)="onShadowXChange.emit($event)"
+    />
+    Shadow y
+    <app-input-text
+        [value]="shadowY()"
+        (onChange)="onShadowYChange.emit($event)"
+    />
+    Blur
+    <app-input-text
+        [value]="blur()"
+        (onChange)="onBlurChange.emit($event)"
+    />
+    Spread
+    <app-input-text
+        [value]="spread()"
+        (onChange)="onSpreadChange.emit($event)"
+
+    />
+    Color
+    <app-input-color
+        [value]="color()"
+        (onChange)="onColorChange.emit($event)"
+    />
+</div>
