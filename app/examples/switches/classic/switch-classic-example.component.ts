@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, contentChild, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
-import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicEffectsStyles, MvLibSwitchClassicSettings, MvLibSwitchClassicStyles } from 'mv-lib';
+import { MvLibSwitchClassicComponent } from 'mv-lib';
 import { INPUTS } from '../../../inputs/inputs.export';
 
 @Component({
@@ -17,18 +17,12 @@ import { INPUTS } from '../../../inputs/inputs.export';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class SwitchClassicExampleComponent extends BaseExampleComponent<
-  MvLibSwitchClassicStyles,
-  MvLibSwitchClassicEffects,
-  MvLibSwitchClassicEffectsStyles,
-  MvLibSwitchClassicSettings
-> {
-  override mvLibComponent = contentChild<MvLibSwitchClassicComponent>('mvLibComponent');
+export class SwitchClassicExampleComponent extends BaseExampleComponent<MvLibSwitchClassicComponent> {
   
   constructor() {
     super();
     this.additionalLogProperties.set(['active']);
-    this.styles = signal<Partial<MvLibSwitchClassicStyles>>({
+    this.styles = signal({
       widthPx: 64,
       heightPx: 32,
 
@@ -43,12 +37,10 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<
       cursorColorOff: this.appStyles.var('switch-classic-cursor-color-off'),
       cursorIconColorOff: this.appStyles.var('switch-classic-cursor-icon-off-color'),
     });
-    this.effects = signal<Partial<MvLibSwitchClassicEffects>>({
-      idle: ['shadow'],
-      hover: ['enlarge-cursor'],
-      click: ['ripple'],
+    this.effects = signal({
+
     });
-    this.settings = signal<Partial<MvLibSwitchClassicSettings>>({
+    this.settings = signal({
       
     });
   }

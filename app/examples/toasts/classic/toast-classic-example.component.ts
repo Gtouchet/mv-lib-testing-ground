@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, inject, signal, viewChild } from "@angular/core";
-import { MvLibToastService, MvLibToastStyles, MvLibToastEffects, MvLibToastSettings, MvLibButtonClassicComponent, MvLibToastEffectsStyles } from "mv-lib";
+import { Component, ChangeDetectionStrategy, inject, signal } from "@angular/core";
+import { MvLibToastService, MvLibButtonClassicComponent, MvLibToastClassicComponent } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/inputs.export";
@@ -19,12 +19,8 @@ import { INPUTS } from "../../../inputs/inputs.export";
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class ToastClassicExampleComponent extends BaseExampleComponent<
-  MvLibToastStyles,
-  MvLibToastEffects,
-  MvLibToastEffectsStyles,
-  MvLibToastSettings
-> {
+export class ToastClassicExampleComponent extends BaseExampleComponent {
+
     protected toastService = inject(MvLibToastService);
 
     protected success = signal<{ icon: string, message: string }>({ icon: 'check_circle', message: 'Success message' });

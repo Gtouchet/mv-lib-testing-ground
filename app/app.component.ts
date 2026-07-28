@@ -48,7 +48,7 @@ export class AppComponent {
       icon: 'trackpad_input',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/button-classic-example' },
+        { type: 'Classic', routerLink: '/button-classic-example', wip: true },
       ],
     },
     { 
@@ -56,7 +56,7 @@ export class AppComponent {
       icon: 'dropdown_menu',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/dropdown-classic-example' },
+        { type: 'Classic', routerLink: '/dropdown-classic-example', wip: true },
       ],
     },
     { 
@@ -72,8 +72,8 @@ export class AppComponent {
       icon: 'switches', 
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/switch-classic-example' },
-        { type: 'Lite', routerLink: '/switch-lite-example' },
+        { type: 'Classic', routerLink: '/switch-classic-example', wip: true },
+        { type: 'Lite', routerLink: '/switch-lite-example', wip: true },
       ],
     },
     { 
@@ -89,7 +89,7 @@ export class AppComponent {
       icon: 'notifications',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/toast-classic-example' },
+        { type: 'Classic', routerLink: '/toast-classic-example', wip: true },
       ],
     },
   ]);
@@ -105,9 +105,7 @@ export class AppComponent {
     itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
   };
   protected dropdownsEffects: Partial<MvLibDropdownClassicEffects> = {
-    buttonIdle: ['shadow'],
-    buttonHover: ['darken'],
-    itemHover: ['darken'],
+
   };
 
   protected onItemSelect(item: Item, dropdownName: string): void {

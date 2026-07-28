@@ -167,7 +167,7 @@
         />
     </app-configuration-section>
 
-    <app-configuration-section title="Settings">
+    <app-configuration-section title="Effects">
         <b [style.color]="toastService.configuration().success?.styles?.backgroundColor">
             SUCCESS
         </b>
@@ -357,7 +357,10 @@
     >
         <mv-lib-button-classic
             [styles]="{
-                widthPx: 100,
+                dimensions: {
+                    width: '100px',
+                    height: '40px',
+                },
                 backgroundColor: toastService.configuration().success?.styles?.backgroundColor,
             }"
             (onClick)="
@@ -379,7 +382,10 @@
 
         <mv-lib-button-classic
             [styles]="{
-                widthPx: 100,
+                dimensions: {
+                    width: '100px',
+                    height: '40px',
+                },
                 backgroundColor: toastService.configuration().warning?.styles?.backgroundColor,
             }"
             (onClick)="
@@ -401,7 +407,10 @@
 
         <mv-lib-button-classic
            [styles]="{
-                widthPx: 100,
+                dimensions: {
+                    width: '100px',
+                    height: '40px',
+                },
                 backgroundColor: toastService.configuration().error?.styles?.backgroundColor,
             }"
             (onClick)="
@@ -423,7 +432,10 @@
 
         <mv-lib-button-classic
            [styles]="{
-                widthPx: 100,
+                dimensions: {
+                    width: '100px',
+                    height: '40px',
+                },
                 backgroundColor: toastService.configuration().info?.styles?.backgroundColor,
             }"
             (onClick)="

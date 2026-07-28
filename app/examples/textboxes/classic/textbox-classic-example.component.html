@@ -4,7 +4,7 @@
         <app-input-color
             [value]="styles().backgroundColor"
             label="Background color"
-            (onChange)="updateStyle('backgroundColor', $event)"
+            (onChange)="setStyle('backgroundColor', $event)"
         />
         <app-dimensions-inputs
             [width]="styles().dimensions?.width"
@@ -13,57 +13,57 @@
             [height]="styles().dimensions?.height"
             [minHeight]="styles().dimensions?.minHeight"
             [maxHeight]="styles().dimensions?.maxHeight"
-            (onWidthChange)="updateStyle('dimensions.width', $event)"
-            (onMinWidthChange)="updateStyle('dimensions.minWidth', $event)"
-            (onMaxWidthChange)="updateStyle('dimensions.maxWidth', $event)"
-            (onHeightChange)="updateStyle('dimensions.height', $event)"
-            (onMinHeightChange)="updateStyle('dimensions.minHeight', $event)"
-            (onMaxHeightChange)="updateStyle('dimensions.maxHeight', $event)"
+            (onWidthChange)="setStyle('dimensions.width', $event)"
+            (onMinWidthChange)="setStyle('dimensions.minWidth', $event)"
+            (onMaxWidthChange)="setStyle('dimensions.maxWidth', $event)"
+            (onHeightChange)="setStyle('dimensions.height', $event)"
+            (onMinHeightChange)="setStyle('dimensions.minHeight', $event)"
+            (onMaxHeightChange)="setStyle('dimensions.maxHeight', $event)"
         />
         <app-border-inputs
             [width]="styles().border?.width"
             [style]="styles().border?.style"
             [color]="styles().border?.color"
             [radius]="styles().border?.radius"
-            (onWidthChange)="updateStyle('border.width', $event)"
-            (onStyleChange)="updateStyle('border.style', $event)"
-            (onColorChange)="updateStyle('border.color', $event)"
-            (onRadiusChange)="updateStyle('border.radius', $event)"
+            (onWidthChange)="setStyle('border.width', $event)"
+            (onStyleChange)="setStyle('border.style', $event)"
+            (onColorChange)="setStyle('border.color', $event)"
+            (onRadiusChange)="setStyle('border.radius', $event)"
         />
         <app-font-inputs
             [size]="styles().font?.size"
             [weight]="styles().font?.weight"
             [style]="styles().font?.style"
             [color]="styles().font?.color"
-            (onSizeChange)="updateStyle('font.size', $event)"
-            (onWeightChange)="updateStyle('font.weight', $event)"
-            (onStyleChange)="updateStyle('font.style', $event)"
-            (onColorChange)="updateStyle('font.color', $event)"
+            (onSizeChange)="setStyle('font.size', $event)"
+            (onWeightChange)="setStyle('font.weight', $event)"
+            (onStyleChange)="setStyle('font.style', $event)"
+            (onColorChange)="setStyle('font.color', $event)"
         />
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
         <app-darken-hover-inputs
-            [enabled]="effects().hover?.includes('mv-lib-darken-hover')"
-            [percentage]="$any(effectsStyles().darkenHover_percentage)"
-            (onEnabledChange)="updateEffect('hover', 'mv-lib-darken-hover', $event)"
-            (onPercentageChange)="updateEffectStyle('darkenHover_percentage', $event)"
+            [enabled]="effects().actives!.includes('mv-lib-darken-hover')"
+            [percentage]="$any(effects().styles?.darkenHover?.percentage)"
+            (onEnabledChange)="setEffect('mv-lib-darken-hover', $event)"
+            (onPercentageChange)="setEffectStyle('darkenHover.percentage', $event)"
         />
         <app-outline-blur-selected-inputs
-            [enabled]="effects().selected?.includes('mv-lib-outline-blur-selected')"
-            [color]="$any(effectsStyles().outlineBlurSelected_color)"
-            [radius]="$any(effectsStyles().outlineBlurSelected_radius)"
-            (onEnabledChange)="updateEffect('selected', 'mv-lib-outline-blur-selected', $event)"
-            (onColorChange)="updateEffectStyle('outlineBlurSelected_color', $event)"
-            (onRadiusChange)="updateEffectStyle('outlineBlurSelected_radius', $event)"
+            [enabled]="effects().actives!.includes('mv-lib-outline-blur-selected')"
+            [color]="$any(effects().styles?.outlineBlurSelected?.color)"
+            [radius]="$any(effects().styles?.outlineBlurSelected?.radius)"
+            (onEnabledChange)="setEffect('mv-lib-outline-blur-selected', $event)"
+            (onColorChange)="setEffectStyle('outlineBlurSelected.color', $event)"
+            (onRadiusChange)="setEffectStyle('outlineBlurSelected.radius', $event)"
         />
         <app-outline-solid-selected-inputs
-            [enabled]="effects().selected?.includes('mv-lib-outline-solid-selected')"
-            [color]="$any(effectsStyles().outlineSolidSelected_color)"
-            [width]="$any(effectsStyles().outlineSolidSelected_width)"
-            (onEnabledChange)="updateEffect('selected', 'mv-lib-outline-solid-selected', $event)"
-            (onColorChange)="updateEffectStyle('outlineSolidSelected_color', $event)"
-            (onWidthChange)="updateEffectStyle('outlineSolidSelected_width', $event)"
+            [enabled]="effects().actives!.includes('mv-lib-outline-solid-selected')"
+            [color]="$any(effects().styles?.outlineSolidSelected?.color)"
+            [width]="$any(effects().styles?.outlineSolidSelected?.width)"
+            (onEnabledChange)="setEffect('mv-lib-outline-solid-selected', $event)"
+            (onColorChange)="setEffectStyle('outlineSolidSelected.color', $event)"
+            (onWidthChange)="setEffectStyle('outlineSolidSelected.width', $event)"
         />
     </app-configuration-section>
 
@@ -140,10 +140,9 @@
         #mvLibComponent
         formControlName="input"
         class="component"
-        [styles]="styles()"
-        [effects]="effects()"
-        [effectsStyles]="effectsStyles()"
-        [settings]="settings()"
+        [(styles)]="styles"
+        [(settings)]="settings"
+        [(effects)]="effects"
         [selected]="selected()"
         (onChange)="
             form.get('input')?.setValue($event.input);
@@ -160,6 +159,6 @@
 <pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
 input: {{ form.get('input')?.value }}<br/>
-{{ log() }}
+&lt;mv-lib-textbox-classic{{ log() }}/&gt;
 </pre>
 </form>

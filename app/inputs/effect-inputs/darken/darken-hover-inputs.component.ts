@@ -19,8 +19,8 @@ import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
 export class DarkenHoverInputsComponent {
 
     public enabled = input<boolean>();
-    public percentage = input<number>();
+    public percentage = input<string>();
 
     public onEnabledChange = output<boolean>();
-    public onPercentageChange = output<number>();
+    public onPercentageChange = output<string>();
 }

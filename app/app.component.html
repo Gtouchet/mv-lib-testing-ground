@@ -3,14 +3,14 @@
         <div class="buttons">
             <mv-lib-button-classic
                 [styles]="{
-                    widthPx: 48,
-                    heightPx: 32,
+                    dimensions: {
+                        width: '175px',
+                        height: '32px',
+                    },
                     backgroundColor: 'DodgerBlue',
                 }"
                 [effects]="{
-                    idle: ['shadow'],
-                    hover: ['darken'],
-                    click: ['push'],
+                    
                 }"
                 (onClick)="router.navigateByUrl('/home')"
             >

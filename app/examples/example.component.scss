@@ -1,7 +1,7 @@
 %border {
     border: 1px solid black;
     border-radius: 4px;
-    margin: 0;
+    padding: 4px;
 }
 
 .configuration {
@@ -10,9 +10,8 @@
     height: calc(40% - 2px);
 
     > app-configuration-section {
-        flex: 1 1 0;
-        min-width: 0;
         display: flex;
+        flex: 1 1 0;
     }
 }
 
@@ -25,17 +24,15 @@
 .visual {
     display: flex;
     gap: 4px;
-    overflow: auto;
     margin-top: 4px;
     height: calc(60% - 2px);
 
     > * {
         @extend %border;
 
-        display: flex;
         flex: 1;
-        min-width: 0;
         overflow: auto;
+        display: flex;
     }
 }
 
@@ -45,5 +42,6 @@
 }
 
 .log {
-    flex-direction: column;
+    margin: 0;
+    overflow: auto;
 }

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, contentChild, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
-import { MvLibSwitchLiteComponent, MvLibSwitchLiteEffects, MvLibSwitchLiteEffectsStyles, MvLibSwitchLiteSettings, MvLibSwitchLiteStyles } from 'mv-lib';
+import { MvLibSwitchLiteComponent } from 'mv-lib';
 import { INPUTS } from '../../../inputs/inputs.export';
 
 @Component({
@@ -17,18 +17,12 @@ import { INPUTS } from '../../../inputs/inputs.export';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class SwitchLiteExampleComponent extends BaseExampleComponent<
-  MvLibSwitchLiteStyles,
-  MvLibSwitchLiteEffects,
-  MvLibSwitchLiteEffectsStyles,
-  MvLibSwitchLiteSettings
-> {
-  override mvLibComponent = contentChild<MvLibSwitchLiteComponent>('mvLibComponent');
-  
+export class SwitchLiteExampleComponent extends BaseExampleComponent<MvLibSwitchLiteComponent> {
+
   constructor() {
     super();
     this.additionalLogProperties.set(['active']);
-    this.styles = signal<Partial<MvLibSwitchLiteStyles>>({
+    this.styles = signal({
       widthPx: 48,
       heightPx: 12,
       cursorSizePx: 24,
@@ -44,12 +38,10 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<
       cursorColorOff: this.appStyles.var('switch-lite-cursor-color-off'),
       cursorIconColorOff: this.appStyles.var('switch-lite-cursor-icon-off-color'),
     });
-    this.effects = signal<Partial<MvLibSwitchLiteEffects>>({
-      idle: ['shadow'],
-      hover: ['enlarge-cursor'],
-      click: ['ripple'],
+    this.effects = signal({
+      
     });
-    this.settings = signal<Partial<MvLibSwitchLiteSettings>>({
+    this.settings = signal({
       
     });
   }

@@ -1,20 +1,25 @@
-import { AfterViewInit, Directive, inject, OnInit, Signal, signal } from "@angular/core";
+import { AfterViewInit, Directive, inject, OnInit, signal, viewChild } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { StylesService } from "../styles/styles.service";
+import { EffectsOf, MvLibComponentBase, SettingsOf, StylesOf } from "mv-lib";
+
+type NestedKeyOf<T> = {
+    [K in keyof T & string]:
+        T[K] extends object
+            ? K | `${K}.${NestedKeyOf<T[K]>}`
+            : K
+}[keyof T & string];
 
 @Directive({
     standalone: true,
 })
 export abstract class BaseExampleComponent<
-    Styles,
-    Effects extends { [K in keyof Effects]: unknown[] },
-    EffectsStyles,
-    Settings
+    MvLibComponent extends MvLibComponentBase<any, any, any, any> = any
 > implements OnInit, AfterViewInit {
 
     protected appStyles = inject(StylesService);
 
-    protected mvLibComponent?: Signal<any>;
+    protected mvLibComponent = viewChild<MvLibComponent>('mvLibComponent');
 
     ngOnInit() {
         this.initForm();
@@ -22,86 +27,46 @@ export abstract class BaseExampleComponent<
     }
 
     ngAfterViewInit() {
-        this.styles.set(this.mvLibComponent?.()?.getStyles() ?? {});
-        this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
-        this.effectsStyles.set(this.mvLibComponent?.()?.getEffectsStyles() ?? {});
+        this.styles.set(this.mvLibComponent?.()?.getStyle() ?? {});
         this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
+        this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
         this.refreshLog();
     }
 
     /**
      * Styles, Effects, Settings
      */
-    protected styles = signal<Partial<Styles>>({});
-    protected effects = signal<Partial<Effects>>({});
-    protected effectsStyles = signal<Partial<EffectsStyles>>({});
-    protected settings = signal<Partial<Settings>>({});
+
+    protected styles = signal<Partial<StylesOf<MvLibComponent>>>({});
+    protected settings = signal<Partial<SettingsOf<MvLibComponent>>>({});
+    protected effects = signal<Partial<EffectsOf<MvLibComponent>>>({});
 
     protected disabled = signal(false);
     protected selected = signal(false);
     protected opened = signal(false);
     protected active = signal(true);
 
-    protected updateStyle(
-        path: string,
-        value: any,
-    ) {
-        this.styles.update(current => {
-            const keys = path.split('.');
-            const update = (obj: any, index: number): any => {
-                const key = keys[index];
-                if (index === keys.length - 1) {
-                    return {
-                        ...obj,
-                        [key]: value,
-                    };
-                }
-                return {
-                    ...obj,
-                    [key]: update(obj?.[key] ?? {}, index + 1),
-                };
-            };
-            return update(current, 0);
-        });
+    protected setStyle(path: NestedKeyOf<StylesOf<MvLibComponent>>, value: any) {
+        if (!this.mvLibComponent()) return;
+        this.mvLibComponent()!.setStyle(path, value);
         this.refreshLog();
     }
 
-    protected updateEffect<Type extends keyof Effects>(
-        type: Type,
-        effect: Effects[Type][number],
-        checked: boolean,
-    ) {
-        this.effects.update(current => {
-            const currentValues = (current[type] ?? []) as Effects[Type];
-            return {
-                ...current,
-                [type]: checked
-                    ? [...currentValues, effect]
-                    : currentValues.filter(e => e !== effect),
-            } as Partial<Effects>;
-        });
+    protected setSettings(settings: keyof SettingsOf<MvLibComponent>, enabled: boolean) {
+        if (!this.mvLibComponent()) return;
+        this.mvLibComponent()!.setSettings(settings, enabled);
         this.refreshLog();
     }
 
-    protected updateEffectStyle(
-        effect: keyof EffectsStyles,
-        value: any,
-    ) {
-        this.effectsStyles.update(current => ({
-            ...current,
-            [effect]: value,
-        }));
+    protected setEffect(effect: string, enabled: boolean) {
+        if (!this.mvLibComponent()) return;
+        this.mvLibComponent()!.setEffect(effect, enabled);
         this.refreshLog();
     }
 
-    protected updateSetting(
-        key: keyof Settings,
-        checked: boolean,
-    ) {
-        this.settings.update(current => ({
-            ...current,
-            [key]: checked,
-        }));
+    protected setEffectStyle(path: string, value: any) {
+        if (!this.mvLibComponent()) return;
+        this.mvLibComponent()!.setEffectStyle(path, value);
         this.refreshLog();
     }
 
@@ -178,22 +143,23 @@ export abstract class BaseExampleComponent<
     }
 
     protected refreshLog() {
-        var result = `
-[styles]=\"${this.prettify((this as any)['styles']())}\",
-[effects]=\"${this.prettify((this as any)['effects']())}\",
-[effectsStyles]=\"${this.prettify((this as any)['effectsStyles']())}\",
-[settings]=\"${this.prettify((this as any)['settings']())}\",
-[disabled]="${this.prettify(this.form ? this.form.disabled : this.disabled())}",
+        var result =
+`
+    [styles]=\"${this.prettify((this as any)['styles']())}\",
+    [effects]=\"${this.prettify((this as any)['effects']())}\",
+    [settings]=\"${this.prettify((this as any)['settings']())}\",
+    [disabled]="${this.prettify(this.form ? this.form.disabled : this.disabled())}",
 `;
         this.additionalLogProperties().forEach(property => {
-            result += `[${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
+            result += `    [${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
         });
         this.log.set(result);
     }
 
     private prettify(property: any): string {
-        return JSON.stringify(property, null, 4)
-            .replace(/"([^\"]+)":/g, '$1:')
-            .replace(/"/g, "'");
-    }
+    return JSON.stringify(property, null, 4)
+        .replace(/"([^"]+)":/g, '$1:')
+        .replace(/"/g, "'")
+        .replace(/\n/g, '\n    ');
+}
 }

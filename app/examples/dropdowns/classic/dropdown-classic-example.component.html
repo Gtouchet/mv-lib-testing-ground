@@ -1,32 +1,28 @@
 <div class="configuration">
 
-    <!-- Styles -->
-    <div>
-        <b [style.align-self]="'center'">
-            Styles
-        </b>
+    <app-configuration-section title="Styles">
         <b>
             Button
         </b>
         <app-input-number
             [value]="styles().buttonWidthPx"
             label="Button width px"
-            (onChange)="updateStyle('buttonWidthPx', $event)"
+            (onChange)="setStyle('buttonWidthPx', $event)"
         />
         <app-input-number
             [value]="styles().buttonHeightPx"
             label="Button height px"
-            (onChange)="updateStyle('buttonHeightPx', $event)"
+            (onChange)="setStyle('buttonHeightPx', $event)"
         />
         <app-input-color
             [value]="styles().buttonBackgroundColor"
             label="Button background color"
-            (onChange)="updateStyle('buttonBackgroundColor', $event)"
+            (onChange)="setStyle('buttonBackgroundColor', $event)"
         />
         <app-input-color
             [value]="styles().buttonTextColor"
             label="Button text color"
-            (onChange)="updateStyle('buttonTextColor', $event)"
+            (onChange)="setStyle('buttonTextColor', $event)"
         />
         <b>
             List
@@ -34,7 +30,7 @@
         <app-input-number
             [value]="styles().listMaxHeightPx"
             label="List max height px"
-            (onChange)="updateStyle('listMaxHeightPx', $event)"
+            (onChange)="setStyle('listMaxHeightPx', $event)"
         />
         <b>
             Item
@@ -42,90 +38,82 @@
         <app-input-number
             [value]="styles().itemHeightPx"
             label="Item height px"
-            (onChange)="updateStyle('itemHeightPx', $event)"
+            (onChange)="setStyle('itemHeightPx', $event)"
         />        
         <app-input-color
             [value]="styles().itemBackgroundColor"
             label="Item background color"
-            (onChange)="updateStyle('itemBackgroundColor', $event)"
+            (onChange)="setStyle('itemBackgroundColor', $event)"
         />
         <app-input-color
             [value]="styles().itemTextColor"
             label="Item text color"
-            (onChange)="updateStyle('itemTextColor', $event)"
+            (onChange)="setStyle('itemTextColor', $event)"
         />
-    </div>
-
-    <!-- Effects -->
-    <div>
-        <b [style.align-self]="'center'">
-            Effects
-        </b>
+    </app-configuration-section>
+    
+    <app-configuration-section title="Effects">
         <b>
             Button idle
         </b>
         <app-input-checkbox
-            [checked]="effects().buttonIdle?.includes('shadow')"
+            
             label="Shadow"
-            (onChange)="updateEffect('buttonIdle', 'shadow', $event)"
+            (onChange)="setEffect('shadow', $event)"
         />
         <b>
             Button hover
         </b>
         <app-input-checkbox
-            [checked]="effects().buttonHover?.includes('darken')"
+            
             label="Darken"
-            (onChange)="updateEffect('buttonHover', 'darken', $event)"
+            (onChange)="setEffect('darken', $event)"
         />
         <b>
             Button click
         </b>
         <app-input-checkbox
-            [checked]="effects().buttonClick?.includes('push')"
+            
             label="Push"
-            (onChange)="updateEffect('buttonClick', 'push', $event)"
+            (onChange)="setEffect('push', $event)"
         />
         <app-input-checkbox
-            [checked]="effects().buttonClick?.includes('ripple')"
+            
             label="Ripple"
-            (onChange)="updateEffect('buttonClick', 'ripple', $event)"
+            (onChange)="setEffect('ripple', $event)"
         />
         <b>
             List idle
         </b>
         <app-input-checkbox
-            [checked]="effects().listIdle?.includes('shadow')"
+            
             label="Shadow"
-            (onChange)="updateEffect('listIdle', 'shadow', $event)"
+            (onChange)="setEffect('shadow', $event)"
         />
         <b>
             Item hover
         </b>
         <app-input-checkbox
-            [checked]="effects().itemHover?.includes('darken')"
+            
             label="Darken"
-            (onChange)="updateEffect('itemHover', 'darken', $event)"
+            (onChange)="setEffect('darken', $event)"
         />
         <b>
             Item click
         </b>
         <app-input-checkbox
-            [checked]="effects().itemClick?.includes('push')"
+            
             label="Push"
-            (onChange)="updateEffect('itemClick', 'push', $event)"
+            (onChange)="setEffect('push', $event)"
         />
         <app-input-checkbox
-            [checked]="effects().itemClick?.includes('ripple')"
+            
             label="Ripple"
-            (onChange)="updateEffect('itemClick', 'ripple', $event)"
+            (onChange)="setEffect('ripple', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Settings -->
-    <div>
-        <b [style.align-self]="'center'">
-            Settings
-        </b>
+    <app-configuration-section title="Settings">
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
@@ -146,7 +134,7 @@
             [checked]="settings().closeOnItemSelect"
             label="Close on item select"
             (onChange)="
-                updateSetting('closeOnItemSelect', $event);
+                setSettings('closeOnItemSelect', $event);
                 refreshLog();
             "
         />
@@ -154,7 +142,7 @@
             [checked]="settings().closeOnOutsideClick"
             label="Close on outside click"
             (onChange)="
-                updateSetting('closeOnOutsideClick', $event);
+                setSettings('closeOnOutsideClick', $event);
                 refreshLog();
             "
         />
@@ -162,11 +150,11 @@
             [checked]="settings().resetButton"
             label="Reset button"
             (onChange)="
-                updateSetting('resetButton', $event);
+                setSettings('resetButton', $event);
                 refreshLog();
             "
         />
-    </div>
+    </app-configuration-section>
 </div>
 
 <div class="visual">

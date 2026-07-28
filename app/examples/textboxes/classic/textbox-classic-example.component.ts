@@ -1,6 +1,6 @@
 import { BaseExampleComponent } from '../../base-example.component';
-import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
-import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicEffectsConfig, MvLibTextboxClassicSettings, MvLibTextboxClassicStyle } from 'mv-lib';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { MvLibTextboxClassicComponent } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { INPUTS } from '../../../inputs/inputs.export';
@@ -21,32 +21,30 @@ import { INPUTS } from '../../../inputs/inputs.export';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class TextboxClassicExampleComponent extends BaseExampleComponent<
-  MvLibTextboxClassicStyle,
-  MvLibTextboxClassicEffects,
-  MvLibTextboxClassicEffectsConfig,
-  MvLibTextboxClassicSettings
-> {
-  override mvLibComponent = viewChild<MvLibTextboxClassicComponent>('mvLibComponent');
+export class TextboxClassicExampleComponent extends BaseExampleComponent<MvLibTextboxClassicComponent> {
 
   constructor() {
     super();
     this.additionalLogProperties.set(['selected']);
-    this.styles = signal<Partial<MvLibTextboxClassicStyle>>({
+    this.styles = signal({
       dimensions: {
         width: '150px',
         height: '32px',
       },
     });
-    this.effects = signal<Partial<MvLibTextboxClassicEffects>>({
+    this.settings = signal({
       
     });
-    this.effectsStyles = signal<Partial<MvLibTextboxClassicEffectsConfig>>({
-      outlineSolidSelected_color: this.appStyles.var('textbox-classic-outline-solid-selected-color'),
-      outlineBlurSelected_color: this.appStyles.var('textbox-classic-outline-blur-selected-color'),
-    });
-    this.settings = signal<Partial<MvLibTextboxClassicSettings>>({
-      
+    this.effects = signal({
+      actives: [
+        'mv-lib-darken-hover',
+        'mv-lib-outline-blur-selected',
+      ],
+      styles: {
+        outlineBlurSelected: {
+          color: 'DodgerBlue',
+        },
+      }
     });
   }
 

@@ -1,73 +1,61 @@
 <div class="configuration">
 
-    <!-- Styles -->
-    <div>
-        <b [style.align-self]="'center'">
-            Styles
-        </b>
+    <app-configuration-section title="Styles">
         <app-input-number
             [value]="styles().sizePx"
             label="Size px"
-            (onChange)="updateStyle('sizePx', $event)"
+            (onChange)="setStyle('sizePx', $event)"
         />
         <app-input-color
             [value]="styles().backgroundColor"
             label="Background color"
-            (onChange)="updateStyle('backgroundColor', $event)"
+            (onChange)="setStyle('backgroundColor', $event)"
         />
         <app-input-color
             [value]="styles().selectedBackgroundColor"
             label="Selected background color"
-            (onChange)="updateStyle('selectedBackgroundColor', $event)"
+            (onChange)="setStyle('selectedBackgroundColor', $event)"
         />
         <app-input-number
             [value]="styles().groupGapPx"
             label="Group gap px"
-            (onChange)="updateStyle('groupGapPx', $event)"
+            (onChange)="setStyle('groupGapPx', $event)"
         />
         <app-input-number
             [value]="styles().contentGapPx"
             label="Content gap px"
-            (onChange)="updateStyle('contentGapPx', $event)"
+            (onChange)="setStyle('contentGapPx', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Effects -->
-    <div>
-        <b [style.align-self]="'center'">
-            Effects
-        </b>
+    <app-configuration-section title="Effects">
         <b>
             Idle
         </b>
         <app-input-checkbox
-            [checked]="effects().idle?.includes('shadow')"
+            
             label="Shadow"
-            (onChange)="updateEffect('idle', 'shadow', $event)"
+            (onChange)="setEffect('shadow', $event)"
         />
         <b>
             Hover
         </b>
         <app-input-checkbox
-            [checked]="effects().hover?.includes('enlarge')"
+            
             label="Enlarge"
-            (onChange)="updateEffect('hover', 'enlarge', $event)"
+            (onChange)="setEffect('enlarge', $event)"
         />
         <b>
             Selected
         </b>
         <app-input-checkbox
-            [checked]="effects().selected?.includes('brighten')"
+            
             label="Brighten"
-            (onChange)="updateEffect('selected', 'brighten', $event)"
+            (onChange)="setEffect('brighten', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Settings -->
-    <div>
-        <b [style.align-self]="'center'">
-            Settings
-        </b>
+    <app-configuration-section title="Settings">
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
@@ -83,7 +71,7 @@
             [values]="['vertical', 'horizontal']"
             [selected]="settings().orientation"
             (onChange)="
-                updateSetting('orientation', $any($event));
+                setSettings('orientation', $any($event));
                 refreshLog();
             "
         />
@@ -91,7 +79,7 @@
             [checked]="settings().selectOnLabelClick"
             label="Select on label click"
             (onChange)="
-                updateSetting('selectOnLabelClick', $event);
+                setSettings('selectOnLabelClick', $event);
                 refreshLog();
             "
         />
@@ -99,7 +87,7 @@
             [checked]="settings().unselectable"
             label="Unselectable"
             (onChange)="
-                updateSetting('unselectable', $event);
+                setSettings('unselectable', $event);
                 refreshLog();
             "
         />
@@ -120,7 +108,7 @@
             [min]="1"
             [max]="items().length"
         />
-    </div>
+    </app-configuration-section>
 </div>
 
 <div class="visual">

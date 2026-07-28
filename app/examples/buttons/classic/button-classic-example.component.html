@@ -1,6 +1,17 @@
 <div class="configuration">
-
+    
     <app-configuration-section title="Styles">
+        <app-input-color
+            [value]="styles().backgroundColor"
+            label="Background color"
+            (onChange)="setStyle('backgroundColor', $event)"
+        />
+
+        <!-- <app-dimensions-inputs
+            [width]="styles().widthPx"
+            [heightPx]="styles().heightPx"
+            (onChange)="updateDimensions($event)"
+        />
         <app-input-number
             [value]="styles().widthPx"
             label="Width px"
@@ -11,16 +22,12 @@
             label="Height px"
             (onChange)="updateStyle('heightPx', $event)"
         />
-        <app-input-color
-            [value]="styles().backgroundColor"
-            label="Background color"
-            (onChange)="updateStyle('backgroundColor', $event)"
-        />
+
         <app-input-color
             [value]="styles().textColor"
             label="Text color"
             (onChange)="updateStyle('textColor', $event)"
-        />
+        /> -->
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
@@ -28,30 +35,30 @@
             Idle
         </b>
         <app-input-checkbox
-            [checked]="effects().idle?.includes('shadow')"
+            
             label="Shadow"
-            (onChange)="updateEffect('idle', 'shadow', $event)"
+            (onChange)="setEffect('shadow', $event)"
         />
         <b>
             Hover
         </b>
         <app-input-checkbox
-            [checked]="effects().hover?.includes('darken')"
+            
             label="Darken"
-            (onChange)="updateEffect('hover', 'darken', $event)"
+            (onChange)="setEffect('mv-lib-darken-hover', $event)"
         />
         <b>
             Click
         </b>
         <app-input-checkbox
-            [checked]="effects().click?.includes('push')"
+        
             label="Push"
-            (onChange)="updateEffect('click', 'push', $event)"
+            (onChange)="setEffect('push', $event)"
         />
         <app-input-checkbox
-            [checked]="effects().click?.includes('ripple')"
+            
             label="Ripple"
-            (onChange)="updateEffect('click', 'ripple', $event)"
+            (onChange)="setEffect('ripple', $event)"
         />
     </app-configuration-section>
 

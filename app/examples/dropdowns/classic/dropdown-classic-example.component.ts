@@ -1,12 +1,5 @@
-import { ChangeDetectionStrategy, Component, contentChild, signal } from "@angular/core";
-import {
-  MvLibDropdownClassicComponent,
-  MvLibDropdownClassicEffects,
-  MvLibDropdownClassicEffectsStyles,
-  MvLibDropdownClassicSettings,
-  MvLibDropdownClassicStyles,
-  MvLibDropdownDirectives,
-} from "mv-lib";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
+import { MvLibDropdownClassicComponent, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/inputs.export";
@@ -33,13 +26,7 @@ interface User {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class DropdownClassicExampleComponent extends BaseExampleComponent<
-  MvLibDropdownClassicStyles,
-  MvLibDropdownClassicEffects,
-  MvLibDropdownClassicEffectsStyles,
-  MvLibDropdownClassicSettings
-> {
-  override mvLibComponent = contentChild<MvLibDropdownClassicComponent<User>>('mvLibComponent');
+export class DropdownClassicExampleComponent extends BaseExampleComponent<MvLibDropdownClassicComponent<User>> {
 
   protected selectedItem = signal<User | undefined>(undefined);
   protected items = signal<User[]>([
@@ -57,7 +44,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
   constructor() {
     super();
     this.additionalLogProperties.set(['opened']);
-    this.styles = signal<Partial<MvLibDropdownClassicStyles>>({
+    this.styles = signal({
       buttonWidthPx: 150,
       buttonHeightPx: 40,
       buttonBackgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
@@ -69,15 +56,10 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<
       itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
       itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
     });
-    this.effects = signal<Partial<MvLibDropdownClassicEffects>>({
-      buttonIdle: ['shadow'],
-      buttonHover: ['darken'],
-      buttonClick: ['ripple'],
-      listIdle: ['shadow'],
-      itemHover: ['darken'],
-      itemClick: [],
+    this.effects = signal({
+
     });
-    this.settings = signal<Partial<MvLibDropdownClassicSettings>>({
+    this.settings = signal({
       closeOnItemSelect: true,
       closeOnOutsideClick: true,
       resetButton: true,

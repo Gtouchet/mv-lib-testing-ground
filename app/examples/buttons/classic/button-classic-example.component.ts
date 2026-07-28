@@ -1,6 +1,6 @@
 import { BaseExampleComponent } from '../../base-example.component';
-import { ChangeDetectionStrategy, Component, contentChild, signal } from '@angular/core';
-import { MvLibButtonClassicComponent, MvLibButtonClassicEffects, MvLibButtonClassicEffectsStyles, MvLibButtonClassicSettings, MvLibButtonClassicStyles } from 'mv-lib';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { MvLibButtonClassicComponent } from 'mv-lib';
 import { INPUTS } from '../../../inputs/inputs.export';
 
 @Component({
@@ -17,28 +17,16 @@ import { INPUTS } from '../../../inputs/inputs.export';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class ButtonClassicExampleComponent extends BaseExampleComponent<
-  MvLibButtonClassicStyles,
-  MvLibButtonClassicEffects,
-  MvLibButtonClassicEffectsStyles,
-  MvLibButtonClassicSettings
-> {
-  override mvLibComponent = contentChild<MvLibButtonClassicComponent>('mvLibComponent');
+export class ButtonClassicExampleComponent extends BaseExampleComponent<MvLibButtonClassicComponent> {
 
   constructor() {
     super();
-    this.styles = signal<Partial<MvLibButtonClassicStyles>>({
-      widthPx: 80,
-      heightPx: 40,
+    this.styles = signal({
       backgroundColor: this.appStyles.var('button-classic-background-color'),
-      textColor: this.appStyles.var('button-classic-text-color'),
     });
-    this.effects = signal<Partial<MvLibButtonClassicEffects>>({
-      idle: ['shadow'],
-      hover: ['darken'],
-      click: ['push'],
+    this.effects = signal({
     });
-    this.settings = signal<Partial<MvLibButtonClassicSettings>>({
+    this.settings = signal({
 
     });
   }

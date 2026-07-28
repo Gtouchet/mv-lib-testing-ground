@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, contentChild, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { BaseExampleComponent } from "../../base-example.component";
-import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicEffectsStyles, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyles, MvLibRadioButtonsDirectives } from "mv-lib";
+import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsDirectives } from "mv-lib";
 import { JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/inputs.export";
 
@@ -25,13 +25,7 @@ interface User {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<
-    MvLibRadioButtonsClassicStyles,
-    MvLibRadioButtonsClassicEffects,
-    MvLibRadioButtonsClassicEffectsStyles,
-    MvLibRadioButtonsClassicSettings
-> {
-    override mvLibComponent = contentChild<MvLibRadioButtonsClassicComponent<User>>('mvLibComponent');
+export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<MvLibRadioButtonsClassicComponent<User>> {
 
     protected selectedItem = signal<User | undefined>(undefined);
     protected items = signal<User[]>([
@@ -48,7 +42,7 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<
 
     constructor() {
         super();
-        this.styles = signal<Partial<MvLibRadioButtonsClassicStyles>>({
+        this.styles = signal({
             sizePx: 16,
             backgroundColor: this.appStyles.var('radio-buttons-classic-background-color'),
             selectedBackgroundColor: this.appStyles.var('radio-buttons-classic-selected-background-color'),
@@ -56,12 +50,9 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<
             groupGapPx: 4,
             contentGapPx: 6,
         });
-        this.effects = signal<Partial<MvLibRadioButtonsClassicEffects>>({
-            idle: ['shadow'],
-            hover: ['enlarge'],
-            selected: [],
+        this.effects = signal({
         });
-        this.settings = signal<Partial<MvLibRadioButtonsClassicSettings>>({
+        this.settings = signal({
             orientation: 'vertical',
             selectOnLabelClick: true,
             unselectable: false,

@@ -1,24 +1,20 @@
 <div class="configuration">
 
-    <!-- Styles -->
-    <div>
-        <b [style.align-self]="'center'">
-            Styles
-        </b>        
+    <app-configuration-section title="Styles">
         <app-input-number
             [value]="styles().widthPx"
             label="Width px"
-            (onChange)="updateStyle('widthPx', $event)"
+            (onChange)="setStyle('widthPx', $event)"
         />        
         <app-input-number
             [value]="styles().heightPx"
             label="Height px"
-            (onChange)="updateStyle('heightPx', $event)"
+            (onChange)="setStyle('heightPx', $event)"
         />
         <app-input-number
             [value]="styles().cursorSizePx"
             label="Cursor size px"
-            (onChange)="updateStyle('cursorSizePx', $event)"
+            (onChange)="setStyle('cursorSizePx', $event)"
         />
         <b>
             Track
@@ -26,12 +22,12 @@
         <app-input-color
             [value]="styles().trackColorOn"
             label="Track color on"
-            (onChange)="updateStyle('trackColorOn', $event)"
+            (onChange)="setStyle('trackColorOn', $event)"
         />        
         <app-input-color
             [value]="styles().trackColorOff"
             label="Track color off"
-            (onChange)="updateStyle('trackColorOff', $event)"
+            (onChange)="setStyle('trackColorOff', $event)"
         />
         <b>
             Cursor on
@@ -39,17 +35,17 @@
         <app-input-text
             [value]="styles().cursorIconOn"
             label="Cursor icon on"
-            (onChange)="updateStyle('cursorIconOn', $event)"
+            (onChange)="setStyle('cursorIconOn', $event)"
         />
         <app-input-color
             [value]="styles().cursorColorOn"
             label="Cursor color on"
-            (onChange)="updateStyle('cursorColorOn', $event)"
+            (onChange)="setStyle('cursorColorOn', $event)"
         />
         <app-input-color
             [value]="styles().cursorIconColorOn"
             label="Cursor icon color on"
-            (onChange)="updateStyle('cursorIconColorOn', $event)"
+            (onChange)="setStyle('cursorIconColorOn', $event)"
         />
         <b>
             Cursor off
@@ -57,61 +53,53 @@
         <app-input-text
             [value]="styles().cursorIconOff"
             label="Cursor icon off"
-            (onChange)="updateStyle('cursorIconOff', $event)"
+            (onChange)="setStyle('cursorIconOff', $event)"
         />
         <app-input-color
             [value]="styles().cursorColorOff"
             label="Cursor color off"
-            (onChange)="updateStyle('cursorColorOff', $event)"
+            (onChange)="setStyle('cursorColorOff', $event)"
         />
         <app-input-color
             [value]="styles().cursorIconColorOff"
             label="Cursor icon color off"
-            (onChange)="updateStyle('cursorIconColorOff', $event)"
+            (onChange)="setStyle('cursorIconColorOff', $event)"
         />
-    </div>
-
-    <!-- Effects -->
-    <div>
-        <b [style.align-self]="'center'">
-            Effects
-        </b>
+    </app-configuration-section>
+    
+    <app-configuration-section title="Effects">
         <b>
             Idle effects
         </b>
         <app-input-checkbox
-            [checked]="effects().idle?.includes('shadow')"
+            
             label="Shadow"
-            (onChange)="updateEffect('idle', 'shadow', $event)"
+            (onChange)="setEffect('shadow', $event)"
         />
         <b>
             Hover effects
         </b>
         <app-input-checkbox
-            [checked]="effects().hover?.includes('enlarge-cursor')"
+            
             label="Enlarge cursor"
-            (onChange)="updateEffect('hover', 'enlarge-cursor', $event)"
+            (onChange)="setEffect('enlarge-cursor', $event)"
         />
         <b>
             Click effects
         </b>
         <app-input-checkbox
-            [checked]="effects().click?.includes('push')"
+            
             label="Push"
-            (onChange)="updateEffect('click', 'push', $event)"
+            (onChange)="setEffect('push', $event)"
         />
         <app-input-checkbox
-            [checked]="effects().click?.includes('ripple')"
+            
             label="Ripple"
-            (onChange)="updateEffect('click', 'ripple', $event)"
+            (onChange)="setEffect('ripple', $event)"
         />
-    </div>
+    </app-configuration-section>
 
-    <!-- Settings -->
-    <div>
-        <b [style.align-self]="'center'">
-            Settings
-        </b>
+    <app-configuration-section title="Settings">
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
@@ -128,7 +116,7 @@
                 refreshLog();
             "
         />
-    </div>
+    </app-configuration-section>
 </div>
 
 <div class="visual">
