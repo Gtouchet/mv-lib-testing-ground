@@ -84,10 +84,10 @@
             "
         />
         <app-input-checkbox
-            [checked]="settings().unselectable"
-            label="Unselectable"
+            [checked]="settings().deselectable"
+            label="Deselectable"
             (onChange)="
-                setSettings('unselectable', $event);
+                setSettings('deselectable', $event);
                 refreshLog();
             "
         />

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { BaseExampleComponent } from "../../base-example.component";
-import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsDirectives } from "mv-lib";
 import { JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/inputs.export";
+import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsDirectives } from "mv-lib";
 
 interface User {
   id: number;
@@ -55,7 +55,7 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<Mv
         this.settings = signal({
             orientation: 'vertical',
             selectOnLabelClick: true,
-            unselectable: false,
+            deselectable: false,
         });
     }
 }

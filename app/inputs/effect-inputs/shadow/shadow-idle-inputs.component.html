@@ -8,28 +8,28 @@
 <div class="inputs-group">
     Pos. X
     <app-input-text
-        [value]="$any(component().effects()).styles.shadowIdle.x"
-        (onChange)="component().setEffectStyle('shadowIdle.x', $event)"
+        [value]="$any(component().effects()).style.shadowIdle.posX"
+        (onChange)="component().setEffectStyle('shadowIdle.posX', $event)"
     />
     Pos. Y
     <app-input-text
-        [value]="$any(component().effects()).styles.shadowIdle.y"
-        (onChange)="component().setEffectStyle('shadowIdle.y', $event)"
+        [value]="$any(component().effects()).style.shadowIdle.posY"
+        (onChange)="component().setEffectStyle('shadowIdle.posY', $event)"
     />
     Blur
     <app-input-text
-        [value]="$any(component().effects()).styles.shadowIdle.blur"
+        [value]="$any(component().effects()).style.shadowIdle.blur"
         (onChange)="component().setEffectStyle('shadowIdle.blur', $event)"
     />
     Spread
     <app-input-text
-        [value]="$any(component().effects()).styles.shadowIdle.spread"
+        [value]="$any(component().effects()).style.shadowIdle.spread"
         (onChange)="component().setEffectStyle('shadowIdle.spread', $event)"
 
     />
     Color
     <app-input-color
-        [value]="$any(component().effects()).styles.shadowIdle.color"
+        [value]="$any(component().effects()).style.shadowIdle.color"
         (onChange)="component().setEffectStyle('shadowIdle.color', $event)"
     />
 </div>

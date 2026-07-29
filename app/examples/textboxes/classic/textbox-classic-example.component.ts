@@ -32,15 +32,12 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<MvLibTe
         height: '32px',
       },
     });
-    this.settings = signal({
-      
-    });
     this.effects = signal({
       classes: [
-        'mv-lib-darken-hover',
-        'mv-lib-outline-blur-selected',
+        this.mvLibEffects.hover.darken,
+        this.mvLibEffects.selected.outlineBlur,
       ],
-      styles: {
+      style: {
         outlineSolidSelected: {
           color: this.appStyles.var('textbox-classic-outline-solid-selected-color'),
         },
@@ -48,6 +45,9 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<MvLibTe
           color: this.appStyles.var('textbox-classic-outline-blur-selected-color'),
         },
       }
+    });
+    this.settings = signal({
+      
     });
   }
 

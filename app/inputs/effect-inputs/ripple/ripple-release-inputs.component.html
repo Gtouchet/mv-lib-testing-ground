@@ -8,22 +8,22 @@
 <div class="inputs-group">
     Origin x
     <app-input-text
-        [value]="$any(component().effects()).styles.rippleRelease.originX"
+        [value]="$any(component().effects()).style.rippleRelease.originX"
         (onChange)="component().setEffectStyle('rippleRelease.originX', $event)"
     />
     Origin y
     <app-input-text
-        [value]="$any(component().effects()).styles.rippleRelease.originY"
+        [value]="$any(component().effects()).style.rippleRelease.originY"
         (onChange)="component().setEffectStyle('rippleRelease.originY', $event)"
     />
     Size
     <app-input-text
-        [value]="$any(component().effects()).styles.rippleRelease.size"
+        [value]="$any(component().effects()).style.rippleRelease.size"
         (onChange)="component().setEffectStyle('rippleRelease.size', $event)"
     />
     Delay
     <app-input-text
-        [value]="$any(component().effects()).styles.rippleRelease.delay"
+        [value]="$any(component().effects()).style.rippleRelease.delay"
         (onChange)="component().setEffectStyle('rippleRelease.delay', $event)"
     />
 </div>

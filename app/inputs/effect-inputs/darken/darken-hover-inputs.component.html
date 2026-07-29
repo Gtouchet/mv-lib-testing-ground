@@ -6,9 +6,11 @@
     <app-inputs-separator title="Darken hover" />
 </div>
 <div class="inputs-group">
-    Percentage
-    <app-input-text
-        [value]="$any(component().effects()).styles.darkenHover.percentage"
-        (onChange)="component().setEffectStyle('darkenHover.percentage', $event)"
+    Effect %
+    <app-input-number
+        [min]="0"
+        [max]="100"
+        [value]="$any(component().effects()).style.darkenHover.effectPercentage"
+        (onChange)="component().setEffectStyle('darkenHover.effectPercentage', $event)"
     />
 </div>

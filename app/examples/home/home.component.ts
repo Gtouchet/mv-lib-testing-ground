@@ -14,8 +14,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
         </p>
         <p style='color: red'>
             I am currently refactoring the library's styles and effects, so most component are broken.<br/>
-            The button and textbox components are the only ones that are fully refactored.<br/>
-            The toast component is also working, but it's configuration interface is not working properly.
+            The button and textbox components are the only ones that are fully refactored.
         </p>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
