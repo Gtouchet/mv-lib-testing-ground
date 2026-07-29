@@ -314,25 +314,25 @@
         <app-input-number
             [value]="toastService.configuration().success?.settings?.lifespan"
             label="Success"
-            [width]="65"
+            width="65px"
             (onChange)="toastService.configuration().success!.settings!.lifespan = $event"
         />
         <app-input-number
             [value]="toastService.configuration().warning?.settings?.lifespan"
             label="Warning"
-            [width]="65"
+            width="65px"
             (onChange)="toastService.configuration().warning!.settings!.lifespan = $event"
         />
         <app-input-number
             [value]="toastService.configuration().error?.settings?.lifespan"
             label="Error"
-            [width]="65"
+            width="65px"
             (onChange)="toastService.configuration().error!.settings!.lifespan = $event"
         />
         <app-input-number
             [value]="toastService.configuration().info?.settings?.lifespan"
             label="Info"
-            [width]="65"
+            width="65px"
             (onChange)="toastService.configuration().info!.settings!.lifespan = $event"
         />
     </app-configuration-section>

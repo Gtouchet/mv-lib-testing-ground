@@ -1,0 +1,19 @@
+<div class="effect">
+    <app-input-checkbox
+        [checked]="$any(component().effects()).classes.includes(component().mvLibEffects.hover.resize)"
+        (onChange)="component().setEffect(component().mvLibEffects.hover.resize, $event)"
+    />
+    <app-inputs-separator title="Resize hover" />
+</div>
+<div class="inputs-group">
+    Scale %
+    <app-input-number
+        [value]="$any(component().effects()).style.resizeHover.scalePercentage"
+        (onChange)="component().setEffectStyle('resizeHover.scalePercentage', $event)"
+    />
+    Duration
+    <app-input-text
+        [value]="$any(component().effects()).style.resizeHover.duration"
+        (onChange)="component().setEffectStyle('resizeHover.duration', $event)"
+    />
+</div>

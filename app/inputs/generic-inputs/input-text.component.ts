@@ -20,8 +20,9 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         [value]="value()"
         (input)="handleInput($event)"
         [ngStyle]="{
+          'width': width() ?? 'auto',
+          'flex': !width() ? 1 : 'none',
           'height.px': 16,
-          'flex': 1,
         }"
       />
     </div>
@@ -30,6 +31,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 export class InputTextComponent {
   public value = input<string | number| undefined>(undefined);
   public label = input<string | undefined>(undefined);
+  public width = input<string | undefined>(undefined);
   public onChange = output<string>();
 
   protected handleInput(event: Event) {

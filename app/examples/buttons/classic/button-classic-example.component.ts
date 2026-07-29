@@ -25,6 +25,8 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<MvLibBut
         height: '40px',
       },
       font: {
+        size: this.appStyles.var('button-classic-font-size'),
+        weight: this.appStyles.var('button-classic-font-weight'),
         color: this.appStyles.var('button-classic-font-color'),
       },
     });

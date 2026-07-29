@@ -1,16 +1,25 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-input-radio',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule],
   template: `
     <div
-      [style.display]="'flex'"
-      [style.flex-direction]="'column'"
-      [style.align-items]="'flex-start'"
+      [ngStyle]="{
+        'display': 'flex',
+        'flex-direction': 'column',
+      }"
     >
       @for (value of values(); track $index) {
-        <div>
+        <div
+          [ngStyle]="{
+            'display': 'flex',
+            'align-items': 'center',
+            'gap.px': 6,
+          }">
           <input
             type="radio"
             [value]="value"
@@ -23,7 +32,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       }
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class InputRadioComponent<Type> {
   public values = input<Type[]>([]);

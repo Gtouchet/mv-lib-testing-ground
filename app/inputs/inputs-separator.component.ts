@@ -6,21 +6,18 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
     imports: [CommonModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    host: {
-        style: 'flex: 1;',
-    },
     template: `
         <div
             [ngStyle]="{
                 'display': 'flex',
                 'align-items': 'center',
                 'gap.px': 8,
-                'margin-bottom.px': 4,
             }"
         >
             <b>
                 {{ title() ?? 'Inputs Separator' }}
             </b>
+
             <hr
                 [ngStyle]="{
                     'flex': '1',
@@ -29,6 +26,12 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
             />
         </div>
     `,
+    styles: [`
+        :host {
+            display: block;
+            width: 100%;
+        }
+    `]
 })
 export class InputsSeparatorComponent {
     

@@ -41,14 +41,17 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<Mv
     constructor() {
         super();
         this.styles = signal({
-            sizePx: 16,
+            groupGap: '6px',
+            contentGap: '6px',
+            size: '16px',
             backgroundColor: this.appStyles.var('radio-buttons-classic-background-color'),
             selectedColor: this.appStyles.var('radio-buttons-classic-selected-color'),
-
-            groupGapPx: 4,
-            contentGapPx: 6,
         });
         this.effects = signal({
+            classes: [
+                this.mvLibEffects.idle.shadow,
+                this.mvLibEffects.hover.resize,
+            ],
         });
         this.settings = signal({
             orientation: 'vertical',
