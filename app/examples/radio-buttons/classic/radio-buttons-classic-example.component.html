@@ -42,19 +42,13 @@
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <b>
-            Idle
-        </b>
-        <app-input-checkbox
-            
-            label="Shadow"
-            (onChange)="setEffect('shadow', $event)"
-        />
+        @if (effectsInitialized()) {
+            <app-shadow-idle-inputs [component]="this" />
+        }
         <b>
             Hover
         </b>
         <app-input-checkbox
-            
             label="Enlarge"
             (onChange)="setEffect('enlarge', $event)"
         />
@@ -62,7 +56,6 @@
             Selected
         </b>
         <app-input-checkbox
-            
             label="Brighten"
             (onChange)="setEffect('brighten', $event)"
         />
@@ -144,7 +137,7 @@
 <pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
 selected: {{ selectedItem() | json }}<br/>
-{{ log() }}
+&lt;mv-lib-radio-buttons-classic{{ log() }}/&gt;
 </pre>
 </div>
 

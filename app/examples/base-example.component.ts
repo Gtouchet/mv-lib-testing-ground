@@ -157,7 +157,7 @@ export abstract class BaseExampleComponent<
     [styles]=\"${this.prettify((this as any)['styles']())}\",
     [effects]=\"${this.prettify((this as any)['effects']())}\",
     [settings]=\"${this.prettify((this as any)['settings']())}\",
-    [disabled]="${this.prettify(this.form ? this.form.disabled : this.disabled())}",
+    [disabled]="${this.prettify(this.form?.disabled || this.disabled())}",
 `;
         this.additionalLogProperties().forEach(property => {
             result += `    [${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
