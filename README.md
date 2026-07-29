@@ -6,7 +6,7 @@ A demonstration and validation application designed to support the development o
 
 ## Purpose
 
-This project serves as a **sandbox** for testing, visualizing, and validating components from the MV Lib library in conditions that closely resemble real-world usage.
+This project serves as a sandbox for testing, visualizing, and validating components from the MV Lib library.
 
 It allows you to:
 
@@ -41,12 +41,11 @@ The application evolves alongside the library and serves as a practical referenc
 
 This project is primarily intended for:
 
-- The developer of the MV Lib library.
+- The developer of the MV Lib library (hey that's me !).
 - Anyone interested in discovering or evaluating the available components.
 - Demonstrating my Angular development skills.
 
-## Status
+## Note
 
-This project is a testing and demonstration environment.
-
-I frequently perform refactoring work that may temporarily break some components. When this happens, visitors are informed through notifications displayed on the application's home page.
+I frequently perform refactoring work that may temporarily break some components.
+When this happens, visitors are informed through a text displayed on the application's home page.
