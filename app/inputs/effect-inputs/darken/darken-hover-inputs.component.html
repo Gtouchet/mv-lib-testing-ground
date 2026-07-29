@@ -1,14 +1,14 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="enabled()"
-        (onChange)="onEnabledChange.emit($event)"
+        [checked]="$any(component().effects()).classes.includes(component().mvLibEffects.hover.darken)"
+        (onChange)="component().setEffect(component().mvLibEffects.hover.darken, $event)"
     />
     <app-inputs-separator title="Darken hover" />
 </div>
 <div class="inputs-group">
     Percentage
     <app-input-text
-        [value]="percentage()"
-        (onChange)="onPercentageChange.emit($event)"
+        [value]="$any(component().effects()).styles.darkenHover.percentage"
+        (onChange)="component().setEffectStyle('darkenHover.percentage', $event)"
     />
 </div>

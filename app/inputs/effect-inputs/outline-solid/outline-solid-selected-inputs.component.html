@@ -1,19 +1,19 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="enabled()"
-        (onChange)="onEnabledChange.emit($event)"
+        [checked]="$any(component().effects()).classes.includes(component().mvLibEffects.selected.outlineSolid)"
+        (onChange)="component().setEffect(component().mvLibEffects.selected.outlineSolid, $event)"
     />
     <app-inputs-separator title="Outline solid selected" />
 </div>
 <div class="inputs-group">
     Color
     <app-input-color
-        [value]="color()"
-        (onChange)="onColorChange.emit($event)"
+        [value]="$any(component().effects()).styles.outlineSolidSelected.color"
+        (onChange)="component().setEffectStyle('outlineSolidSelected.color', $event)"
     />
     Width
     <app-input-text
-        [value]="width()"
-        (onChange)="onWidthChange.emit($event)"
+        [value]="$any(component().effects()).styles.outlineSolidSelected.width"
+        (onChange)="component().setEffectStyle('outlineSolidSelected.width', $event)"
     />
 </div>

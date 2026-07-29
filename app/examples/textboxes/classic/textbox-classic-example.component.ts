@@ -41,8 +41,11 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<MvLibTe
         'mv-lib-outline-blur-selected',
       ],
       styles: {
+        outlineSolidSelected: {
+          color: this.appStyles.var('textbox-classic-outline-solid-selected-color'),
+        },
         outlineBlurSelected: {
-          color: 'DodgerBlue',
+          color: this.appStyles.var('textbox-classic-outline-blur-selected-color'),
         },
       }
     });

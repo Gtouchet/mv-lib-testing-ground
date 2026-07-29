@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
+import { BaseExampleComponent } from "../../../examples/base-example.component";
 
 @Component({
   selector: 'app-push-click-inputs',
@@ -13,9 +14,7 @@ import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class PushClickInputsComponent {
+export class PushClickInputsComponent<Component extends BaseExampleComponent> {
 
-    public enabled = input<boolean>();
-
-    public onEnabledChange = output<boolean>();
+  public component = input.required<Component>();
 }

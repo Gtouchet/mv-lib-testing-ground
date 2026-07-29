@@ -14,8 +14,6 @@ export abstract class BaseExampleComponent<
 
     protected mvLibComponent = viewChild<MvLibComponent>('mvLibComponent');
 
-    protected mvLibEffects = MV_LIB_EFFECTS;
-    
     ngOnInit() {
         this.initForm();
         this.refreshLog();
@@ -23,52 +21,61 @@ export abstract class BaseExampleComponent<
 
     ngAfterViewInit() {
         this.refreshStyle();
-        this.refreshSettings();
+        this.styleInitialized.set(true);
         this.refreshEffects();
+        this.effectsInitialized.set(true);
+        this.refreshSettings();
+        this.settingsInitialized.set(true);
         this.refreshLog();
     }
-
-    private refreshStyle = () => this.styles.set(this.mvLibComponent?.()?.getStyle() ?? {});
-    private refreshSettings = () => this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
-    private refreshEffects = () => this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
 
     /**
      * Styles, Effects, Settings
      */
-    protected styles = signal<Partial<StylesOf<MvLibComponent>>>({});
-    protected settings = signal<Partial<SettingsOf<MvLibComponent>>>({});
-    protected effects = signal<Partial<EffectsOf<MvLibComponent>>>({});
+    public mvLibEffects = MV_LIB_EFFECTS;
+
+    protected styleInitialized = signal(false);
+    protected effectsInitialized = signal(false);
+    protected settingsInitialized = signal(false);
+
+    public styles = signal<Partial<StylesOf<MvLibComponent>>>({});
+    public effects = signal<Partial<EffectsOf<MvLibComponent>>>({});
+    public settings = signal<Partial<SettingsOf<MvLibComponent>>>({});
+
+    private refreshStyle = () => this.styles.set(this.mvLibComponent?.()?.getStyle() ?? {});
+    private refreshEffects = () => this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
+    private refreshSettings = () => this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
 
     protected disabled = signal(false);
     protected selected = signal(false);
     protected opened = signal(false);
     protected active = signal(true);
 
-    protected setStyle(path: string, value: any) {
+    public setStyle(path: string, value: any) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setStyle(path, value);
         this.refreshStyle();
         this.refreshLog();
     }
 
-    protected setSettings(settings: string, enabled: boolean) {
-        if (!this.mvLibComponent()) return;
-        this.mvLibComponent()!.setSettings(settings, enabled);
-        this.refreshSettings();
-        this.refreshLog();
-    }
-
-    protected setEffect(effect: string, enabled: boolean) {
+    public setEffect(effect: string, enabled: boolean) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setEffect(effect, enabled);
         this.refreshEffects();
         this.refreshLog();
     }
 
-    protected setEffectStyle(path: string, value: any) {
+    public setEffectStyle(path: string, value: any) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setEffectStyle(path, value);
         this.refreshEffects();
+        this.refreshLog();
+    }
+
+    public setSettings(settings: string, enabled: boolean) {
+        if (!this.mvLibComponent()) return;
+        this.mvLibComponent()!.setSettings(settings, enabled);
+        this.refreshSettings();
         this.refreshLog();
     }
 

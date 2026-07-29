@@ -1,85 +1,37 @@
 <div class="configuration">
     
     <app-configuration-section title="Styles">
-        <app-input-color
-            [value]="styles().backgroundColor"
-            label="Background color"
-            (onChange)="setStyle('backgroundColor', $event)"
-        />
-        <app-dimensions-inputs
-            [width]="styles().dimensions?.width"
-            [minWidth]="styles().dimensions?.minWidth"
-            [maxWidth]="styles().dimensions?.maxWidth"
-            [height]="styles().dimensions?.height"
-            [minHeight]="styles().dimensions?.minHeight"
-            [maxHeight]="styles().dimensions?.maxHeight"
-            (onWidthChange)="setStyle('dimensions.width', $event)"
-            (onMinWidthChange)="setStyle('dimensions.minWidth', $event)"
-            (onMaxWidthChange)="setStyle('dimensions.maxWidth', $event)"
-            (onHeightChange)="setStyle('dimensions.height', $event)"
-            (onMinHeightChange)="setStyle('dimensions.minHeight', $event)"
-            (onMaxHeightChange)="setStyle('dimensions.maxHeight', $event)"
-        />
-        <app-font-inputs
-            [size]="styles().font?.size"
-            [weight]="styles().font?.weight"
-            [style]="styles().font?.style"
-            [color]="styles().font?.color"
-            (onSizeChange)="setStyle('font.size', $event)"
-            (onWeightChange)="setStyle('font.weight', $event)"
-            (onStyleChange)="setStyle('font.style', $event)"
-            (onColorChange)="setStyle('font.color', $event)"
-        />
+        @if (styleInitialized()) {
+            <app-input-color
+                [value]="styles().backgroundColor"
+                label="Background color"
+                (onChange)="setStyle('backgroundColor', $event)"
+            />
+            <app-dimensions-inputs [component]="this" />
+            <app-font-inputs [component]="this" />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <app-shadow-idle-inputs
-            [enabled]="effects().classes!.includes(mvLibEffects.idle.shadowIdle)"
-            [shadowX]="effects().styles?.shadowIdle?.shadowX"
-            [shadowY]="effects().styles?.shadowIdle?.shadowY"
-            [blur]="effects().styles?.shadowIdle?.blur"
-            [spread]="effects().styles?.shadowIdle?.spread"
-            [color]="effects().styles?.shadowIdle?.color"
-            (onEnabledChange)="setEffect(mvLibEffects.idle.shadowIdle, $event)"
-            (onShadowXChange)="setEffectStyle('shadowIdle.shadowX', $event)"
-            (onShadowYChange)="setEffectStyle('shadowIdle.shadowY', $event)"
-            (onBlurChange)="setEffectStyle('shadowIdle.blur', $event)"
-            (onSpreadChange)="setEffectStyle('shadowIdle.spread', $event)"
-            (onColorChange)="setEffectStyle('shadowIdle.color', $event)"
-        />
-        <app-darken-hover-inputs
-            [enabled]="effects().classes!.includes(mvLibEffects.hover.darkenHover)"
-            [percentage]="$any(effects().styles?.darkenHover?.percentage)"
-            (onEnabledChange)="setEffect(mvLibEffects.hover.darkenHover, $event)"
-            (onPercentageChange)="setEffectStyle('darkenHover.percentage', $event)"
-        />
-        <app-push-click-inputs
-            [enabled]="effects().classes!.includes(mvLibEffects.click.pushClick)"
-            (onEnabledChange)="setEffect(mvLibEffects.click.pushClick, $event)"
-        />
-        <app-ripple-release-inputs
-            [enabled]="effects().classes!.includes(mvLibEffects.release.rippleRelease)"
-            [originX]="$any(effects().styles?.rippleRelease?.originX)"
-            [originY]="$any(effects().styles?.rippleRelease?.originY)"
-            [size]="$any(effects().styles?.rippleRelease?.size)"
-            [delay]="$any(effects().styles?.rippleRelease?.delay)"
-            (onEnabledChange)="setEffect(mvLibEffects.release.rippleRelease, $event)"
-            (onOriginXChange)="setEffectStyle('rippleRelease.originX', $event)"
-            (onOriginYChange)="setEffectStyle('rippleRelease.originY', $event)"
-            (onSizeChange)="setEffectStyle('rippleRelease.size', $event)"
-            (onDelayChange)="setEffectStyle('rippleRelease.delay', $event)"
-        />
+        @if (effectsInitialized()) {
+            <app-shadow-idle-inputs [component]="this" />
+            <app-darken-hover-inputs [component]="this" />
+            <app-push-click-inputs [component]="this" />
+            <app-ripple-release-inputs [component]="this" />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <app-input-checkbox
-            [checked]="disabled()"
-            label="Disabled"
-            (onChange)="
-                disabled.set($event);
-                refreshLog();
-            "
-        />
+        @if (settingsInitialized()) {
+            <app-input-checkbox
+                [checked]="disabled()"
+                label="Disabled"
+                (onChange)="
+                    disabled.set($event);
+                    refreshLog();
+                "
+            />
+        }
     </app-configuration-section>
 </div>
 

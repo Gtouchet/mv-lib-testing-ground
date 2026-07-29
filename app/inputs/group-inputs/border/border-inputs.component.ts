@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, computed, input } from "@angular/core";
 import { CssBorderStyle } from "../../../css-values/border.values";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
+import { BaseExampleComponent } from "../../../examples/base-example.component";
 
 @Component({
   selector: 'app-border-inputs',
@@ -10,28 +11,20 @@ import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
     GENERIC_INPUTS,
   ],
   templateUrl: './border-inputs.component.html',
-  styleUrls: [
-    './border-inputs.component.scss',
-    '../group-inputs.component.scss',
-  ],
+  styleUrl: '../group-inputs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class BorderInputsComponent {
+export class BorderInputsComponent<Component extends BaseExampleComponent> {
 
-    protected cssBorderStyles = CssBorderStyle.values;
+  public component = input.required<Component>();
 
-    public width = input<string>();
-    public style = input<string>();
-    public color = input<string>();
-    public radius = input<string>();
+  protected cssBorderStyles = CssBorderStyle.values;
 
-    public onWidthChange = output<string>();
-    public onStyleChange = output<string>();
-    public onColorChange = output<string>();
-    public onRadiusChange = output<string>();
-
-    protected borderStyles = computed<string[]>(() => {
-      return !this.style() ? [] : this.style()!.split(' ').filter(s => s.length > 0);
-    });
+  protected borderStyles = computed<string[]>(() => {
+    return (this.component().styles() as any)
+      .border.style
+      .split(' ')
+      .filter((s: []) => s.length > 0);
+  });
 }

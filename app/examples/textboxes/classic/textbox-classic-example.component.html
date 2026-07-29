@@ -1,90 +1,46 @@
 <div class="configuration">
     
     <app-configuration-section title="Styles">
-        <app-input-color
-            [value]="styles().backgroundColor"
-            label="Background color"
-            (onChange)="setStyle('backgroundColor', $event)"
-        />
-        <app-dimensions-inputs
-            [width]="styles().dimensions?.width"
-            [minWidth]="styles().dimensions?.minWidth"
-            [maxWidth]="styles().dimensions?.maxWidth"
-            [height]="styles().dimensions?.height"
-            [minHeight]="styles().dimensions?.minHeight"
-            [maxHeight]="styles().dimensions?.maxHeight"
-            (onWidthChange)="setStyle('dimensions.width', $event)"
-            (onMinWidthChange)="setStyle('dimensions.minWidth', $event)"
-            (onMaxWidthChange)="setStyle('dimensions.maxWidth', $event)"
-            (onHeightChange)="setStyle('dimensions.height', $event)"
-            (onMinHeightChange)="setStyle('dimensions.minHeight', $event)"
-            (onMaxHeightChange)="setStyle('dimensions.maxHeight', $event)"
-        />
-        <app-border-inputs
-            [width]="styles().border?.width"
-            [style]="styles().border?.style"
-            [color]="styles().border?.color"
-            [radius]="styles().border?.radius"
-            (onWidthChange)="setStyle('border.width', $event)"
-            (onStyleChange)="setStyle('border.style', $event)"
-            (onColorChange)="setStyle('border.color', $event)"
-            (onRadiusChange)="setStyle('border.radius', $event)"
-        />
-        <app-font-inputs
-            [size]="styles().font?.size"
-            [weight]="styles().font?.weight"
-            [style]="styles().font?.style"
-            [color]="styles().font?.color"
-            (onSizeChange)="setStyle('font.size', $event)"
-            (onWeightChange)="setStyle('font.weight', $event)"
-            (onStyleChange)="setStyle('font.style', $event)"
-            (onColorChange)="setStyle('font.color', $event)"
-        />
+        @if (styleInitialized()) {
+            <app-input-color
+                [value]="styles().backgroundColor"
+                label="Background color"
+                (onChange)="setStyle('backgroundColor', $event)"
+            />
+            <app-dimensions-inputs [component]="this" />
+            <app-border-inputs [component]="this" />
+            <app-font-inputs [component]="this" />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <app-darken-hover-inputs
-            [enabled]="effects().classes!.includes('mv-lib-darken-hover')"
-            [percentage]="$any(effects().styles?.darkenHover?.percentage)"
-            (onEnabledChange)="setEffect('mv-lib-darken-hover', $event)"
-            (onPercentageChange)="setEffectStyle('darkenHover.percentage', $event)"
-        />
-        <app-outline-blur-selected-inputs
-            [enabled]="effects().classes!.includes('mv-lib-outline-blur-selected')"
-            [color]="$any(effects().styles?.outlineBlurSelected?.color)"
-            [radius]="$any(effects().styles?.outlineBlurSelected?.radius)"
-            (onEnabledChange)="setEffect('mv-lib-outline-blur-selected', $event)"
-            (onColorChange)="setEffectStyle('outlineBlurSelected.color', $event)"
-            (onRadiusChange)="setEffectStyle('outlineBlurSelected.radius', $event)"
-        />
-        <app-outline-solid-selected-inputs
-            [enabled]="effects().classes!.includes('mv-lib-outline-solid-selected')"
-            [color]="$any(effects().styles?.outlineSolidSelected?.color)"
-            [width]="$any(effects().styles?.outlineSolidSelected?.width)"
-            (onEnabledChange)="setEffect('mv-lib-outline-solid-selected', $event)"
-            (onColorChange)="setEffectStyle('outlineSolidSelected.color', $event)"
-            (onWidthChange)="setEffectStyle('outlineSolidSelected.width', $event)"
-        />
+        @if (effectsInitialized()) {
+            <app-darken-hover-inputs [component]="this" />
+            <app-outline-blur-selected-inputs [component]="this" />
+            <app-outline-solid-selected-inputs [component]="this" />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <app-input-checkbox
-            [checked]="form.get('input')?.disabled"
-            label="Disabled"
-            (onChange)="
-                $event ? form.get('input')?.disable() : form.get('input')?.enable();
-                refreshLog();
-            "
-        />
-        <app-input-checkbox
-            [checked]="selected()"
-            label="Selected"
-            (onChange)="
-                selected.set($event);
-                refreshLastInteractionTime();
-                refreshLog();
-            "
-        />
+        @if (settingsInitialized()) {
+            <app-input-checkbox
+                [checked]="form.get('input')?.disabled"
+                label="Disabled"
+                (onChange)="
+                    $event ? form.get('input')?.disable() : form.get('input')?.enable();
+                    refreshLog();
+                "
+            />
+            <app-input-checkbox
+                [checked]="selected()"
+                label="Selected"
+                (onChange)="
+                    selected.set($event);
+                    refreshLastInteractionTime();
+                    refreshLog();
+                "
+            />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Form controls">

@@ -1,7 +1,7 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="enabled()"
-        (onChange)="onEnabledChange.emit($event)"
+        [checked]="$any(component().effects()).classes.includes(component().mvLibEffects.click.push)"
+        (onChange)="component().setEffect(component().mvLibEffects.click.push, $event)"
     />
     <app-inputs-separator title="Push click" />
 </div>

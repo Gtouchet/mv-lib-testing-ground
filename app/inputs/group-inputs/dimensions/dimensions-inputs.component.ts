@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs/_generic-inputs.export";
 import { BaseExampleComponent } from "../../../examples/base-example.component";
@@ -10,26 +10,11 @@ import { BaseExampleComponent } from "../../../examples/base-example.component";
     GENERIC_INPUTS,
   ],
   templateUrl: './dimensions-inputs.component.html',
-  styleUrls: [
-    './dimensions-inputs.component.scss',
-    '../group-inputs.component.scss',
-  ],
+  styleUrl: '../group-inputs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class DimensionsInputsComponent {
+export class DimensionsInputsComponent<Component extends BaseExampleComponent> {
 
-    public width = input<string>();
-    public minWidth = input<string>();
-    public maxWidth = input<string>()
-    public height = input<string>();
-    public minHeight = input<string>();
-    public maxHeight = input<string>();
-
-    public onWidthChange = output<string>();
-    public onMinWidthChange = output<string>();
-    public onMaxWidthChange = output<string>();
-    public onHeightChange = output<string>();
-    public onMinHeightChange = output<string>();
-    public onMaxHeightChange = output<string>();
+  public component = input.required<Component>();
 }

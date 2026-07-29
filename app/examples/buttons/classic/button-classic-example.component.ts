@@ -35,10 +35,10 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<MvLibBut
     });
     this.effects = signal({
       classes: [
-        this.mvLibEffects.idle.shadowIdle,
-        this.mvLibEffects.hover.darkenHover,
-        this.mvLibEffects.click.pushClick,
-        this.mvLibEffects.release.rippleRelease,
+        this.mvLibEffects.idle.shadow,
+        this.mvLibEffects.hover.darken,
+        this.mvLibEffects.click.push,
+        this.mvLibEffects.release.ripple,
       ],
     });
     this.settings = signal({

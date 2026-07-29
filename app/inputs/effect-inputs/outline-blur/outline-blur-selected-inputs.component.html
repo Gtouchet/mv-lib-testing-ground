@@ -1,19 +1,19 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="enabled()"
-        (onChange)="onEnabledChange.emit($event)"
+        [checked]="$any(component().effects()).classes.includes(component().mvLibEffects.selected.outlineBlur)"
+        (onChange)="component().setEffect(component().mvLibEffects.selected.outlineBlur, $event)"
     />
     <app-inputs-separator title="Outline blur selected" />
 </div>
 <div class="inputs-group">
     Color
     <app-input-color
-        [value]="color()"
-        (onChange)="onColorChange.emit($event)"
+        [value]="$any(component().effects()).styles.outlineBlurSelected.color"
+        (onChange)="component().setEffectStyle('outlineBlurSelected.color', $event)"
     />
     Width
     <app-input-text
-        [value]="radius()"
-        (onChange)="onRadiusChange.emit($event)"
+        [value]="$any(component().effects()).styles.outlineBlurSelected.radius"
+        (onChange)="component().setEffectStyle('outlineBlurSelected.radius', $event)"
     />
 </div>
