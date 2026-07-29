@@ -64,7 +64,7 @@ export class AppComponent {
       icon: 'radio_button_checked',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/radio-buttons-classic-example', wip: true },
+        { type: 'Classic', routerLink: '/radio-buttons-classic-example' },
       ],
     },
     { 
