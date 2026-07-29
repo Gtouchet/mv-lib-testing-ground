@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { BaseExampleComponent } from "../../base-example.component";
-import { JsonPipe } from "@angular/common";
+import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
 import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsDirectives } from "mv-lib";
 
@@ -12,6 +12,7 @@ interface User {
 @Component({
     selector: 'app-radio-buttons-classic-example',
     imports: [
+        CommonModule,
         MvLibRadioButtonsClassicComponent,
         MvLibRadioButtonsDirectives,
         INPUTS,
@@ -42,7 +43,7 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<Mv
         this.styles = signal({
             sizePx: 16,
             backgroundColor: this.appStyles.var('radio-buttons-classic-background-color'),
-            selectedBackgroundColor: this.appStyles.var('radio-buttons-classic-selected-background-color'),
+            selectedColor: this.appStyles.var('radio-buttons-classic-selected-color'),
 
             groupGapPx: 4,
             contentGapPx: 6,

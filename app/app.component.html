@@ -3,20 +3,33 @@
         <div class="buttons">
             <mv-lib-button-classic
                 [styles]="{
+                    backgroundColor: 'dodgerblue',
                     dimensions: {
-                        width: '175px',
+                        width: '110px',
                         height: '32px',
                     },
-                    backgroundColor: 'DodgerBlue',
+                    font: {
+                        color: 'white',
+                        weight: 'bold',
+                        size: '16px',
+                    },
                 }"
                 [effects]="{
-                    
+                    classes: [
+                        'mv-lib-shadow-idle',
+                        'mv-lib-darken-hover',
+                        'mv-lib-push-click',
+                    ],
                 }"
                 (onClick)="router.navigateByUrl('/home')"
             >
-                <span class="material-symbols-outlined">
+                <span
+                    class="material-symbols-outlined"
+                    style="margin-right: 4px;"
+                >
                     home
                 </span>
+                MV Lib
             </mv-lib-button-classic>
 
             @for (dropdown of dropdowns(); track dropdown.name) {

@@ -4,13 +4,14 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   selector: 'app-input-number',
   standalone: true,
   template: `
+    {{ label() }}
     <input
       type="number"
       [value]="value()"
       [min]="min()"
       [max]="max()"
       (input)="handleInput($event)"
-      [style.width.px]="widthPx()"
+      [style.width.px]="width()"
       [style.height.px]="16"
     />
   `,
@@ -18,10 +19,10 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 })
 export class InputNumberComponent {
   public value = input<number | string | undefined>(undefined);
-  public label = input('');
+  public label = input<string | undefined>(undefined);
   public min = input<number | undefined>(undefined);
   public max = input<number | undefined>(undefined);
-  public widthPx = input<number>(50);
+  public width = input<number | undefined>(undefined);
   public onChange = output<number>();
 
   protected handleInput(event: Event) {

@@ -1,31 +1,44 @@
 <div class="configuration">
 
     <app-configuration-section title="Styles">
-        <app-input-number
-            [value]="styles().sizePx"
-            label="Size px"
-            (onChange)="setStyle('sizePx', $event)"
-        />
-        <app-input-color
-            [value]="styles().backgroundColor"
-            label="Background color"
-            (onChange)="setStyle('backgroundColor', $event)"
-        />
-        <app-input-color
-            [value]="styles().selectedBackgroundColor"
-            label="Selected background color"
-            (onChange)="setStyle('selectedBackgroundColor', $event)"
-        />
-        <app-input-number
-            [value]="styles().groupGapPx"
-            label="Group gap px"
-            (onChange)="setStyle('groupGapPx', $event)"
-        />
-        <app-input-number
-            [value]="styles().contentGapPx"
-            label="Content gap px"
-            (onChange)="setStyle('contentGapPx', $event)"
-        />
+        @if (styleInitialized()) {
+            <app-inputs-separator title="General" />
+            <div class="inputs-group">
+                Group gap
+                <app-input-text
+                    [value]="styles().groupGap"
+                    (onChange)="setStyle('groupGap', $event)"
+                />
+                Content gap
+                <app-input-text
+                    [value]="styles().contentGap"
+                    (onChange)="setStyle('contentGap', $event)"
+                />
+            </div>
+            <app-inputs-separator title="Buttons" />
+            <app-input-text
+                [value]="styles().size"
+                label="Size"
+                (onChange)="setStyle('size', $event)"
+            />
+            <div class="inputs-group">
+                Background color
+                <app-input-color
+                    [value]="styles().backgroundColor"
+                    (onChange)="setStyle('backgroundColor', $event)"
+                />
+                Selected color
+                <app-input-color
+                    [value]="styles().selectedColor"
+                    (onChange)="setStyle('selectedColor', $event)"
+                />
+            </div>
+            <app-font-inputs
+                [component]="this"
+                title="Content font"
+                fontPropertyName="contentFont"
+            />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Effects">

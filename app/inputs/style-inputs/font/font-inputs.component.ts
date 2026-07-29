@@ -19,6 +19,9 @@ export class FontInputsComponent<Component extends BaseExampleComponent> {
 
   public component = input.required<Component>();
 
+  public title = input<string | undefined>(undefined);
+  public fontPropertyName = input<string>('font');
+
   protected cssFontSizes = CssFontSize.values;
   protected cssFontWeights = CssFontWeight.values;
   protected cssFontStyles = CssFontStyle.values;

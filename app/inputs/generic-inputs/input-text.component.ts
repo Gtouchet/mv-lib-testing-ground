@@ -10,8 +10,11 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
     <div
       [ngStyle]="{
         'display': 'flex',
+        'gap.px': 4,
+        'align-items': 'center'
       }"
     >
+      {{ label() }}
       <input
         type="text"
         [value]="value()"
@@ -26,6 +29,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 })
 export class InputTextComponent {
   public value = input<string | number| undefined>(undefined);
+  public label = input<string | undefined>(undefined);
   public onChange = output<string>();
 
   protected handleInput(event: Event) {

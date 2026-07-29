@@ -15,6 +15,14 @@
     }
 }
 
+.inputs-group {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 8px;
+    row-gap: 4px;
+    align-items: center;
+}
+
 .form-state {
     display: flex;
     flex-direction: column;

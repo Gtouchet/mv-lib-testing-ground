@@ -4,6 +4,8 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 @Component({
     selector: 'app-inputs-separator',
     imports: [CommonModule],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
     host: {
         style: 'flex: 1;',
     },
@@ -17,7 +19,7 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
             }"
         >
             <b>
-                {{ title() }}
+                {{ title() ?? 'Inputs Separator' }}
             </b>
             <hr
                 [ngStyle]="{
@@ -27,10 +29,8 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
             />
         </div>
     `,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
 })
 export class InputsSeparatorComponent {
     
-    public title = input<string>('Separator title');
+    public title = input<string>();
 }
