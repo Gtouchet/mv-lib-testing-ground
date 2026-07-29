@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MvLibTextboxClassicComponent } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { INPUTS } from '../../../inputs/inputs.export';
+import { INPUTS } from '../../../inputs/_inputs.export';
 
 @Component({
   selector: 'app-textbox-classic-example',
@@ -14,10 +14,7 @@ import { INPUTS } from '../../../inputs/inputs.export';
     INPUTS,
 ],
   templateUrl: './textbox-classic-example.component.html',
-  styleUrls: [
-    './textbox-classic-example.component.scss',
-    '../../example.component.scss',
-  ],
+  styleUrl: '../../example.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

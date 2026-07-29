@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { MvLibDropdownClassicComponent, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
-import { INPUTS } from "../../../inputs/inputs.export";
+import { INPUTS } from "../../../inputs/_inputs.export";
 
 interface User {
   id: number;
@@ -19,10 +19,7 @@ interface User {
     INPUTS,
   ],
   templateUrl: './dropdown-classic-example.component.html',
-  styleUrls: [
-    './dropdown-classic-example.component.scss',
-    '../../example.component.scss',
-  ],
+  styleUrl: '../../example.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

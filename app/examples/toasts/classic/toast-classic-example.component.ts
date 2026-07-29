@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, inject, signal } from "@angular/cor
 import { MvLibToastService, MvLibButtonClassicComponent, MvLibToastClassicComponent } from "mv-lib";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
-import { INPUTS } from "../../../inputs/inputs.export";
+import { INPUTS } from "../../../inputs/_inputs.export";
 
 @Component({
   selector: 'app-toast-classic-example',
@@ -12,10 +12,7 @@ import { INPUTS } from "../../../inputs/inputs.export";
     INPUTS,
 ],
   templateUrl: './toast-classic-example.component.html',
-  styleUrls: [
-    './toast-classic-example.component.scss',
-    '../../example.component.scss',
-  ],
+  styleUrl: '../../example.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { BaseExampleComponent } from "../../base-example.component";
 import { JsonPipe } from "@angular/common";
-import { INPUTS } from "../../../inputs/inputs.export";
+import { INPUTS } from "../../../inputs/_inputs.export";
 import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsDirectives } from "mv-lib";
 
 interface User {
@@ -18,10 +18,7 @@ interface User {
         JsonPipe,
     ],
     templateUrl: './radio-buttons-classic-example.component.html',
-    styleUrls: [
-        './radio-buttons-classic-example.component.scss',
-        '../../example.component.scss',
-    ],
+    styleUrl: '../../example.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })

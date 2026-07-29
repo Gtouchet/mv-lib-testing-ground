@@ -31,5 +31,6 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
     standalone: true,
 })
 export class InputsSeparatorComponent {
+    
     public title = input<string>('Separator title');
 }

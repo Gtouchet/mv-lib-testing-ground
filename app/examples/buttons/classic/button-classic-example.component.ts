@@ -1,21 +1,16 @@
 import { BaseExampleComponent } from '../../base-example.component';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MvLibButtonClassicComponent } from 'mv-lib';
-import { INPUTS } from '../../../inputs/inputs.export';
-import { PushClickInputsComponent } from "../../../inputs/effect-inputs/push/push-click-inputs.component";
+import { INPUTS } from '../../../inputs/_inputs.export';
 
 @Component({
   selector: 'app-button-classic-example',
   imports: [
     MvLibButtonClassicComponent,
     INPUTS,
-    PushClickInputsComponent
 ],
   templateUrl: './button-classic-example.component.html',
-  styleUrls: [
-    './button-classic-example.component.scss',
-    '../../example.component.scss',
-  ],
+  styleUrl: '../../example.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

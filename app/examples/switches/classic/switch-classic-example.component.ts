@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchClassicComponent } from 'mv-lib';
-import { INPUTS } from '../../../inputs/inputs.export';
+import { INPUTS } from '../../../inputs/_inputs.export';
 
 @Component({
   selector: 'app-switch-classic-example',
@@ -10,10 +10,7 @@ import { INPUTS } from '../../../inputs/inputs.export';
     INPUTS,
   ],
   templateUrl: './switch-classic-example.component.html',
-  styleUrls: [
-    './switch-classic-example.component.scss',
-    '../../example.component.scss',
-  ],
+  styleUrl: '../../example.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
