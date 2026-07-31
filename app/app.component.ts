@@ -72,7 +72,7 @@ export class AppComponent {
       icon: 'switches', 
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/switch-classic-example', wip: true },
+        { type: 'Classic', routerLink: '/switch-classic-example' },
         { type: 'Lite', routerLink: '/switch-lite-example', wip: true },
       ],
     },
