@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { MvLibDropdownClassicComponent, MvLibDropdownDirectives } from "mv-lib";
-import { BaseExampleComponent } from "../../base-example.component";
+import { BaseExampleComponent } from '../../base-example.component';
 import { JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
 
@@ -40,7 +40,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<MvLibD
 
   constructor() {
     super();
-    this.additionalLogProperties.set(['opened']);
+    this.logProperties.set(['styles', 'effects', 'settings', 'active', 'opened', 'disabled']);
     this.styles = signal({
       buttonWidthPx: 150,
       buttonHeightPx: 40,

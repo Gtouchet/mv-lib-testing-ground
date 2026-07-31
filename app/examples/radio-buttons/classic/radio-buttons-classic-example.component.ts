@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
-import { BaseExampleComponent } from "../../base-example.component";
+import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
 import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsDirectives } from "mv-lib";
@@ -40,6 +40,7 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<Mv
 
     constructor() {
         super();
+        this.logProperties.set(['styles', 'effects', 'settings', 'disabled']);
         this.styles = signal({
             groupGap: '6px',
             contentGap: '6px',

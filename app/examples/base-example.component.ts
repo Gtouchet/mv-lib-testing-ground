@@ -1,13 +1,15 @@
 import { AfterViewInit, Directive, inject, OnInit, signal, viewChild } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { StylesService } from "../styles/styles.service";
-import { EffectsOf, MV_LIB_EFFECTS, MvLibComponentBase, SettingsOf, StylesOf } from "mv-lib";
+import { EffectsOf, MV_LIB_EFFECTS, MvLibComponentEffectApi, MvLibCoreComponentApi, SettingsOf, StylesOf } from "mv-lib";
 
 @Directive({
     standalone: true,
 })
 export abstract class BaseExampleComponent<
-    MvLibComponent extends MvLibComponentBase<any, any, any, any> = any
+    MvLibComponent extends
+        MvLibCoreComponentApi<any, any> &
+        MvLibComponentEffectApi<any> = any
 > implements OnInit, AfterViewInit {
 
     protected appStyles = inject(StylesService);
@@ -42,14 +44,14 @@ export abstract class BaseExampleComponent<
     public effects = signal<Partial<EffectsOf<MvLibComponent>>>({});
     public settings = signal<Partial<SettingsOf<MvLibComponent>>>({});
 
-    private refreshStyle = () => this.styles.set(this.mvLibComponent?.()?.getStyle() ?? {});
-    private refreshEffects = () => this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
-    private refreshSettings = () => this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
+    protected refreshStyle = () => this.styles.set(this.mvLibComponent?.()?.getStyle() ?? {});
+    protected refreshEffects = () => this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
+    protected refreshSettings = () => this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
 
     protected disabled = signal(false);
     protected selected = signal(false);
     protected opened = signal(false);
-    protected active = signal(true);
+    protected active = signal(false);
 
     public setStyle(path: string, value: any) {
         if (!this.mvLibComponent()) return;
@@ -72,9 +74,9 @@ export abstract class BaseExampleComponent<
         this.refreshLog();
     }
 
-    public setSettings(settings: string, enabled: boolean) {
+    public setSettings(settings: string, value: any) {
         if (!this.mvLibComponent()) return;
-        this.mvLibComponent()!.setSettings(settings, enabled);
+        this.mvLibComponent()!.setSettings(settings, value);
         this.refreshSettings();
         this.refreshLog();
     }
@@ -139,7 +141,7 @@ export abstract class BaseExampleComponent<
      * Logs
      */
     protected lastInteractionTime = signal<string>('--:--:--.--');
-    protected additionalLogProperties = signal<string[]>([]);
+    protected logProperties = signal<string[]>([]);
     protected log = signal('');
 
     protected refreshLastInteractionTime() {
@@ -152,23 +154,17 @@ export abstract class BaseExampleComponent<
     }
 
     protected refreshLog() {
-        var result =
-`
-    [styles]=\"${this.prettify((this as any)['styles']())}\",
-    [effects]=\"${this.prettify((this as any)['effects']())}\",
-    [settings]=\"${this.prettify((this as any)['settings']())}\",
-    [disabled]="${this.prettify(this.form?.disabled || this.disabled())}",
-`;
-        this.additionalLogProperties().forEach(property => {
+        var result = '\n';
+        this.logProperties().forEach(property => {
             result += `    [${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
         });
         this.log.set(result);
     }
 
     private prettify(property: any): string {
-    return JSON.stringify(property, null, 4)
-        .replace(/"([^"]+)":/g, '$1:')
-        .replace(/"/g, "'")
-        .replace(/\n/g, '\n    ');
-}
+        return JSON.stringify(property, null, 4)
+            .replace(/"([^"]+)":/g, '$1:')
+            .replace(/"/g, "'")
+            .replace(/\n/g, '\n    ');
+    }
 }

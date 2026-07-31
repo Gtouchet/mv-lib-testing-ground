@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 import { CssFontSize, CssFontStyle, CssFontWeight } from "../../../css-values/font.values";
-import { BaseExampleComponent } from "../../../examples/base-example.component";
 import { INPUTS } from "../../_inputs.export";
+import { BaseExampleComponent } from "../../../examples/base-example.component";
 
 @Component({
   selector: 'app-font-inputs',
@@ -18,9 +18,10 @@ import { INPUTS } from "../../_inputs.export";
 export class FontInputsComponent<Component extends BaseExampleComponent> {
 
   public component = input.required<Component>();
+  public part = input<string | undefined>(undefined);
+  public font = input<string>('font');
 
   public title = input<string | undefined>(undefined);
-  public fontPropertyName = input<string>('font');
 
   protected cssFontSizes = CssFontSize.values;
   protected cssFontWeights = CssFontWeight.values;

@@ -1,5 +1,4 @@
 <div class="configuration">
-
     <app-configuration-section title="Styles">
         @if (styleInitialized()) {
             <app-inputs-separator title="General" />
@@ -36,7 +35,7 @@
             <app-font-inputs
                 [component]="this"
                 title="Content font"
-                fontPropertyName="contentFont"
+                font="contentFont"
             />
         }
     </app-configuration-section>
@@ -44,66 +43,68 @@
     <app-configuration-section title="Effects">
         @if (effectsInitialized()) {
             <app-shadow-idle-inputs [component]="this" />
-            <app-enlarge-hover-inputs [component]="this" />
+            <app-resize-hover-inputs [component]="this" />
         }
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <app-input-checkbox
-            [checked]="disabled()"
-            label="Disabled"
-            (onChange)="
-                disabled.set($event);
-                refreshLog();
-            "
-        />
-        <app-input-checkbox
-            [checked]="settings().selectOnLabelClick"
-            label="Select on label click"
-            (onChange)="
-                setSettings('selectOnLabelClick', $event);
-                refreshLog();
-            "
-        />
-        <app-input-checkbox
-            [checked]="settings().deselectable"
-            label="Deselectable"
-            (onChange)="
-                setSettings('deselectable', $event);
-                refreshLog();
-            "
-        />
-        <app-inputs-separator title="Orientation" />
-        <app-input-radio
-            [values]="['vertical', 'horizontal']"
-            [selected]="settings().orientation"
-            (onChange)="
-                setSettings('orientation', $any($event));
-                refreshLog();
-            "
-        />
-        <app-inputs-separator title="API" />
-        <div class="inputs-group">
-            <app-input-number
-                label="Select item n°"
-                [value]="items().findIndex(item => item === selectedItem()) + 1"
-                [min]="1"
-                [max]="items().length"
-                [width]="'50px'"
+        @if (settingsInitialized()) {
+            <app-input-checkbox
+                [checked]="disabled()"
+                label="Disabled"
                 (onChange)="
-                    mvLibComponent?.setSelected(items()[$event! - 1]);
-                    refreshLastInteractionTime();
+                    disabled.set($event);
+                    refreshLog();
                 "
+            />
+            <app-input-checkbox
+                [checked]="settings().selectOnLabelClick"
+                label="Select on label click"
+                (onChange)="
+                    setSettings('selectOnLabelClick', $event);
+                    refreshLog();
+                "
+            />
+            <app-input-checkbox
+                [checked]="settings().deselectable"
+                label="Deselectable"
+                (onChange)="
+                    setSettings('deselectable', $event);
+                    refreshLog();
+                "
+            />
+            <app-inputs-separator title="Orientation" />
+            <app-input-radio
+                [values]="['vertical', 'horizontal']"
+                [selected]="settings().orientation"
+                (onChange)="
+                    setSettings('orientation', $any($event));
+                    refreshLog();
+                "
+            />
+            <app-inputs-separator title="API" />
+            <div class="inputs-group">
+                <app-input-number
+                    label="Select item n°"
+                    [value]="items().findIndex(item => item === selectedItem()) + 1"
+                    [min]="1"
+                    [max]="items().length"
+                    [width]="'50px'"
+                    (onChange)="
+                        mvLibComponent?.setSelected(items()[$event! - 1]);
+                        refreshLastInteractionTime();
+                    "
 
-            />
-            <app-input-button
-                label="Reset selection"
-                (onClick)="
-                    mvLibComponent?.setSelected(undefined);
-                    refreshLastInteractionTime();
-                "
-            />
-        </div>
+                />
+                <app-input-button
+                    label="Reset selection"
+                    (onClick)="
+                        mvLibComponent?.setSelected(undefined);
+                        refreshLastInteractionTime();
+                    "
+                />
+            </div>
+        }
     </app-configuration-section>
 </div>
 

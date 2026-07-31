@@ -2,32 +2,32 @@
 <div class="inputs-group">
     Width
     <app-input-text
-        [value]="$any(component().styles()).dimensions.width"
-        (onChange)="component().setStyle('dimensions.width', $event)"
+        [value]="width()"
+        (onChange)="onChangeWidth($event)"
     />
     Min width
     <app-input-text
-        [value]="$any(component().styles()).dimensions.minWidth"
-        (onChange)="component().setStyle('dimensions.minWidth', $event)"
+        [value]="minWidth()"
+        (onChange)="onChangeMinWidth($event)"
     />
     Max width
     <app-input-text
-        [value]="$any(component().styles()).dimensions.maxWidth"
-        (onChange)="component().setStyle('dimensions.maxWidth', $event)"
+        [value]="maxWidth()"
+        (onChange)="onChangeMaxWidth($event)"
     />
     Height
     <app-input-text
-        [value]="$any(component().styles()).dimensions.height"
-        (onChange)="component().setStyle('dimensions.height', $event)"
+        [value]="height()"
+        (onChange)="onChangeHeight($event)"
     />
     Min height
     <app-input-text
-        [value]="$any(component().styles()).dimensions.minHeight"
-        (onChange)="component().setStyle('dimensions.minHeight', $event)"
+        [value]="minHeight()"
+        (onChange)="onChangeMinHeight($event)"
     />
     Max height
     <app-input-text
-        [value]="$any(component().styles()).dimensions.maxHeight"
-        (onChange)="component().setStyle('dimensions.maxHeight', $event)"
+        [value]="maxHeight()"
+        (onChange)="onChangeMaxHeight($event)"
     />
 </div>

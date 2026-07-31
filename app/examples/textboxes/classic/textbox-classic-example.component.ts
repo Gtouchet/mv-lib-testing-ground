@@ -22,7 +22,7 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<MvLibTe
 
   constructor() {
     super();
-    this.additionalLogProperties.set(['selected']);
+    this.logProperties.set(['styles', 'effects', 'settings', 'selected', 'disabled']);
     this.styles = signal({
       dimensions: {
         width: '150px',

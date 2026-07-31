@@ -18,22 +18,26 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<MvLibSwitch
 
   constructor() {
     super();
-    this.additionalLogProperties.set(['active']);
+    this.logProperties.set(['styles', 'effects', 'settings', 'active', 'disabled']);
     this.styles = signal({
-      widthPx: 48,
-      heightPx: 12,
-      cursorSizePx: 24,
+      // track: {
+      //   dimensions: {
+      //     width: '48px',
+      //     height: '12px',
+      //   },
+      // },
+      // cursorSizePx: 24,
 
-      trackColorOn: this.appStyles.var('switch-lite-track-color-on'),
-      trackColorOff: this.appStyles.var('switch-lite-track-color-off'),
+      // trackColorOn: this.appStyles.var('switch-lite-track-color-on'),
+      // trackColorOff: this.appStyles.var('switch-lite-track-color-off'),
 
-      cursorIconOn: this.appStyles.var('switch-lite-cursor-icon-on'),
-      cursorColorOn: this.appStyles.var('switch-lite-cursor-color-on'),
-      cursorIconColorOn: this.appStyles.var('switch-lite-cursor-icon-on-color'),
+      // cursorIconOn: this.appStyles.var('switch-lite-cursor-icon-on'),
+      // cursorColorOn: this.appStyles.var('switch-lite-cursor-color-on'),
+      // cursorIconColorOn: this.appStyles.var('switch-lite-cursor-icon-on-color'),
 
-      cursorIconOff: this.appStyles.var('switch-lite-cursor-icon-off'),
-      cursorColorOff: this.appStyles.var('switch-lite-cursor-color-off'),
-      cursorIconColorOff: this.appStyles.var('switch-lite-cursor-icon-off-color'),
+      // cursorIconOff: this.appStyles.var('switch-lite-cursor-icon-off'),
+      // cursorColorOff: this.appStyles.var('switch-lite-cursor-color-off'),
+      // cursorIconColorOff: this.appStyles.var('switch-lite-cursor-icon-off-color'),
     });
     this.effects = signal({
       

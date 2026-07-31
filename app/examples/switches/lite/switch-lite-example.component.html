@@ -1,121 +1,35 @@
 <div class="configuration">
-
     <app-configuration-section title="Styles">
-        <app-input-number
-            [value]="styles().widthPx"
-            label="Width px"
-            (onChange)="setStyle('widthPx', $event)"
-        />        
-        <app-input-number
-            [value]="styles().heightPx"
-            label="Height px"
-            (onChange)="setStyle('heightPx', $event)"
-        />
-        <app-input-number
-            [value]="styles().cursorSizePx"
-            label="Cursor size px"
-            (onChange)="setStyle('cursorSizePx', $event)"
-        />
-        <b>
-            Track
-        </b>
-        <app-input-color
-            [value]="styles().trackColorOn"
-            label="Track color on"
-            (onChange)="setStyle('trackColorOn', $event)"
-        />        
-        <app-input-color
-            [value]="styles().trackColorOff"
-            label="Track color off"
-            (onChange)="setStyle('trackColorOff', $event)"
-        />
-        <b>
-            Cursor on
-        </b>
-        <app-input-text
-            [value]="styles().cursorIconOn"
-            label="Cursor icon on"
-            (onChange)="setStyle('cursorIconOn', $event)"
-        />
-        <app-input-color
-            [value]="styles().cursorColorOn"
-            label="Cursor color on"
-            (onChange)="setStyle('cursorColorOn', $event)"
-        />
-        <app-input-color
-            [value]="styles().cursorIconColorOn"
-            label="Cursor icon color on"
-            (onChange)="setStyle('cursorIconColorOn', $event)"
-        />
-        <b>
-            Cursor off
-        </b>
-        <app-input-text
-            [value]="styles().cursorIconOff"
-            label="Cursor icon off"
-            (onChange)="setStyle('cursorIconOff', $event)"
-        />
-        <app-input-color
-            [value]="styles().cursorColorOff"
-            label="Cursor color off"
-            (onChange)="setStyle('cursorColorOff', $event)"
-        />
-        <app-input-color
-            [value]="styles().cursorIconColorOff"
-            label="Cursor icon color off"
-            (onChange)="setStyle('cursorIconColorOff', $event)"
-        />
+        @if (styleInitialized()) {
+
+        }
     </app-configuration-section>
-    
+
     <app-configuration-section title="Effects">
-        <b>
-            Idle effects
-        </b>
-        <app-input-checkbox
-            
-            label="Shadow"
-            (onChange)="setEffect('shadow', $event)"
-        />
-        <b>
-            Hover effects
-        </b>
-        <app-input-checkbox
-            
-            label="Enlarge cursor"
-            (onChange)="setEffect('enlarge-cursor', $event)"
-        />
-        <b>
-            Click effects
-        </b>
-        <app-input-checkbox
-            
-            label="Push"
-            (onChange)="setEffect('push', $event)"
-        />
-        <app-input-checkbox
-            
-            label="Ripple"
-            (onChange)="setEffect('ripple', $event)"
-        />
+        @if (effectsInitialized()) {
+
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <app-input-checkbox
-            [checked]="disabled()"
-            label="Disabled"
-            (onChange)="
-                disabled.set($event);
-                refreshLog();
-            "
-        />
-        <app-input-checkbox
-            [checked]="active()"
-            label="Activated"
-            (onChange)="
-                active.set($event);
-                refreshLog();
-            "
-        />
+        @if (settingsInitialized()) {
+            <app-input-checkbox
+                [checked]="disabled()"
+                label="Disabled"
+                (onChange)="
+                    disabled.set($event);
+                    refreshLog();
+                "
+            />
+            <app-input-checkbox
+                [checked]="active()"
+                label="Activated"
+                (onChange)="
+                    active.set($event);
+                    refreshLog();
+                "
+            />
+        }
     </app-configuration-section>
 </div>
 

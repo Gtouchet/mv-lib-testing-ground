@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject, signal } from "@angular/core";
-import { MvLibToastService, MvLibButtonClassicComponent, MvLibToastClassicComponent } from "mv-lib";
-import { BaseExampleComponent } from "../../base-example.component";
+import { MvLibToastService, MvLibButtonClassicComponent } from "mv-lib";
+import { BaseExampleComponent } from '../../base-example.component';
 import { JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
 

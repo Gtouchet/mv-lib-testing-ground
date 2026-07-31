@@ -18,6 +18,7 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent<MvLibBut
 
   constructor() {
     super();
+    this.logProperties.set(['styles', 'effects', 'settings', 'disabled']);
     this.styles = signal({
       backgroundColor: this.appStyles.var('button-classic-background-color'),
       dimensions: {

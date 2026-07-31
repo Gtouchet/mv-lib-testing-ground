@@ -1,7 +1,7 @@
 <div class="configuration">
-    
     <app-configuration-section title="Styles">
         @if (styleInitialized()) {
+            <app-inputs-separator title="General" />
             <app-input-color
                 [value]="styles().backgroundColor"
                 label="Background color"

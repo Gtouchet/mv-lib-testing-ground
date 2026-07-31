@@ -1,35 +1,35 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="$any(component().effects()).classes.includes(component().mvLibEffects.idle.shadow)"
-        (onChange)="component().setEffect(component().mvLibEffects.idle.shadow, $event)"
+        [checked]="checked()"
+        (onChange)="onChangeChecked($event)"
     />
-    <app-inputs-separator title="Shadow idle" />
+    <app-inputs-separator [title]="title() ?? 'Shadow idle'" />
 </div>
 <div class="inputs-group">
     Pos. X
     <app-input-text
-        [value]="$any(component().effects()).style.shadowIdle.posX"
-        (onChange)="component().setEffectStyle('shadowIdle.posX', $event)"
+        [value]="posX()"
+        (onChange)="onChangePosX($event)"
     />
     Pos. Y
     <app-input-text
-        [value]="$any(component().effects()).style.shadowIdle.posY"
-        (onChange)="component().setEffectStyle('shadowIdle.posY', $event)"
+        [value]="posY()"
+        (onChange)="onChangePosY($event)"
     />
     Blur
     <app-input-text
-        [value]="$any(component().effects()).style.shadowIdle.blur"
-        (onChange)="component().setEffectStyle('shadowIdle.blur', $event)"
+        [value]="blur()"
+        (onChange)="onChangeBlur($event)"
     />
     Spread
     <app-input-text
-        [value]="$any(component().effects()).style.shadowIdle.spread"
-        (onChange)="component().setEffectStyle('shadowIdle.spread', $event)"
+        [value]="spread()"
+        (onChange)="onChangeSpread($event)"
 
     />
     Color
     <app-input-color
-        [value]="$any(component().effects()).style.shadowIdle.color"
-        (onChange)="component().setEffectStyle('shadowIdle.color', $event)"
+        [value]="color()"
+        (onChange)="onChangeColor($event)"
     />
 </div>

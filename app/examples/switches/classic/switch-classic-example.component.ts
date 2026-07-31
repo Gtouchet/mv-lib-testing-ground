@@ -18,21 +18,20 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<MvLibSwi
   
   constructor() {
     super();
-    this.additionalLogProperties.set(['active']);
+    this.logProperties.set(['styles', 'effects', 'settings', 'active', 'disabled']);
     this.styles = signal({
-      widthPx: 64,
-      heightPx: 32,
-
-      trackColorOn: this.appStyles.var('switch-classic-track-color-on'),
-      trackColorOff: this.appStyles.var('switch-classic-track-color-off'),
-
-      cursorIconOn: this.appStyles.var('switch-classic-cursor-icon-on'),
-      cursorColorOn: this.appStyles.var('switch-classic-cursor-color-on'),
-      cursorIconColorOn: this.appStyles.var('switch-classic-cursor-icon-on-color'),
-
-      cursorIconOff: this.appStyles.var('switch-classic-cursor-icon-off'),
-      cursorColorOff: this.appStyles.var('switch-classic-cursor-color-off'),
-      cursorIconColorOff: this.appStyles.var('switch-classic-cursor-icon-off-color'),
+      track: {
+        colorOn: this.appStyles.var('switch-classic-track-color-on'),
+        colorOff: this.appStyles.var('switch-classic-track-color-off'),
+      },
+      cursor: {
+        colorOn: this.appStyles.var('switch-classic-cursor-color-on'),
+        colorOff: this.appStyles.var('switch-classic-cursor-color-off'),
+        iconOn: this.appStyles.var('switch-classic-cursor-icon-on'),
+        iconOff: this.appStyles.var('switch-classic-cursor-icon-off'),
+        iconColorOn: this.appStyles.var('switch-classic-cursor-icon-on-color'),
+        iconColorOff: this.appStyles.var('switch-classic-cursor-icon-off-color'),
+      },
     });
     this.effects = signal({
 

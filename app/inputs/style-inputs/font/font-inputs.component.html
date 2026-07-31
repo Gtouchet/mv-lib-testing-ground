@@ -4,13 +4,13 @@
     <div class="inputs-row">
         <app-input-select
             [values]="cssFontSizes"
-            [selectedValues]="[$any(component().styles())[fontPropertyName()].size]"
+            [selectedValues]="[$any(component().styles())[font()].size]"
             [width]="100"
-            (onChange)="component().setStyle(fontPropertyName() + '.size', $event)"
+            (onChange)="component().setStyle(font() + '.size', $event)"
         />
         <app-input-text
-            [value]="$any(component().styles())[fontPropertyName()].size"
-            (onChange)="component().setStyle(fontPropertyName() + '.size', $event)"
+            [value]="$any(component().styles())[font()].size"
+            (onChange)="component().setStyle(font() + '.size', $event)"
             [style.flex]="1"
         />
     </div>
@@ -18,13 +18,13 @@
     <div class="inputs-row">
         <app-input-select
             [values]="cssFontWeights"
-            [selectedValues]="[$any(component().styles())[fontPropertyName()].weight]"
+            [selectedValues]="[$any(component().styles())[font()].weight]"
             [width]="100"
-            (onChange)="component().setStyle(fontPropertyName() + '.weight', $event)"
+            (onChange)="component().setStyle(font() + '.weight', $event)"
         />
         <app-input-text
-            [value]="$any(component().styles())[fontPropertyName()].weight"
-            (onChange)="component().setStyle(fontPropertyName() + '.weight', $event)"
+            [value]="$any(component().styles())[font()].weight"
+            (onChange)="component().setStyle(font() + '.weight', $event)"
             [style.flex]="1"
         />
     </div>
@@ -32,20 +32,20 @@
     <div class="inputs-row">
         <app-input-select
             [values]="cssFontStyles"
-            [selectedValues]="[$any(component().styles())[fontPropertyName()].style]"
+            [selectedValues]="[$any(component().styles())[font()].style]"
             [width]="100"
-            (onChange)="component().setStyle(fontPropertyName() + '.style', $event)"
+            (onChange)="component().setStyle(font() + '.style', $event)"
         />
         <app-input-text
-            [value]="$any(component().styles())[fontPropertyName()].style"
-            (onChange)="component().setStyle(fontPropertyName() + '.style', $event)"
+            [value]="$any(component().styles())[font()].style"
+            (onChange)="component().setStyle(font() + '.style', $event)"
             [style.flex]="1"
         />
     </div>
     Color
     <app-input-color
-        [value]="$any(component().styles())[fontPropertyName()].color"
+        [value]="$any(component().styles())[font()].color"
         [width]="100"
-        (onChange)="component().setStyle(fontPropertyName() + '.color', $event)"
+        (onChange)="component().setStyle(font() + '.color', $event)"
     />
 </div>
