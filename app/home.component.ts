@@ -18,7 +18,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
         </p>
         <p style="color: red">
             I am currently refactoring the library's styles and effects, so most components are broken.<br/>
-            All components marked as WIP are mostly not functioning.
+            Dropdown is not working properly, and the lite version of the switch is broken.<br/>
         </p>
     </div>
     `,

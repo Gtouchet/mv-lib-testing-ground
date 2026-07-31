@@ -1,303 +1,152 @@
-<div class="configuration">
+<ng-template #stylesConfig let-type="type" let-conf="conf" let-localConf="localConf">
+    <app-inputs-separator [title]="type" [style.color]="conf.styles.backgroundColor"/>
+    <div class="inputs-group">
+        Icon
+        <app-input-text
+            [value]="localConf.icon"
+            (onChange)="localConf.icon = $event;"
+        />
+        Message
+        <app-input-text
+            [value]="localConf.message"
+            (onChange)="localConf.message = $event;"
+        />
+    </div>
+    <app-input-number
+        [value]="conf.styles.forcedHeightPx"
+        label="Forced height px"
+        (onChange)="conf.styles.forcedHeightPx = $event"
+    />
+    <div class="inputs-group">
+        Text color
+        <app-input-color
+            [value]="conf.styles.textColor"
+            (onChange)="conf.styles.textColor = $event"
+        />
+        Background color
+        <app-input-color
+            [value]="conf.styles.backgroundColor"
+            (onChange)="conf.styles.backgroundColor = $event"
+        />
+    </div>
+</ng-template>
 
+<ng-template #effectsConfig let-type="type" let-conf="conf">
+    <app-inputs-separator [title]="type" [ngStyle]="{ color: conf.styles.backgroundColor }"/>
+    <div style="display: flex; gap: 4px;">
+        <app-input-checkbox
+            [checked]="conf.effects.classes.includes(mvLibEffects.hover.outlineSolid)"
+            (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid, $event)"
+        />
+        <app-inputs-separator title="Outline solid hover" />
+    </div>
+    <div class="inputs-group">
+        Color
+        <app-input-color
+            [value]="conf.effects.style.outlineSolidHover.color"
+            (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.color', $event)"
+        />
+        Width
+        <app-input-text
+            [value]="conf.effects.style.outlineSolidHover.width"
+            (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.width', $event)"
+        />
+    </div>
+    <div style="display: flex; gap: 4px;">
+        <app-input-checkbox
+            [checked]="conf.effects.classes.includes(mvLibEffects.hover.outlineBlur)"
+            (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineBlur, $event)"
+        />
+        <app-inputs-separator title="Outline blur hover" />
+    </div>
+    <div class="inputs-group">
+        Color
+        <app-input-color
+            [value]="conf.effects.style.outlineBlurHover.color"
+            (onChange)="toastService.setEffectStyle(type, 'outlineBlurHover.color', $event)"
+        />
+        Radius
+        <app-input-text
+            [value]="conf.effects.style.outlineBlurHover.radius"
+            (onChange)="toastService.setEffectStyle(type, 'outlineBlurHover.radius', $event)"
+        />
+    </div>
+    <div style="display: flex; gap: 4px;">
+        <app-input-checkbox
+            [checked]="conf.effects.classes.includes(mvLibEffects.idle.progressBarDarkenFill)"
+            (onChange)="toastService.setEffect(type, mvLibEffects.idle.progressBarDarkenFill, $event)"
+        />
+        <app-inputs-separator title="Progress bar darken fill" />
+    </div>
+        <div class="inputs-group">
+        Force color
+        <app-input-color
+            [value]="conf.effects.style.progressBarDarkenFill.forceColor"
+            (onChange)="toastService.setEffectStyle(type, 'progressBarDarkenFill.forceColor', $event)"
+        />
+        Darken percentage
+        <app-input-text
+            [value]="conf.effects.style.progressBarDarkenFill.darkenPercentage"
+            (onChange)="toastService.setEffectStyle(type, 'progressBarDarkenFill.darkenPercentage', $event)"
+        />
+    </div>
+</ng-template>
+
+<ng-template #settingsConfig let-type="type" let-conf="conf">
+    <app-inputs-separator [title]="type" [ngStyle]="{ color: conf.styles.backgroundColor }"/>
+    <app-input-text
+        [value]="conf.settings.lifespan"
+        label="Lifespan"
+        (onChange)="conf.settings.lifespan = $event"
+    />
+</ng-template>
+
+<ng-template #toastButton let-type="type" let-conf="conf" let-localConf="localConf">
+    <mv-lib-button-classic
+        [styles]="{
+            dimensions: {
+                width: '100px',
+                height: '40px',
+            },
+            backgroundColor: conf.styles.backgroundColor,
+        }"
+        (onClick)="
+            refreshLastInteractionTime();
+            $any(toastService)[type.toLowerCase()](
+                localConf.message,
+                localConf.icon,
+                {
+                    widthPx: conf.styles.forcedWidthPx,
+                    heightPx: conf.styles.forcedHeightPx,
+                }
+            )
+        "
+    >
+        <span [style.color]="conf.styles.textColor">
+            {{ type }}
+        </span>
+    </mv-lib-button-classic>
+</ng-template>
+
+<div class="configuration">
     <app-configuration-section title="Styles">
-        <b [style.color]="toastService.configuration().success?.styles?.backgroundColor">
-            SUCCESS
-        </b>
-        <app-input-number
-            [value]="toastService.configuration().success?.styles?.forcedWidthPx"
-            label="Forced width px"
-            (onChange)="toastService.configuration().success!.styles!.forcedWidthPx = $event"
-        />
-        <app-input-number
-            [value]="toastService.configuration().success?.styles?.forcedHeightPx"
-            label="Forced height px"
-            (onChange)="toastService.configuration().success!.styles!.forcedHeightPx = $event"
-        />
-        <app-input-text
-            [value]="success().icon"
-            label="Icon"
-            (onChange)="success().icon = $event;"
-        />
-        <app-input-text
-            [value]="success().message"
-            label="Message"
-            (onChange)="success().message = $event;"
-        />
-        <app-input-text
-            [value]="toastService.configuration().success?.styles?.textColor"
-            label="Text color"
-            (onChange)="toastService.configuration().success!.styles!.textColor = $event"
-        />
-        <app-input-color
-            [value]="toastService.configuration().success?.styles?.backgroundColor"
-            label="Background color"
-            (onChange)="toastService.configuration().success!.styles!.backgroundColor = $event"
-        />
-        <app-input-color
-            [value]="toastService.configuration().success?.styles?.hoveredOutlineColor"
-            label="Hovered outline color"
-            (onChange)="toastService.configuration().success!.styles!.hoveredOutlineColor = $event;"
-        />
-        <b [style.color]="toastService.configuration().warning?.styles?.backgroundColor">
-            WARNING
-        </b>
-        <app-input-number
-            [value]="toastService.configuration().warning?.styles?.forcedWidthPx"
-            label="Forced width px"
-            (onChange)="toastService.configuration().warning!.styles!.forcedWidthPx = $event"
-        />
-        <app-input-number
-            [value]="toastService.configuration().warning?.styles?.forcedHeightPx"
-            label="Forced height px"
-            (onChange)="toastService.configuration().warning!.styles!.forcedHeightPx = $event"
-        />
-        <app-input-text
-            [value]="warning().icon"
-            label="Icon"
-            (onChange)="warning().icon = $event;"
-        />
-        <app-input-text
-            [value]="warning().message"
-            label="Message"
-            (onChange)="warning().message = $event;"
-        />
-        <app-input-text
-            [value]="toastService.configuration().warning?.styles?.textColor"
-            label="Text color"
-            (onChange)="toastService.configuration().warning!.styles!.textColor = $event"
-        />
-        <app-input-color
-            [value]="toastService.configuration().warning?.styles?.backgroundColor"
-            label="Background color"
-            (onChange)="toastService.configuration().warning!.styles!.backgroundColor = $event"
-        />
-        <app-input-color
-            [value]="toastService.configuration().warning?.styles?.hoveredOutlineColor"
-            label="Hovered outline color"
-            (onChange)="toastService.configuration().warning!.styles!.hoveredOutlineColor = $event;"
-        />
-        <b [style.color]="toastService.configuration().error?.styles?.backgroundColor">
-            ERROR
-        </b>
-        <app-input-number
-            [value]="toastService.configuration().error?.styles?.forcedWidthPx"
-            label="Forced width px"
-            (onChange)="toastService.configuration().error!.styles!.forcedWidthPx = $event"
-        />
-        <app-input-number
-            [value]="toastService.configuration().error?.styles?.forcedHeightPx"
-            label="Forced height px"
-            (onChange)="toastService.configuration().error!.styles!.forcedHeightPx = $event"
-        />
-        <app-input-text
-            [value]="error().icon"
-            label="Icon"
-            (onChange)="error().icon = $event;"
-        />
-        <app-input-text
-            [value]="error().message"
-            label="Message"
-            (onChange)="error().message = $event;"
-        />
-        <app-input-text
-            [value]="toastService.configuration().error?.styles?.textColor"
-            label="Text color"
-            (onChange)="toastService.configuration().error!.styles!.textColor = $event"
-        />
-        <app-input-color
-            [value]="toastService.configuration().error?.styles?.backgroundColor"
-            label="Background color"
-            (onChange)="toastService.configuration().error!.styles!.backgroundColor = $event"
-        />
-        <app-input-color
-            [value]="toastService.configuration().error?.styles?.hoveredOutlineColor"
-            label="Hovered outline color"
-            (onChange)="toastService.configuration().error!.styles!.hoveredOutlineColor = $event;"
-        />
-        <b [style.color]="toastService.configuration().info?.styles?.backgroundColor">
-            INFO
-        </b>
-        <app-input-number
-            [value]="toastService.configuration().info?.styles?.forcedWidthPx"
-            label="Forced width px"
-            (onChange)="toastService.configuration().info!.styles!.forcedWidthPx = $event"
-        />
-        <app-input-number
-            [value]="toastService.configuration().info?.styles?.forcedHeightPx"
-            label="Forced height px"
-            (onChange)="toastService.configuration().info!.styles!.forcedHeightPx = $event"
-        />
-        <app-input-text
-            [value]="info().icon"
-            label="Icon"
-            (onChange)="info().icon = $event;"
-        />
-        <app-input-text
-            [value]="info().message"
-            label="Message"
-            (onChange)="info().message = $event;"
-        />
-        <app-input-text
-            [value]="toastService.configuration().info?.styles?.textColor"
-            label="Text color"
-            (onChange)="toastService.configuration().info!.styles!.textColor = $event"
-        />
-        <app-input-color
-            [value]="toastService.configuration().info?.styles?.backgroundColor"
-            label="Background color"
-            (onChange)="toastService.configuration().info!.styles!.backgroundColor = $event"
-        />
-        <app-input-color
-            [value]="toastService.configuration().info?.styles?.hoveredOutlineColor"
-            label="Hovered outline color"
-            (onChange)="toastService.configuration().info!.styles!.hoveredOutlineColor = $event;"
-        />
+        <ng-container *ngTemplateOutlet="stylesConfig; context: { type: 'Success', conf: toastService.configuration().success, localConf: success() }" />
+        <ng-container *ngTemplateOutlet="stylesConfig; context: { type: 'Warning', conf: toastService.configuration().warning, localConf: warning() }" />
+        <ng-container *ngTemplateOutlet="stylesConfig; context: { type: 'Error', conf: toastService.configuration().error, localConf: error() }" />
+        <ng-container *ngTemplateOutlet="stylesConfig; context: { type: 'Info', conf: toastService.configuration().info, localConf: info() }" />
     </app-configuration-section>
 
+    
     <app-configuration-section title="Effects">
-        <b [style.color]="toastService.configuration().success?.styles?.backgroundColor">
-            SUCCESS
-        </b>
-        <b>
-            Hover
-        </b>
-        <app-input-checkbox
-            [checked]="toastService.configuration().success?.effects?.hover?.includes('hover-outline-solid')"
-            label="Outline solid"
-            (onChange)="toastService.setEffect('success', 'hover-outline-solid', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().success?.effects?.hover?.includes('hover-outline-blur')"
-            label="Outline blur"
-            (onChange)="toastService.setEffect('success', 'hover-outline-blur', $event)"
-        />
-        <b>
-            Lifecycle
-        </b>
-        <app-input-checkbox
-            [checked]="toastService.configuration().success?.effects?.lifecycle?.includes('progress-bar')"
-            label="Progress bar"
-            (onChange)="toastService.setEffect('success', 'progress-bar', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().success?.effects?.lifecycle?.includes('fade')"
-            label="Fade"
-            (onChange)="toastService.setEffect('success', 'fade', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().success?.effects?.lifecycle?.includes('slide')"
-            label="Slide"
-            (onChange)="toastService.setEffect('success', 'slide', $event)"
-        />
-        <b [style.color]="toastService.configuration().warning?.styles?.backgroundColor">
-            WARNING
-        </b>
-        <b>
-            Hover
-        </b>
-        <app-input-checkbox
-            [checked]="toastService.configuration().warning?.effects?.hover?.includes('hover-outline-solid')"
-            label="Outline solid"
-            (onChange)="toastService.setEffect('warning', 'hover-outline-solid', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().warning?.effects?.hover?.includes('hover-outline-blur')"
-            label="Outline blur"
-            (onChange)="toastService.setEffect('warning', 'hover-outline-blur', $event)"
-        />
-        <b>
-            Lifecycle
-        </b>
-        <app-input-checkbox
-            [checked]="toastService.configuration().warning?.effects?.lifecycle?.includes('progress-bar')"
-            label="Progress bar"
-            (onChange)="toastService.setEffect('warning', 'progress-bar', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().warning?.effects?.lifecycle?.includes('fade')"
-            label="Fade"
-            (onChange)="toastService.setEffect('warning', 'fade', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().warning?.effects?.lifecycle?.includes('slide')"
-            label="Slide"
-            (onChange)="toastService.setEffect('warning', 'slide', $event)"
-        />
-        <b [style.color]="toastService.configuration().error?.styles?.backgroundColor">
-            ERROR
-        </b>
-        <b>
-            Hover
-        </b>
-        <app-input-checkbox
-            [checked]="toastService.configuration().error?.effects?.hover?.includes('hover-outline-solid')"
-            label="Outline solid"
-            (onChange)="toastService.setEffect('error', 'hover-outline-solid', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().error?.effects?.hover?.includes('hover-outline-blur')"
-            label="Outline blur"
-            (onChange)="toastService.setEffect('error', 'hover-outline-blur', $event)"
-        />
-        <b>
-            Lifecycle
-        </b>
-        <app-input-checkbox
-            [checked]="toastService.configuration().error?.effects?.lifecycle?.includes('progress-bar')"
-            label="Progress bar"
-            (onChange)="toastService.setEffect('error', 'progress-bar', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().error?.effects?.lifecycle?.includes('fade')"
-            label="Fade"
-            (onChange)="toastService.setEffect('error', 'fade', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().error?.effects?.lifecycle?.includes('slide')"
-            label="Slide"
-            (onChange)="toastService.setEffect('error', 'slide', $event)"
-        />
-        <b [style.color]="toastService.configuration().info?.styles?.backgroundColor">
-            INFO
-        </b>
-        <b>
-            Hover
-        </b>
-        <app-input-checkbox
-            [checked]="toastService.configuration().info?.effects?.hover?.includes('hover-outline-solid')"
-            label="Outline solid"
-            (onChange)="toastService.setEffect('info', 'hover-outline-solid', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().info?.effects?.hover?.includes('hover-outline-blur')"
-            label="Outline blur"
-            (onChange)="toastService.setEffect('info', 'hover-outline-blur', $event)"
-        />
-        <b>
-            Lifecycle
-        </b>
-        <app-input-checkbox
-            [checked]="toastService.configuration().info?.effects?.lifecycle?.includes('progress-bar')"
-            label="Progress bar"
-            (onChange)="toastService.setEffect('info', 'progress-bar', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().info?.effects?.lifecycle?.includes('fade')"
-            label="Fade"
-            (onChange)="toastService.setEffect('info', 'fade', $event)"
-        />
-        <app-input-checkbox
-            [checked]="toastService.configuration().info?.effects?.lifecycle?.includes('slide')"
-            label="Slide"
-            (onChange)="toastService.setEffect('info', 'slide', $event)"
-        />
+        <ng-container *ngTemplateOutlet="effectsConfig; context: { type: 'Success', conf: toastService.configuration().success }" />
+        <ng-container *ngTemplateOutlet="effectsConfig; context: { type: 'Warning', conf: toastService.configuration().warning }" />
+        <ng-container *ngTemplateOutlet="effectsConfig; context: { type: 'Error', conf: toastService.configuration().error }" />
+        <ng-container *ngTemplateOutlet="effectsConfig; context: { type: 'Info', conf: toastService.configuration().info }" />
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <b>
-            Position
-        </b>
+        <app-inputs-separator title="General" />
+        Position
         <app-input-radio
             [values]="['top-left', 'top-right', 'bottom-left', 'bottom-right']"
             [selected]="toastService.configuration().position"
@@ -308,33 +157,10 @@
             label="Adapt width"
             (onChange)="toastService.setAdaptWidth($event)"
         />
-        <b>
-            Lifespans (ms)
-        </b>
-        <app-input-number
-            [value]="toastService.configuration().success?.settings?.lifespan"
-            label="Success"
-            width="65px"
-            (onChange)="toastService.configuration().success!.settings!.lifespan = $event"
-        />
-        <app-input-number
-            [value]="toastService.configuration().warning?.settings?.lifespan"
-            label="Warning"
-            width="65px"
-            (onChange)="toastService.configuration().warning!.settings!.lifespan = $event"
-        />
-        <app-input-number
-            [value]="toastService.configuration().error?.settings?.lifespan"
-            label="Error"
-            width="65px"
-            (onChange)="toastService.configuration().error!.settings!.lifespan = $event"
-        />
-        <app-input-number
-            [value]="toastService.configuration().info?.settings?.lifespan"
-            label="Info"
-            width="65px"
-            (onChange)="toastService.configuration().info!.settings!.lifespan = $event"
-        />
+        <ng-container *ngTemplateOutlet="settingsConfig; context: { type: 'Success', conf: toastService.configuration().success }" />
+        <ng-container *ngTemplateOutlet="settingsConfig; context: { type: 'Warning', conf: toastService.configuration().warning }" />
+        <ng-container *ngTemplateOutlet="settingsConfig; context: { type: 'Error', conf: toastService.configuration().error }" />
+        <ng-container *ngTemplateOutlet="settingsConfig; context: { type: 'Info', conf: toastService.configuration().info }" />
     </app-configuration-section>
 </div>
 
@@ -343,109 +169,14 @@
         class="component"
         [style.gap.px]="8"
     >
-        <mv-lib-button-classic
-            [styles]="{
-                dimensions: {
-                    width: '100px',
-                    height: '40px',
-                },
-                backgroundColor: toastService.configuration().success?.styles?.backgroundColor,
-            }"
-            (onClick)="
-                refreshLastInteractionTime();
-                toastService.success(
-                    success().message,
-                    success().icon,
-                    {
-                        widthPx: toastService.configuration().success?.styles?.forcedWidthPx,
-                        heightPx: toastService.configuration().success?.styles?.forcedHeightPx,
-                    }
-                )
-            "
-        >
-            <span [style.color]="toastService.configuration().success?.styles?.textColor">
-                Success
-            </span>
-        </mv-lib-button-classic>
-
-        <mv-lib-button-classic
-            [styles]="{
-                dimensions: {
-                    width: '100px',
-                    height: '40px',
-                },
-                backgroundColor: toastService.configuration().warning?.styles?.backgroundColor,
-            }"
-            (onClick)="
-                refreshLastInteractionTime();
-                toastService.warning(
-                    warning().message,
-                    warning().icon,
-                    {
-                        widthPx: toastService.configuration().warning?.styles?.forcedWidthPx,
-                        heightPx: toastService.configuration().warning?.styles?.forcedHeightPx,
-                    }
-                )
-            "
-        >
-            <span [style.color]="toastService.configuration().warning?.styles?.textColor">
-                Warning
-            </span>
-        </mv-lib-button-classic>
-
-        <mv-lib-button-classic
-           [styles]="{
-                dimensions: {
-                    width: '100px',
-                    height: '40px',
-                },
-                backgroundColor: toastService.configuration().error?.styles?.backgroundColor,
-            }"
-            (onClick)="
-                refreshLastInteractionTime();
-                toastService.error(
-                    error().message,
-                    error().icon,
-                    {
-                        widthPx: toastService.configuration().error?.styles?.forcedWidthPx,
-                        heightPx: toastService.configuration().error?.styles?.forcedHeightPx,
-                    }
-                )
-            "
-        >
-            <span [style.color]="toastService.configuration().error?.styles?.textColor">
-                Error
-            </span>
-        </mv-lib-button-classic>
-
-        <mv-lib-button-classic
-           [styles]="{
-                dimensions: {
-                    width: '100px',
-                    height: '40px',
-                },
-                backgroundColor: toastService.configuration().info?.styles?.backgroundColor,
-            }"
-            (onClick)="
-                refreshLastInteractionTime();
-                toastService.info(
-                    info().message,
-                    info().icon,
-                    {
-                        widthPx: toastService.configuration().info?.styles?.forcedWidthPx,
-                        heightPx: toastService.configuration().info?.styles?.forcedHeightPx,
-                    }
-                )
-            "
-        >
-            <span [style.color]="toastService.configuration().info?.styles?.textColor">
-                Info
-            </span>
-        </mv-lib-button-classic>
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Success', conf: toastService.configuration().success, localConf: success() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Warning', conf: toastService.configuration().warning, localConf: warning() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Error', conf: toastService.configuration().error, localConf: error() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Info', conf: toastService.configuration().info, localConf: info() }" />
     </div>
 
 <pre class="log">
 Last toast time: {{ lastInteractionTime() }}<br/>
-const configuration: MvLibToastServiceConfiguration = {{ toastService.configuration() | json }}
+const configuration: MvLibToastServiceConfiguration = {{ toastService.configuration() | json }};
 </pre>
 </div>
