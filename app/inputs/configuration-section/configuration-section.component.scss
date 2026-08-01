@@ -19,12 +19,35 @@
 
 .configuration-title {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 28px;
+  height: auto;
+  padding: 4px;
   font-weight: bold;
   background-color: lightgray;
   border-bottom: 1px solid black;
+}
+
+.configuration-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+  width: 100%;
+}
+
+:host ::ng-deep [buttons] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+:host ::ng-deep [buttons] > * {
+  flex: 1 1 0;
 }
 
 .configuration-content {

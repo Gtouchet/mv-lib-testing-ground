@@ -1,60 +1,48 @@
-<ng-template #stylesConfig let-type="type" let-conf="conf" let-localConf="localConf">
-    <app-inputs-separator [title]="type" [style.color]="conf.styles.backgroundColor"/>
+<ng-template #stylesConfiguration let-type="type" let-configuration="configuration" let-localConfiguration="localConfiguration">
+    <app-inputs-separator [title]="type" [style.color]="configuration.styles.backgroundColor"/>
     <div class="inputs-group">
         Icon
         <app-input-text
-            [value]="localConf.icon"
-            (onChange)="localConf.icon = $event;"
+            [value]="localConfiguration.icon"
+            (onChange)="localConfiguration.icon = $event;"
         />
         Message
         <app-input-text
-            [value]="localConf.message"
-            (onChange)="localConf.message = $event;"
+            [value]="localConfiguration.message"
+            (onChange)="localConfiguration.message = $event;"
         />
     </div>
-    <app-input-number
-        [value]="conf.styles.forcedHeightPx"
-        label="Forced height px"
-        (onChange)="conf.styles.forcedHeightPx = $event"
-    />
     <div class="inputs-group">
         Text color
         <app-input-color
-            [value]="conf.styles.textColor"
-            (onChange)="conf.styles.textColor = $event"
+            [value]="configuration.styles.textColor"
+            (onChange)="configuration.styles.textColor = $event"
         />
         Background color
         <app-input-color
-            [value]="conf.styles.backgroundColor"
-            (onChange)="conf.styles.backgroundColor = $event"
+            [value]="configuration.styles.backgroundColor"
+            (onChange)="configuration.styles.backgroundColor = $event"
+        />
+    </div>
+    <div class="inputs-group">
+        Forced width
+        <app-input-text
+            [value]="configuration.styles.forcedWidth"
+            (onChange)="configuration.styles.forcedWidth = $event"
+        />
+        Forced height
+        <app-input-text
+            [value]="configuration.styles.forcedHeight"
+            (onChange)="configuration.styles.forcedHeight = $event"
         />
     </div>
 </ng-template>
 
-<ng-template #effectsConfig let-type="type" let-conf="conf">
-    <app-inputs-separator [title]="type" [ngStyle]="{ color: conf.styles.backgroundColor }"/>
+<ng-template #effectsConfiguration let-type="type" let-configuration="configuration">
+    <app-inputs-separator [title]="type" [ngStyle]="{ color: configuration.styles.backgroundColor }"/>
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
-            [checked]="conf.effects.classes.includes(mvLibEffects.hover.outlineSolid)"
-            (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid, $event)"
-        />
-        <app-inputs-separator title="Outline solid hover" />
-    </div>
-    <div class="inputs-group">
-        Color
-        <app-input-color
-            [value]="conf.effects.style.outlineSolidHover.color"
-            (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.color', $event)"
-        />
-        Width
-        <app-input-text
-            [value]="conf.effects.style.outlineSolidHover.width"
-            (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.width', $event)"
-        />
-    </div>
-    <div style="display: flex; gap: 4px;">
-        <app-input-checkbox
-            [checked]="conf.effects.classes.includes(mvLibEffects.hover.outlineBlur)"
+            [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineBlur)"
             (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineBlur, $event)"
         />
         <app-inputs-separator title="Outline blur hover" />
@@ -62,18 +50,37 @@
     <div class="inputs-group">
         Color
         <app-input-color
-            [value]="conf.effects.style.outlineBlurHover.color"
+            [value]="configuration.effects.style.outlineBlurHover.color"
             (onChange)="toastService.setEffectStyle(type, 'outlineBlurHover.color', $event)"
         />
         Radius
         <app-input-text
-            [value]="conf.effects.style.outlineBlurHover.radius"
+            [value]="configuration.effects.style.outlineBlurHover.radius"
             (onChange)="toastService.setEffectStyle(type, 'outlineBlurHover.radius', $event)"
         />
     </div>
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
-            [checked]="conf.effects.classes.includes(mvLibEffects.idle.progressBarDarkenFill)"
+            [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineSolid)"
+            (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid, $event)"
+        />
+        <app-inputs-separator title="Outline solid hover" />
+    </div>
+    <div class="inputs-group">
+        Color
+        <app-input-color
+            [value]="configuration.effects.style.outlineSolidHover.color"
+            (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.color', $event)"
+        />
+        Width
+        <app-input-text
+            [value]="configuration.effects.style.outlineSolidHover.width"
+            (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.width', $event)"
+        />
+    </div>
+    <div style="display: flex; gap: 4px;">
+        <app-input-checkbox
+            [checked]="configuration.effects.classes.includes(mvLibEffects.idle.progressBarDarkenFill)"
             (onChange)="toastService.setEffect(type, mvLibEffects.idle.progressBarDarkenFill, $event)"
         />
         <app-inputs-separator title="Progress bar darken fill" />
@@ -81,48 +88,48 @@
         <div class="inputs-group">
         Force color
         <app-input-color
-            [value]="conf.effects.style.progressBarDarkenFill.forceColor"
+            [value]="configuration.effects.style.progressBarDarkenFill.forceColor"
             (onChange)="toastService.setEffectStyle(type, 'progressBarDarkenFill.forceColor', $event)"
         />
         Darken percentage
         <app-input-text
-            [value]="conf.effects.style.progressBarDarkenFill.darkenPercentage"
+            [value]="configuration.effects.style.progressBarDarkenFill.darkenPercentage"
             (onChange)="toastService.setEffectStyle(type, 'progressBarDarkenFill.darkenPercentage', $event)"
         />
     </div>
 </ng-template>
 
-<ng-template #settingsConfig let-type="type" let-conf="conf">
-    <app-inputs-separator [title]="type" [ngStyle]="{ color: conf.styles.backgroundColor }"/>
+<ng-template #settingsConfiguration let-type="type" let-configuration="configuration">
+    <app-inputs-separator [title]="type" [ngStyle]="{ color: configuration.styles.backgroundColor }"/>
     <app-input-text
-        [value]="conf.settings.lifespan"
+        [value]="configuration.settings.lifespan"
         label="Lifespan"
-        (onChange)="conf.settings.lifespan = $event"
+        (onChange)="configuration.settings.lifespan = $event"
     />
 </ng-template>
 
-<ng-template #toastButton let-type="type" let-conf="conf" let-localConf="localConf">
+<ng-template #toastButton let-type="type" let-configuration="configuration" let-localConfiguration="localConfiguration">
     <mv-lib-button-classic
         [styles]="{
             dimensions: {
                 width: '100px',
                 height: '40px',
             },
-            backgroundColor: conf.styles.backgroundColor,
+            backgroundColor: configuration.styles.backgroundColor,
         }"
         (onClick)="
             refreshLastInteractionTime();
             $any(toastService)[type.toLowerCase()](
-                localConf.message,
-                localConf.icon,
+                localConfiguration.message,
+                localConfiguration.icon,
                 {
-                    widthPx: conf.styles.forcedWidthPx,
-                    heightPx: conf.styles.forcedHeightPx,
+                    widthPx: configuration.styles.forcedWidthPx,
+                    heightPx: configuration.styles.forcedHeightPx,
                 }
             )
         "
     >
-        <span [style.color]="conf.styles.textColor">
+        <span [style.color]="configuration.styles.textColor">
             {{ type }}
         </span>
     </mv-lib-button-classic>
@@ -130,21 +137,40 @@
 
 <div class="configuration">
     <app-configuration-section title="Styles">
-        <ng-container *ngTemplateOutlet="stylesConfig; context: { type: 'Success', conf: toastService.configuration().success, localConf: success() }" />
-        <ng-container *ngTemplateOutlet="stylesConfig; context: { type: 'Warning', conf: toastService.configuration().warning, localConf: warning() }" />
-        <ng-container *ngTemplateOutlet="stylesConfig; context: { type: 'Error', conf: toastService.configuration().error, localConf: error() }" />
-        <ng-container *ngTemplateOutlet="stylesConfig; context: { type: 'Info', conf: toastService.configuration().info, localConf: info() }" />
+        <div buttons class="type-buttons">
+            <app-input-button label="Success" [color]="toastService.configuration().success!.styles!.backgroundColor" (onClick)="selectStyle('success')"/>
+            <app-input-button label="Warning" [color]="toastService.configuration().warning!.styles!.backgroundColor" (onClick)="selectStyle('warning')"/>
+            <app-input-button label="Error" [color]="toastService.configuration().error!.styles!.backgroundColor" (onClick)="selectStyle('error')"/>
+            <app-input-button label="Info" [color]="toastService.configuration().info!.styles!.backgroundColor" (onClick)="selectStyle('info')"/>
+        </div>
+        <ng-container *ngTemplateOutlet="stylesConfiguration; context: {
+            type: selectedStyleConfiguration().type,
+            configuration: selectedStyleConfiguration().configuration,
+            localConfiguration: selectedStyleConfiguration().localConfiguration,
+        }" />
     </app-configuration-section>
 
     
     <app-configuration-section title="Effects">
-        <ng-container *ngTemplateOutlet="effectsConfig; context: { type: 'Success', conf: toastService.configuration().success }" />
-        <ng-container *ngTemplateOutlet="effectsConfig; context: { type: 'Warning', conf: toastService.configuration().warning }" />
-        <ng-container *ngTemplateOutlet="effectsConfig; context: { type: 'Error', conf: toastService.configuration().error }" />
-        <ng-container *ngTemplateOutlet="effectsConfig; context: { type: 'Info', conf: toastService.configuration().info }" />
+        <div buttons class="type-buttons">
+            <app-input-button label="Success" [color]="toastService.configuration().success!.styles!.backgroundColor" (onClick)="selectEffect('success')"/>
+            <app-input-button label="Warning" [color]="toastService.configuration().warning!.styles!.backgroundColor" (onClick)="selectEffect('warning')"/>
+            <app-input-button label="Error" [color]="toastService.configuration().error!.styles!.backgroundColor" (onClick)="selectEffect('error')"/>
+            <app-input-button label="Info" [color]="toastService.configuration().info!.styles!.backgroundColor" (onClick)="selectEffect('info')"/>
+        </div>
+        <ng-container *ngTemplateOutlet="effectsConfiguration; context: {
+            type: selectedEffectConfiguration().type,
+            configuration: selectedEffectConfiguration().configuration,
+        }" />
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
+        <div buttons class="type-buttons">
+            <app-input-button label="Success" [color]="toastService.configuration().success!.styles!.backgroundColor" (onClick)="selectSettings('success')"/>
+            <app-input-button label="Warning" [color]="toastService.configuration().warning!.styles!.backgroundColor" (onClick)="selectSettings('warning')"/>
+            <app-input-button label="Error" [color]="toastService.configuration().error!.styles!.backgroundColor" (onClick)="selectSettings('error')"/>
+            <app-input-button label="Info" [color]="toastService.configuration().info!.styles!.backgroundColor" (onClick)="selectSettings('info')"/>
+        </div>
         <app-inputs-separator title="General" />
         Position
         <app-input-radio
@@ -157,10 +183,10 @@
             label="Adapt width"
             (onChange)="toastService.setAdaptWidth($event)"
         />
-        <ng-container *ngTemplateOutlet="settingsConfig; context: { type: 'Success', conf: toastService.configuration().success }" />
-        <ng-container *ngTemplateOutlet="settingsConfig; context: { type: 'Warning', conf: toastService.configuration().warning }" />
-        <ng-container *ngTemplateOutlet="settingsConfig; context: { type: 'Error', conf: toastService.configuration().error }" />
-        <ng-container *ngTemplateOutlet="settingsConfig; context: { type: 'Info', conf: toastService.configuration().info }" />
+        <ng-container *ngTemplateOutlet="settingsConfiguration; context: {
+            type: selectedSettingsConfiguration().type,
+            configuration: selectedSettingsConfiguration().configuration,
+        }" />
     </app-configuration-section>
 </div>
 
@@ -169,10 +195,10 @@
         class="component"
         [style.gap.px]="8"
     >
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Success', conf: toastService.configuration().success, localConf: success() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Warning', conf: toastService.configuration().warning, localConf: warning() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Error', conf: toastService.configuration().error, localConf: error() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Info', conf: toastService.configuration().info, localConf: info() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Success', configuration: toastService.configuration().success, localConfiguration: success() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Warning', configuration: toastService.configuration().warning, localConfiguration: warning() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Error', configuration: toastService.configuration().error, localConfiguration: error() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Info', configuration: toastService.configuration().info, localConfiguration: info() }" />
     </div>
 
 <pre class="log">

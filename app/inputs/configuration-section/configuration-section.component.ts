@@ -11,6 +11,9 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
         <div class="configuration-section">
             <div class="configuration-title">
                 {{ title() }}
+                <div class="configuration-buttons">
+                    <ng-content select="[buttons]" />
+                </div>
             </div>
             <div class="configuration-content">
                 <ng-content />
