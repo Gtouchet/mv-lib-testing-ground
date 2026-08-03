@@ -53,11 +53,40 @@ export abstract class BaseExampleComponent<
     protected opened = signal(false);
     protected active = signal(false);
 
+    /**
+     * Component's API
+     */
+    public getStyle(): StylesOf<MvLibComponent> {
+        if (!this.mvLibComponent()) return {} as StylesOf<MvLibComponent>;
+        return this.mvLibComponent()!.getStyle();
+    }
+
+    public getSpecificStyle(path: string): any {
+        if (!this.mvLibComponent()) return undefined;
+        console.log('getSpecificStyle', path);
+        return this.mvLibComponent()!.getSpecificStyle(path);
+    }
+
     public setStyle(path: string, value: any) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setStyle(path, value);
         this.refreshStyle();
         this.refreshLog();
+    }
+
+    public getEffects(): EffectsOf<MvLibComponent> {
+        if (!this.mvLibComponent()) return {} as EffectsOf<MvLibComponent>;
+        return this.mvLibComponent()!.getEffects();
+    }
+
+    public getSpecificEffect(path: string): any {
+        if (!this.mvLibComponent()) return undefined;
+        return this.mvLibComponent()!.getSpecificEffect(path);
+    }
+
+    public getSpecificEffectStyle(path: string): any {
+        if (!this.mvLibComponent()) return undefined;
+        return this.mvLibComponent()!.getSpecificEffectStyle(path);
     }
 
     public setEffect(effect: string, enabled: boolean) {
@@ -74,11 +103,26 @@ export abstract class BaseExampleComponent<
         this.refreshLog();
     }
 
+    public getSettings(): SettingsOf<MvLibComponent> {
+        if (!this.mvLibComponent()) return {} as SettingsOf<MvLibComponent>;
+        return this.mvLibComponent()!.getSettings();
+    }
+
+    public getSpecificSettings(path: string): any {
+        if (!this.mvLibComponent()) return undefined;
+        return this.mvLibComponent()!.getSpecificSettings(path);
+    }
+
     public setSettings(settings: string, value: any) {
         if (!this.mvLibComponent()) return;
         this.mvLibComponent()!.setSettings(settings, value);
         this.refreshSettings();
         this.refreshLog();
+    }
+
+    public hasEffectClass(className: string): boolean {
+        if (!this.mvLibComponent()) return false;
+        return this.mvLibComponent()!.hasEffectClass(className);
     }
 
     /**

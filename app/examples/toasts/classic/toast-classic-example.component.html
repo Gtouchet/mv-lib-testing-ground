@@ -43,7 +43,7 @@
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
             [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineBlur)"
-            (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineBlur, $event)"
+            (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineBlur.class, $event)"
         />
         <app-inputs-separator title="Outline blur hover" />
     </div>
@@ -62,7 +62,7 @@
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
             [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineSolid)"
-            (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid, $event)"
+            (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid.class, $event)"
         />
         <app-inputs-separator title="Outline solid hover" />
     </div>
@@ -81,7 +81,7 @@
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
             [checked]="configuration.effects.classes.includes(mvLibEffects.idle.progressBarDarkenFill)"
-            (onChange)="toastService.setEffect(type, mvLibEffects.idle.progressBarDarkenFill, $event)"
+            (onChange)="toastService.setEffect(type, mvLibEffects.idle.progressBarDarkenFill.class, $event)"
         />
         <app-inputs-separator title="Progress bar darken fill" />
     </div>

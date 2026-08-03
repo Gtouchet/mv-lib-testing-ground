@@ -50,8 +50,8 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<Mv
         });
         this.effects = signal({
             classes: [
-                this.mvLibEffects.idle.shadow,
-                this.mvLibEffects.hover.resize,
+                this.mvLibEffects.idle.shadow.class,
+                this.mvLibEffects.hover.resize.class,
             ],
         });
         this.settings = signal({

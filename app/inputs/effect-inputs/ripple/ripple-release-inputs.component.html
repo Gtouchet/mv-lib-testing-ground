@@ -1,29 +1,29 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="$any(component().effects()).classes.includes(component().mvLibEffects.release.ripple)"
-        (onChange)="component().setEffect(component().mvLibEffects.release.ripple, $event)"
+        [checked]="checked()"
+        (onChange)="onChangeChecked($event)"
     />
-    <app-inputs-separator title="Ripple release" />
+    <app-inputs-separator [title]="title() ?? 'Ripple release'" />
 </div>
 <div class="inputs-group">
     Origin x
     <app-input-text
-        [value]="$any(component().effects()).style.rippleRelease.originX"
-        (onChange)="component().setEffectStyle('rippleRelease.originX', $event)"
+        [value]="originX()"
+        (onChange)="onChangeOriginX($event)"
     />
     Origin y
     <app-input-text
-        [value]="$any(component().effects()).style.rippleRelease.originY"
-        (onChange)="component().setEffectStyle('rippleRelease.originY', $event)"
+        [value]="originY()"
+        (onChange)="onChangeOriginY($event)"
     />
     Size
     <app-input-text
-        [value]="$any(component().effects()).style.rippleRelease.size"
-        (onChange)="component().setEffectStyle('rippleRelease.size', $event)"
+        [value]="size()"
+        (onChange)="onChangeSize($event)"
     />
     Delay
     <app-input-text
-        [value]="$any(component().effects()).style.rippleRelease.delay"
-        (onChange)="component().setEffectStyle('rippleRelease.delay', $event)"
+        [value]="delay()"
+        (onChange)="onChangeDelay($event)"
     />
 </div>

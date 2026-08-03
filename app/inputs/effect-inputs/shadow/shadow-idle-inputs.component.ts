@@ -23,62 +23,72 @@ export class ShadowIdleInputsComponent<Component extends BaseExampleComponent> {
   protected effects = computed(() => this.component().effects() as any);
 
   protected checked = computed(() => {
-    return this.part() ?
-      this.effects().parts[this.part()!].classes.includes(this.component().mvLibEffects.idle.shadow) :
-      this.effects().classes.includes(this.component().mvLibEffects.idle.shadow);
-  });
-
-  protected posX = computed(() => {
-    return this.part() ?
-      this.effects().parts[this.part()!].style.shadowIdle.posX :
-      this.effects().style.shadowIdle.posX;
-  });
-
-  protected posY = computed(() => {
-    return this.part() ?
-      this.effects().parts[this.part()!].style.shadowIdle.posY :
-      this.effects().style.shadowIdle.posY;
-  });
-
-  protected blur = computed(() => {
-    return this.part() ?
-      this.effects().parts[this.part()!].style.shadowIdle.blur :
-      this.effects().style.shadowIdle.blur;
-  });
-
-  protected spread = computed(() => {
-    return this.part() ?
-      this.effects().parts[this.part()!].style.shadowIdle.spread :
-      this.effects().style.shadowIdle.spread;
-  });
-
-  protected color = computed(() => {
-    return this.part() ?
-      this.effects().parts[this.part()!].style.shadowIdle.color :
-      this.effects().style.shadowIdle.color;
+    return this.component().hasEffectClass(this.component().mvLibEffects.idle.shadow.class);
   });
 
   protected onChangeChecked(checked: boolean) {
-    this.component().setEffect(`${this.part() ? this.part() + '.' : ''}${this.component().mvLibEffects.idle.shadow}`, checked);
+    this.component().setEffect(
+      `${this.part() ? this.part() + '.' : ''}${this.component().mvLibEffects.idle.shadow.class}`, checked
+    );
   }
+
+  protected posX = computed(() => {
+    return this.component().getSpecificEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.posX`
+    );
+  });
 
   protected onChangePosX(value: string) {
-    this.component().setEffectStyle(`${this.part() ? this.part() + '.' : ''}shadowIdle.posX`, value);
+    this.component().setEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.posX`, value
+    );
   }
+
+  protected posY = computed(() => {
+    return this.component().getSpecificEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.posY`
+    );
+  });
 
   protected onChangePosY(value: string) {
-    this.component().setEffectStyle(`${this.part() ? this.part() + '.' : ''}shadowIdle.posY`, value);
+    this.component().setEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.posY`, value
+    );
   }
+
+  protected blur = computed(() => {
+    return this.component().getSpecificEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.blur`
+    );
+  });
 
   protected onChangeBlur(value: string) {
-    this.component().setEffectStyle(`${this.part() ? this.part() + '.' : ''}shadowIdle.blur`, value);
+    this.component().setEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.blur`, value
+    );
   }
+
+  protected spread = computed(() => {
+    return this.component().getSpecificEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.spread`
+    );
+  });
 
   protected onChangeSpread(value: string) {
-    this.component().setEffectStyle(`${this.part() ? this.part() + '.' : ''}shadowIdle.spread`, value);
+    this.component().setEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.spread`, value
+    );
   }
 
+  protected color = computed(() => {
+    return this.component().getSpecificEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.color`
+    );
+  });
+
   protected onChangeColor(value: string) {
-    this.component().setEffectStyle(`${this.part() ? this.part() + '.' : ''}shadowIdle.color`, value);
+    this.component().setEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}shadowIdle.color`, value
+    );
   }
 }

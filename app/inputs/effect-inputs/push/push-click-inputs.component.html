@@ -1,9 +1,9 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="$any(component().effects()).classes.includes(component().mvLibEffects.click.push)"
-        (onChange)="component().setEffect(component().mvLibEffects.click.push, $event)"
+        [checked]="checked()"
+        (onChange)="onChangeChecked($event)"
     />
-    <app-inputs-separator title="Push click" />
+    <app-inputs-separator [title]="title() ?? 'Push click'" />
 </div>
 <div class="inputs-group">
     No style for this effect

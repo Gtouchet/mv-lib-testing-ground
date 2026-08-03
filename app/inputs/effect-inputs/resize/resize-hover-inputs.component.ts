@@ -23,32 +23,36 @@ export class ResizeHoverInputsComponent<Component extends BaseExampleComponent> 
   protected effects = computed(() => this.component().effects() as any);
 
   protected checked = computed(() => {
-    return this.part() ?
-        this.effects().parts[this.part()!].classes.includes(this.component().mvLibEffects.hover.resize) :
-        this.effects().classes.includes(this.component().mvLibEffects.hover.resize);
-  });
-
-  protected scalePercentage = computed(() => {
-    return this.part() ?
-        this.effects().parts[this.part()!].style.resizeHover.scalePercentage :
-        this.effects().style.resizeHover.scalePercentage;
-  });
-
-  protected duration = computed(() => {
-    return this.part() ?
-        this.effects().parts[this.part()!].style.resizeHover.duration :
-        this.effects().style.resizeHover.duration;
+    return this.component().hasEffectClass(this.component().mvLibEffects.hover.resize.class);
   });
 
   protected onChangeChecked(checked: boolean) {
-    this.component().setEffect(`${this.part() ? this.part() + '.' : ''}${this.component().mvLibEffects.hover.resize}`, checked);
+    this.component().setEffect(
+      `${this.part() ? this.part() + '.' : ''}${this.component().mvLibEffects.hover.resize.class}`, checked
+    );
   }
+
+  protected scalePercentage = computed(() => {
+    return this.component().getSpecificEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}resizeHover.scalePercentage`
+    );
+  });
 
   protected onChangeScalePercentage(value: number) {
-    this.component().setEffectStyle(`${this.part() ? this.part() + '.' : ''}resizeHover.scalePercentage`, value);
+    this.component().setEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}resizeHover.scalePercentage`, value
+    );
   }
 
+  protected duration = computed(() => {
+    return this.component().getSpecificEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}resizeHover.duration`
+    );
+  });
+
   protected onChangeDuration(value: string) {
-    this.component().setEffectStyle(`${this.part() ? this.part() + '.' : ''}resizeHover.duration`, value);
+    this.component().setEffectStyle(
+      `${this.part() ? this.part() + '.' : ''}resizeHover.duration`, value
+    );
   }
 }
