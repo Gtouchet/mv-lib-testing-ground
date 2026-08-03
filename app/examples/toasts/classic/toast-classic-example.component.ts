@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, signal, Signal } from "@angular/core";
+import { Component, ChangeDetectionStrategy, computed, inject, signal } from "@angular/core";
 import { MvLibToastService, MvLibButtonClassicComponent } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
@@ -26,13 +26,17 @@ export class ToastClassicExampleComponent extends BaseExampleComponent {
   protected error = signal({title: 'Error', icon: 'error', message: 'Error message' });
   protected info = signal({title: 'Info', icon: 'info', message: 'Info message' });
 
-  protected selectedStyleConfiguration = signal(this.getConfiguration('success'));
-  protected selectedEffectConfiguration = signal(this.getConfiguration('success'));
-  protected selectedSettingsConfiguration = signal(this.getConfiguration('success'));
+  protected selectedStyleType = signal<string>('success');
+  protected selectedEffectType = signal<string>('success');
+  protected selectedSettingsType = signal<string>('success');
 
-  protected selectStyle = (type: string) => this.selectedStyleConfiguration.set(this.getConfiguration(type));
-  protected selectEffect = (type: string) => this.selectedEffectConfiguration.set(this.getConfiguration(type));
-  protected selectSettings = (type: string) => this.selectedSettingsConfiguration.set(this.getConfiguration(type));
+  protected selectedStyleConfiguration = computed(() => this.getConfiguration(this.selectedStyleType()));
+  protected selectedEffectConfiguration = computed(() => this.getConfiguration(this.selectedEffectType()));
+  protected selectedSettingsConfiguration = computed(() => this.getConfiguration(this.selectedSettingsType()));
+
+  protected selectStyle = (type: string) => this.selectedStyleType.set(type);
+  protected selectEffect = (type: string) => this.selectedEffectType.set(type);
+  protected selectSettings = (type: string) => this.selectedSettingsType.set(type);
 
   private getConfiguration(type: string) {
     const configuration = this.toastService.configuration();

@@ -42,7 +42,7 @@
     <app-inputs-separator [title]="type" [ngStyle]="{ color: configuration.styles.backgroundColor }"/>
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
-            [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineBlur)"
+            [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineBlur.class)"
             (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineBlur.class, $event)"
         />
         <app-inputs-separator title="Outline blur hover" />
@@ -61,7 +61,7 @@
     </div>
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
-            [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineSolid)"
+            [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineSolid.class)"
             (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid.class, $event)"
         />
         <app-inputs-separator title="Outline solid hover" />
@@ -80,21 +80,21 @@
     </div>
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
-            [checked]="configuration.effects.classes.includes(mvLibEffects.idle.progressBarDarkenFill)"
-            (onChange)="toastService.setEffect(type, mvLibEffects.idle.progressBarDarkenFill.class, $event)"
+            [checked]="configuration.effects.animations.includes(mvLibEffects.idle.progressBarDarkenFill.class)"
+            (onChange)="toastService.setAnimation(type, mvLibEffects.idle.progressBarDarkenFill.class, $event)"
         />
         <app-inputs-separator title="Progress bar darken fill" />
     </div>
         <div class="inputs-group">
         Force color
         <app-input-color
-            [value]="configuration.effects.style.progressBarDarkenFill.forceColor"
-            (onChange)="toastService.setEffectStyle(type, 'progressBarDarkenFill.forceColor', $event)"
+            [value]="configuration.effects.animationsStyle.progressBarDarkenFill.forceColor"
+            (onChange)="toastService.setAnimationStyle(type, 'progressBarDarkenFill.forceColor', $event)"
         />
         Darken percentage
         <app-input-text
-            [value]="configuration.effects.style.progressBarDarkenFill.darkenPercentage"
-            (onChange)="toastService.setEffectStyle(type, 'progressBarDarkenFill.darkenPercentage', $event)"
+            [value]="configuration.effects.animationsStyle.progressBarDarkenFill.darkenPercentage"
+            (onChange)="toastService.setAnimationStyle(type, 'progressBarDarkenFill.darkenPercentage', $event)"
         />
     </div>
 </ng-template>
