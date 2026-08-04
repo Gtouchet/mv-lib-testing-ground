@@ -1,29 +1,24 @@
 <div class="configuration">
     
     <app-configuration-section title="Styles">
-        @if (styleInitialized()) {
-            <app-inputs-separator title="General" />
-            <app-input-color
-                [value]="styles().backgroundColor"
-                label="Background color"
-                (onChange)="setStyle('backgroundColor', $event)"
-            />
-            <app-dimensions-inputs [component]="this" />
-            <app-border-inputs [component]="this" />
-            <app-font-inputs [component]="this" />
-        }
+        <app-border-inputs
+            [border]="textbox().computedStyles().border"
+            (onChangeBorder)="
+                textbox().setStyle(`border.${$event.key}`, $event.value);
+                refreshLog();"
+        />
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        @if (effectsInitialized()) {
+        <!-- @if (effectsInitialized()) {
             <app-darken-hover-inputs [component]="this" />
             <app-outline-blur-selected-inputs [component]="this" />
             <app-outline-solid-selected-inputs [component]="this" />
-        }
+        } -->
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        @if (settingsInitialized()) {
+        <!-- @if (settingsInitialized()) {
             <app-input-checkbox
                 [checked]="form.get('input')?.disabled"
                 label="Disabled"
@@ -41,11 +36,11 @@
                     refreshLog();
                 "
             />
-        }
+        } -->
     </app-configuration-section>
 
     <app-configuration-section title="Form controls">
-        <div class="form-state">
+        <!-- <div class="form-state">
             <span>{{ form.touched ? 'Touched' : 'Untouched' }}</span>
             <span>{{ form.dirty ? 'Dirty' : 'Pristine' }}</span>
             <span>{{ form.disabled ? 'Disabled' : (form.valid ? 'Valid' : 'Invalid') }}</span>
@@ -85,7 +80,7 @@
                     'minLength',
                     minLength());
             "
-        />
+        /> -->
     </app-configuration-section>
 </div>
 
@@ -94,12 +89,12 @@
     class="visual"
 >
     <mv-lib-textbox-classic
-        #mvLibComponent
-        formControlName="input"
+        #mvLibTextboxClassic
+        
         class="component"
-        [(styles)]="styles"
-        [(settings)]="settings"
-        [(effects)]="effects"
+        [styles]="style()"
+        [settings]="settings()"
+        [effects]="effects()"
         [selected]="selected()"
         (onChange)="
             form.get('input')?.setValue($event.input);
@@ -119,3 +114,5 @@ input: {{ form.get('input')?.value }}<br/>
 &lt;mv-lib-textbox-classic{{ log() }}/&gt;
 </pre>
 </form>
+
+<!-- formControlName="input" -->

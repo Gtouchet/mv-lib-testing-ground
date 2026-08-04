@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
-import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsDirectives } from "mv-lib";
+import { MvLibRadioButtonsClassicAnimations, MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyle, MvLibRadioButtonsDirectives } from "mv-lib";
 
 interface User {
   id: number;
@@ -23,7 +23,32 @@ interface User {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<MvLibRadioButtonsClassicComponent<User>> {
+export class RadioButtonsClassicExampleComponent extends BaseExampleComponent {
+
+    protected style = signal<Partial<MvLibRadioButtonsClassicStyle>>({
+        groupGap: '6px',
+        contentGap: '6px',
+        size: '16px',
+        backgroundColor: this.appStyles.var('radio-buttons-classic-background-color'),
+        selectedColor: this.appStyles.var('radio-buttons-classic-selected-color'),
+    });
+
+    protected effects = signal<Partial<MvLibRadioButtonsClassicEffects>>({
+        classes: [
+            this.mvLibEffects.idle.shadow.class,
+            this.mvLibEffects.hover.resize.class,
+        ],
+    });
+
+    protected animations = signal<Partial<MvLibRadioButtonsClassicAnimations>>({
+
+    });
+    
+    protected settings = signal<Partial<MvLibRadioButtonsClassicSettings>>({
+        orientation: 'vertical',
+        selectOnLabelClick: true,
+        deselectable: false,
+    });
 
     protected selectedItem = signal<User | undefined>(undefined);
     protected items = signal<User[]>([
@@ -38,26 +63,11 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent<Mv
         { id: 9, name: 'Ivy' },
     ]);
 
-    constructor() {
-        super();
-        this.logProperties.set(['styles', 'effects', 'settings', 'disabled']);
-        this.styles = signal({
-            groupGap: '6px',
-            contentGap: '6px',
-            size: '16px',
-            backgroundColor: this.appStyles.var('radio-buttons-classic-background-color'),
-            selectedColor: this.appStyles.var('radio-buttons-classic-selected-color'),
+    protected override refreshLog() {
+        var result = ``;
+        ['style', 'effects', 'settings', 'disabled'].forEach(property => {
+        result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
         });
-        this.effects = signal({
-            classes: [
-                this.mvLibEffects.idle.shadow.class,
-                this.mvLibEffects.hover.resize.class,
-            ],
-        });
-        this.settings = signal({
-            orientation: 'vertical',
-            selectOnLabelClick: true,
-            deselectable: false,
-        });
+        this.log.set(result);
     }
 }

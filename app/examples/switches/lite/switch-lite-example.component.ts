@@ -14,12 +14,12 @@ import { INPUTS } from '../../../inputs/_inputs.export';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class SwitchLiteExampleComponent extends BaseExampleComponent<MvLibSwitchLiteComponent> {
+export class SwitchLiteExampleComponent extends BaseExampleComponent {
 
   constructor() {
     super();
-    this.logProperties.set(['styles', 'effects', 'settings', 'active', 'disabled']);
-    this.styles = signal({
+    // this.logProperties.set(['style', 'effects', 'settings', 'active', 'disabled']);
+    // this.styles = signal({
       // track: {
       //   dimensions: {
       //     width: '48px',
@@ -38,13 +38,21 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent<MvLibSwitch
       // cursorIconOff: this.appStyles.var('switch-lite-cursor-icon-off'),
       // cursorColorOff: this.appStyles.var('switch-lite-cursor-color-off'),
       // cursorIconColorOff: this.appStyles.var('switch-lite-cursor-icon-off-color'),
-    });
-    this.effects = signal({
+    // });
+    // this.effects = signal({
       
-    });
-    this.settings = signal({
+    // });
+    // this.settings = signal({
       
+    // });
+  }
+
+  protected override refreshLog() {
+    var result = ``;
+    ['style', 'effects', 'settings', 'disabled'].forEach(property => {
+      result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
     });
+    this.log.set(result);
   }
 }
 

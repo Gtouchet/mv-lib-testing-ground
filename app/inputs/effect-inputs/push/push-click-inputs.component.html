@@ -1,7 +1,7 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="checked()"
-        (onChange)="onChangeChecked($event)"
+        [checked]="enabled()"
+        (onChange)="onChangeEnabled.emit($event)"
     />
     <app-inputs-separator [title]="title() ?? 'Push click'" />
 </div>

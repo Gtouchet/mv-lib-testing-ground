@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { BaseExampleComponent } from "../../../examples/base-example.component";
+import { MvLibPushClick } from "mv-lib";
 
 @Component({
   selector: 'app-push-click-inputs',
@@ -14,21 +14,13 @@ import { BaseExampleComponent } from "../../../examples/base-example.component";
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class PushClickInputsComponent<Component extends BaseExampleComponent> {
+export class PushClickInputsComponent {
 
-  public component = input.required<Component>();
   public title = input<string | undefined>(undefined);
-  public part = input<string| undefined>(undefined);
 
-  protected effects = computed(() => this.component().effects() as any);
+  public enabled = input.required<boolean>();
+  public style = input.required<Partial<MvLibPushClick>>();
 
-  protected checked = computed(() => {
-    return this.component().hasEffectClass(this.component().mvLibEffects.click.push.class);
-  });
-
-  protected onChangeChecked(checked: boolean) {
-    this.component().setEffect(
-      `${this.part() ? this.part() + '.' : ''}${this.component().mvLibEffects.click.push.class}`, checked
-    );
-  }
+  public onChangeEnabled = output<boolean>();
+  public onChangeStyle = output<{key: string, value: any}>();
 }

@@ -1,29 +1,29 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="checked()"
-        (onChange)="onChangeChecked($event)"
+        [checked]="enabled()"
+        (onChange)="onChangeEnabled.emit($event)"
     />
     <app-inputs-separator [title]="title() ?? 'Ripple release'" />
 </div>
 <div class="inputs-group">
     Origin x
     <app-input-text
-        [value]="originX()"
-        (onChange)="onChangeOriginX($event)"
+        [value]="style().originX"
+        (onChange)="onChangeStyle.emit({key: 'originX', value: $event})"
     />
     Origin y
     <app-input-text
-        [value]="originY()"
-        (onChange)="onChangeOriginY($event)"
+        [value]="style().originY"
+        (onChange)="onChangeStyle.emit({key: 'originY', value: $event})"
     />
     Size
     <app-input-text
-        [value]="size()"
-        (onChange)="onChangeSize($event)"
+        [value]="style().size"
+        (onChange)="onChangeStyle.emit({key: 'size', value: $event})"
     />
     Delay
     <app-input-text
-        [value]="delay()"
-        (onChange)="onChangeDelay($event)"
+        [value]="style().delay"
+        (onChange)="onChangeStyle.emit({key: 'delay', value: $event})"
     />
 </div>

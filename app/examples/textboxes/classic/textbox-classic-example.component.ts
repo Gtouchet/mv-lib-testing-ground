@@ -1,14 +1,12 @@
 import { BaseExampleComponent } from '../../base-example.component';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { MvLibTextboxClassicComponent } from 'mv-lib';
+import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
+import { MvLibTextboxClassicAnimations, MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyle } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { INPUTS } from '../../../inputs/_inputs.export';
 
 @Component({
   selector: 'app-textbox-classic-example',
   imports: [
-    CommonModule,
     MvLibTextboxClassicComponent,
     ReactiveFormsModule,
     INPUTS,
@@ -18,35 +16,42 @@ import { INPUTS } from '../../../inputs/_inputs.export';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class TextboxClassicExampleComponent extends BaseExampleComponent<MvLibTextboxClassicComponent> {
+export class TextboxClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
 
-  constructor() {
-    super();
-    this.logProperties.set(['styles', 'effects', 'settings', 'selected', 'disabled']);
-    this.styles = signal({
-      dimensions: {
-        width: '150px',
-        height: '32px',
+  protected textbox = viewChild.required<MvLibTextboxClassicComponent>('mvLibTextboxClassic');
+
+  protected style = signal<Partial<MvLibTextboxClassicStyle>>({
+    backgroundColor: this.appStyles.var('button-classic-background-color'),
+    dimensions: {
+      width: '150px',
+      height: '32px',
+    },
+  });
+  
+  protected effects = signal<Partial<MvLibTextboxClassicEffects>>({
+    classes: [
+      this.mvLibEffects.hover.tint.class,
+      this.mvLibEffects.selected.outlineBlur.class,
+    ],
+    styles: {
+      outlineSolidSelected: {
+        color: this.appStyles.var('textbox-classic-outline-solid-selected-color'),
       },
-    });
-    this.effects = signal({
-      classes: [
-        this.mvLibEffects.hover.darken.class,
-        this.mvLibEffects.selected.outlineBlur.class,
-      ],
-      style: {
-        outlineSolidSelected: {
-          color: this.appStyles.var('textbox-classic-outline-solid-selected-color'),
-        },
-        outlineBlurSelected: {
-          color: this.appStyles.var('textbox-classic-outline-blur-selected-color'),
-        },
-      }
-    });
-    this.settings = signal({
-      
-    });
-  }
+      outlineBlurSelected: {
+        color: this.appStyles.var('textbox-classic-outline-blur-selected-color'),
+      },
+    },
+  });
+
+  protected animations = signal<Partial<MvLibTextboxClassicAnimations>>({
+
+  });
+
+  protected settings = signal<Partial<MvLibTextboxClassicSettings>>({
+
+  });
+
+  protected selected = signal(false);
 
   protected override initForm() {
     this.form.addControl('input', new FormControl({
@@ -57,5 +62,16 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent<MvLibTe
       this.minLength() !== undefined ? Validators.minLength(this.minLength()!) : Validators.nullValidator,
       this.onlyCharacters() ? Validators.pattern(this.onlyCharactersRegex) : Validators.nullValidator,
     ]));
+  }
+
+  ngAfterViewInit() {
+    this.logProperties = [
+      { property: 'style', value: this.textbox().computedStyles },
+      { property: 'effects', value: this.textbox().computedEffects },
+      { property: 'settings', value: this.textbox().computedSettings },
+      { property: 'selected', value: this.selected },
+      { property: 'disabled', value: this.disabled },
+    ];
+    this.refreshLog();
   }
 }

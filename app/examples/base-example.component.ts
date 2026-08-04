@@ -1,129 +1,18 @@
-import { AfterViewInit, Directive, inject, OnInit, signal, viewChild } from "@angular/core";
+import { Directive, inject, Signal, signal } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { StylesService } from "../styles/styles.service";
-import { EffectsOf, MV_LIB_EFFECTS, MvLibComponentEffectApi, MvLibCoreComponentApi, SettingsOf, StylesOf } from "mv-lib";
+import { MV_LIB_EFFECTS } from "mv-lib";
 
 @Directive({
     standalone: true,
 })
-export abstract class BaseExampleComponent<
-    MvLibComponent extends
-        MvLibCoreComponentApi<any, any> &
-        MvLibComponentEffectApi<any> = any
-> implements OnInit, AfterViewInit {
+export abstract class BaseExampleComponent {
 
     protected appStyles = inject(StylesService);
 
-    protected mvLibComponent = viewChild<MvLibComponent>('mvLibComponent');
-
-    ngOnInit() {
-        this.initForm();
-        this.refreshLog();
-    }
-
-    ngAfterViewInit() {
-        this.refreshStyle();
-        this.styleInitialized.set(true);
-        this.refreshEffects();
-        this.effectsInitialized.set(true);
-        this.refreshSettings();
-        this.settingsInitialized.set(true);
-        this.refreshLog();
-    }
-
-    /**
-     * Styles, Effects, Settings
-     */
-    public mvLibEffects = MV_LIB_EFFECTS;
-
-    protected styleInitialized = signal(false);
-    protected effectsInitialized = signal(false);
-    protected settingsInitialized = signal(false);
-
-    public styles = signal<Partial<StylesOf<MvLibComponent>>>({});
-    public effects = signal<Partial<EffectsOf<MvLibComponent>>>({});
-    public settings = signal<Partial<SettingsOf<MvLibComponent>>>({});
-
-    protected refreshStyle = () => this.styles.set(this.mvLibComponent?.()?.getStyle() ?? {});
-    protected refreshEffects = () => this.effects.set(this.mvLibComponent?.()?.getEffects() ?? {});
-    protected refreshSettings = () => this.settings.set(this.mvLibComponent?.()?.getSettings() ?? {});
+    public readonly mvLibEffects = MV_LIB_EFFECTS;
 
     protected disabled = signal(false);
-    protected selected = signal(false);
-    protected opened = signal(false);
-    protected active = signal(false);
-
-    /**
-     * Component's API
-     */
-    public getStyle(): StylesOf<MvLibComponent> {
-        if (!this.mvLibComponent()) return {} as StylesOf<MvLibComponent>;
-        return this.mvLibComponent()!.getStyle();
-    }
-
-    public getSpecificStyle(path: string): any {
-        if (!this.mvLibComponent()) return undefined;
-        console.log('getSpecificStyle', path);
-        return this.mvLibComponent()!.getSpecificStyle(path);
-    }
-
-    public setStyle(path: string, value: any) {
-        if (!this.mvLibComponent()) return;
-        this.mvLibComponent()!.setStyle(path, value);
-        this.refreshStyle();
-        this.refreshLog();
-    }
-
-    public getEffects(): EffectsOf<MvLibComponent> {
-        if (!this.mvLibComponent()) return {} as EffectsOf<MvLibComponent>;
-        return this.mvLibComponent()!.getEffects();
-    }
-
-    public getSpecificEffect(path: string): any {
-        if (!this.mvLibComponent()) return undefined;
-        return this.mvLibComponent()!.getSpecificEffect(path);
-    }
-
-    public getSpecificEffectStyle(path: string): any {
-        if (!this.mvLibComponent()) return undefined;
-        return this.mvLibComponent()!.getSpecificEffectStyle(path);
-    }
-
-    public setEffect(effect: string, enabled: boolean) {
-        if (!this.mvLibComponent()) return;
-        this.mvLibComponent()!.setEffect(effect, enabled);
-        this.refreshEffects();
-        this.refreshLog();
-    }
-
-    public setEffectStyle(path: string, value: any) {
-        if (!this.mvLibComponent()) return;
-        this.mvLibComponent()!.setEffectStyle(path, value);
-        this.refreshEffects();
-        this.refreshLog();
-    }
-
-    public getSettings(): SettingsOf<MvLibComponent> {
-        if (!this.mvLibComponent()) return {} as SettingsOf<MvLibComponent>;
-        return this.mvLibComponent()!.getSettings();
-    }
-
-    public getSpecificSettings(path: string): any {
-        if (!this.mvLibComponent()) return undefined;
-        return this.mvLibComponent()!.getSpecificSettings(path);
-    }
-
-    public setSettings(settings: string, value: any) {
-        if (!this.mvLibComponent()) return;
-        this.mvLibComponent()!.setSettings(settings, value);
-        this.refreshSettings();
-        this.refreshLog();
-    }
-
-    public hasEffectClass(className: string): boolean {
-        if (!this.mvLibComponent()) return false;
-        return this.mvLibComponent()!.hasEffectClass(className);
-    }
 
     /**
      * Forms
@@ -185,7 +74,7 @@ export abstract class BaseExampleComponent<
      * Logs
      */
     protected lastInteractionTime = signal<string>('--:--:--.--');
-    protected logProperties = signal<string[]>([]);
+    protected logProperties: { property: string, value: Signal<any> }[] = [];
     protected log = signal('');
 
     protected refreshLastInteractionTime() {
@@ -198,14 +87,12 @@ export abstract class BaseExampleComponent<
     }
 
     protected refreshLog() {
-        var result = '\n';
-        this.logProperties().forEach(property => {
-            result += `    [${property}]=\"${this.prettify((this as any)[property]())}\",\n`;
-        });
+        var result = `\n`;
+        this.logProperties.forEach(property => result += `    [${property.property}]=\"${this.prettify(property.value())}\",\n`);
         this.log.set(result);
     }
 
-    private prettify(property: any): string {
+    protected prettify(property: any): string {
         return JSON.stringify(property, null, 4)
             .replace(/"([^"]+)":/g, '$1:')
             .replace(/"/g, "'")

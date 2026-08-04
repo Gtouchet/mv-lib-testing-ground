@@ -2,56 +2,52 @@
 <div class="inputs-group">
     Width
     <app-input-text
-        [value]="$any(component().styles()).border.width"
-        (onChange)="component().setStyle('border.width', $event)"
+        [value]="border().width"
+        (onChange)="onChangeBorder.emit({key: 'width', value: $event})"
     />
     Style
     <div class="inputs-row">
         <app-input-select
             [values]="cssBorderStyles"
-            [selectedValues]="[borderStyles()[0]]"
+            [selectedValues]="[borderStyle()[0]]"
             (onChange)="
-                borderStyles()[0] = $event;
-                component().setStyle('border.style', borderStyles().join(' '));
-            "
+                borderStyle()[0] = $event;
+                onChangeBorder.emit({key: 'style', value: borderStyle().join(' ')});"
             [style.flex]="1"
         />
         <app-input-select
             [values]="cssBorderStyles"
-            [selectedValues]="[borderStyles()[1]]"
+            [selectedValues]="[borderStyle()[1]]"
             (onChange)="
-                borderStyles()[1] = $event;
-                component().setStyle('border.style', borderStyles().join(' '));
-            "
+                borderStyle()[1] = $event;
+                onChangeBorder.emit({key: 'style', value: borderStyle().join(' ')});"
             [style.flex]="1"
         />
         <app-input-select
             [values]="cssBorderStyles"
-            [selectedValues]="[borderStyles()[2]]"
+            [selectedValues]="[borderStyle()[2]]"
             (onChange)="
-                borderStyles()[2] = $event;
-                component().setStyle('border.style', borderStyles().join(' '));
-            "
+                borderStyle()[2] = $event;
+                onChangeBorder.emit({key: 'style', value: borderStyle().join(' ')});"
             [style.flex]="1"
         />
         <app-input-select
             [values]="cssBorderStyles"
-            [selectedValues]="[borderStyles()[3]]"
+            [selectedValues]="[borderStyle()[3]]"
             (onChange)="
-                borderStyles()[3] = $event;
-                component().setStyle('border.style', borderStyles().join(' '));
-            "
+                borderStyle()[3] = $event;
+                onChangeBorder.emit({key: 'style', value: borderStyle().join(' ')});"
             [style.flex]="1"
         />
     </div>
     Color
     <app-input-color
-        [value]="$any(component().styles()).border.color"
-        (onChange)="component().setStyle('border.color', $event)"
+        [value]="border().color"
+        (onChange)="onChangeBorder.emit({key: 'color', value: $event})"
     />
     Radius
     <app-input-text
-        [value]="$any(component().styles()).border.radius"
-        (onChange)="component().setStyle('border.radius', $event)"
+        [value]="border().radius"
+        (onChange)="onChangeBorder.emit({key: 'radius', value: $event})"
     />
 </div>

@@ -1,0 +1,16 @@
+<div class="effect">
+    <app-input-checkbox
+        [checked]="enabled()"
+        (onChange)="onChangeEnabled.emit($event)"
+    />
+    <app-inputs-separator [title]="title() ?? 'Tint hover'" />
+</div>
+<div class="inputs-group">
+    Effect %
+    <app-input-number
+        [value]="style().effectPercentage"
+        [min]="-100"
+        [max]="100"
+        (onChange)="onChangeStyle.emit({key: 'effectPercentage', value: $event})"
+    />
+</div>

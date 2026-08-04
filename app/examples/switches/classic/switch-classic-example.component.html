@@ -1,6 +1,6 @@
 <div class="configuration">
     <app-configuration-section title="Styles">
-        @if (styleInitialized()) {
+        <!-- @if (styleInitialized()) {
             <app-inputs-separator title="Track" />
             <div class="inputs-group">
                 Width
@@ -63,18 +63,18 @@
                     (onChange)="setStyle('cursor.iconColorOff', $event)"
                 />
             </div>
-        }
+        } -->
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        @if (effectsInitialized()) {
+        <!-- @if (effectsInitialized()) {
             <app-shadow-idle-inputs [component]="this" title="Track shadow idle" part="track" />
             <app-resize-hover-inputs [component]="this" title="Cursor resize hover" part="cursor"/>
-        }
+        } -->
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        @if (settingsInitialized()) {
+        <!-- @if (settingsInitialized()) {
             <app-input-checkbox
                 [checked]="disabled()"
                 label="Disabled"
@@ -98,7 +98,7 @@
                     refreshLog();
                 "
             />
-        }
+        } -->
     </app-configuration-section>
 </div>
 
@@ -106,7 +106,7 @@
     <mv-lib-switch-classic
         #mvLibComponent
         class="component"
-        [(styles)]="styles"
+        [styles]="style()"
         [effects]="effects()"
         [settings]="settings()"
         [disabled]="disabled()"

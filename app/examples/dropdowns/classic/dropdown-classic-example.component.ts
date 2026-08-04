@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
-import { MvLibDropdownClassicComponent, MvLibDropdownDirectives } from "mv-lib";
+import { MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
-import { JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
+import { JsonPipe } from "@angular/common";
 
 interface User {
   id: number;
@@ -15,15 +15,45 @@ interface User {
   imports: [
     MvLibDropdownClassicComponent,
     MvLibDropdownDirectives,
-    JsonPipe,
     INPUTS,
+    JsonPipe,
   ],
   templateUrl: './dropdown-classic-example.component.html',
   styleUrl: '../../example.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class DropdownClassicExampleComponent extends BaseExampleComponent<MvLibDropdownClassicComponent<User>> {
+export class DropdownClassicExampleComponent extends BaseExampleComponent {
+
+  protected style = signal<Partial<MvLibDropdownClassicStyle>>({
+    buttonWidthPx: 150,
+    buttonHeightPx: 40,
+    buttonBackgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
+    buttonTextColor: this.appStyles.var('dropdown-classic-button-text-color'),
+
+    listMaxHeightPx: 150,
+    
+    itemHeightPx: 25,
+    itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
+    itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
+  });
+
+  protected effects = signal<Partial<MvLibDropdownClassicEffects>>({
+
+  });
+
+  // protected animations = signal<Partial<MvLibDropdownClassicAnimations>>({
+
+  // });
+  
+  protected settings = signal<Partial<MvLibDropdownClassicSettings>>({
+    closeOnItemSelect: true,
+    closeOnOutsideClick: true,
+    resetButton: true,
+    filterBy: 'name',
+  });
+
+  protected opened = signal(false);
 
   protected selectedItem = signal<User | undefined>(undefined);
   protected items = signal<User[]>([
@@ -38,29 +68,11 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent<MvLibD
     { id: 9, icon: 'person', name: 'Ivy' },
   ]);
 
-  constructor() {
-    super();
-    this.logProperties.set(['styles', 'effects', 'settings', 'active', 'opened', 'disabled']);
-    this.styles = signal({
-      buttonWidthPx: 150,
-      buttonHeightPx: 40,
-      buttonBackgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
-      buttonTextColor: this.appStyles.var('dropdown-classic-button-text-color'),
-
-      listMaxHeightPx: 150,
-      
-      itemHeightPx: 25,
-      itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
-      itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
+  protected override refreshLog() {
+    var result = ``;
+    ['style', 'effects', 'settings', 'disabled'].forEach(property => {
+      result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
     });
-    this.effects = signal({
-
-    });
-    this.settings = signal({
-      closeOnItemSelect: true,
-      closeOnOutsideClick: true,
-      resetButton: true,
-      filterBy: 'name',
-    });
+    this.log.set(result);
   }
 }

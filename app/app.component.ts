@@ -4,7 +4,7 @@ import {
   MvLibButtonClassicComponent,
   MvLibDropdownClassicComponent,
   MvLibDropdownClassicEffects,
-  MvLibDropdownClassicStyles,
+  MvLibDropdownClassicStyle,
   MvLibDropdownDirectives,
   MvLibToastClassicComponent,
 } from 'mv-lib';
@@ -94,7 +94,7 @@ export class AppComponent {
     },
   ]);
 
-  protected dropdownsStyles: Partial<MvLibDropdownClassicStyles> = {
+  protected dropdownsStyles: Partial<MvLibDropdownClassicStyle> = {
     buttonWidthPx: 175,
     buttonHeightPx: 32,
     itemHeightPx: 32,

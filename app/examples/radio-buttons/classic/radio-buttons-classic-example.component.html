@@ -1,6 +1,6 @@
 <div class="configuration">
     <app-configuration-section title="Styles">
-        @if (styleInitialized()) {
+        <!-- @if (styleInitialized()) {
             <app-inputs-separator title="General" />
             <div class="inputs-group">
                 Group gap
@@ -37,18 +37,18 @@
                 title="Content font"
                 font="contentFont"
             />
-        }
+        } -->
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        @if (effectsInitialized()) {
+        <!-- @if (effectsInitialized()) {
             <app-shadow-idle-inputs [component]="this" />
             <app-resize-hover-inputs [component]="this" />
-        }
+        } -->
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        @if (settingsInitialized()) {
+        <!-- @if (settingsInitialized()) {
             <app-input-checkbox
                 [checked]="disabled()"
                 label="Disabled"
@@ -104,7 +104,7 @@
                     "
                 />
             </div>
-        }
+        } -->
     </app-configuration-section>
 </div>
 
@@ -112,7 +112,7 @@
     <mv-lib-radio-buttons-classic
         #mvLibComponent
         class="component"
-        [styles]="styles()"
+        [styles]="style()"
         [effects]="effects()"
         [settings]="settings()"
         [disabled]="disabled()"

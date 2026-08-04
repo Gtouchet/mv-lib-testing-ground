@@ -48,4 +48,12 @@ export class ToastClassicExampleComponent extends BaseExampleComponent {
       default: throw new Error(`Unknown toast type: ${type}`);
     }
   }
+
+  protected override refreshLog() {
+    var result = ``;
+    ['style', 'effects', 'settings', 'disabled'].forEach(property => {
+      result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
+    });
+    this.log.set(result);
+  }
 }

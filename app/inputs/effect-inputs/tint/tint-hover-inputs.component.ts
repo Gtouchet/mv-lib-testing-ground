@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { MvLibRippleRelease } from "mv-lib";
+import { MvLibTintHover } from "mv-lib";
 
 @Component({
-  selector: 'app-ripple-release-inputs',
+  selector: 'app-tint-hover-inputs',
   imports: [
     CommonModule,
     GENERIC_INPUTS,
   ],
-  templateUrl: './ripple-release-inputs.component.html',
+  templateUrl: './tint-hover-inputs.component.html',
   styleUrl: '../effect-inputs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class RippleReleaseInputsComponent {
+export class TintHoverInputsComponent {
 
   public title = input<string | undefined>(undefined);
 
   public enabled = input.required<boolean>();
-  public style = input.required<Partial<MvLibRippleRelease>>();
+  public style = input.required<Partial<MvLibTintHover>>();
 
   public onChangeEnabled = output<boolean>();
   public onChangeStyle = output<{key: string, value: any}>();

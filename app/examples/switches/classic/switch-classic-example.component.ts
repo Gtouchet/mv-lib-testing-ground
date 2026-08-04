@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
-import { MvLibSwitchClassicComponent } from 'mv-lib';
+import { MvLibSwitchClassicAnimations, MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyle } from 'mv-lib';
 import { INPUTS } from '../../../inputs/_inputs.export';
 
 @Component({
@@ -14,13 +14,10 @@ import { INPUTS } from '../../../inputs/_inputs.export';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class SwitchClassicExampleComponent extends BaseExampleComponent<MvLibSwitchClassicComponent> {
+export class SwitchClassicExampleComponent extends BaseExampleComponent {
   
-  constructor() {
-    super();
-    this.logProperties.set(['styles', 'effects', 'settings', 'active', 'disabled']);
-    this.styles = signal({
-      track: {
+  protected style = signal<Partial<MvLibSwitchClassicStyle>>({
+    track: {
         colorOn: this.appStyles.var('switch-classic-track-color-on'),
         colorOff: this.appStyles.var('switch-classic-track-color-off'),
       },
@@ -32,13 +29,39 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent<MvLibSwi
         iconColorOn: this.appStyles.var('switch-classic-cursor-icon-on-color'),
         iconColorOff: this.appStyles.var('switch-classic-cursor-icon-off-color'),
       },
-    });
-    this.effects = signal({
+  });
 
+  protected effects = signal<Partial<MvLibSwitchClassicEffects>>({
+    parts: {
+      track: {
+        classes: [
+          this.mvLibEffects.idle.shadow.class,
+          this.mvLibEffects.hover.tint.class,
+          this.mvLibEffects.click.push.class,
+          this.mvLibEffects.release.ripple.class,
+        ],
+      },
+      cursor: {
+        
+      },
+    },
+  });
+
+  protected animations = signal<Partial<MvLibSwitchClassicAnimations>>({
+
+  });
+
+  protected settings = signal<Partial<MvLibSwitchClassicSettings>>({
+
+  });
+
+  protected active = signal(false);
+
+  protected override refreshLog() {
+    var result = ``;
+    ['style', 'effects', 'settings', 'disabled'].forEach(property => {
+      result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
     });
-    this.settings = signal({
-      
-    });
+    this.log.set(result);
   }
 }
-

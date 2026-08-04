@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, input, output, signal } from "@angular/core";
 import { CssBorderStyle } from "../../../css-values/border.values";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { BaseExampleComponent } from "../../../examples/base-example.component";
 import { InputsSeparatorComponent } from "../../inputs-separator.component";
+import { MvLibBorderStyle } from "mv-lib";
 
 @Component({
   selector: 'app-border-inputs',
@@ -17,16 +17,15 @@ import { InputsSeparatorComponent } from "../../inputs-separator.component";
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class BorderInputsComponent<Component extends BaseExampleComponent> {
+export class BorderInputsComponent {
 
-  public component = input.required<Component>();
+  public title = input<string | undefined>(undefined);
+
+  public border = input.required<Partial<MvLibBorderStyle>>();
+
+  public onChangeBorder = output<{key: string, value: any}>();
+  
+  protected borderStyle = signal<string[]>(['solid', 'solid', 'solid', 'solid']);
 
   protected cssBorderStyles = CssBorderStyle.values;
-
-  protected borderStyles = computed<string[]>(() => {
-    return (this.component().styles() as any)
-      .border.style
-      .split(' ')
-      .filter((s: []) => s.length > 0);
-  });
 }

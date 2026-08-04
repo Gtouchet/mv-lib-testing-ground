@@ -1,7 +1,7 @@
 <div class="configuration">
 
     <app-configuration-section title="Styles">
-        <b>
+        <!-- <b>
             Button
         </b>
         <app-input-number
@@ -49,11 +49,11 @@
             [value]="styles().itemTextColor"
             label="Item text color"
             (onChange)="setStyle('itemTextColor', $event)"
-        />
+        /> -->
     </app-configuration-section>
     
     <app-configuration-section title="Effects">
-        <b>
+        <!-- <b>
             Button idle
         </b>
         <app-input-checkbox
@@ -110,11 +110,11 @@
             
             label="Ripple"
             (onChange)="setEffect('ripple', $event)"
-        />
+        /> -->
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <app-input-checkbox
+        <!-- <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
             (onChange)="
@@ -153,7 +153,7 @@
                 setSettings('resetButton', $event);
                 refreshLog();
             "
-        />
+        /> -->
     </app-configuration-section>
 </div>
 
@@ -161,7 +161,7 @@
     <mv-lib-dropdown-classic
         #mvLibComponent
         class="component"
-        [styles]="styles()"
+        [styles]="style()"
         [effects]="effects()"
         [settings]="settings()"
         [items]="items()"

@@ -1,35 +1,34 @@
 <div class="effect">
     <app-input-checkbox
-        [checked]="checked()"
-        (onChange)="onChangeChecked($event)"
+        [checked]="enabled()"
+        (onChange)="onChangeEnabled.emit($event)"
     />
     <app-inputs-separator [title]="title() ?? 'Shadow idle'" />
 </div>
 <div class="inputs-group">
     Pos. X
     <app-input-text
-        [value]="posX()"
-        (onChange)="onChangePosX($event)"
+        [value]="style().posX"
+        (onChange)="onChangeStyle.emit({key: 'posX', value: $event})"
     />
     Pos. Y
     <app-input-text
-        [value]="posY()"
-        (onChange)="onChangePosY($event)"
+        [value]="style().posY"
+        (onChange)="onChangeStyle.emit({key: 'posY', value: $event})"
     />
     Blur
     <app-input-text
-        [value]="blur()"
-        (onChange)="onChangeBlur($event)"
+        [value]="style().blur"
+        (onChange)="onChangeStyle.emit({key: 'blur', value: $event})"
     />
     Spread
     <app-input-text
-        [value]="spread()"
-        (onChange)="onChangeSpread($event)"
-
+        [value]="style().spread"
+        (onChange)="onChangeStyle.emit({key: 'spread', value: $event})"
     />
     Color
     <app-input-color
-        [value]="color()"
-        (onChange)="onChangeColor($event)"
+        [value]="style().color"
+        (onChange)="onChangeStyle.emit({key: 'color', value: $event})"
     />
 </div>
