@@ -50,12 +50,12 @@
     <div class="inputs-group">
         Color
         <app-input-color
-            [value]="configuration.effects.style.outlineBlurHover.color"
+            [value]="configuration.effects.styles.outlineBlurHover.color"
             (onChange)="toastService.setEffectStyle(type, 'outlineBlurHover.color', $event)"
         />
         Radius
         <app-input-text
-            [value]="configuration.effects.style.outlineBlurHover.radius"
+            [value]="configuration.effects.styles.outlineBlurHover.radius"
             (onChange)="toastService.setEffectStyle(type, 'outlineBlurHover.radius', $event)"
         />
     </div>
@@ -69,18 +69,18 @@
     <div class="inputs-group">
         Color
         <app-input-color
-            [value]="configuration.effects.style.outlineSolidHover.color"
+            [value]="configuration.effects.styles.outlineSolidHover.color"
             (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.color', $event)"
         />
         Width
         <app-input-text
-            [value]="configuration.effects.style.outlineSolidHover.width"
+            [value]="configuration.effects.styles.outlineSolidHover.width"
             (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.width', $event)"
         />
     </div>
     <div style="display: flex; gap: 4px;">
         <app-input-checkbox
-            [checked]="configuration.effects.animations.includes(mvLibEffects.idle.progressBarDarkenFill.class)"
+            [checked]="configuration.animations.classes.includes(mvLibEffects.idle.progressBarDarkenFill.class)"
             (onChange)="toastService.setAnimation(type, mvLibEffects.idle.progressBarDarkenFill.class, $event)"
         />
         <app-inputs-separator title="Progress bar darken fill" />
@@ -88,12 +88,12 @@
         <div class="inputs-group">
         Force color
         <app-input-color
-            [value]="configuration.effects.animationsStyle.progressBarDarkenFill.forceColor"
+            [value]="configuration.animations.styles.progressBarDarkenFill.forceColor"
             (onChange)="toastService.setAnimationStyle(type, 'progressBarDarkenFill.forceColor', $event)"
         />
         Darken percentage
         <app-input-text
-            [value]="configuration.effects.animationsStyle.progressBarDarkenFill.darkenPercentage"
+            [value]="configuration.animations.styles.progressBarDarkenFill.darkenPercentage"
             (onChange)="toastService.setAnimationStyle(type, 'progressBarDarkenFill.darkenPercentage', $event)"
         />
     </div>
@@ -123,8 +123,8 @@
                 localConfiguration.message,
                 localConfiguration.icon,
                 {
-                    widthPx: configuration.styles.forcedWidthPx,
-                    heightPx: configuration.styles.forcedHeightPx,
+                    widthPx: configuration.styles.forcedWidth,
+                    heightPx: configuration.styles.forcedHeight,
                 }
             )
         "
@@ -149,7 +149,6 @@
             localConfiguration: selectedStyleConfiguration().localConfiguration,
         }" />
     </app-configuration-section>
-
     
     <app-configuration-section title="Effects">
         <div buttons class="type-buttons">

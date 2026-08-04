@@ -1,19 +1,19 @@
 <div class="effect">
-    <!-- <app-input-checkbox
-        [checked]="checked()"
-        (onChange)="onChangeChecked($event)"
-    /> -->
+    <app-input-checkbox
+        [checked]="enabled()"
+        (onChange)="onChangeEnabled.emit($event)"
+    />
     <app-inputs-separator [title]="title() ?? 'Resize hover'" />
 </div>
 <div class="inputs-group">
-    <!-- Scale %
+    Scale %
     <app-input-number
-        [value]="scalePercentage()"
-        (onChange)="onChangeScalePercentage($event)"
+        [value]="style().scalePercentage"
+        (onChange)="onChangeStyle.emit({key: 'scalePercentage', value: $event})"
     />
     Duration
     <app-input-text
-        [value]="duration()"
-        (onChange)="onChangeDuration($event)"
-    /> -->
+        [value]="style().duration"
+        (onChange)="onChangeStyle.emit({key: 'duration', value: $event})"
+    />
 </div>

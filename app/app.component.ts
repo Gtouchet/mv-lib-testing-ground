@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import {
   MvLibButtonClassicComponent,
   MvLibDropdownClassicComponent,
@@ -41,6 +43,15 @@ export class AppComponent {
   
   protected router = inject(Router);
   protected appStyles = inject(StylesService);
+  protected titleService = inject(Title);
+
+  constructor() {
+    this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe(() => this.updateDocumentTitle());
+
+    this.updateDocumentTitle();
+  }
 
   protected dropdowns = signal<DropdownGroup[]>([
     {
@@ -118,5 +129,16 @@ export class AppComponent {
     if (item.routerLink) {
       this.router.navigateByUrl(item.routerLink);
     }
+  }
+
+  private updateDocumentTitle(): void {
+    let route = this.router.routerState.root;
+
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+
+    const title = route?.snapshot?.data['title'] ?? 'Home';
+    this.titleService.setTitle(`MV Lib - ${title}`);
   }
 }

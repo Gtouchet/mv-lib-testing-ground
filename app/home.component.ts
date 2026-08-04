@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
         margin: 45px 0px 0px 50px;
     ">
         <h3>
-            Welcome to the MvLib Testing Ground
+            Welcome to the MVLib Testing Ground
         </h3>
         <p>
             This is a test application for the MvLib library. It is used to test its components and their functionalities.<br/>

@@ -1,6 +1,13 @@
 <div class="configuration">
     
     <app-configuration-section title="Styles">
+        <app-input-color
+            label="Background color"
+            [value]="textbox().computedStyles().backgroundColor"
+            (onChange)="
+                textbox().setStyle('backgroundColor', $event);
+                refreshLog();"
+        />
         <app-border-inputs
             [border]="textbox().computedStyles().border"
             (onChangeBorder)="
@@ -10,37 +17,53 @@
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <!-- @if (effectsInitialized()) {
-            <app-darken-hover-inputs [component]="this" />
-            <app-outline-blur-selected-inputs [component]="this" />
-            <app-outline-solid-selected-inputs [component]="this" />
-        } -->
+        <app-tint-hover-inputs
+            [enabled]="textbox().hasEffectClass(mvLibEffects.hover.tint.class)"
+            [style]="textbox().computedEffects().styles.tintHover!"
+            (onChangeEnabled)="textbox().setEffect(mvLibEffects.hover.tint.class, $event)"
+            (onChangeStyle)="
+                textbox().setEffectStyle(mvLibEffects.hover.tint.name, $event);
+                refreshLog();"
+        />
+        <app-outline-blur-selected-inputs
+            [enabled]="textbox().hasEffectClass(mvLibEffects.selected.outlineBlur.class)"
+            [style]="textbox().computedEffects().styles.outlineBlurSelected!"
+            (onChangeEnabled)="textbox().setEffect(mvLibEffects.selected.outlineBlur.class, $event)"
+            (onChangeStyle)="
+                textbox().setEffectStyle(mvLibEffects.selected.outlineBlur.name, $event);
+                refreshLog();"
+        />
+        <app-outline-solid-selected-inputs
+            [enabled]="textbox().hasEffectClass(mvLibEffects.selected.outlineSolid.class)"
+            [style]="textbox().computedEffects().styles.outlineSolidSelected!"
+            (onChangeEnabled)="textbox().setEffect(mvLibEffects.selected.outlineSolid.class, $event)"
+            (onChangeStyle)="
+                textbox().setEffectStyle(mvLibEffects.selected.outlineSolid.name, $event);
+                refreshLog();"
+        />
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <!-- @if (settingsInitialized()) {
-            <app-input-checkbox
-                [checked]="form.get('input')?.disabled"
-                label="Disabled"
-                (onChange)="
-                    $event ? form.get('input')?.disable() : form.get('input')?.enable();
-                    refreshLog();
-                "
-            />
-            <app-input-checkbox
-                [checked]="selected()"
-                label="Selected"
-                (onChange)="
-                    selected.set($event);
-                    refreshLastInteractionTime();
-                    refreshLog();
-                "
-            />
-        } -->
+        <app-input-checkbox
+            [checked]="form.get('input')?.disabled"
+            label="Disabled"
+            (onChange)="
+                $event ? form.get('input')?.disable() : form.get('input')?.enable();
+                refreshLog();
+            "
+        />
+        <app-input-checkbox
+            [checked]="textbox().selected()"
+            label="Selected"
+            (onChange)="
+                textbox().setSelected($event);
+                refreshLog();
+            "
+        />
     </app-configuration-section>
 
     <app-configuration-section title="Form controls">
-        <!-- <div class="form-state">
+        <div class="form-state">
             <span>{{ form.touched ? 'Touched' : 'Untouched' }}</span>
             <span>{{ form.dirty ? 'Dirty' : 'Pristine' }}</span>
             <span>{{ form.disabled ? 'Disabled' : (form.valid ? 'Valid' : 'Invalid') }}</span>
@@ -80,7 +103,7 @@
                     'minLength',
                     minLength());
             "
-        /> -->
+        />
     </app-configuration-section>
 </div>
 
@@ -90,12 +113,12 @@
 >
     <mv-lib-textbox-classic
         #mvLibTextboxClassic
-        
+        formControlName="input"
         class="component"
         [styles]="style()"
         [settings]="settings()"
         [effects]="effects()"
-        [selected]="selected()"
+        [(selected)]="selected"
         (onChange)="
             form.get('input')?.setValue($event.input);
             refreshLastInteractionTime();
@@ -114,5 +137,3 @@ input: {{ form.get('input')?.value }}<br/>
 &lt;mv-lib-textbox-classic{{ log() }}/&gt;
 </pre>
 </form>
-
-<!-- formControlName="input" -->

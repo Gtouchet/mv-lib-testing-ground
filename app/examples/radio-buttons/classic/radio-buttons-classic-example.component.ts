@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
 import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
@@ -23,7 +23,9 @@ interface User {
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class RadioButtonsClassicExampleComponent extends BaseExampleComponent {
+export class RadioButtonsClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
+
+    protected radioButtons = viewChild.required<MvLibRadioButtonsClassicComponent<User>>('mvLibRadioButtonsClassic');
 
     protected style = signal<Partial<MvLibRadioButtonsClassicStyle>>({
         groupGap: '6px',
@@ -63,11 +65,13 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent {
         { id: 9, name: 'Ivy' },
     ]);
 
-    protected override refreshLog() {
-        var result = ``;
-        ['style', 'effects', 'settings', 'disabled'].forEach(property => {
-        result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
-        });
-        this.log.set(result);
+    ngAfterViewInit() {
+        this.logProperties = [
+            { property: 'style', value: this.radioButtons().computedStyles },
+            { property: 'effects', value: this.radioButtons().computedEffects },
+            { property: 'settings', value: this.radioButtons().computedSettings },
+            { property: 'disabled', value: this.disabled },
+        ];
+        this.refreshLog();
     }
 }

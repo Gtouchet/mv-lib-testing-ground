@@ -10,12 +10,12 @@ import { HomeComponent } from './home.component';
 
 export const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: '/home' },
-	{ path: 'home', component: HomeComponent },
-	{ path: 'button-classic-example', component: ButtonClassicExampleComponent },
-	{ path: 'dropdown-classic-example', component: DropdownClassicExampleComponent },
-	{ path: 'radio-buttons-classic-example', component: RadioButtonsClassicExampleComponent },
-	{ path: 'switch-classic-example', component: SwitchClassicExampleComponent },
-	{ path: 'switch-lite-example', component: SwitchLiteExampleComponent },
-	{ path: 'textbox-classic-example', component: TextboxClassicExampleComponent },
-	{ path: 'toast-classic-example', component: ToastClassicExampleComponent },
+	{ path: 'home', component: HomeComponent, data: { title: 'Home' } },
+	{ path: 'button-classic-example', component: ButtonClassicExampleComponent, data: { title: 'Button classic' } },
+	{ path: 'dropdown-classic-example', component: DropdownClassicExampleComponent, data: { title: 'Dropdown classic' } },
+	{ path: 'radio-buttons-classic-example', component: RadioButtonsClassicExampleComponent, data: { title: 'Radio buttons classic' } },
+	{ path: 'switch-classic-example', component: SwitchClassicExampleComponent, data: { title: 'Switch classic' } },
+	{ path: 'switch-lite-example', component: SwitchLiteExampleComponent, data: { title: 'Switch lite' } },
+	{ path: 'textbox-classic-example', component: TextboxClassicExampleComponent, data: { title: 'Textbox classic' } },
+	{ path: 'toast-classic-example', component: ToastClassicExampleComponent, data: { title: 'Toast classic' } },
 ];

@@ -1,19 +1,19 @@
 <div class="effect">
-    <!-- <app-input-checkbox
-        [checked]="checked()"
-        (onChange)="onChangeChecked($event)"
-    /> -->
+    <app-input-checkbox
+        [checked]="enabled()"
+        (onChange)="onChangeEnabled.emit($event)"
+    />
     <app-inputs-separator [title]="title() ?? 'Outline blur selected'" />
 </div>
 <div class="inputs-group">
-    <!-- Color
+    Color
     <app-input-color
-        [value]="color()"
-        (onChange)="onChangeColor($event)"
+        [value]="style().color"
+        (onChange)="onChangeStyle.emit({key: 'color', value: $event})"
     />
     Radius
     <app-input-text
-        [value]="radius()"
-        (onChange)="onChangeRadius($event)"
-    /> -->
+        [value]="style().radius"
+        (onChange)="onChangeStyle.emit({key: 'radius', value: $event})"
+    />
 </div>

@@ -14,6 +14,10 @@ export abstract class BaseExampleComponent {
 
     protected disabled = signal(false);
 
+    constructor() {
+        this.initForm();
+    }
+
     /**
      * Forms
      */

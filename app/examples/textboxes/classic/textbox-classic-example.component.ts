@@ -21,7 +21,6 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent impleme
   protected textbox = viewChild.required<MvLibTextboxClassicComponent>('mvLibTextboxClassic');
 
   protected style = signal<Partial<MvLibTextboxClassicStyle>>({
-    backgroundColor: this.appStyles.var('button-classic-background-color'),
     dimensions: {
       width: '150px',
       height: '32px',
@@ -69,8 +68,8 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent impleme
       { property: 'style', value: this.textbox().computedStyles },
       { property: 'effects', value: this.textbox().computedEffects },
       { property: 'settings', value: this.textbox().computedSettings },
-      { property: 'selected', value: this.selected },
-      { property: 'disabled', value: this.disabled },
+      { property: 'selected', value: this.textbox().selected },
+      { property: 'disabled', value: this.textbox().isDisabled },
     ];
     this.refreshLog();
   }

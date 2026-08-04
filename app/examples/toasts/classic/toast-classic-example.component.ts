@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, computed, inject, signal } from "@angular/core";
+import { Component, ChangeDetectionStrategy, computed, inject, signal, AfterViewInit } from "@angular/core";
 import { MvLibToastService, MvLibButtonClassicComponent } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
@@ -17,7 +17,7 @@ import { INPUTS } from "../../../inputs/_inputs.export";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class ToastClassicExampleComponent extends BaseExampleComponent {
+export class ToastClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
 
   protected toastService = inject(MvLibToastService);
 
@@ -49,11 +49,7 @@ export class ToastClassicExampleComponent extends BaseExampleComponent {
     }
   }
 
-  protected override refreshLog() {
-    var result = ``;
-    ['style', 'effects', 'settings', 'disabled'].forEach(property => {
-      result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
-    });
-    this.log.set(result);
+  ngAfterViewInit() {
+    this.refreshLog();
   }
 }

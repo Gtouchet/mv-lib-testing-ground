@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
 import { MvLibSwitchClassicAnimations, MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyle } from 'mv-lib';
 import { INPUTS } from '../../../inputs/_inputs.export';
@@ -15,6 +15,8 @@ import { INPUTS } from '../../../inputs/_inputs.export';
   standalone: true,
 })
 export class SwitchClassicExampleComponent extends BaseExampleComponent {
+
+  protected switch = viewChild.required<MvLibSwitchClassicComponent>('mvLibSwitchClassic');
   
   protected style = signal<Partial<MvLibSwitchClassicStyle>>({
     track: {
@@ -32,19 +34,7 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
   });
 
   protected effects = signal<Partial<MvLibSwitchClassicEffects>>({
-    parts: {
-      track: {
-        classes: [
-          this.mvLibEffects.idle.shadow.class,
-          this.mvLibEffects.hover.tint.class,
-          this.mvLibEffects.click.push.class,
-          this.mvLibEffects.release.ripple.class,
-        ],
-      },
-      cursor: {
-        
-      },
-    },
+    
   });
 
   protected animations = signal<Partial<MvLibSwitchClassicAnimations>>({
@@ -57,11 +47,14 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
 
   protected active = signal(false);
 
-  protected override refreshLog() {
-    var result = ``;
-    ['style', 'effects', 'settings', 'disabled'].forEach(property => {
-      result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
-    });
-    this.log.set(result);
+  ngAfterViewInit() {
+    this.logProperties = [
+      { property: 'style', value: this.switch().computedStyles },
+      { property: 'effects', value: this.switch().computedEffects },
+      { property: 'settings', value: this.switch().computedSettings },
+      { property: 'active', value: this.active },
+      { property: 'disabled', value: this.disabled },
+    ];
+    this.refreshLog();
   }
 }
