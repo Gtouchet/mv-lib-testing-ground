@@ -59,6 +59,8 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
   protected active = signal(false);
 
   ngAfterViewInit() {
+    this.selectedPartStyle.set('track');
+    this.selectedPartEffects.set('track');
     this.logProperties = [
       { property: 'style', value: this.switch().computedStyles },
       { property: 'effects', value: this.switch().computedEffects },

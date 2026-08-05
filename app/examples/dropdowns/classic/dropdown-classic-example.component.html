@@ -2,9 +2,21 @@
 
     <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
         <div buttons class="type-buttons">
-            <app-input-button label="Button" (onClick)="selectedPartStyle.set('button')" />
-            <app-input-button label="List" (onClick)="selectedPartStyle.set('list')" />
-            <app-input-button label="Item" (onClick)="selectedPartStyle.set('item')" />
+            <app-input-button
+                label="Button"
+                [backgroundColor]="selectedPartStyle() === 'button' ? 'darkgray' : undefined"
+                (onClick)="selectedPartStyle.set('button')"
+            />
+            <app-input-button
+                label="List"
+                [backgroundColor]="selectedPartStyle() === 'list' ? 'darkgray' : undefined"
+                (onClick)="selectedPartStyle.set('list')"
+            />
+            <app-input-button
+                label="Item"
+                [backgroundColor]="selectedPartStyle() === 'item' ? 'darkgray' : undefined"
+                (onClick)="selectedPartStyle.set('item')"
+            />
         </div>
         @if (selectedPartStyle() === 'button') {
             <app-inputs-separator title="General" />
@@ -59,9 +71,21 @@
     
     <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
         <div buttons class="type-buttons">
-            <app-input-button label="Button" (onClick)="selectedPartEffects.set('button')" />
-            <app-input-button label="List" (onClick)="selectedPartEffects.set('list')" />
-            <app-input-button label="Item" (onClick)="selectedPartEffects.set('item')" />
+            <app-input-button
+                label="Button"
+                [backgroundColor]="selectedPartEffects() === 'button' ? 'darkgray' : undefined"
+                (onClick)="selectedPartEffects.set('button')"
+            />
+            <app-input-button
+                label="List"
+                [backgroundColor]="selectedPartEffects() === 'list' ? 'darkgray' : undefined"
+                (onClick)="selectedPartEffects.set('list')"
+            />
+            <app-input-button
+                label="Item"
+                [backgroundColor]="selectedPartEffects() === 'item' ? 'darkgray' : undefined"
+                (onClick)="selectedPartEffects.set('item')"
+            />
         </div>
         @if (selectedPartEffects() === 'button') {
             <app-shadow-idle-inputs

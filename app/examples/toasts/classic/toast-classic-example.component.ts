@@ -50,6 +50,8 @@ export class ToastClassicExampleComponent extends BaseExampleComponent implement
   }
 
   ngAfterViewInit() {
+    this.selectedPartStyle.set('success');
+    this.selectedPartEffects.set('success');
     this.refreshLog();
   }
 }
