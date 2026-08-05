@@ -1,165 +1,144 @@
 <div class="configuration">
 
-    <app-configuration-section title="Styles">
-        <!-- <b>
-            Button
-        </b>
-        <app-input-number
-            [value]="styles().buttonWidthPx"
-            label="Button width px"
-            (onChange)="setStyle('buttonWidthPx', $event)"
-        />
-        <app-input-number
-            [value]="styles().buttonHeightPx"
-            label="Button height px"
-            (onChange)="setStyle('buttonHeightPx', $event)"
-        />
-        <app-input-color
-            [value]="styles().buttonBackgroundColor"
-            label="Button background color"
-            (onChange)="setStyle('buttonBackgroundColor', $event)"
-        />
-        <app-input-color
-            [value]="styles().buttonTextColor"
-            label="Button text color"
-            (onChange)="setStyle('buttonTextColor', $event)"
-        />
-        <b>
-            List
-        </b>
-        <app-input-number
-            [value]="styles().listMaxHeightPx"
-            label="List max height px"
-            (onChange)="setStyle('listMaxHeightPx', $event)"
-        />
-        <b>
-            Item
-        </b>
-        <app-input-number
-            [value]="styles().itemHeightPx"
-            label="Item height px"
-            (onChange)="setStyle('itemHeightPx', $event)"
-        />        
-        <app-input-color
-            [value]="styles().itemBackgroundColor"
-            label="Item background color"
-            (onChange)="setStyle('itemBackgroundColor', $event)"
-        />
-        <app-input-color
-            [value]="styles().itemTextColor"
-            label="Item text color"
-            (onChange)="setStyle('itemTextColor', $event)"
-        /> -->
+    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+        <div buttons class="type-buttons">
+            <app-input-button label="Button" (onClick)="selectedPartStyle.set('button')" />
+            <app-input-button label="List" (onClick)="selectedPartStyle.set('list')" />
+            <app-input-button label="Item" (onClick)="selectedPartStyle.set('item')" />
+        </div>
+        @if (selectedPartStyle() === 'button') {
+            <app-inputs-separator title="General" />
+            <app-input-color
+                label="Background color"
+                [value]="dropdown().computedStyles().button.backgroundColor"
+                (onChange)="dropdown().setStyle('button.backgroundColor', $event); refreshLog();"
+            />
+            <app-dimensions-inputs
+                [dimensions]="dropdown().computedStyles().button.dimensions!"
+                (onChangeDimensions)="dropdown().setStyle(`button.dimensions.${$event.key}`, $event.value); refreshLog();"
+            />
+            <app-border-inputs
+                [border]="dropdown().computedStyles().button.border!"
+                (onChangeBorder)="dropdown().setStyle(`button.border.${$event.key}`, $event.value); refreshLog();"
+            />
+            <app-font-inputs
+                [font]="dropdown().computedStyles().button.font!"
+                (onChangeFont)="dropdown().setStyle(`button.font.${$event.key}`, $event.value); refreshLog();"
+            />
+        }
+        @else if (selectedPartStyle() === 'list') {
+            <app-inputs-separator title="General" />
+            <app-input-text
+                label="Max height"
+                [value]="dropdown().computedStyles().list.maxHeight"
+                (onChange)="dropdown().setStyle('list.maxHeight', $event); refreshLog();"
+            />
+            <app-border-inputs
+                [border]="dropdown().computedStyles().list.border!"
+                (onChangeBorder)="dropdown().setStyle(`list.border.${$event.key}`, $event.value); refreshLog();"
+            />
+        }
+        @else if (selectedPartStyle() === 'item') {
+            <app-inputs-separator title="General" />
+            <app-input-color
+                label="Background color"
+                [value]="dropdown().computedStyles().item.backgroundColor"
+                (onChange)="dropdown().setStyle('item.backgroundColor', $event); refreshLog();"
+            />
+            <app-input-text
+                label="Height"
+                [value]="dropdown().computedStyles().item.height"
+                (onChange)="dropdown().setStyle('item.height', $event); refreshLog();"
+            />
+            <app-font-inputs
+                [font]="dropdown().computedStyles().item.font!"
+                (onChangeFont)="dropdown().setStyle(`item.font.${$event.key}`, $event.value); refreshLog();"
+            />
+        }
     </app-configuration-section>
     
-    <app-configuration-section title="Effects">
-        <!-- <b>
-            Button idle
-        </b>
-        <app-input-checkbox
-            
-            label="Shadow"
-            (onChange)="setEffect('shadow', $event)"
-        />
-        <b>
-            Button hover
-        </b>
-        <app-input-checkbox
-            
-            label="Darken"
-            (onChange)="setEffect('darken', $event)"
-        />
-        <b>
-            Button click
-        </b>
-        <app-input-checkbox
-            
-            label="Push"
-            (onChange)="setEffect('push', $event)"
-        />
-        <app-input-checkbox
-            
-            label="Ripple"
-            (onChange)="setEffect('ripple', $event)"
-        />
-        <b>
-            List idle
-        </b>
-        <app-input-checkbox
-            
-            label="Shadow"
-            (onChange)="setEffect('shadow', $event)"
-        />
-        <b>
-            Item hover
-        </b>
-        <app-input-checkbox
-            
-            label="Darken"
-            (onChange)="setEffect('darken', $event)"
-        />
-        <b>
-            Item click
-        </b>
-        <app-input-checkbox
-            
-            label="Push"
-            (onChange)="setEffect('push', $event)"
-        />
-        <app-input-checkbox
-            
-            label="Ripple"
-            (onChange)="setEffect('ripple', $event)"
-        /> -->
+    <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
+        <div buttons class="type-buttons">
+            <app-input-button label="Button" (onClick)="selectedPartEffects.set('button')" />
+            <app-input-button label="List" (onClick)="selectedPartEffects.set('list')" />
+            <app-input-button label="Item" (onClick)="selectedPartEffects.set('item')" />
+        </div>
+        @if (selectedPartEffects() === 'button') {
+            <app-shadow-idle-inputs
+                [enabled]="dropdown().hasEffectClass('button', mvLibEffects.idle.shadow.class)"
+                [style]="dropdown().computedEffects().parts.button!.styles!.shadowIdle!"
+                (onChangeEnabled)="dropdown().setEffect(`button.${mvLibEffects.idle.shadow.class}`, $event); refreshLog();"
+                (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.idle.shadow.name}`, $event); refreshLog();"
+            />
+            <app-tint-hover-inputs
+                [enabled]="dropdown().hasEffectClass('button', mvLibEffects.hover.tint.class)"
+                [style]="dropdown().computedEffects().parts.button!.styles!.tintHover!"
+                (onChangeEnabled)="dropdown().setEffect(`button.${mvLibEffects.hover.tint.class}`, $event); refreshLog();"
+                (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.hover.tint.name}`, $event); refreshLog();"
+            />
+            <app-push-click-inputs
+                [enabled]="dropdown().hasEffectClass('button', mvLibEffects.click.push.class)"
+                [style]="dropdown().computedEffects().parts.button!.styles!.pushClick!"
+                (onChangeEnabled)="dropdown().setEffect(`button.${mvLibEffects.click.push.class}`, $event); refreshLog();"
+                (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.click.push.name}`, $event); refreshLog();"
+            />
+            <app-ripple-release-inputs
+                [enabled]="dropdown().hasEffectClass('button', mvLibEffects.release.ripple.class)"
+                [style]="dropdown().computedEffects().parts.button!.styles!.rippleRelease!"
+                (onChangeEnabled)="dropdown().setEffect(`button.${mvLibEffects.release.ripple.class}`, $event); refreshLog();"
+                (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.release.ripple.name}`, $event); refreshLog();"
+            />
+        }
+        @else if (selectedPartEffects() === 'list') {
+            <app-shadow-idle-inputs
+                [enabled]="dropdown().hasEffectClass('list', mvLibEffects.idle.shadow.class)"
+                [style]="dropdown().computedEffects().parts.list!.styles!.shadowIdle!"
+                (onChangeEnabled)="dropdown().setEffect(`list.${mvLibEffects.idle.shadow.class}`, $event); refreshLog();"
+                (onChangeStyle)="dropdown().setEffectStyle(`list.${mvLibEffects.idle.shadow.name}`, $event); refreshLog();"
+            />
+        }
+        @else if (selectedPartEffects() === 'item') {
+            <app-tint-hover-inputs
+                [enabled]="dropdown().hasEffectClass('item', mvLibEffects.hover.tint.class)"
+                [style]="dropdown().computedEffects().parts.item!.styles!.tintHover!"
+                (onChangeEnabled)="dropdown().setEffect(`item.${mvLibEffects.hover.tint.class}`, $event); refreshLog();"
+                (onChangeStyle)="dropdown().setEffectStyle(`item.${mvLibEffects.hover.tint.name}`, $event); refreshLog();"
+            />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <!-- <app-input-checkbox
+        <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
-            (onChange)="
-                disabled.set($event);
-                refreshLog();
-            "
+            (onChange)="disabled.set($event); refreshLog();"
         />
         <app-input-checkbox
             [checked]="opened()"
             label="Opened"
-            (onChange)="
-                opened.set($event);
-                refreshLog();
-            "
+            (onChange)="opened.set($event); refreshLog();"
         />
         <app-input-checkbox
             [checked]="settings().closeOnItemSelect"
             label="Close on item select"
-            (onChange)="
-                setSettings('closeOnItemSelect', $event);
-                refreshLog();
-            "
+            (onChange)="dropdown().setSettings('closeOnItemSelect', $event); refreshLog();"
         />
         <app-input-checkbox
             [checked]="settings().closeOnOutsideClick"
             label="Close on outside click"
-            (onChange)="
-                setSettings('closeOnOutsideClick', $event);
-                refreshLog();
-            "
+            (onChange)="dropdown().setSettings('closeOnOutsideClick', $event); refreshLog();"
         />
         <app-input-checkbox
             [checked]="settings().resetButton"
             label="Reset button"
-            (onChange)="
-                setSettings('resetButton', $event);
-                refreshLog();
-            "
-        /> -->
+            (onChange)="dropdown().setSettings('resetButton', $event); refreshLog();"
+        />
     </app-configuration-section>
 </div>
 
 <div class="visual">
     <mv-lib-dropdown-classic
-        #mvLibComponent
+        #mvLibDropdownClassic
         class="component"
         [styles]="style()"
         [effects]="effects()"
@@ -169,8 +148,8 @@
         [disabled]="disabled()"
         [opened]="opened()"
         (onSelect)="refreshLastInteractionTime()"
-        (onOpen)="
-            opened.set($event.opened);
+        (onToggle)="
+            opened.set($event.state);
             refreshLastInteractionTime();
         "
     >
@@ -203,6 +182,6 @@
 <pre class="log">
 Last interaction time: {{ lastInteractionTime() }}<br/>
 selected: {{ selectedItem() | json }}<br/>
-{{ log() }}
+&lt;mv-lib-dropdown-classic{{ log() }}/&gt;
 </pre>
 </div>

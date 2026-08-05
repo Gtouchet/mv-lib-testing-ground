@@ -34,7 +34,18 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
   });
 
   protected effects = signal<Partial<MvLibSwitchClassicEffects>>({
-    
+    parts: {
+      track: {
+        classes: [
+          this.mvLibEffects.idle.shadow.class,
+        ],
+      },
+      cursor: {
+        classes: [
+          this.mvLibEffects.hover.resize.class,
+        ],
+      }
+    },
   });
 
   protected animations = signal<Partial<MvLibSwitchClassicAnimations>>({

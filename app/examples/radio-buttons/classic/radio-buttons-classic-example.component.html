@@ -5,48 +5,36 @@
             Group gap
             <app-input-text
                 [value]="radioButtons().computedStyles().groupGap"
-                (onChange)="
-                    radioButtons().setStyle('groupGap', $event);
-                    refreshLog();"
+                (onChange)="radioButtons().setStyle('groupGap', $event); refreshLog();"
             />
             Content gap
             <app-input-text
                 [value]="radioButtons().computedStyles().contentGap"
-                (onChange)="
-                    radioButtons().setStyle('contentGap', $event);
-                    refreshLog();"
+                (onChange)="radioButtons().setStyle('contentGap', $event); refreshLog();"
             />
         </div>
         <app-inputs-separator title="Buttons" />
         <app-input-text
             [value]="radioButtons().computedStyles().size"
             label="Size"
-            (onChange)="
-                radioButtons().setStyle('size', $event);
-                refreshLog();"
+            (onChange)="radioButtons().setStyle('size', $event); refreshLog();"
         />
         <div class="inputs-group">
             Background color
             <app-input-color
                 [value]="radioButtons().computedStyles().backgroundColor"
-                (onChange)="
-                    radioButtons().setStyle('backgroundColor', $event);
-                    refreshLog();"
+                (onChange)="radioButtons().setStyle('backgroundColor', $event); refreshLog();"
             />
             Selected color
             <app-input-color
                 [value]="radioButtons().computedStyles().selectedColor"
-                (onChange)="
-                    radioButtons().setStyle('selectedColor', $event);
-                    refreshLog();"
+                (onChange)="radioButtons().setStyle('selectedColor', $event); refreshLog();"
             />
         </div>
         <app-font-inputs
             title="Content font"
             [font]="radioButtons().computedStyles().contentFont"
-            (onChangeFont)="
-                radioButtons().setStyle(`contentFont.${$event.key}`, $event.value);
-                refreshLog();"
+            (onChangeFont)="radioButtons().setStyle(`contentFont.${$event.key}`, $event.value); refreshLog();"
         />
     </app-configuration-section>
 
@@ -54,22 +42,14 @@
         <app-shadow-idle-inputs
             [enabled]="radioButtons().hasEffectClass(mvLibEffects.idle.shadow.class)"
             [style]="radioButtons().computedEffects().styles.shadowIdle!"
-            (onChangeEnabled)="
-                radioButtons().setEffect(mvLibEffects.idle.shadow.class, $event);
-                refreshLog();"
-            (onChangeStyle)="
-                radioButtons().setEffectStyle(mvLibEffects.idle.shadow.name, $event);
-                refreshLog();"
+            (onChangeEnabled)="radioButtons().setEffect(mvLibEffects.idle.shadow.class, $event); refreshLog();"
+            (onChangeStyle)="radioButtons().setEffectStyle(mvLibEffects.idle.shadow.name, $event); refreshLog();"
         />
         <app-resize-hover-inputs
             [enabled]="radioButtons().hasEffectClass(mvLibEffects.hover.resize.class)"
             [style]="radioButtons().computedEffects().styles.resizeHover!"
-            (onChangeEnabled)="
-                radioButtons().setEffect(mvLibEffects.hover.resize.class, $event);
-                refreshLog();"
-            (onChangeStyle)="
-                radioButtons().setEffectStyle(mvLibEffects.hover.resize.name, $event);
-                refreshLog();"
+            (onChangeEnabled)="radioButtons().setEffect(mvLibEffects.hover.resize.class, $event); refreshLog();"
+            (onChangeStyle)="radioButtons().setEffectStyle(mvLibEffects.hover.resize.name, $event); refreshLog();"
         />
     </app-configuration-section>
 
@@ -77,35 +57,23 @@
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
-            (onChange)="
-                disabled.set($event);
-                refreshLog();
-            "
+            (onChange)="disabled.set($event); refreshLog();"
         />
         <app-input-checkbox
             [checked]="settings().selectOnLabelClick"
             label="Select on label click"
-            (onChange)="
-                radioButtons().setSettings('selectOnLabelClick', $event);
-                refreshLog();
-            "
+            (onChange)="radioButtons().setSettings('selectOnLabelClick', $event); refreshLog();"
         />
         <app-input-checkbox
             [checked]="settings().deselectable"
             label="Deselectable"
-            (onChange)="
-                radioButtons().setSettings('deselectable', $event);
-                refreshLog();
-            "
+            (onChange)="radioButtons().setSettings('deselectable', $event); refreshLog();"
         />
         <app-inputs-separator title="Orientation" />
         <app-input-radio
             [values]="['vertical', 'horizontal']"
             [selected]="radioButtons().getSettings().orientation"
-            (onChange)="
-                radioButtons().setSettings('orientation', $any($event));
-                refreshLog();
-            "
+            (onChange)="radioButtons().setSettings('orientation', $any($event)); refreshLog();"
         />
         <app-inputs-separator title="API" />
         <div class="inputs-group">
@@ -115,18 +83,11 @@
                 [min]="1"
                 [max]="items().length"
                 [width]="'50px'"
-                (onChange)="
-                    radioButtons().setSelected(items()[$event! - 1]);
-                    refreshLastInteractionTime();
-                "
-
+                (onChange)="radioButtons().setSelected(items()[$event! - 1]); refreshLastInteractionTime();"
             />
             <app-input-button
                 label="Reset selection"
-                (onClick)="
-                    radioButtons().setSelected(undefined);
-                    refreshLastInteractionTime();
-                "
+                (onClick)="radioButtons().setSelected(undefined); refreshLastInteractionTime();"
             />
         </div>
     </app-configuration-section>

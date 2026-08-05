@@ -12,6 +12,10 @@ export abstract class BaseExampleComponent {
 
     public readonly mvLibEffects = MV_LIB_EFFECTS;
 
+    protected selectedPartStyle = signal<string | undefined>(undefined);
+    protected selectedPartEffects = signal<string | undefined>(undefined);
+    protected selectedPartSettings = signal<string | undefined>(undefined);
+
     protected disabled = signal(false);
 
     constructor() {

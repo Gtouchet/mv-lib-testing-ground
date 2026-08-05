@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
-import { MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
+import { ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
+import { MvLibDropdownClassicAnimations, MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { INPUTS } from "../../../inputs/_inputs.export";
 import { JsonPipe } from "@angular/common";
@@ -25,26 +25,52 @@ interface User {
 })
 export class DropdownClassicExampleComponent extends BaseExampleComponent {
 
-  protected style = signal<Partial<MvLibDropdownClassicStyle>>({
-    buttonWidthPx: 150,
-    buttonHeightPx: 40,
-    buttonBackgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
-    buttonTextColor: this.appStyles.var('dropdown-classic-button-text-color'),
+  protected dropdown = viewChild.required<MvLibDropdownClassicComponent<User>>('mvLibDropdownClassic');
 
-    listMaxHeightPx: 150,
-    
-    itemHeightPx: 25,
-    itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
-    itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
+  protected style = signal<Partial<MvLibDropdownClassicStyle>>({
+    button: {
+      backgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
+      dimensions: {
+        width: '150px',
+        height: '40px',
+      },
+      font: {
+        color: this.appStyles.var('dropdown-classic-button-text-color'),
+      }
+    },
+    item: {
+      backgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
+      font: {
+        color: this.appStyles.var('dropdown-classic-item-text-color'),
+      },
+    },
   });
 
   protected effects = signal<Partial<MvLibDropdownClassicEffects>>({
-
+    parts: {
+      button: {
+        classes: [
+          this.mvLibEffects.idle.shadow.class,
+          this.mvLibEffects.hover.tint.class,
+          this.mvLibEffects.click.push.class,
+        ],
+      },
+      list: {
+        classes: [
+          this.mvLibEffects.idle.shadow.class,
+        ],
+      },
+      item: {
+        classes: [
+          this.mvLibEffects.hover.tint.class,
+        ],
+      },
+    },
   });
 
-  // protected animations = signal<Partial<MvLibDropdownClassicAnimations>>({
+  protected animations = signal<Partial<MvLibDropdownClassicAnimations>>({
 
-  // });
+  });
   
   protected settings = signal<Partial<MvLibDropdownClassicSettings>>({
     closeOnItemSelect: true,
@@ -67,12 +93,17 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
     { id: 8, icon: 'person', name: 'Henry' },
     { id: 9, icon: 'person', name: 'Ivy' },
   ]);
-
-  protected override refreshLog() {
-    var result = ``;
-    ['style', 'effects', 'settings', 'disabled'].forEach(property => {
-      result += `    [${property}]=\"${this.prettify((this as any)[property])}\",\n`;
-    });
-    this.log.set(result);
+  
+  ngAfterViewInit() {
+    this.selectedPartStyle.set('button');
+    this.selectedPartEffects.set('button');
+    this.logProperties = [
+      { property: 'style', value: this.dropdown().computedStyles },
+      { property: 'effects', value: this.dropdown().computedEffects },
+      { property: 'settings', value: this.dropdown().computedSettings },
+      { property: 'opened', value: this.opened },
+      { property: 'disabled', value: this.disabled },
+    ];
+    this.refreshLog();
   }
 }

@@ -117,6 +117,13 @@
             },
             backgroundColor: configuration.styles.backgroundColor,
         }"
+        [effects]="{
+            classes: [
+                mvLibEffects.idle.shadow.class,
+                mvLibEffects.hover.tint.class,
+                mvLibEffects.click.push.class,
+            ],
+        }"
         (onClick)="
             refreshLastInteractionTime();
             $any(toastService)[type.toLowerCase()](

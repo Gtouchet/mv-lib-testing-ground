@@ -16,10 +16,6 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
             The project is still in its early stages, so you may encounter some bugs or missing features.<br/>
             I am actively working on fixing issues and adding new functionality.<br/>
         </p>
-        <p style="color: red">
-            I am currently refactoring the library's styles and effects.<br/>
-            Dropdown is not working properly, and the lite version of the switch is broken.<br/>
-        </p>
     </div>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,

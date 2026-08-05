@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import {
+  MV_LIB_EFFECTS,
   MvLibButtonClassicComponent,
   MvLibDropdownClassicComponent,
   MvLibDropdownClassicEffects,
@@ -84,7 +85,7 @@ export class AppComponent {
       selected: undefined,
       items: [
         { type: 'Classic', routerLink: '/switch-classic-example' },
-        { type: 'Lite', routerLink: '/switch-lite-example', wip: true },
+        // { type: 'Lite', routerLink: '/switch-lite-example', wip: true },
       ],
     },
     { 
@@ -106,17 +107,45 @@ export class AppComponent {
   ]);
 
   protected dropdownsStyles: Partial<MvLibDropdownClassicStyle> = {
-    buttonWidthPx: 175,
-    buttonHeightPx: 32,
-    itemHeightPx: 32,
-    listMaxHeightPx: 150,
-    buttonBackgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
-    buttonTextColor: this.appStyles.var('dropdown-classic-button-text-color'),
-    itemBackgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
-    itemTextColor: this.appStyles.var('dropdown-classic-item-text-color'),
+    button: {
+      backgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
+      dimensions: {
+        width: '175px',
+        height: '32px',
+      },
+      font: {
+        color: this.appStyles.var('dropdown-classic-button-text-color'),
+      },
+    },
+    item: {
+      backgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
+      height: '32px',
+      font: {
+        color: this.appStyles.var('dropdown-classic-item-text-color'),
+      },
+    },
   };
-  protected dropdownsEffects: Partial<MvLibDropdownClassicEffects> = {
 
+  protected dropdownsEffects: Partial<MvLibDropdownClassicEffects> = {
+    parts: {
+      button: {
+        classes: [
+          MV_LIB_EFFECTS.idle.shadow.class,
+          MV_LIB_EFFECTS.hover.tint.class,
+          MV_LIB_EFFECTS.click.push.class,
+        ],
+      },
+      list: {
+        classes: [
+          MV_LIB_EFFECTS.idle.shadow.class,
+        ],
+      },
+      item: {
+        classes: [
+          MV_LIB_EFFECTS.hover.tint.class,
+        ],
+      },
+    }
   };
 
   protected onItemSelect(item: Item, dropdownName: string): void {
@@ -133,11 +162,9 @@ export class AppComponent {
 
   private updateDocumentTitle(): void {
     let route = this.router.routerState.root;
-
     while (route.firstChild) {
       route = route.firstChild;
     }
-
     const title = route?.snapshot?.data['title'] ?? 'Home';
     this.titleService.setTitle(`MV Lib - ${title}`);
   }
