@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, computed, inject, signal, AfterViewInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, computed, inject, signal, AfterViewInit, OnInit } from "@angular/core";
 import { MvLibToastService, MvLibButtonClassicComponent } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
@@ -17,7 +17,7 @@ import { INPUTS } from "../../../inputs/_inputs.export";
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class ToastClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
+export class ToastClassicExampleComponent extends BaseExampleComponent implements OnInit, AfterViewInit {
 
   protected toastService = inject(MvLibToastService);
 
@@ -26,17 +26,13 @@ export class ToastClassicExampleComponent extends BaseExampleComponent implement
   protected error = signal({title: 'Error', icon: 'error', message: 'Error message' });
   protected info = signal({title: 'Info', icon: 'info', message: 'Info message' });
 
-  protected selectedStyleType = signal<string>('success');
-  protected selectedEffectType = signal<string>('success');
-  protected selectedSettingsType = signal<string>('success');
+  protected selectedStyleConfiguration = computed(() => this.getConfiguration(this.selectedPartStyle()!));
+  protected selectedEffectConfiguration = computed(() => this.getConfiguration(this.selectedPartEffects()!));
+  protected selectedSettingsConfiguration = computed(() => this.getConfiguration(this.selectedPartSettings()!));
 
-  protected selectedStyleConfiguration = computed(() => this.getConfiguration(this.selectedStyleType()));
-  protected selectedEffectConfiguration = computed(() => this.getConfiguration(this.selectedEffectType()));
-  protected selectedSettingsConfiguration = computed(() => this.getConfiguration(this.selectedSettingsType()));
-
-  protected selectStyle = (type: string) => this.selectedStyleType.set(type);
-  protected selectEffect = (type: string) => this.selectedEffectType.set(type);
-  protected selectSettings = (type: string) => this.selectedSettingsType.set(type);
+  protected selectStyle = (type: string) => this.selectedPartStyle.set(type);
+  protected selectEffect = (type: string) => this.selectedPartEffects.set(type);
+  protected selectSettings = (type: string) => this.selectedPartSettings.set(type);
 
   private getConfiguration(type: string) {
     const configuration = this.toastService.configuration();
@@ -49,9 +45,13 @@ export class ToastClassicExampleComponent extends BaseExampleComponent implement
     }
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.selectedPartStyle.set('success');
     this.selectedPartEffects.set('success');
+    this.selectedPartSettings.set('success');
+  }
+
+  ngAfterViewInit() {
     this.refreshLog();
   }
 }
