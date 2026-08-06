@@ -4,52 +4,52 @@
         <div class="inputs-group">
             Group gap
             <app-input-text
-                [value]="radioButtons().computedStyles().groupGap"
+                [value]="radioButtons().getStyle().groupGap"
                 (onChange)="radioButtons().setStyle('groupGap', $event); refreshLog();"
             />
             Content gap
             <app-input-text
-                [value]="radioButtons().computedStyles().contentGap"
+                [value]="radioButtons().getStyle().contentGap"
                 (onChange)="radioButtons().setStyle('contentGap', $event); refreshLog();"
             />
         </div>
         <app-inputs-separator title="Buttons" />
         <app-input-text
-            [value]="radioButtons().computedStyles().size"
+            [value]="radioButtons().getStyle().size"
             label="Size"
             (onChange)="radioButtons().setStyle('size', $event); refreshLog();"
         />
         <div class="inputs-group">
             Background color
             <app-input-color
-                [value]="radioButtons().computedStyles().backgroundColor"
+                [value]="radioButtons().getStyle().backgroundColor"
                 (onChange)="radioButtons().setStyle('backgroundColor', $event); refreshLog();"
             />
             Selected color
             <app-input-color
-                [value]="radioButtons().computedStyles().selectedColor"
+                [value]="radioButtons().getStyle().selectedColor"
                 (onChange)="radioButtons().setStyle('selectedColor', $event); refreshLog();"
             />
         </div>
         <app-font-inputs
             title="Content font"
-            [font]="radioButtons().computedStyles().contentFont"
+            [font]="radioButtons().getStyle().contentFont"
             (onChangeFont)="radioButtons().setStyle(`contentFont.${$event.key}`, $event.value); refreshLog();"
         />
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
         <app-shadow-idle-inputs
-            [enabled]="radioButtons().hasEffectClass(mvLibEffects.idle.shadow.class)"
-            [style]="radioButtons().computedEffects().styles.shadowIdle!"
-            (onChangeEnabled)="radioButtons().setEffect(mvLibEffects.idle.shadow.class, $event); refreshLog();"
-            (onChangeStyle)="radioButtons().setEffectStyle(mvLibEffects.idle.shadow.name, $event); refreshLog();"
+            [enabled]="radioButtons().hasEffect(mvLibEffects.idle.shadow)"
+            [style]="radioButtons().getEffects().styles.shadowIdle!"
+            (onChangeEnabled)="radioButtons().toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
+            (onChangeStyle)="radioButtons().setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
         />
         <app-resize-hover-inputs
-            [enabled]="radioButtons().hasEffectClass(mvLibEffects.hover.resize.class)"
-            [style]="radioButtons().computedEffects().styles.resizeHover!"
-            (onChangeEnabled)="radioButtons().setEffect(mvLibEffects.hover.resize.class, $event); refreshLog();"
-            (onChangeStyle)="radioButtons().setEffectStyle(mvLibEffects.hover.resize.name, $event); refreshLog();"
+            [enabled]="radioButtons().hasEffect(mvLibEffects.hover.resize)"
+            [style]="radioButtons().getEffects().styles.resizeHover!"
+            (onChangeEnabled)="radioButtons().toggleEffect(mvLibEffects.hover.resize, $event); refreshLog();"
+            (onChangeStyle)="radioButtons().setEffectStyle(mvLibEffects.hover.resize, $event); refreshLog();"
         />
     </app-configuration-section>
 

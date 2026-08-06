@@ -10,33 +10,25 @@
         <app-input-select
             [values]="cssBorderStyles"
             [selectedValues]="[borderStyle()[0]]"
-            (onChange)="
-                borderStyle()[0] = $event;
-                onChangeBorder.emit({key: 'style', value: borderStyle().join(' ')});"
+            (onChange)="updateBorderStyle(0, $event)"
             [style.flex]="1"
         />
         <app-input-select
             [values]="cssBorderStyles"
             [selectedValues]="[borderStyle()[1]]"
-            (onChange)="
-                borderStyle()[1] = $event;
-                onChangeBorder.emit({key: 'style', value: borderStyle().join(' ')});"
+            (onChange)="updateBorderStyle(1, $event)"
             [style.flex]="1"
         />
         <app-input-select
             [values]="cssBorderStyles"
             [selectedValues]="[borderStyle()[2]]"
-            (onChange)="
-                borderStyle()[2] = $event;
-                onChangeBorder.emit({key: 'style', value: borderStyle().join(' ')});"
+            (onChange)="updateBorderStyle(2, $event)"
             [style.flex]="1"
         />
         <app-input-select
             [values]="cssBorderStyles"
             [selectedValues]="[borderStyle()[3]]"
-            (onChange)="
-                borderStyle()[3] = $event;
-                onChangeBorder.emit({key: 'style', value: borderStyle().join(' ')});"
+            (onChange)="updateBorderStyle(3, $event)"
             [style.flex]="1"
         />
     </div>

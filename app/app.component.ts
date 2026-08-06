@@ -127,25 +127,23 @@ export class AppComponent {
   };
 
   protected dropdownsEffects: Partial<MvLibDropdownClassicEffects> = {
-    parts: {
-      button: {
-        classes: [
-          MV_LIB_EFFECTS.idle.shadow.class,
-          MV_LIB_EFFECTS.hover.tint.class,
-          MV_LIB_EFFECTS.click.push.class,
-        ],
-      },
-      list: {
-        classes: [
-          MV_LIB_EFFECTS.idle.shadow.class,
-        ],
-      },
-      item: {
-        classes: [
-          MV_LIB_EFFECTS.hover.tint.class,
-        ],
-      },
-    }
+    button: {
+      classes: [
+        MV_LIB_EFFECTS.idle.shadow.class,
+        MV_LIB_EFFECTS.hover.tint.class,
+        MV_LIB_EFFECTS.click.push.class,
+      ],
+    },
+    list: {
+      classes: [
+        MV_LIB_EFFECTS.idle.shadow.class,
+      ],
+    },
+    item: {
+      classes: [
+        MV_LIB_EFFECTS.hover.tint.class,
+      ],
+    },
   };
 
   protected onItemSelect(item: Item, dropdownName: string): void {

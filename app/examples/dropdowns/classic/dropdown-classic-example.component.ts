@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/
 import { MvLibDropdownClassicAnimations, MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { INPUTS } from "../../../inputs/_inputs.export";
-import { JsonPipe } from "@angular/common";
+import { CommonModule, JsonPipe } from "@angular/common";
 
 interface User {
   id: number;
@@ -16,6 +16,7 @@ interface User {
     MvLibDropdownClassicComponent,
     MvLibDropdownDirectives,
     INPUTS,
+    CommonModule,
     JsonPipe,
   ],
   templateUrl: './dropdown-classic-example.component.html',
@@ -47,24 +48,22 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
   });
 
   protected effects = signal<Partial<MvLibDropdownClassicEffects>>({
-    parts: {
-      button: {
-        classes: [
-          this.mvLibEffects.idle.shadow.class,
-          this.mvLibEffects.hover.tint.class,
-          this.mvLibEffects.click.push.class,
-        ],
-      },
-      list: {
-        classes: [
-          this.mvLibEffects.idle.shadow.class,
-        ],
-      },
-      item: {
-        classes: [
-          this.mvLibEffects.hover.tint.class,
-        ],
-      },
+    button: {
+      classes: [
+        this.mvLibEffects.idle.shadow.class,
+        this.mvLibEffects.hover.tint.class,
+        this.mvLibEffects.click.push.class,
+      ],
+    },
+    list: {
+      classes: [
+        this.mvLibEffects.idle.shadow.class,
+      ],
+    },
+    item: {
+      classes: [
+        this.mvLibEffects.hover.tint.class,
+      ],
     },
   });
 
@@ -73,10 +72,9 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
   });
   
   protected settings = signal<Partial<MvLibDropdownClassicSettings>>({
-    closeOnItemSelect: true,
-    closeOnOutsideClick: true,
-    resetButton: true,
-    filterBy: 'name',
+    list: {
+      filterBy: 'name',
+    },
   });
 
   protected opened = signal(false);
@@ -97,10 +95,11 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
   ngAfterViewInit() {
     this.selectedPartStyle.set('button');
     this.selectedPartEffects.set('button');
+    this.selectedPartSettings.set('button');
     this.logProperties = [
-      { property: 'style', value: this.dropdown().computedStyles },
-      { property: 'effects', value: this.dropdown().computedEffects },
-      { property: 'settings', value: this.dropdown().computedSettings },
+      { property: 'style', value: () => this.dropdown().getStyle() },
+      { property: 'effects', value: () => this.dropdown().getEffects() },
+      { property: 'settings', value: () => this.dropdown().getSettings() },
       { property: 'opened', value: this.opened },
       { property: 'disabled', value: this.disabled },
     ];

@@ -67,9 +67,9 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent im
 
     ngAfterViewInit() {
         this.logProperties = [
-            { property: 'style', value: this.radioButtons().computedStyles },
-            { property: 'effects', value: this.radioButtons().computedEffects },
-            { property: 'settings', value: this.radioButtons().computedSettings },
+            { property: 'style', value: () => this.radioButtons().getStyle() },
+            { property: 'effects', value: () => this.radioButtons().getEffects() },
+            { property: 'settings', value: () => this.radioButtons().getSettings() },
             { property: 'disabled', value: this.disabled },
         ];
         this.refreshLog();

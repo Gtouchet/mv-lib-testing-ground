@@ -82,7 +82,7 @@ export abstract class BaseExampleComponent {
      * Logs
      */
     protected lastInteractionTime = signal<string>('--:--:--.--');
-    protected logProperties: { property: string, value: Signal<any> }[] = [];
+    protected logProperties: { property: string, value: (() => any) | any }[] = [];
     protected log = signal('');
 
     protected refreshLastInteractionTime() {
@@ -96,7 +96,12 @@ export abstract class BaseExampleComponent {
 
     protected refreshLog() {
         var result = `\n`;
-        this.logProperties.forEach(property => result += `    [${property.property}]=\"${this.prettify(property.value())}\",\n`);
+        this.logProperties.forEach(property => {
+            const value = typeof property.value === 'function'
+                ? property.value()
+                : property.value;
+            result += `    [${property.property}]="${this.prettify(value)}",\n`;
+        });
         this.log.set(result);
     }
 

@@ -34,17 +34,15 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
   });
 
   protected effects = signal<Partial<MvLibSwitchClassicEffects>>({
-    parts: {
-      track: {
-        classes: [
-          this.mvLibEffects.idle.shadow.class,
-        ],
-      },
-      cursor: {
-        classes: [
-          this.mvLibEffects.hover.resize.class,
-        ],
-      }
+    track: {
+      classes: [
+        this.mvLibEffects.idle.shadow.class,
+      ],
+    },
+    cursor: {
+      classes: [
+        this.mvLibEffects.hover.resize.class,
+      ],
     },
   });
 
@@ -62,9 +60,9 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
     this.selectedPartStyle.set('track');
     this.selectedPartEffects.set('track');
     this.logProperties = [
-      { property: 'style', value: this.switch().computedStyles },
-      { property: 'effects', value: this.switch().computedEffects },
-      { property: 'settings', value: this.switch().computedSettings },
+      { property: 'style', value: () => this.switch().getStyle() },
+      { property: 'effects', value: () => this.switch().getEffects() },
+      { property: 'settings', value: () => this.switch().getSettings() },
       { property: 'active', value: this.active },
       { property: 'disabled', value: this.disabled },
     ];

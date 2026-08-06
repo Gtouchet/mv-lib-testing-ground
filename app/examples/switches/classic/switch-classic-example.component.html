@@ -16,24 +16,24 @@
             <div class="inputs-group">
                 Width
                 <app-input-text
-                    [value]="switch().computedStyles().track!.width"
+                    [value]="switch().getStyle().track!.width"
                     (onChange)="switch().setStyle('track.width', $event); refreshLog();"
                 />
                 Height
                 <app-input-text
-                    [value]="switch().computedStyles().track!.height"
+                    [value]="switch().getStyle().track!.height"
                     (onChange)="switch().setStyle('track.height', $event); refreshLog();"
                 />
             </div>
             <div class="inputs-group">
                 Color on
                 <app-input-color
-                    [value]="switch().computedStyles().track!.colorOn"
+                    [value]="switch().getStyle().track!.colorOn"
                     (onChange)="switch().setStyle('track.colorOn', $event); refreshLog();"
                 />
                 Color off
                 <app-input-color
-                    [value]="switch().computedStyles().track!.colorOff"
+                    [value]="switch().getStyle().track!.colorOff"
                     (onChange)="switch().setStyle('track.colorOff', $event); refreshLog();"
                 />
             </div>
@@ -43,36 +43,36 @@
             <div class="inputs-group">
                 Color on
                 <app-input-color
-                    [value]="switch().computedStyles().cursor!.colorOn"
+                    [value]="switch().getStyle().cursor!.colorOn"
                     (onChange)="switch().setStyle('cursor.colorOn', $event); refreshLog();"
                 />
                 Color off
                 <app-input-color
-                    [value]="switch().computedStyles().cursor!.colorOff"
+                    [value]="switch().getStyle().cursor!.colorOff"
                     (onChange)="switch().setStyle('cursor.colorOff', $event); refreshLog();"
                 />
             </div>
             <div class="inputs-group">
                 Icon on
                 <app-input-text
-                    [value]="switch().computedStyles().cursor!.iconOn"
+                    [value]="switch().getStyle().cursor!.iconOn"
                     (onChange)="switch().setStyle('cursor.iconOn', $event); refreshLog();"
                 />
                 Icon off
                 <app-input-text
-                    [value]="switch().computedStyles().cursor!.iconOff"
+                    [value]="switch().getStyle().cursor!.iconOff"
                     (onChange)="switch().setStyle('cursor.iconOff', $event); refreshLog();"
                 />
             </div>
             <div class="inputs-group">
                 Icon color on
                 <app-input-color
-                    [value]="switch().computedStyles().cursor!.iconColorOn"
+                    [value]="switch().getStyle().cursor!.iconColorOn"
                     (onChange)="switch().setStyle('cursor.iconColorOn', $event); refreshLog();"
                 />
                 Icon color off
                 <app-input-color
-                    [value]="switch().computedStyles().cursor!.iconColorOff"
+                    [value]="switch().getStyle().cursor!.iconColorOff"
                     (onChange)="switch().setStyle('cursor.iconColorOff', $event); refreshLog();"
                 />
             </div>
@@ -95,18 +95,18 @@
         @if (selectedPartEffects() === 'track') {
             <app-shadow-idle-inputs
                 title="Shadow idle"
-                [enabled]="switch().hasEffectClass('track', mvLibEffects.idle.shadow.class)"
-                [style]="switch().computedEffects().parts.track!.styles!.shadowIdle!"
-                (onChangeEnabled)="switch().setEffect(`track.${mvLibEffects.idle.shadow.class}`, $event); refreshLog();"
+                [enabled]="switch().hasEffect('track', mvLibEffects.idle.shadow)"
+                [style]="switch().getEffects().track!.styles!.shadowIdle!"
+                (onChangeEnabled)="switch().toggleEffect('track', mvLibEffects.idle.shadow, $event); refreshLog();"
                 (onChangeStyle)="switch().setEffectStyle(`track.${mvLibEffects.idle.shadow.name}`, $event); refreshLog();"
             />
         }
         @else if (selectedPartEffects() === 'cursor') {
             <app-resize-hover-inputs
                 title="Resize hover"
-                [enabled]="switch().hasEffectClass('cursor', mvLibEffects.hover.resize.class)"
-                [style]="switch().computedEffects().parts.cursor!.styles!.resizeHover!"
-                (onChangeEnabled)="switch().setEffect(`cursor.${mvLibEffects.hover.resize.class}`, $event); refreshLog();"
+                [enabled]="switch().hasEffect('cursor', mvLibEffects.hover.resize)"
+                [style]="switch().getEffects().cursor!.styles!.resizeHover!"
+                (onChangeEnabled)="switch().toggleEffect('cursor', mvLibEffects.hover.resize, $event); refreshLog();"
                 (onChangeStyle)="switch().setEffectStyle(`cursor.${mvLibEffects.hover.resize.name}`, $event); refreshLog();"
             />
         }
@@ -120,7 +120,7 @@
         />
         <app-input-text
             label="Transition duration"
-            [value]="switch().computedSettings().transitionDuration"
+            [value]="switch().getSettings().transitionDuration"
             (onChange)="switch().setSettings('transitionDuration', $event); refreshLog();"
         />
         <app-inputs-separator title="API" />

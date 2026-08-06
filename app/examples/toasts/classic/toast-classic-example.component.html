@@ -36,6 +36,11 @@
             (onChange)="configuration.styles.forcedHeight = $event"
         />
     </div>
+    <app-input-number
+        [value]="configuration.styles.opacityPercentage"
+        label="Opacity percentage"
+        (onChange)="configuration.styles.opacityPercentage = $event"
+    />
 </ng-template>
 
 <ng-template #effectsConfiguration let-type="type" let-configuration="configuration">

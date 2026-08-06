@@ -22,19 +22,19 @@
             <app-inputs-separator title="General" />
             <app-input-color
                 label="Background color"
-                [value]="dropdown().computedStyles().button.backgroundColor"
+                [value]="dropdown().getStyle().button.backgroundColor"
                 (onChange)="dropdown().setStyle('button.backgroundColor', $event); refreshLog();"
             />
             <app-dimensions-inputs
-                [dimensions]="dropdown().computedStyles().button.dimensions!"
+                [dimensions]="dropdown().getStyle().button.dimensions!"
                 (onChangeDimensions)="dropdown().setStyle(`button.dimensions.${$event.key}`, $event.value); refreshLog();"
             />
             <app-border-inputs
-                [border]="dropdown().computedStyles().button.border!"
+                [border]="dropdown().getStyle().button.border!"
                 (onChangeBorder)="dropdown().setStyle(`button.border.${$event.key}`, $event.value); refreshLog();"
             />
             <app-font-inputs
-                [font]="dropdown().computedStyles().button.font!"
+                [font]="dropdown().getStyle().button.font!"
                 (onChangeFont)="dropdown().setStyle(`button.font.${$event.key}`, $event.value); refreshLog();"
             />
         }
@@ -42,11 +42,11 @@
             <app-inputs-separator title="General" />
             <app-input-text
                 label="Max height"
-                [value]="dropdown().computedStyles().list.maxHeight"
+                [value]="dropdown().getStyle().list.maxHeight"
                 (onChange)="dropdown().setStyle('list.maxHeight', $event); refreshLog();"
             />
             <app-border-inputs
-                [border]="dropdown().computedStyles().list.border!"
+                [border]="dropdown().getStyle().list.border!"
                 (onChangeBorder)="dropdown().setStyle(`list.border.${$event.key}`, $event.value); refreshLog();"
             />
         }
@@ -54,16 +54,16 @@
             <app-inputs-separator title="General" />
             <app-input-color
                 label="Background color"
-                [value]="dropdown().computedStyles().item.backgroundColor"
+                [value]="dropdown().getStyle().item.backgroundColor"
                 (onChange)="dropdown().setStyle('item.backgroundColor', $event); refreshLog();"
             />
             <app-input-text
                 label="Height"
-                [value]="dropdown().computedStyles().item.height"
+                [value]="dropdown().getStyle().item.height"
                 (onChange)="dropdown().setStyle('item.height', $event); refreshLog();"
             />
             <app-font-inputs
-                [font]="dropdown().computedStyles().item.font!"
+                [font]="dropdown().getStyle().item.font!"
                 (onChangeFont)="dropdown().setStyle(`item.font.${$event.key}`, $event.value); refreshLog();"
             />
         }
@@ -89,49 +89,50 @@
         </div>
         @if (selectedPartEffects() === 'button') {
             <app-shadow-idle-inputs
-                [enabled]="dropdown().hasEffectClass('button', mvLibEffects.idle.shadow.class)"
-                [style]="dropdown().computedEffects().parts.button!.styles!.shadowIdle!"
-                (onChangeEnabled)="dropdown().setEffect(`button.${mvLibEffects.idle.shadow.class}`, $event); refreshLog();"
+                [enabled]="dropdown().hasEffect('button', mvLibEffects.idle.shadow)"
+                [style]="dropdown().getEffects().button.styles!.shadowIdle!"
+                (onChangeEnabled)="dropdown().toggleEffect('button', mvLibEffects.idle.shadow, $event); refreshLog();"
                 (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.idle.shadow.name}`, $event); refreshLog();"
             />
             <app-tint-hover-inputs
-                [enabled]="dropdown().hasEffectClass('button', mvLibEffects.hover.tint.class)"
-                [style]="dropdown().computedEffects().parts.button!.styles!.tintHover!"
-                (onChangeEnabled)="dropdown().setEffect(`button.${mvLibEffects.hover.tint.class}`, $event); refreshLog();"
+                [enabled]="dropdown().hasEffect('button', mvLibEffects.hover.tint)"
+                [style]="dropdown().getEffects().button.styles!.tintHover!"
+                (onChangeEnabled)="dropdown().toggleEffect('button', mvLibEffects.hover.tint, $event); refreshLog();"
                 (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.hover.tint.name}`, $event); refreshLog();"
             />
             <app-push-click-inputs
-                [enabled]="dropdown().hasEffectClass('button', mvLibEffects.click.push.class)"
-                [style]="dropdown().computedEffects().parts.button!.styles!.pushClick!"
-                (onChangeEnabled)="dropdown().setEffect(`button.${mvLibEffects.click.push.class}`, $event); refreshLog();"
+                [enabled]="dropdown().hasEffect('button', mvLibEffects.click.push)"
+                [style]="dropdown().getEffects().button.styles!.pushClick!"
+                (onChangeEnabled)="dropdown().toggleEffect('button', mvLibEffects.click.push, $event); refreshLog();"
                 (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.click.push.name}`, $event); refreshLog();"
             />
             <app-ripple-release-inputs
-                [enabled]="dropdown().hasEffectClass('button', mvLibEffects.release.ripple.class)"
-                [style]="dropdown().computedEffects().parts.button!.styles!.rippleRelease!"
-                (onChangeEnabled)="dropdown().setEffect(`button.${mvLibEffects.release.ripple.class}`, $event); refreshLog();"
+                [enabled]="dropdown().hasEffect('button', mvLibEffects.release.ripple)"
+                [style]="dropdown().getEffects().button.styles!.rippleRelease!"
+                (onChangeEnabled)="dropdown().toggleEffect('button', mvLibEffects.release.ripple, $event); refreshLog();"
                 (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.release.ripple.name}`, $event); refreshLog();"
             />
         }
         @else if (selectedPartEffects() === 'list') {
             <app-shadow-idle-inputs
-                [enabled]="dropdown().hasEffectClass('list', mvLibEffects.idle.shadow.class)"
-                [style]="dropdown().computedEffects().parts.list!.styles!.shadowIdle!"
-                (onChangeEnabled)="dropdown().setEffect(`list.${mvLibEffects.idle.shadow.class}`, $event); refreshLog();"
+                [enabled]="dropdown().hasEffect('list', mvLibEffects.idle.shadow)"
+                [style]="dropdown().getEffects().list.styles!.shadowIdle!"
+                (onChangeEnabled)="dropdown().toggleEffect('list', mvLibEffects.idle.shadow, $event); refreshLog();"
                 (onChangeStyle)="dropdown().setEffectStyle(`list.${mvLibEffects.idle.shadow.name}`, $event); refreshLog();"
             />
         }
         @else if (selectedPartEffects() === 'item') {
             <app-tint-hover-inputs
-                [enabled]="dropdown().hasEffectClass('item', mvLibEffects.hover.tint.class)"
-                [style]="dropdown().computedEffects().parts.item!.styles!.tintHover!"
-                (onChangeEnabled)="dropdown().setEffect(`item.${mvLibEffects.hover.tint.class}`, $event); refreshLog();"
+                [enabled]="dropdown().hasEffect('item', mvLibEffects.hover.tint)"
+                [style]="dropdown().getEffects().item.styles!.tintHover!"
+                (onChangeEnabled)="dropdown().toggleEffect('item', mvLibEffects.hover.tint, $event); refreshLog();"
                 (onChangeStyle)="dropdown().setEffectStyle(`item.${mvLibEffects.hover.tint.name}`, $event); refreshLog();"
             />
         }
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
+        <app-inputs-separator title="General" />
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
@@ -141,22 +142,36 @@
             [checked]="opened()"
             label="Opened"
             (onChange)="opened.set($event); refreshLog();"
-        />
+        />        
+        <app-inputs-separator title="Button" />
         <app-input-checkbox
-            [checked]="settings().closeOnItemSelect"
-            label="Close on item select"
-            (onChange)="dropdown().setSettings('closeOnItemSelect', $event); refreshLog();"
-        />
-        <app-input-checkbox
-            [checked]="settings().closeOnOutsideClick"
-            label="Close on outside click"
-            (onChange)="dropdown().setSettings('closeOnOutsideClick', $event); refreshLog();"
-        />
-        <app-input-checkbox
-            [checked]="settings().resetButton"
+            [checked]="dropdown().getSettings().button!.resetButton"
             label="Reset button"
-            (onChange)="dropdown().setSettings('resetButton', $event); refreshLog();"
+            (onChange)="dropdown().setSettings('button.resetButton', $event); refreshLog();"
         />
+        <app-inputs-separator title="List" />
+        <app-input-checkbox
+            [checked]="dropdown().getSettings().list!.closeOnOutsideClick"
+            label="Close on outside click"
+            (onChange)="dropdown().setSettings('list.closeOnOutsideClick', $event); refreshLog();"
+        />
+        <app-input-checkbox
+            [checked]="dropdown().getSettings().list!.closeOnItemSelect"
+            label="Close on item select"
+            (onChange)="dropdown().setSettings('list.closeOnItemSelect', $event); refreshLog();"
+        />
+        <div class="inputs-group">
+            Force width
+            <app-input-text
+                [value]="dropdown().getSettings().list!.forceWidth"
+                (onChange)="dropdown().setSettings('list.forceWidth', $event); refreshLog();"
+            />
+            Offset X
+            <app-input-text
+                [value]="dropdown().getSettings().list!.offsetX"
+                (onChange)="dropdown().setSettings('list.offsetX', $event); refreshLog();"
+            />
+        </div>
     </app-configuration-section>
 </div>
 
@@ -191,14 +206,20 @@
 
         <ng-template mvLibDropdownItemTemplate let-item>
             <div
-                [style.display]="'flex'"
-                [style.alignItems]="'center'"
-                [style.gap.px]="4"
+                [ngStyle]="{
+                    'display': 'flex',
+                    'align-items': 'center',
+                    'gap.px': 4,
+                    'width.%': 100,
+                    'text-align': 'left',
+                }"
             >
                 <span class="material-symbols-outlined">
                     {{ item.icon }}
                 </span>
-                {{ item.name }}
+                <span>
+                    {{ item.name }}
+                </span>
             </div>
         </ng-template>
     </mv-lib-dropdown-classic>

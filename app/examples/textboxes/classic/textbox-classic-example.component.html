@@ -3,33 +3,33 @@
     <app-configuration-section title="Styles">
         <app-input-color
             label="Background color"
-            [value]="textbox().computedStyles().backgroundColor"
+            [value]="textbox().getStyle().backgroundColor"
             (onChange)="textbox().setStyle('backgroundColor', $event); refreshLog();"
         />
         <app-border-inputs
-            [border]="textbox().computedStyles().border"
+            [border]="textbox().getStyle().border"
             (onChangeBorder)="textbox().setStyle(`border.${$event.key}`, $event.value); refreshLog();"
         />
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
         <app-tint-hover-inputs
-            [enabled]="textbox().hasEffectClass(mvLibEffects.hover.tint.class)"
-            [style]="textbox().computedEffects().styles.tintHover!"
-            (onChangeEnabled)="textbox().setEffect(mvLibEffects.hover.tint.class, $event); refreshLog();"
-            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.hover.tint.name, $event); refreshLog();"
+            [enabled]="textbox().hasEffect(mvLibEffects.hover.tint)"
+            [style]="textbox().getEffects().styles.tintHover!"
+            (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
+            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
         />
         <app-outline-blur-selected-inputs
-            [enabled]="textbox().hasEffectClass(mvLibEffects.selected.outlineBlur.class)"
-            [style]="textbox().computedEffects().styles.outlineBlurSelected!"
-            (onChangeEnabled)="textbox().setEffect(mvLibEffects.selected.outlineBlur.class, $event); refreshLog();"
-            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.selected.outlineBlur.name, $event); refreshLog();"
+            [enabled]="textbox().hasEffect(mvLibEffects.selected.outlineBlur)"
+            [style]="textbox().getEffects().styles.outlineBlurSelected!"
+            (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
+            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
         />
         <app-outline-solid-selected-inputs
-            [enabled]="textbox().hasEffectClass(mvLibEffects.selected.outlineSolid.class)"
-            [style]="textbox().computedEffects().styles.outlineSolidSelected!"
-            (onChangeEnabled)="textbox().setEffect(mvLibEffects.selected.outlineSolid.class, $event); refreshLog();"
-            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.selected.outlineSolid.name, $event); refreshLog();"
+            [enabled]="textbox().hasEffect(mvLibEffects.selected.outlineSolid)"
+            [style]="textbox().getEffects().styles.outlineSolidSelected!"
+            (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
+            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
         />
     </app-configuration-section>
 
