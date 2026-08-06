@@ -72,6 +72,9 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
   });
   
   protected settings = signal<Partial<MvLibDropdownClassicSettings>>({
+    button: {
+      resetButton: true,
+    },
     list: {
       filterBy: 'name',
     },

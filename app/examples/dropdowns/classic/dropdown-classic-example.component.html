@@ -184,20 +184,16 @@
         [settings]="settings()"
         [items]="items()"
         [(selected)]="selectedItem"
+        [(opened)]="opened"
         [disabled]="disabled()"
-        [opened]="opened()"
         (onSelect)="refreshLastInteractionTime()"
         (onToggle)="
             opened.set($event.state);
             refreshLastInteractionTime();
-        "
+            refreshLog();"
     >
         <ng-template mvLibDropdownPlaceholderTemplate>
-            <div
-                [style.margin-left.px]="8"
-            >
-                Select a user
-            </div>
+            Select a user
         </ng-template>
 
         <ng-template mvLibDropdownSelectedTemplate let-item>

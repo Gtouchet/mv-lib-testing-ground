@@ -68,7 +68,7 @@ export class AppComponent {
       icon: 'dropdown_menu',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/dropdown-classic-example', wip: true },
+        { type: 'Classic', routerLink: '/dropdown-classic-example' },
       ],
     },
     { 
