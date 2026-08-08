@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 
 @Component({
   selector: 'app-input-checkbox',
+  styleUrl: './generic-input.component.scss',
   standalone: true,
   template: `
     <input

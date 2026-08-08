@@ -28,16 +28,16 @@ export class SwitchLiteExampleComponent extends BaseExampleComponent {
       // },
       // cursorSizePx: 24,
 
-      // trackColorOn: this.appStyles.var('switch-lite-track-color-on'),
-      // trackColorOff: this.appStyles.var('switch-lite-track-color-off'),
+      // trackColorOn: 'var(--switch-lite-track-color-on)',
+      // trackColorOff: 'var(--switch-lite-track-color-off)',
 
-      // cursorIconOn: this.appStyles.var('switch-lite-cursor-icon-on'),
-      // cursorColorOn: this.appStyles.var('switch-lite-cursor-color-on'),
-      // cursorIconColorOn: this.appStyles.var('switch-lite-cursor-icon-on-color'),
+      // cursorIconOn: 'var(--switch-lite-cursor-icon-on)',
+      // cursorColorOn: 'var(--switch-lite-cursor-color-on)',
+      // cursorIconColorOn: 'var(--switch-lite-cursor-icon-on-color)',
 
-      // cursorIconOff: this.appStyles.var('switch-lite-cursor-icon-off'),
-      // cursorColorOff: this.appStyles.var('switch-lite-cursor-color-off'),
-      // cursorIconColorOff: this.appStyles.var('switch-lite-cursor-icon-off-color'),
+      // cursorIconOff: 'var(--switch-lite-cursor-icon-off)',
+      // cursorColorOff: 'var(--switch-lite-cursor-color-off)',
+      // cursorIconColorOff: 'var(--switch-lite-cursor-icon-off-color)',
     // });
     // this.effects = signal({
       

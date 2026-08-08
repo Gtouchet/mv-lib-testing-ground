@@ -148,30 +148,26 @@
 </ng-template>
 
 <div class="configuration">
-    <app-configuration-section title="Styles">
+    <app-configuration-section [title]="'Styles for ' + selectedStyleConfiguration().type">
         <div buttons class="type-buttons">
             <app-input-button
                 label="Success"
-                [backgroundColor]="selectedPartStyle() === 'success' ? 'darkgray' : undefined"
-                [color]="toastService.configuration().success!.styles!.backgroundColor"
+                [selected]="selectedStyleConfiguration().type === 'success'"
                 (onClick)="selectStyle('success')"
             />
             <app-input-button
                 label="Warning"
-                [backgroundColor]="selectedPartStyle() === 'warning' ? 'darkgray' : undefined"
-                [color]="toastService.configuration().warning!.styles!.backgroundColor"
+                [selected]="selectedStyleConfiguration().type === 'warning'"
                 (onClick)="selectStyle('warning')"
             />
             <app-input-button
                 label="Error"
-                [backgroundColor]="selectedPartStyle() === 'error' ? 'darkgray' : undefined"
-                [color]="toastService.configuration().error!.styles!.backgroundColor"
+                [selected]="selectedStyleConfiguration().type === 'error'"
                 (onClick)="selectStyle('error')"
             />
             <app-input-button
                 label="Info"
-                [backgroundColor]="selectedPartStyle() === 'info' ? 'darkgray' : undefined"
-                [color]="toastService.configuration().info!.styles!.backgroundColor"
+                [selected]="selectedStyleConfiguration().type === 'info'"
                 (onClick)="selectStyle('info')"
             />
         </div>
@@ -186,25 +182,25 @@
         <div buttons class="type-buttons">
             <app-input-button
                 label="Success"
-                [backgroundColor]="selectedPartEffects() === 'success' ? 'darkgray' : undefined"
+                
                 [color]="toastService.configuration().success!.styles!.backgroundColor"
                 (onClick)="selectEffect('success')"
             />
             <app-input-button
                 label="Warning"
-                [backgroundColor]="selectedPartEffects() === 'warning' ? 'darkgray' : undefined"
+                
                 [color]="toastService.configuration().warning!.styles!.backgroundColor"
                 (onClick)="selectEffect('warning')"
             />
             <app-input-button
                 label="Error"
-                [backgroundColor]="selectedPartEffects() === 'error' ? 'darkgray' : undefined"
+                
                 [color]="toastService.configuration().error!.styles!.backgroundColor"
                 (onClick)="selectEffect('error')"
             />
             <app-input-button
                 label="Info"
-                [backgroundColor]="selectedPartEffects() === 'info' ? 'darkgray' : undefined"
+                
                 [color]="toastService.configuration().info!.styles!.backgroundColor"
                 (onClick)="selectEffect('info')"
             />
@@ -219,25 +215,25 @@
         <div buttons class="type-buttons">
             <app-input-button
                 label="Success"
-                [backgroundColor]="selectedPartSettings() === 'success' ? 'darkgray' : undefined"
+                
                 [color]="toastService.configuration().success!.styles!.backgroundColor"
                 (onClick)="selectSettings('success')"
             />
             <app-input-button
                 label="Warning"
-                [backgroundColor]="selectedPartSettings() === 'warning' ? 'darkgray' : undefined"
+                
                 [color]="toastService.configuration().warning!.styles!.backgroundColor"
                 (onClick)="selectSettings('warning')"
             />
             <app-input-button
                 label="Error"
-                [backgroundColor]="selectedPartSettings() === 'error' ? 'darkgray' : undefined"
+                
                 [color]="toastService.configuration().error!.styles!.backgroundColor"
                 (onClick)="selectSettings('error')"
             />
             <app-input-button
                 label="Info"
-                [backgroundColor]="selectedPartSettings() === 'info' ? 'darkgray' : undefined"
+                
                 [color]="toastService.configuration().info!.styles!.backgroundColor"
                 (onClick)="selectSettings('info')"
             />

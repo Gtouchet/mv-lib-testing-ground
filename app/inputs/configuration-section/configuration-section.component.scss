@@ -1,16 +1,9 @@
-%border {
-    border: 1px solid black;
-    border-radius: 4px;
-}
-
 .configuration {
   display: flex;
   gap: 8px;
 }
 
 .configuration-section {
-  @extend %border;
-
   display: flex;
   flex-direction: column;
   flex: 1 1 0;
@@ -25,8 +18,7 @@
   height: auto;
   padding: 4px;
   font-weight: bold;
-  background-color: lightgray;
-  border-bottom: 1px solid black;
+  background-color: var(--mv-lib-primary-color-4);
 }
 
 .configuration-buttons {

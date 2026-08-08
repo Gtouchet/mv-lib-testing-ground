@@ -32,6 +32,30 @@
                 MV Lib
             </mv-lib-button-classic>
 
+            <mv-lib-dropdown-classic
+                [items]="themeService.getThemes()"
+                [selected]="themeService.currentTheme()"
+                [styles]="dropdownsStyles"
+                [effects]="dropdownsEffects"
+                (onSelect)="themeService.setTheme($event.selectedItem!.name)"
+            >
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        Selected a theme
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.name }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
+
             @for (dropdown of dropdowns(); track dropdown.name) {
                 <mv-lib-dropdown-classic
                     [items]="dropdown.items"

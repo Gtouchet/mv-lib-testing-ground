@@ -12,12 +12,14 @@ html {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	background-color: var(--mv-lib-primary-color-2);
+	color: var(--mv-lib-primary-color-8);
 }
 
 .header {
 	flex: 0 0 auto;
 	z-index: 1000;
-	background-color: #fff;
+	background-color: var(--mv-lib-primary-color-3, #ffffff);
 
     > .buttons {
         display: flex;
@@ -28,6 +30,7 @@ html {
 }
 
 .header hr {
+	border-color: var(--app-divider-color, #d9d9d9);
     margin: 0 -8px 0 -8px;
 }
 

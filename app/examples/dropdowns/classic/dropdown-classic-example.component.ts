@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, model, signal, viewChild } from "@angular/core";
 import { MvLibDropdownClassicAnimations, MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { INPUTS } from "../../../inputs/_inputs.export";
@@ -30,20 +30,12 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
 
   protected style = signal<Partial<MvLibDropdownClassicStyle>>({
     button: {
-      backgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
       dimensions: {
         width: '150px',
         height: '40px',
       },
-      font: {
-        color: this.appStyles.var('dropdown-classic-button-text-color'),
-      }
     },
     item: {
-      backgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
-      font: {
-        color: this.appStyles.var('dropdown-classic-item-text-color'),
-      },
     },
   });
 
@@ -80,7 +72,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
     },
   });
 
-  protected opened = signal(false);
+  protected opened = model(false);
 
   protected selectedItem = signal<User | undefined>(undefined);
   protected items = signal<User[]>([

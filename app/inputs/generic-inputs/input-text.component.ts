@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 
 @Component({
   selector: 'app-input-text',
+  styleUrl: './generic-input.component.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule],
@@ -17,12 +18,12 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       {{ label() }}
       <input
         type="text"
+        class="input"
         [value]="value()"
         (input)="handleInput($event)"
         [ngStyle]="{
           'width': width() ?? 'auto',
           'flex': !width() ? 1 : 'none',
-          'height.px': 16,
         }"
       />
     </div>

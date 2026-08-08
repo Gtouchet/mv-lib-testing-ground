@@ -31,8 +31,6 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent im
         groupGap: '6px',
         contentGap: '6px',
         size: '16px',
-        backgroundColor: this.appStyles.var('radio-buttons-classic-background-color'),
-        selectedColor: this.appStyles.var('radio-buttons-classic-selected-color'),
     });
 
     protected effects = signal<Partial<MvLibRadioButtonsClassicEffects>>({

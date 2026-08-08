@@ -19,15 +19,9 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent implemen
   protected button = viewChild.required<MvLibButtonClassicComponent>('mvLibButtonClassic');
 
   protected style = signal<Partial<MvLibButtonClassicStyle>>({
-    backgroundColor: this.appStyles.var('button-classic-background-color'),
     dimensions: {
       width: '120px',
       height: '40px',
-    },
-    font: {
-      size: this.appStyles.var('button-classic-font-size'),
-      weight: this.appStyles.var('button-classic-font-weight'),
-      color: this.appStyles.var('button-classic-font-color'),
     },
   });
 

@@ -18,20 +18,7 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
 
   protected switch = viewChild.required<MvLibSwitchClassicComponent>('mvLibSwitchClassic');
   
-  protected style = signal<Partial<MvLibSwitchClassicStyle>>({
-    track: {
-        colorOn: this.appStyles.var('switch-classic-track-color-on'),
-        colorOff: this.appStyles.var('switch-classic-track-color-off'),
-      },
-      cursor: {
-        colorOn: this.appStyles.var('switch-classic-cursor-color-on'),
-        colorOff: this.appStyles.var('switch-classic-cursor-color-off'),
-        iconOn: this.appStyles.var('switch-classic-cursor-icon-on'),
-        iconOff: this.appStyles.var('switch-classic-cursor-icon-off'),
-        iconColorOn: this.appStyles.var('switch-classic-cursor-icon-on-color'),
-        iconColorOff: this.appStyles.var('switch-classic-cursor-icon-off-color'),
-      },
-  });
+  protected style = signal<Partial<MvLibSwitchClassicStyle>>({});
 
   protected effects = signal<Partial<MvLibSwitchClassicEffects>>({
     track: {

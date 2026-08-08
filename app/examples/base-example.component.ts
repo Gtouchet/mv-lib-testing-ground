@@ -1,6 +1,5 @@
-import { Directive, inject, Signal, signal } from "@angular/core";
+import { Directive, inject, model, Signal, signal } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
-import { StylesService } from "../styles/styles.service";
 import { MV_LIB_EFFECTS } from "mv-lib";
 
 @Directive({
@@ -8,15 +7,13 @@ import { MV_LIB_EFFECTS } from "mv-lib";
 })
 export abstract class BaseExampleComponent {
 
-    protected appStyles = inject(StylesService);
-
     public readonly mvLibEffects = MV_LIB_EFFECTS;
 
     protected selectedPartStyle = signal<string | undefined>(undefined);
     protected selectedPartEffects = signal<string | undefined>(undefined);
     protected selectedPartSettings = signal<string | undefined>(undefined);
 
-    protected disabled = signal(false);
+    protected disabled = model(false);
 
     constructor() {
         this.initForm();

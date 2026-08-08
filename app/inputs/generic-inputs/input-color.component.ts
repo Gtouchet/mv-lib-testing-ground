@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-input-color',
+  styleUrl: './generic-input.component.scss',
   imports: [CommonModule],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,10 +27,10 @@ import { CommonModule } from '@angular/common';
       />
       <input
         type="text"
+        class="input"
         [value]="value()"
         (input)="handleInput($event)"
         [ngStyle]="{
-          'height.px': 18,
           'flex': 1,
         }"
       />

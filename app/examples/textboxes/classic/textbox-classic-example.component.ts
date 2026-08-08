@@ -32,14 +32,6 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent impleme
       this.mvLibEffects.hover.tint.class,
       this.mvLibEffects.selected.outlineBlur.class,
     ],
-    styles: {
-      outlineSolidSelected: {
-        color: this.appStyles.var('textbox-classic-outline-solid-selected-color'),
-      },
-      outlineBlurSelected: {
-        color: this.appStyles.var('textbox-classic-outline-blur-selected-color'),
-      },
-    },
   });
 
   protected animations = signal<Partial<MvLibTextboxClassicAnimations>>({

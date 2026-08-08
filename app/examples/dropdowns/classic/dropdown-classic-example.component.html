@@ -4,17 +4,17 @@
         <div buttons class="type-buttons">
             <app-input-button
                 label="Button"
-                [backgroundColor]="selectedPartStyle() === 'button' ? 'darkgray' : undefined"
+                [selected]="selectedPartStyle() === 'button'"
                 (onClick)="selectedPartStyle.set('button')"
             />
             <app-input-button
                 label="List"
-                [backgroundColor]="selectedPartStyle() === 'list' ? 'darkgray' : undefined"
+                [selected]="selectedPartStyle() === 'list'"
                 (onClick)="selectedPartStyle.set('list')"
             />
             <app-input-button
                 label="Item"
-                [backgroundColor]="selectedPartStyle() === 'item' ? 'darkgray' : undefined"
+                [selected]="selectedPartStyle() === 'item'"
                 (onClick)="selectedPartStyle.set('item')"
             />
         </div>
@@ -73,17 +73,17 @@
         <div buttons class="type-buttons">
             <app-input-button
                 label="Button"
-                [backgroundColor]="selectedPartEffects() === 'button' ? 'darkgray' : undefined"
+                
                 (onClick)="selectedPartEffects.set('button')"
             />
             <app-input-button
                 label="List"
-                [backgroundColor]="selectedPartEffects() === 'list' ? 'darkgray' : undefined"
+                
                 (onClick)="selectedPartEffects.set('list')"
             />
             <app-input-button
                 label="Item"
-                [backgroundColor]="selectedPartEffects() === 'item' ? 'darkgray' : undefined"
+
                 (onClick)="selectedPartEffects.set('item')"
             />
         </div>

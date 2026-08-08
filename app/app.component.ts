@@ -9,9 +9,9 @@ import {
   MvLibDropdownClassicEffects,
   MvLibDropdownClassicStyle,
   MvLibDropdownDirectives,
+  MvLibThemeService,
   MvLibToastClassicComponent,
 } from 'mv-lib';
-import { StylesService } from './styles/styles.service';
 
 interface Item {
   type: string;
@@ -43,10 +43,12 @@ interface DropdownGroup {
 export class AppComponent {
   
   protected router = inject(Router);
-  protected appStyles = inject(StylesService);
   protected titleService = inject(Title);
+  protected themeService = inject(MvLibThemeService);
 
   constructor() {
+    this.dropdownsStyles = this.createDropdownStyles();
+
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe(() => this.updateDocumentTitle());
@@ -106,25 +108,7 @@ export class AppComponent {
     },
   ]);
 
-  protected dropdownsStyles: Partial<MvLibDropdownClassicStyle> = {
-    button: {
-      backgroundColor: this.appStyles.var('dropdown-classic-button-background-color'),
-      dimensions: {
-        width: '175px',
-        height: '32px',
-      },
-      font: {
-        color: this.appStyles.var('dropdown-classic-button-text-color'),
-      },
-    },
-    item: {
-      backgroundColor: this.appStyles.var('dropdown-classic-item-background-color'),
-      height: '32px',
-      font: {
-        color: this.appStyles.var('dropdown-classic-item-text-color'),
-      },
-    },
-  };
+  protected dropdownsStyles: Partial<MvLibDropdownClassicStyle> = this.createDropdownStyles();
 
   protected dropdownsEffects: Partial<MvLibDropdownClassicEffects> = {
     button: {
@@ -156,6 +140,20 @@ export class AppComponent {
     if (item.routerLink) {
       this.router.navigateByUrl(item.routerLink);
     }
+  }
+
+  private createDropdownStyles(): Partial<MvLibDropdownClassicStyle> {
+    return {
+      button: {
+        dimensions: {
+          width: '175px',
+          height: '32px',
+        },
+      },
+      item: {
+        height: '32px',
+      },
+    };
   }
 
   private updateDocumentTitle(): void {

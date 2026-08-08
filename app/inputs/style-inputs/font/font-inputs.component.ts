@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
-import { CssFontSize, CssFontStyle, CssFontWeight } from "../../../css-values/font.values";
+import { CssFontSize, CssFontStyle, CssFontWeight } from "../../css-values/font.values";
 import { INPUTS } from "../../_inputs.export";
 import { MvLibFontStyle } from "mv-lib";
 

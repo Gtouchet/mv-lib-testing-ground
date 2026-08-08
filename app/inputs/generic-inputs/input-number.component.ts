@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 
 @Component({
   selector: 'app-input-number',
+  styleUrl: './generic-input.component.scss',
   imports: [CommonModule],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +18,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       {{ label() }}
       <input
         type="number"
+        class="input"
         [value]="value()"
         [min]="min()"
         [max]="max()"
@@ -24,7 +26,6 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         [ngStyle]="{
           'width': width() ?? 'auto',
           'flex': !width() ? 1 : 'none',
-          'height.px': 16,
         }"
       />
     </div>

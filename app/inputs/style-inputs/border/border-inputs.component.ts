@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from "@angular/core";
-import { CssBorderStyle } from "../../../css-values/border.values";
+import { CssBorderStyle } from "../../css-values/border.values";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
 import { InputsSeparatorComponent } from "../../inputs-separator.component";

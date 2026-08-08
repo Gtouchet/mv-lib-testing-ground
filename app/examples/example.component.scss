@@ -1,5 +1,5 @@
 %border {
-    border: 1px solid black;
+    border: 1px solid var(--mv-lib-tertiary-color-5);
     border-radius: 4px;
     padding: 4px;
 }
@@ -10,6 +10,8 @@
     height: calc(40% - 2px);
 
     > app-configuration-section {
+        @extend %border;
+        
         display: flex;
         flex: 1;
     }
