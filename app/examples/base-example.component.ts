@@ -1,13 +1,16 @@
-import { Directive, inject, model, Signal, signal } from "@angular/core";
+import { Directive, inject, model, signal } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
-import { MV_LIB_EFFECTS } from "mv-lib";
+import { MV_LIB_EFFECTS, MvLibThemeService, MvLibToastService } from "mv-lib";
 
 @Directive({
     standalone: true,
 })
 export abstract class BaseExampleComponent {
 
-    public readonly mvLibEffects = MV_LIB_EFFECTS;
+    protected readonly mvLibEffects = MV_LIB_EFFECTS;
+
+    protected readonly themeService = inject(MvLibThemeService);
+    protected readonly toastService = inject(MvLibToastService);
 
     protected selectedPartStyle = signal<string | undefined>(undefined);
     protected selectedPartEffects = signal<string | undefined>(undefined);
@@ -107,5 +110,23 @@ export abstract class BaseExampleComponent {
             .replace(/"([^"]+)":/g, '$1:')
             .replace(/"/g, "'")
             .replace(/\n/g, '\n    ');
+    }
+
+    protected copyComponentCode(componentName: string) {
+        navigator.clipboard.writeText(`<${componentName}${this.log()} />`)
+            .then(() =>
+                this.toastService.success(
+                    `Copied component code`,
+                    'content_copy',
+                    { width: '250px' }
+                )
+            )
+            .catch(() =>
+                this.toastService.error(
+                    'Failed to copy component code',
+                    'error',
+                    { width: '300px' }
+                )
+            );
     }
 }

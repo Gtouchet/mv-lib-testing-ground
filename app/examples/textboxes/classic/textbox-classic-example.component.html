@@ -55,7 +55,7 @@
         <app-input-checkbox
             [checked]="required()"
             label="Required"
-            [style.color]="form.get('input')?.hasError('required') ? 'red' : 'black'"
+            [style.color]="form.get('input')?.hasError('required') ? 'var(--mv-lib-danger)' : 'var(--mv-lib-primary-color-8)'"
             (onChange)="
                 required.set($event);
                 updateFormValidator(
@@ -67,7 +67,7 @@
         <app-input-checkbox
             [checked]="onlyCharacters()"
             label="Only characters"
-            [style.color]="form.get('input')?.hasError('pattern') ? 'red' : 'black'"
+            [style.color]="form.get('input')?.hasError('pattern') ? 'var(--mv-lib-danger)' : 'var(--mv-lib-primary-color-8)'"
             (onChange)="
                 onlyCharacters.set($event);
                 updateFormValidator(
@@ -79,7 +79,7 @@
         <app-input-number
             [value]="minLength()"
             label="Min length"
-            [style.color]="form.get('input')?.hasError('minlength') ? 'red' : 'black'"
+            [style.color]="form.get('input')?.hasError('minlength') ? 'var(--mv-lib-danger)' : 'var(--mv-lib-primary-color-8)'"
             (onChange)="
                 minLength.set($event);
                 updateFormValidator(
@@ -99,7 +99,7 @@
         #mvLibTextboxClassic
         formControlName="input"
         class="component"
-        [styles]="style()"
+        [style]="style()"
         [settings]="settings()"
         [effects]="effects()"
         [(selected)]="selected"
@@ -115,9 +115,14 @@
         "
     />
 
-<pre class="log">
-Last interaction time: {{ lastInteractionTime() }}<br/>
-input: {{ form.get('input')?.value }}<br/>
-&lt;mv-lib-textbox-classic{{ log() }}/&gt;
-</pre>
+    <div class="log">
+        Last interaction time: {{ lastInteractionTime() }}<br/>
+        <pre>Input: {{ form.get('input')?.value }}</pre>
+        <app-input-button
+            label="Copy component code"
+            [width]="'25%'"
+            (onClick)="copyComponentCode('mv-lib-textbox-classic')"
+        />
+        <pre>&lt;mv-lib-textbox-classic{{ log() }}/&gt;</pre>
+    </div>
 </form>

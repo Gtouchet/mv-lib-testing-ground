@@ -19,8 +19,6 @@ import { INPUTS } from "../../../inputs/_inputs.export";
 })
 export class ToastClassicExampleComponent extends BaseExampleComponent implements OnInit, AfterViewInit {
 
-  protected toastService = inject(MvLibToastService);
-
   protected success = signal({title: 'Success', icon: 'check_circle', message: 'Success message' });
   protected warning = signal({title: 'Warning', icon: 'warning', message: 'Warning message' });
   protected error = signal({title: 'Error', icon: 'error', message: 'Error message' });
@@ -53,5 +51,23 @@ export class ToastClassicExampleComponent extends BaseExampleComponent implement
 
   ngAfterViewInit() {
     this.refreshLog();
+  }
+
+  protected copyToastConfiguration() {
+    navigator.clipboard.writeText(`const configuration: MvLibToastServiceConfiguration = ${this.prettify(this.toastService.configuration())};`)
+      .then(() =>
+          this.toastService.success(
+              `Copied configuration`,
+              'content_copy',
+              { width: '250px' }
+          )
+      )
+      .catch(() =>
+          this.toastService.error(
+              'Failed to copy configuration',
+              'error',
+              { width: '300px' }
+          )
+      );
   }
 }

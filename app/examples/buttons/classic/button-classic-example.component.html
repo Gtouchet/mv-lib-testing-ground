@@ -10,6 +10,10 @@
             [dimensions]="button().getStyle().dimensions"
             (onChangeDimensions)="button().setStyle(`dimensions.${$event.key}`, $event.value); refreshLog();"
         />
+        <app-border-inputs
+            [border]="button().getStyle().border"
+            (onChangeBorder)="button().setStyle(`border.${$event.key}`, $event.value); refreshLog();"
+        />
         <app-font-inputs
             [font]="button().getStyle().font"
             (onChangeFont)="button().setStyle(`font.${$event.key}`, $event.value); refreshLog();"
@@ -56,25 +60,26 @@
     <mv-lib-button-classic
         #mvLibButtonClassic
         class="component"
-        [styles]="style()"
+        [style]="style()"
         [effects]="effects()"
         [settings]="settings()"
         [disabled]="disabled()"
         (onClick)="refreshLastInteractionTime()"
     >
-        <div
-            [style.display]="'flex'"
-            [style.align-items]="'center'"
-        >
-        </div>
         <span class="material-symbols-outlined">
             touch_app
         </span>
         Click
     </mv-lib-button-classic>
 
-<pre class="log">
-Last interaction time: {{ lastInteractionTime() }}<br/>
-&lt;mv-lib-button-classic{{ log() }}/&gt;
-</pre>
+    <div class="log">
+        Last interaction time: {{ lastInteractionTime() }}
+        <app-input-button
+            label="Copy component code"
+            [width]="'25%'"
+            [style.margin-top.px]="10"
+            (onClick)="copyComponentCode('mv-lib-button-classic')"
+        />
+        <pre>&lt;mv-lib-button-classic{{ log() }}/&gt;</pre>
+    </div>
 </div>

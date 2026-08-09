@@ -1,9 +1,10 @@
 <div class="effect">
-    <app-input-checkbox
-        [checked]="enabled()"
-        (onChange)="onChangeEnabled.emit($event)"
-    />
-    <app-inputs-separator [title]="title() ?? 'Outline blur selected'" />
+    <app-inputs-separator [title]="title() ?? 'Outline blur selected'">
+        <app-input-checkbox
+            [checked]="enabled()"
+            (onChange)="onChangeEnabled.emit($event)"
+        />
+    </app-inputs-separator>
 </div>
 <div class="inputs-group">
     Color

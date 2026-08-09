@@ -97,7 +97,7 @@
     <mv-lib-radio-buttons-classic
         #mvLibRadioButtonsClassic
         class="component"
-        [styles]="style()"
+        [style]="style()"
         [effects]="effects()"
         [settings]="settings()"
         [disabled]="disabled()"
@@ -110,10 +110,14 @@
         </ng-template>
     </mv-lib-radio-buttons-classic>
 
-<pre class="log">
-Last interaction time: {{ lastInteractionTime() }}<br/>
-selected: {{ selectedItem() | json }}<br/>
-&lt;mv-lib-radio-buttons-classic{{ log() }}/&gt;
-</pre>
+    <div class="log">
+        Last interaction time: {{ lastInteractionTime() }}<br/>
+        <pre>Selected: {{ selectedItem() | json }}</pre>
+        <app-input-button
+            label="Copy component code"
+            [width]="'25%'"
+            (onClick)="copyComponentCode('mv-lib-radio-buttons-classic')"
+        />
+        <pre>&lt;mv-lib-radio-buttons-classic{{ log() }}/&gt;</pre>
+    </div>
 </div>
-

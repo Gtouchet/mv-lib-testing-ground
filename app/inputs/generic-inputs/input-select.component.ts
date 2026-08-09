@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   template: `
     <div
         [style.display]="'flex'"
-        [style.flexDirection]="'column'"
+        [style.flex-direction]="'column'"
     >
         <b>
           {{ label() }}

@@ -1,7 +1,6 @@
 %border {
     border: 1px solid var(--mv-lib-tertiary-color-5);
     border-radius: 4px;
-    padding: 4px;
 }
 
 .configuration {
@@ -52,6 +51,8 @@
 }
 
 .log {
+    flex-direction: column;
     margin: 0;
+    padding: 4px;
     overflow: auto;
 }

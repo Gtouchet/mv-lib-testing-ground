@@ -73,17 +73,17 @@
         <div buttons class="type-buttons">
             <app-input-button
                 label="Button"
-                
+                [selected]="selectedPartEffects() === 'button'"
                 (onClick)="selectedPartEffects.set('button')"
             />
             <app-input-button
                 label="List"
-                
+                [selected]="selectedPartEffects() === 'list'"
                 (onClick)="selectedPartEffects.set('list')"
             />
             <app-input-button
                 label="Item"
-
+                [selected]="selectedPartEffects() === 'item'"
                 (onClick)="selectedPartEffects.set('item')"
             />
         </div>
@@ -179,7 +179,7 @@
     <mv-lib-dropdown-classic
         #mvLibDropdownClassic
         class="component"
-        [styles]="style()"
+        [style]="style()"
         [effects]="effects()"
         [settings]="settings()"
         [items]="items()"
@@ -220,9 +220,14 @@
         </ng-template>
     </mv-lib-dropdown-classic>
 
-<pre class="log">
-Last interaction time: {{ lastInteractionTime() }}<br/>
-selected: {{ selectedItem() | json }}<br/>
-&lt;mv-lib-dropdown-classic{{ log() }}/&gt;
-</pre>
+    <div class="log">
+        Last interaction time: {{ lastInteractionTime() }}<br/>
+        <pre>Selected: {{ selectedItem() | json }}</pre>
+        <app-input-button
+            label="Copy component code"
+            [width]="'25%'"
+            (onClick)="copyComponentCode('mv-lib-dropdown-classic')"
+        />
+        <pre>&lt;mv-lib-dropdown-classic{{ log() }}/&gt;</pre>
+    </div>
 </div>

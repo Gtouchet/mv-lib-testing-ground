@@ -41,14 +41,14 @@ interface DropdownGroup {
   standalone: true,
 })
 export class AppComponent {
+
+  protected mvLibEffects = MV_LIB_EFFECTS;
   
   protected router = inject(Router);
   protected titleService = inject(Title);
   protected themeService = inject(MvLibThemeService);
 
   constructor() {
-    this.dropdownsStyles = this.createDropdownStyles();
-
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe(() => this.updateDocumentTitle());
@@ -103,29 +103,39 @@ export class AppComponent {
       icon: 'notifications',
       selected: undefined,
       items: [
-        { type: 'Classic', routerLink: '/toast-classic-example', wip: true },
+        { type: 'Classic', routerLink: '/toast-classic-example' },
       ],
     },
   ]);
 
-  protected dropdownsStyles: Partial<MvLibDropdownClassicStyle> = this.createDropdownStyles();
+  protected dropdownsStyles: Partial<MvLibDropdownClassicStyle> = {
+    button: {
+      dimensions: {
+        width: '175px',
+        height: '32px',
+      },
+    },
+    item: {
+      height: '32px',
+    },
+  };
 
   protected dropdownsEffects: Partial<MvLibDropdownClassicEffects> = {
     button: {
       classes: [
-        MV_LIB_EFFECTS.idle.shadow.class,
-        MV_LIB_EFFECTS.hover.tint.class,
-        MV_LIB_EFFECTS.click.push.class,
+        this.mvLibEffects.idle.shadow.class,
+        this.mvLibEffects.hover.tint.class,
+        this.mvLibEffects.click.push.class,
       ],
     },
     list: {
       classes: [
-        MV_LIB_EFFECTS.idle.shadow.class,
+        this.mvLibEffects.idle.shadow.class,
       ],
     },
     item: {
       classes: [
-        MV_LIB_EFFECTS.hover.tint.class,
+        this.mvLibEffects.hover.tint.class,
       ],
     },
   };
@@ -140,20 +150,6 @@ export class AppComponent {
     if (item.routerLink) {
       this.router.navigateByUrl(item.routerLink);
     }
-  }
-
-  private createDropdownStyles(): Partial<MvLibDropdownClassicStyle> {
-    return {
-      button: {
-        dimensions: {
-          width: '175px',
-          height: '32px',
-        },
-      },
-      item: {
-        height: '32px',
-      },
-    };
   }
 
   private updateDocumentTitle(): void {

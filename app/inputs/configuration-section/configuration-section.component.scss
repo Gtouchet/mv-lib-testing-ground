@@ -18,7 +18,10 @@
   height: auto;
   padding: 4px;
   font-weight: bold;
-  background-color: var(--mv-lib-primary-color-4);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: var(--mv-lib-primary-color-2);
+  border-bottom: 1px solid var(--mv-lib-primary-color-6);
 }
 
 .configuration-buttons {
@@ -47,6 +50,6 @@
   flex-direction: column;
   flex: 1;
   gap: 4px;
-  padding: 4px 8px 4px 8px;
-  overflow: auto;
+  padding: 4px 12px 4px 6px;
+  overflow-y: scroll;
 }

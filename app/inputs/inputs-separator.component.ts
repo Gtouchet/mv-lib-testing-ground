@@ -11,17 +11,26 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
             [ngStyle]="{
                 'display': 'flex',
                 'align-items': 'center',
-                'gap.px': 8,
             }"
         >
-            <b>
-                {{ title() ?? 'Inputs Separator' }}
-            </b>
-
             <hr
                 [ngStyle]="{
                     'flex': '1',
                     'margin': '0',
+                    'margin-right.px': 8,
+                }"
+            />
+            <div style="position: relative; top: 2px;">
+                <ng-content />
+            </div>
+            <b>
+                {{ title() ?? 'Inputs Separator' }}
+            </b>
+            <hr
+                [ngStyle]="{
+                    'flex': '1',
+                    'margin': '0',
+                    'margin-left.px': 8,
                 }"
             />
         </div>

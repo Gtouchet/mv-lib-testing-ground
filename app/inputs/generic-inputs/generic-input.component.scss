@@ -1,15 +1,26 @@
 input {
-    height: 20px;
+  height: 20px;
 
-    background-color: var(--mv-lib-primary-color-4);
-    color: var(--mv-lib-primary-color-8);
-    
-    border: 1px solid var(--mv-lib-primary-color-6);
-    border-radius: 4px;
+  background-color: var(--mv-lib-primary-color-2);
+  color: var(--mv-lib-primary-color-8);
+  
+  border: 1px solid var(--mv-lib-primary-color-6);
+  border-radius: 4px;
+}
+
+select {
+  height: 24px;
+
+  background-color: var(--mv-lib-primary-color-2);
+  color: var(--mv-lib-primary-color-8);
+
+  border: 1px solid var(--mv-lib-primary-color-6);
+  border-radius: 4px;
 }
 
 .button {
-  background-color: var(--mv-lib-primary-color-5);
+  background-color: var(--mv-lib-primary-color-4);
+  color: var(--mv-lib-primary-color-1);
   &:hover {
     background-color: var(--mv-lib-secondary-color-5) !important;
   }

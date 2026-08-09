@@ -3,12 +3,12 @@
         <div buttons class="type-buttons">
             <app-input-button
                 label="Track"
-                
+                [selected]="selectedPartStyle() === 'track'"
                 (onClick)="selectedPartStyle.set('track')"
             />
             <app-input-button
                 label="Cursor"
-                
+                [selected]="selectedPartStyle() === 'cursor'"
                 (onClick)="selectedPartStyle.set('cursor')"
             />
         </div>
@@ -83,12 +83,12 @@
         <div buttons class="type-buttons">
             <app-input-button
                 label="Track"
-                
+                [selected]="selectedPartEffects() === 'track'"
                 (onClick)="selectedPartEffects.set('track')"
             />
             <app-input-button
                 label="Cursor"
-                
+                [selected]="selectedPartEffects() === 'cursor'"
                 (onClick)="selectedPartEffects.set('cursor')"
             />
         </div>
@@ -136,7 +136,7 @@
     <mv-lib-switch-classic
         #mvLibSwitchClassic
         class="component"
-        [styles]="style()"
+        [style]="style()"
         [effects]="effects()"
         [settings]="settings()"
         [disabled]="disabled()"
@@ -148,8 +148,14 @@
         "
     />
 
-<pre class="log">
-Last interaction time: {{ lastInteractionTime() }}<br/>
-&lt;mv-lib-switch-classic{{ log() }}/&gt;
-</pre>
+    <div class="log">
+        Last interaction time: {{ lastInteractionTime() }}
+        <app-input-button
+            label="Copy component code"
+            [width]="'25%'"
+            [style.margin-top.px]="10"
+            (onClick)="copyComponentCode('mv-lib-switch-classic')"
+        />
+        <pre>&lt;mv-lib-switch-classic{{ log() }}/&gt;</pre>
+    </div>
 </div>

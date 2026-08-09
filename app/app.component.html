@@ -2,23 +2,21 @@
     <header class="header">
         <div class="buttons">
             <mv-lib-button-classic
-                [styles]="{
-                    backgroundColor: 'dodgerblue',
+                [style]="{
                     dimensions: {
                         width: '110px',
                         height: '32px',
                     },
                     font: {
-                        color: 'white',
                         weight: 'bold',
                         size: '16px',
                     },
                 }"
                 [effects]="{
                     classes: [
-                        'mv-lib-shadow-idle',
-                        'mv-lib-tint-hover',
-                        'mv-lib-push-click',
+                        mvLibEffects.idle.shadow.class,
+                        mvLibEffects.hover.tint.class,
+                        mvLibEffects.click.push.class,
                     ],
                 }"
                 (onClick)="router.navigateByUrl('/home')"
@@ -35,7 +33,7 @@
             <mv-lib-dropdown-classic
                 [items]="themeService.getThemes()"
                 [selected]="themeService.currentTheme()"
-                [styles]="dropdownsStyles"
+                [style]="dropdownsStyles"
                 [effects]="dropdownsEffects"
                 (onSelect)="themeService.setTheme($event.selectedItem!.name)"
             >
@@ -66,7 +64,7 @@
                 <mv-lib-dropdown-classic
                     [items]="dropdown.items"
                     [selected]="dropdown.selected"
-                    [styles]="dropdownsStyles"
+                    [style]="dropdownsStyles"
                     [effects]="dropdownsEffects"
                     (onSelect)="onItemSelect($event.selectedItem!, dropdown.name)"
                 >
