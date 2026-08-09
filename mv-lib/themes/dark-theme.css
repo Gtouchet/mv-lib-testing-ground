@@ -1,38 +1,37 @@
 :root.dark-theme {
+    --mv-lib-primary-color-1: #16181d;
+    --mv-lib-primary-color-2: #21252d;
+    --mv-lib-primary-color-3: #2d3440;
+    --mv-lib-primary-color-4: #3b4351;
+    --mv-lib-primary-color-5: #525c6f;
+    --mv-lib-primary-color-6: #6f788b;
+    --mv-lib-primary-color-7: #959dae;
+    --mv-lib-primary-color-8: #c4c9d4;
+    --mv-lib-primary-color-9: #f7f8fb;
 
-    --mv-lib-primary-color-1: #202020;
-    --mv-lib-primary-color-2: #3c3c3c;
-    --mv-lib-primary-color-3: #585858;
-    --mv-lib-primary-color-4: #747474;
-    --mv-lib-primary-color-5: #909090;
-    --mv-lib-primary-color-6: #acacac;
-    --mv-lib-primary-color-7: #c8c8c8;
-    --mv-lib-primary-color-8: #e4e4e4;
-    --mv-lib-primary-color-9: #ffffff;
+    --mv-lib-secondary-color-1: #eff3ff;
+    --mv-lib-secondary-color-2: #dfe7ff;
+    --mv-lib-secondary-color-3: #c4d1fb;
+    --mv-lib-secondary-color-4: #9caeea;
+    --mv-lib-secondary-color-5: #7688d6;
+    --mv-lib-secondary-color-6: #5970bd;
+    --mv-lib-secondary-color-7: #41539a;
+    --mv-lib-secondary-color-8: #2d396b;
+    --mv-lib-secondary-color-9: #1a2342;
 
-    --mv-lib-secondary-color-1: #f0f8ff;
-    --mv-lib-secondary-color-2: #cfe8ff;
-    --mv-lib-secondary-color-3: #9fd1ff;
-    --mv-lib-secondary-color-4: #5eb2ff;
-    --mv-lib-secondary-color-5: #1e90ff;
-    --mv-lib-secondary-color-6: #1874cc;
-    --mv-lib-secondary-color-7: #125899;
-    --mv-lib-secondary-color-8: #0c3b66;
-    --mv-lib-secondary-color-9: #061f33;
-
-    --mv-lib-tertiary-color-1: #202020;
-    --mv-lib-tertiary-color-2: #3c3c3c;
-    --mv-lib-tertiary-color-3: #585858;
-    --mv-lib-tertiary-color-4: #747474;
-    --mv-lib-tertiary-color-5: #909090;
-    --mv-lib-tertiary-color-6: #acacac;
-    --mv-lib-tertiary-color-7: #c8c8c8;
-    --mv-lib-tertiary-color-8: #e4e4e4;
-    --mv-lib-tertiary-color-9: #ffffff;
+    --mv-lib-tertiary-color-1: #181b22;
+    --mv-lib-tertiary-color-2: #232833;
+    --mv-lib-tertiary-color-3: #313848;
+    --mv-lib-tertiary-color-4: #40485b;
+    --mv-lib-tertiary-color-5: #596274;
+    --mv-lib-tertiary-color-6: #747d8f;
+    --mv-lib-tertiary-color-7: #99a1b2;
+    --mv-lib-tertiary-color-8: #c6cdd8;
+    --mv-lib-tertiary-color-9: #f4f6fb;
 
     /* Status */
-    --mv-lib-success: #7dff95;
-    --mv-lib-warning: #ffbc5e;
-    --mv-lib-error:   #ff8080;
-    --mv-lib-info:    #87d1ff;
+    --mv-lib-success: #78d28f;
+    --mv-lib-warning: #f0b466;
+    --mv-lib-error: #ea8484;
+    --mv-lib-info: #74b8e8;
 }
