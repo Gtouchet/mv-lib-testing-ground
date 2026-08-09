@@ -14,10 +14,10 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
                     [ngStyle]="{
                         'color': color(),
                         'text-shadow': '
-                            -1px -1px 0 var(--mv-lib-primary-color-4),'+
-                            '1px -1px 0 var(--mv-lib-primary-color-4),'+
-                            '-1px 1px 0 var(--mv-lib-primary-color-4),'+
-                            ' 1px 1px 0 var(--mv-lib-primary-color-4)'
+                            -1px -1px 0 var(--mv-lib-primary-color-5),'+
+                            '1px -1px 0 var(--mv-lib-primary-color-5),'+
+                            '-1px 1px 0 var(--mv-lib-primary-color-5),'+
+                            ' 1px 1px 0 var(--mv-lib-primary-color-5)'
                     }"
                 >
                     {{ title() }}

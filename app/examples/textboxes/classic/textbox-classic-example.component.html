@@ -55,7 +55,7 @@
         <app-input-checkbox
             [checked]="required()"
             label="Required"
-            [style.color]="form.get('input')?.hasError('required') ? 'var(--mv-lib-danger)' : 'var(--mv-lib-primary-color-8)'"
+            [style.color]="form.get('input')?.hasError('required') ? 'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
             (onChange)="
                 required.set($event);
                 updateFormValidator(
@@ -67,7 +67,7 @@
         <app-input-checkbox
             [checked]="onlyCharacters()"
             label="Only characters"
-            [style.color]="form.get('input')?.hasError('pattern') ? 'var(--mv-lib-danger)' : 'var(--mv-lib-primary-color-8)'"
+            [style.color]="form.get('input')?.hasError('pattern') ? 'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
             (onChange)="
                 onlyCharacters.set($event);
                 updateFormValidator(
@@ -79,7 +79,7 @@
         <app-input-number
             [value]="minLength()"
             label="Min length"
-            [style.color]="form.get('input')?.hasError('minlength') ? 'var(--mv-lib-danger)' : 'var(--mv-lib-primary-color-8)'"
+            [style.color]="form.get('input')?.hasError('minlength') ? 'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
             (onChange)="
                 minLength.set($event);
                 updateFormValidator(
