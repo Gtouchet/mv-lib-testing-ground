@@ -1,13 +1,13 @@
 :root.obsidian-theme {
 
-    --mv-lib-primary-color-1: #000000;
-    --mv-lib-primary-color-2: #202020;
-    --mv-lib-primary-color-3: #404040;
-    --mv-lib-primary-color-4: #606060;
-    --mv-lib-primary-color-5: #808080;
-    --mv-lib-primary-color-6: #a0a0a0;
-    --mv-lib-primary-color-7: #c0c0c0;
-    --mv-lib-primary-color-8: #e0e0e0;
+    --mv-lib-primary-color-1: #202020;
+    --mv-lib-primary-color-2: #3c3c3c;
+    --mv-lib-primary-color-3: #585858;
+    --mv-lib-primary-color-4: #747474;
+    --mv-lib-primary-color-5: #909090;
+    --mv-lib-primary-color-6: #acacac;
+    --mv-lib-primary-color-7: #c8c8c8;
+    --mv-lib-primary-color-8: #e4e4e4;
     --mv-lib-primary-color-9: #ffffff;
 
     --mv-lib-secondary-color-1: #f0f8ff;
@@ -33,52 +33,6 @@
     /* Status */
     --mv-lib-success: #7dff95;
     --mv-lib-warning: #ffbc5e;
-    --mv-lib-danger: #ff8080;
-    --mv-lib-info: #87d1ff;
-
-    --button-classic-background-color: dodgerblue;
-    --button-classic-font-size: medium;
-    --button-classic-font-weight: bold;
-    --button-classic-font-color: white;
-
-    --dropdown-classic-button-background-color: #385ea8;
-    --dropdown-classic-button-text-color: #eef3ff;
-    --dropdown-classic-item-background-color: #2b466f;
-    --dropdown-classic-item-text-color: #e6edff;
-
-    --radio-buttons-classic-background-color: #30384a;
-    --radio-buttons-classic-selected-color: #82adff;
-
-    --switch-classic-track-color-on: #4c82ff;
-    --switch-classic-cursor-color-on: #e9edff;
-    --switch-classic-cursor-icon-on: check;
-    --switch-classic-cursor-icon-on-color: #4c82ff;
-    --switch-classic-track-color-off: #5a6374;
-    --switch-classic-cursor-color-off: #3f4653;
-    --switch-classic-cursor-icon-off: close;
-    --switch-classic-cursor-icon-off-color: #d4d9e5;
-
-    --switch-lite-track-color-on: #4c82ff;
-    --switch-lite-cursor-color-on: #e9edff;
-    --switch-lite-cursor-icon-on: check;
-    --switch-lite-cursor-icon-on-color: #4c82ff;
-    --switch-lite-track-color-off: #5a6374;
-    --switch-lite-cursor-color-off: #3f4653;
-    --switch-lite-cursor-icon-off: close;
-    --switch-lite-cursor-icon-off-color: #d4d9e5;
-
-    --textbox-classic-outline-solid-selected-color: #82adff;
-    --textbox-classic-outline-blur-selected-color: #82adff;
-    --textbox-classic-background-color: #212a3b;
-
-    --toast-classic-background-color: #3a455d;
-    --toast-classic-text-color: #e6edff;
-    --toast-success-background-color: #15803d;
-    --toast-success-text-color: #ecfdf3;
-    --toast-warning-background-color: #b45309;
-    --toast-warning-text-color: #fff7ed;
-    --toast-error-background-color: #b91c1c;
-    --toast-error-text-color: #fef2f2;
-    --toast-info-background-color: #0369a1;
-    --toast-info-text-color: #e0f2fe;
+    --mv-lib-error:   #ff8080;
+    --mv-lib-info:    #87d1ff;
 }
