@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
         </h3>
         <p>
             This is a test application for the MVLib library. It is used to test its components and their functionalities.<br/>
-            Choose a component from the header to see the examples and test the components styles, effects and settings.<br/>
+            Choose a component or a service from the left menu to see the examples and test the components styles, effects and settings.<br/>
             The project is still in its early stages, so you may encounter some bugs or missing features.<br/>
             I am actively working on fixing issues and adding new functionality.<br/>
         </p>

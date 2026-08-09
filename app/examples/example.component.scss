@@ -6,7 +6,7 @@
 .configuration {
     display: flex;
     gap: 4px;
-    height: calc(40% - 2px);
+    height: calc(50% - 2px);
 
     > app-configuration-section {
         @extend %border;
@@ -34,7 +34,7 @@
     display: flex;
     gap: 4px;
     margin-top: 4px;
-    height: calc(60% - 2px);
+    height: calc(50% - 2px);
 
     > * {
         @extend %border;

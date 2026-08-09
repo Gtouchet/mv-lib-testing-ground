@@ -9,7 +9,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideMvLibThemeConfiguration({
       themes: MV_LIB_THEMES,
-      defaultTheme: 'white',
+      defaultTheme: 'Lordaeron',
       localStorageKey: 'mv-lib-testing-ground-theme',
     }),
   ]

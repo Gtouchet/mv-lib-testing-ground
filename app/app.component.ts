@@ -4,14 +4,15 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import {
   MV_LIB_EFFECTS,
-  MvLibButtonClassicComponent,
   MvLibDropdownClassicComponent,
   MvLibDropdownClassicEffects,
+  MvLibDropdownClassicSettings,
   MvLibDropdownClassicStyle,
   MvLibDropdownDirectives,
   MvLibThemeService,
   MvLibToastClassicComponent,
 } from 'mv-lib';
+import { CommonModule } from '@angular/common';
 
 interface Item {
   type: string;
@@ -30,10 +31,10 @@ interface DropdownGroup {
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    MvLibButtonClassicComponent,
     MvLibDropdownClassicComponent,
     MvLibDropdownDirectives,
     MvLibToastClassicComponent,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -56,7 +57,7 @@ export class AppComponent {
     this.updateDocumentTitle();
   }
 
-  protected dropdowns = signal<DropdownGroup[]>([
+  protected componentDropdowns = signal<DropdownGroup[]>([
     {
       name: 'Buttons',
       icon: 'trackpad_input',
@@ -98,6 +99,9 @@ export class AppComponent {
         { type: 'Classic', routerLink: '/textbox-classic-example' },
       ],
     },
+  ]);
+
+  protected serviceDropdowns = signal<DropdownGroup[]>([
     {
       name: 'Toasts',
       icon: 'notifications',
@@ -111,12 +115,19 @@ export class AppComponent {
   protected dropdownsStyles: Partial<MvLibDropdownClassicStyle> = {
     button: {
       dimensions: {
-        width: '175px',
+        width: '100%',
         height: '32px',
       },
     },
+    list: {
+      border: {
+        width: '1px',
+        style: 'solid',
+        color: '--mv-lib-tertiary-color-8',
+      }
+    },
     item: {
-      height: '32px',
+      height: '28px',
     },
   };
 
@@ -140,8 +151,14 @@ export class AppComponent {
     },
   };
 
+  protected dropdownsSettings: Partial<MvLibDropdownClassicSettings> = {
+    list: {
+      offsetX: '25%',
+    },
+  };
+
   protected onItemSelect(item: Item, dropdownName: string): void {
-    this.dropdowns.update((dropdowns) =>
+    this.componentDropdowns.update((dropdowns) =>
       dropdowns.map((dropdown) => ({
         ...dropdown,
         selected: dropdown.name === dropdownName ? item : undefined,

@@ -1,104 +1,140 @@
-<div class="app-shell">
-    <header class="header">
-        <div class="buttons">
-            <mv-lib-button-classic
-                [style]="{
-                    dimensions: {
-                        width: '110px',
-                        height: '32px',
-                    },
-                    font: {
-                        weight: 'bold',
-                        size: '16px',
-                    },
-                }"
-                [effects]="{
-                    classes: [
-                        mvLibEffects.idle.shadow.class,
-                        mvLibEffects.hover.tint.class,
-                        mvLibEffects.click.push.class,
-                    ],
-                }"
-                (onClick)="router.navigateByUrl('/home')"
-            >
-                <span
-                    class="material-symbols-outlined"
-                    style="margin-right: 4px;"
-                >
-                    home
-                </span>
-                MV Lib
-            </mv-lib-button-classic>
+<div class="app">
+    <aside class="sidebar">
 
+        <div
+            [ngStyle]="{
+                'display': 'flex',
+                'justify-content': 'center'
+            }"
+        >
+            <h2
+                [ngStyle]="{
+                    'cursor': 'pointer'
+                }"
+                (click)="router.navigateByUrl('/home')"
+            >
+                MV Lib
+            </h2>
+        </div>
+
+        <b>Theme</b>
+        <mv-lib-dropdown-classic
+            [items]="themeService.getThemes()"
+            [selected]="themeService.currentTheme()"
+            [style]="dropdownsStyles"
+            [effects]="dropdownsEffects"
+            [settings]="dropdownsSettings"
+            (onSelect)="themeService.setTheme($event.selectedItem!.name)"
+        >
+            <ng-template mvLibDropdownPlaceholderTemplate>
+                <div class="dropdown-placeholder">
+                    <span class="material-symbols-outlined">
+                        palette
+                    </span>
+                    Select a theme
+                </div>
+            </ng-template>
+            <ng-template mvLibDropdownSelectedTemplate let-item>
+                <div class="dropdown-selected">
+                    <span class="material-symbols-outlined">
+                        palette
+                    </span>
+                    {{ item.name }}
+                </div>
+            </ng-template>
+            <ng-template mvLibDropdownItemTemplate let-item>
+                <span class="material-symbols-outlined">
+                    {{ item.mode === 'light' ? 'light_mode' : 'dark_mode' }}
+                </span>
+                <div class="dropdown-item">
+                    {{ item.name }}
+                </div>
+            </ng-template>
+        </mv-lib-dropdown-classic>
+
+        <b>Components</b>
+        @for (dropdown of componentDropdowns(); track dropdown.name) {
             <mv-lib-dropdown-classic
-                [items]="themeService.getThemes()"
-                [selected]="themeService.currentTheme()"
+                [items]="dropdown.items"
+                [selected]="dropdown.selected"
                 [style]="dropdownsStyles"
                 [effects]="dropdownsEffects"
-                (onSelect)="themeService.setTheme($event.selectedItem!.name)"
+                [settings]="dropdownsSettings"
+                (onSelect)="onItemSelect($event.selectedItem!, dropdown.name)"
             >
                 <ng-template mvLibDropdownPlaceholderTemplate>
                     <div class="dropdown-placeholder">
                         <span class="material-symbols-outlined">
-                            palette
+                            {{ dropdown.icon }}
                         </span>
-                        Selected a theme
+                        <b>
+                            {{ dropdown.name }}
+                        </b>
                     </div>
                 </ng-template>
+
                 <ng-template mvLibDropdownSelectedTemplate let-item>
                     <div class="dropdown-selected">
                         <span class="material-symbols-outlined">
-                            palette
+                            {{ dropdown.icon }}
                         </span>
-                        {{ item.name }}
+
+                        {{ item.type + (item.wip ? ' (WIP)' : '') }}
                     </div>
                 </ng-template>
+
                 <ng-template mvLibDropdownItemTemplate let-item>
                     <div class="dropdown-item">
-                        {{ item.name }}
+                        {{ item.type + (item.wip ? ' (WIP)' : '') }}
                     </div>
                 </ng-template>
             </mv-lib-dropdown-classic>
+        }
 
-            @for (dropdown of dropdowns(); track dropdown.name) {
-                <mv-lib-dropdown-classic
-                    [items]="dropdown.items"
-                    [selected]="dropdown.selected"
-                    [style]="dropdownsStyles"
-                    [effects]="dropdownsEffects"
-                    (onSelect)="onItemSelect($event.selectedItem!, dropdown.name)"
-                >
-                    <ng-template mvLibDropdownPlaceholderTemplate>
-                        <div class="dropdown-placeholder">
-                            <span class="material-symbols-outlined">
-                                {{ dropdown.icon }}
-                            </span>
-                            <b>
-                                {{ dropdown.name }}
-                            </b>
-                        </div>
-                    </ng-template>
-                    <ng-template mvLibDropdownSelectedTemplate let-item>
-                        <div class="dropdown-selected">
-                            <span class="material-symbols-outlined">
-                                {{ dropdown.icon }}
-                            </span>
-                            {{ item.type + (item.wip ? ' (WIP)' : '') }}
-                        </div>
-                    </ng-template>
-                    <ng-template mvLibDropdownItemTemplate let-item>
-                        <div class="dropdown-item">
-                            {{ item.type + (item.wip ? ' (WIP)' : '') }}
-                        </div>
-                    </ng-template>
-                </mv-lib-dropdown-classic>
-            }
-        </div>
-    </header>
+        <b>Services</b>
+        @for (dropdown of serviceDropdowns(); track dropdown.name) {
+            <mv-lib-dropdown-classic
+                [items]="dropdown.items"
+                [selected]="dropdown.selected"
+                [style]="dropdownsStyles"
+                [effects]="dropdownsEffects"
+                [settings]="dropdownsSettings"
+                (onSelect)="onItemSelect($event.selectedItem!, dropdown.name)"
+            >
+                <ng-template mvLibDropdownPlaceholderTemplate>
+                    <div class="dropdown-placeholder">
+                        <span class="material-symbols-outlined">
+                            {{ dropdown.icon }}
+                        </span>
+
+                        <b>
+                            {{ dropdown.name }}
+                        </b>
+                    </div>
+                </ng-template>
+
+                <ng-template mvLibDropdownSelectedTemplate let-item>
+                    <div class="dropdown-selected">
+                        <span class="material-symbols-outlined">
+                            {{ dropdown.icon }}
+                        </span>
+
+                        {{ item.type + (item.wip ? ' (WIP)' : '') }}
+                    </div>
+                </ng-template>
+
+                <ng-template mvLibDropdownItemTemplate let-item>
+                    <div class="dropdown-item">
+                        {{ item.type + (item.wip ? ' (WIP)' : '') }}
+                    </div>
+                </ng-template>
+            </mv-lib-dropdown-classic>
+        }
+    </aside>
 
     <main class="app-content">
         <router-outlet />
     </main>
 </div>
 
-<mv-lib-toast-classic />
+<mv-lib-toast-classic></mv-lib-toast-classic>

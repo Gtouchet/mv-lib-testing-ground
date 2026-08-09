@@ -20,11 +20,18 @@
         </div>
         @if (selectedPartStyle() === 'button') {
             <app-inputs-separator title="General" />
-            <app-input-color
-                label="Background color"
-                [value]="dropdown().getStyle().button.backgroundColor"
-                (onChange)="dropdown().setStyle('button.backgroundColor', $event); refreshLog();"
-            />
+            <div class="inputs-group">
+                Background color closed
+                <app-input-color
+                    [value]="dropdown().getStyle().button.closedBackgroundColor"
+                    (onChange)="dropdown().setStyle('button.closedBackgroundColor', $event); refreshLog();"
+                />
+                Background color opened
+                <app-input-color
+                    [value]="dropdown().getStyle().button.openedBackgroundColor"
+                    (onChange)="dropdown().setStyle('button.openedBackgroundColor', $event); refreshLog();"
+                />
+            </div>
             <app-dimensions-inputs
                 [dimensions]="dropdown().getStyle().button.dimensions!"
                 (onChangeDimensions)="dropdown().setStyle(`button.dimensions.${$event.key}`, $event.value); refreshLog();"
