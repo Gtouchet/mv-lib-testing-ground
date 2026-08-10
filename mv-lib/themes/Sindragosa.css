@@ -32,6 +32,17 @@
     /* Status */
     --mv-lib-success: #78d28f;
     --mv-lib-warning: #f0b466;
-    --mv-lib-error: #ea8484;
-    --mv-lib-info: #74b8e8;
+    --mv-lib-error:   #ea8484;
+    --mv-lib-info:    #74b8e8;
+
+    /* Components */
+    --mv-lib-component-background-color-primary: var(--mv-lib-secondary-color-6);
+    --mv-lib-component-background-color-secondary: var(--mv-lib-secondary-color-5);
+    --mv-lib-component-background-color-tertiary: var(--mv-lib-secondary-color-3);
+
+    --mv-lib-component-font-color-primary: var(--mv-lib-primary-color-9);
+    --mv-lib-component-font-color-secondary: var(--mv-lib-primary-color-1);
+
+    --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-7);
+    --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-6);
 }
