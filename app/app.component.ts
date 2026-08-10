@@ -119,13 +119,6 @@ export class AppComponent {
         height: '32px',
       },
     },
-    list: {
-      border: {
-        width: '1px',
-        style: 'solid',
-        color: '--mv-lib-tertiary-color-8',
-      }
-    },
     item: {
       height: '28px',
     },

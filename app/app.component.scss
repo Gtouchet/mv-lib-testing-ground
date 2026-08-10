@@ -26,7 +26,9 @@ html {
     flex-direction: column;
     gap: 8px;
     padding: 12px;
-    background-color: var(--mv-lib-primary-color-2);
+    background: linear-gradient(to right,
+        var(--mv-lib-tertiary-color-5), 5%,
+        var(--mv-lib-primary-color-1));
     border-right: 1px solid var(--mv-lib-tertiary-color-4);
 }
 
