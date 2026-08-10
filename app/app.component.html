@@ -43,10 +43,10 @@
                 </div>
             </ng-template>
             <ng-template mvLibDropdownItemTemplate let-item>
-                <span class="material-symbols-outlined">
-                    {{ item.mode === 'light' ? 'light_mode' : 'dark_mode' }}
-                </span>
                 <div class="dropdown-item">
+                    <span class="material-symbols-outlined">
+                        {{ item.mode === 'light' ? 'light_mode' : 'dark_mode' }}
+                    </span>
                     {{ item.name }}
                 </div>
             </ng-template>
