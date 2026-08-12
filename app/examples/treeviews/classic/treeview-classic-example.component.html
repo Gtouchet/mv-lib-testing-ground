@@ -1,0 +1,145 @@
+<div class="configuration">
+    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+        <div buttons>
+            <app-input-button
+                label="General"
+                [selected]="selectedPartStyle() === 'general'"
+                (onClick)="selectedPartStyle.set('general')"
+            />
+            <app-input-button
+                label="Primary toggle"
+                [selected]="selectedPartStyle() === 'primary toggle'"
+                (onClick)="selectedPartStyle.set('primary toggle')"
+            />
+            <app-input-button
+                label="Nested toggles"
+                [selected]="selectedPartStyle() === 'nested toggles'"
+                (onClick)="selectedPartStyle.set('nested toggles')"
+            />
+            <app-input-button
+                label="List"
+                [selected]="selectedPartStyle() === 'list'"
+                (onClick)="selectedPartStyle.set('list')"
+            />
+        </div>
+        @if (selectedPartStyle() === 'general') {
+            <app-inputs-separator title="Dimensions" />
+            <app-input-text
+                [value]="treeview().getStyle().width"
+                label="Width"
+                (onChange)="treeview().setStyle('width', $event); refreshLog();"
+            />
+        }
+        @else if (selectedPartStyle() === 'primary toggle') {
+            <app-font-inputs
+                [font]="treeview().getStyle().primaryToggle.font!"
+                (onChangeFont)="treeview().setStyle(`primaryToggle.font.${$event.key}`, $event.value); refreshLog();"
+            />
+        }
+        @else if (selectedPartStyle() === 'nested toggles') {
+            
+        }
+        @else if (selectedPartStyle() === 'list') {
+            <app-inputs-separator title="Dimensions" />
+            <app-input-text
+                [value]="treeview().getStyle().list!.height"
+                label="Height"
+                (onChange)="treeview().setStyle('list.height', $event); refreshLog();"
+            />
+        }
+    </app-configuration-section>
+
+    <app-configuration-section title="Effects">
+        
+    </app-configuration-section>
+
+    <app-configuration-section title="Settings">
+        <app-inputs-separator title="General" />
+        <app-input-checkbox
+            [checked]="disabled()"
+            label="Disabled"
+            (onChange)="disabled.set($event); refreshLog();"
+        />
+        <app-inputs-separator title="List" />
+        <div class="inputs-group">
+            Offset X
+            <app-input-text
+                [value]="treeview().getSettings().list!.offsetX"
+                (onChange)="treeview().setSettings('list.offsetX', $event); refreshLog();"
+            />
+        </div>
+    </app-configuration-section>
+</div>
+
+<div class="visual">
+    <mv-lib-treeview-classic
+        #mvLibTreeviewClassic
+        class="component"
+        [ngStyle]="{
+            'align-items': 'flex-start',
+            'padding-top': '50px',
+        }"
+        [style]="style()"
+        [effects]="effects()"
+        [settings]="settings()"
+        [items]="users()"
+        [disabled]="disabled()"
+        (onToggle)="refreshLastInteractionTime()"
+    >
+        User contacts
+        <ng-template
+            mvLibTreeviewListTemplate
+            let-item
+            let-depth="depth"
+        >
+            @if (depth === 0) {
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+                {{ item.name }}
+            }
+            @else if (depth === 1) {
+                <mv-lib-button-classic
+                    [style]="{
+                        dimensions: {
+                            width: '175px',
+                            height: '25px',
+                        },
+                    }"
+                    [effects]="{
+                        classes: [
+                            'mv-lib-tint-hover',
+                            'mv-lib-push-click',
+                        ]
+                    }"
+                >
+                    <div
+                        [ngStyle]="{
+                            'display': 'flex',
+                            'align-items': 'center',
+                            'gap': '5px',
+                            'width.%': 100,
+                            'text-align': 'left',
+                        }"
+                    >
+                        <span class="material-symbols-outlined">
+                            {{ item.type }}
+                        </span>
+                        {{ item.value }}
+                    </div>
+                </mv-lib-button-classic>
+            }
+        </ng-template>
+    </mv-lib-treeview-classic>
+
+    <div class="log">
+        Last interaction time: {{ lastInteractionTime() }}
+        <app-input-button
+            label="Copy component code"
+            [width]="'25%'"
+            [style.margin-top.px]="10"
+            (onClick)="copyComponentCode('mv-lib-treeview-classic')"
+        />
+        <pre>&lt;mv-lib-treeview-classic{{ log() }}/&gt;</pre>
+    </div>
+</div>

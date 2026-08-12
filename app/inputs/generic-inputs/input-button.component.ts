@@ -13,9 +13,6 @@ import { CommonModule } from '@angular/common';
       [class.selected]="selected()"
       [ngStyle]="{
         'width': width(),
-        'border': '1px solid var(--mv-lib-tertiary-color-4)',
-        'border-radius': '4px',
-        'height.px': 23,
       }"
       (click)="handleClick($event)"
     >

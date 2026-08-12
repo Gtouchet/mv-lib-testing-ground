@@ -1,7 +1,7 @@
 <div class="configuration">
 
     <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
-        <div buttons class="type-buttons">
+        <div buttons>
             <app-input-button
                 label="Button"
                 [selected]="selectedPartStyle() === 'button'"
@@ -77,7 +77,7 @@
     </app-configuration-section>
     
     <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
-        <div buttons class="type-buttons">
+        <div buttons>
             <app-input-button
                 label="Button"
                 [selected]="selectedPartEffects() === 'button'"

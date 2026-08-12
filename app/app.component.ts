@@ -14,17 +14,17 @@ import {
 } from 'mv-lib';
 import { CommonModule } from '@angular/common';
 
-interface Item {
+interface ComponentTreeview {
+  name: string;
+  icon: string;
+  selected?: ComponentItem;
+  items: ComponentItem[];
+}
+
+interface ComponentItem {
   type: string;
   routerLink?: string;
   wip?: boolean;
-}
-
-interface DropdownGroup {
-  name: string;
-  icon: string;
-  selected?: Item;
-  items: Item[];
 }
 
 @Component({
@@ -57,7 +57,7 @@ export class AppComponent {
     this.updateDocumentTitle();
   }
 
-  protected componentDropdowns = signal<DropdownGroup[]>([
+  protected componentDropdowns = signal<ComponentTreeview[]>([
     {
       name: 'Buttons',
       icon: 'trackpad_input',
@@ -99,9 +99,17 @@ export class AppComponent {
         { type: 'Classic', routerLink: '/textbox-classic-example' },
       ],
     },
+    { 
+      name: 'Treeview',
+      icon: 'folder_data',
+      selected: undefined,
+      items: [
+        { type: 'Classic', routerLink: '/treeview-classic-example', wip: true },
+      ],
+    },
   ]);
 
-  protected serviceDropdowns = signal<DropdownGroup[]>([
+  protected serviceDropdowns = signal<ComponentTreeview[]>([
     {
       name: 'Toasts',
       icon: 'notifications',
@@ -150,7 +158,7 @@ export class AppComponent {
     },
   };
 
-  protected onItemSelect(item: Item, dropdownName: string): void {
+  protected onItemSelect(item: ComponentItem, dropdownName: string): void {
     this.componentDropdowns.update((dropdowns) =>
       dropdowns.map((dropdown) => ({
         ...dropdown,

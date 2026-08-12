@@ -5,6 +5,7 @@ import { RadioButtonsClassicExampleComponent } from './examples/radio-buttons/cl
 import { SwitchClassicExampleComponent } from './examples/switches/classic/switch-classic-example.component';
 import { SwitchLiteExampleComponent } from './examples/switches/lite/switch-lite-example.component';
 import { TextboxClassicExampleComponent } from './examples/textboxes/classic/textbox-classic-example.component';
+import { TreeviewClassicExampleComponent } from './examples/treeviews/classic/treeview-classic-example.component';
 import { ToastClassicExampleComponent } from './examples/toasts/classic/toast-classic-example.component';
 import { HomeComponent } from './home.component';
 
@@ -17,5 +18,6 @@ export const routes: Routes = [
 	{ path: 'switch-classic-example', component: SwitchClassicExampleComponent, data: { title: 'Switch classic' } },
 	{ path: 'switch-lite-example', component: SwitchLiteExampleComponent, data: { title: 'Switch lite' } },
 	{ path: 'textbox-classic-example', component: TextboxClassicExampleComponent, data: { title: 'Textbox classic' } },
+	{ path: 'treeview-classic-example', component: TreeviewClassicExampleComponent, data: { title: 'Treeview classic' } },
 	{ path: 'toast-classic-example', component: ToastClassicExampleComponent, data: { title: 'Toast classic' } },
 ];
