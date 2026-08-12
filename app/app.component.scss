@@ -4,9 +4,9 @@
     inset: 0;
 }
 
-html {
-    font-family: Arial, sans-serif;
-}
+// html {
+//     font-family: Arial, sans-serif;
+// }
 
 .app {
     height: 100%;
@@ -32,6 +32,21 @@ html {
     border-right: 1px solid var(--mv-lib-tertiary-color-4);
 }
 
+.sidebar-title {
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-title-link {
+    cursor: pointer;
+}
+
+.treeview-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .app-content {
     flex: 1 1 auto;
     min-width: 0;
@@ -41,26 +56,24 @@ html {
     box-sizing: border-box;
 }
 
-.dropdown-placeholder {
+.treeview-group-label {
     display: flex;
     align-items: center;
-    height: 100%;
-    gap: 8px;
-    margin-left: 6px;
-}
-
-.dropdown-selected {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    gap: 8px;
-    margin-left: 6px;
-}
-
-.dropdown-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-left: 6px;
     gap: 6px;
+    min-height: 26px;
+    width: 100%;
+}
+
+.treeview-action-button {
+    width: 100%;
+}
+
+.treeview-action-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 26px;
+    width: 100%;
+    gap: 6px;
+    text-align: left;
 }

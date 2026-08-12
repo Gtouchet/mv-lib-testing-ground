@@ -1,135 +1,103 @@
 <div class="app">
     <aside class="sidebar">
 
-        <div
-            [ngStyle]="{
-                'display': 'flex',
-                'justify-content': 'center'
-            }"
-        >
-            <h2
-                [ngStyle]="{
-                    'cursor': 'pointer'
-                }"
-                (click)="router.navigateByUrl('/home')"
-            >
+        <div class="sidebar-title">
+            <h2 class="sidebar-title-link" (click)="router.navigateByUrl('/home')">
                 MV Lib
             </h2>
         </div>
 
-        <b>Theme</b>
-        <mv-lib-dropdown-classic
-            [items]="themeService.getThemes()"
-            [selected]="themeService.currentTheme()"
-            [style]="dropdownsStyles"
-            [effects]="dropdownsEffects"
-            [settings]="dropdownsSettings"
-            (onSelect)="themeService.setTheme($event.selectedItem!.name)"
-        >
-            <ng-template mvLibDropdownPlaceholderTemplate>
-                <div class="dropdown-placeholder">
-                    <span class="material-symbols-outlined">
-                        palette
-                    </span>
-                    Select a theme
-                </div>
-            </ng-template>
-            <ng-template mvLibDropdownSelectedTemplate let-item>
-                <div class="dropdown-selected">
-                    <span class="material-symbols-outlined">
-                        palette
-                    </span>
-                    {{ item.name }}
-                </div>
-            </ng-template>
-            <ng-template mvLibDropdownItemTemplate let-item>
-                <div class="dropdown-item">
-                    <span class="material-symbols-outlined">
-                        {{ item.mode === 'light' ? 'light_mode' : 'dark_mode' }}
-                    </span>
-                    {{ item.name }}
-                </div>
-            </ng-template>
-        </mv-lib-dropdown-classic>
-
-        <b>Components</b>
-        @for (dropdown of componentDropdowns(); track dropdown.name) {
-            <mv-lib-dropdown-classic
-                [items]="dropdown.items"
-                [selected]="dropdown.selected"
-                [style]="dropdownsStyles"
-                [effects]="dropdownsEffects"
-                [settings]="dropdownsSettings"
-                (onSelect)="onItemSelect($event.selectedItem!, dropdown.name)"
+        <section class="treeview-section">
+            <mv-lib-treeview-classic
+                [items]="themeTreeviewItems()"
+                [childrenPath]="'children'"
             >
-                <ng-template mvLibDropdownPlaceholderTemplate>
-                    <div class="dropdown-placeholder">
-                        <span class="material-symbols-outlined">
-                            {{ dropdown.icon }}
-                        </span>
-                        <b>
-                            {{ dropdown.name }}
-                        </b>
-                    </div>
+                Theme
+                <ng-template mvLibTreeviewListTemplate let-item>
+                    <mv-lib-button-classic
+                        class="treeview-action-button"
+                        [style]="treeviewButtonStyle"
+                        [effects]="treeviewButtonEffects"
+                        (onClick)="onThemeSelect(item.themeName, $event.event)"
+                    >
+                        <div class="treeview-action-content">
+                            <span class="material-symbols-outlined">
+                                {{ item.icon }}
+                            </span>
+                            {{ item.label }}
+                        </div>
+                    </mv-lib-button-classic>
                 </ng-template>
+            </mv-lib-treeview-classic>
+        </section>
 
-                <ng-template mvLibDropdownSelectedTemplate let-item>
-                    <div class="dropdown-selected">
-                        <span class="material-symbols-outlined">
-                            {{ dropdown.icon }}
-                        </span>
-
-                        {{ item.type + (item.wip ? ' (WIP)' : '') }}
-                    </div>
-                </ng-template>
-
-                <ng-template mvLibDropdownItemTemplate let-item>
-                    <div class="dropdown-item">
-                        {{ item.type + (item.wip ? ' (WIP)' : '') }}
-                    </div>
-                </ng-template>
-            </mv-lib-dropdown-classic>
-        }
-
-        <b>Services</b>
-        @for (dropdown of serviceDropdowns(); track dropdown.name) {
-            <mv-lib-dropdown-classic
-                [items]="dropdown.items"
-                [selected]="dropdown.selected"
-                [style]="dropdownsStyles"
-                [effects]="dropdownsEffects"
-                [settings]="dropdownsSettings"
-                (onSelect)="onItemSelect($event.selectedItem!, dropdown.name)"
+        <section class="treeview-section">
+            <mv-lib-treeview-classic
+                [items]="componentTreeviewItems()"
+                [childrenPath]="'children'"
             >
-                <ng-template mvLibDropdownPlaceholderTemplate>
-                    <div class="dropdown-placeholder">
-                        <span class="material-symbols-outlined">
-                            {{ dropdown.icon }}
-                        </span>
-
-                        <b>
-                            {{ dropdown.name }}
-                        </b>
-                    </div>
+                Components
+                <ng-template
+                    mvLibTreeviewListTemplate
+                    let-item
+                    let-depth="depth"
+                >
+                    @if (depth === 0) {
+                        <div class="treeview-group-label">
+                            <span class="material-symbols-outlined">
+                                {{ item.icon }}
+                            </span>
+                            {{ item.label }}
+                        </div>
+                    } @else {
+                        <mv-lib-button-classic
+                            class="treeview-action-button"
+                            [style]="treeviewButtonStyle"
+                            [effects]="treeviewButtonEffects"
+                            (onClick)="onNavigationItemClick(item, $event.event)"
+                        >
+                            <div class="treeview-action-content">
+                                {{ item.label + (item.wip ? ' (WIP)' : '') }}
+                            </div>
+                        </mv-lib-button-classic>
+                    }
                 </ng-template>
+            </mv-lib-treeview-classic>
+        </section>
 
-                <ng-template mvLibDropdownSelectedTemplate let-item>
-                    <div class="dropdown-selected">
-                        <span class="material-symbols-outlined">
-                            {{ dropdown.icon }}
-                        </span>
-
-                        {{ item.type + (item.wip ? ' (WIP)' : '') }}
-                    </div>
+        <section class="treeview-section">
+            <mv-lib-treeview-classic
+                [items]="serviceTreeviewItems()"
+                [childrenPath]="'children'"
+            >
+                Services
+                <ng-template
+                    mvLibTreeviewListTemplate
+                    let-item
+                    let-depth="depth"
+                >
+                    @if (depth === 0) {
+                        <div class="treeview-group-label">
+                            <span class="material-symbols-outlined">
+                                {{ item.icon }}
+                            </span>
+                            {{ item.label }}
+                        </div>
+                    } @else {
+                        <mv-lib-button-classic
+                            class="treeview-action-button"
+                            [style]="treeviewButtonStyle"
+                            [effects]="treeviewButtonEffects"
+                            (onClick)="onNavigationItemClick(item, $event.event)"
+                        >
+                            <div class="treeview-action-content">
+                                {{ item.label + (item.wip ? ' (WIP)' : '') }}
+                            </div>
+                        </mv-lib-button-classic>
+                    }
                 </ng-template>
-
-                <ng-template mvLibDropdownItemTemplate let-item>
-                    <div class="dropdown-item">
-                        {{ item.type + (item.wip ? ' (WIP)' : '') }}
-                    </div>
-                </ng-template>
-            </mv-lib-dropdown-classic>
-        }
+            </mv-lib-treeview-classic>
+        </section>
     </aside>
 
     <main class="app-content">

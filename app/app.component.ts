@@ -1,40 +1,35 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import {
-  MV_LIB_EFFECTS,
-  MvLibDropdownClassicComponent,
-  MvLibDropdownClassicEffects,
-  MvLibDropdownClassicSettings,
-  MvLibDropdownClassicStyle,
-  MvLibDropdownDirectives,
+  MvLibButtonClassicComponent,
+  MvLibButtonClassicEffects,
+  MvLibButtonClassicStyle,
+  MvLibThemeDefinition,
   MvLibThemeService,
   MvLibToastClassicComponent,
+  MvLibTreeviewClassicComponent,
+  MvLibTreeviewDirectives,
 } from 'mv-lib';
-import { CommonModule } from '@angular/common';
 
-interface ComponentTreeview {
-  name: string;
-  icon: string;
-  selected?: ComponentItem;
-  items: ComponentItem[];
-}
-
-interface ComponentItem {
-  type: string;
+interface TreeviewNode {
+  label: string;
+  icon?: string;
   routerLink?: string;
+  themeName?: string;
   wip?: boolean;
+  children?: TreeviewNode[];
 }
 
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
-    MvLibDropdownClassicComponent,
-    MvLibDropdownDirectives,
+    MvLibTreeviewClassicComponent,
+    MvLibTreeviewDirectives,
+    MvLibButtonClassicComponent,
     MvLibToastClassicComponent,
-    CommonModule,
+    RouterOutlet,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -43,8 +38,6 @@ interface ComponentItem {
 })
 export class AppComponent {
 
-  protected mvLibEffects = MV_LIB_EFFECTS;
-  
   protected router = inject(Router);
   protected titleService = inject(Title);
   protected themeService = inject(MvLibThemeService);
@@ -57,117 +50,98 @@ export class AppComponent {
     this.updateDocumentTitle();
   }
 
-  protected componentDropdowns = signal<ComponentTreeview[]>([
+  protected themeTreeviewItems = computed<TreeviewNode[]>(() =>
+    this.themeService.getThemes().map((theme: MvLibThemeDefinition) => ({
+      label: theme.name,
+      icon: theme.mode === 'light' ? 'light_mode' : 'dark_mode',
+      themeName: theme.name,
+    })),
+  );
+
+  protected componentTreeviewItems = signal<TreeviewNode[]>([
     {
-      name: 'Buttons',
+      label: 'Buttons',
       icon: 'trackpad_input',
-      selected: undefined,
-      items: [
-        { type: 'Classic', routerLink: '/button-classic-example' },
+      children: [
+        { label: 'Classic', routerLink: '/button-classic-example' },
       ],
     },
-    { 
-      name: 'Dropdowns',
-      icon: 'dropdown_menu',
-      selected: undefined,
-      items: [
-        { type: 'Classic', routerLink: '/dropdown-classic-example' },
-      ],
-    },
-    { 
-      name: 'Radio buttons',
-      icon: 'radio_button_checked',
-      selected: undefined,
-      items: [
-        { type: 'Classic', routerLink: '/radio-buttons-classic-example' },
-      ],
-    },
-    { 
-      name: 'Switches',
-      icon: 'switches', 
-      selected: undefined,
-      items: [
-        { type: 'Classic', routerLink: '/switch-classic-example' },
-        // { type: 'Lite', routerLink: '/switch-lite-example', wip: true },
-      ],
-    },
-    { 
-      name: 'Textboxes',
-      icon: 'crop_16_9',
-      selected: undefined,
-      items: [
-        { type: 'Classic', routerLink: '/textbox-classic-example' },
-      ],
-    },
-    { 
-      name: 'Treeview',
-      icon: 'folder_data',
-      selected: undefined,
-      items: [
-        { type: 'Classic', routerLink: '/treeview-classic-example', wip: true },
-      ],
-    },
-  ]);
-
-  protected serviceDropdowns = signal<ComponentTreeview[]>([
     {
-      name: 'Toasts',
-      icon: 'notifications',
-      selected: undefined,
-      items: [
-        { type: 'Classic', routerLink: '/toast-classic-example' },
+      label: 'Dropdowns',
+      icon: 'dropdown_menu',
+      children: [
+        { label: 'Classic', routerLink: '/dropdown-classic-example' },
+      ],
+    },
+    {
+      label: 'Radio buttons',
+      icon: 'radio_button_checked',
+      children: [
+        { label: 'Classic', routerLink: '/radio-buttons-classic-example' },
+      ],
+    },
+    {
+      label: 'Switches',
+      icon: 'switches',
+      children: [
+        { label: 'Classic', routerLink: '/switch-classic-example' },
+        // { label: 'Lite', routerLink: '/switch-lite-example', wip: true },
+      ],
+    },
+    {
+      label: 'Textboxes',
+      icon: 'crop_16_9',
+      children: [
+        { label: 'Classic', routerLink: '/textbox-classic-example' },
+      ],
+    },
+    {
+      label: 'Treeview',
+      icon: 'folder_data',
+      children: [
+        { label: 'Classic', routerLink: '/treeview-classic-example', wip: true },
       ],
     },
   ]);
 
-  protected dropdownsStyles: Partial<MvLibDropdownClassicStyle> = {
-    button: {
-      dimensions: {
-        width: '100%',
-        height: '32px',
-      },
+  protected serviceTreeviewItems = signal<TreeviewNode[]>([
+    {
+      label: 'Toasts',
+      icon: 'notifications',
+      children: [
+        { label: 'Classic', routerLink: '/toast-classic-example' },
+      ],
     },
-    item: {
-      height: '28px',
+  ]);
+
+  protected treeviewButtonEffects: Partial<MvLibButtonClassicEffects> = {
+    classes: [
+      'mv-lib-tint-hover',
+      'mv-lib-push-click',
+    ],
+  };
+
+  protected treeviewButtonStyle: Partial<MvLibButtonClassicStyle> = {
+    dimensions: {
+      width: '100%',
+      height: '26px',
     },
   };
 
-  protected dropdownsEffects: Partial<MvLibDropdownClassicEffects> = {
-    button: {
-      classes: [
-        this.mvLibEffects.idle.shadow.class,
-        this.mvLibEffects.hover.tint.class,
-        this.mvLibEffects.click.push.class,
-      ],
-    },
-    list: {
-      classes: [
-        this.mvLibEffects.idle.shadow.class,
-      ],
-    },
-    item: {
-      classes: [
-        this.mvLibEffects.hover.tint.class,
-      ],
-    },
-  };
-
-  protected dropdownsSettings: Partial<MvLibDropdownClassicSettings> = {
-    list: {
-      offsetX: '25%',
-    },
-  };
-
-  protected onItemSelect(item: ComponentItem, dropdownName: string): void {
-    this.componentDropdowns.update((dropdowns) =>
-      dropdowns.map((dropdown) => ({
-        ...dropdown,
-        selected: dropdown.name === dropdownName ? item : undefined,
-      })),
-    );
-    if (item.routerLink) {
-      this.router.navigateByUrl(item.routerLink);
+  protected onThemeSelect(themeName?: string, event?: Event): void {
+    event?.stopPropagation();
+    if (!themeName) {
+      return;
     }
+    this.themeService.setTheme(themeName);
+  }
+
+  protected onNavigationItemClick(item: TreeviewNode, event: Event): void {
+    event.stopPropagation();
+    if (!item.routerLink) {
+      return;
+    }
+    this.router.navigateByUrl(item.routerLink);
   }
 
   private updateDocumentTitle(): void {
