@@ -1,0 +1,53 @@
+:root.dark-theme {
+    --mv-lib-primary-color-1: #1a1a1a;
+    --mv-lib-primary-color-2: #3d3d3d;
+    --mv-lib-primary-color-3: #636363;
+    --mv-lib-primary-color-4: #8a8a8a;
+    --mv-lib-primary-color-5: #b0b0b0;
+    --mv-lib-primary-color-6: #d1d1d1;
+    --mv-lib-primary-color-7: #e8e8e8;
+    --mv-lib-primary-color-8: #f5f5f5;
+    --mv-lib-primary-color-9: #ffffff;
+
+    --mv-lib-secondary-color-1: #07284d;
+    --mv-lib-secondary-color-2: #0c447d;
+    --mv-lib-secondary-color-3: #125ca8;
+    --mv-lib-secondary-color-4: #1874d1;
+    --mv-lib-secondary-color-5: #1e90ff;
+    --mv-lib-secondary-color-6: #7ec0ff;
+    --mv-lib-secondary-color-7: #b8dcff;
+    --mv-lib-secondary-color-8: #d9ecff;
+    --mv-lib-secondary-color-9: #f0f7ff;
+
+    --mv-lib-tertiary-color-1: #1a1a1a;
+    --mv-lib-tertiary-color-2: #3d3d3d;
+    --mv-lib-tertiary-color-3: #636363;
+    --mv-lib-tertiary-color-4: #8a8a8a;
+    --mv-lib-tertiary-color-5: #b0b0b0;
+    --mv-lib-tertiary-color-6: #d1d1d1;
+    --mv-lib-tertiary-color-7: #e8e8e8;
+    --mv-lib-tertiary-color-8: #f5f5f5;
+    --mv-lib-tertiary-color-9: #ffffff;
+
+    /* Status */
+    --mv-lib-success: #2f8f57;
+    --mv-lib-warning: #c58b2d;
+    --mv-lib-error:   #c85a5a;
+    --mv-lib-info:    #649edc;
+
+    /* Components */
+    --mv-lib-component-background-color-primary: var(--mv-lib-secondary-color-5);
+    --mv-lib-component-background-color-secondary: var(--mv-lib-secondary-color-4);
+    --mv-lib-component-background-color-tertiary: var(--mv-lib-primary-color-1);
+
+    --mv-lib-component-font-color-primary: var(--mv-lib-primary-color-9);
+    --mv-lib-component-font-color-secondary: var(--mv-lib-primary-color-1);
+
+    --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-5);
+    --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-5);
+
+    /* Effects */
+    --mv-lib-effect-primary-color: var(--mv-lib-primary-color-5);
+    --mv-lib-effect-secondary-color: var(--mv-lib-secondary-color-5);
+    --mv-lib-effect-tertiary-color: var(--mv-lib-tertiary-color-5);
+}

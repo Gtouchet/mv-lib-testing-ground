@@ -45,4 +45,9 @@
 
     --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-7);
     --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-6);
+
+    /* Effects */
+    --mv-lib-effect-primary-color: var(--mv-lib-primary-color-5);
+    --mv-lib-effect-secondary-color: var(--mv-lib-secondary-color-5);
+    --mv-lib-effect-tertiary-color: var(--mv-lib-tertiary-color-5);
 }

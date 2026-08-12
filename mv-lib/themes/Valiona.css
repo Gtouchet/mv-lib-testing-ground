@@ -9,15 +9,15 @@
     --mv-lib-primary-color-8: #bdc5cf;
     --mv-lib-primary-color-9: #f3f5f8;
 
-    --mv-lib-secondary-color-1: #eff5ff;
-    --mv-lib-secondary-color-2: #d8e4ff;
-    --mv-lib-secondary-color-3: #b9ccfb;
-    --mv-lib-secondary-color-4: #8ca9e8;
-    --mv-lib-secondary-color-5: #6186d0;
-    --mv-lib-secondary-color-6: #4768ad;
-    --mv-lib-secondary-color-7: #324a82;
-    --mv-lib-secondary-color-8: #23325a;
-    --mv-lib-secondary-color-9: #131c31;
+    --mv-lib-secondary-color-1: #f3f0ff;
+    --mv-lib-secondary-color-2: #e1d9ff;
+    --mv-lib-secondary-color-3: #c9bcff;
+    --mv-lib-secondary-color-4: #ab8efe;
+    --mv-lib-secondary-color-5: #8b5cf6;
+    --mv-lib-secondary-color-6: #7044d4;
+    --mv-lib-secondary-color-7: #552ea7;
+    --mv-lib-secondary-color-8: #39206f;
+    --mv-lib-secondary-color-9: #1d123a;
 
     --mv-lib-tertiary-color-1: #f3f0ff;
     --mv-lib-tertiary-color-2: #e1d9ff;
@@ -45,4 +45,9 @@
 
     --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-6);
     --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-5);
+
+    /* Effects */
+    --mv-lib-effect-primary-color: var(--mv-lib-primary-color-5);
+    --mv-lib-effect-secondary-color: var(--mv-lib-secondary-color-5);
+    --mv-lib-effect-tertiary-color: var(--mv-lib-tertiary-color-5);
 }

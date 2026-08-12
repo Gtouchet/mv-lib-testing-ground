@@ -1,4 +1,4 @@
-:root.ysera-theme {
+:root.theralion-theme {
     --mv-lib-primary-color-1: #101214;
     --mv-lib-primary-color-2: #1a1d22;
     --mv-lib-primary-color-3: #252a31;
@@ -9,31 +9,31 @@
     --mv-lib-primary-color-8: #bdc5cf;
     --mv-lib-primary-color-9: #f3f5f8;
 
-    --mv-lib-secondary-color-1: #bef0d6;
-    --mv-lib-secondary-color-2: #a8d9c0;
-    --mv-lib-secondary-color-3: #92c1aa;
-    --mv-lib-secondary-color-4: #7daa94;
-    --mv-lib-secondary-color-5: #67927e;
-    --mv-lib-secondary-color-6: #517b68;
-    --mv-lib-secondary-color-7: #3c6452;
-    --mv-lib-secondary-color-8: #264c3c;
-    --mv-lib-secondary-color-9: #103526;
-
-    --mv-lib-tertiary-color-1: #b6e0c8;
-    --mv-lib-tertiary-color-2: #a2c9b3;
-    --mv-lib-tertiary-color-3: #8db29d;
-    --mv-lib-tertiary-color-4: #789b88;
-    --mv-lib-tertiary-color-5: #648472;
-    --mv-lib-tertiary-color-6: #506e5d;
-    --mv-lib-tertiary-color-7: #3b5748;
-    --mv-lib-tertiary-color-8: #264032;
-    --mv-lib-tertiary-color-9: #12291d;
+    --mv-lib-secondary-color-1: #f0f7ff;
+    --mv-lib-secondary-color-2: #d9ecff;
+    --mv-lib-secondary-color-3: #b8dcff;
+    --mv-lib-secondary-color-4: #7ec0ff;
+    --mv-lib-secondary-color-5: #1e90ff;
+    --mv-lib-secondary-color-6: #1874d1;
+    --mv-lib-secondary-color-7: #125ca8;
+    --mv-lib-secondary-color-8: #0c447d;
+    --mv-lib-secondary-color-9: #07284d;
+    
+    --mv-lib-tertiary-color-1: #f0f7ff;
+    --mv-lib-tertiary-color-2: #d9ecff;
+    --mv-lib-tertiary-color-3: #b8dcff;
+    --mv-lib-tertiary-color-4: #7ec0ff;
+    --mv-lib-tertiary-color-5: #1e90ff;
+    --mv-lib-tertiary-color-6: #1874d1;
+    --mv-lib-tertiary-color-7: #125ca8;
+    --mv-lib-tertiary-color-8: #0c447d;
+    --mv-lib-tertiary-color-9: #07284d;
 
     /* Status */
-    --mv-lib-success: #67d39b;
-    --mv-lib-warning: #e6b85f;
-    --mv-lib-error:   #de7f7f;
-    --mv-lib-info:    #67b9d6;
+    --mv-lib-success: #7ed699;
+    --mv-lib-warning: #f2b870;
+    --mv-lib-error:   #eb8686;
+    --mv-lib-info:    #7ebfe8;
 
     /* Components */
     --mv-lib-component-background-color-primary: var(--mv-lib-secondary-color-6);
@@ -44,7 +44,7 @@
     --mv-lib-component-font-color-secondary: var(--mv-lib-primary-color-1);
 
     --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-6);
-    --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-4);
+    --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-5);
 
     /* Effects */
     --mv-lib-effect-primary-color: var(--mv-lib-primary-color-5);
