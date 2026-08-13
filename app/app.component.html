@@ -2,7 +2,10 @@
     <aside class="sidebar">
 
         <div class="sidebar-title">
-            <h2 class="sidebar-title-link" (click)="router.navigateByUrl('/home')">
+            <h2
+                class="sidebar-title-link"
+                (click)="router.navigateByUrl('/home')"
+            >
                 MV Lib
             </h2>
         </div>
@@ -10,12 +13,13 @@
         <section class="treeview-section">
             <mv-lib-treeview-classic
                 [items]="themeTreeviewItems()"
-                [childrenPath]="'children'"
             >
                 Theme
-                <ng-template mvLibTreeviewListTemplate let-item>
+                <ng-template
+                    mvLibTreeviewListTemplate
+                    let-item
+                >
                     <mv-lib-button-classic
-                        class="treeview-action-button"
                         [style]="treeviewButtonStyle"
                         [effects]="treeviewButtonEffects"
                         (onClick)="onThemeSelect(item.themeName, $event.event)"
@@ -34,7 +38,6 @@
         <section class="treeview-section">
             <mv-lib-treeview-classic
                 [items]="componentTreeviewItems()"
-                [childrenPath]="'children'"
             >
                 Components
                 <ng-template
@@ -51,7 +54,6 @@
                         </div>
                     } @else {
                         <mv-lib-button-classic
-                            class="treeview-action-button"
                             [style]="treeviewButtonStyle"
                             [effects]="treeviewButtonEffects"
                             (onClick)="onNavigationItemClick(item, $event.event)"
@@ -68,7 +70,6 @@
         <section class="treeview-section">
             <mv-lib-treeview-classic
                 [items]="serviceTreeviewItems()"
-                [childrenPath]="'children'"
             >
                 Services
                 <ng-template
@@ -85,7 +86,6 @@
                         </div>
                     } @else {
                         <mv-lib-button-classic
-                            class="treeview-action-button"
                             [style]="treeviewButtonStyle"
                             [effects]="treeviewButtonEffects"
                             (onClick)="onNavigationItemClick(item, $event.event)"

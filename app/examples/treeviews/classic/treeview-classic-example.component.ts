@@ -1,7 +1,7 @@
 import { BaseExampleComponent } from '../../base-example.component';
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { INPUTS } from '../../../inputs/_inputs.export';
-import { MvLibButtonClassicComponent, MvLibTreeviewClassicAnimations, MvLibTreeviewClassicComponent, MvLibTreeviewClassicEffects, MvLibTreeviewClassicSettings, MvLibTreeviewClassicStyle, MvLibTreeviewDirectives } from 'mv-lib';
+import { MvLibButtonClassicComponent, MvLibTreeviewClassicAnimations, MvLibTreeviewClassicComponent, MvLibTreeviewClassicEffects, MvLibTreeviewClassicSettings, MvLibTreeviewClassicStyle, MvLibTreeviewDirectives, MvLibTreeviewToggleEvent } from 'mv-lib';
 import { CommonModule } from '@angular/common';
 
 interface User {
@@ -112,6 +112,14 @@ export class TreeviewClassicExampleComponent extends BaseExampleComponent implem
             ],
         },
     ]);
+
+    protected lastEvent = signal<string | undefined>(undefined);
+
+    protected handleToggle(event: MvLibTreeviewToggleEvent) {
+        let result = event.toggle;
+        event.toggledItems?.forEach((item: any) => result += ` ${item.name}`);
+        this.lastEvent.set(result);
+    }
 
     ngAfterViewInit() {
         this.selectedPartStyle = signal('general');

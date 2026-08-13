@@ -92,7 +92,10 @@
         [settings]="settings()"
         [items]="users()"
         [disabled]="disabled()"
-        (onToggle)="refreshLastInteractionTime()"
+        (onToggle)="
+            handleToggle($event);
+            refreshLastInteractionTime();
+            refreshLog();"
     >
         User contacts
         <ng-template
@@ -110,7 +113,7 @@
                 <mv-lib-button-classic
                     [style]="{
                         dimensions: {
-                            width: '175px',
+                            width: '100%',
                             height: '25px',
                         },
                     }"
@@ -141,7 +144,8 @@
     </mv-lib-treeview-classic>
 
     <div class="log">
-        Last interaction time: {{ lastInteractionTime() }}
+        Last interaction time: {{ lastInteractionTime() }}<br/>
+        Last event: {{ lastEvent() }}
         <app-input-button
             label="Copy component code"
             [width]="'25%'"
