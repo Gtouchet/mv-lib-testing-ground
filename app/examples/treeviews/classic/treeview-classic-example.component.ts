@@ -46,7 +46,7 @@ export class TreeviewClassicExampleComponent extends BaseExampleComponent implem
     });
     
     protected settings = signal<Partial<MvLibTreeviewClassicSettings>>({
-
+        toggleAllButton: true,
     });
 
     protected users = signal<User[]>([

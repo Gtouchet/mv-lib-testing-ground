@@ -96,7 +96,7 @@ export class AppComponent {
       ],
     },
     {
-      label: 'Treeview',
+      label: 'Treeviews',
       icon: 'folder_data',
       children: [
         { label: 'Classic', routerLink: '/treeview-classic-example', wip: true },

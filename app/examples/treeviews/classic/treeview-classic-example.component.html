@@ -37,7 +37,19 @@
             />
         }
         @else if (selectedPartStyle() === 'nested toggles') {
-            
+            <app-inputs-separator title="General" />
+            <div class="inputs-group">
+                Offset X
+                <app-input-text
+                    [value]="treeview().getStyle().nestedToggles!.offsetX"
+                    (onChange)="treeview().setStyle('nestedToggles.offsetX', $event); refreshLog();"
+                />
+                Gap
+                <app-input-text
+                    [value]="treeview().getStyle().nestedToggles!.gap"
+                    (onChange)="treeview().setStyle('nestedToggles.gap', $event); refreshLog();"
+                />
+            </div>
         }
         @else if (selectedPartStyle() === 'list') {
             <app-inputs-separator title="Dimensions" />
@@ -54,20 +66,16 @@
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-        <app-inputs-separator title="General" />
         <app-input-checkbox
             [checked]="disabled()"
             label="Disabled"
             (onChange)="disabled.set($event); refreshLog();"
         />
-        <app-inputs-separator title="List" />
-        <div class="inputs-group">
-            Offset X
-            <app-input-text
-                [value]="treeview().getSettings().list!.offsetX"
-                (onChange)="treeview().setSettings('list.offsetX', $event); refreshLog();"
-            />
-        </div>
+        <app-input-checkbox
+            [checked]="settings().toggleAllButton"
+            label="Toggle all button"
+            (onChange)="settings.set({ ...settings(), toggleAllButton: $event }); refreshLog();"
+        />
     </app-configuration-section>
 </div>
 
