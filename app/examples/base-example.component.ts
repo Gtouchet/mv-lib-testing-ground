@@ -1,4 +1,4 @@
-import { Directive, inject, model, signal } from "@angular/core";
+import { Directive, ElementRef, inject, model, signal, viewChild } from "@angular/core";
 import { UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { MV_LIB_EFFECTS, MvLibThemeService, MvLibToastService } from "mv-lib";
 
@@ -112,8 +112,9 @@ export abstract class BaseExampleComponent {
             .replace(/\n/g, '\n    ');
     }
 
-    protected copyComponentCode(componentName: string) {
-        navigator.clipboard.writeText(`<${componentName}${this.log()} />`)
+    protected code = viewChild.required<ElementRef<HTMLPreElement>>('code');
+    protected copyComponentCode() {
+        navigator.clipboard.writeText(this.code().nativeElement.innerText)
             .then(() =>
                 this.toastService.success(
                     `Copied component code`,

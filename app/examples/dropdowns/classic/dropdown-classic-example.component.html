@@ -233,8 +233,8 @@
         <app-input-button
             label="Copy component code"
             [width]="'25%'"
-            (onClick)="copyComponentCode('mv-lib-dropdown-classic')"
+            (onClick)="copyComponentCode()"
         />
-        <pre>&lt;mv-lib-dropdown-classic{{ log() }}/&gt;</pre>
+        <pre #code>&lt;mv-lib-dropdown-classic{{ log() }}&gt;<br/>    MV Lib dropdown classic<br/>&lt;/mv-lib-dropdown-classic&gt;</pre>
     </div>
 </div>

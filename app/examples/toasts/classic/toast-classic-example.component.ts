@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, computed, inject, signal, AfterViewInit, OnInit } from "@angular/core";
-import { MvLibToastService, MvLibButtonClassicComponent } from "mv-lib";
+import { Component, ChangeDetectionStrategy, computed, signal, AfterViewInit, OnInit } from "@angular/core";
+import { MvLibButtonClassicComponent } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
@@ -54,7 +54,7 @@ export class ToastClassicExampleComponent extends BaseExampleComponent implement
   }
 
   protected copyToastConfiguration() {
-    navigator.clipboard.writeText(`const configuration: MvLibToastServiceConfiguration = ${this.prettify(this.toastService.configuration())};`)
+    navigator.clipboard.writeText(this.code().nativeElement.innerText)
       .then(() =>
           this.toastService.success(
               `Copied configuration`,

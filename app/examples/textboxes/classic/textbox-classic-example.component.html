@@ -121,8 +121,8 @@
         <app-input-button
             label="Copy component code"
             [width]="'25%'"
-            (onClick)="copyComponentCode('mv-lib-textbox-classic')"
+            (onClick)="copyComponentCode()"
         />
-        <pre>&lt;mv-lib-textbox-classic{{ log() }}/&gt;</pre>
+        <pre #code>&lt;mv-lib-textbox-classic{{ log() }}&gt;<br/>    MV Lib textbox classic<br/>&lt;/mv-lib-textbox-classic&gt;</pre>
     </div>
 </form>

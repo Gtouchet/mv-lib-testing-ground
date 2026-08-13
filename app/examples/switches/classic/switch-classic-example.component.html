@@ -154,8 +154,8 @@
             label="Copy component code"
             [width]="'25%'"
             [style.margin-top.px]="10"
-            (onClick)="copyComponentCode('mv-lib-switch-classic')"
+            (onClick)="copyComponentCode()"
         />
-        <pre>&lt;mv-lib-switch-classic{{ log() }}/&gt;</pre>
+        <pre #code>&lt;mv-lib-switch-classic{{ log() }}&gt;<br/>    MV Lib switch classic<br/>&lt;/mv-lib-switch-classic&gt;</pre>
     </div>
 </div>

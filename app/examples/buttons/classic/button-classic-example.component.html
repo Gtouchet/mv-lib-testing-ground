@@ -78,8 +78,8 @@
             label="Copy component code"
             [width]="'25%'"
             [style.margin-top.px]="10"
-            (onClick)="copyComponentCode('mv-lib-button-classic')"
+            (onClick)="copyComponentCode()"
         />
-        <pre>&lt;mv-lib-button-classic{{ log() }}/&gt;</pre>
+        <pre #code>&lt;mv-lib-button-classic{{ log() }}&gt;<br/>    MV Lib button classic<br/>&lt;/mv-lib-button-classic&gt;</pre>
     </div>
 </div>

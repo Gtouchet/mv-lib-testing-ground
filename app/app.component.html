@@ -59,7 +59,7 @@
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">
-                                {{ item.label + (item.wip ? ' (WIP)' : '') }}
+                                {{ item.label }} {{ item.status }}
                             </div>
                         </mv-lib-button-classic>
                     }

@@ -18,7 +18,7 @@ interface TreeviewNode {
   icon?: string;
   routerLink?: string;
   themeName?: string;
-  wip?: boolean;
+  status?: string;
   children?: TreeviewNode[];
 }
 
@@ -96,10 +96,10 @@ export class AppComponent {
       ],
     },
     {
-      label: 'Treeviews',
+      label: 'Treeviews (new)',
       icon: 'folder_data',
       children: [
-        { label: 'Classic', routerLink: '/treeview-classic-example', wip: true },
+        { label: 'Classic', routerLink: '/treeview-classic-example', status: '(WIP)' },
       ],
     },
   ]);

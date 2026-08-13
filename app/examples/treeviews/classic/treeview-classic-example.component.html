@@ -150,8 +150,8 @@
             label="Copy component code"
             [width]="'25%'"
             [style.margin-top.px]="10"
-            (onClick)="copyComponentCode('mv-lib-treeview-classic')"
+            (onClick)="copyComponentCode()"
         />
-        <pre>&lt;mv-lib-treeview-classic{{ log() }}/&gt;</pre>
+        <pre #code>&lt;mv-lib-treeview-classic{{ log() }}&gt;<br/>    MV Lib treeview classic<br/>&lt;/mv-lib-treeview-classic&gt;</pre>
     </div>
 </div>
