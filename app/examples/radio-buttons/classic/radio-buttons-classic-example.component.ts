@@ -28,9 +28,13 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent im
     protected radioButtons = viewChild.required<MvLibRadioButtonsClassicComponent<User>>('mvLibRadioButtonsClassic');
 
     protected style = signal<Partial<MvLibRadioButtonsClassicStyle>>({
-        groupGap: '6px',
-        contentGap: '6px',
-        size: '16px',
+        button: {
+            size: '16px',
+            gap: '6px',
+        },
+        content: {
+            gap: '6px',
+        },
     });
 
     protected effects = signal<Partial<MvLibRadioButtonsClassicEffects>>({
@@ -64,6 +68,7 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent im
     ]);
 
     ngAfterViewInit() {
+        this.selectedPartStyle.set('general');
         this.logProperties = [
             { property: 'style', value: () => this.radioButtons().getStyle() },
             { property: 'effects', value: () => this.radioButtons().getEffects() },

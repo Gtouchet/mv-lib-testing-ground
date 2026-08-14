@@ -46,11 +46,9 @@
             />
         }
         @else if (selectedPartStyle() === 'list') {
-            <app-inputs-separator title="General" />
-            <app-input-text
-                label="Max height"
-                [value]="dropdown().getStyle().list.maxHeight"
-                (onChange)="dropdown().setStyle('list.maxHeight', $event); refreshLog();"
+            <app-dimensions-inputs
+                [dimensions]="dropdown().getStyle().list.dimensions!"
+                (onChangeDimensions)="dropdown().setStyle(`list.dimensions.${$event.key}`, $event.value); refreshLog();"
             />
             <app-border-inputs
                 [border]="dropdown().getStyle().list.border!"

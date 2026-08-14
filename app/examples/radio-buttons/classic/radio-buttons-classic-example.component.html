@@ -1,41 +1,69 @@
 <div class="configuration">
-    <app-configuration-section title="Styles">
-        <app-inputs-separator title="General" />
-        <div class="inputs-group">
-            Group gap
-            <app-input-text
-                [value]="radioButtons().getStyle().groupGap"
-                (onChange)="radioButtons().setStyle('groupGap', $event); refreshLog();"
+    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+        <div buttons>
+            <app-input-button
+                label="General"
+                [selected]="selectedPartStyle() === 'general'"
+                (onClick)="selectedPartStyle.set('general')"
             />
-            Content gap
-            <app-input-text
-                [value]="radioButtons().getStyle().contentGap"
-                (onChange)="radioButtons().setStyle('contentGap', $event); refreshLog();"
+            <app-input-button
+                label="Button"
+                [selected]="selectedPartStyle() === 'button'"
+                (onClick)="selectedPartStyle.set('button')"
             />
-        </div>
-        <app-inputs-separator title="Buttons" />
-        <app-input-text
-            [value]="radioButtons().getStyle().size"
-            label="Size"
-            (onChange)="radioButtons().setStyle('size', $event); refreshLog();"
-        />
-        <div class="inputs-group">
-            Background color
-            <app-input-color
-                [value]="radioButtons().getStyle().backgroundColor"
-                (onChange)="radioButtons().setStyle('backgroundColor', $event); refreshLog();"
-            />
-            Selected color
-            <app-input-color
-                [value]="radioButtons().getStyle().selectedColor"
-                (onChange)="radioButtons().setStyle('selectedColor', $event); refreshLog();"
+            <app-input-button
+                label="Content"
+                [selected]="selectedPartStyle() === 'content'"
+                (onClick)="selectedPartStyle.set('content')"
             />
         </div>
-        <app-font-inputs
-            title="Content font"
-            [font]="radioButtons().getStyle().contentFont"
-            (onChangeFont)="radioButtons().setStyle(`contentFont.${$event.key}`, $event.value); refreshLog();"
-        />
+        @if (selectedPartStyle() === 'general') {
+            <app-dimensions-inputs
+                [dimensions]="radioButtons().getStyle().dimensions"
+                (onChangeDimensions)="radioButtons().setStyle(`dimensions.${$event.key}`, $event.value); refreshLog();"
+            />
+            <app-border-inputs
+                [border]="radioButtons().getStyle().border"
+                (onChangeBorder)="radioButtons().setStyle(`border.${$event.key}`, $event.value); refreshLog();"
+            />
+        }
+        @else if (selectedPartStyle() === 'button') {
+            <div class="inputs-group">
+                Background color
+                <app-input-color
+                    [value]="radioButtons().getStyle().button.backgroundColor"
+                    (onChange)="radioButtons().setStyle('button.backgroundColor', $event); refreshLog();"
+                />
+                Selected background color
+                <app-input-color
+                    [value]="radioButtons().getStyle().button.selectedBackgroundColor"
+                    (onChange)="radioButtons().setStyle('button.selectedBackgroundColor', $event); refreshLog();"
+                />
+            </div>
+            <div class="inputs-group">
+                Size
+                <app-input-text
+                    [value]="radioButtons().getStyle().button.size"
+                    (onChange)="radioButtons().setStyle('button.size', $event); refreshLog();"
+                />
+                Gap
+                <app-input-text
+                    [value]="radioButtons().getStyle().button.gap"
+                    (onChange)="radioButtons().setStyle('button.gap', $event); refreshLog();"
+                />
+            </div>
+        }
+        @else if (selectedPartStyle() === 'content') {
+            <app-input-text
+                label="Gap"
+                [value]="radioButtons().getStyle().content.gap"
+                (onChange)="radioButtons().setStyle('content.gap', $event); refreshLog();"
+            />
+            <app-font-inputs
+                [font]="radioButtons().getStyle().content.font!"
+                (onChangeFont)="radioButtons().setStyle(`content.${$event.key}`, $event.value); refreshLog();"
+            />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
