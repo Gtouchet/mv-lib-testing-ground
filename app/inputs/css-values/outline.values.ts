@@ -1,7 +1,7 @@
-export abstract class CssBorderStyle {
+export abstract class CssOutlineStyle {
     public static values = [
+        'auto',
         'none',
-        'hidden',
         'dotted',
         'dashed',
         'solid',
@@ -10,5 +10,10 @@ export abstract class CssBorderStyle {
         'ridge',
         'inset',
         'outset',
+        'inherit',
+        'initial',
+        'revert',
+        'revert-layer',
+        'unset',
     ];
 }

@@ -87,9 +87,9 @@
             'align-items': 'flex-start',
             'padding-top': '50px',
         }"
-        [style]="style()"
-        [effects]="effects()"
-        [settings]="settings()"
+        [inputStyle]="style()"
+        [inputEffects]="effects()"
+        [inputSettings]="settings()"
         [items]="users()"
         [disabled]="disabled()"
         (onToggle)="
@@ -111,13 +111,13 @@
             }
             @else if (depth === 1) {
                 <mv-lib-button-classic
-                    [style]="{
+                    [inputStyle]="{
                         dimensions: {
                             width: '100%',
                             height: '25px',
                         },
                     }"
-                    [effects]="{
+                    [inputEffects]="{
                         classes: [
                             'mv-lib-tint-hover',
                             'mv-lib-push-click',

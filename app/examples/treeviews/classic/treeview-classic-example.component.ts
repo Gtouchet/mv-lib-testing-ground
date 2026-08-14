@@ -124,9 +124,9 @@ export class TreeviewClassicExampleComponent extends BaseExampleComponent implem
     ngAfterViewInit() {
         this.selectedPartStyle = signal('general');
         this.logProperties = [
-            { property: 'style', value: () => this.treeview().getStyle() },
-            { property: 'effects', value: () => this.treeview().getEffects() },
-            { property: 'settings', value: () => this.treeview().getSettings() },
+            { property: 'inputStyle', value: () => this.treeview().getStyle() },
+            { property: 'inputEffects', value: () => this.treeview().getEffects() },
+            { property: 'inputSettings', value: () => this.treeview().getSettings() },
             { property: 'disabled', value: this.disabled() },
         ];
         this.refreshLog();

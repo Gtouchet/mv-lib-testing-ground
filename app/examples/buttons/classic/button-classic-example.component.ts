@@ -44,9 +44,9 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent implemen
 
   ngAfterViewInit() {
     this.logProperties = [
-      { property: 'style', value: () => this.button().getStyle() },
-      { property: 'effects', value: () => this.button().getEffects() },
-      { property: 'settings', value: () => this.button().getSettings() },
+      { property: 'inputStyle', value: () => this.button().getStyle() },
+      { property: 'inputEffects', value: () => this.button().getEffects() },
+      { property: 'inputSettings', value: () => this.button().getSettings() },
       { property: 'disabled', value: this.disabled() },
     ];
     this.refreshLog();

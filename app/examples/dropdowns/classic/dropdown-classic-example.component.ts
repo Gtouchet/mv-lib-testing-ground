@@ -35,7 +35,10 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
         height: '40px',
       },
     },
-    item: {
+    list: {
+      dimensions: {
+        maxHeight: '150px',
+      },
     },
   });
 
@@ -92,9 +95,9 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
     this.selectedPartEffects.set('button');
     this.selectedPartSettings.set('button');
     this.logProperties = [
-      { property: 'style', value: () => this.dropdown().getStyle() },
-      { property: 'effects', value: () => this.dropdown().getEffects() },
-      { property: 'settings', value: () => this.dropdown().getSettings() },
+      { property: 'inputStyle', value: () => this.dropdown().getStyle() },
+      { property: 'inputEffects', value: () => this.dropdown().getEffects() },
+      { property: 'inputSettings', value: () => this.dropdown().getSettings() },
       { property: 'opened', value: this.opened },
       { property: 'disabled', value: this.disabled },
     ];

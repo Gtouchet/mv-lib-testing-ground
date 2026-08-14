@@ -57,9 +57,9 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent impleme
 
   ngAfterViewInit() {
     this.logProperties = [
-      { property: 'style', value: () => this.textbox().getStyle() },
-      { property: 'effects', value: () => this.textbox().getEffects() },
-      { property: 'settings', value: () => this.textbox().getSettings() },
+      { property: 'inputStyle', value: () => this.textbox().getStyle() },
+      { property: 'inputEffects', value: () => this.textbox().getEffects() },
+      { property: 'inputSettings', value: () => this.textbox().getSettings() },
       { property: 'selected', value: this.textbox().selected },
       { property: 'disabled', value: this.textbox().isDisabled },
     ];

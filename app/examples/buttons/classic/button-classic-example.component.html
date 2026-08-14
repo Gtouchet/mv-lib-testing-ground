@@ -10,9 +10,9 @@
             [dimensions]="button().getStyle().dimensions"
             (onChangeDimensions)="button().setStyle(`dimensions.${$event.key}`, $event.value); refreshLog();"
         />
-        <app-border-inputs
-            [border]="button().getStyle().border"
-            (onChangeBorder)="button().setStyle(`border.${$event.key}`, $event.value); refreshLog();"
+        <app-outline-inputs
+            [outline]="button().getStyle().outline"
+            (onChangeOutline)="button().setStyle(`outline.${$event.key}`, $event.value); refreshLog();"
         />
         <app-font-inputs
             [font]="button().getStyle().font"
@@ -60,9 +60,9 @@
     <mv-lib-button-classic
         #mvLibButtonClassic
         class="component"
-        [style]="style()"
-        [effects]="effects()"
-        [settings]="settings()"
+        [inputStyle]="style()"
+        [inputEffects]="effects()"
+        [inputSettings]="settings()"
         [disabled]="disabled()"
         (onClick)="refreshLastInteractionTime()"
     >

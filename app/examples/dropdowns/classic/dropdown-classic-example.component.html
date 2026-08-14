@@ -36,9 +36,9 @@
                 [dimensions]="dropdown().getStyle().button.dimensions!"
                 (onChangeDimensions)="dropdown().setStyle(`button.dimensions.${$event.key}`, $event.value); refreshLog();"
             />
-            <app-border-inputs
-                [border]="dropdown().getStyle().button.border!"
-                (onChangeBorder)="dropdown().setStyle(`button.border.${$event.key}`, $event.value); refreshLog();"
+            <app-outline-inputs
+                [outline]="dropdown().getStyle().button.outline!"
+                (onChangeOutline)="dropdown().setStyle(`button.outline.${$event.key}`, $event.value); refreshLog();"
             />
             <app-font-inputs
                 [font]="dropdown().getStyle().button.font!"
@@ -50,9 +50,9 @@
                 [dimensions]="dropdown().getStyle().list.dimensions!"
                 (onChangeDimensions)="dropdown().setStyle(`list.dimensions.${$event.key}`, $event.value); refreshLog();"
             />
-            <app-border-inputs
-                [border]="dropdown().getStyle().list.border!"
-                (onChangeBorder)="dropdown().setStyle(`list.border.${$event.key}`, $event.value); refreshLog();"
+            <app-outline-inputs
+                [outline]="dropdown().getStyle().list.outline!"
+                (onChangeOutline)="dropdown().setStyle(`list.outline.${$event.key}`, $event.value); refreshLog();"
             />
         }
         @else if (selectedPartStyle() === 'item') {
@@ -184,9 +184,9 @@
     <mv-lib-dropdown-classic
         #mvLibDropdownClassic
         class="component"
-        [style]="style()"
-        [effects]="effects()"
-        [settings]="settings()"
+        [inputStyle]="style()"
+        [inputEffects]="effects()"
+        [inputSettings]="settings()"
         [items]="items()"
         [(selected)]="selectedItem"
         [(opened)]="opened"

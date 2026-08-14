@@ -1,0 +1,51 @@
+<app-inputs-separator [title]="title() ?? 'Outline'" />
+<div class="inputs-group">
+    Width
+    <app-input-text
+        [value]="outline().width"
+        (onChange)="onChangeOutline.emit({key: 'width', value: $event})"
+    />
+    Style
+    <app-input-select
+        [values]="cssOutlineStyles"
+        [selectedValues]="[outline().style]"
+        (onChange)="onChangeOutline.emit({key: 'style', value: $event})"
+    />
+    <!-- Style
+    <div class="inputs-row">
+        <app-input-select
+            [values]="cssBorderStyles"
+            [selectedValues]="[outlineStyle()[0]]"
+            (onChange)="updateOutlineStyle(0, $event)"
+            [style.flex]="1"
+        />
+        <app-input-select
+            [values]="cssBorderStyles"
+            [selectedValues]="[outlineStyle()[1]]"
+            (onChange)="updateOutlineStyle(1, $event)"
+            [style.flex]="1"
+        />
+        <app-input-select
+            [values]="cssBorderStyles"
+            [selectedValues]="[outlineStyle()[2]]"
+            (onChange)="updateOutlineStyle(2, $event)"
+            [style.flex]="1"
+        />
+        <app-input-select
+            [values]="cssBorderStyles"
+            [selectedValues]="[outlineStyle()[3]]"
+            (onChange)="updateOutlineStyle(3, $event)"
+            [style.flex]="1"
+        />
+    </div> -->
+    Color
+    <app-input-color
+        [value]="outline().color"
+        (onChange)="onChangeOutline.emit({key: 'color', value: $event})"
+    />
+    Radius
+    <app-input-text
+        [value]="outline().radius"
+        (onChange)="onChangeOutline.emit({key: 'radius', value: $event})"
+    />
+</div>

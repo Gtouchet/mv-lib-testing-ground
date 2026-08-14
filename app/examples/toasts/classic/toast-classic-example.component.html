@@ -111,14 +111,14 @@
 
 <ng-template #toastButton let-type="type" let-configuration="configuration" let-localConfiguration="localConfiguration">
     <mv-lib-button-classic
-        [style]="{
+        [inputStyle]="{
             dimensions: {
                 width: '100px',
                 height: '40px',
             },
             backgroundColor: configuration.styles.backgroundColor,
         }"
-        [effects]="{
+        [inputEffects]="{
             classes: [
                 mvLibEffects.idle.shadow.class,
                 mvLibEffects.hover.tint.class,

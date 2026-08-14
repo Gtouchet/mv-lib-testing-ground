@@ -20,8 +20,8 @@
                     let-item
                 >
                     <mv-lib-button-classic
-                        [style]="treeviewButtonStyle"
-                        [effects]="treeviewButtonEffects"
+                        [inputStyle]="treeviewButtonStyle"
+                        [inputEffects]="treeviewButtonEffects"
                         (onClick)="onThemeSelect(item.themeName, $event.event)"
                     >
                         <div class="treeview-action-content">
@@ -54,8 +54,8 @@
                         </div>
                     } @else {
                         <mv-lib-button-classic
-                            [style]="treeviewButtonStyle"
-                            [effects]="treeviewButtonEffects"
+                            [inputStyle]="treeviewButtonStyle"
+                            [inputEffects]="treeviewButtonEffects"
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">
@@ -86,8 +86,8 @@
                         </div>
                     } @else {
                         <mv-lib-button-classic
-                            [style]="treeviewButtonStyle"
-                            [effects]="treeviewButtonEffects"
+                            [inputStyle]="treeviewButtonStyle"
+                            [inputEffects]="treeviewButtonEffects"
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">

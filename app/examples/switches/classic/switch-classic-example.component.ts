@@ -47,9 +47,9 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
     this.selectedPartStyle.set('track');
     this.selectedPartEffects.set('track');
     this.logProperties = [
-      { property: 'style', value: () => this.switch().getStyle() },
-      { property: 'effects', value: () => this.switch().getEffects() },
-      { property: 'settings', value: () => this.switch().getSettings() },
+      { property: 'inputStyle', value: () => this.switch().getStyle() },
+      { property: 'inputEffects', value: () => this.switch().getEffects() },
+      { property: 'inputSettings', value: () => this.switch().getSettings() },
       { property: 'active', value: this.active },
       { property: 'disabled', value: this.disabled },
     ];

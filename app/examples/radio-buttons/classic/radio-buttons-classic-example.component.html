@@ -22,9 +22,9 @@
                 [dimensions]="radioButtons().getStyle().dimensions"
                 (onChangeDimensions)="radioButtons().setStyle(`dimensions.${$event.key}`, $event.value); refreshLog();"
             />
-            <app-border-inputs
-                [border]="radioButtons().getStyle().border"
-                (onChangeBorder)="radioButtons().setStyle(`border.${$event.key}`, $event.value); refreshLog();"
+            <app-outline-inputs
+                [outline]="radioButtons().getStyle().outline"
+                (onChangeOutline)="radioButtons().setStyle(`outline.${$event.key}`, $event.value); refreshLog();"
             />
         }
         @else if (selectedPartStyle() === 'button') {
@@ -125,9 +125,9 @@
     <mv-lib-radio-buttons-classic
         #mvLibRadioButtonsClassic
         class="component"
-        [style]="style()"
-        [effects]="effects()"
-        [settings]="settings()"
+        [inputStyle]="style()"
+        [inputEffects]="effects()"
+        [inputSettings]="settings()"
         [disabled]="disabled()"
         [items]="items()"
         [(selected)]="selectedItem"

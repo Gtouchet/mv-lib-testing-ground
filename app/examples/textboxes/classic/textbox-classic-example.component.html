@@ -6,9 +6,9 @@
             [value]="textbox().getStyle().backgroundColor"
             (onChange)="textbox().setStyle('backgroundColor', $event); refreshLog();"
         />
-        <app-border-inputs
-            [border]="textbox().getStyle().border"
-            (onChangeBorder)="textbox().setStyle(`border.${$event.key}`, $event.value); refreshLog();"
+        <app-outline-inputs
+            [outline]="textbox().getStyle().outline"
+            (onChangeOutline)="textbox().setStyle(`outline.${$event.key}`, $event.value); refreshLog();"
         />
     </app-configuration-section>
 
@@ -99,9 +99,9 @@
         #mvLibTextboxClassic
         formControlName="input"
         class="component"
-        [style]="style()"
-        [settings]="settings()"
-        [effects]="effects()"
+        [inputStyle]="style()"
+        [inputEffects]="effects()"
+        [inputSettings]="settings()"
         [(selected)]="selected"
         (onChange)="
             form.get('input')?.setValue($event.input);
