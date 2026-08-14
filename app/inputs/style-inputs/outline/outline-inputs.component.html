@@ -48,4 +48,9 @@
         [value]="outline().radius"
         (onChange)="onChangeOutline.emit({key: 'radius', value: $event})"
     />
+    Offset
+    <app-input-text
+        [value]="outline().offset"
+        (onChange)="onChangeOutline.emit({key: 'offset', value: $event})"
+    />
 </div>
