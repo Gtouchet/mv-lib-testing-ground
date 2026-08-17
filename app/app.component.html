@@ -17,20 +17,37 @@
                 Theme
                 <ng-template
                     mvLibTreeviewListTemplate
+                    let-depth="depth"
                     let-item
                 >
-                    <mv-lib-button-classic
-                        [inputStyle]="treeviewButtonStyle"
-                        [inputEffects]="treeviewButtonEffects"
-                        (onClick)="onThemeSelect(item.themeName, $event.event)"
-                    >
-                        <div class="treeview-action-content">
+                    @if (depth === 0) {
+                        <div
+                            [ngStyle]="{
+                                'display': 'flex',
+                                'align-items': 'center',
+                                'gap': '5px',
+                            }"
+                        >
                             <span class="material-symbols-outlined">
                                 {{ item.icon }}
                             </span>
                             {{ item.label }}
                         </div>
-                    </mv-lib-button-classic>
+                    }
+                    @else if (depth === 1) {
+                        <mv-lib-button-classic
+                            [inputStyle]="treeviewButtonStyle"
+                            [inputEffects]="treeviewButtonEffects"
+                            (onClick)="onThemeSelect(item.themeName, $event.event)"
+                        >
+                            <div class="treeview-action-content">
+                                <span class="material-symbols-outlined">
+                                    {{ item.icon }}
+                                </span>
+                                {{ item.label }}
+                            </div>
+                        </mv-lib-button-classic>
+                    }
                 </ng-template>
             </mv-lib-treeview-classic>
         </section>

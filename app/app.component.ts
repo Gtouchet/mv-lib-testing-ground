@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import {
   MvLibTreeviewClassicComponent,
   MvLibTreeviewDirectives,
 } from 'mv-lib';
+import { CommonModule } from '@angular/common';
 
 interface TreeviewNode {
   label: string;
@@ -30,7 +31,8 @@ interface TreeviewNode {
     MvLibButtonClassicComponent,
     MvLibToastClassicComponent,
     RouterOutlet,
-  ],
+    CommonModule,
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,17 +48,34 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe(() => this.updateDocumentTitle());
-
-    this.updateDocumentTitle();
   }
 
-  protected themeTreeviewItems = computed<TreeviewNode[]>(() =>
-    this.themeService.getThemes().map((theme: MvLibThemeDefinition) => ({
-      label: theme.name,
-      icon: theme.mode === 'light' ? 'light_mode' : 'dark_mode',
-      themeName: theme.name,
-    })),
-  );
+  protected themeTreeviewItems = signal<TreeviewNode[]>([
+    {
+      label: 'Light',
+      icon: 'light_mode',
+      children: [
+        ...this.themeService.getThemes()
+          .filter(theme => theme.mode === 'light')
+          .map((theme: MvLibThemeDefinition) => ({
+            label: theme.name,
+            themeName: theme.name,
+          })),
+      ],
+    },
+    {
+      label: 'Dark',
+      icon: 'dark_mode',
+      children: [
+        ...this.themeService.getThemes()
+          .filter(theme => theme.mode === 'dark')
+          .map((theme: MvLibThemeDefinition) => ({
+            label: theme.name,
+            themeName: theme.name,
+          })),
+      ],
+    }
+  ]);
 
   protected componentTreeviewItems = signal<TreeviewNode[]>([
     {

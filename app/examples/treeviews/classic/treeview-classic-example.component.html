@@ -62,7 +62,7 @@
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        
+
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
@@ -104,12 +104,20 @@
             let-depth="depth"
         >
             @if (depth === 0) {
-                <span class="material-symbols-outlined">
-                    person
-                </span>
-                {{ item.name }}
+                <div
+                    [ngStyle]="{
+                        'display': 'flex',
+                        'align-items': 'center',
+                        'gap': '5px',
+                    }"
+                >
+                    <span class="material-symbols-outlined">
+                        person
+                    </span>
+                    {{ item.name }}
+                </div>
             }
-            @else if (depth === 1) {
+            @if (depth === 1) {
                 <mv-lib-button-classic
                     [inputStyle]="{
                         dimensions: {
