@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MvLibThemeService } from 'mv-lib';
 
@@ -19,7 +19,7 @@ import { MvLibThemeService } from 'mv-lib';
       {{ label() }}
       <input
         type="color"
-        [value]="themeService.var(value())"
+        [value]="valueColor()"
         (input)="handleInput($event)"
         [ngStyle]="{
           'height.px': 24,
@@ -46,6 +46,15 @@ export class InputColorComponent {
   public label = input<string | undefined>(undefined);
   public width = input<number | undefined>(undefined);
   public onChange = output<string>();
+
+  protected valueColor = computed(() => {
+    const currentValue = this.value();
+    if (!currentValue) {
+      return '';
+    }
+    this.themeService.currentTheme();
+    return MvLibThemeService.var(currentValue);
+  });
 
   protected handleInput(event: Event) {
     const input = event.target as HTMLInputElement;
