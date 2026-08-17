@@ -30,10 +30,10 @@
     --mv-lib-tertiary-color-9: #12291d;
 
     /* Status */
-    --mv-lib-success: #67d39b;
-    --mv-lib-warning: #e6b85f;
-    --mv-lib-error:   #de7f7f;
-    --mv-lib-info:    #67b9d6;
+    --mv-lib-success: #6fc98d;
+    --mv-lib-warning: #eeb266;
+    --mv-lib-error:   #e28080;
+    --mv-lib-info:    #74b0e0;
 
     /* Components */
     --mv-lib-component-background-color-primary: var(--mv-lib-secondary-color-6);
