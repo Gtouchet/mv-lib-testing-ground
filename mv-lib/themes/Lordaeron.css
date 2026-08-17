@@ -1,47 +1,48 @@
 :root.lordaeron-theme {
-    --mv-lib-primary-color-1: #ffffff;
-    --mv-lib-primary-color-2: #f5f5f5;
-    --mv-lib-primary-color-3: #e8e8e8;
-    --mv-lib-primary-color-4: #d1d1d1;
-    --mv-lib-primary-color-5: #b0b0b0;
-    --mv-lib-primary-color-6: #8a8a8a;
-    --mv-lib-primary-color-7: #636363;
-    --mv-lib-primary-color-8: #3d3d3d;
-    --mv-lib-primary-color-9: #1a1a1a;
+    --mv-lib-primary-color-1: #f7f8fa;
+    --mv-lib-primary-color-2: #e9ecf2;
+    --mv-lib-primary-color-3: #d3d9e3;
+    --mv-lib-primary-color-4: #b7c0cf;
+    --mv-lib-primary-color-5: #94a0b3;
+    --mv-lib-primary-color-6: #707d93;
+    --mv-lib-primary-color-7: #515c70;
+    --mv-lib-primary-color-8: #363e4d;
+    --mv-lib-primary-color-9: #1b2029;
 
-    --mv-lib-secondary-color-1: #f0f7ff;
-    --mv-lib-secondary-color-2: #d9ecff;
-    --mv-lib-secondary-color-3: #b8dcff;
-    --mv-lib-secondary-color-4: #7ec0ff;
-    --mv-lib-secondary-color-5: #1e90ff;
-    --mv-lib-secondary-color-6: #1874d1;
-    --mv-lib-secondary-color-7: #125ca8;
-    --mv-lib-secondary-color-8: #0c447d;
-    --mv-lib-secondary-color-9: #07284d;
+    --mv-lib-secondary-color-1: #eaf1ff;
+    --mv-lib-secondary-color-2: #cfe0ff;
+    --mv-lib-secondary-color-3: #a3c2fb;
+    --mv-lib-secondary-color-4: #6f9af0;
+    --mv-lib-secondary-color-5: #3a6fdb;
+    --mv-lib-secondary-color-6: #2454b3;
+    --mv-lib-secondary-color-7: #163a85;
+    --mv-lib-secondary-color-8: #0c2657;
+    --mv-lib-secondary-color-9: #06152e;
 
-    --mv-lib-tertiary-color-1: #fffdf5;
-    --mv-lib-tertiary-color-2: #fdf6dd;
-    --mv-lib-tertiary-color-3: #f8e9b8;
-    --mv-lib-tertiary-color-4: #efd487;
-    --mv-lib-tertiary-color-5: #e0b84f;
-    --mv-lib-tertiary-color-6: #c9982c;
-    --mv-lib-tertiary-color-7: #9e751d;
-    --mv-lib-tertiary-color-8: #6f5012;
-    --mv-lib-tertiary-color-9: #422f0a;
+    --mv-lib-tertiary-color-1: #fffaf0;
+    --mv-lib-tertiary-color-2: #fbedc7;
+    --mv-lib-tertiary-color-3: #f5da8f;
+    --mv-lib-tertiary-color-4: #edc35a;
+    --mv-lib-tertiary-color-5: #dba82f;
+    --mv-lib-tertiary-color-6: #b8871e;
+    --mv-lib-tertiary-color-7: #8c6414;
+    --mv-lib-tertiary-color-8: #614509;
+    --mv-lib-tertiary-color-9: #382805;
 
     /* Status */
-    --mv-lib-success: #2f8f57;
-    --mv-lib-warning: #c58b2d;
-    --mv-lib-error:   #c85a5a;
-    --mv-lib-info:    #649edc;
+    --mv-lib-success: #4a9d68;
+    --mv-lib-warning: #cf9a2e;
+    --mv-lib-error:   #b23a3a;
+    --mv-lib-info:    #3a6fdb;
 
     /* Components */
     --mv-lib-component-background-color-primary: var(--mv-lib-secondary-color-6);
     --mv-lib-component-background-color-secondary: var(--mv-lib-secondary-color-5);
-    --mv-lib-component-background-color-tertiary: var(--mv-lib-secondary-color-3);
+    --mv-lib-component-background-color-tertiary: var(--mv-lib-primary-color-3);
 
-    --mv-lib-component-font-color-primary: var(--mv-lib-primary-color-1);
-    --mv-lib-component-font-color-secondary: var(--mv-lib-primary-color-9);
+    --mv-lib-component-font-color: var(--mv-lib-primary-color-9);
+    --mv-lib-component-inner-font-color-primary: var(--mv-lib-primary-color-1);
+    --mv-lib-component-inner-font-color-secondary: var(--mv-lib-primary-color-9);
 
     --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-5);
     --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-5);

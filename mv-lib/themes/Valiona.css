@@ -38,10 +38,11 @@
     /* Components */
     --mv-lib-component-background-color-primary: var(--mv-lib-secondary-color-6);
     --mv-lib-component-background-color-secondary: var(--mv-lib-secondary-color-5);
-    --mv-lib-component-background-color-tertiary: var(--mv-lib-secondary-color-3);
+    --mv-lib-component-background-color-tertiary: var(--mv-lib-primary-color-3);
 
-    --mv-lib-component-font-color-primary: var(--mv-lib-primary-color-9);
-    --mv-lib-component-font-color-secondary: var(--mv-lib-primary-color-1);
+    --mv-lib-component-font-color: var(--mv-lib-primary-color-9);
+    --mv-lib-component-inner-font-color-primary: var(--mv-lib-primary-color-9);
+    --mv-lib-component-inner-font-color-secondary: var(--mv-lib-primary-color-1);
 
     --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-6);
     --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-5);
