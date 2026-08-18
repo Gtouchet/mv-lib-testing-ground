@@ -46,6 +46,12 @@
             />
         }
         @else if (selectedPartStyle() === 'list') {
+            <app-inputs-separator title="General" />
+            <app-input-text
+                [value]="dropdown().getStyle().list!.offsetX"
+                label="Offset X"
+                (onChange)="dropdown().setStyle('list.offsetX', $event); refreshLog();"
+            />
             <app-dimensions-inputs
                 [dimensions]="dropdown().getStyle().list.dimensions!"
                 (onChangeDimensions)="dropdown().setStyle(`list.dimensions.${$event.key}`, $event.value); refreshLog();"
@@ -137,6 +143,18 @@
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
+        <div buttons>
+            <app-input-button
+                label="Button"
+                [selected]="selectedPartSettings() === 'button'"
+                (onClick)="selectedPartSettings.set('button')"
+            />
+            <app-input-button
+                label="List"
+                [selected]="selectedPartSettings() === 'list'"
+                (onClick)="selectedPartSettings.set('list')"
+            />
+        </div>
         <app-inputs-separator title="General" />
         <app-input-checkbox
             [checked]="disabled()"
@@ -147,36 +165,33 @@
             [checked]="opened()"
             label="Opened"
             (onChange)="opened.set($event); refreshLog();"
-        />        
-        <app-inputs-separator title="Button" />
-        <app-input-checkbox
-            [checked]="dropdown().getSettings().button!.resetButton"
-            label="Reset button"
-            (onChange)="dropdown().setSettings('button.resetButton', $event); refreshLog();"
         />
-        <app-inputs-separator title="List" />
-        <app-input-checkbox
-            [checked]="dropdown().getSettings().list!.closeOnOutsideClick"
-            label="Close on outside click"
-            (onChange)="dropdown().setSettings('list.closeOnOutsideClick', $event); refreshLog();"
-        />
-        <app-input-checkbox
-            [checked]="dropdown().getSettings().list!.closeOnItemSelect"
-            label="Close on item select"
-            (onChange)="dropdown().setSettings('list.closeOnItemSelect', $event); refreshLog();"
-        />
-        <div class="inputs-group">
-            Force width
-            <app-input-text
-                [value]="dropdown().getSettings().list!.forceWidth"
-                (onChange)="dropdown().setSettings('list.forceWidth', $event); refreshLog();"
+        @if (selectedPartSettings() === 'button') {
+            <app-inputs-separator title="Button" />
+            <app-input-checkbox
+                [checked]="dropdown().getSettings().button!.resetButton"
+                label="Reset button"
+                (onChange)="dropdown().setSettings('button.resetButton', $event); refreshLog();"
             />
-            Offset X
-            <app-input-text
-                [value]="dropdown().getSettings().list!.offsetX"
-                (onChange)="dropdown().setSettings('list.offsetX', $event); refreshLog();"
+        }
+        @else if (selectedPartSettings() === 'list') {
+            <app-inputs-separator title="List" />
+            <app-input-checkbox
+                [checked]="dropdown().getSettings().list!.hideScrollbar"
+                label="Hide scrollbar"
+                (onChange)="dropdown().setSettings('list.hideScrollbar', $event); refreshLog();"
             />
-        </div>
+            <app-input-checkbox
+                [checked]="dropdown().getSettings().list!.closeOnOutsideClick"
+                label="Close on outside click"
+                (onChange)="dropdown().setSettings('list.closeOnOutsideClick', $event); refreshLog();"
+            />
+            <app-input-checkbox
+                [checked]="dropdown().getSettings().list!.closeOnItemSelect"
+                label="Close on item select"
+                (onChange)="dropdown().setSettings('list.closeOnItemSelect', $event); refreshLog();"
+            />
+        }
     </app-configuration-section>
 </div>
 

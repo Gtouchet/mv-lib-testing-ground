@@ -31,7 +31,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
   protected style = signal<Partial<MvLibDropdownClassicStyle>>({
     button: {
       dimensions: {
-        width: '150px',
+        width: '200px',
         height: '40px',
       },
     },
