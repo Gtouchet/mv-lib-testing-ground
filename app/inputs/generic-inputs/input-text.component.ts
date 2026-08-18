@@ -12,7 +12,8 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       [ngStyle]="{
         'display': 'flex',
         'gap.px': 4,
-        'align-items': 'center'
+        'align-items': 'center',
+        'opacity': disabled() ? 0.5 : 1,
       }"
     >
       {{ label() }}
@@ -21,6 +22,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         class="input"
         [value]="value()"
         (input)="handleInput($event)"
+        [disabled]="disabled()"
         [ngStyle]="{
           'width': width() ?? 'auto',
           'flex': !width() ? 1 : 'none',
@@ -33,6 +35,7 @@ export class InputTextComponent {
   public value = input<string | number| undefined>(undefined);
   public label = input<string | undefined>(undefined);
   public width = input<string | undefined>(undefined);
+  public disabled = input<boolean>(false);
   public onChange = output<string>();
 
   protected handleInput(event: Event) {

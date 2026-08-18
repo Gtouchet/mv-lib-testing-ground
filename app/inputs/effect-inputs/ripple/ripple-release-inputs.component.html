@@ -7,14 +7,22 @@
     </app-inputs-separator>
 </div>
 <div class="inputs-group">
-    Origin x
+    Origin
+    <app-input-radio
+        [values]="['mouse', 'component']"
+        [selected]="style().origin"
+        (onChange)="onChangeStyle.emit({key: 'origin', value: $event})"
+    />
+    Origin X
     <app-input-text
         [value]="style().originX"
+        [disabled]="style().origin === 'mouse'"
         (onChange)="onChangeStyle.emit({key: 'originX', value: $event})"
     />
-    Origin y
+    Origin Y
     <app-input-text
         [value]="style().originY"
+        [disabled]="style().origin === 'mouse'"
         (onChange)="onChangeStyle.emit({key: 'originY', value: $event})"
     />
     Size
