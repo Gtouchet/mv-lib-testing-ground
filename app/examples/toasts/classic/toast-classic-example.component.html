@@ -39,69 +39,41 @@
 </ng-template>
 
 <ng-template #effectsConfiguration let-type="type" let-configuration="configuration">
-    <div style="display: flex; gap: 4px;">
-        <app-inputs-separator title="Outline blur hover">
-            <app-input-checkbox
-                [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineBlur.class)"
-                (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineBlur.class, $event)"
-            />
-        </app-inputs-separator>
-    </div>
-    <div class="inputs-group">
-        Color
-        <app-input-color
-            [value]="configuration.effects.styles.outlineBlurHover.color"
-            (onChange)="toastService.setEffectStyle(type, 'outlineBlurHover.color', $event)"
-        />
-        Radius
-        <app-input-text
-            [value]="configuration.effects.styles.outlineBlurHover.radius"
-            (onChange)="toastService.setEffectStyle(type, 'outlineBlurHover.radius', $event)"
-        />
-    </div>
-    <div style="display: flex; gap: 4px;">
-        <app-inputs-separator title="Outline solid hover">
-            <app-input-checkbox
-                [checked]="configuration.effects.classes.includes(mvLibEffects.hover.outlineSolid.class)"
-                (onChange)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid.class, $event)"
-            />
-        </app-inputs-separator>
-    </div>
-    <div class="inputs-group">
-        Color
-        <app-input-color
-            [value]="configuration.effects.styles.outlineSolidHover.color"
-            (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.color', $event)"
-        />
-        Width
-        <app-input-text
-            [value]="configuration.effects.styles.outlineSolidHover.width"
-            (onChange)="toastService.setEffectStyle(type, 'outlineSolidHover.width', $event)"
-        />
-    </div>
-    <div style="display: flex; gap: 4px;">
-        <app-inputs-separator title="Progress bar darken fill">
-            <app-input-checkbox
-                [checked]="configuration.animations.classes.includes(mvLibEffects.idle.progressBarDarkenFill.class)"
-                (onChange)="toastService.setAnimation(type, mvLibEffects.idle.progressBarDarkenFill.class, $event)"
-            />
-        </app-inputs-separator>
-    </div>
-        <div class="inputs-group">
-        Force color
-        <app-input-color
-            [value]="configuration.animations.styles.progressBarDarkenFill.forceColor"
-            (onChange)="toastService.setAnimationStyle(type, 'progressBarDarkenFill.forceColor', $event)"
-        />
-        Darken percentage
-        <app-input-text
-            [value]="configuration.animations.styles.progressBarDarkenFill.darkenPercentage"
-            (onChange)="toastService.setAnimationStyle(type, 'progressBarDarkenFill.darkenPercentage', $event)"
-        />
-    </div>
+    <app-outline-blur-hover-inputs
+        [enabled]="configuration.effects.classes.includes(mvLibEffects.hover.outlineBlur.class)"
+        [style]="configuration.effects.styles.outlineBlurHover"
+        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.hover.outlineBlur.class, $event); refreshLog();"
+        (onChangeStyle)="toastService.setEffectStyle(type, `outlineBlurHover.${$event.key}`, $event.value); refreshLog();"
+    />
+    <app-outline-solid-hover-inputs
+        [enabled]="configuration.effects.classes.includes(mvLibEffects.hover.outlineSolid.class)"
+        [style]="configuration.effects.styles.outlineSolidHover"
+        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid.class, $event); refreshLog();"
+        (onChangeStyle)="toastService.setEffectStyle(type, `outlineSolidHover.${$event.key}`, $event.value); refreshLog();"
+    />
+    <app-fade-in-idle-inputs
+        [enabled]="configuration.animations.classes.includes(mvLibEffects.idle.fadeIn.class)"
+        [style]="configuration.animations.styles.fadeInIdle"
+        (onChangeEnabled)="toastService.setAnimation(type, mvLibEffects.idle.fadeIn.class, $event); refreshLog();"
+        (onChangeStyle)="toastService.setAnimationStyle(type, `fadeInIdle.${$event.key}`, $event.value); refreshLog();"
+    />
+    <app-fade-out-idle-inputs
+        [enabled]="configuration.animations.classes.includes(mvLibEffects.idle.fadeOut.class)"
+        [style]="configuration.animations.styles.fadeOutIdle"
+        (onChangeEnabled)="toastService.setAnimation(type, mvLibEffects.idle.fadeOut.class, $event); refreshLog();"
+        (onChangeStyle)="toastService.setAnimationStyle(type, `fadeOutIdle.${$event.key}`, $event.value); refreshLog();"
+    />
+    <app-progress-bar-darken-fill-inputs
+        [enabled]="configuration.animations.classes.includes(mvLibEffects.idle.progressBarDarkenFill.class)"
+        [style]="configuration.animations.styles.progressBarDarkenFill"
+        (onChangeEnabled)="toastService.setAnimation(type, mvLibEffects.idle.progressBarDarkenFill.class, $event); refreshLog();"
+        (onChangeStyle)="toastService.setAnimationStyle(type, `progressBarDarkenFill.${$event.key}`, $event.value); refreshLog();"
+    />
+
 </ng-template>
 
 <ng-template #settingsConfiguration let-type="type" let-configuration="configuration">
+    <app-inputs-separator [title]="type" />
     <app-input-text
         [value]="configuration.settings.lifespan"
         label="Lifespan"

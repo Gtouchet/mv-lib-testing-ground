@@ -1,0 +1,25 @@
+<div class="effect">
+    <app-inputs-separator [title]="title() ?? 'Progress bar darken fill'">
+        <app-input-checkbox
+            [checked]="enabled()"
+            (onChange)="onChangeEnabled.emit($event)"
+        />
+    </app-inputs-separator>
+</div>
+<div class="inputs-group">
+    Force color
+    <app-input-color
+        [value]="style().forceColor"
+        (onChange)="onChangeStyle.emit({key: 'forceColor', value: $event})"
+    />
+    Darken percentage
+    <app-input-text
+        [value]="style().darkenPercentage"
+        (onChange)="onChangeStyle.emit({key: 'darkenPercentage', value: $event})"
+    />
+    Time to fill
+    <app-input-text
+        [value]="style().timeToFill"
+        (onChange)="onChangeStyle.emit({key: 'timeToFill', value: $event})"
+    />
+</div>

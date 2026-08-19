@@ -1,0 +1,20 @@
+<div class="effect">
+    <app-inputs-separator [title]="title() ?? 'Outline solid hover'">
+        <app-input-checkbox
+            [checked]="enabled()"
+            (onChange)="onChangeEnabled.emit($event)"
+        />
+    </app-inputs-separator>    
+</div>
+<div class="inputs-group">
+    Color
+    <app-input-color
+        [value]="style().color"
+        (onChange)="onChangeStyle.emit({key: 'color', value: $event})"
+    />
+    Width
+    <app-input-text
+        [value]="style().width"
+        (onChange)="onChangeStyle.emit({key: 'width', value: $event})"
+    />
+</div>

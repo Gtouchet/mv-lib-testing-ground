@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, model, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, model, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -66,7 +66,6 @@ export class AppComponent {
       children: [
         ...this.themeService.getThemes()
           .filter(theme => theme.mode === 'light')
-          .filter(theme => theme.name !== 'Light')
           .map((theme: MvLibThemeDefinition) => ({
             label: theme.name,
             themeName: theme.name,
@@ -79,7 +78,6 @@ export class AppComponent {
       children: [
         ...this.themeService.getThemes()
           .filter(theme => theme.mode === 'dark')
-          .filter(theme => theme.name !== 'Dark')
           .map((theme: MvLibThemeDefinition) => ({
             label: theme.name,
             themeName: theme.name,

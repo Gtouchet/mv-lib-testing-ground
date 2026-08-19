@@ -3,15 +3,17 @@ import { MvLibButtonClassicComponent } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
+import { FadeInIdleInputsComponent } from "../../../inputs/effect-inputs/fade-in/fade-in-idle-inputs.component";
 
 @Component({
     selector: 'app-toast-classic-example',
     imports: [
-        MvLibButtonClassicComponent,
-        JsonPipe,
-        INPUTS,
-        CommonModule,
-    ],
+    MvLibButtonClassicComponent,
+    JsonPipe,
+    INPUTS,
+    CommonModule,
+    FadeInIdleInputsComponent
+],
     templateUrl: './toast-classic-example.component.html',
     styleUrl: '../../example.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
