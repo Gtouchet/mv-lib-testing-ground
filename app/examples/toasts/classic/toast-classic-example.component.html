@@ -149,10 +149,7 @@
 </ng-template>
 
 <div class="configuration">
-    <app-configuration-section
-        [title]="'Styles for ' + selectedStyleConfiguration().type"
-        [color]="themeService.var(selectedStyleConfiguration().configuration!.styles!.backgroundColor!)"
-    >
+    <app-configuration-section [title]="'Styles for ' + selectedStyleConfiguration().type">
         <div buttons class="type-buttons">
             <app-input-button
                 label="Success"
@@ -182,10 +179,7 @@
         }" />
     </app-configuration-section>
     
-    <app-configuration-section
-        [title]="'Effects for ' + selectedEffectConfiguration().type"
-        [color]="themeService.var(selectedEffectConfiguration().configuration!.styles!.backgroundColor!)"    
-    >
+    <app-configuration-section [title]="'Effects for ' + selectedEffectConfiguration().type">
         <div buttons class="type-buttons">
             <app-input-button
                 label="Success"
@@ -214,10 +208,7 @@
         }" />
     </app-configuration-section>
 
-    <app-configuration-section
-        [title]="'Settings for ' + selectedSettingsConfiguration().type"
-        [color]="themeService.var(selectedSettingsConfiguration().configuration!.styles!.backgroundColor!)"
-    >
+    <app-configuration-section [title]="'Settings for ' + selectedSettingsConfiguration().type">
         <div buttons class="type-buttons">
             <app-input-button
                 label="Success"

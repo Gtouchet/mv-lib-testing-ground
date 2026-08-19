@@ -3,9 +3,14 @@ import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import {
+  MV_LIB_EFFECTS,
   MvLibButtonClassicComponent,
   MvLibButtonClassicEffects,
   MvLibButtonClassicStyle,
+  MvLibSwitchClassicComponent,
+  MvLibSwitchClassicEffects,
+  MvLibSwitchClassicStyle,
+  MvLibSwitchToggleEvent,
   MvLibThemeDefinition,
   MvLibThemeService,
   MvLibToastClassicComponent,
@@ -26,6 +31,7 @@ interface TreeviewNode {
 @Component({
   selector: 'app-root',
   imports: [
+    MvLibSwitchClassicComponent,
     MvLibTreeviewClassicComponent,
     MvLibTreeviewDirectives,
     MvLibButtonClassicComponent,
@@ -44,6 +50,8 @@ export class AppComponent {
   protected titleService = inject(Title);
   protected themeService = inject(MvLibThemeService);
 
+  private mvLibEffects = MV_LIB_EFFECTS;
+
   constructor() {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
@@ -57,6 +65,7 @@ export class AppComponent {
       children: [
         ...this.themeService.getThemes()
           .filter(theme => theme.mode === 'light')
+          .filter(theme => theme.name !== 'Light')
           .map((theme: MvLibThemeDefinition) => ({
             label: theme.name,
             themeName: theme.name,
@@ -69,6 +78,7 @@ export class AppComponent {
       children: [
         ...this.themeService.getThemes()
           .filter(theme => theme.mode === 'dark')
+          .filter(theme => theme.name !== 'Dark')
           .map((theme: MvLibThemeDefinition) => ({
             label: theme.name,
             themeName: theme.name,
@@ -118,7 +128,7 @@ export class AppComponent {
       label: 'Treeviews (new)',
       icon: 'folder_data',
       children: [
-        { label: 'Classic', routerLink: '/treeview-classic-example', status: '(WIP)' },
+        { label: 'Classic', routerLink: '/treeview-classic-example', status: 'WIP' },
       ],
     },
   ]);
@@ -133,6 +143,30 @@ export class AppComponent {
     },
   ]);
 
+  protected switchStyle: Partial<MvLibSwitchClassicStyle> = {
+    track: {
+      colorOff: '--mv-lib-component-background-color-secondary',
+    },
+    cursor: {
+      colorOff: '--mv-lib-component-background-color-primary',
+      iconOn: 'light_mode',
+      iconOff: 'dark_mode',
+    },
+  };
+
+  protected switchEffects: Partial<MvLibSwitchClassicEffects> = {
+    track: {
+      classes: [
+        this.mvLibEffects.idle.shadow.class,
+      ],
+    },
+    cursor: {
+      classes: [
+        this.mvLibEffects.hover.resize.class,
+      ],
+    },
+  };
+
   protected treeviewButtonEffects: Partial<MvLibButtonClassicEffects> = {
     classes: [
       'mv-lib-tint-hover',
@@ -146,6 +180,10 @@ export class AppComponent {
       height: '26px',
     },
   };
+
+  protected toggleTheme(event: MvLibSwitchToggleEvent) {
+    this.themeService.setTheme(event.active ? 'Light' : 'Dark');
+  }
 
   protected onThemeSelect(themeName?: string, event?: Event): void {
     event?.stopPropagation();

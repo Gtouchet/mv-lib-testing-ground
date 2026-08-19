@@ -3,54 +3,22 @@
 
         <div class="sidebar-title">
             <h2
-                class="sidebar-title-link"
+                [style.cursor]="'pointer'"
                 (click)="router.navigateByUrl('/home')"
             >
                 MV Lib
             </h2>
+
+            <!-- Light / Dark themes -->
+            <mv-lib-switch-classic
+                [inputStyle]="switchStyle"
+                [inputEffects]="switchEffects"
+                [active]="themeService.currentTheme()!.name === 'Light'"
+                (onToggle)="toggleTheme($event)"
+            />
         </div>
 
-        <section class="treeview-section">
-            <mv-lib-treeview-classic
-                [items]="themeTreeviewItems()"
-            >
-                Themes
-                <ng-template
-                    mvLibTreeviewListTemplate
-                    let-depth="depth"
-                    let-item
-                >
-                    @if (depth === 0) {
-                        <div
-                            [ngStyle]="{
-                                'display': 'flex',
-                                'align-items': 'center',
-                                'gap': '5px',
-                            }"
-                        >
-                            <span class="material-symbols-outlined">
-                                {{ item.icon }}
-                            </span>
-                            {{ item.label }}
-                        </div>
-                    }
-                    @else if (depth === 1) {
-                        <mv-lib-button-classic
-                            [inputStyle]="treeviewButtonStyle"
-                            [inputEffects]="treeviewButtonEffects"
-                            (onClick)="onThemeSelect(item.themeName, $event.event)"
-                        >
-                            <div class="treeview-action-content">
-                                <span class="material-symbols-outlined">
-                                    {{ item.icon }}
-                                </span>
-                                {{ item.label }}
-                            </div>
-                        </mv-lib-button-classic>
-                    }
-                </ng-template>
-            </mv-lib-treeview-classic>
-        </section>
+        <hr [style.width.%]="100"/>
 
         <section class="treeview-section">
             <mv-lib-treeview-classic
@@ -76,7 +44,7 @@
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">
-                                {{ item.label }} {{ item.status }}
+                                {{ item.label }} {{ item.status ? '(' + item.status + ')' : '' }}
                             </div>
                         </mv-lib-button-classic>
                     }
@@ -109,6 +77,48 @@
                         >
                             <div class="treeview-action-content">
                                 {{ item.label + (item.wip ? ' (WIP)' : '') }}
+                            </div>
+                        </mv-lib-button-classic>
+                    }
+                </ng-template>
+            </mv-lib-treeview-classic>
+        </section>
+
+        <section class="treeview-section">
+            <mv-lib-treeview-classic
+                [items]="themeTreeviewItems()"
+            >
+                Custom themes
+                <ng-template
+                    mvLibTreeviewListTemplate
+                    let-depth="depth"
+                    let-item
+                >
+                    @if (depth === 0) {
+                        <div
+                            [ngStyle]="{
+                                'display': 'flex',
+                                'align-items': 'center',
+                                'gap': '5px',
+                            }"
+                        >
+                            <span class="material-symbols-outlined">
+                                {{ item.icon }}
+                            </span>
+                            {{ item.label }}
+                        </div>
+                    }
+                    @else if (depth === 1) {
+                        <mv-lib-button-classic
+                            [inputStyle]="treeviewButtonStyle"
+                            [inputEffects]="treeviewButtonEffects"
+                            (onClick)="onThemeSelect(item.themeName, $event.event)"
+                        >
+                            <div class="treeview-action-content">
+                                <span class="material-symbols-outlined">
+                                    {{ item.icon }}
+                                </span>
+                                {{ item.label }}
                             </div>
                         </mv-lib-button-classic>
                     }

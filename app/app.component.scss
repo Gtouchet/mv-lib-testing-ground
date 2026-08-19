@@ -30,11 +30,9 @@
 
 .sidebar-title {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-}
-
-.sidebar-title-link {
-    cursor: pointer;
 }
 
 .treeview-section {
