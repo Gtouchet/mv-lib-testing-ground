@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, model, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -56,6 +56,7 @@ export class AppComponent {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe(() => this.updateDocumentTitle());
+    this.isThemeModeLight.set(this.themeService.currentTheme()!.mode === 'light');
   }
 
   protected themeTreeviewItems = signal<TreeviewNode[]>([
@@ -169,8 +170,8 @@ export class AppComponent {
 
   protected treeviewButtonEffects: Partial<MvLibButtonClassicEffects> = {
     classes: [
-      'mv-lib-tint-hover',
-      'mv-lib-push-click',
+      this.mvLibEffects.hover.tint.class,
+      this.mvLibEffects.click.push.class,
     ],
   };
 
@@ -181,6 +182,8 @@ export class AppComponent {
     },
   };
 
+  protected isThemeModeLight = model<boolean>(false);
+
   protected toggleTheme(event: MvLibSwitchToggleEvent) {
     this.themeService.setTheme(event.active ? 'Light' : 'Dark');
   }
@@ -190,7 +193,11 @@ export class AppComponent {
     if (!themeName) {
       return;
     }
-    this.themeService.setTheme(themeName);
+    this.themeService
+      .setTheme(themeName)
+      .then(() => {
+        this.isThemeModeLight.set(this.themeService.currentTheme()!.mode === 'light');
+      });
   }
 
   protected onNavigationItemClick(item: TreeviewNode, event: Event): void {

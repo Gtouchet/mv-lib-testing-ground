@@ -13,7 +13,7 @@
             <mv-lib-switch-classic
                 [inputStyle]="switchStyle"
                 [inputEffects]="switchEffects"
-                [active]="themeService.currentTheme()!.name === 'Light'"
+                [(active)]="isThemeModeLight"
                 (onToggle)="toggleTheme($event)"
             />
         </div>
