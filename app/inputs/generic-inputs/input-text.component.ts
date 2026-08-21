@@ -32,7 +32,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   `,
 })
 export class InputTextComponent {
-  public value = input<string | number| undefined>(undefined);
+  public value = input<string | number | undefined>(undefined);
   public label = input<string | undefined>(undefined);
   public width = input<string | undefined>(undefined);
   public disabled = input<boolean>(false);

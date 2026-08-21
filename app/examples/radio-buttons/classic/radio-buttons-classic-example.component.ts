@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } 
 import { BaseExampleComponent } from '../../base-example.component';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
-import { MvLibRadioButtonsClassicAnimations, MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyle, MvLibRadioButtonsDirectives } from "mv-lib";
+import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyle, MvLibRadioButtonsDirectives } from "mv-lib";
 
 interface User {
   id: number;
@@ -42,10 +42,6 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent im
             this.mvLibEffects.idle.shadow.class,
             this.mvLibEffects.hover.resize.class,
         ],
-    });
-
-    protected animations = signal<Partial<MvLibRadioButtonsClassicAnimations>>({
-
     });
     
     protected settings = signal<Partial<MvLibRadioButtonsClassicSettings>>({

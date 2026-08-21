@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, model, signal, viewChild } from "@angular/core";
-import { MvLibDropdownClassicAnimations, MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
+import { MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { INPUTS } from "../../../inputs/_inputs.export";
 import { CommonModule, JsonPipe } from "@angular/common";
@@ -60,10 +60,6 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
         this.mvLibEffects.hover.tint.class,
       ],
     },
-  });
-
-  protected animations = signal<Partial<MvLibDropdownClassicAnimations>>({
-
   });
   
   protected settings = signal<Partial<MvLibDropdownClassicSettings>>({

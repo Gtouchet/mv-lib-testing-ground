@@ -1,7 +1,7 @@
 import { BaseExampleComponent } from '../../base-example.component';
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { INPUTS } from '../../../inputs/_inputs.export';
-import { MvLibButtonClassicComponent, MvLibButtonClassicStyle, MvLibButtonClassicEffects, MvLibButtonClassicAnimations, MvLibButtonClassicSettings } from 'mv-lib';
+import { MvLibButtonClassicComponent, MvLibButtonClassicStyle, MvLibButtonClassicEffects, MvLibButtonClassicSettings } from 'mv-lib';
 
 @Component({
   selector: 'app-button-classic-example',
@@ -32,10 +32,6 @@ export class ButtonClassicExampleComponent extends BaseExampleComponent implemen
       this.mvLibEffects.click.push.class,
       this.mvLibEffects.release.ripple.class,
     ],
-  });
-
-  protected animations = signal<Partial<MvLibButtonClassicAnimations>>({
-
   });
   
   protected settings = signal<Partial<MvLibButtonClassicSettings>>({

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { BaseExampleComponent } from '../../base-example.component';
-import { MvLibSwitchClassicAnimations, MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyle } from 'mv-lib';
+import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyle } from 'mv-lib';
 import { INPUTS } from '../../../inputs/_inputs.export';
 
 @Component({
@@ -24,17 +24,14 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
     track: {
       classes: [
         this.mvLibEffects.idle.shadow.class,
+        
       ],
     },
     cursor: {
       classes: [
         this.mvLibEffects.hover.resize.class,
       ],
-    },
-  });
-
-  protected animations = signal<Partial<MvLibSwitchClassicAnimations>>({
-
+    }
   });
 
   protected settings = signal<Partial<MvLibSwitchClassicSettings>>({

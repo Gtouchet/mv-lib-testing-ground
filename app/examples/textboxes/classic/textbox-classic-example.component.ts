@@ -1,6 +1,6 @@
 import { BaseExampleComponent } from '../../base-example.component';
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
-import { MvLibTextboxClassicAnimations, MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyle } from 'mv-lib';
+import { MvLibTextboxClassicComponent, MvLibTextboxClassicEffects, MvLibTextboxClassicSettings, MvLibTextboxClassicStyle } from 'mv-lib';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { INPUTS } from '../../../inputs/_inputs.export';
 
@@ -32,10 +32,6 @@ export class TextboxClassicExampleComponent extends BaseExampleComponent impleme
       this.mvLibEffects.hover.tint.class,
       this.mvLibEffects.selected.outlineBlur.class,
     ],
-  });
-
-  protected animations = signal<Partial<MvLibTextboxClassicAnimations>>({
-
   });
 
   protected settings = signal<Partial<MvLibTextboxClassicSettings>>({

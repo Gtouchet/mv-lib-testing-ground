@@ -52,22 +52,22 @@
         (onChangeStyle)="toastService.setEffectStyle(type, `outlineSolidHover.${$event.key}`, $event.value); refreshLog();"
     />
     <app-fade-in-idle-inputs
-        [enabled]="configuration.animations.classes.includes(mvLibEffects.idle.fadeIn.class)"
-        [style]="configuration.animations.styles.fadeInIdle"
-        (onChangeEnabled)="toastService.setAnimation(type, mvLibEffects.idle.fadeIn.class, $event); refreshLog();"
-        (onChangeStyle)="toastService.setAnimationStyle(type, `fadeInIdle.${$event.key}`, $event.value); refreshLog();"
+        [enabled]="configuration.effects.classes.includes(mvLibEffects.idle.fadeIn.class)"
+        [style]="configuration.effects.styles.fadeInIdle"
+        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.idle.fadeIn.class, $event); refreshLog();"
+        (onChangeStyle)="toastService.setEffectStyle(type, `fadeInIdle.${$event.key}`, $event.value); refreshLog();"
     />
     <app-fade-out-idle-inputs
-        [enabled]="configuration.animations.classes.includes(mvLibEffects.idle.fadeOut.class)"
-        [style]="configuration.animations.styles.fadeOutIdle"
-        (onChangeEnabled)="toastService.setAnimation(type, mvLibEffects.idle.fadeOut.class, $event); refreshLog();"
-        (onChangeStyle)="toastService.setAnimationStyle(type, `fadeOutIdle.${$event.key}`, $event.value); refreshLog();"
+        [enabled]="configuration.effects.classes.includes(mvLibEffects.idle.fadeOut.class)"
+        [style]="configuration.effects.styles.fadeOutIdle"
+        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.idle.fadeOut.class, $event); refreshLog();"
+        (onChangeStyle)="toastService.setEffectStyle(type, `fadeOutIdle.${$event.key}`, $event.value); refreshLog();"
     />
     <app-progress-bar-darken-fill-inputs
-        [enabled]="configuration.animations.classes.includes(mvLibEffects.idle.progressBarDarkenFill.class)"
-        [style]="configuration.animations.styles.progressBarDarkenFill"
-        (onChangeEnabled)="toastService.setAnimation(type, mvLibEffects.idle.progressBarDarkenFill.class, $event); refreshLog();"
-        (onChangeStyle)="toastService.setAnimationStyle(type, `progressBarDarkenFill.${$event.key}`, $event.value); refreshLog();"
+        [enabled]="configuration.effects.classes.includes(mvLibEffects.idle.progressBarDarkenFill.class)"
+        [style]="configuration.effects.styles.progressBarDarkenFill"
+        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.idle.progressBarDarkenFill.class, $event); refreshLog();"
+        (onChangeStyle)="toastService.setEffectStyle(type, `progressBarDarkenFill.${$event.key}`, $event.value); refreshLog();"
     />
 
 </ng-template>

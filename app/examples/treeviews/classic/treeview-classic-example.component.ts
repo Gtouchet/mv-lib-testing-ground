@@ -1,7 +1,7 @@
 import { BaseExampleComponent } from '../../base-example.component';
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { INPUTS } from '../../../inputs/_inputs.export';
-import { MvLibButtonClassicComponent, MvLibTreeviewClassicAnimations, MvLibTreeviewClassicComponent, MvLibTreeviewClassicEffects, MvLibTreeviewClassicSettings, MvLibTreeviewClassicStyle, MvLibTreeviewDirectives, MvLibTreeviewToggleEvent } from 'mv-lib';
+import { MvLibButtonClassicComponent, MvLibTreeviewClassicComponent, MvLibTreeviewClassicEffects, MvLibTreeviewClassicSettings, MvLibTreeviewClassicStyle, MvLibTreeviewDirectives, MvLibTreeviewToggleEvent } from 'mv-lib';
 import { CommonModule } from '@angular/common';
 
 interface User {
@@ -39,10 +39,6 @@ export class TreeviewClassicExampleComponent extends BaseExampleComponent implem
 
     protected effects = signal<Partial<MvLibTreeviewClassicEffects>>({
         
-    });
-
-    protected animations = signal<Partial<MvLibTreeviewClassicAnimations>>({
-
     });
     
     protected settings = signal<Partial<MvLibTreeviewClassicSettings>>({

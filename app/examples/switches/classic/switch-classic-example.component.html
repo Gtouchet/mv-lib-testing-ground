@@ -119,9 +119,9 @@
             (onChange)="disabled.set($event); refreshLog();"
         />
         <app-input-text
-            label="Transition duration"
-            [value]="switch().getSettings().transitionDuration"
-            (onChange)="switch().setSettings('transitionDuration', $event); refreshLog();"
+            label="Translate duration"
+            [value]="switch().getSettings().translateDuration"
+            (onChange)="switch().setSettings('translateDuration', $event); refreshLog();"
         />
         <app-inputs-separator title="API" />
         <app-input-checkbox
