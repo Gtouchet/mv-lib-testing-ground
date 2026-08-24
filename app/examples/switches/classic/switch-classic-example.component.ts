@@ -18,13 +18,14 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
 
   protected switch = viewChild.required<MvLibSwitchClassicComponent>('mvLibSwitchClassic');
   
-  protected style = signal<Partial<MvLibSwitchClassicStyle>>({});
+  protected style = signal<Partial<MvLibSwitchClassicStyle>>({
+    
+  });
 
   protected effects = signal<Partial<MvLibSwitchClassicEffects>>({
     track: {
       classes: [
         this.mvLibEffects.idle.shadow.class,
-        
       ],
     },
     cursor: {

@@ -95,19 +95,19 @@
         @if (selectedPartEffects() === 'track') {
             <app-shadow-idle-inputs
                 title="Shadow idle"
-                [enabled]="switch().hasEffect('track', mvLibEffects.idle.shadow)"
-                [style]="switch().getEffects().track!.styles!.shadowIdle!"
-                (onChangeEnabled)="switch().toggleEffect('track', mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="switch().setEffectStyle(`track.${mvLibEffects.idle.shadow.name}`, $event); refreshLog();"
+                [enabled]="switch().track.hasEffect(mvLibEffects.idle.shadow)"
+                [style]="switch().track.getEffectStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="switch().track.toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="switch().track.setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
         }
         @else if (selectedPartEffects() === 'cursor') {
             <app-resize-hover-inputs
                 title="Resize hover"
-                [enabled]="switch().hasEffect('cursor', mvLibEffects.hover.resize)"
-                [style]="switch().getEffects().cursor!.styles!.resizeHover!"
-                (onChangeEnabled)="switch().toggleEffect('cursor', mvLibEffects.hover.resize, $event); refreshLog();"
-                (onChangeStyle)="switch().setEffectStyle(`cursor.${mvLibEffects.hover.resize.name}`, $event); refreshLog();"
+                [enabled]="switch().cursor.hasEffect(mvLibEffects.hover.resize)"
+                [style]="switch().cursor.getEffectStyle(mvLibEffects.hover.resize)"
+                (onChangeEnabled)="switch().cursor.toggleEffect(mvLibEffects.hover.resize, $event); refreshLog();"
+                (onChangeStyle)="switch().cursor.setEffectStyle(mvLibEffects.hover.resize, $event); refreshLog();"
             />
         }
     </app-configuration-section>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { MvLibShadowIdle } from "mv-lib";
+import { MvLibShadowIdleEffectStyle } from "mv-lib";
 
 @Component({
   selector: 'app-shadow-idle-inputs',
@@ -19,7 +19,7 @@ export class ShadowIdleInputsComponent {
   public title = input<string | undefined>(undefined);
 
   public enabled = input.required<boolean>();
-  public style = input.required<Partial<MvLibShadowIdle>>();
+  public style = input.required<MvLibShadowIdleEffectStyle>();
 
   public onChangeEnabled = output<boolean>();
   public onChangeStyle = output<{key: string, value: any}>();

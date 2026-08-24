@@ -100,44 +100,44 @@
         </div>
         @if (selectedPartEffects() === 'button') {
             <app-shadow-idle-inputs
-                [enabled]="dropdown().hasEffect('button', mvLibEffects.idle.shadow)"
-                [style]="dropdown().getEffects().button.styles!.shadowIdle!"
-                (onChangeEnabled)="dropdown().toggleEffect('button', mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.idle.shadow.name}`, $event); refreshLog();"
+                [enabled]="dropdown().button.hasEffect(mvLibEffects.idle.shadow)"
+                [style]="dropdown().button.getEffectStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="dropdown().button.toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="dropdown().button.setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
             <app-tint-hover-inputs
-                [enabled]="dropdown().hasEffect('button', mvLibEffects.hover.tint)"
-                [style]="dropdown().getEffects().button.styles!.tintHover!"
-                (onChangeEnabled)="dropdown().toggleEffect('button', mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.hover.tint.name}`, $event); refreshLog();"
+                [enabled]="dropdown().button.hasEffect(mvLibEffects.hover.tint)"
+                [style]="dropdown().button.getEffectStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="dropdown().button.toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="dropdown().button.setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
             />
             <app-push-click-inputs
-                [enabled]="dropdown().hasEffect('button', mvLibEffects.click.push)"
-                [style]="dropdown().getEffects().button.styles!.pushClick!"
-                (onChangeEnabled)="dropdown().toggleEffect('button', mvLibEffects.click.push, $event); refreshLog();"
-                (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.click.push.name}`, $event); refreshLog();"
+                [enabled]="dropdown().button.hasEffect(mvLibEffects.click.push)"
+                [style]="dropdown().button.getEffectStyle(mvLibEffects.click.push)"
+                (onChangeEnabled)="dropdown().button.toggleEffect(mvLibEffects.click.push, $event); refreshLog();"
+                (onChangeStyle)="dropdown().button.setEffectStyle(mvLibEffects.click.push, $event); refreshLog();"
             />
             <app-ripple-release-inputs
-                [enabled]="dropdown().hasEffect('button', mvLibEffects.release.ripple)"
-                [style]="dropdown().getEffects().button.styles!.rippleRelease!"
-                (onChangeEnabled)="dropdown().toggleEffect('button', mvLibEffects.release.ripple, $event); refreshLog();"
-                (onChangeStyle)="dropdown().setEffectStyle(`button.${mvLibEffects.release.ripple.name}`, $event); refreshLog();"
+                [enabled]="dropdown().button.hasEffect(mvLibEffects.release.ripple)"
+                [style]="dropdown().button.getEffectStyle(mvLibEffects.release.ripple)"
+                (onChangeEnabled)="dropdown().button.toggleEffect(mvLibEffects.release.ripple, $event); refreshLog();"
+                (onChangeStyle)="dropdown().button.setEffectStyle(mvLibEffects.release.ripple, $event); refreshLog();"
             />
         }
         @else if (selectedPartEffects() === 'list') {
             <app-shadow-idle-inputs
-                [enabled]="dropdown().hasEffect('list', mvLibEffects.idle.shadow)"
-                [style]="dropdown().getEffects().list.styles!.shadowIdle!"
-                (onChangeEnabled)="dropdown().toggleEffect('list', mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="dropdown().setEffectStyle(`list.${mvLibEffects.idle.shadow.name}`, $event); refreshLog();"
+                [enabled]="dropdown().list.hasEffect(mvLibEffects.idle.shadow)"
+                [style]="dropdown().list.getEffectStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="dropdown().list.toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="dropdown().list.setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
         }
         @else if (selectedPartEffects() === 'item') {
             <app-tint-hover-inputs
-                [enabled]="dropdown().hasEffect('item', mvLibEffects.hover.tint)"
-                [style]="dropdown().getEffects().item.styles!.tintHover!"
-                (onChangeEnabled)="dropdown().toggleEffect('item', mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="dropdown().setEffectStyle(`item.${mvLibEffects.hover.tint.name}`, $event); refreshLog();"
+                [enabled]="dropdown().item.hasEffect(mvLibEffects.hover.tint)"
+                [style]="dropdown().item.getEffectStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="dropdown().item.toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="dropdown().item.setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
             />
         }
     </app-configuration-section>

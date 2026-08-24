@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { MvLibPushClick } from "mv-lib";
+import { MvLibPushClickEffectStyle } from "mv-lib";
 
 @Component({
   selector: 'app-push-click-inputs',
@@ -19,7 +19,7 @@ export class PushClickInputsComponent {
   public title = input<string | undefined>(undefined);
 
   public enabled = input.required<boolean>();
-  public style = input.required<Partial<MvLibPushClick>>();
+  public style = input.required<MvLibPushClickEffectStyle>();
 
   public onChangeEnabled = output<boolean>();
   public onChangeStyle = output<{key: string, value: any}>();

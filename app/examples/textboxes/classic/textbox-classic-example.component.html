@@ -15,19 +15,19 @@
     <app-configuration-section title="Effects">
         <app-tint-hover-inputs
             [enabled]="textbox().hasEffect(mvLibEffects.hover.tint)"
-            [style]="textbox().getEffects().styles.tintHover!"
+            [style]="textbox().getEffectStyle(mvLibEffects.hover.tint)"
             (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
             (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
         />
         <app-outline-blur-selected-inputs
             [enabled]="textbox().hasEffect(mvLibEffects.selected.outlineBlur)"
-            [style]="textbox().getEffects().styles.outlineBlurSelected!"
+            [style]="textbox().getEffectStyle(mvLibEffects.selected.outlineBlur)"
             (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
             (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
         />
         <app-outline-solid-selected-inputs
             [enabled]="textbox().hasEffect(mvLibEffects.selected.outlineSolid)"
-            [style]="textbox().getEffects().styles.outlineSolidSelected!"
+            [style]="textbox().getEffectStyle(mvLibEffects.selected.outlineSolid)"
             (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
             (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
         />

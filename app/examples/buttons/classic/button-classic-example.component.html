@@ -23,25 +23,25 @@
     <app-configuration-section title="Effects">
         <app-shadow-idle-inputs
             [enabled]="button().hasEffect(mvLibEffects.idle.shadow)"
-            [style]="button().getEffects().styles.shadowIdle!"
+            [style]="button().getEffectStyle(mvLibEffects.idle.shadow)"
             (onChangeEnabled)="button().toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
             (onChangeStyle)="button().setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
         />
         <app-tint-hover-inputs
             [enabled]="button().hasEffect(mvLibEffects.hover.tint)"
-            [style]="button().getEffects().styles.tintHover!"
+            [style]="button().getEffectStyle(mvLibEffects.hover.tint)"
             (onChangeEnabled)="button().toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
             (onChangeStyle)="button().setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
         />
         <app-push-click-inputs
             [enabled]="button().hasEffect(mvLibEffects.click.push)"
-            [style]="button().getEffects().styles.pushClick!"
+            [style]="button().getEffectStyle(mvLibEffects.click.push)"
             (onChangeEnabled)="button().toggleEffect(mvLibEffects.click.push, $event); refreshLog();"
             (onChangeStyle)="button().setEffectStyle(mvLibEffects.click.push, $event); refreshLog();"
         />
         <app-ripple-release-inputs
             [enabled]="button().hasEffect(mvLibEffects.release.ripple)"
-            [style]="button().getEffects().styles.rippleRelease!"
+            [style]="button().getEffectStyle(mvLibEffects.release.ripple)"
             (onChangeEnabled)="button().toggleEffect(mvLibEffects.release.ripple, $event); refreshLog();"
             (onChangeStyle)="button().setEffectStyle(mvLibEffects.release.ripple, $event); refreshLog();"
         />

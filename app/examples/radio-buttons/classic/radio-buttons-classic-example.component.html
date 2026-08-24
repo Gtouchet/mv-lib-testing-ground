@@ -69,13 +69,13 @@
     <app-configuration-section title="Effects">
         <app-shadow-idle-inputs
             [enabled]="radioButtons().hasEffect(mvLibEffects.idle.shadow)"
-            [style]="radioButtons().getEffects().styles.shadowIdle!"
+            [style]="radioButtons().getEffectStyle(mvLibEffects.idle.shadow)"
             (onChangeEnabled)="radioButtons().toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
             (onChangeStyle)="radioButtons().setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
         />
         <app-resize-hover-inputs
             [enabled]="radioButtons().hasEffect(mvLibEffects.hover.resize)"
-            [style]="radioButtons().getEffects().styles.resizeHover!"
+            [style]="radioButtons().getEffectStyle(mvLibEffects.hover.resize)"
             (onChangeEnabled)="radioButtons().toggleEffect(mvLibEffects.hover.resize, $event); refreshLog();"
             (onChangeStyle)="radioButtons().setEffectStyle(mvLibEffects.hover.resize, $event); refreshLog();"
         />

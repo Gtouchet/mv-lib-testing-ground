@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { MvLibOutlineBlurSelected } from "mv-lib";
+import { MvLibOutlineBlurSelectedEffectStyle } from "mv-lib";
 
 @Component({
   selector: 'app-outline-blur-selected-inputs',
@@ -19,7 +19,7 @@ export class OutlineBlurSelectedInputsComponent {
   public title = input<string | undefined>(undefined);
 
   public enabled = input.required<boolean>();
-  public style = input.required<Partial<MvLibOutlineBlurSelected>>();
+  public style = input.required<MvLibOutlineBlurSelectedEffectStyle>();
 
   public onChangeEnabled = output<boolean>();
   public onChangeStyle = output<{key: string, value: any}>();
