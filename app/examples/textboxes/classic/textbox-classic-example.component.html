@@ -3,33 +3,41 @@
     <app-configuration-section title="Styles">
         <app-input-color
             label="Background color"
-            [value]="textbox().getStyle().backgroundColor"
-            (onChange)="textbox().setStyle('backgroundColor', $event); refreshLog();"
+            [value]="textbox().api.style.getBackgroundColor()"
+            (onChange)="textbox().api.style.setBackgroundColor($event); refreshLog();"
+        />
+        <app-dimensions-inputs
+            [dimensions]="textbox().api.style.getDimensions()"
+            (onChangeDimensions)="textbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
         />
         <app-outline-inputs
-            [outline]="textbox().getStyle().outline"
-            (onChangeOutline)="textbox().setStyle(`outline.${$event.key}`, $event.value); refreshLog();"
+            [outline]="textbox().api.style.getOutline()"
+            (onChangeOutline)="textbox().api.style.setOutline($event.key, $event.value); refreshLog();"
+        />
+        <app-font-inputs
+            [font]="textbox().api.style.getFont()"
+            (onChangeFont)="textbox().api.style.setFont($event.key, $event.value); refreshLog();"
         />
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
         <app-tint-hover-inputs
-            [enabled]="textbox().hasEffect(mvLibEffects.hover.tint)"
-            [style]="textbox().getEffectStyle(mvLibEffects.hover.tint)"
-            (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
-            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+            [enabled]="textbox().api.effects.has(mvLibEffects.hover.tint)"
+            [style]="textbox().api.effects.getStyle(mvLibEffects.hover.tint)"
+            (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+            (onChangeStyle)="textbox().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
         />
         <app-outline-blur-selected-inputs
-            [enabled]="textbox().hasEffect(mvLibEffects.selected.outlineBlur)"
-            [style]="textbox().getEffectStyle(mvLibEffects.selected.outlineBlur)"
-            (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
-            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
+            [enabled]="textbox().api.effects.has(mvLibEffects.selected.outlineBlur)"
+            [style]="textbox().api.effects.getStyle(mvLibEffects.selected.outlineBlur)"
+            (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
+            (onChangeStyle)="textbox().api.effects.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
         />
         <app-outline-solid-selected-inputs
-            [enabled]="textbox().hasEffect(mvLibEffects.selected.outlineSolid)"
-            [style]="textbox().getEffectStyle(mvLibEffects.selected.outlineSolid)"
-            (onChangeEnabled)="textbox().toggleEffect(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
-            (onChangeStyle)="textbox().setEffectStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
+            [enabled]="textbox().api.effects.has(mvLibEffects.selected.outlineSolid)"
+            [style]="textbox().api.effects.getStyle(mvLibEffects.selected.outlineSolid)"
+            (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
+            (onChangeStyle)="textbox().api.effects.setStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
         />
     </app-configuration-section>
 

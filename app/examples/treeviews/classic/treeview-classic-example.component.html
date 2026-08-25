@@ -25,15 +25,15 @@
         @if (selectedPartStyle() === 'general') {
             <app-inputs-separator title="Dimensions" />
             <app-input-text
-                [value]="treeview().getStyle().width"
                 label="Width"
-                (onChange)="treeview().setStyle('width', $event); refreshLog();"
+                [value]="treeview().api.style.getWidth()"
+                (onChange)="treeview().api.style.setWidth($event); refreshLog();"
             />
         }
         @else if (selectedPartStyle() === 'primary toggle') {
             <app-font-inputs
-                [font]="treeview().getStyle().primaryToggle.font!"
-                (onChangeFont)="treeview().setStyle(`primaryToggle.font.${$event.key}`, $event.value); refreshLog();"
+                [font]="treeview().api.style.primaryToggle.getFont()"
+                (onChangeFont)="treeview().api.style.primaryToggle.setFont($event.key, $event.value); refreshLog();"
             />
         }
         @else if (selectedPartStyle() === 'nested toggles') {
@@ -41,22 +41,22 @@
             <div class="inputs-group">
                 Offset X
                 <app-input-text
-                    [value]="treeview().getStyle().nestedToggles!.offsetX"
-                    (onChange)="treeview().setStyle('nestedToggles.offsetX', $event); refreshLog();"
+                    [value]="treeview().api.style.nestedToggles.getOffsetX()"
+                    (onChange)="treeview().api.style.nestedToggles.setOffsetX($event); refreshLog();"
                 />
                 Gap
                 <app-input-text
-                    [value]="treeview().getStyle().nestedToggles!.gap"
-                    (onChange)="treeview().setStyle('nestedToggles.gap', $event); refreshLog();"
+                    [value]="treeview().api.style.nestedToggles.getGap()"
+                    (onChange)="treeview().api.style.nestedToggles.setGap($event); refreshLog();"
                 />
             </div>
         }
         @else if (selectedPartStyle() === 'list') {
             <app-inputs-separator title="Dimensions" />
             <app-input-text
-                [value]="treeview().getStyle().list!.height"
                 label="Height"
-                (onChange)="treeview().setStyle('list.height', $event); refreshLog();"
+                [value]="treeview().api.style.list.getHeight()"
+                (onChange)="treeview().api.style.list.setHeight($event); refreshLog();"
             />
         }
     </app-configuration-section>

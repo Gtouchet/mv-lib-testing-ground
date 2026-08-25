@@ -3,47 +3,47 @@
         <app-inputs-separator title="General" />
         <app-input-color
             label="Background color"
-            [value]="button().getStyle().backgroundColor"
-            (onChange)="button().setStyle('backgroundColor', $event); refreshLog();"
+            [value]="button().api.style.getBackgroundColor()"
+            (onChange)="button().api.style.setBackgroundColor($event); refreshLog();"
         />
         <app-dimensions-inputs
-            [dimensions]="button().getStyle().dimensions"
-            (onChangeDimensions)="button().setStyle(`dimensions.${$event.key}`, $event.value); refreshLog();"
+            [dimensions]="button().api.style.getDimensions()"
+            (onChangeDimensions)="button().api.style.setDimensions($event.key, $event.value); refreshLog();"
         />
         <app-outline-inputs
-            [outline]="button().getStyle().outline"
-            (onChangeOutline)="button().setStyle(`outline.${$event.key}`, $event.value); refreshLog();"
+            [outline]="button().api.style.getOutline()"
+            (onChangeOutline)="button().api.style.setOutline($event.key, $event.value); refreshLog();"
         />
         <app-font-inputs
-            [font]="button().getStyle().font"
-            (onChangeFont)="button().setStyle(`font.${$event.key}`, $event.value); refreshLog();"
+            [font]="button().api.style.getFont()"
+            (onChangeFont)="button().api.style.setFont($event.key, $event.value); refreshLog();"
         />
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
         <app-shadow-idle-inputs
-            [enabled]="button().hasEffect(mvLibEffects.idle.shadow)"
-            [style]="button().getEffectStyle(mvLibEffects.idle.shadow)"
-            (onChangeEnabled)="button().toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
-            (onChangeStyle)="button().setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+            [enabled]="button().api.effects.has(mvLibEffects.idle.shadow)"
+            [style]="button().api.effects.getStyle(mvLibEffects.idle.shadow)"
+            (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+            (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
         />
         <app-tint-hover-inputs
-            [enabled]="button().hasEffect(mvLibEffects.hover.tint)"
-            [style]="button().getEffectStyle(mvLibEffects.hover.tint)"
-            (onChangeEnabled)="button().toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
-            (onChangeStyle)="button().setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+            [enabled]="button().api.effects.has(mvLibEffects.hover.tint)"
+            [style]="button().api.effects.getStyle(mvLibEffects.hover.tint)"
+            (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+            (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
         />
         <app-push-click-inputs
-            [enabled]="button().hasEffect(mvLibEffects.click.push)"
-            [style]="button().getEffectStyle(mvLibEffects.click.push)"
-            (onChangeEnabled)="button().toggleEffect(mvLibEffects.click.push, $event); refreshLog();"
-            (onChangeStyle)="button().setEffectStyle(mvLibEffects.click.push, $event); refreshLog();"
+            [enabled]="button().api.effects.has(mvLibEffects.click.push)"
+            [style]="button().api.effects.getStyle(mvLibEffects.click.push)"
+            (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.click.push, $event); refreshLog();"
+            (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.click.push, $event); refreshLog();"
         />
         <app-ripple-release-inputs
-            [enabled]="button().hasEffect(mvLibEffects.release.ripple)"
-            [style]="button().getEffectStyle(mvLibEffects.release.ripple)"
-            (onChangeEnabled)="button().toggleEffect(mvLibEffects.release.ripple, $event); refreshLog();"
-            (onChangeStyle)="button().setEffectStyle(mvLibEffects.release.ripple, $event); refreshLog();"
+            [enabled]="button().api.effects.has(mvLibEffects.release.ripple)"
+            [style]="button().api.effects.getStyle(mvLibEffects.release.ripple)"
+            (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.release.ripple, $event); refreshLog();"
+            (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.release.ripple, $event); refreshLog();"
         />
     </app-configuration-section>
 

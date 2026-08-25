@@ -124,10 +124,10 @@ export class AppComponent {
       ],
     },
     {
-      label: 'Treeviews (new)',
+      label: 'Treeviews',
       icon: 'folder_data',
       children: [
-        { label: 'Classic', routerLink: '/treeview-classic-example', status: 'WIP' },
+        { label: 'Classic', routerLink: '/treeview-classic-example' },
       ],
     },
   ]);

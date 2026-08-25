@@ -28,7 +28,7 @@ export class RadioButtonsClassicExampleComponent extends BaseExampleComponent im
     protected radioButtons = viewChild.required<MvLibRadioButtonsClassicComponent<User>>('mvLibRadioButtonsClassic');
 
     protected style = signal<Partial<MvLibRadioButtonsClassicStyle>>({
-        button: {
+        buttons: {
             size: '16px',
             gap: '6px',
         },

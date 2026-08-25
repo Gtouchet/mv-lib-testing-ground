@@ -14,8 +14,8 @@
             />
             <app-input-button
                 label="Item"
-                [selected]="selectedPartStyle() === 'item'"
-                (onClick)="selectedPartStyle.set('item')"
+                [selected]="selectedPartStyle() === 'items'"
+                (onClick)="selectedPartStyle.set('items')"
             />
         </div>
         @if (selectedPartStyle() === 'button') {
@@ -23,59 +23,59 @@
             <div class="inputs-group">
                 Background color closed
                 <app-input-color
-                    [value]="dropdown().getStyle().button.closedBackgroundColor"
-                    (onChange)="dropdown().setStyle('button.closedBackgroundColor', $event); refreshLog();"
+                    [value]="dropdown().api.style.button.getClosedBackgroundColor()"
+                    (onChange)="dropdown().api.style.button.setClosedBackgroundColor($event); refreshLog();"
                 />
                 Background color opened
                 <app-input-color
-                    [value]="dropdown().getStyle().button.openedBackgroundColor"
-                    (onChange)="dropdown().setStyle('button.openedBackgroundColor', $event); refreshLog();"
+                    [value]="dropdown().api.style.button.getOpenedBackgroundColor()"
+                    (onChange)="dropdown().api.style.button.setOpenedBackgroundColor($event); refreshLog();"
                 />
             </div>
             <app-dimensions-inputs
-                [dimensions]="dropdown().getStyle().button.dimensions!"
-                (onChangeDimensions)="dropdown().setStyle(`button.dimensions.${$event.key}`, $event.value); refreshLog();"
+                [dimensions]="dropdown().api.style.button.getDimensions()"
+                (onChangeDimensions)="dropdown().api.style.button.setDimensions($event.key, $event.value); refreshLog();"
             />
             <app-outline-inputs
-                [outline]="dropdown().getStyle().button.outline!"
-                (onChangeOutline)="dropdown().setStyle(`button.outline.${$event.key}`, $event.value); refreshLog();"
+                [outline]="dropdown().api.style.button.getOutline()"
+                (onChangeOutline)="dropdown().api.style.button.setOutline($event.key, $event.value); refreshLog();"
             />
             <app-font-inputs
-                [font]="dropdown().getStyle().button.font!"
-                (onChangeFont)="dropdown().setStyle(`button.font.${$event.key}`, $event.value); refreshLog();"
+                [font]="dropdown().api.style.button.getFont()"
+                (onChangeFont)="dropdown().api.style.button.setFont($event.key, $event.value); refreshLog();"
             />
         }
         @else if (selectedPartStyle() === 'list') {
             <app-inputs-separator title="General" />
             <app-input-text
-                [value]="dropdown().getStyle().list!.offsetX"
                 label="Offset X"
-                (onChange)="dropdown().setStyle('list.offsetX', $event); refreshLog();"
+                [value]="dropdown().api.style.list.getOffsetX()"
+                (onChange)="dropdown().api.style.list.setOffsetX($event); refreshLog();"
             />
             <app-dimensions-inputs
-                [dimensions]="dropdown().getStyle().list.dimensions!"
-                (onChangeDimensions)="dropdown().setStyle(`list.dimensions.${$event.key}`, $event.value); refreshLog();"
+                [dimensions]="dropdown().api.style.list.getDimensions()"
+                (onChangeDimensions)="dropdown().api.style.list.setDimensions($event.key, $event.value); refreshLog();"
             />
             <app-outline-inputs
-                [outline]="dropdown().getStyle().list.outline!"
-                (onChangeOutline)="dropdown().setStyle(`list.outline.${$event.key}`, $event.value); refreshLog();"
+                [outline]="dropdown().api.style.list.getOutline()"
+                (onChangeOutline)="dropdown().api.style.list.setOutline($event.key, $event.value); refreshLog();"
             />
         }
-        @else if (selectedPartStyle() === 'item') {
+        @else if (selectedPartStyle() === 'items') {
             <app-inputs-separator title="General" />
             <app-input-color
                 label="Background color"
-                [value]="dropdown().getStyle().item.backgroundColor"
-                (onChange)="dropdown().setStyle('item.backgroundColor', $event); refreshLog();"
+                [value]="dropdown().api.style.items.getBackgroundColor()"
+                (onChange)="dropdown().api.style.items.setBackgroundColor($event); refreshLog();"
             />
             <app-input-text
                 label="Height"
-                [value]="dropdown().getStyle().item.height"
-                (onChange)="dropdown().setStyle('item.height', $event); refreshLog();"
+                [value]="dropdown().api.style.items.getHeight()"
+                (onChange)="dropdown().api.style.items.setHeight($event); refreshLog();"
             />
             <app-font-inputs
-                [font]="dropdown().getStyle().item.font!"
-                (onChangeFont)="dropdown().setStyle(`item.font.${$event.key}`, $event.value); refreshLog();"
+                [font]="dropdown().api.style.items.getFont()"
+                (onChangeFont)="dropdown().api.style.items.setFont($event.key, $event.value); refreshLog();"
             />
         }
     </app-configuration-section>
@@ -94,50 +94,50 @@
             />
             <app-input-button
                 label="Item"
-                [selected]="selectedPartEffects() === 'item'"
-                (onClick)="selectedPartEffects.set('item')"
+                [selected]="selectedPartEffects() === 'items'"
+                (onClick)="selectedPartEffects.set('items')"
             />
         </div>
         @if (selectedPartEffects() === 'button') {
             <app-shadow-idle-inputs
-                [enabled]="dropdown().button.hasEffect(mvLibEffects.idle.shadow)"
-                [style]="dropdown().button.getEffectStyle(mvLibEffects.idle.shadow)"
-                (onChangeEnabled)="dropdown().button.toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="dropdown().button.setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                [enabled]="dropdown().api.effects.button.has(mvLibEffects.idle.shadow)"
+                [style]="dropdown().api.effects.button.getStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
             <app-tint-hover-inputs
-                [enabled]="dropdown().button.hasEffect(mvLibEffects.hover.tint)"
-                [style]="dropdown().button.getEffectStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="dropdown().button.toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="dropdown().button.setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                [enabled]="dropdown().api.effects.button.has(mvLibEffects.hover.tint)"
+                [style]="dropdown().api.effects.button.getStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
             />
             <app-push-click-inputs
-                [enabled]="dropdown().button.hasEffect(mvLibEffects.click.push)"
-                [style]="dropdown().button.getEffectStyle(mvLibEffects.click.push)"
-                (onChangeEnabled)="dropdown().button.toggleEffect(mvLibEffects.click.push, $event); refreshLog();"
-                (onChangeStyle)="dropdown().button.setEffectStyle(mvLibEffects.click.push, $event); refreshLog();"
+                [enabled]="dropdown().api.effects.button.has(mvLibEffects.click.push)"
+                [style]="dropdown().api.effects.button.getStyle(mvLibEffects.click.push)"
+                (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.click.push, $event); refreshLog();"
+                (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.click.push, $event); refreshLog();"
             />
             <app-ripple-release-inputs
-                [enabled]="dropdown().button.hasEffect(mvLibEffects.release.ripple)"
-                [style]="dropdown().button.getEffectStyle(mvLibEffects.release.ripple)"
-                (onChangeEnabled)="dropdown().button.toggleEffect(mvLibEffects.release.ripple, $event); refreshLog();"
-                (onChangeStyle)="dropdown().button.setEffectStyle(mvLibEffects.release.ripple, $event); refreshLog();"
+                [enabled]="dropdown().api.effects.button.has(mvLibEffects.release.ripple)"
+                [style]="dropdown().api.effects.button.getStyle(mvLibEffects.release.ripple)"
+                (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.release.ripple, $event); refreshLog();"
+                (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.release.ripple, $event); refreshLog();"
             />
         }
         @else if (selectedPartEffects() === 'list') {
             <app-shadow-idle-inputs
-                [enabled]="dropdown().list.hasEffect(mvLibEffects.idle.shadow)"
-                [style]="dropdown().list.getEffectStyle(mvLibEffects.idle.shadow)"
-                (onChangeEnabled)="dropdown().list.toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="dropdown().list.setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                [enabled]="dropdown().api.effects.list.has(mvLibEffects.idle.shadow)"
+                [style]="dropdown().api.effects.list.getStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="dropdown().api.effects.list.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="dropdown().api.effects.list.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
         }
-        @else if (selectedPartEffects() === 'item') {
+        @else if (selectedPartEffects() === 'items') {
             <app-tint-hover-inputs
-                [enabled]="dropdown().item.hasEffect(mvLibEffects.hover.tint)"
-                [style]="dropdown().item.getEffectStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="dropdown().item.toggleEffect(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="dropdown().item.setEffectStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                [enabled]="dropdown().api.effects.items.has(mvLibEffects.hover.tint)"
+                [style]="dropdown().api.effects.items.getStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="dropdown().api.effects.items.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="dropdown().api.effects.items.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
             />
         }
     </app-configuration-section>
@@ -157,39 +157,39 @@
         </div>
         <app-inputs-separator title="General" />
         <app-input-checkbox
-            [checked]="disabled()"
             label="Disabled"
+            [checked]="disabled()"
             (onChange)="disabled.set($event); refreshLog();"
         />
         <app-input-checkbox
-            [checked]="opened()"
             label="Opened"
+            [checked]="opened()"
             (onChange)="opened.set($event); refreshLog();"
         />
         @if (selectedPartSettings() === 'button') {
             <app-inputs-separator title="Button" />
             <app-input-checkbox
-                [checked]="dropdown().getSettings().button!.resetButton"
                 label="Reset button"
-                (onChange)="dropdown().setSettings('button.resetButton', $event); refreshLog();"
+                [checked]="dropdown().api.settings.button.hasResetButton()"
+                (onChange)="dropdown().api.settings.button.setResetButton($event); refreshLog();"
             />
         }
         @else if (selectedPartSettings() === 'list') {
             <app-inputs-separator title="List" />
             <app-input-checkbox
-                [checked]="dropdown().getSettings().list!.hideScrollbar"
-                label="Hide scrollbar"
-                (onChange)="dropdown().setSettings('list.hideScrollbar', $event); refreshLog();"
+                label="Scrollbar"
+                [checked]="dropdown().api.settings.list.hasScrollbar()"
+                (onChange)="dropdown().api.settings.list.setScrollbar($event); refreshLog();"
             />
             <app-input-checkbox
-                [checked]="dropdown().getSettings().list!.closeOnOutsideClick"
                 label="Close on outside click"
-                (onChange)="dropdown().setSettings('list.closeOnOutsideClick', $event); refreshLog();"
+                [checked]="dropdown().api.settings.list.closeOnOutsideClick()"
+                (onChange)="dropdown().api.settings.list.setCloseOnOutsideClick($event); refreshLog();"
             />
             <app-input-checkbox
-                [checked]="dropdown().getSettings().list!.closeOnItemSelect"
                 label="Close on item select"
-                (onChange)="dropdown().setSettings('list.closeOnItemSelect', $event); refreshLog();"
+                [checked]="dropdown().api.settings.list.closeOnItemSelect()"
+                (onChange)="dropdown().api.settings.list.setCloseOnItemSelect($event); refreshLog();"
             />
         }
     </app-configuration-section>

@@ -55,7 +55,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
         this.mvLibEffects.idle.shadow.class,
       ],
     },
-    item: {
+    items: {
       classes: [
         this.mvLibEffects.hover.tint.class,
       ],
@@ -64,7 +64,7 @@ export class DropdownClassicExampleComponent extends BaseExampleComponent {
   
   protected settings = signal<Partial<MvLibDropdownClassicSettings>>({
     button: {
-      resetButton: true,
+      hasResetButton: true,
     },
     list: {
       filterBy: 'name',

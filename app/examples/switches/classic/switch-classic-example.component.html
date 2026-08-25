@@ -16,25 +16,25 @@
             <div class="inputs-group">
                 Width
                 <app-input-text
-                    [value]="switch().getStyle().track!.width"
-                    (onChange)="switch().setStyle('track.width', $event); refreshLog();"
+                    [value]="switch().api.style.track.getWidth()"
+                    (onChange)="switch().api.style.track.setWidth($event); refreshLog();"
                 />
                 Height
                 <app-input-text
-                    [value]="switch().getStyle().track!.height"
-                    (onChange)="switch().setStyle('track.height', $event); refreshLog();"
+                    [value]="switch().api.style.track.getHeight()"
+                    (onChange)="switch().api.style.track.setHeight($event); refreshLog();"
                 />
             </div>
             <div class="inputs-group">
                 Color on
                 <app-input-color
-                    [value]="switch().getStyle().track!.colorOn"
-                    (onChange)="switch().setStyle('track.colorOn', $event); refreshLog();"
+                    [value]="switch().api.style.track.getColorOn()"
+                    (onChange)="switch().api.style.track.setColorOn($event); refreshLog();"
                 />
                 Color off
                 <app-input-color
-                    [value]="switch().getStyle().track!.colorOff"
-                    (onChange)="switch().setStyle('track.colorOff', $event); refreshLog();"
+                    [value]="switch().api.style.track.getColorOff()"
+                    (onChange)="switch().api.style.track.setColorOff($event); refreshLog();"
                 />
             </div>
 
@@ -43,37 +43,37 @@
             <div class="inputs-group">
                 Color on
                 <app-input-color
-                    [value]="switch().getStyle().cursor!.colorOn"
-                    (onChange)="switch().setStyle('cursor.colorOn', $event); refreshLog();"
+                    [value]="switch().api.style.cursor.getColorOn()"
+                    (onChange)="switch().api.style.cursor.setColorOn($event); refreshLog();"
                 />
                 Color off
                 <app-input-color
-                    [value]="switch().getStyle().cursor!.colorOff"
-                    (onChange)="switch().setStyle('cursor.colorOff', $event); refreshLog();"
+                    [value]="switch().api.style.cursor.getColorOff()"
+                    (onChange)="switch().api.style.cursor.setColorOff($event); refreshLog();"
                 />
             </div>
             <div class="inputs-group">
                 Icon on
                 <app-input-text
-                    [value]="switch().getStyle().cursor!.iconOn"
-                    (onChange)="switch().setStyle('cursor.iconOn', $event); refreshLog();"
+                    [value]="switch().api.style.cursor.getIconOn()"
+                    (onChange)="switch().api.style.cursor.setIconOn($event); refreshLog();"
                 />
                 Icon off
                 <app-input-text
-                    [value]="switch().getStyle().cursor!.iconOff"
-                    (onChange)="switch().setStyle('cursor.iconOff', $event); refreshLog();"
+                    [value]="switch().api.style.cursor.getIconOff()"
+                    (onChange)="switch().api.style.cursor.setIconOff($event); refreshLog();"
                 />
             </div>
             <div class="inputs-group">
                 Icon color on
                 <app-input-color
-                    [value]="switch().getStyle().cursor!.iconColorOn"
-                    (onChange)="switch().setStyle('cursor.iconColorOn', $event); refreshLog();"
+                    [value]="switch().api.style.cursor.getIconColorOn()"
+                    (onChange)="switch().api.style.cursor.setIconColorOn($event); refreshLog();"
                 />
                 Icon color off
                 <app-input-color
-                    [value]="switch().getStyle().cursor!.iconColorOff"
-                    (onChange)="switch().setStyle('cursor.iconColorOff', $event); refreshLog();"
+                    [value]="switch().api.style.cursor.getIconColorOff()"
+                    (onChange)="switch().api.style.cursor.setIconColorOff($event); refreshLog();"
                 />
             </div>
         }
@@ -95,19 +95,19 @@
         @if (selectedPartEffects() === 'track') {
             <app-shadow-idle-inputs
                 title="Shadow idle"
-                [enabled]="switch().track.hasEffect(mvLibEffects.idle.shadow)"
-                [style]="switch().track.getEffectStyle(mvLibEffects.idle.shadow)"
-                (onChangeEnabled)="switch().track.toggleEffect(mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="switch().track.setEffectStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                [enabled]="switch().api.effects.track.has(mvLibEffects.idle.shadow)"
+                [style]="switch().api.effects.track.getStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="switch().api.effects.track.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="switch().api.effects.track.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
         }
         @else if (selectedPartEffects() === 'cursor') {
             <app-resize-hover-inputs
                 title="Resize hover"
-                [enabled]="switch().cursor.hasEffect(mvLibEffects.hover.resize)"
-                [style]="switch().cursor.getEffectStyle(mvLibEffects.hover.resize)"
-                (onChangeEnabled)="switch().cursor.toggleEffect(mvLibEffects.hover.resize, $event); refreshLog();"
-                (onChangeStyle)="switch().cursor.setEffectStyle(mvLibEffects.hover.resize, $event); refreshLog();"
+                [enabled]="switch().api.effects.cursor.has(mvLibEffects.hover.resize)"
+                [style]="switch().api.effects.cursor.getStyle(mvLibEffects.hover.resize)"
+                (onChangeEnabled)="switch().api.effects.cursor.toggle(mvLibEffects.hover.resize, $event); refreshLog();"
+                (onChangeStyle)="switch().api.effects.cursor.setStyle(mvLibEffects.hover.resize, $event); refreshLog();"
             />
         }
     </app-configuration-section>
@@ -120,8 +120,8 @@
         />
         <app-input-text
             label="Translate duration"
-            [value]="switch().getSettings().translateDuration"
-            (onChange)="switch().setSettings('translateDuration', $event); refreshLog();"
+            [value]="switch().api.settings.getTranslateDuration()"
+            (onChange)="switch().api.settings.setTranslateDuration($event); refreshLog();"
         />
         <app-inputs-separator title="API" />
         <app-input-checkbox
