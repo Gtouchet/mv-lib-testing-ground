@@ -1,4 +1,5 @@
-<ng-template #stylesConfiguration let-type="type" let-configuration="configuration" let-localConfiguration="localConfiguration">
+<ng-template #stylesConfiguration let-type="type" let-localConfiguration="localConfiguration">
+    @let apiStyle = $any(toastService.api.style)[type];
     <div class="inputs-group">
         Icon
         <app-input-text
@@ -12,83 +13,86 @@
         />
         Text color
         <app-input-color
-            [value]="configuration.styles.textColor"
-            (onChange)="configuration.styles.textColor = $event"
+            [value]="apiStyle.getTextColor()"
+            (onChange)="apiStyle.setTextColor($event)"
         />
         Background color
         <app-input-color
-            [value]="configuration.styles.backgroundColor"
-            (onChange)="configuration.styles.backgroundColor = $event"
+            [value]="apiStyle.getBackgroundColor()"
+            (onChange)="apiStyle.setBackgroundColor($event)"
         />
         Forced width
         <app-input-text
-            [value]="configuration.styles.forcedWidth"
-            (onChange)="configuration.styles.forcedWidth = $event"
+            [value]="apiStyle.getWidth()"
+            (onChange)="apiStyle.setWidth($event)"
         />
         Forced height
         <app-input-text
-            [value]="configuration.styles.forcedHeight"
-            (onChange)="configuration.styles.forcedHeight = $event"
+            [value]="apiStyle.getHeight()"
+            (onChange)="apiStyle.setHeight($event)"
         />
         Opacity percentage
         <app-input-number
-            [value]="configuration.styles.opacityPercentage"
-            (onChange)="configuration.styles.opacityPercentage = $event"
+            [value]="apiStyle.getOpacityPercentage()"
+            (onChange)="apiStyle.getOpacityPercentage($event)"
         />
     </div>
 </ng-template>
 
-<ng-template #effectsConfiguration let-type="type" let-configuration="configuration">
+<ng-template #effectsConfiguration let-type="type">
+    @let apiEffects = $any(toastService.api.effects)[type];
     <app-outline-blur-hover-inputs
-        [enabled]="configuration.effects.classes.includes(mvLibEffects.hover.outlineBlur.class)"
-        [style]="configuration.effects.styles.outlineBlurHover"
-        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.hover.outlineBlur.class, $event); refreshLog();"
-        (onChangeStyle)="toastService.setEffectStyle(type, `outlineBlurHover.${$event.key}`, $event.value); refreshLog();"
+        [enabled]="apiEffects.has(mvLibEffects.hover.outlineBlur)"
+        [style]="apiEffects.getStyle(mvLibEffects.hover.outlineBlur)"
+        (onChangeEnabled)="apiEffects.toggle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
+        (onChangeStyle)="apiEffects.setStyle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
     />
     <app-outline-solid-hover-inputs
-        [enabled]="configuration.effects.classes.includes(mvLibEffects.hover.outlineSolid.class)"
-        [style]="configuration.effects.styles.outlineSolidHover"
-        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.hover.outlineSolid.class, $event); refreshLog();"
-        (onChangeStyle)="toastService.setEffectStyle(type, `outlineSolidHover.${$event.key}`, $event.value); refreshLog();"
+        [enabled]="apiEffects.has(mvLibEffects.hover.outlineSolid)"
+        [style]="apiEffects.getStyle(mvLibEffects.hover.outlineSolid)"
+        (onChangeEnabled)="apiEffects.toggle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"
+        (onChangeStyle)="apiEffects.setStyle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"
     />
     <app-fade-in-idle-inputs
-        [enabled]="configuration.effects.classes.includes(mvLibEffects.idle.fadeIn.class)"
-        [style]="configuration.effects.styles.fadeInIdle"
-        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.idle.fadeIn.class, $event); refreshLog();"
-        (onChangeStyle)="toastService.setEffectStyle(type, `fadeInIdle.${$event.key}`, $event.value); refreshLog();"
+        [enabled]="apiEffects.has(mvLibEffects.idle.fadeIn)"
+        [style]="apiEffects.getStyle(mvLibEffects.idle.fadeIn)"
+        (onChangeEnabled)="apiEffects.toggle(mvLibEffects.idle.fadeIn, $event); refreshLog();"
+        (onChangeStyle)="apiEffects.setStyle(mvLibEffects.idle.fadeIn, $event); refreshLog();"
     />
     <app-fade-out-idle-inputs
-        [enabled]="configuration.effects.classes.includes(mvLibEffects.idle.fadeOut.class)"
-        [style]="configuration.effects.styles.fadeOutIdle"
-        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.idle.fadeOut.class, $event); refreshLog();"
-        (onChangeStyle)="toastService.setEffectStyle(type, `fadeOutIdle.${$event.key}`, $event.value); refreshLog();"
+        [enabled]="apiEffects.has(mvLibEffects.idle.fadeOut)"
+        [style]="apiEffects.getStyle(mvLibEffects.idle.fadeOut)"
+        (onChangeEnabled)="apiEffects.toggle(mvLibEffects.idle.fadeOut, $event); refreshLog();"
+        (onChangeStyle)="apiEffects.setStyle(mvLibEffects.idle.fadeOut, $event); refreshLog();"
     />
     <app-progress-bar-darken-fill-inputs
-        [enabled]="configuration.effects.classes.includes(mvLibEffects.idle.progressBarDarkenFill.class)"
-        [style]="configuration.effects.styles.progressBarDarkenFill"
-        (onChangeEnabled)="toastService.setEffect(type, mvLibEffects.idle.progressBarDarkenFill.class, $event); refreshLog();"
-        (onChangeStyle)="toastService.setEffectStyle(type, `progressBarDarkenFill.${$event.key}`, $event.value); refreshLog();"
+        [enabled]="apiEffects.has(mvLibEffects.idle.progressBarDarkenFill)"
+        [style]="apiEffects.getStyle(mvLibEffects.idle.progressBarDarkenFill)"
+        (onChangeEnabled)="apiEffects.toggle(mvLibEffects.idle.progressBarDarkenFill, $event); refreshLog();"
+        (onChangeStyle)="apiEffects.setStyle(mvLibEffects.idle.progressBarDarkenFill, $event); refreshLog();"
     />
 
 </ng-template>
 
-<ng-template #settingsConfiguration let-type="type" let-configuration="configuration">
+<ng-template #settingsConfiguration let-type="type">
+    @let apiSettings = $any(toastService.api.settings)[type];
     <app-inputs-separator [title]="type" />
     <app-input-text
-        [value]="configuration.settings.lifespan"
         label="Lifespan"
-        (onChange)="configuration.settings.lifespan = $event"
+        [value]="apiSettings.getLifespan()"
+        (onChange)="apiSettings.setLifespan($event)"
     />
 </ng-template>
 
-<ng-template #toastButton let-type="type" let-configuration="configuration" let-localConfiguration="localConfiguration">
+<ng-template #toastButton let-type="type" let-localConfiguration="localConfiguration">
+    @let apiStyle = $any(toastService.api.style)[type];
     <mv-lib-button-classic
         [inputStyle]="{
             dimensions: {
                 width: '100px',
                 height: '40px',
             },
-            backgroundColor: configuration.styles.backgroundColor,
+            backgroundColor: apiStyle.getBackgroundColor(),
         }"
         [inputEffects]="{
             classes: [
@@ -98,7 +102,7 @@
             ],
             styles: {
                 shadowIdle: {
-                    color: configuration.styles.backgroundColor,
+                    color: apiStyle.getBackgroundColor(),
                 }
             }
         }"
@@ -108,13 +112,13 @@
                 localConfiguration.message,
                 localConfiguration.icon,
                 {
-                    widthPx: configuration.styles.forcedWidth,
-                    heightPx: configuration.styles.forcedHeight,
+                    widthPx: apiStyle.getWidth(),
+                    heightPx: apiStyle.getHeight(),
                 }
             )
         "
     >
-        <span [style.color]="configuration.styles.textColor">
+        <span [style.color]="`var(${apiStyle.getTextColor()})`">
             {{ type }}
         </span>
     </mv-lib-button-classic>
@@ -146,7 +150,6 @@
         </div>
         <ng-container *ngTemplateOutlet="stylesConfiguration; context: {
             type: selectedStyleConfiguration().type,
-            configuration: selectedStyleConfiguration().configuration,
             localConfiguration: selectedStyleConfiguration().localConfiguration,
         }" />
     </app-configuration-section>
@@ -176,7 +179,6 @@
         </div>
         <ng-container *ngTemplateOutlet="effectsConfiguration; context: {
             type: selectedEffectConfiguration().type,
-            configuration: selectedEffectConfiguration().configuration,
         }" />
     </app-configuration-section>
 
@@ -211,13 +213,12 @@
             (onChange)="toastService.configuration().position = $any($event)"
         />
         <app-input-checkbox
-            [checked]="toastService.configuration().adaptWidth"
             label="Adapt width"
+            [checked]="toastService.configuration().adaptWidth"
             (onChange)="toastService.setAdaptWidth($event)"
         />
         <ng-container *ngTemplateOutlet="settingsConfiguration; context: {
             type: selectedSettingsConfiguration().type,
-            configuration: selectedSettingsConfiguration().configuration,
         }" />
     </app-configuration-section>
 </div>
@@ -227,10 +228,10 @@
         class="component"
         [style.gap.px]="8"
     >
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Success', configuration: toastService.configuration().success, localConfiguration: success() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Warning', configuration: toastService.configuration().warning, localConfiguration: warning() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Error', configuration: toastService.configuration().error, localConfiguration: error() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'Info', configuration: toastService.configuration().info, localConfiguration: info() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'success', localConfiguration: success() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'warning', localConfiguration: warning() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'error', localConfiguration: error() }" />
+        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'info', localConfiguration: info() }" />
     </div>
 
     <div class="log">
