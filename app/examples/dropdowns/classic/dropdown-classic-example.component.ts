@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, model, signal, viewChild } from "@a
 import { MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { INPUTS } from "../../../inputs/_inputs.export";
-import { CommonModule, JsonPipe } from "@angular/common";
+import { CommonModule } from "@angular/common";
 
 interface User {
   id: number;
@@ -17,7 +17,6 @@ interface User {
     MvLibDropdownDirectives,
     INPUTS,
     CommonModule,
-    JsonPipe,
   ],
   templateUrl: './dropdown-classic-example.component.html',
   styleUrl: '../../example.component.scss',

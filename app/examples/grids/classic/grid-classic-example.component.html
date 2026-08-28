@@ -1,0 +1,56 @@
+<div class="configuration">
+
+    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+
+    </app-configuration-section>
+    
+    <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
+
+    </app-configuration-section>
+
+    <app-configuration-section title="Settings">
+
+    </app-configuration-section>
+</div>
+
+<div class="visual">
+    <mv-lib-grid-classic
+        #mvLibGridClassic
+        class="component"
+        [inputStyle]="style()"
+        [inputEffects]="effects()"
+        [inputSettings]="settings()"
+        [items]="items()"
+    >
+        <mv-lib-grid-classic-column
+            [headerTitle]="'Id'"
+            [property]="'id'"
+            [inputStyle]="{
+                headerCell: {
+                    backgroundColor: 'pink',
+                },
+                cell: {
+                    backgroundColorFn: getCellBackgroundColor,
+                },
+            }"
+        >
+        </mv-lib-grid-classic-column>
+
+        <mv-lib-grid-classic-column
+            [headerTitle]="'Name'"
+            [property]="'name'"
+        >
+
+        </mv-lib-grid-classic-column>
+    </mv-lib-grid-classic>
+
+    <div class="log">
+        Last interaction time: {{ lastInteractionTime() }}<br/>
+        <app-input-button
+            label="Copy component code"
+            [width]="'25%'"
+            (onClick)="copyComponentCode()"
+        />
+        <pre #code>&lt;mv-lib-grid-classic{{ log() }}&gt;<br/>&lt;/mv-lib-grid-classic&gt;</pre>
+    </div>
+</div>

@@ -102,6 +102,13 @@ export class AppComponent {
       ],
     },
     {
+      label: 'Grids',
+      icon: 'table_rows',
+      children: [
+        { label: 'Classic', routerLink: '/grid-classic-example' },
+      ],
+    },
+    {
       label: 'Radio buttons',
       icon: 'radio_button_checked',
       children: [
