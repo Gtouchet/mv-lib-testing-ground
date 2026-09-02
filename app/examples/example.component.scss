@@ -39,7 +39,8 @@
     > * {
         @extend %border;
 
-        flex: 1;
+        flex: 1 1 0;
+        min-width: 0;
         overflow: auto;
         display: flex;
     }
@@ -48,6 +49,7 @@
 .component {
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .log {

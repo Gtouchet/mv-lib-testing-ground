@@ -99,13 +99,15 @@
             />
         </div>
         @if (selectedPartEffects() === 'button') {
-            <app-shadow-idle-inputs
+            <app-shadow-effect-inputs
+                title="Shadow idle"
                 [enabled]="dropdown().api.effects.button.has(mvLibEffects.idle.shadow)"
                 [style]="dropdown().api.effects.button.getStyle(mvLibEffects.idle.shadow)"
                 (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
                 (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
-            <app-tint-hover-inputs
+            <app-tint-effect-inputs
+                title="Tint hover"
                 [enabled]="dropdown().api.effects.button.has(mvLibEffects.hover.tint)"
                 [style]="dropdown().api.effects.button.getStyle(mvLibEffects.hover.tint)"
                 (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
@@ -125,7 +127,8 @@
             />
         }
         @else if (selectedPartEffects() === 'list') {
-            <app-shadow-idle-inputs
+            <app-shadow-effect-inputs
+                title="Shadow idle"
                 [enabled]="dropdown().api.effects.list.has(mvLibEffects.idle.shadow)"
                 [style]="dropdown().api.effects.list.getStyle(mvLibEffects.idle.shadow)"
                 (onChangeEnabled)="dropdown().api.effects.list.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
@@ -133,7 +136,8 @@
             />
         }
         @else if (selectedPartEffects() === 'items') {
-            <app-tint-hover-inputs
+            <app-tint-effect-inputs
+                title="Tint hover"
                 [enabled]="dropdown().api.effects.items.has(mvLibEffects.hover.tint)"
                 [style]="dropdown().api.effects.items.getStyle(mvLibEffects.hover.tint)"
                 (onChangeEnabled)="dropdown().api.effects.items.toggle(mvLibEffects.hover.tint, $event); refreshLog();"

@@ -67,7 +67,8 @@
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <app-shadow-idle-inputs
+        <app-shadow-effect-inputs
+            title="Shadow idle"
             [enabled]="radioButtons().api.effects.has(mvLibEffects.idle.shadow)"
             [style]="radioButtons().api.effects.getStyle(mvLibEffects.idle.shadow)"
             (onChangeEnabled)="radioButtons().api.effects.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"

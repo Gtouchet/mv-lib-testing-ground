@@ -21,19 +21,22 @@
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <app-tint-hover-inputs
+        <app-tint-effect-inputs
+            title="Tint hover"
             [enabled]="textbox().api.effects.has(mvLibEffects.hover.tint)"
             [style]="textbox().api.effects.getStyle(mvLibEffects.hover.tint)"
             (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
             (onChangeStyle)="textbox().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
         />
-        <app-outline-blur-selected-inputs
+        <app-outline-blur-effect-inputs
+            title="Outline blur selected"
             [enabled]="textbox().api.effects.has(mvLibEffects.selected.outlineBlur)"
             [style]="textbox().api.effects.getStyle(mvLibEffects.selected.outlineBlur)"
             (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
             (onChangeStyle)="textbox().api.effects.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
         />
-        <app-outline-solid-selected-inputs
+        <app-outline-solid-effect-inputs
+            title="Outline solid selected"
             [enabled]="textbox().api.effects.has(mvLibEffects.selected.outlineSolid)"
             [style]="textbox().api.effects.getStyle(mvLibEffects.selected.outlineSolid)"
             (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"

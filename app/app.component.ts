@@ -102,7 +102,7 @@ export class AppComponent {
       ],
     },
     {
-      label: 'Grids',
+      label: 'Grids (WIP)',
       icon: 'table_rows',
       children: [
         { label: 'Classic', routerLink: '/grid-classic-example' },
@@ -151,10 +151,10 @@ export class AppComponent {
 
   protected switchStyle: Partial<MvLibSwitchClassicStyle> = {
     track: {
-      colorOff: '--mv-lib-component-background-color-secondary',
+      colorOff: 'var(--mv-lib-component-background-color-secondary)',
     },
     cursor: {
-      colorOff: '--mv-lib-component-background-color-primary',
+      colorOff: 'var(--mv-lib-component-background-color-primary)',
       iconOn: 'light_mode',
       iconOff: 'dark_mode',
     },

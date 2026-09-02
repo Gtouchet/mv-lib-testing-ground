@@ -1,11 +1,127 @@
 <div class="configuration">
 
     <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
-
+        <div buttons>
+            <app-input-button
+                label="Grid"
+                [selected]="selectedPartStyle() === 'grid'"
+                (onClick)="selectedPartStyle.set('grid')"
+            />
+            <app-input-button
+                label="Header row"
+                [selected]="selectedPartStyle() === 'header row'"
+                (onClick)="selectedPartStyle.set('header row')"
+            />
+            <app-input-button
+                label="Body rows"
+                [selected]="selectedPartStyle() === 'body rows'"
+                (onClick)="selectedPartStyle.set('body rows')"
+            />            
+            <app-input-button
+                label="Columns"
+                [selected]="selectedPartStyle() === 'columns'"
+                (onClick)="selectedPartStyle.set('columns')"
+            />
+        </div>
+        @if (selectedPartStyle() === 'grid') {
+            <app-inputs-separator title="General"/>
+            <app-input-text
+                label="Height"
+                [value]="grid().api.style.grid.getDimensions().height"
+                (onChange)="grid().api.style.grid.setDimensions('height', $event); refreshLog();"
+            />
+            <app-dimensions-inputs
+                [dimensions]="grid().api.style.grid.getDimensions()"
+                (onChangeDimensions)="grid().api.style.grid.setDimensions($event.key, $event.value); refreshLog();"
+            />
+            <app-outline-inputs
+                [outline]="grid().api.style.grid.getOutline()"
+                (onChangeOutline)="grid().api.style.grid.setOutline($event.key, $event.value); refreshLog();"
+            />
+        }
+        @else if (selectedPartStyle() === 'header row') {
+            <app-input-text
+                label="Height"
+                [value]="grid().api.style.headerRow.getHeight()"
+                (onChange)="grid().api.style.headerRow.setHeight($event); refreshLog();"
+            />
+            <div class="inputs-group">
+                Right separator
+                <app-input-text
+                    [value]="grid().api.style.headerRow.getRightSeparator()"
+                    (onChange)="grid().api.style.headerRow.setRightSeparator($event); refreshLog();"
+                />
+                Bottom separator
+                <app-input-text
+                    [value]="grid().api.style.headerRow.getBottomSeparator()"
+                    (onChange)="grid().api.style.headerRow.setBottomSeparator($event); refreshLog();"
+                />
+            </div>
+        }
+        @else if (selectedPartStyle() === 'body rows') {
+            <app-input-text
+                label="Height"
+                [value]="grid().api.style.bodyRows.getHeight()"
+                (onChange)="grid().api.style.bodyRows.setHeight($event); refreshLog();"
+            />
+            <div class="inputs-group">
+                Right separator
+                <app-input-text
+                    [value]="grid().api.style.bodyRows.getRightSeparator()"
+                    (onChange)="grid().api.style.bodyRows.setRightSeparator($event); refreshLog();"
+                />
+                Bottom separator
+                <app-input-text
+                    [value]="grid().api.style.bodyRows.getBottomSeparator()"
+                    (onChange)="grid().api.style.bodyRows.setBottomSeparator($event); refreshLog();"
+                />
+            </div>
+        }
+        @else if (selectedPartStyle() === 'columns') {
+            <div class="inputs-group">
+                <app-input-number
+                    label="Column n°"
+                    [value]="selectedColumn() + 1"
+                    [min]="1"
+                    [max]="columnsStyles().length"
+                    [width]="'50px'"
+                    (onChange)="selectedColumn.set($event - 1)"
+                />
+                <app-input-number
+                    label="Width force"
+                    [value]="grid().api.style.columns.getWidthForce(selectedColumn())"
+                    [min]="0"
+                    [width]="'50px'"
+                    (onChange)="grid().api.style.columns.setWidthForce(selectedColumn(), $event); refreshLog();"
+                />
+            </div>
+        }
     </app-configuration-section>
     
     <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
-
+        <div buttons>
+            <app-input-button
+                label="Rows"
+                [selected]="selectedPartEffects() === 'rows'"
+                (onClick)="selectedPartEffects.set('rows')"
+            />
+        </div>
+        @if (selectedPartEffects() === 'rows') {
+            <app-tint-effect-inputs
+                title="Tint hover"
+                [enabled]="grid().api.effects.rows.has(mvLibEffects.hover.tint)"
+                [style]="grid().api.effects.rows.getStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="grid().api.effects.rows.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="grid().api.effects.rows.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+            />
+            <app-tint-effect-inputs
+                title="Tint selected"
+                [enabled]="grid().api.effects.rows.has(mvLibEffects.selected.tint)"
+                [style]="grid().api.effects.rows.getStyle(mvLibEffects.selected.tint)"
+                (onChangeEnabled)="grid().api.effects.rows.toggle(mvLibEffects.selected.tint, $event); refreshLog();"
+                (onChangeStyle)="grid().api.effects.rows.setStyle(mvLibEffects.selected.tint, $event); refreshLog();"
+            />
+        }
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
@@ -14,35 +130,32 @@
 </div>
 
 <div class="visual">
-    <mv-lib-grid-classic
-        #mvLibGridClassic
-        class="component"
-        [inputStyle]="style()"
-        [inputEffects]="effects()"
-        [inputSettings]="settings()"
-        [items]="items()"
-    >
-        <mv-lib-grid-classic-column
-            [headerTitle]="'Id'"
-            [property]="'id'"
-            [inputStyle]="{
-                headerCell: {
-                    backgroundColor: 'pink',
-                },
-                cell: {
-                    backgroundColorFn: getCellBackgroundColor,
-                },
-            }"
+    <div class="component">
+        <mv-lib-grid-classic
+            #mvLibGridClassic
+            [inputStyle]="gridStyle()"
+            [inputEffects]="gridEffects()"
+            [inputSettings]="gridSettings()"
+            [items]="items()"
         >
-        </mv-lib-grid-classic-column>
+            <mv-lib-grid-classic-column
+                [headerTitle]="'Id'"
+                [property]="'id'"
+                [inputStyle]="columnsStyles()[0]"
+            >
+            </mv-lib-grid-classic-column>
 
-        <mv-lib-grid-classic-column
-            [headerTitle]="'Name'"
-            [property]="'name'"
-        >
-
-        </mv-lib-grid-classic-column>
-    </mv-lib-grid-classic>
+            <mv-lib-grid-classic-column
+                [headerTitle]="'Name'"
+                [property]="'name'"
+                [inputStyle]="columnsStyles()[1]"
+            >
+                <!-- <ng-template mvLibGridCellTemplate let-user="item">
+                    template {{ user.name }}
+                </ng-template> -->
+            </mv-lib-grid-classic-column>
+        </mv-lib-grid-classic>
+    </div>
 
     <div class="log">
         Last interaction time: {{ lastInteractionTime() }}<br/>
@@ -51,6 +164,20 @@
             [width]="'25%'"
             (onClick)="copyComponentCode()"
         />
-        <pre #code>&lt;mv-lib-grid-classic{{ log() }}&gt;<br/>&lt;/mv-lib-grid-classic&gt;</pre>
+        <pre #code>&lt;mv-lib-grid-classic{{ log() }}&gt;
+    &lt;mv-lib-grid-classic-column
+        [headerTitle]="'Id'"
+        [property]="'id'"
+        [inputStyle]="columnsStyles()[0]"
+    &gt;
+    &lt;/mv-lib-grid-classic-column&gt;
+
+    &lt;mv-lib-grid-classic-column
+        [headerTitle]="'Name'"
+        [property]="'name'"
+        [inputStyle]="columnsStyles()[1]"
+    &gt;
+    &lt;/mv-lib-grid-classic-column&gt;
+&lt;/mv-lib-grid-classic&gt;</pre>
     </div>
 </div>

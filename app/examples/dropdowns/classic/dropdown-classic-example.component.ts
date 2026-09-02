@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, model, signal, viewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, model, signal, viewChild } from "@angular/core";
 import { MvLibDropdownClassicComponent, MvLibDropdownClassicEffects, MvLibDropdownClassicSettings, MvLibDropdownClassicStyle, MvLibDropdownDirectives } from "mv-lib";
 import { BaseExampleComponent } from '../../base-example.component';
 import { INPUTS } from "../../../inputs/_inputs.export";
@@ -23,7 +23,7 @@ interface User {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class DropdownClassicExampleComponent extends BaseExampleComponent {
+export class DropdownClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
 
   protected dropdown = viewChild.required<MvLibDropdownClassicComponent<User>>('mvLibDropdownClassic');
 

@@ -41,13 +41,15 @@
 
 <ng-template #effectsConfiguration let-type="type">
     @let apiEffects = $any(toastService.api.effects)[type];
-    <app-outline-blur-hover-inputs
+    <app-outline-blur-effect-inputs
+        title="Outline blur hover"
         [enabled]="apiEffects.has(mvLibEffects.hover.outlineBlur)"
         [style]="apiEffects.getStyle(mvLibEffects.hover.outlineBlur)"
         (onChangeEnabled)="apiEffects.toggle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
         (onChangeStyle)="apiEffects.setStyle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
     />
-    <app-outline-solid-hover-inputs
+    <app-outline-solid-effect-inputs
+        title="Outline solid hover"
         [enabled]="apiEffects.has(mvLibEffects.hover.outlineSolid)"
         [style]="apiEffects.getStyle(mvLibEffects.hover.outlineSolid)"
         (onChangeEnabled)="apiEffects.toggle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"

@@ -93,7 +93,7 @@
             />
         </div>
         @if (selectedPartEffects() === 'track') {
-            <app-shadow-idle-inputs
+            <app-shadow-effect-inputs
                 title="Shadow idle"
                 [enabled]="switch().api.effects.track.has(mvLibEffects.idle.shadow)"
                 [style]="switch().api.effects.track.getStyle(mvLibEffects.idle.shadow)"

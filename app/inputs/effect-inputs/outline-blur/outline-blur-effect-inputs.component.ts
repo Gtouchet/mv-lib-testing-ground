@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { MvLibShadowIdleEffectStyle } from "mv-lib";
+import { MvLibOutlineBlurEffectStyle } from "mv-lib";
 
 @Component({
-  selector: 'app-shadow-idle-inputs',
+  selector: 'app-outline-blur-effect-inputs',
   imports: [
     CommonModule,
     GENERIC_INPUTS,
   ],
-  templateUrl: './shadow-idle-inputs.component.html',
+  templateUrl: './outline-blur-effect-inputs.component.html',
   styleUrl: '../effect-inputs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class ShadowIdleInputsComponent {
+export class OutlineBlurEffectInputsComponent {
 
   public title = input<string | undefined>(undefined);
 
   public enabled = input.required<boolean>();
-  public style = input.required<MvLibShadowIdleEffectStyle>();
+  public style = input.required<MvLibOutlineBlurEffectStyle>();
 
   public onChangeEnabled = output<boolean>();
   public onChangeStyle = output<{key: string, value: any}>();

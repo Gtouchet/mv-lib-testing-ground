@@ -21,13 +21,15 @@
     </app-configuration-section>
 
     <app-configuration-section title="Effects">
-        <app-shadow-idle-inputs
+        <app-shadow-effect-inputs
+            title="Shadow idle"
             [enabled]="button().api.effects.has(mvLibEffects.idle.shadow)"
             [style]="button().api.effects.getStyle(mvLibEffects.idle.shadow)"
             (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
             (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
         />
-        <app-tint-hover-inputs
+        <app-tint-effect-inputs
+            title="Tint hover"
             [enabled]="button().api.effects.has(mvLibEffects.hover.tint)"
             [style]="button().api.effects.getStyle(mvLibEffects.hover.tint)"
             (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"

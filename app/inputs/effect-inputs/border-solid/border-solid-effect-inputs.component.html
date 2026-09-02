@@ -1,5 +1,5 @@
 <div class="effect">
-    <app-inputs-separator [title]="title() ?? 'Outline blur hover'">
+    <app-inputs-separator [title]="title() ?? 'Border solid'">
         <app-input-checkbox
             [checked]="enabled()"
             (onChange)="onChangeEnabled.emit($event)"
@@ -12,9 +12,14 @@
         [value]="style().color"
         (onChange)="onChangeStyle.emit({key: 'color', value: $event})"
     />
-    Radius
+    Width
     <app-input-text
-        [value]="style().radius"
-        (onChange)="onChangeStyle.emit({key: 'radius', value: $event})"
+        [value]="style().width"
+        (onChange)="onChangeStyle.emit({key: 'width', value: $event})"
+    />
+    Style
+    <app-input-text
+        [value]="style().style"
+        (onChange)="onChangeStyle.emit({key: 'style', value: $event})"
     />
 </div>

@@ -53,7 +53,9 @@ export class InputColorComponent {
       return '';
     }
     this.themeService.currentTheme();
-    return MvLibThemeService.var(currentValue);
+    const variableName = currentValue.match(/^var\((--[\w-]+)\)$/)?.[1] ??
+      (currentValue.startsWith('--') ? currentValue : undefined);
+    return variableName ? MvLibThemeService.var(variableName) : currentValue;
   });
 
   protected handleInput(event: Event) {
