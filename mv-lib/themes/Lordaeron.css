@@ -1,4 +1,6 @@
 :root.lordaeron-theme {
+    --actuel-theme-mode: light;
+    
     --mv-lib-primary-color-1: #f7f8fa;
     --mv-lib-primary-color-2: #e9ecf2;
     --mv-lib-primary-color-3: #d3d9e3;
