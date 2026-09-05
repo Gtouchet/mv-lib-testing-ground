@@ -1,0 +1,12 @@
+[
+    {
+        "version": "0.1.0 (05/09/26)",
+        "changes": [
+            "Added changelogs",
+            "Initial testing ground app setup",
+            "Set up routing",
+            "Added input components for the configuration sections (these inputs are linked to the effect classes and CSS styles exported by the library)",
+            "Added examples for each library component (each component configuration property can be modified in its example view using the inputs)"
+        ]
+    }
+]
