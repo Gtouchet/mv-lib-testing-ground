@@ -1,0 +1,21 @@
+[
+    {
+        "version": "0.1.0 (05/09/26)",
+        "changes": [
+            "Initial library setup",
+            "Set up the library's core component classes",
+            "Set up component and service configuration classes",
+            "Set up CSS effects",
+            "Set up CSS style wrappers",
+            "Set up themes and the theme service",
+            "Added button component",
+            "Added dropdown component",
+            "Added grid component",
+            "Added radio-buttons component",
+            "Added switch component",
+            "Added textbox component",
+            "Added treeview component",
+            "Added toast service"
+        ]
+    }
+]

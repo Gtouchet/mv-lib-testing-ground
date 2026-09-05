@@ -101,12 +101,20 @@
     <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
         <div buttons>
             <app-input-button
-                label="Rows"
-                [selected]="selectedPartEffects() === 'rows'"
-                (onClick)="selectedPartEffects.set('rows')"
-            />
+                label="Grid"
+                [selected]="selectedPartEffects() === 'grid'"
+                (onClick)="selectedPartEffects.set('grid')"
+            />      
+            <app-input-button
+                label="Body rows"
+                [selected]="selectedPartEffects() === 'body rows'"
+                (onClick)="selectedPartEffects.set('body rows')"
+            />       
         </div>
-        @if (selectedPartEffects() === 'rows') {
+        @if (selectedPartEffects() === 'grid') {
+
+        }
+        @else if (selectedPartEffects() === 'body rows') {
             <app-tint-effect-inputs
                 title="Tint hover"
                 [enabled]="grid().api.effects.rows.has(mvLibEffects.hover.tint)"
@@ -125,7 +133,20 @@
     </app-configuration-section>
 
     <app-configuration-section title="Settings">
-
+        <div buttons>
+            <app-input-button
+                label="Grid"
+                [selected]="selectedPartStyle() === 'grid'"
+                (onClick)="selectedPartStyle.set('grid')"
+            />
+        </div>
+        @if (selectedPartStyle() === 'grid') {
+            <app-input-checkbox
+                label="Multi select"
+                [checked]="grid().api.settings.hasMultiSelect()"
+                (onChange)="grid().api.settings.setMultiSelect($event); refreshLog();"
+            />
+        }
     </app-configuration-section>
 </div>
 

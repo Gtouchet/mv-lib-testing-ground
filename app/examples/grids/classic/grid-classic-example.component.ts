@@ -90,8 +90,6 @@ export class GridClassicExampleComponent extends BaseExampleComponent implements
       { property: 'inputStyle', value: () => this.grid().getStyle() },
       { property: 'inputEffects', value: () => this.grid().getEffects() },
       { property: 'inputSettings', value: () => this.grid().getSettings() },
-      // { property: 'opened', value: this.opened },
-      // { property: 'disabled', value: this.disabled },
     ];
     this.refreshLog();
   }
