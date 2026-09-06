@@ -17,5 +17,12 @@
             "Added treeview component",
             "Added toast service"
         ]
+    },
+    {
+        "version": "0.1.1 (06/09/26)",
+        "changes": [
+            "Updated the tint effect to support a transition duration",
+            "Added tint hover effect for switch component (track and cursor)"
+        ]
     }
 ]
