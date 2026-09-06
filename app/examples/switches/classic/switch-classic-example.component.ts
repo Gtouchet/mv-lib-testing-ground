@@ -26,11 +26,13 @@ export class SwitchClassicExampleComponent extends BaseExampleComponent {
     track: {
       classes: [
         this.mvLibEffects.idle.shadow.class,
+        this.mvLibEffects.hover.tint.class,
       ],
     },
     cursor: {
       classes: [
         this.mvLibEffects.hover.resize.class,
+        this.mvLibEffects.hover.tint.class,
       ],
     }
   });

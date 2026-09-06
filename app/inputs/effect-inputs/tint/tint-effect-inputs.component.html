@@ -7,11 +7,16 @@
     </app-inputs-separator>
 </div>
 <div class="inputs-group">
-    Effect %
+    Percentage
     <app-input-number
-        [value]="style().effectPercentage"
+        [value]="style().percentage"
         [min]="-100"
         [max]="100"
-        (onChange)="onChangeStyle.emit({key: 'effectPercentage', value: $event})"
+        (onChange)="onChangeStyle.emit({key: 'percentage', value: $event})"
+    />
+    Duration
+    <app-input-text
+        [value]="style().duration"
+        (onChange)="onChangeStyle.emit({key: 'duration', value: $event})"
     />
 </div>

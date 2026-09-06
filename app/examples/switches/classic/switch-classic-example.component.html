@@ -100,6 +100,13 @@
                 (onChangeEnabled)="switch().api.effects.track.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
                 (onChangeStyle)="switch().api.effects.track.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
+            <app-tint-effect-inputs
+                title="Tint hover"
+                [enabled]="switch().api.effects.track.has(mvLibEffects.hover.tint)"
+                [style]="switch().api.effects.track.getStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="switch().api.effects.track.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="switch().api.effects.track.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+            />
         }
         @else if (selectedPartEffects() === 'cursor') {
             <app-resize-hover-inputs
@@ -108,6 +115,13 @@
                 [style]="switch().api.effects.cursor.getStyle(mvLibEffects.hover.resize)"
                 (onChangeEnabled)="switch().api.effects.cursor.toggle(mvLibEffects.hover.resize, $event); refreshLog();"
                 (onChangeStyle)="switch().api.effects.cursor.setStyle(mvLibEffects.hover.resize, $event); refreshLog();"
+            />
+            <app-tint-effect-inputs
+                title="Tint hover"
+                [enabled]="switch().api.effects.cursor.has(mvLibEffects.hover.tint)"
+                [style]="switch().api.effects.cursor.getStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="switch().api.effects.cursor.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="switch().api.effects.cursor.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
             />
         }
     </app-configuration-section>
