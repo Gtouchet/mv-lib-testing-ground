@@ -32,7 +32,7 @@ interface ChangelogEntry {
         ">
             <section style="width: 50%">
                 <h4>Library changelog</h4>
-                <ul>
+                <ul style="display: flex; flex-direction: column; gap: 10px;">
                     @for (entry of libraryChangelog(); track entry) {
                         <li>
                             <strong>{{ entry.version }}</strong>
@@ -48,7 +48,7 @@ interface ChangelogEntry {
             
             <section style="width: 50%">
                 <h4>Testing Ground changelog</h4>
-                <ul>
+                <ul style="display: flex; flex-direction: column; gap: 10px;">
                     @for (entry of testingGroundChangelog(); track entry) {
                         <li>
                             <strong>{{ entry.version }}</strong>
