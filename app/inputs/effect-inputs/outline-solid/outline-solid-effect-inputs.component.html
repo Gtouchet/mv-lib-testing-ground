@@ -7,14 +7,19 @@
     </app-inputs-separator>    
 </div>
 <div class="inputs-group">
+    Width
+    <app-input-text
+        [value]="style().width"
+        (onChange)="onChangeStyle.emit({key: 'width', value: $event})"
+    />
     Color
     <app-input-color
         [value]="style().color"
         (onChange)="onChangeStyle.emit({key: 'color', value: $event})"
     />
-    Width
+    Offset
     <app-input-text
-        [value]="style().width"
-        (onChange)="onChangeStyle.emit({key: 'width', value: $event})"
+        [value]="style().offset"
+        (onChange)="onChangeStyle.emit({key: 'offset', value: $event})"
     />
 </div>

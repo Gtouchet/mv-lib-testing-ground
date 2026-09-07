@@ -38,7 +38,11 @@ export class GridClassicExampleComponent extends BaseExampleComponent implements
   });
 
   protected gridEffects = signal<Partial<MvLibGridClassicEffects>>({
-      
+    grid: {
+      classes: [
+        this.mvLibEffects.idle.shadow.class,
+      ],
+    },
   });
   
   protected gridSettings = signal<Partial<MvLibGridClassicSettings>>({

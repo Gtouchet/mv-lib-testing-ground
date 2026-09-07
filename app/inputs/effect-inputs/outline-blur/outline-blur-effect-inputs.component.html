@@ -7,14 +7,19 @@
     </app-inputs-separator>
 </div>
 <div class="inputs-group">
+    Radius
+    <app-input-text
+        [value]="style().radius"
+        (onChange)="onChangeStyle.emit({key: 'radius', value: $event})"
+    />
     Color
     <app-input-color
         [value]="style().color"
         (onChange)="onChangeStyle.emit({key: 'color', value: $event})"
     />
-    Radius
+    Offset
     <app-input-text
-        [value]="style().radius"
-        (onChange)="onChangeStyle.emit({key: 'radius', value: $event})"
+        [value]="style().offset"
+        (onChange)="onChangeStyle.emit({key: 'offset', value: $event})"
     />
 </div>

@@ -1,8 +1,17 @@
 [
     {
+        "version": "0.1.2 (07/09/26)",
+        "changes": [
+            "Outline effects: Added offset property",
+            "Grid: Added support for outline effects",
+            "Grid: Added support for shadow effect",
+            "Grid: Added support for hiding scrollbar"
+        ]
+    },
+    {
         "version": "0.1.1 (06/09/26)",
         "changes": [
-            "Updated the tint effect to support a transition duration",
+            "Updated tint effect to support a transition duration",
             "Added tint hover effect for switch component (track and cursor)"
         ]
     },

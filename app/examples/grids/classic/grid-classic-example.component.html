@@ -112,7 +112,27 @@
             />       
         </div>
         @if (selectedPartEffects() === 'grid') {
-
+            <app-outline-blur-effect-inputs
+                title="Outline blur hover"
+                [enabled]="grid().api.effects.grid.has(mvLibEffects.hover.outlineBlur)"
+                [style]="grid().api.effects.grid.getStyle(mvLibEffects.hover.outlineBlur)"
+                (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
+                (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
+            />
+            <app-outline-solid-effect-inputs
+                title="Outline solid hover"
+                [enabled]="grid().api.effects.grid.has(mvLibEffects.hover.outlineSolid)"
+                [style]="grid().api.effects.grid.getStyle(mvLibEffects.hover.outlineSolid)"
+                (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"
+                (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"
+            />
+            <app-shadow-effect-inputs
+                title="Shadow idle"
+                [enabled]="grid().api.effects.grid.has(mvLibEffects.idle.shadow)"
+                [style]="grid().api.effects.grid.getStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+            />
         }
         @else if (selectedPartEffects() === 'body rows') {
             <app-tint-effect-inputs
@@ -143,8 +163,13 @@
         @if (selectedPartStyle() === 'grid') {
             <app-input-checkbox
                 label="Multi select"
-                [checked]="grid().api.settings.hasMultiSelect()"
-                (onChange)="grid().api.settings.setMultiSelect($event); refreshLog();"
+                [checked]="grid().api.settings.grid.hasMultiSelect()"
+                (onChange)="grid().api.settings.grid.setMultiSelect($event); refreshLog();"
+            />
+            <app-input-checkbox
+                label="Scrollbar"
+                [checked]="grid().api.settings.grid.hasScrollbar()"
+                (onChange)="grid().api.settings.grid.setScrollbar($event); refreshLog();"
             />
         }
     </app-configuration-section>
