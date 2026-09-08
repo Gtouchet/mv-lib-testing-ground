@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { MvLibFadeInIdleEffectStyle } from "mv-lib";
+import { MvLibFadeInEffectStyle } from "mv-lib";
 
 @Component({
   selector: 'app-fade-in-idle-inputs',
@@ -19,7 +19,7 @@ export class FadeInIdleInputsComponent {
   public title = input<string | undefined>(undefined);
 
   public enabled = input.required<boolean>();
-  public style = input.required<MvLibFadeInIdleEffectStyle>();
+  public style = input.required<MvLibFadeInEffectStyle>();
 
   public onChangeEnabled = output<boolean>();
   public onChangeStyle = output<{key: string, value: any}>();

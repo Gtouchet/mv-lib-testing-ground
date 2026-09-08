@@ -25,20 +25,5 @@ export class OutlineInputsComponent {
 
   public onChangeOutline = output<{key: string, value: any}>();
 
-  // protected outlineStyle = computed(() => {
-  //   const style = this.outline().style ?? 'none none none none';
-  //   const parts = style.split(/\s+/).filter(Boolean);
-  //   while (parts.length < 4) {
-  //     parts.push('none');
-  //   }
-  //   return parts.slice(0, 4);
-  // });
-
-  // protected updateOutlineStyle(index: number, value: string): void {
-  //   const parts = [...this.outlineStyle()];
-  //   parts[index] = value;
-  //   this.onChangeOutline.emit({ key: 'style', value: parts.join(' ') });
-  // }
-
   protected cssOutlineStyles = CssOutlineStyle.values;
 }

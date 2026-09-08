@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { GENERIC_INPUTS } from "../../generic-inputs.export";
-import { MvLibResizeHoverEffectStyle } from "mv-lib";
+import { MvLibResizeEffectStyle } from "mv-lib";
 
 @Component({
   selector: 'app-resize-hover-inputs',
@@ -19,7 +19,7 @@ export class ResizeHoverInputsComponent {
     public title = input<string | undefined>(undefined);
 
   public enabled = input.required<boolean>();
-  public style = input.required<MvLibResizeHoverEffectStyle>();
+  public style = input.required<MvLibResizeEffectStyle>();
 
   public onChangeEnabled = output<boolean>();
   public onChangeStyle = output<{key: string, value: any}>();
