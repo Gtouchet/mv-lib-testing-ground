@@ -36,12 +36,14 @@
             (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
         />
         <app-push-click-inputs
+            title="Push click"
             [enabled]="button().api.effects.has(mvLibEffects.click.push)"
             [style]="button().api.effects.getStyle(mvLibEffects.click.push)"
             (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.click.push, $event); refreshLog();"
             (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.click.push, $event); refreshLog();"
         />
         <app-ripple-release-inputs
+            title="Ripple release"
             [enabled]="button().api.effects.has(mvLibEffects.release.ripple)"
             [style]="button().api.effects.getStyle(mvLibEffects.release.ripple)"
             (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.release.ripple, $event); refreshLog();"

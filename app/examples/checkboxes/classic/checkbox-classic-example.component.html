@@ -1,0 +1,109 @@
+<div class="configuration">
+    <app-configuration-section title="Styles">
+        <app-dimensions-inputs
+            [dimensions]="checkbox().api.style.getDimensions()"
+            (onChangeDimensions)="checkbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
+        />
+        <app-outline-inputs
+            [outline]="checkbox().api.style.getOutline()"
+            (onChangeOutline)="checkbox().api.style.setOutline($event.key, $event.value); refreshLog();"
+        />
+        <app-inputs-separator title="Unchecked" />
+        <div class="inputs-group">
+            Background color
+            <app-input-color
+                [value]="checkbox().api.style.unchecked.getBackgroundColor()"
+                (onChange)="checkbox().api.style.unchecked.setBackgroundColor($event); refreshLog();"
+            />
+            Icon
+            <app-input-text
+                [value]="checkbox().api.style.unchecked.getIcon()"
+                (onChange)="checkbox().api.style.unchecked.setIcon($event); refreshLog();"
+            />
+            Icon color
+            <app-input-color
+                [value]="checkbox().api.style.unchecked.getIconColor()"
+                (onChange)="checkbox().api.style.unchecked.setIconColor($event); refreshLog();"
+            />
+        </div>
+        <app-inputs-separator title="Checked" />
+        <div class="inputs-group">
+            Background color
+            <app-input-color
+                [value]="checkbox().api.style.checked.getBackgroundColor()"
+                (onChange)="checkbox().api.style.checked.setBackgroundColor($event); refreshLog();"
+            />
+            Icon
+            <app-input-text
+                [value]="checkbox().api.style.checked.getIcon()"
+                (onChange)="checkbox().api.style.checked.setIcon($event); refreshLog();"
+            />
+            Icon color
+            <app-input-color
+                [value]="checkbox().api.style.checked.getIconColor()"
+                (onChange)="checkbox().api.style.checked.setIconColor($event); refreshLog();"
+            />
+        </div>
+    </app-configuration-section>
+
+    <app-configuration-section title="Effects">
+        <app-resize-hover-inputs
+            title="Resize hover"
+            [enabled]="checkbox().api.effects.has(mvLibEffects.hover.resize)"
+            [style]="checkbox().api.effects.getStyle(mvLibEffects.hover.resize)"
+            (onChangeEnabled)="checkbox().api.effects.toggle(mvLibEffects.hover.resize, $event); refreshLog();"
+            (onChangeStyle)="checkbox().api.effects.setStyle(mvLibEffects.hover.resize, $event); refreshLog();"
+        />
+        <app-shadow-effect-inputs
+            title="Shadow hover"
+            [enabled]="checkbox().api.effects.has(mvLibEffects.hover.shadow)"
+            [style]="checkbox().api.effects.getStyle(mvLibEffects.hover.shadow)"
+            (onChangeEnabled)="checkbox().api.effects.toggle(mvLibEffects.hover.shadow, $event); refreshLog();"
+            (onChangeStyle)="checkbox().api.effects.setStyle(mvLibEffects.hover.shadow, $event); refreshLog();"
+        />
+        <app-tint-effect-inputs
+            title="Tint hover"
+            [enabled]="checkbox().api.effects.has(mvLibEffects.hover.tint)"
+            [style]="checkbox().api.effects.getStyle(mvLibEffects.hover.tint)"
+            (onChangeEnabled)="checkbox().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+            (onChangeStyle)="checkbox().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+        />
+    </app-configuration-section>
+
+    <app-configuration-section title="Settings">
+        <app-input-checkbox
+            [checked]="checked()"
+            label="Checked"
+            (onChange)="checked.set($event); refreshLog();"
+        />
+        <app-input-checkbox
+            [checked]="disabled()"
+            label="Disabled"
+            (onChange)="disabled.set($event); refreshLog();"
+        />
+    </app-configuration-section>
+</div>
+
+<div class="visual">
+    <mv-lib-checkbox-classic
+        #mvLibCheckboxClassic
+        class="component"
+        [inputStyle]="style()"
+        [inputEffects]="effects()"
+        [inputSettings]="settings()"
+        [(checked)]="checked"
+        [disabled]="disabled()"
+        (onToggle)="refreshLastInteractionTime()"
+    />
+
+    <div class="log">
+        Last interaction time: {{ lastInteractionTime() }}
+        <app-input-button
+            label="Copy component code"
+            [width]="'25%'"
+            [style.margin-top.px]="10"
+            (onClick)="copyComponentCode()"
+        />
+        <pre #code>&lt;mv-lib-checkbox-classic{{ log() }}&gt;<br/>&lt;/mv-lib-checkbox-classic&gt;</pre>
+    </div>
+</div>

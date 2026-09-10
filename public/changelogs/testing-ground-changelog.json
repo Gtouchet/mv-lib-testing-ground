@@ -3,6 +3,7 @@
         "version": "0.1.2 (07/09/26)",
         "changes": [
             "Outline effects inputs: Added offset property",
+            "Checkbox: Added checkbox example view",
             "Grid: Added configuration for outline effects",
             "Grid: Added configuration for shadow effect",
             "Grid: Added configuration for scrollbar setting"

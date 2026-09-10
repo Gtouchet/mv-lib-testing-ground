@@ -95,6 +95,13 @@ export class AppComponent {
       ],
     },
     {
+      label: 'Checkboxes',
+      icon: 'check_box',
+      children: [
+        { label: 'Classic', routerLink: '/checkbox-classic-example' },
+      ],
+    },
+    {
       label: 'Dropdowns',
       icon: 'dropdown_menu',
       children: [

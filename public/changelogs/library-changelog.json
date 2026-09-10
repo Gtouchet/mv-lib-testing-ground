@@ -2,11 +2,13 @@
     {
         "version": "0.1.2 (08/09/26)",
         "changes": [
+            "Added checkbox component",
             "Refacto effects: effects now expose their individual properties directly via a function",
             "Refacto styles: styles now expose their individual properties directly via a function",
             "Refacto components templates to use the new individual property functions",
             "Removed toCss function from cssHelper",
             "Outline effects: Added offset property",
+            "Button: Content is now unselectable",
             "Grid: Added support for outline effects",
             "Grid: Added support for shadow effect",
             "Grid: Added support for hiding scrollbar"

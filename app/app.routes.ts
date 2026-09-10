@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ButtonClassicExampleComponent } from './examples/buttons/classic/button-classic-example.component';
+import { CheckboxClassicExampleComponent } from './examples/checkboxes/classic/checkbox-classic-example.component';
 import { DropdownClassicExampleComponent } from './examples/dropdowns/classic/dropdown-classic-example.component';
 import { GridClassicExampleComponent } from './examples/grids/classic/grid-classic-example.component';
 import { RadioButtonsClassicExampleComponent } from './examples/radio-buttons/classic/radio-buttons-classic-example.component';
@@ -14,6 +15,7 @@ export const routes: Routes = [
 	{ path: '', pathMatch: 'full', redirectTo: '/home' },
 	{ path: 'home', component: HomeComponent, data: { title: 'Home' } },
 	{ path: 'button-classic-example', component: ButtonClassicExampleComponent, data: { title: 'Button classic' } },
+	{ path: 'checkbox-classic-example', component: CheckboxClassicExampleComponent, data: { title: 'Checkbox classic' } },
 	{ path: 'dropdown-classic-example', component: DropdownClassicExampleComponent, data: { title: 'Dropdown classic' } },
 	{ path: 'grid-classic-example', component: GridClassicExampleComponent, data: { title: 'Grid classic' } },
 	{ path: 'radio-buttons-classic-example', component: RadioButtonsClassicExampleComponent, data: { title: 'Radio buttons classic' } },

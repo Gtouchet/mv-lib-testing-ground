@@ -31,9 +31,3 @@ export class ConfigurationSectionComponent {
     public title = input();
     public color = input<string | undefined>(undefined);
 }
-
-// 'text-shadow': '
-//     -1px -1px 0 var(--mv-lib-primary-color-5),'+
-//     '1px -1px 0 var(--mv-lib-primary-color-5),'+
-//     '-1px 1px 0 var(--mv-lib-primary-color-5),'+
-//     ' 1px 1px 0 var(--mv-lib-primary-color-5)'
