@@ -37,6 +37,9 @@
     --mv-lib-error:   #e28080;
     --mv-lib-info:    #74b0e0;
 
+    /* Application */
+    --mv-lib-application-background-color: var(--mv-lib-primary-color-1);
+
     /* Components */
     --mv-lib-component-background-color-primary: var(--mv-lib-secondary-color-6);
     --mv-lib-component-background-color-secondary: var(--mv-lib-secondary-color-5);
@@ -46,8 +49,8 @@
     --mv-lib-component-inner-font-color-primary: var(--mv-lib-primary-color-9);
     --mv-lib-component-inner-font-color-secondary: var(--mv-lib-primary-color-1);
 
-    --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-7);
-    --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-6);
+    --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-2);
+    --mv-lib-component-background-color-selected: var(--mv-lib-secondary-color-5);
 
     /* Effects */
     --mv-lib-effect-primary-color: var(--mv-lib-primary-color-5);
