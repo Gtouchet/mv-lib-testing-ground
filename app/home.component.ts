@@ -9,6 +9,14 @@ interface ChangelogEntry {
     selector: 'app-home',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
+    styles: `
+        :host {
+            display: block;
+            height: 100%;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+    `,
     template: `
     <div style="
         text-align: left;
