@@ -1,6 +1,6 @@
 [
     {
-        "version": "0.1.2 (08/09/26)",
+        "version": "0.1.2 (10/09/26)",
         "changes": [
             "Added checkbox component",
             "Refacto effects: effects now expose their individual properties directly via a function",
