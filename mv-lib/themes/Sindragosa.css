@@ -46,7 +46,7 @@
     --mv-lib-component-background-color-tertiary: var(--mv-lib-primary-color-2);
 
     --mv-lib-component-font-color: var(--mv-lib-primary-color-9);
-    --mv-lib-component-inner-font-color-primary: var(--mv-lib-primary-color-9);
+    --mv-lib-component-inner-font-color-primary: var(--mv-lib-primary-color-1);
     --mv-lib-component-inner-font-color-secondary: var(--mv-lib-primary-color-1);
 
     --mv-lib-component-background-color-unselected: var(--mv-lib-primary-color-2);

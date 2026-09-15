@@ -1,5 +1,12 @@
 [
     {
+        "version": "0.1.3 (15/09/26)",
+        "changes": [
+            "Added numeric textbox views",
+            "Refacto: Started revamp of the testing ground app with the numeric textbox views"
+        ]
+    },
+    {
         "version": "0.1.2 (10/09/26)",
         "changes": [
             "Outline effects inputs: Added offset property",
