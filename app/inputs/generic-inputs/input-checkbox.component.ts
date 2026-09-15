@@ -19,6 +19,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
       <input
         type="checkbox"
         [checked]="checked()"
+        (pointerdown)="handlePointerDown($event)"
         (click)="handleClick($event)"
         [style.margin]="0"
       />
@@ -34,8 +35,19 @@ export class InputCheckboxComponent {
   public label = input('');
   public onChange = output<boolean>();
 
-  protected handleClick(event: Event) {
+  private checkedBeforePointerClick?: boolean;
+
+  protected handlePointerDown(event: PointerEvent) {
+    this.checkedBeforePointerClick = (event.currentTarget as HTMLInputElement).checked;
+  }
+
+  protected handleClick(event: MouseEvent) {
     const input = event.target as HTMLInputElement;
-    this.onChange.emit(input.checked);
+    const checked = event.detail > 0 && this.checkedBeforePointerClick !== undefined
+      ? !this.checkedBeforePointerClick
+      : input.checked;
+    this.checkedBeforePointerClick = undefined;
+    input.checked = checked;
+    this.onChange.emit(checked);
   }
 }

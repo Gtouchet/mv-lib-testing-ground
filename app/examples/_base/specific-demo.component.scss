@@ -1,0 +1,146 @@
+%border {
+    border: 1px solid var(--mv-lib-tertiary-color-5);
+    border-radius: 4px;
+}
+
+.layout {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+    min-height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: var(--mv-lib-primary-color-2);
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .description {
+        margin-top: 25px;
+        margin-left: 25px;
+    }
+
+    .last-updated {
+        font-size: 14px;
+        margin-top: 10px;
+        margin-left: 25px;
+    }
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 50px;
+        margin-left: 50px;
+    }
+
+    .description {
+        margin-top: 15px;
+        margin-bottom: 6px;
+        margin-left: 25px;
+    }
+}
+
+.section > .playground {
+    display: flex;
+    margin-top: 10px;
+    gap: 4px;
+
+    .configuration {
+        display: flex;
+        flex: 2;
+        flex-direction: column;
+        min-width: 0;
+        gap: 4px;
+
+        .panel {
+            @extend %border;
+            display: flex;
+            flex-direction: column;
+            height: 300px;
+            overflow: hidden;
+            background-color: var(--mv-lib-primary-color-1);
+        }
+    }
+
+    .component {
+        @extend %border;
+        display: flex;
+        flex: 3;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        padding: 4px;
+        background-color: var(--mv-lib-primary-color-1);
+    }
+}
+
+.panel-header {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    background-color: var(--mv-lib-primary-color-3);
+
+    .selection-buttons {
+        display: flex;
+        gap: 4px;
+        padding: 4px 12px;
+        background-color: var(--mv-lib-primary-color-3);
+        border-bottom: 1px solid var(--mv-lib-tertiary-color-5);
+
+        > * {
+            display: inline-flex;
+            flex: 1;
+            min-width: 0;
+        }
+    }
+
+    .copy-button {
+        display: flex;
+        justify-content: center;
+        padding: 4px 0;
+        background-color: var(--mv-lib-primary-color-3);
+        border-bottom: 1px solid var(--mv-lib-tertiary-color-5);
+    }
+}
+
+.panel-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 4px 12px;
+    gap: 4px;
+}
+
+.inputs-group {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 8px;
+    row-gap: 4px;
+}
+
+app-specific-demo-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100%;
+    width: 150px;
+}

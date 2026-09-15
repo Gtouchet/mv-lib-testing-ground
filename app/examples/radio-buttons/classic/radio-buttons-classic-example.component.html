@@ -1,152 +1,154 @@
-<div class="configuration">
-    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
-        <div buttons>
-            <app-input-button
-                label="General"
-                [selected]="selectedPartStyle() === 'general'"
-                (onClick)="selectedPartStyle.set('general')"
-            />
-            <app-input-button
-                label="Button"
-                [selected]="selectedPartStyle() === 'button'"
-                (onClick)="selectedPartStyle.set('button')"
-            />
-            <app-input-button
-                label="Content"
-                [selected]="selectedPartStyle() === 'content'"
-                (onClick)="selectedPartStyle.set('content')"
-            />
-        </div>
-        @if (selectedPartStyle() === 'general') {
-            <app-dimensions-inputs
-                [dimensions]="radioButtons().api.style.getDimensions()"
-                (onChangeDimensions)="radioButtons().api.style.setDimensions($event.key, $event.value); refreshLog();"
-            />
-            <app-outline-inputs
-                [outline]="radioButtons().api.style.getOutline()"
-                (onChangeOutline)="radioButtons().api.style.setOutline($event.key, $event.value); refreshLog();"
-            />
-        }
-        @else if (selectedPartStyle() === 'button') {
-            <div class="inputs-group">
-                Background color
-                <app-input-color
-                    [value]="radioButtons().api.style.button.getBackgroundColor()"
-                    (onChange)="radioButtons().api.style.button.setBackgroundColor($event); refreshLog();"
+<div class="view">
+    <div class="configuration">
+        <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+            <div buttons>
+                <app-input-button
+                    label="General"
+                    [selected]="selectedPartStyle() === 'general'"
+                    (onClick)="selectedPartStyle.set('general')"
                 />
-                Selected background color
-                <app-input-color
-                    [value]="radioButtons().api.style.button.getSelectedBackgroundColor()"
-                    (onChange)="radioButtons().api.style.button.setSelectedBackgroundColor($event); refreshLog();"
+                <app-input-button
+                    label="Button"
+                    [selected]="selectedPartStyle() === 'button'"
+                    (onClick)="selectedPartStyle.set('button')"
+                />
+                <app-input-button
+                    label="Content"
+                    [selected]="selectedPartStyle() === 'content'"
+                    (onClick)="selectedPartStyle.set('content')"
                 />
             </div>
-            <div class="inputs-group">
-                Size
-                <app-input-text
-                    [value]="radioButtons().api.style.button.getSize()"
-                    (onChange)="radioButtons().api.style.button.setSize($event); refreshLog();"
+            @if (selectedPartStyle() === 'general') {
+                <app-dimensions-inputs
+                    [dimensions]="radioButtons().api.style.getDimensions()"
+                    (onChangeDimensions)="radioButtons().api.style.setDimensions($event.key, $event.value); refreshLog();"
                 />
-                Gap
+                <app-outline-inputs
+                    [outline]="radioButtons().api.style.getOutline()"
+                    (onChangeOutline)="radioButtons().api.style.setOutline($event.key, $event.value); refreshLog();"
+                />
+            }
+            @else if (selectedPartStyle() === 'button') {
+                <div class="inputs-group">
+                    Background color
+                    <app-input-color
+                        [value]="radioButtons().api.style.button.getBackgroundColor()"
+                        (onChange)="radioButtons().api.style.button.setBackgroundColor($event); refreshLog();"
+                    />
+                    Selected background color
+                    <app-input-color
+                        [value]="radioButtons().api.style.button.getSelectedBackgroundColor()"
+                        (onChange)="radioButtons().api.style.button.setSelectedBackgroundColor($event); refreshLog();"
+                    />
+                </div>
+                <div class="inputs-group">
+                    Size
+                    <app-input-text
+                        [value]="radioButtons().api.style.button.getSize()"
+                        (onChange)="radioButtons().api.style.button.setSize($event); refreshLog();"
+                    />
+                    Gap
+                    <app-input-text
+                        [value]="radioButtons().api.style.button.getGap()"
+                        (onChange)="radioButtons().api.style.button.setGap($event); refreshLog();"
+                    />
+                </div>
+            }
+            @else if (selectedPartStyle() === 'content') {
                 <app-input-text
-                    [value]="radioButtons().api.style.button.getGap()"
-                    (onChange)="radioButtons().api.style.button.setGap($event); refreshLog();"
+                    label="Gap"
+                    [value]="radioButtons().api.style.content.getGap()"
+                    (onChange)="radioButtons().api.style.content.setGap($event); refreshLog();"
+                />
+                <app-font-inputs
+                    [font]="radioButtons().api.style.content.getFont()"
+                    (onChangeFont)="radioButtons().api.style.content.setFont($event.key, $event.value); refreshLog();"
+                />
+            }
+        </app-configuration-section>
+
+        <app-configuration-section title="Effects">
+            <app-shadow-effect-inputs
+                title="Shadow idle"
+                [enabled]="radioButtons().api.effects.has(mvLibEffects.idle.shadow)"
+                [style]="radioButtons().api.effects.getStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="radioButtons().api.effects.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="radioButtons().api.effects.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+            />
+            <app-resize-hover-inputs
+                [enabled]="radioButtons().api.effects.has(mvLibEffects.hover.resize)"
+                [style]="radioButtons().api.effects.getStyle(mvLibEffects.hover.resize)"
+                (onChangeEnabled)="radioButtons().api.effects.toggle(mvLibEffects.hover.resize, $event); refreshLog();"
+                (onChangeStyle)="radioButtons().api.effects.setStyle(mvLibEffects.hover.resize, $event); refreshLog();"
+            />
+        </app-configuration-section>
+
+        <app-configuration-section title="Settings">
+            <app-input-checkbox
+                label="Disabled"
+                [checked]="disabled()"
+                (onChange)="disabled.set($event); refreshLog();"
+            />
+            <app-input-checkbox
+                label="Select on label click"
+                [checked]="radioButtons().api.settings.selectOnLabelClick()"
+                (onChange)="radioButtons().api.settings.setSelectOnLabelClick($event); refreshLog();"
+            />
+            <app-input-checkbox
+                label="Deselectable"
+                [checked]="radioButtons().api.settings.deselectable()"
+                (onChange)="radioButtons().api.settings.setDeselectable($event); refreshLog();"
+            />
+            <app-inputs-separator title="Orientation" />
+            <app-input-radio
+                [values]="['vertical', 'horizontal']"
+                [selected]="radioButtons().api.settings.orientation()"
+                (onChange)="radioButtons().api.settings.setOrientation($any($event)); refreshLog();"
+            />
+            <app-inputs-separator title="API" />
+            <div class="inputs-group">
+                <app-input-number
+                    label="Select item n°"
+                    [value]="items().findIndex(item => item === selectedItem()) + 1"
+                    [min]="1"
+                    [max]="items().length"
+                    [width]="'50px'"
+                    (onChange)="radioButtons().setSelected(items()[$event! - 1]); refreshLastInteractionTime();"
+                />
+                <app-input-button
+                    label="Reset selection"
+                    (onClick)="radioButtons().setSelected(undefined); refreshLastInteractionTime();"
                 />
             </div>
-        }
-        @else if (selectedPartStyle() === 'content') {
-            <app-input-text
-                label="Gap"
-                [value]="radioButtons().api.style.content.getGap()"
-                (onChange)="radioButtons().api.style.content.setGap($event); refreshLog();"
-            />
-            <app-font-inputs
-                [font]="radioButtons().api.style.content.getFont()"
-                (onChangeFont)="radioButtons().api.style.content.setFont($event.key, $event.value); refreshLog();"
-            />
-        }
-    </app-configuration-section>
+        </app-configuration-section>
+    </div>
 
-    <app-configuration-section title="Effects">
-        <app-shadow-effect-inputs
-            title="Shadow idle"
-            [enabled]="radioButtons().api.effects.has(mvLibEffects.idle.shadow)"
-            [style]="radioButtons().api.effects.getStyle(mvLibEffects.idle.shadow)"
-            (onChangeEnabled)="radioButtons().api.effects.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
-            (onChangeStyle)="radioButtons().api.effects.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
-        />
-        <app-resize-hover-inputs
-            [enabled]="radioButtons().api.effects.has(mvLibEffects.hover.resize)"
-            [style]="radioButtons().api.effects.getStyle(mvLibEffects.hover.resize)"
-            (onChangeEnabled)="radioButtons().api.effects.toggle(mvLibEffects.hover.resize, $event); refreshLog();"
-            (onChangeStyle)="radioButtons().api.effects.setStyle(mvLibEffects.hover.resize, $event); refreshLog();"
-        />
-    </app-configuration-section>
+    <div class="render">
+        <mv-lib-radio-buttons-classic
+            #mvLibRadioButtonsClassic
+            class="component"
+            [inputStyle]="style()"
+            [inputEffects]="effects()"
+            [inputSettings]="settings()"
+            [disabled]="disabled()"
+            [items]="items()"
+            [(selected)]="selectedItem"
+            (onSelect)="refreshLastInteractionTime()"
+        >
+            <ng-template mvLibRadioButtonTemplate let-user>
+                {{ user.id }} - {{ user.name }}
+            </ng-template>
+        </mv-lib-radio-buttons-classic>
 
-    <app-configuration-section title="Settings">
-        <app-input-checkbox
-            label="Disabled"
-            [checked]="disabled()"
-            (onChange)="disabled.set($event); refreshLog();"
-        />
-        <app-input-checkbox
-            label="Select on label click"
-            [checked]="radioButtons().api.settings.selectOnLabelClick()"
-            (onChange)="radioButtons().api.settings.setSelectOnLabelClick($event); refreshLog();"
-        />
-        <app-input-checkbox
-            label="Deselectable"
-            [checked]="radioButtons().api.settings.deselectable()"
-            (onChange)="radioButtons().api.settings.setDeselectable($event); refreshLog();"
-        />
-        <app-inputs-separator title="Orientation" />
-        <app-input-radio
-            [values]="['vertical', 'horizontal']"
-            [selected]="radioButtons().api.settings.orientation()"
-            (onChange)="radioButtons().api.settings.setOrientation($any($event)); refreshLog();"
-        />
-        <app-inputs-separator title="API" />
-        <div class="inputs-group">
-            <app-input-number
-                label="Select item n°"
-                [value]="items().findIndex(item => item === selectedItem()) + 1"
-                [min]="1"
-                [max]="items().length"
-                [width]="'50px'"
-                (onChange)="radioButtons().setSelected(items()[$event! - 1]); refreshLastInteractionTime();"
-            />
+        <div class="log">
+            Last interaction time: {{ lastInteractionTime() }}<br/>
+            <pre>Selected: {{ selectedItem() | json }}</pre>
             <app-input-button
-                label="Reset selection"
-                (onClick)="radioButtons().setSelected(undefined); refreshLastInteractionTime();"
+                label="Copy component code"
+                [width]="'25%'"
+                (onClick)="copyComponentCode()"
             />
+            <pre #code>&lt;mv-lib-radio-buttons-classic{{ log() }}&gt;<br/>    MV Lib radio buttons classic<br/>&lt;/mv-lib-radio-buttons-classic&gt;</pre>
         </div>
-    </app-configuration-section>
-</div>
-
-<div class="visual">
-    <mv-lib-radio-buttons-classic
-        #mvLibRadioButtonsClassic
-        class="component"
-        [inputStyle]="style()"
-        [inputEffects]="effects()"
-        [inputSettings]="settings()"
-        [disabled]="disabled()"
-        [items]="items()"
-        [(selected)]="selectedItem"
-        (onSelect)="refreshLastInteractionTime()"
-    >
-        <ng-template mvLibRadioButtonTemplate let-user>
-            {{ user.id }} - {{ user.name }}
-        </ng-template>
-    </mv-lib-radio-buttons-classic>
-
-    <div class="log">
-        Last interaction time: {{ lastInteractionTime() }}<br/>
-        <pre>Selected: {{ selectedItem() | json }}</pre>
-        <app-input-button
-            label="Copy component code"
-            [width]="'25%'"
-            (onClick)="copyComponentCode()"
-        />
-        <pre #code>&lt;mv-lib-radio-buttons-classic{{ log() }}&gt;<br/>    MV Lib radio buttons classic<br/>&lt;/mv-lib-radio-buttons-classic&gt;</pre>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
-import { BaseExampleComponent } from '../../base-example.component';
+import { OverviewDemoBaseComponent } from '../../_base/overview-demo.base';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
 import { MvLibRadioButtonsClassicComponent, MvLibRadioButtonsClassicEffects, MvLibRadioButtonsClassicSettings, MvLibRadioButtonsClassicStyle, MvLibRadioButtonsDirectives } from "mv-lib";
@@ -19,11 +19,11 @@ interface User {
         JsonPipe,
     ],
     templateUrl: './radio-buttons-classic-example.component.html',
-    styleUrl: '../../example.component.scss',
+    styleUrl: '../../_base/overview-demo.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class RadioButtonsClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
+export class RadioButtonsClassicExampleComponent extends OverviewDemoBaseComponent implements AfterViewInit {
 
     protected radioButtons = viewChild.required<MvLibRadioButtonsClassicComponent<User>>('mvLibRadioButtonsClassic');
 

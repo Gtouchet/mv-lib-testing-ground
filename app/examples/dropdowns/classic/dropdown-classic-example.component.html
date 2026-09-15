@@ -1,257 +1,259 @@
-<div class="configuration">
+<div class="view">
+    <div class="configuration">
 
-    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
-        <div buttons>
-            <app-input-button
-                label="Button"
-                [selected]="selectedPartStyle() === 'button'"
-                (onClick)="selectedPartStyle.set('button')"
-            />
-            <app-input-button
-                label="List"
-                [selected]="selectedPartStyle() === 'list'"
-                (onClick)="selectedPartStyle.set('list')"
-            />
-            <app-input-button
-                label="Item"
-                [selected]="selectedPartStyle() === 'items'"
-                (onClick)="selectedPartStyle.set('items')"
-            />
-        </div>
-        @if (selectedPartStyle() === 'button') {
-            <app-inputs-separator title="General" />
-            <div class="inputs-group">
-                Background color closed
-                <app-input-color
-                    [value]="dropdown().api.style.button.getClosedBackgroundColor()"
-                    (onChange)="dropdown().api.style.button.setClosedBackgroundColor($event); refreshLog();"
+        <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+            <div buttons>
+                <app-input-button
+                    label="Button"
+                    [selected]="selectedPartStyle() === 'button'"
+                    (onClick)="selectedPartStyle.set('button')"
                 />
-                Background color opened
-                <app-input-color
-                    [value]="dropdown().api.style.button.getOpenedBackgroundColor()"
-                    (onChange)="dropdown().api.style.button.setOpenedBackgroundColor($event); refreshLog();"
+                <app-input-button
+                    label="List"
+                    [selected]="selectedPartStyle() === 'list'"
+                    (onClick)="selectedPartStyle.set('list')"
+                />
+                <app-input-button
+                    label="Item"
+                    [selected]="selectedPartStyle() === 'items'"
+                    (onClick)="selectedPartStyle.set('items')"
                 />
             </div>
-            <app-dimensions-inputs
-                [dimensions]="dropdown().api.style.button.getDimensions()"
-                (onChangeDimensions)="dropdown().api.style.button.setDimensions($event.key, $event.value); refreshLog();"
-            />
-            <app-outline-inputs
-                [outline]="dropdown().api.style.button.getOutline()"
-                (onChangeOutline)="dropdown().api.style.button.setOutline($event.key, $event.value); refreshLog();"
-            />
-            <app-font-inputs
-                [font]="dropdown().api.style.button.getFont()"
-                (onChangeFont)="dropdown().api.style.button.setFont($event.key, $event.value); refreshLog();"
-            />
-        }
-        @else if (selectedPartStyle() === 'list') {
-            <app-inputs-separator title="General" />
-            <app-input-text
-                label="Offset X"
-                [value]="dropdown().api.style.list.getOffsetX()"
-                (onChange)="dropdown().api.style.list.setOffsetX($event); refreshLog();"
-            />
-            <app-dimensions-inputs
-                [dimensions]="dropdown().api.style.list.getDimensions()"
-                (onChangeDimensions)="dropdown().api.style.list.setDimensions($event.key, $event.value); refreshLog();"
-            />
-            <app-outline-inputs
-                [outline]="dropdown().api.style.list.getOutline()"
-                (onChangeOutline)="dropdown().api.style.list.setOutline($event.key, $event.value); refreshLog();"
-            />
-        }
-        @else if (selectedPartStyle() === 'items') {
-            <app-inputs-separator title="General" />
-            <app-input-color
-                label="Background color"
-                [value]="dropdown().api.style.items.getBackgroundColor()"
-                (onChange)="dropdown().api.style.items.setBackgroundColor($event); refreshLog();"
-            />
-            <app-input-text
-                label="Height"
-                [value]="dropdown().api.style.items.getHeight()"
-                (onChange)="dropdown().api.style.items.setHeight($event); refreshLog();"
-            />
-            <app-font-inputs
-                [font]="dropdown().api.style.items.getFont()"
-                (onChangeFont)="dropdown().api.style.items.setFont($event.key, $event.value); refreshLog();"
-            />
-        }
-    </app-configuration-section>
-    
-    <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
-        <div buttons>
-            <app-input-button
-                label="Button"
-                [selected]="selectedPartEffects() === 'button'"
-                (onClick)="selectedPartEffects.set('button')"
-            />
-            <app-input-button
-                label="List"
-                [selected]="selectedPartEffects() === 'list'"
-                (onClick)="selectedPartEffects.set('list')"
-            />
-            <app-input-button
-                label="Item"
-                [selected]="selectedPartEffects() === 'items'"
-                (onClick)="selectedPartEffects.set('items')"
-            />
-        </div>
-        @if (selectedPartEffects() === 'button') {
-            <app-shadow-effect-inputs
-                title="Shadow idle"
-                [enabled]="dropdown().api.effects.button.has(mvLibEffects.idle.shadow)"
-                [style]="dropdown().api.effects.button.getStyle(mvLibEffects.idle.shadow)"
-                (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
-            />
-            <app-tint-effect-inputs
-                title="Tint hover"
-                [enabled]="dropdown().api.effects.button.has(mvLibEffects.hover.tint)"
-                [style]="dropdown().api.effects.button.getStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
-            />
-            <app-push-click-inputs
-                [enabled]="dropdown().api.effects.button.has(mvLibEffects.click.push)"
-                [style]="dropdown().api.effects.button.getStyle(mvLibEffects.click.push)"
-                (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.click.push, $event); refreshLog();"
-                (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.click.push, $event); refreshLog();"
-            />
-            <app-ripple-release-inputs
-                [enabled]="dropdown().api.effects.button.has(mvLibEffects.release.ripple)"
-                [style]="dropdown().api.effects.button.getStyle(mvLibEffects.release.ripple)"
-                (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.release.ripple, $event); refreshLog();"
-                (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.release.ripple, $event); refreshLog();"
-            />
-        }
-        @else if (selectedPartEffects() === 'list') {
-            <app-shadow-effect-inputs
-                title="Shadow idle"
-                [enabled]="dropdown().api.effects.list.has(mvLibEffects.idle.shadow)"
-                [style]="dropdown().api.effects.list.getStyle(mvLibEffects.idle.shadow)"
-                (onChangeEnabled)="dropdown().api.effects.list.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="dropdown().api.effects.list.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
-            />
-        }
-        @else if (selectedPartEffects() === 'items') {
-            <app-tint-effect-inputs
-                title="Tint hover"
-                [enabled]="dropdown().api.effects.items.has(mvLibEffects.hover.tint)"
-                [style]="dropdown().api.effects.items.getStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="dropdown().api.effects.items.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="dropdown().api.effects.items.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
-            />
-        }
-    </app-configuration-section>
-
-    <app-configuration-section title="Settings">
-        <div buttons>
-            <app-input-button
-                label="Button"
-                [selected]="selectedPartSettings() === 'button'"
-                (onClick)="selectedPartSettings.set('button')"
-            />
-            <app-input-button
-                label="List"
-                [selected]="selectedPartSettings() === 'list'"
-                (onClick)="selectedPartSettings.set('list')"
-            />
-        </div>
-        <app-inputs-separator title="General" />
-        <app-input-checkbox
-            label="Disabled"
-            [checked]="disabled()"
-            (onChange)="disabled.set($event); refreshLog();"
-        />
-        <app-input-checkbox
-            label="Opened"
-            [checked]="opened()"
-            (onChange)="opened.set($event); refreshLog();"
-        />
-        @if (selectedPartSettings() === 'button') {
-            <app-inputs-separator title="Button" />
-            <app-input-checkbox
-                label="Reset button"
-                [checked]="dropdown().api.settings.button.hasResetButton()"
-                (onChange)="dropdown().api.settings.button.setResetButton($event); refreshLog();"
-            />
-        }
-        @else if (selectedPartSettings() === 'list') {
-            <app-inputs-separator title="List" />
-            <app-input-checkbox
-                label="Scrollbar"
-                [checked]="dropdown().api.settings.list.hasScrollbar()"
-                (onChange)="dropdown().api.settings.list.setScrollbar($event); refreshLog();"
-            />
-            <app-input-checkbox
-                label="Close on outside click"
-                [checked]="dropdown().api.settings.list.closeOnOutsideClick()"
-                (onChange)="dropdown().api.settings.list.setCloseOnOutsideClick($event); refreshLog();"
-            />
-            <app-input-checkbox
-                label="Close on item select"
-                [checked]="dropdown().api.settings.list.closeOnItemSelect()"
-                (onChange)="dropdown().api.settings.list.setCloseOnItemSelect($event); refreshLog();"
-            />
-        }
-    </app-configuration-section>
-</div>
-
-<div class="visual">
-    <mv-lib-dropdown-classic
-        #mvLibDropdownClassic
-        class="component"
-        [inputStyle]="style()"
-        [inputEffects]="effects()"
-        [inputSettings]="settings()"
-        [items]="items()"
-        [(selected)]="selectedItem"
-        [(opened)]="opened"
-        [disabled]="disabled()"
-        (onSelect)="refreshLastInteractionTime()"
-        (onToggle)="
-            opened.set($event.state);
-            refreshLastInteractionTime();
-            refreshLog();"
-    >
-        <ng-template mvLibDropdownPlaceholderTemplate>
-            Select a user
-        </ng-template>
-
-        <ng-template mvLibDropdownSelectedTemplate let-item>
-            {{ item.name }}
-        </ng-template>
-
-        <ng-template mvLibDropdownItemTemplate let-item>
-            <div
-                [ngStyle]="{
-                    'display': 'flex',
-                    'align-items': 'center',
-                    'gap.px': 4,
-                    'width.%': 100,
-                    'text-align': 'left',
-                }"
-            >
-                <span class="material-symbols-outlined">
-                    {{ item.icon }}
-                </span>
-                <span>
-                    {{ item.name }}
-                </span>
+            @if (selectedPartStyle() === 'button') {
+                <app-inputs-separator title="General" />
+                <div class="inputs-group">
+                    Background color closed
+                    <app-input-color
+                        [value]="dropdown().api.style.button.getClosedBackgroundColor()"
+                        (onChange)="dropdown().api.style.button.setClosedBackgroundColor($event); refreshLog();"
+                    />
+                    Background color opened
+                    <app-input-color
+                        [value]="dropdown().api.style.button.getOpenedBackgroundColor()"
+                        (onChange)="dropdown().api.style.button.setOpenedBackgroundColor($event); refreshLog();"
+                    />
+                </div>
+                <app-dimensions-inputs
+                    [dimensions]="dropdown().api.style.button.getDimensions()"
+                    (onChangeDimensions)="dropdown().api.style.button.setDimensions($event.key, $event.value); refreshLog();"
+                />
+                <app-outline-inputs
+                    [outline]="dropdown().api.style.button.getOutline()"
+                    (onChangeOutline)="dropdown().api.style.button.setOutline($event.key, $event.value); refreshLog();"
+                />
+                <app-font-inputs
+                    [font]="dropdown().api.style.button.getFont()"
+                    (onChangeFont)="dropdown().api.style.button.setFont($event.key, $event.value); refreshLog();"
+                />
+            }
+            @else if (selectedPartStyle() === 'list') {
+                <app-inputs-separator title="General" />
+                <app-input-text
+                    label="Offset X"
+                    [value]="dropdown().api.style.list.getOffsetX()"
+                    (onChange)="dropdown().api.style.list.setOffsetX($event); refreshLog();"
+                />
+                <app-dimensions-inputs
+                    [dimensions]="dropdown().api.style.list.getDimensions()"
+                    (onChangeDimensions)="dropdown().api.style.list.setDimensions($event.key, $event.value); refreshLog();"
+                />
+                <app-outline-inputs
+                    [outline]="dropdown().api.style.list.getOutline()"
+                    (onChangeOutline)="dropdown().api.style.list.setOutline($event.key, $event.value); refreshLog();"
+                />
+            }
+            @else if (selectedPartStyle() === 'items') {
+                <app-inputs-separator title="General" />
+                <app-input-color
+                    label="Background color"
+                    [value]="dropdown().api.style.items.getBackgroundColor()"
+                    (onChange)="dropdown().api.style.items.setBackgroundColor($event); refreshLog();"
+                />
+                <app-input-text
+                    label="Height"
+                    [value]="dropdown().api.style.items.getHeight()"
+                    (onChange)="dropdown().api.style.items.setHeight($event); refreshLog();"
+                />
+                <app-font-inputs
+                    [font]="dropdown().api.style.items.getFont()"
+                    (onChangeFont)="dropdown().api.style.items.setFont($event.key, $event.value); refreshLog();"
+                />
+            }
+        </app-configuration-section>
+        
+        <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
+            <div buttons>
+                <app-input-button
+                    label="Button"
+                    [selected]="selectedPartEffects() === 'button'"
+                    (onClick)="selectedPartEffects.set('button')"
+                />
+                <app-input-button
+                    label="List"
+                    [selected]="selectedPartEffects() === 'list'"
+                    (onClick)="selectedPartEffects.set('list')"
+                />
+                <app-input-button
+                    label="Item"
+                    [selected]="selectedPartEffects() === 'items'"
+                    (onClick)="selectedPartEffects.set('items')"
+                />
             </div>
-        </ng-template>
-    </mv-lib-dropdown-classic>
+            @if (selectedPartEffects() === 'button') {
+                <app-shadow-effect-inputs
+                    title="Shadow idle"
+                    [enabled]="dropdown().api.effects.button.has(mvLibEffects.idle.shadow)"
+                    [style]="dropdown().api.effects.button.getStyle(mvLibEffects.idle.shadow)"
+                    (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                    (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                />
+                <app-tint-effect-inputs
+                    title="Tint hover"
+                    [enabled]="dropdown().api.effects.button.has(mvLibEffects.hover.tint)"
+                    [style]="dropdown().api.effects.button.getStyle(mvLibEffects.hover.tint)"
+                    (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                    (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                />
+                <app-push-click-inputs
+                    [enabled]="dropdown().api.effects.button.has(mvLibEffects.click.push)"
+                    [style]="dropdown().api.effects.button.getStyle(mvLibEffects.click.push)"
+                    (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.click.push, $event); refreshLog();"
+                    (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.click.push, $event); refreshLog();"
+                />
+                <app-ripple-release-inputs
+                    [enabled]="dropdown().api.effects.button.has(mvLibEffects.release.ripple)"
+                    [style]="dropdown().api.effects.button.getStyle(mvLibEffects.release.ripple)"
+                    (onChangeEnabled)="dropdown().api.effects.button.toggle(mvLibEffects.release.ripple, $event); refreshLog();"
+                    (onChangeStyle)="dropdown().api.effects.button.setStyle(mvLibEffects.release.ripple, $event); refreshLog();"
+                />
+            }
+            @else if (selectedPartEffects() === 'list') {
+                <app-shadow-effect-inputs
+                    title="Shadow idle"
+                    [enabled]="dropdown().api.effects.list.has(mvLibEffects.idle.shadow)"
+                    [style]="dropdown().api.effects.list.getStyle(mvLibEffects.idle.shadow)"
+                    (onChangeEnabled)="dropdown().api.effects.list.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                    (onChangeStyle)="dropdown().api.effects.list.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                />
+            }
+            @else if (selectedPartEffects() === 'items') {
+                <app-tint-effect-inputs
+                    title="Tint hover"
+                    [enabled]="dropdown().api.effects.items.has(mvLibEffects.hover.tint)"
+                    [style]="dropdown().api.effects.items.getStyle(mvLibEffects.hover.tint)"
+                    (onChangeEnabled)="dropdown().api.effects.items.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                    (onChangeStyle)="dropdown().api.effects.items.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                />
+            }
+        </app-configuration-section>
 
-    <div class="log">
-        Last interaction time: {{ lastInteractionTime() }}<br/>
-        <pre>Selected: {{ selectedItem() | json }}</pre>
-        <app-input-button
-            label="Copy component code"
-            [width]="'25%'"
-            (onClick)="copyComponentCode()"
-        />
-        <pre #code>&lt;mv-lib-dropdown-classic{{ log() }}&gt;<br/>    MV Lib dropdown classic<br/>&lt;/mv-lib-dropdown-classic&gt;</pre>
+        <app-configuration-section title="Settings">
+            <div buttons>
+                <app-input-button
+                    label="Button"
+                    [selected]="selectedPartSettings() === 'button'"
+                    (onClick)="selectedPartSettings.set('button')"
+                />
+                <app-input-button
+                    label="List"
+                    [selected]="selectedPartSettings() === 'list'"
+                    (onClick)="selectedPartSettings.set('list')"
+                />
+            </div>
+            <app-inputs-separator title="General" />
+            <app-input-checkbox
+                label="Disabled"
+                [checked]="disabled()"
+                (onChange)="disabled.set($event); refreshLog();"
+            />
+            <app-input-checkbox
+                label="Opened"
+                [checked]="opened()"
+                (onChange)="opened.set($event); refreshLog();"
+            />
+            @if (selectedPartSettings() === 'button') {
+                <app-inputs-separator title="Button" />
+                <app-input-checkbox
+                    label="Reset button"
+                    [checked]="dropdown().api.settings.button.hasResetButton()"
+                    (onChange)="dropdown().api.settings.button.setResetButton($event); refreshLog();"
+                />
+            }
+            @else if (selectedPartSettings() === 'list') {
+                <app-inputs-separator title="List" />
+                <app-input-checkbox
+                    label="Scrollbar"
+                    [checked]="dropdown().api.settings.list.hasScrollbar()"
+                    (onChange)="dropdown().api.settings.list.setScrollbar($event); refreshLog();"
+                />
+                <app-input-checkbox
+                    label="Close on outside click"
+                    [checked]="dropdown().api.settings.list.closeOnOutsideClick()"
+                    (onChange)="dropdown().api.settings.list.setCloseOnOutsideClick($event); refreshLog();"
+                />
+                <app-input-checkbox
+                    label="Close on item select"
+                    [checked]="dropdown().api.settings.list.closeOnItemSelect()"
+                    (onChange)="dropdown().api.settings.list.setCloseOnItemSelect($event); refreshLog();"
+                />
+            }
+        </app-configuration-section>
+    </div>
+
+    <div class="render">
+        <mv-lib-dropdown-classic
+            #mvLibDropdownClassic
+            class="component"
+            [inputStyle]="style()"
+            [inputEffects]="effects()"
+            [inputSettings]="settings()"
+            [items]="items()"
+            [(selected)]="selectedItem"
+            [(opened)]="opened"
+            [disabled]="disabled()"
+            (onSelect)="refreshLastInteractionTime()"
+            (onToggle)="
+                opened.set($event.state);
+                refreshLastInteractionTime();
+                refreshLog();"
+        >
+            <ng-template mvLibDropdownPlaceholderTemplate>
+                Select a user
+            </ng-template>
+
+            <ng-template mvLibDropdownSelectedTemplate let-item>
+                {{ item.name }}
+            </ng-template>
+
+            <ng-template mvLibDropdownItemTemplate let-item>
+                <div
+                    [ngStyle]="{
+                        'display': 'flex',
+                        'align-items': 'center',
+                        'gap.px': 4,
+                        'width.%': 100,
+                        'text-align': 'left',
+                    }"
+                >
+                    <span class="material-symbols-outlined">
+                        {{ item.icon }}
+                    </span>
+                    <span>
+                        {{ item.name }}
+                    </span>
+                </div>
+            </ng-template>
+        </mv-lib-dropdown-classic>
+
+        <div class="log">
+            Last interaction time: {{ lastInteractionTime() }}<br/>
+            <pre>Selected: {{ selectedItem() | json }}</pre>
+            <app-input-button
+                label="Copy component code"
+                [width]="'25%'"
+                (onClick)="copyComponentCode()"
+            />
+            <pre #code>&lt;mv-lib-dropdown-classic{{ log() }}&gt;<br/>    MV Lib dropdown classic<br/>&lt;/mv-lib-dropdown-classic&gt;</pre>
+        </div>
     </div>
 </div>

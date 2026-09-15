@@ -1,0 +1,147 @@
+<div class="view">
+    <div class="configuration">
+        
+        <app-configuration-section title="Styles">
+            <app-input-color
+                label="Background color"
+                [value]="textbox().api.style.getBackgroundColor()"
+                (onChange)="textbox().api.style.setBackgroundColor($event); refreshLog();"
+            />
+            <app-dimensions-inputs
+                [dimensions]="textbox().api.style.getDimensions()"
+                (onChangeDimensions)="textbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
+            />
+            <app-outline-inputs
+                [outline]="textbox().api.style.getOutline()"
+                (onChangeOutline)="textbox().api.style.setOutline($event.key, $event.value); refreshLog();"
+            />
+            <app-font-inputs
+                [font]="textbox().api.style.getFont()"
+                (onChangeFont)="textbox().api.style.setFont($event.key, $event.value); refreshLog();"
+            />
+        </app-configuration-section>
+
+        <app-configuration-section title="Effects">
+            <app-tint-effect-inputs
+                title="Tint hover"
+                [enabled]="textbox().api.effects.has(mvLibEffects.hover.tint)"
+                [style]="textbox().api.effects.getStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="textbox().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+            />
+            <app-outline-blur-effect-inputs
+                title="Outline blur selected"
+                [enabled]="textbox().api.effects.has(mvLibEffects.selected.outlineBlur)"
+                [style]="textbox().api.effects.getStyle(mvLibEffects.selected.outlineBlur)"
+                (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
+                (onChangeStyle)="textbox().api.effects.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
+            />
+            <app-outline-solid-effect-inputs
+                title="Outline solid selected"
+                [enabled]="textbox().api.effects.has(mvLibEffects.selected.outlineSolid)"
+                [style]="textbox().api.effects.getStyle(mvLibEffects.selected.outlineSolid)"
+                (onChangeEnabled)="textbox().api.effects.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
+                (onChangeStyle)="textbox().api.effects.setStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
+            />
+        </app-configuration-section>
+
+        <app-configuration-section title="Settings">
+            <app-input-text
+                label="Input"
+                [value]="textbox().api.getValue()"
+                (onChange)="textbox().api.setValue($event); refreshLog();"
+            />
+            <app-input-checkbox
+                label="Selected"
+                [checked]="textbox().api.getSelected()"
+                (onChange)="textbox().api.setSelected($event); refreshLog();"
+            />
+            <app-input-checkbox
+                label="Disabled"
+                [checked]="textbox().api.getDisabled()"
+                (onChange)="textbox().api.setDisabled($event); refreshLog();"
+            />
+        </app-configuration-section>
+
+        <app-configuration-section title="Form controls">
+            <div class="form-state">
+                <span>{{ forms['default'].touched ? 'Touched' : 'Untouched' }}</span>
+                <span>{{ forms['default'].dirty ? 'Dirty' : 'Pristine' }}</span>
+                <span>{{ forms['default'].disabled ? 'Disabled' : (forms['default'].valid ? 'Valid' : 'Invalid') }}</span>
+            </div>
+            <app-input-checkbox
+                label="Required"
+                [checked]="required()"
+                [style.color]="forms['default'].get('input')?.hasError('required') ? 'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                (onChange)="
+                    required.set($event);
+                    updateFormValidator(
+                        'default',
+                        'input',
+                        'required',
+                        required() ? formValidators.required : null);
+                "
+            />
+            <app-input-checkbox
+                label="Only characters"
+                [checked]="onlyCharacters()"
+                [style.color]="forms['default'].get('input')?.hasError('pattern') ? 'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                (onChange)="
+                    onlyCharacters.set($event);
+                    updateFormValidator(
+                        'default',
+                        'input',
+                        'onlyCharacters',
+                        onlyCharacters() ? formValidators.pattern(onlyCharactersRegex) : null);
+                "
+            />
+            <app-input-number
+                label="Min length"
+                [value]="minLength()"
+                [style.color]="forms['default'].get('input')?.hasError('minlength') ? 'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                (onChange)="
+                    minLength.set($event);
+                    updateFormValidator(
+                        'default',
+                        'input',
+                        'minLength',
+                        minLength() == null ? null : formValidators.minLength(minLength()!));
+                "
+            />
+        </app-configuration-section>
+    </div>
+
+    <form
+        [formGroup]="forms['default']"
+        class="render"
+    >
+        <mv-lib-alphanumeric-textbox
+            #alphanumericTextbox
+            formControlName="input"
+            class="component"
+            [inputStyle]="style()"
+            [inputEffects]="effects()"
+            [inputSettings]="settings()"
+            (onValueChange)="
+                forms['default'].get('input')?.setValue($event.value);
+                refreshLastInteractionTime();
+                refreshLog();
+            "
+            (onSelect)="
+                refreshLastInteractionTime();
+                refreshLog();
+            "
+        />
+
+        <div class="log">
+            Last interaction time: {{ lastInteractionTime() }}<br/>
+            <pre>Input: {{ forms['default'].get('input')?.value }}</pre>
+            <app-input-button
+                label="Copy component code"
+                [width]="'25%'"
+                (onClick)="copyComponentCode()"
+            />
+            <pre #code>&lt;mv-lib-alphanumeric-textbox{{ log() }}/&gt;</pre>
+        </div>
+    </form>
+</div>

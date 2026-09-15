@@ -1,4 +1,4 @@
-import { BaseExampleComponent } from '../../base-example.component';
+import { OverviewDemoBaseComponent } from '../../_base/overview-demo.base';
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { INPUTS } from '../../../inputs/_inputs.export';
 import { MvLibButtonClassicComponent, MvLibButtonClassicStyle, MvLibButtonClassicEffects, MvLibButtonClassicSettings } from 'mv-lib';
@@ -10,11 +10,11 @@ import { MvLibButtonClassicComponent, MvLibButtonClassicStyle, MvLibButtonClassi
     INPUTS,
 ],
   templateUrl: './button-classic-example.component.html',
-  styleUrl: '../../example.component.scss',
+  styleUrl: '../../_base/overview-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class ButtonClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
+export class ButtonClassicExampleComponent extends OverviewDemoBaseComponent implements AfterViewInit {
 
   protected button = viewChild.required<MvLibButtonClassicComponent>('mvLibButtonClassic');
 

@@ -1,6 +1,5 @@
 .configuration {
   display: flex;
-  gap: 8px;
 }
 
 .configuration-section {
@@ -31,29 +30,6 @@
   flex-wrap: nowrap;
   gap: 4px;
   width: 100%;
-}
-
-:host ::ng-deep [buttons] {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: 4px;
-  width: 100%;
-}
-
-:host ::ng-deep [buttons] > * {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-:host ::ng-deep [buttons] > * .button,
-:host ::ng-deep [buttons] > * button {
-  width: 100%;
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .configuration-content {

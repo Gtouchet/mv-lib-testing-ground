@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
-import { BaseExampleComponent } from '../../base-example.component';
+import { OverviewDemoBaseComponent } from '../../_base/overview-demo.base';
 import { MvLibSwitchClassicComponent, MvLibSwitchClassicEffects, MvLibSwitchClassicSettings, MvLibSwitchClassicStyle } from 'mv-lib';
 import { INPUTS } from '../../../inputs/_inputs.export';
 
@@ -10,11 +10,11 @@ import { INPUTS } from '../../../inputs/_inputs.export';
     INPUTS,
   ],
   templateUrl: './switch-classic-example.component.html',
-  styleUrl: '../../example.component.scss',
+  styleUrl: '../../_base/overview-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class SwitchClassicExampleComponent extends BaseExampleComponent {
+export class SwitchClassicExampleComponent extends OverviewDemoBaseComponent {
 
   protected switch = viewChild.required<MvLibSwitchClassicComponent>('mvLibSwitchClassic');
   

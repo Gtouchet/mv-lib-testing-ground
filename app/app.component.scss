@@ -26,6 +26,7 @@
         var(--mv-lib-tertiary-color-5), 5%,
         var(--mv-lib-primary-color-1));
     border-right: 1px solid var(--mv-lib-tertiary-color-4);
+    overflow-y: auto;
 }
 
 .sidebar-title {
@@ -46,7 +47,6 @@
     min-width: 0;
     min-height: 0;
     height: 100%;
-    padding: 4px;
     box-sizing: border-box;
 }
 

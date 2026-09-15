@@ -1,0 +1,22 @@
+.content {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 20px 12px 0 0;
+	background: linear-gradient(to left,
+        var(--mv-lib-primary-color-1), 50%,
+        var(--mv-lib-primary-color-2));
+
+	> hr {
+		box-sizing: border-box;
+		width: 100%;
+	}
+}
+
+.top-icon {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+	cursor: pointer;
+}

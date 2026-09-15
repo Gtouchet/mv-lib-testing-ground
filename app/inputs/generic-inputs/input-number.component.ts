@@ -37,11 +37,11 @@ export class InputNumberComponent {
   public min = input<number | undefined>(undefined);
   public max = input<number | undefined>(undefined);
   public width = input<string | undefined>(undefined);
-  public onChange = output<number>();
+  public onChange = output<number | undefined>();
 
   protected handleInput(event: Event) {
     const input = event.target as HTMLInputElement;
     const value = !Number.isNaN(input.valueAsNumber) ? input.valueAsNumber : undefined;
-    this.onChange.emit(value ?? 0);
+    this.onChange.emit(value);
   }
 }

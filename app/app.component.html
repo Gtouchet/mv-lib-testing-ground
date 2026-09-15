@@ -9,7 +9,6 @@
                 MV Lib
             </h2>
 
-            <!-- Light / Dark themes -->
             <mv-lib-switch-classic
                 [inputStyle]="switchStyle"
                 [inputEffects]="switchEffects"
@@ -18,7 +17,7 @@
             />
         </div>
 
-        <hr [style.width.%]="100"/>
+        <hr [style.width.%]="95"/>
 
         <section class="treeview-section">
             <mv-lib-treeview-classic
@@ -28,9 +27,8 @@
                 <ng-template
                     mvLibTreeviewListTemplate
                     let-item
-                    let-depth="depth"
                 >
-                    @if (depth === 0) {
+                    @if (item.type === 'text') {
                         <div class="treeview-group-label">
                             <span class="material-symbols-outlined">
                                 {{ item.icon }}
@@ -60,9 +58,8 @@
                 <ng-template
                     mvLibTreeviewListTemplate
                     let-item
-                    let-depth="depth"
                 >
-                    @if (depth === 0) {
+                    @if (item.type === 'text') {
                         <div class="treeview-group-label">
                             <span class="material-symbols-outlined">
                                 {{ item.icon }}
@@ -91,10 +88,9 @@
                 All themes
                 <ng-template
                     mvLibTreeviewListTemplate
-                    let-depth="depth"
                     let-item
                 >
-                    @if (depth === 0) {
+                    @if (item.type === 'text') {
                         <div
                             [ngStyle]="{
                                 'display': 'flex',
@@ -108,11 +104,11 @@
                             {{ item.label }}
                         </div>
                     }
-                    @else if (depth === 1) {
+                    @else {
                         <mv-lib-button-classic
                             [inputStyle]="treeviewButtonStyle"
                             [inputEffects]="treeviewButtonEffects"
-                            (onClick)="onThemeSelect(item.themeName, $event.event)"
+                            (onClick)="onThemeSelect(item.label, $event.event)"
                         >
                             <div class="treeview-action-content">
                                 <span class="material-symbols-outlined">

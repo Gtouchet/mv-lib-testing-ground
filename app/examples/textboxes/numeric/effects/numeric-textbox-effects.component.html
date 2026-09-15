@@ -1,0 +1,239 @@
+<div class="layout">
+    <div id="top" class="content">
+        <section class="presentation">
+            <span class="title">
+                Numeric textbox effects
+            </span>
+            <span class="description">
+                Customize the visual feedback of a numeric textbox for hovered and selected states.
+            </span>
+            <span class="last-updated">
+                Last updated: 12/09/2026
+            </span>
+        </section>
+
+        <section id="hovered" class="section">
+            <span class="title">
+                Hover effects
+            </span>
+            <span class="description">
+                Customize the visual feedback displayed when hovering over the numeric textbox.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <app-tint-effect-inputs
+                                [enabled]="_textboxHover().api.effects.has(mvLibEffects.hover.tint)"
+                                [style]="_textboxHover().api.effects.getStyle(mvLibEffects.hover.tint)"
+                                (onChangeEnabled)="_textboxHover().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog('hovered');"
+                                (onChangeStyle)="_textboxHover().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog('hovered');"
+                            />
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button-classic
+                                    [content]="'Copy effects'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('hovered')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['hovered'] }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textboxHover
+                    class="component"
+                    [inputStyle]="style()"
+                    [inputEffects]="{
+                        classes: [
+                            mvLibEffects.hover.tint.class,
+                        ],
+                    }"
+                    [inputSettings]="{
+                        stepperButtons: {
+                            displayed: false,
+                        }
+                    }"
+                    [value]="0"
+                />
+            </div>
+        </section>
+
+        <section id="selected" class="section">
+            <span class="title">
+                Selected effects
+            </span>
+            <span class="description">
+                Customize the visual feedback displayed when the numeric textbox is selected.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <app-outline-blur-effect-inputs
+                                [enabled]="_textboxSelected().api.effects.has(mvLibEffects.selected.outlineBlur)"
+                                [style]="_textboxSelected().api.effects.getStyle(mvLibEffects.selected.outlineBlur)"
+                                (onChangeEnabled)="_textboxSelected().api.effects.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog('selected');"
+                                (onChangeStyle)="_textboxSelected().api.effects.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog('selected');"
+                            />
+                            <app-outline-solid-effect-inputs
+                                [enabled]="_textboxSelected().api.effects.has(mvLibEffects.selected.outlineSolid)"
+                                [style]="_textboxSelected().api.effects.getStyle(mvLibEffects.selected.outlineSolid)"
+                                (onChangeEnabled)="_textboxSelected().api.effects.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog('selected');"
+                                (onChangeStyle)="_textboxSelected().api.effects.setStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog('selected');"
+                            />
+                            <app-tint-effect-inputs
+                                [enabled]="_textboxSelected().api.effects.has(mvLibEffects.selected.tint)"
+                                [style]="_textboxSelected().api.effects.getStyle(mvLibEffects.selected.tint)"
+                                (onChangeEnabled)="_textboxSelected().api.effects.toggle(mvLibEffects.selected.tint, $event); refreshLog('selected');"
+                                (onChangeStyle)="_textboxSelected().api.effects.setStyle(mvLibEffects.selected.tint, $event); refreshLog('selected');"
+                            />
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button-classic
+                                    [content]="'Copy effects'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('selected')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['selected'] }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textboxSelected
+                    class="component"
+                    [inputStyle]="style()"
+                    [inputEffects]="{
+                        classes: [
+                            mvLibEffects.selected.outlineSolid.class,
+                        ],
+                    }"
+                    [inputSettings]="{
+                        stepperButtons: {
+                            displayed: false,
+                        }
+                    }"
+                    [value]="0"
+                />
+            </div>
+        </section>
+
+        <section id="complete" class="section">
+            <span class="title">
+                Complete effects configuration
+            </span>
+            <span class="description">
+                Combine and customize all effects available for the numeric textbox.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="selection-buttons">
+                                <mv-lib-button-classic
+                                    [content]="'Hovered'"
+                                    [inputStyle]="selectionButton.style"
+                                    [inputEffects]="selectionButton.effects"
+                                    [selected]="textboxCompleteSelected() === 'hovered'"
+                                    (onClick)="textboxCompleteSelected.set('hovered')"
+                                />
+                                <mv-lib-button-classic
+                                    [content]="'Selected'"
+                                    [inputStyle]="selectionButton.style"
+                                    [inputEffects]="selectionButton.effects"
+                                    [selected]="textboxCompleteSelected() === 'selected'"
+                                    (onClick)="textboxCompleteSelected.set('selected')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            @if (textboxCompleteSelected() === 'hovered') {
+                                <app-tint-effect-inputs
+                                    [enabled]="_textboxComplete().api.effects.has(mvLibEffects.hover.tint)"
+                                    [style]="_textboxComplete().api.effects.getStyle(mvLibEffects.hover.tint)"
+                                    (onChangeEnabled)="_textboxComplete().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog('complete');"
+                                    (onChangeStyle)="_textboxComplete().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog('complete');"
+                                />
+                            }
+                            @else if (textboxCompleteSelected() === 'selected') {
+                                <app-outline-blur-effect-inputs
+                                    [enabled]="_textboxComplete().api.effects.has(mvLibEffects.selected.outlineBlur)"
+                                    [style]="_textboxComplete().api.effects.getStyle(mvLibEffects.selected.outlineBlur)"
+                                    (onChangeEnabled)="_textboxComplete().api.effects.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog('complete');"
+                                    (onChangeStyle)="_textboxComplete().api.effects.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog('complete');"
+                                />
+                                <app-outline-solid-effect-inputs
+                                    [enabled]="_textboxComplete().api.effects.has(mvLibEffects.selected.outlineSolid)"
+                                    [style]="_textboxComplete().api.effects.getStyle(mvLibEffects.selected.outlineSolid)"
+                                    (onChangeEnabled)="_textboxComplete().api.effects.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog('complete');"
+                                    (onChangeStyle)="_textboxComplete().api.effects.setStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog('complete');"
+                                />
+                                <app-tint-effect-inputs
+                                    [enabled]="_textboxComplete().api.effects.has(mvLibEffects.selected.tint)"
+                                    [style]="_textboxComplete().api.effects.getStyle(mvLibEffects.selected.tint)"
+                                    (onChangeEnabled)="_textboxComplete().api.effects.toggle(mvLibEffects.selected.tint, $event); refreshLog('complete');"
+                                    (onChangeStyle)="_textboxComplete().api.effects.setStyle(mvLibEffects.selected.tint, $event); refreshLog('complete');"
+                                />
+                            }
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button-classic
+                                    [content]="'Copy style'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('complete')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['complete'] }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textboxComplete
+                    class="component"
+                    [inputStyle]="style()"
+                    [inputEffects]="{
+                        classes: [
+                            mvLibEffects.hover.tint.class,
+                            mvLibEffects.selected.outlineSolid.class,
+                        ],
+                    }"
+                    [inputSettings]="{
+                        stepperButtons: {
+                            displayed: false,
+                        }
+                    }"
+                    [value]="0"
+                />
+            </div>
+        </section>
+    </div>
+
+    <app-specific-demo-sidebar
+        [contents]="[
+            { label: 'Hovered', goto: 'hovered' },
+            { label: 'Selected', goto: 'selected' },
+            { separator: true },
+            { label: 'Complete', goto: 'complete' },
+        ]"
+    />
+</div>

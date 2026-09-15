@@ -17,22 +17,24 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
                 [ngStyle]="{
                     'flex': '1',
                     'margin': '0',
-                    'margin-right.px': 8,
+                    'margin-right.px': title() ? 8 : 0,
                 }"
             />
             <div style="position: relative; top: 2px;">
                 <ng-content />
             </div>
-            <b>
-                {{ title() ?? 'Inputs Separator' }}
-            </b>
-            <hr
-                [ngStyle]="{
-                    'flex': '1',
-                    'margin': '0',
-                    'margin-left.px': 8,
-                }"
-            />
+            @if (title()) {
+                <b>
+                    {{ title() }}
+                </b>
+                <hr
+                    [ngStyle]="{
+                        'flex': '1',
+                        'margin': '0',
+                        'margin-left.px': 8,
+                    }"
+                />
+            }
         </div>
     `,
     styles: [`
@@ -44,5 +46,5 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
 })
 export class InputsSeparatorComponent {
     
-    public title = input<string>();
+    public title = input<string | undefined>(undefined);
 }

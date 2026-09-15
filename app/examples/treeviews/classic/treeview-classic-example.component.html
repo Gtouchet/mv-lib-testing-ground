@@ -1,165 +1,167 @@
-<div class="configuration">
-    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
-        <div buttons>
-            <app-input-button
-                label="General"
-                [selected]="selectedPartStyle() === 'general'"
-                (onClick)="selectedPartStyle.set('general')"
-            />
-            <app-input-button
-                label="Primary toggle"
-                [selected]="selectedPartStyle() === 'primary toggle'"
-                (onClick)="selectedPartStyle.set('primary toggle')"
-            />
-            <app-input-button
-                label="Nested toggles"
-                [selected]="selectedPartStyle() === 'nested toggles'"
-                (onClick)="selectedPartStyle.set('nested toggles')"
-            />
-            <app-input-button
-                label="List"
-                [selected]="selectedPartStyle() === 'list'"
-                (onClick)="selectedPartStyle.set('list')"
-            />
-        </div>
-        @if (selectedPartStyle() === 'general') {
-            <app-inputs-separator title="Dimensions" />
-            <app-input-text
-                label="Width"
-                [value]="treeview().api.style.getWidth()"
-                (onChange)="treeview().api.style.setWidth($event); refreshLog();"
-            />
-        }
-        @else if (selectedPartStyle() === 'primary toggle') {
-            <app-font-inputs
-                [font]="treeview().api.style.primaryToggle.getFont()"
-                (onChangeFont)="treeview().api.style.primaryToggle.setFont($event.key, $event.value); refreshLog();"
-            />
-        }
-        @else if (selectedPartStyle() === 'nested toggles') {
-            <app-inputs-separator title="General" />
-            <div class="inputs-group">
-                Offset X
-                <app-input-text
-                    [value]="treeview().api.style.nestedToggles.getOffsetX()"
-                    (onChange)="treeview().api.style.nestedToggles.setOffsetX($event); refreshLog();"
+<div class="view">
+    <div class="configuration">
+        <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+            <div buttons>
+                <app-input-button
+                    label="General"
+                    [selected]="selectedPartStyle() === 'general'"
+                    (onClick)="selectedPartStyle.set('general')"
                 />
-                Gap
-                <app-input-text
-                    [value]="treeview().api.style.nestedToggles.getGap()"
-                    (onChange)="treeview().api.style.nestedToggles.setGap($event); refreshLog();"
+                <app-input-button
+                    label="Primary toggle"
+                    [selected]="selectedPartStyle() === 'primary toggle'"
+                    (onClick)="selectedPartStyle.set('primary toggle')"
+                />
+                <app-input-button
+                    label="Nested toggles"
+                    [selected]="selectedPartStyle() === 'nested toggles'"
+                    (onClick)="selectedPartStyle.set('nested toggles')"
+                />
+                <app-input-button
+                    label="List"
+                    [selected]="selectedPartStyle() === 'list'"
+                    (onClick)="selectedPartStyle.set('list')"
                 />
             </div>
-        }
-        @else if (selectedPartStyle() === 'list') {
-            <app-inputs-separator title="Dimensions" />
-            <app-input-text
-                label="Height"
-                [value]="treeview().api.style.list.getHeight()"
-                (onChange)="treeview().api.style.list.setHeight($event); refreshLog();"
-            />
-        }
-    </app-configuration-section>
-
-    <app-configuration-section title="Effects">
-
-    </app-configuration-section>
-
-    <app-configuration-section title="Settings">
-        <app-input-checkbox
-            [checked]="disabled()"
-            label="Disabled"
-            (onChange)="disabled.set($event); refreshLog();"
-        />
-        <app-input-checkbox
-            [checked]="settings().toggleAllButton"
-            label="Toggle all button"
-            (onChange)="settings.set({ ...settings(), toggleAllButton: $event }); refreshLog();"
-        />
-    </app-configuration-section>
-</div>
-
-<div class="visual">
-    <mv-lib-treeview-classic
-        #mvLibTreeviewClassic
-        class="component"
-        [ngStyle]="{
-            'align-items': 'flex-start',
-            'padding-top': '50px',
-        }"
-        [inputStyle]="style()"
-        [inputEffects]="effects()"
-        [inputSettings]="settings()"
-        [items]="users()"
-        [disabled]="disabled()"
-        (onToggle)="
-            handleToggle($event);
-            refreshLastInteractionTime();
-            refreshLog();"
-    >
-        User contacts
-        <ng-template
-            mvLibTreeviewListTemplate
-            let-item
-            let-depth="depth"
-        >
-            @if (depth === 0) {
-                <div
-                    [ngStyle]="{
-                        'display': 'flex',
-                        'align-items': 'center',
-                        'gap': '5px',
-                    }"
-                >
-                    <span class="material-symbols-outlined">
-                        person
-                    </span>
-                    {{ item.name }}
+            @if (selectedPartStyle() === 'general') {
+                <app-inputs-separator title="Dimensions" />
+                <app-input-text
+                    label="Width"
+                    [value]="treeview().api.style.getWidth()"
+                    (onChange)="treeview().api.style.setWidth($event); refreshLog();"
+                />
+            }
+            @else if (selectedPartStyle() === 'primary toggle') {
+                <app-font-inputs
+                    [font]="treeview().api.style.primaryToggle.getFont()"
+                    (onChangeFont)="treeview().api.style.primaryToggle.setFont($event.key, $event.value); refreshLog();"
+                />
+            }
+            @else if (selectedPartStyle() === 'nested toggles') {
+                <app-inputs-separator title="General" />
+                <div class="inputs-group">
+                    Offset X
+                    <app-input-text
+                        [value]="treeview().api.style.nestedToggles.getOffsetX()"
+                        (onChange)="treeview().api.style.nestedToggles.setOffsetX($event); refreshLog();"
+                    />
+                    Gap
+                    <app-input-text
+                        [value]="treeview().api.style.nestedToggles.getGap()"
+                        (onChange)="treeview().api.style.nestedToggles.setGap($event); refreshLog();"
+                    />
                 </div>
             }
-            @if (depth === 1) {
-                <mv-lib-button-classic
-                    [inputStyle]="{
-                        dimensions: {
-                            width: '100%',
-                            height: '25px',
-                        },
-                    }"
-                    [inputEffects]="{
-                        classes: [
-                            'mv-lib-tint-hover',
-                            'mv-lib-push-click',
-                        ]
-                    }"
-                >
+            @else if (selectedPartStyle() === 'list') {
+                <app-inputs-separator title="Dimensions" />
+                <app-input-text
+                    label="Height"
+                    [value]="treeview().api.style.list.getHeight()"
+                    (onChange)="treeview().api.style.list.setHeight($event); refreshLog();"
+                />
+            }
+        </app-configuration-section>
+
+        <app-configuration-section title="Effects">
+
+        </app-configuration-section>
+
+        <app-configuration-section title="Settings">
+            <app-input-checkbox
+                [checked]="disabled()"
+                label="Disabled"
+                (onChange)="disabled.set($event); refreshLog();"
+            />
+            <app-input-checkbox
+                [checked]="settings().toggleAllButton"
+                label="Toggle all button"
+                (onChange)="settings.set({ ...settings(), toggleAllButton: $event }); refreshLog();"
+            />
+        </app-configuration-section>
+    </div>
+
+    <div class="render">
+        <mv-lib-treeview-classic
+            #mvLibTreeviewClassic
+            class="component"
+            [ngStyle]="{
+                'align-items': 'flex-start',
+                'padding-top': '50px',
+            }"
+            [inputStyle]="style()"
+            [inputEffects]="effects()"
+            [inputSettings]="settings()"
+            [items]="users()"
+            [disabled]="disabled()"
+            (onToggle)="
+                handleToggle($event);
+                refreshLastInteractionTime();
+                refreshLog();"
+        >
+            User contacts
+            <ng-template
+                mvLibTreeviewListTemplate
+                let-item
+                let-depth="depth"
+            >
+                @if (depth === 0) {
                     <div
                         [ngStyle]="{
                             'display': 'flex',
                             'align-items': 'center',
                             'gap': '5px',
-                            'width.%': 100,
-                            'text-align': 'left',
                         }"
                     >
                         <span class="material-symbols-outlined">
-                            {{ item.type }}
+                            person
                         </span>
-                        {{ item.value }}
+                        {{ item.name }}
                     </div>
-                </mv-lib-button-classic>
-            }
-        </ng-template>
-    </mv-lib-treeview-classic>
+                }
+                @if (depth === 1) {
+                    <mv-lib-button-classic
+                        [inputStyle]="{
+                            dimensions: {
+                                width: '100%',
+                                height: '25px',
+                            },
+                        }"
+                        [inputEffects]="{
+                            classes: [
+                                'mv-lib-tint-hover',
+                                'mv-lib-push-click',
+                            ]
+                        }"
+                    >
+                        <div
+                            [ngStyle]="{
+                                'display': 'flex',
+                                'align-items': 'center',
+                                'gap': '5px',
+                                'width.%': 100,
+                                'text-align': 'left',
+                            }"
+                        >
+                            <span class="material-symbols-outlined">
+                                {{ item.type }}
+                            </span>
+                            {{ item.value }}
+                        </div>
+                    </mv-lib-button-classic>
+                }
+            </ng-template>
+        </mv-lib-treeview-classic>
 
-    <div class="log">
-        Last interaction time: {{ lastInteractionTime() }}<br/>
-        Last event: {{ lastEvent() }}
-        <app-input-button
-            label="Copy component code"
-            [width]="'25%'"
-            [style.margin-top.px]="10"
-            (onClick)="copyComponentCode()"
-        />
-        <pre #code>&lt;mv-lib-treeview-classic{{ log() }}&gt;<br/>    MV Lib treeview classic<br/>&lt;/mv-lib-treeview-classic&gt;</pre>
+        <div class="log">
+            Last interaction time: {{ lastInteractionTime() }}<br/>
+            Last event: {{ lastEvent() }}
+            <app-input-button
+                label="Copy component code"
+                [width]="'25%'"
+                [style.margin-top.px]="10"
+                (onClick)="copyComponentCode()"
+            />
+            <pre #code>&lt;mv-lib-treeview-classic{{ log() }}&gt;<br/>    MV Lib treeview classic<br/>&lt;/mv-lib-treeview-classic&gt;</pre>
+        </div>
     </div>
 </div>

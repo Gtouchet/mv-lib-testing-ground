@@ -126,123 +126,125 @@
     </mv-lib-button-classic>
 </ng-template>
 
-<div class="configuration">
-    <app-configuration-section [title]="'Styles for ' + selectedStyleConfiguration().type">
-        <div buttons class="type-buttons">
-            <app-input-button
-                label="Success"
-                [selected]="selectedStyleConfiguration().type === 'success'"
-                (onClick)="selectStyle('success')"
-            />
-            <app-input-button
-                label="Warning"
-                [selected]="selectedStyleConfiguration().type === 'warning'"
-                (onClick)="selectStyle('warning')"
-            />
-            <app-input-button
-                label="Error"
-                [selected]="selectedStyleConfiguration().type === 'error'"
-                (onClick)="selectStyle('error')"
-            />
-            <app-input-button
-                label="Info"
-                [selected]="selectedStyleConfiguration().type === 'info'"
-                (onClick)="selectStyle('info')"
-            />
-        </div>
-        <ng-container *ngTemplateOutlet="stylesConfiguration; context: {
-            type: selectedStyleConfiguration().type,
-            localConfiguration: selectedStyleConfiguration().localConfiguration,
-        }" />
-    </app-configuration-section>
-    
-    <app-configuration-section [title]="'Effects for ' + selectedEffectConfiguration().type">
-        <div buttons class="type-buttons">
-            <app-input-button
-                label="Success"
-                [selected]="selectedEffectConfiguration().type === 'success'"
-                (onClick)="selectEffect('success')"
-            />
-            <app-input-button
-                label="Warning"
-                [selected]="selectedEffectConfiguration().type === 'warning'"
-                (onClick)="selectEffect('warning')"
-            />
-            <app-input-button
-                label="Error"
-                [selected]="selectedEffectConfiguration().type === 'error'"
-                (onClick)="selectEffect('error')"
-            />
-            <app-input-button
-                label="Info"
-                [selected]="selectedEffectConfiguration().type === 'info'"
-                (onClick)="selectEffect('info')"
-            />
-        </div>
-        <ng-container *ngTemplateOutlet="effectsConfiguration; context: {
-            type: selectedEffectConfiguration().type,
-        }" />
-    </app-configuration-section>
+<div class="view">
+    <div class="configuration">
+        <app-configuration-section [title]="'Styles for ' + selectedStyleConfiguration().type">
+            <div buttons class="type-buttons">
+                <app-input-button
+                    label="Success"
+                    [selected]="selectedStyleConfiguration().type === 'success'"
+                    (onClick)="selectStyle('success')"
+                />
+                <app-input-button
+                    label="Warning"
+                    [selected]="selectedStyleConfiguration().type === 'warning'"
+                    (onClick)="selectStyle('warning')"
+                />
+                <app-input-button
+                    label="Error"
+                    [selected]="selectedStyleConfiguration().type === 'error'"
+                    (onClick)="selectStyle('error')"
+                />
+                <app-input-button
+                    label="Info"
+                    [selected]="selectedStyleConfiguration().type === 'info'"
+                    (onClick)="selectStyle('info')"
+                />
+            </div>
+            <ng-container *ngTemplateOutlet="stylesConfiguration; context: {
+                type: selectedStyleConfiguration().type,
+                localConfiguration: selectedStyleConfiguration().localConfiguration,
+            }" />
+        </app-configuration-section>
+        
+        <app-configuration-section [title]="'Effects for ' + selectedEffectConfiguration().type">
+            <div buttons class="type-buttons">
+                <app-input-button
+                    label="Success"
+                    [selected]="selectedEffectConfiguration().type === 'success'"
+                    (onClick)="selectEffect('success')"
+                />
+                <app-input-button
+                    label="Warning"
+                    [selected]="selectedEffectConfiguration().type === 'warning'"
+                    (onClick)="selectEffect('warning')"
+                />
+                <app-input-button
+                    label="Error"
+                    [selected]="selectedEffectConfiguration().type === 'error'"
+                    (onClick)="selectEffect('error')"
+                />
+                <app-input-button
+                    label="Info"
+                    [selected]="selectedEffectConfiguration().type === 'info'"
+                    (onClick)="selectEffect('info')"
+                />
+            </div>
+            <ng-container *ngTemplateOutlet="effectsConfiguration; context: {
+                type: selectedEffectConfiguration().type,
+            }" />
+        </app-configuration-section>
 
-    <app-configuration-section [title]="'Settings for ' + selectedSettingsConfiguration().type">
-        <div buttons class="type-buttons">
-            <app-input-button
-                label="Success"
-                [selected]="selectedSettingsConfiguration().type === 'success'"
-                (onClick)="selectSettings('success')"
+        <app-configuration-section [title]="'Settings for ' + selectedSettingsConfiguration().type">
+            <div buttons class="type-buttons">
+                <app-input-button
+                    label="Success"
+                    [selected]="selectedSettingsConfiguration().type === 'success'"
+                    (onClick)="selectSettings('success')"
+                />
+                <app-input-button
+                    label="Warning"
+                    [selected]="selectedSettingsConfiguration().type === 'warning'"
+                    (onClick)="selectSettings('warning')"
+                />
+                <app-input-button
+                    label="Error"
+                    [selected]="selectedSettingsConfiguration().type === 'error'"
+                    (onClick)="selectSettings('error')"
+                />
+                <app-input-button
+                    label="Info"
+                    [selected]="selectedSettingsConfiguration().type === 'info'"
+                    (onClick)="selectSettings('info')"
+                />
+            </div>
+            <app-inputs-separator title="General" />
+            Position
+            <app-input-radio
+                [values]="['top-left', 'top-right', 'bottom-left', 'bottom-right']"
+                [selected]="toastService.configuration().position"
+                (onChange)="toastService.configuration().position = $any($event)"
             />
-            <app-input-button
-                label="Warning"
-                [selected]="selectedSettingsConfiguration().type === 'warning'"
-                (onClick)="selectSettings('warning')"
+            <app-input-checkbox
+                label="Adapt width"
+                [checked]="toastService.configuration().adaptWidth"
+                (onChange)="toastService.setAdaptWidth($event)"
             />
-            <app-input-button
-                label="Error"
-                [selected]="selectedSettingsConfiguration().type === 'error'"
-                (onClick)="selectSettings('error')"
-            />
-            <app-input-button
-                label="Info"
-                [selected]="selectedSettingsConfiguration().type === 'info'"
-                (onClick)="selectSettings('info')"
-            />
-        </div>
-        <app-inputs-separator title="General" />
-        Position
-        <app-input-radio
-            [values]="['top-left', 'top-right', 'bottom-left', 'bottom-right']"
-            [selected]="toastService.configuration().position"
-            (onChange)="toastService.configuration().position = $any($event)"
-        />
-        <app-input-checkbox
-            label="Adapt width"
-            [checked]="toastService.configuration().adaptWidth"
-            (onChange)="toastService.setAdaptWidth($event)"
-        />
-        <ng-container *ngTemplateOutlet="settingsConfiguration; context: {
-            type: selectedSettingsConfiguration().type,
-        }" />
-    </app-configuration-section>
-</div>
-
-<div class="visual">
-    <div
-        class="component"
-        [style.gap.px]="8"
-    >
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'success', localConfiguration: success() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'warning', localConfiguration: warning() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'error', localConfiguration: error() }" />
-        <ng-container *ngTemplateOutlet="toastButton; context: { type: 'info', localConfiguration: info() }" />
+            <ng-container *ngTemplateOutlet="settingsConfiguration; context: {
+                type: selectedSettingsConfiguration().type,
+            }" />
+        </app-configuration-section>
     </div>
 
-    <div class="log">
-        Last toast time: {{ lastInteractionTime() }}<br/>
-        <app-input-button
-            label="Copy configuration"
-            [width]="'25%'"
-            [style.margin-top.px]="10"
-            (onClick)="copyToastConfiguration()"
-        />
-        <pre #code>const configuration: MvLibToastServiceConfiguration = {{ toastService.configuration() | json }};</pre>
+    <div class="render">
+        <div
+            class="component"
+            [style.gap.px]="8"
+        >
+            <ng-container *ngTemplateOutlet="toastButton; context: { type: 'success', localConfiguration: success() }" />
+            <ng-container *ngTemplateOutlet="toastButton; context: { type: 'warning', localConfiguration: warning() }" />
+            <ng-container *ngTemplateOutlet="toastButton; context: { type: 'error', localConfiguration: error() }" />
+            <ng-container *ngTemplateOutlet="toastButton; context: { type: 'info', localConfiguration: info() }" />
+        </div>
+
+        <div class="log">
+            Last toast time: {{ lastInteractionTime() }}<br/>
+            <app-input-button
+                label="Copy configuration"
+                [width]="'25%'"
+                [style.margin-top.px]="10"
+                (onClick)="copyToastConfiguration()"
+            />
+            <pre #code>const configuration: MvLibToastServiceConfiguration = {{ toastService.configuration() | json }};</pre>
+    </div>
 </div>

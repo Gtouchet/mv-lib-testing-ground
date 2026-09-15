@@ -1,0 +1,59 @@
+<div class="layout">
+    <div id="top" class="content">
+        <section class="presentation">
+            <span class="title">
+                Numeric textbox events
+            </span>
+            <span class="description">
+                Explore the events emitted when interacting with a numeric textbox and its stepper buttons.
+            </span>
+            <span class="last-updated">
+                Last updated: 12/09/2026
+            </span>
+        </section>
+
+        <section id="events" class="section">
+            <span class="title">
+                Event log
+            </span>
+            <span class="description">
+                Interact with the numeric textbox to observe selection, value change, click, and hold events.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <app-inputs-separator title="Selected Events"/>
+                            @for (eventLog of eventLogs(); track eventLog) {
+                                <div>
+                                    {{ eventLog.index }} - {{ eventLog.event }}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textbox
+                    class="component"
+                    [inputStyle]="style()"
+                    [inputEffects]="{
+                        classes: [
+                            mvLibEffects.selected.outlineSolid.class,
+                        ],
+                    }"
+                    (onSelect)="addEventLog(`Textbox ${$event.selected ? 'selected' : 'deselected'}`)"
+                    (onValueChange)="addEventLog(`Textbox value changed to ${$event.value}`)"
+                    (onStepperButtonClick)="addEventLog(`${$event.direction === 'increment' ? 'Increment' : 'Decrement'} button clicked`)"
+                    (onHoldStart)="addEventLog(`${$event.direction === 'increment' ? 'Increment' : 'Decrement'} hold started`)"
+                    (onHoldEnd)="addEventLog(`${$event.direction === 'increment' ? 'Increment' : 'Decrement'} hold ended`)"
+                />
+            </div>
+        </section>
+    </div>
+
+    <app-specific-demo-sidebar
+        [contents]="[
+
+        ]"
+    />
+</div>

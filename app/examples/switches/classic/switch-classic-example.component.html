@@ -1,175 +1,177 @@
-<div class="configuration">
-    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
-        <div buttons class="type-buttons">
-            <app-input-button
-                label="Track"
-                [selected]="selectedPartStyle() === 'track'"
-                (onClick)="selectedPartStyle.set('track')"
+<div class="view">
+    <div class="configuration">
+        <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+            <div buttons class="type-buttons">
+                <app-input-button
+                    label="Track"
+                    [selected]="selectedPartStyle() === 'track'"
+                    (onClick)="selectedPartStyle.set('track')"
+                />
+                <app-input-button
+                    label="Cursor"
+                    [selected]="selectedPartStyle() === 'cursor'"
+                    (onClick)="selectedPartStyle.set('cursor')"
+                />
+            </div>
+            @if (selectedPartStyle() === 'track') {
+                <div class="inputs-group">
+                    Width
+                    <app-input-text
+                        [value]="switch().api.style.track.getWidth()"
+                        (onChange)="switch().api.style.track.setWidth($event); refreshLog();"
+                    />
+                    Height
+                    <app-input-text
+                        [value]="switch().api.style.track.getHeight()"
+                        (onChange)="switch().api.style.track.setHeight($event); refreshLog();"
+                    />
+                </div>
+                <div class="inputs-group">
+                    Color on
+                    <app-input-color
+                        [value]="switch().api.style.track.getColorOn()"
+                        (onChange)="switch().api.style.track.setColorOn($event); refreshLog();"
+                    />
+                    Color off
+                    <app-input-color
+                        [value]="switch().api.style.track.getColorOff()"
+                        (onChange)="switch().api.style.track.setColorOff($event); refreshLog();"
+                    />
+                </div>
+
+            }
+            @else if (selectedPartStyle() === 'cursor') {
+                <div class="inputs-group">
+                    Color on
+                    <app-input-color
+                        [value]="switch().api.style.cursor.getColorOn()"
+                        (onChange)="switch().api.style.cursor.setColorOn($event); refreshLog();"
+                    />
+                    Color off
+                    <app-input-color
+                        [value]="switch().api.style.cursor.getColorOff()"
+                        (onChange)="switch().api.style.cursor.setColorOff($event); refreshLog();"
+                    />
+                </div>
+                <div class="inputs-group">
+                    Icon on
+                    <app-input-text
+                        [value]="switch().api.style.cursor.getIconOn()"
+                        (onChange)="switch().api.style.cursor.setIconOn($event); refreshLog();"
+                    />
+                    Icon off
+                    <app-input-text
+                        [value]="switch().api.style.cursor.getIconOff()"
+                        (onChange)="switch().api.style.cursor.setIconOff($event); refreshLog();"
+                    />
+                </div>
+                <div class="inputs-group">
+                    Icon color on
+                    <app-input-color
+                        [value]="switch().api.style.cursor.getIconColorOn()"
+                        (onChange)="switch().api.style.cursor.setIconColorOn($event); refreshLog();"
+                    />
+                    Icon color off
+                    <app-input-color
+                        [value]="switch().api.style.cursor.getIconColorOff()"
+                        (onChange)="switch().api.style.cursor.setIconColorOff($event); refreshLog();"
+                    />
+                </div>
+            }
+        </app-configuration-section>
+
+        <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
+            <div buttons class="type-buttons">
+                <app-input-button
+                    label="Track"
+                    [selected]="selectedPartEffects() === 'track'"
+                    (onClick)="selectedPartEffects.set('track')"
+                />
+                <app-input-button
+                    label="Cursor"
+                    [selected]="selectedPartEffects() === 'cursor'"
+                    (onClick)="selectedPartEffects.set('cursor')"
+                />
+            </div>
+            @if (selectedPartEffects() === 'track') {
+                <app-shadow-effect-inputs
+                    title="Shadow idle"
+                    [enabled]="switch().api.effects.track.has(mvLibEffects.idle.shadow)"
+                    [style]="switch().api.effects.track.getStyle(mvLibEffects.idle.shadow)"
+                    (onChangeEnabled)="switch().api.effects.track.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                    (onChangeStyle)="switch().api.effects.track.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                />
+                <app-tint-effect-inputs
+                    title="Tint hover"
+                    [enabled]="switch().api.effects.track.has(mvLibEffects.hover.tint)"
+                    [style]="switch().api.effects.track.getStyle(mvLibEffects.hover.tint)"
+                    (onChangeEnabled)="switch().api.effects.track.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                    (onChangeStyle)="switch().api.effects.track.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                />
+            }
+            @else if (selectedPartEffects() === 'cursor') {
+                <app-resize-hover-inputs
+                    title="Resize hover"
+                    [enabled]="switch().api.effects.cursor.has(mvLibEffects.hover.resize)"
+                    [style]="switch().api.effects.cursor.getStyle(mvLibEffects.hover.resize)"
+                    (onChangeEnabled)="switch().api.effects.cursor.toggle(mvLibEffects.hover.resize, $event); refreshLog();"
+                    (onChangeStyle)="switch().api.effects.cursor.setStyle(mvLibEffects.hover.resize, $event); refreshLog();"
+                />
+                <app-tint-effect-inputs
+                    title="Tint hover"
+                    [enabled]="switch().api.effects.cursor.has(mvLibEffects.hover.tint)"
+                    [style]="switch().api.effects.cursor.getStyle(mvLibEffects.hover.tint)"
+                    (onChangeEnabled)="switch().api.effects.cursor.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                    (onChangeStyle)="switch().api.effects.cursor.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                />
+            }
+        </app-configuration-section>
+
+        <app-configuration-section title="Settings">
+            <app-input-checkbox
+                [checked]="disabled()"
+                label="Disabled"
+                (onChange)="disabled.set($event); refreshLog();"
             />
-            <app-input-button
-                label="Cursor"
-                [selected]="selectedPartStyle() === 'cursor'"
-                (onClick)="selectedPartStyle.set('cursor')"
+            <app-input-text
+                label="Translate duration"
+                [value]="switch().api.settings.getTranslateDuration()"
+                (onChange)="switch().api.settings.setTranslateDuration($event); refreshLog();"
             />
+            <app-inputs-separator title="API" />
+            <app-input-checkbox
+                [checked]="active()"
+                label="Activated"
+                (onChange)="switch().setActive($event); active.set($event); refreshLog();"
+            />
+        </app-configuration-section>
+    </div>
+
+    <div class="render">
+        <mv-lib-switch-classic
+            #mvLibSwitchClassic
+            class="component"
+            [inputStyle]="style()"
+            [inputEffects]="effects()"
+            [inputSettings]="settings()"
+            [disabled]="disabled()"
+            [active]="active()"
+            (onToggle)="
+                active.set($event.active);
+                refreshLastInteractionTime();
+                refreshLog();
+            "
+        />
+
+        <div class="log">
+            Last interaction time: {{ lastInteractionTime() }}
+            <app-input-button
+                label="Copy component code"
+                [width]="'25%'"
+                [style.margin-top.px]="10"
+                (onClick)="copyComponentCode()"
+            />
+            <pre #code>&lt;mv-lib-switch-classic{{ log() }}&gt;<br/>    MV Lib switch classic<br/>&lt;/mv-lib-switch-classic&gt;</pre>
         </div>
-        @if (selectedPartStyle() === 'track') {
-            <div class="inputs-group">
-                Width
-                <app-input-text
-                    [value]="switch().api.style.track.getWidth()"
-                    (onChange)="switch().api.style.track.setWidth($event); refreshLog();"
-                />
-                Height
-                <app-input-text
-                    [value]="switch().api.style.track.getHeight()"
-                    (onChange)="switch().api.style.track.setHeight($event); refreshLog();"
-                />
-            </div>
-            <div class="inputs-group">
-                Color on
-                <app-input-color
-                    [value]="switch().api.style.track.getColorOn()"
-                    (onChange)="switch().api.style.track.setColorOn($event); refreshLog();"
-                />
-                Color off
-                <app-input-color
-                    [value]="switch().api.style.track.getColorOff()"
-                    (onChange)="switch().api.style.track.setColorOff($event); refreshLog();"
-                />
-            </div>
-
-        }
-        @else if (selectedPartStyle() === 'cursor') {
-            <div class="inputs-group">
-                Color on
-                <app-input-color
-                    [value]="switch().api.style.cursor.getColorOn()"
-                    (onChange)="switch().api.style.cursor.setColorOn($event); refreshLog();"
-                />
-                Color off
-                <app-input-color
-                    [value]="switch().api.style.cursor.getColorOff()"
-                    (onChange)="switch().api.style.cursor.setColorOff($event); refreshLog();"
-                />
-            </div>
-            <div class="inputs-group">
-                Icon on
-                <app-input-text
-                    [value]="switch().api.style.cursor.getIconOn()"
-                    (onChange)="switch().api.style.cursor.setIconOn($event); refreshLog();"
-                />
-                Icon off
-                <app-input-text
-                    [value]="switch().api.style.cursor.getIconOff()"
-                    (onChange)="switch().api.style.cursor.setIconOff($event); refreshLog();"
-                />
-            </div>
-            <div class="inputs-group">
-                Icon color on
-                <app-input-color
-                    [value]="switch().api.style.cursor.getIconColorOn()"
-                    (onChange)="switch().api.style.cursor.setIconColorOn($event); refreshLog();"
-                />
-                Icon color off
-                <app-input-color
-                    [value]="switch().api.style.cursor.getIconColorOff()"
-                    (onChange)="switch().api.style.cursor.setIconColorOff($event); refreshLog();"
-                />
-            </div>
-        }
-    </app-configuration-section>
-
-    <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
-        <div buttons class="type-buttons">
-            <app-input-button
-                label="Track"
-                [selected]="selectedPartEffects() === 'track'"
-                (onClick)="selectedPartEffects.set('track')"
-            />
-            <app-input-button
-                label="Cursor"
-                [selected]="selectedPartEffects() === 'cursor'"
-                (onClick)="selectedPartEffects.set('cursor')"
-            />
-        </div>
-        @if (selectedPartEffects() === 'track') {
-            <app-shadow-effect-inputs
-                title="Shadow idle"
-                [enabled]="switch().api.effects.track.has(mvLibEffects.idle.shadow)"
-                [style]="switch().api.effects.track.getStyle(mvLibEffects.idle.shadow)"
-                (onChangeEnabled)="switch().api.effects.track.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="switch().api.effects.track.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
-            />
-            <app-tint-effect-inputs
-                title="Tint hover"
-                [enabled]="switch().api.effects.track.has(mvLibEffects.hover.tint)"
-                [style]="switch().api.effects.track.getStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="switch().api.effects.track.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="switch().api.effects.track.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
-            />
-        }
-        @else if (selectedPartEffects() === 'cursor') {
-            <app-resize-hover-inputs
-                title="Resize hover"
-                [enabled]="switch().api.effects.cursor.has(mvLibEffects.hover.resize)"
-                [style]="switch().api.effects.cursor.getStyle(mvLibEffects.hover.resize)"
-                (onChangeEnabled)="switch().api.effects.cursor.toggle(mvLibEffects.hover.resize, $event); refreshLog();"
-                (onChangeStyle)="switch().api.effects.cursor.setStyle(mvLibEffects.hover.resize, $event); refreshLog();"
-            />
-            <app-tint-effect-inputs
-                title="Tint hover"
-                [enabled]="switch().api.effects.cursor.has(mvLibEffects.hover.tint)"
-                [style]="switch().api.effects.cursor.getStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="switch().api.effects.cursor.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="switch().api.effects.cursor.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
-            />
-        }
-    </app-configuration-section>
-
-    <app-configuration-section title="Settings">
-        <app-input-checkbox
-            [checked]="disabled()"
-            label="Disabled"
-            (onChange)="disabled.set($event); refreshLog();"
-        />
-        <app-input-text
-            label="Translate duration"
-            [value]="switch().api.settings.getTranslateDuration()"
-            (onChange)="switch().api.settings.setTranslateDuration($event); refreshLog();"
-        />
-        <app-inputs-separator title="API" />
-        <app-input-checkbox
-            [checked]="active()"
-            label="Activated"
-            (onChange)="switch().setActive($event); active.set($event); refreshLog();"
-        />
-    </app-configuration-section>
-</div>
-
-<div class="visual">
-    <mv-lib-switch-classic
-        #mvLibSwitchClassic
-        class="component"
-        [inputStyle]="style()"
-        [inputEffects]="effects()"
-        [inputSettings]="settings()"
-        [disabled]="disabled()"
-        [active]="active()"
-        (onToggle)="
-            active.set($event.active);
-            refreshLastInteractionTime();
-            refreshLog();
-        "
-    />
-
-    <div class="log">
-        Last interaction time: {{ lastInteractionTime() }}
-        <app-input-button
-            label="Copy component code"
-            [width]="'25%'"
-            [style.margin-top.px]="10"
-            (onClick)="copyComponentCode()"
-        />
-        <pre #code>&lt;mv-lib-switch-classic{{ log() }}&gt;<br/>    MV Lib switch classic<br/>&lt;/mv-lib-switch-classic&gt;</pre>
     </div>
 </div>

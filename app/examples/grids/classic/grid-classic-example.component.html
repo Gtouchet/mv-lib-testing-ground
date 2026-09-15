@@ -1,229 +1,231 @@
-<div class="configuration">
+<div class="view">   
+   <div class="configuration">
 
-    <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
-        <div buttons>
-            <app-input-button
-                label="Grid"
-                [selected]="selectedPartStyle() === 'grid'"
-                (onClick)="selectedPartStyle.set('grid')"
-            />
-            <app-input-button
-                label="Header row"
-                [selected]="selectedPartStyle() === 'header row'"
-                (onClick)="selectedPartStyle.set('header row')"
-            />
-            <app-input-button
-                label="Body rows"
-                [selected]="selectedPartStyle() === 'body rows'"
-                (onClick)="selectedPartStyle.set('body rows')"
-            />            
-            <app-input-button
-                label="Columns"
-                [selected]="selectedPartStyle() === 'columns'"
-                (onClick)="selectedPartStyle.set('columns')"
-            />
-        </div>
-        @if (selectedPartStyle() === 'grid') {
-            <app-inputs-separator title="General"/>
-            <app-input-text
-                label="Height"
-                [value]="grid().api.style.grid.getDimensions().height"
-                (onChange)="grid().api.style.grid.setDimensions('height', $event); refreshLog();"
-            />
-            <app-dimensions-inputs
-                [dimensions]="grid().api.style.grid.getDimensions()"
-                (onChangeDimensions)="grid().api.style.grid.setDimensions($event.key, $event.value); refreshLog();"
-            />
-            <app-outline-inputs
-                [outline]="grid().api.style.grid.getOutline()"
-                (onChangeOutline)="grid().api.style.grid.setOutline($event.key, $event.value); refreshLog();"
-            />
-        }
-        @else if (selectedPartStyle() === 'header row') {
-            <app-input-text
-                label="Height"
-                [value]="grid().api.style.headerRow.getHeight()"
-                (onChange)="grid().api.style.headerRow.setHeight($event); refreshLog();"
-            />
-            <div class="inputs-group">
-                Right separator
-                <app-input-text
-                    [value]="grid().api.style.headerRow.getRightSeparator()"
-                    (onChange)="grid().api.style.headerRow.setRightSeparator($event); refreshLog();"
+        <app-configuration-section [title]="'Styles for ' + selectedPartStyle()">
+            <div buttons>
+                <app-input-button
+                    label="Grid"
+                    [selected]="selectedPartStyle() === 'grid'"
+                    (onClick)="selectedPartStyle.set('grid')"
                 />
-                Bottom separator
-                <app-input-text
-                    [value]="grid().api.style.headerRow.getBottomSeparator()"
-                    (onChange)="grid().api.style.headerRow.setBottomSeparator($event); refreshLog();"
+                <app-input-button
+                    label="Header row"
+                    [selected]="selectedPartStyle() === 'header row'"
+                    (onClick)="selectedPartStyle.set('header row')"
+                />
+                <app-input-button
+                    label="Body rows"
+                    [selected]="selectedPartStyle() === 'body rows'"
+                    (onClick)="selectedPartStyle.set('body rows')"
+                />            
+                <app-input-button
+                    label="Columns"
+                    [selected]="selectedPartStyle() === 'columns'"
+                    (onClick)="selectedPartStyle.set('columns')"
                 />
             </div>
-        }
-        @else if (selectedPartStyle() === 'body rows') {
-            <app-input-text
-                label="Height"
-                [value]="grid().api.style.bodyRows.getHeight()"
-                (onChange)="grid().api.style.bodyRows.setHeight($event); refreshLog();"
-            />
-            <div class="inputs-group">
-                Right separator
+            @if (selectedPartStyle() === 'grid') {
+                <app-inputs-separator title="General"/>
                 <app-input-text
-                    [value]="grid().api.style.bodyRows.getRightSeparator()"
-                    (onChange)="grid().api.style.bodyRows.setRightSeparator($event); refreshLog();"
+                    label="Height"
+                    [value]="grid().api.style.grid.getDimensions().height"
+                    (onChange)="grid().api.style.grid.setDimensions('height', $event); refreshLog();"
                 />
-                Bottom separator
+                <app-dimensions-inputs
+                    [dimensions]="grid().api.style.grid.getDimensions()"
+                    (onChangeDimensions)="grid().api.style.grid.setDimensions($event.key, $event.value); refreshLog();"
+                />
+                <app-outline-inputs
+                    [outline]="grid().api.style.grid.getOutline()"
+                    (onChangeOutline)="grid().api.style.grid.setOutline($event.key, $event.value); refreshLog();"
+                />
+            }
+            @else if (selectedPartStyle() === 'header row') {
                 <app-input-text
-                    [value]="grid().api.style.bodyRows.getBottomSeparator()"
-                    (onChange)="grid().api.style.bodyRows.setBottomSeparator($event); refreshLog();"
+                    label="Height"
+                    [value]="grid().api.style.headerRow.getHeight()"
+                    (onChange)="grid().api.style.headerRow.setHeight($event); refreshLog();"
+                />
+                <div class="inputs-group">
+                    Right separator
+                    <app-input-text
+                        [value]="grid().api.style.headerRow.getRightSeparator()"
+                        (onChange)="grid().api.style.headerRow.setRightSeparator($event); refreshLog();"
+                    />
+                    Bottom separator
+                    <app-input-text
+                        [value]="grid().api.style.headerRow.getBottomSeparator()"
+                        (onChange)="grid().api.style.headerRow.setBottomSeparator($event); refreshLog();"
+                    />
+                </div>
+            }
+            @else if (selectedPartStyle() === 'body rows') {
+                <app-input-text
+                    label="Height"
+                    [value]="grid().api.style.bodyRows.getHeight()"
+                    (onChange)="grid().api.style.bodyRows.setHeight($event); refreshLog();"
+                />
+                <div class="inputs-group">
+                    Right separator
+                    <app-input-text
+                        [value]="grid().api.style.bodyRows.getRightSeparator()"
+                        (onChange)="grid().api.style.bodyRows.setRightSeparator($event); refreshLog();"
+                    />
+                    Bottom separator
+                    <app-input-text
+                        [value]="grid().api.style.bodyRows.getBottomSeparator()"
+                        (onChange)="grid().api.style.bodyRows.setBottomSeparator($event); refreshLog();"
+                    />
+                </div>
+            }
+            @else if (selectedPartStyle() === 'columns') {
+                <div class="inputs-group">
+                    <app-input-number
+                        label="Column n°"
+                        [value]="selectedColumn() + 1"
+                        [min]="1"
+                        [max]="columnsStyles().length"
+                        [width]="'50px'"
+                        (onChange)="selectedColumn.set($event! - 1)"
+                    />
+                    <app-input-number
+                        label="Width force"
+                        [value]="grid().api.style.columns.getWidthForce(selectedColumn())"
+                        [min]="0"
+                        [width]="'50px'"
+                        (onChange)="grid().api.style.columns.setWidthForce(selectedColumn(), $event!); refreshLog();"
+                    />
+                </div>
+            }
+        </app-configuration-section>
+        
+        <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
+            <div buttons>
+                <app-input-button
+                    label="Grid"
+                    [selected]="selectedPartEffects() === 'grid'"
+                    (onClick)="selectedPartEffects.set('grid')"
+                />      
+                <app-input-button
+                    label="Body rows"
+                    [selected]="selectedPartEffects() === 'body rows'"
+                    (onClick)="selectedPartEffects.set('body rows')"
+                />       
+            </div>
+            @if (selectedPartEffects() === 'grid') {
+                <app-outline-blur-effect-inputs
+                    title="Outline blur hover"
+                    [enabled]="grid().api.effects.grid.has(mvLibEffects.hover.outlineBlur)"
+                    [style]="grid().api.effects.grid.getStyle(mvLibEffects.hover.outlineBlur)"
+                    (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
+                    (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
+                />
+                <app-outline-solid-effect-inputs
+                    title="Outline solid hover"
+                    [enabled]="grid().api.effects.grid.has(mvLibEffects.hover.outlineSolid)"
+                    [style]="grid().api.effects.grid.getStyle(mvLibEffects.hover.outlineSolid)"
+                    (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"
+                    (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"
+                />
+                <app-shadow-effect-inputs
+                    title="Shadow idle"
+                    [enabled]="grid().api.effects.grid.has(mvLibEffects.idle.shadow)"
+                    [style]="grid().api.effects.grid.getStyle(mvLibEffects.idle.shadow)"
+                    (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                    (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                />
+            }
+            @else if (selectedPartEffects() === 'body rows') {
+                <app-tint-effect-inputs
+                    title="Tint hover"
+                    [enabled]="grid().api.effects.rows.has(mvLibEffects.hover.tint)"
+                    [style]="grid().api.effects.rows.getStyle(mvLibEffects.hover.tint)"
+                    (onChangeEnabled)="grid().api.effects.rows.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                    (onChangeStyle)="grid().api.effects.rows.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                />
+                <app-tint-effect-inputs
+                    title="Tint selected"
+                    [enabled]="grid().api.effects.rows.has(mvLibEffects.selected.tint)"
+                    [style]="grid().api.effects.rows.getStyle(mvLibEffects.selected.tint)"
+                    (onChangeEnabled)="grid().api.effects.rows.toggle(mvLibEffects.selected.tint, $event); refreshLog();"
+                    (onChangeStyle)="grid().api.effects.rows.setStyle(mvLibEffects.selected.tint, $event); refreshLog();"
+                />
+            }
+        </app-configuration-section>
+
+        <app-configuration-section title="Settings">
+            <div buttons>
+                <app-input-button
+                    label="Grid"
+                    [selected]="selectedPartStyle() === 'grid'"
+                    (onClick)="selectedPartStyle.set('grid')"
                 />
             </div>
-        }
-        @else if (selectedPartStyle() === 'columns') {
-            <div class="inputs-group">
-                <app-input-number
-                    label="Column n°"
-                    [value]="selectedColumn() + 1"
-                    [min]="1"
-                    [max]="columnsStyles().length"
-                    [width]="'50px'"
-                    (onChange)="selectedColumn.set($event - 1)"
+            @if (selectedPartStyle() === 'grid') {
+                <app-input-checkbox
+                    label="Multi select"
+                    [checked]="grid().api.settings.grid.hasMultiSelect()"
+                    (onChange)="grid().api.settings.grid.setMultiSelect($event); refreshLog();"
                 />
-                <app-input-number
-                    label="Width force"
-                    [value]="grid().api.style.columns.getWidthForce(selectedColumn())"
-                    [min]="0"
-                    [width]="'50px'"
-                    (onChange)="grid().api.style.columns.setWidthForce(selectedColumn(), $event); refreshLog();"
+                <app-input-checkbox
+                    label="Scrollbar"
+                    [checked]="grid().api.settings.grid.hasScrollbar()"
+                    (onChange)="grid().api.settings.grid.setScrollbar($event); refreshLog();"
                 />
-            </div>
-        }
-    </app-configuration-section>
-    
-    <app-configuration-section [title]="'Effects for ' + selectedPartEffects()">
-        <div buttons>
-            <app-input-button
-                label="Grid"
-                [selected]="selectedPartEffects() === 'grid'"
-                (onClick)="selectedPartEffects.set('grid')"
-            />      
-            <app-input-button
-                label="Body rows"
-                [selected]="selectedPartEffects() === 'body rows'"
-                (onClick)="selectedPartEffects.set('body rows')"
-            />       
-        </div>
-        @if (selectedPartEffects() === 'grid') {
-            <app-outline-blur-effect-inputs
-                title="Outline blur hover"
-                [enabled]="grid().api.effects.grid.has(mvLibEffects.hover.outlineBlur)"
-                [style]="grid().api.effects.grid.getStyle(mvLibEffects.hover.outlineBlur)"
-                (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
-                (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.hover.outlineBlur, $event); refreshLog();"
-            />
-            <app-outline-solid-effect-inputs
-                title="Outline solid hover"
-                [enabled]="grid().api.effects.grid.has(mvLibEffects.hover.outlineSolid)"
-                [style]="grid().api.effects.grid.getStyle(mvLibEffects.hover.outlineSolid)"
-                (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"
-                (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.hover.outlineSolid, $event); refreshLog();"
-            />
-            <app-shadow-effect-inputs
-                title="Shadow idle"
-                [enabled]="grid().api.effects.grid.has(mvLibEffects.idle.shadow)"
-                [style]="grid().api.effects.grid.getStyle(mvLibEffects.idle.shadow)"
-                (onChangeEnabled)="grid().api.effects.grid.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="grid().api.effects.grid.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
-            />
-        }
-        @else if (selectedPartEffects() === 'body rows') {
-            <app-tint-effect-inputs
-                title="Tint hover"
-                [enabled]="grid().api.effects.rows.has(mvLibEffects.hover.tint)"
-                [style]="grid().api.effects.rows.getStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="grid().api.effects.rows.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="grid().api.effects.rows.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
-            />
-            <app-tint-effect-inputs
-                title="Tint selected"
-                [enabled]="grid().api.effects.rows.has(mvLibEffects.selected.tint)"
-                [style]="grid().api.effects.rows.getStyle(mvLibEffects.selected.tint)"
-                (onChangeEnabled)="grid().api.effects.rows.toggle(mvLibEffects.selected.tint, $event); refreshLog();"
-                (onChangeStyle)="grid().api.effects.rows.setStyle(mvLibEffects.selected.tint, $event); refreshLog();"
-            />
-        }
-    </app-configuration-section>
-
-    <app-configuration-section title="Settings">
-        <div buttons>
-            <app-input-button
-                label="Grid"
-                [selected]="selectedPartStyle() === 'grid'"
-                (onClick)="selectedPartStyle.set('grid')"
-            />
-        </div>
-        @if (selectedPartStyle() === 'grid') {
-            <app-input-checkbox
-                label="Multi select"
-                [checked]="grid().api.settings.grid.hasMultiSelect()"
-                (onChange)="grid().api.settings.grid.setMultiSelect($event); refreshLog();"
-            />
-            <app-input-checkbox
-                label="Scrollbar"
-                [checked]="grid().api.settings.grid.hasScrollbar()"
-                (onChange)="grid().api.settings.grid.setScrollbar($event); refreshLog();"
-            />
-        }
-    </app-configuration-section>
-</div>
-
-<div class="visual">
-    <div class="component">
-        <mv-lib-grid-classic
-            #mvLibGridClassic
-            [inputStyle]="gridStyle()"
-            [inputEffects]="gridEffects()"
-            [inputSettings]="gridSettings()"
-            [items]="items()"
-        >
-            <mv-lib-grid-classic-column
-                [headerTitle]="'Id'"
-                [property]="'id'"
-                [inputStyle]="columnsStyles()[0]"
-            >
-            </mv-lib-grid-classic-column>
-
-            <mv-lib-grid-classic-column
-                [headerTitle]="'Name'"
-                [property]="'name'"
-                [inputStyle]="columnsStyles()[1]"
-            >
-                <!-- <ng-template mvLibGridCellTemplate let-user="item">
-                    template {{ user.name }}
-                </ng-template> -->
-            </mv-lib-grid-classic-column>
-        </mv-lib-grid-classic>
+            }
+        </app-configuration-section>
     </div>
 
-    <div class="log">
-        Last interaction time: {{ lastInteractionTime() }}<br/>
-        <app-input-button
-            label="Copy component code"
-            [width]="'25%'"
-            (onClick)="copyComponentCode()"
-        />
-        <pre #code>&lt;mv-lib-grid-classic{{ log() }}&gt;
-    &lt;mv-lib-grid-classic-column
-        [headerTitle]="'Id'"
-        [property]="'id'"
-        [inputStyle]="columnsStyles()[0]"
-    &gt;
-    &lt;/mv-lib-grid-classic-column&gt;
+    <div class="render">
+        <div class="component">
+            <mv-lib-grid-classic
+                #mvLibGridClassic
+                [inputStyle]="gridStyle()"
+                [inputEffects]="gridEffects()"
+                [inputSettings]="gridSettings()"
+                [items]="items()"
+            >
+                <mv-lib-grid-classic-column
+                    [headerTitle]="'Id'"
+                    [property]="'id'"
+                    [inputStyle]="columnsStyles()[0]"
+                >
+                </mv-lib-grid-classic-column>
 
-    &lt;mv-lib-grid-classic-column
-        [headerTitle]="'Name'"
-        [property]="'name'"
-        [inputStyle]="columnsStyles()[1]"
-    &gt;
-    &lt;/mv-lib-grid-classic-column&gt;
-&lt;/mv-lib-grid-classic&gt;</pre>
+                <mv-lib-grid-classic-column
+                    [headerTitle]="'Name'"
+                    [property]="'name'"
+                    [inputStyle]="columnsStyles()[1]"
+                >
+                    <!-- <ng-template mvLibGridCellTemplate let-user="item">
+                        template {{ user.name }}
+                    </ng-template> -->
+                </mv-lib-grid-classic-column>
+            </mv-lib-grid-classic>
+        </div>
+
+        <div class="log">
+            Last interaction time: {{ lastInteractionTime() }}<br/>
+            <app-input-button
+                label="Copy component code"
+                [width]="'25%'"
+                (onClick)="copyComponentCode()"
+            />
+            <pre #code>&lt;mv-lib-grid-classic{{ log() }}&gt;
+        &lt;mv-lib-grid-classic-column
+            [headerTitle]="'Id'"
+            [property]="'id'"
+            [inputStyle]="columnsStyles()[0]"
+        &gt;
+        &lt;/mv-lib-grid-classic-column&gt;
+
+        &lt;mv-lib-grid-classic-column
+            [headerTitle]="'Name'"
+            [property]="'name'"
+            [inputStyle]="columnsStyles()[1]"
+        &gt;
+        &lt;/mv-lib-grid-classic-column&gt;
+    &lt;/mv-lib-grid-classic&gt;</pre>
+        </div>
     </div>
 </div>

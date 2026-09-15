@@ -1,4 +1,4 @@
-import { BaseExampleComponent } from '../../base-example.component';
+import { OverviewDemoBaseComponent } from '../../_base/overview-demo.base';
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { INPUTS } from '../../../inputs/_inputs.export';
 import { MvLibCheckboxClassicComponent, MvLibCheckboxClassicStyle, MvLibCheckboxClassicEffects, MvLibCheckboxClassicSettings } from 'mv-lib';
@@ -10,11 +10,11 @@ import { MvLibCheckboxClassicComponent, MvLibCheckboxClassicStyle, MvLibCheckbox
     INPUTS,
 ],
   templateUrl: './checkbox-classic-example.component.html',
-  styleUrl: '../../example.component.scss',
+  styleUrl: '../../_base/overview-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class CheckboxClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
+export class CheckboxClassicExampleComponent extends OverviewDemoBaseComponent implements AfterViewInit {
 
   protected checkbox = viewChild.required<MvLibCheckboxClassicComponent>('mvLibCheckboxClassic');
 
@@ -24,7 +24,6 @@ export class CheckboxClassicExampleComponent extends BaseExampleComponent implem
 
   protected effects = signal<Partial<MvLibCheckboxClassicEffects>>({
     classes: [
-      this.mvLibEffects.hover.resize.class,
       this.mvLibEffects.hover.tint.class,
     ],
   });

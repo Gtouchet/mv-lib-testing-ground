@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, computed, signal, AfterViewInit, OnInit } from "@angular/core";
 import { MvLibButtonClassicComponent } from "mv-lib";
-import { BaseExampleComponent } from '../../base-example.component';
+import { OverviewDemoBaseComponent } from '../../_base/overview-demo.base';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
 import { FadeInIdleInputsComponent } from "../../../inputs/effect-inputs/fade-in/fade-in-idle-inputs.component";
@@ -15,11 +15,11 @@ import { FadeInIdleInputsComponent } from "../../../inputs/effect-inputs/fade-in
     FadeInIdleInputsComponent
 ],
     templateUrl: './toast-classic-example.component.html',
-    styleUrl: '../../example.component.scss',
+    styleUrl: '../../_base/overview-demo.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
 })
-export class ToastClassicExampleComponent extends BaseExampleComponent implements OnInit, AfterViewInit {
+export class ToastClassicExampleComponent extends OverviewDemoBaseComponent implements OnInit, AfterViewInit {
 
   protected success = signal({title: 'Success', icon: 'check_circle', message: 'Success message' });
   protected warning = signal({title: 'Warning', icon: 'warning', message: 'Warning message' });

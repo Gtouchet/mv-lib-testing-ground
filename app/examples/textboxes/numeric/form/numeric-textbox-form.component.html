@@ -1,0 +1,176 @@
+<div class="layout">
+    <div id="top" class="content">
+        <section class="presentation">
+            <span class="title">
+                Numeric textbox forms
+            </span>
+            <span class="description">
+                Integrate a numeric textbox with Angular reactive forms, validators, and form controls.
+            </span>
+            <span class="last-updated">
+                Last updated: 12/09/2026
+            </span>
+        </section>
+
+        <section id="form-validators" class="section">
+            <span class="title">
+                Form validators
+            </span>
+            <span class="description">
+                Configure required, minimum, and maximum value validators and inspect the resulting form state.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel" style="height: 150px;">
+                        <div class="panel-content">
+                            <app-inputs-separator title="Form validators" />
+                            <div class="inputs-group">
+                                <span
+                                    [style.color]="forms['validators'].get('input')?.hasError('required') ?
+                                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                                >
+                                    Required
+                                </span>
+                                <app-input-checkbox
+                                    [checked]="required()"
+                                    (onChange)="
+                                        required.set($event);
+                                        updateFormValidator(
+                                            'validators',
+                                            'input',
+                                            'required',
+                                            required() ? formValidators.required : null);
+                                    "
+                                />
+                                <span
+                                    [style.color]="forms['validators'].get('input')?.hasError('min') ?
+                                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                                >
+                                    Min value
+                                </span>
+                                
+                                <app-input-number
+                                    [value]="min()"
+                                    (onChange)="
+                                        min.set($event);
+                                        updateFormValidator(
+                                            'validators',
+                                            'input',
+                                            'min',
+                                            min() == null ? null : formValidators.min(min()!));
+                                    "
+                                />
+                                <span
+                                    [style.color]="forms['validators'].get('input')?.hasError('max') ?
+                                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                                >
+                                    Max value
+                                </span>
+                                <app-input-number
+                                    [value]="max()"
+                                    (onChange)="
+                                        max.set($event);
+                                        updateFormValidator(
+                                            'validators',
+                                            'input',
+                                            'max',
+                                            max() == null ? null : formValidators.max(max()!));
+                                    "
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel" style="height: 160px;">
+                        <div class="panel-content">
+                            <app-inputs-separator title="Form state"/>
+                            <div class="inputs-group">
+                                Value: <span>{{ forms['validators'].get('input')?.value }}</span>
+                                Touched: <span>{{ forms['validators'].touched ? 'Touched' : 'Untouched' }}</span>
+                                Dirty: <span>{{ forms['validators'].dirty ? 'Dirty' : 'Pristine' }}</span>
+                                Status: <span>{{ forms['validators'].disabled ? 'Disabled' : (forms['validators'].valid ? 'Valid' : 'Invalid') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form
+                    class="component"
+                    [formGroup]="forms['validators']"
+                >
+                    <mv-lib-numeric-textbox
+                        #textboxValidators
+                        formControlName="input"
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.selected.outlineSolid.class,
+                            ],
+                        }"
+                    />
+                </form>
+            </div>
+        </section>
+
+        <section id="cva" class="section">
+            @let formControl = forms['cva'].get('input')!;
+            <span class="title">
+                Control value accessor
+            </span>
+            <span class="description">
+                Use Angular's CVA forms API to control and get the textbox's state.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel" style="height: 130px;">
+                        <div class="panel-content" style="margin-top: 8px;">
+                            <app-inputs-separator title="CVA functions" />
+                            <div class="inputs-group">
+                                formControl.setValue()
+                                <app-input-number
+                                    [value]="formControl.value"
+                                    (onChange)="formControl.setValue($event);"
+                                />
+                                formControl.disable() / .enable()
+                                <app-input-checkbox
+                                    [checked]="formControl.disabled"
+                                        (onChange)="$event ? formControl.disable() : formControl.enable()"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-content">
+                            <app-inputs-separator title="CVA actions" />
+                            @for (cvaAction of cvaActions(); track cvaAction) {
+                                <div>
+                                    {{ cvaAction.index }} - {{ cvaAction.action }}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <form
+                    class="component"
+                    [formGroup]="forms['cva']"
+                >
+                    <mv-lib-numeric-textbox
+                        #textboxCva
+                        formControlName="input"
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.selected.outlineSolid.class,
+                            ],
+                        }"
+                    />
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <app-specific-demo-sidebar
+        [contents]="[
+            { label: 'Form validators', goto: 'form-validators' },
+            { label: 'CVA', goto: 'cva' },
+        ]"
+    />
+</div>

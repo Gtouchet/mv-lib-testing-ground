@@ -1,0 +1,26 @@
+<div class="content">
+    <span 
+        class="material-symbols-outlined top-icon"
+        (click)="scrollTo('top')"
+    >
+        vertical_align_top
+    </span>
+    Page content :<br/>
+    <hr/>
+    @for (content of contents(); track content) {
+        @if (content.separator) {
+            <hr/>
+        }
+        @if (content.goto) {
+            <span
+                [attr.href]="'#' + content.goto"
+                [ngStyle]="{
+                    'cursor': 'pointer',
+                }"
+                (click)="scrollTo(content.goto, $event)"
+            >
+                {{ content.label }}
+            </span>
+        }
+    }
+</div>

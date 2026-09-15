@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
 import { INPUTS } from "../../../inputs/_inputs.export";
 import { CommonModule } from "@angular/common";
-import { BaseExampleComponent } from "../../base-example.component";
+import { OverviewDemoBaseComponent } from "../../_base/overview-demo.base";
 import { MvLibGridClassicColumnComponent, MvLibGridClassicComponent, MvLibGridClassicEffects, MvLibGridClassicSettings, MvLibGridClassicStyle, MvLibGridColumnClassicStyle, MvLibGridDirectives } from "mv-lib";
 
 interface User {
@@ -19,11 +19,11 @@ interface User {
     CommonModule,
   ],
   templateUrl: './grid-classic-example.component.html',
-  styleUrl: '../../example.component.scss',
+  styleUrl: '../../_base/overview-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class GridClassicExampleComponent extends BaseExampleComponent implements AfterViewInit {
+export class GridClassicExampleComponent extends OverviewDemoBaseComponent implements AfterViewInit {
 
   protected grid = viewChild.required<MvLibGridClassicComponent<User>>('mvLibGridClassic');
 

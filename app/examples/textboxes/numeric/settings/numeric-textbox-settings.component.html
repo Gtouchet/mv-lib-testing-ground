@@ -1,0 +1,415 @@
+<div class="layout">
+    <div id="top" class="content">
+        <section class="presentation">
+            <span class="title">
+                Numeric textbox settings
+            </span>
+            <span class="description">
+                Configure the behavior, value range, unit, and stepper buttons of a numeric textbox.
+            </span>
+            <span class="last-updated">
+                Last updated: 12/09/2026
+            </span>
+        </section>
+
+        <section id="state" class="section">
+            <span class="title">
+                State
+            </span>
+            <span class="description">
+                Toggle the disabled and selected states of the numeric textbox.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <div class="inputs-group">
+                                Disabled
+                                <app-input-checkbox
+                                    [checked]="_textboxState().api.getDisabled()"
+                                    (onChange)="_textboxState().api.setDisabled($event); refreshLog('state')"
+                                />
+                                Selected
+                                <app-input-checkbox
+                                    [checked]="_textboxState().api.getSelected()"
+                                    (onChange)="_textboxState().api.setSelected($event); refreshLog('state')"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button-classic
+                                    [content]="'Copy settings'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('state')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['state'] }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textboxState
+                    class="component"
+                    [inputStyle]="style()"
+                    [inputEffects]="{
+                        classes: [
+                            mvLibEffects.selected.outlineSolid.class,
+                        ],
+                    }"
+                    [inputSettings]="{
+                        stepperButtons: {
+                            displayed: false,
+                        }
+                    }"
+                    [value]="0"
+                    (onSelect)="refreshLog('state')"
+                />
+            </div>
+        </section>
+
+        <section id="min-max" class="section">
+            <span class="title">
+                Value range
+            </span>
+            <span class="description">
+                Set the minimum and maximum values accepted by the numeric textbox.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <div class="inputs-group">
+                                Min
+                                <app-input-number
+                                    [value]="_textboxMinMax().api.settings.getMin()"
+                                    (onChange)="_textboxMinMax().api.settings.setMin($event); refreshLog('minMax');"
+                                />
+                                Max
+                                <app-input-number
+                                    [value]="_textboxMinMax().api.settings.getMax()"
+                                    (onChange)="_textboxMinMax().api.settings.setMax($event); refreshLog('minMax');"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button-classic
+                                    [content]="'Copy settings'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('minMax')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['minMax'] }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textboxMinMax
+                    class="component"
+                    [inputStyle]="style()"
+                    [value]="0"
+                />
+            </div>
+        </section>
+
+        <section id="unit" class="section">
+            <span class="title">
+                Unit display
+            </span>
+            <span class="description">
+                Set the unit displayed with the value and place it on the left or right.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <div class="inputs-group">
+                                Unit
+                                <app-input-text
+                                    [value]="_textboxUnit().api.settings.unit.getValue()"
+                                    (onChange)="_textboxUnit().api.settings.unit.setValue($event); refreshLog('unit')"
+                                />
+                                Placement
+                                <app-input-radio
+                                    [values]="['left', 'right']"
+                                    [selected]="_textboxUnit().api.settings.unit.getPlacement()"
+                                    (onChange)="_textboxUnit().api.settings.unit.setPlacement($any($event)); refreshLog('unit')"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button-classic
+                                    [content]="'Copy settings'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('unit')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['unit'] }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textboxUnit
+                    class="component"
+                    [inputStyle]="style()"
+                    [inputSettings]="{
+                        unit: {
+                            value: '€',
+                        },
+                        stepperButtons: {
+                            displayed: false,
+                        }
+                    }"
+                    [value]="0"
+                />
+            </div>
+        </section>
+
+        <section id="stepper-buttons-settings" class="section">
+            <span class="title">
+                Stepper buttons
+            </span>
+            <span class="description">
+                Configure the visibility, step size, and hold-to-repeat behavior of the stepper buttons.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <div class="inputs-group">
+                                Displayed
+                                <app-input-checkbox
+                                    [checked]="_textboxStepperButtonsSettings().api.settings.stepperButtons.getDisplayed()"
+                                    (onChange)="_textboxStepperButtonsSettings().api.settings.stepperButtons.setDisplayed($event); refreshLog('stepperButtonsSettings')"
+                                />
+                                Allow hold
+                                <app-input-checkbox
+                                    [checked]="_textboxStepperButtonsSettings().api.settings.stepperButtons.getAllowHold()"
+                                    (onChange)="_textboxStepperButtonsSettings().api.settings.stepperButtons.setAllowHold($event); refreshLog('stepperButtonsSettings')"
+                                />
+                                Hold delay
+                                <app-input-text
+                                    [value]="_textboxStepperButtonsSettings().api.settings.stepperButtons.getHoldDelay()"
+                                    (onChange)="_textboxStepperButtonsSettings().api.settings.stepperButtons.setHoldDelay($event); refreshLog('stepperButtonsSettings')"
+                                />
+                                Repeat interval
+                                <app-input-text
+                                    [value]="_textboxStepperButtonsSettings().api.settings.stepperButtons.getRepeatInterval()"
+                                    (onChange)="_textboxStepperButtonsSettings().api.settings.stepperButtons.setRepeatInterval($event); refreshLog('stepperButtonsSettings')"
+                                />
+                                Step
+                                <app-input-number
+                                    [value]="_textboxStepperButtonsSettings().api.settings.stepperButtons.getStep()"
+                                    [min]="1"
+                                    (onChange)="_textboxStepperButtonsSettings().api.settings.stepperButtons.setStep($event ?? 0); refreshLog('stepperButtonsSettings')"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button-classic
+                                    [content]="'Copy settings'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('stepperButtonsSettings')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['stepperButtonsSettings'] }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textboxStepperButtonsSettings
+                    class="component"
+                    [inputStyle]="style()"
+                    [value]="0"
+                />
+            </div>
+        </section>
+
+        <section id="complete" class="section">
+            <span class="title">
+                Complete settings configuration
+            </span>
+            <span class="description">
+                Configure all numeric textbox settings from a single playground.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="selection-buttons">
+                                <mv-lib-button-classic
+                                    [content]="'Control'"
+                                    [inputStyle]="selectionButton.style"
+                                    [inputEffects]="selectionButton.effects"
+                                    [selected]="textboxCompleteSelected() === 'control'"
+                                    (onClick)="textboxCompleteSelected.set('control')"
+                                />
+                                <mv-lib-button-classic
+                                    [content]="'Min max'"
+                                    [inputStyle]="selectionButton.style"
+                                    [inputEffects]="selectionButton.effects"
+                                    [selected]="textboxCompleteSelected() === 'minMax'"
+                                    (onClick)="textboxCompleteSelected.set('minMax')"
+                                />
+                                <mv-lib-button-classic
+                                    [content]="'Unit'"
+                                    [inputStyle]="selectionButton.style"
+                                    [inputEffects]="selectionButton.effects"
+                                    [selected]="textboxCompleteSelected() === 'unit'"
+                                    (onClick)="textboxCompleteSelected.set('unit')"
+                                />
+                                <mv-lib-button-classic
+                                    [content]="'Stepper buttons'"
+                                    [inputStyle]="selectionButton.style"
+                                    [inputEffects]="selectionButton.effects"
+                                    [selected]="textboxCompleteSelected() === 'stepperButtons'"
+                                    (onClick)="textboxCompleteSelected.set('stepperButtons')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            @if (textboxCompleteSelected() === 'control') {
+                                <div class="inputs-group">
+                                    Disabled
+                                    <app-input-checkbox
+                                        [checked]="_textboxComplete().api.getDisabled()"
+                                        (onChange)="_textboxComplete().api.setDisabled($event); refreshLog('complete')"
+                                    />
+                                    Selected
+                                    <app-input-checkbox
+                                        [checked]="_textboxComplete().api.getSelected()"
+                                        (onChange)="_textboxComplete().api.setSelected($event); refreshLog('complete')"
+                                    />
+                                </div>
+                            }
+                            @else if (textboxCompleteSelected() === 'minMax') {
+                                <div class="inputs-group">
+                                    Min
+                                    <app-input-number
+                                        [value]="_textboxComplete().api.settings.getMin()"
+                                        (onChange)="_textboxComplete().api.settings.setMin($event); refreshLog('complete');"
+                                    />
+                                    Max
+                                    <app-input-number
+                                        [value]="_textboxComplete().api.settings.getMax()"
+                                        (onChange)="_textboxComplete().api.settings.setMax($event); refreshLog('complete');"
+                                    />
+                                </div>
+                            }
+                            @else if (textboxCompleteSelected() === 'unit') {
+                                <div class="inputs-group">
+                                    Unit
+                                    <app-input-text
+                                        [value]="_textboxComplete().api.settings.unit.getValue()"
+                                        (onChange)="_textboxComplete().api.settings.unit.setValue($event); refreshLog('complete');"
+                                    />
+                                    Placement
+                                    <app-input-radio
+                                        [values]="['left', 'right']"
+                                        [selected]="_textboxComplete().api.settings.unit.getPlacement()"
+                                        (onChange)="_textboxComplete().api.settings.unit.setPlacement($any($event)); refreshLog('complete');"
+                                    />
+                                </div>
+                            }
+                            @else if (textboxCompleteSelected() === 'stepperButtons') {
+                                <div class="inputs-group">
+                                    Displayed
+                                    <app-input-checkbox
+                                        [checked]="_textboxComplete().api.settings.stepperButtons.getDisplayed()"
+                                        (onChange)="_textboxComplete().api.settings.stepperButtons.setDisplayed($event); refreshLog('complete');"
+                                    />
+                                    Allow hold
+                                    <app-input-checkbox
+                                        [checked]="_textboxComplete().api.settings.stepperButtons.getAllowHold()"
+                                        (onChange)="_textboxComplete().api.settings.stepperButtons.setAllowHold($event); refreshLog('complete');"
+                                    />
+                                    Hold delay
+                                    <app-input-text
+                                        [value]="_textboxComplete().api.settings.stepperButtons.getHoldDelay()"
+                                        (onChange)="_textboxComplete().api.settings.stepperButtons.setHoldDelay($event); refreshLog('complete');"
+                                    />
+                                    Repeat interval
+                                    <app-input-text
+                                        [value]="_textboxComplete().api.settings.stepperButtons.getRepeatInterval()"
+                                        (onChange)="_textboxComplete().api.settings.stepperButtons.setRepeatInterval($event); refreshLog('complete');"
+                                    />
+                                    Step
+                                    <app-input-number
+                                        [value]="_textboxComplete().api.settings.stepperButtons.getStep()"
+                                        [min]="1"
+                                        (onChange)="_textboxComplete().api.settings.stepperButtons.setStep($event ?? 0); refreshLog('complete');"
+                                    />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button-classic
+                                    [content]="'Copy settings'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('complete')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['complete'] }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <mv-lib-numeric-textbox
+                    #textboxComplete
+                    class="component"
+                    [inputStyle]="style()"
+                    [inputSettings]="{
+                        unit: {
+                            value: '$',
+                            placement: 'left',
+                        },
+                        stepperButtons: {
+                            displayed: true,
+                        }
+                    }"
+                    [value]="0"
+                    (onSelect)="refreshLog('complete')"
+                />
+            </div>
+        </section>
+    </div>
+
+    <app-specific-demo-sidebar
+        [contents]="[
+            { label: 'State', goto: 'state' },
+            { label: 'Min max', goto: 'min-max' },
+            { label: 'Unit', goto: 'unit' },
+            { label: 'Stepper buttons', goto: 'stepper-buttons-settings' },
+            { separator: true, },
+            { label: 'Complete', goto: 'complete' }
+        ]"
+    />
+</div>

@@ -17,14 +17,15 @@ import {
   MvLibTreeviewClassicComponent,
   MvLibTreeviewDirectives,
 } from 'mv-lib';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { appRoutes } from './app.routes';
 
 interface TreeviewNode {
+  type: 'text' | 'button';
   label: string;
   icon?: string;
   routerLink?: string;
-  themeName?: string;
-  status?: string;
+  fragment?: string;
   children?: TreeviewNode[];
 }
 
@@ -49,6 +50,7 @@ export class AppComponent {
   protected router = inject(Router);
   protected titleService = inject(Title);
   protected themeService = inject(MvLibThemeService);
+  private document = inject(DOCUMENT);
 
   private mvLibEffects = MV_LIB_EFFECTS;
 
@@ -61,97 +63,190 @@ export class AppComponent {
 
   protected themeTreeviewItems = signal<TreeviewNode[]>([
     {
+      type: 'text',
       label: 'Light',
       icon: 'light_mode',
       children: [
         ...this.themeService.getThemes()
           .filter(theme => theme.mode === 'light')
           .map((theme: MvLibThemeDefinition) => ({
+            type: 'button',
             label: theme.name,
-            themeName: theme.name,
           })),
-      ],
+      ] as TreeviewNode[],
     },
     {
+      type: 'text',
       label: 'Dark',
       icon: 'dark_mode',
       children: [
         ...this.themeService.getThemes()
           .filter(theme => theme.mode === 'dark')
           .map((theme: MvLibThemeDefinition) => ({
+            type: 'button',
             label: theme.name,
-            themeName: theme.name,
           })),
-      ],
+      ] as TreeviewNode[],
     }
   ]);
 
   protected componentTreeviewItems = signal<TreeviewNode[]>([
     {
+      type: 'text',
       label: 'Buttons',
       icon: 'trackpad_input',
       children: [
-        { label: 'Classic', routerLink: '/button-classic-example' },
+        { 
+          type: 'button',
+          label: 'Classic',
+          routerLink: `/${appRoutes.ButtonClassic.path}`,
+        },
       ],
     },
     {
+      type: 'text',
       label: 'Checkboxes',
       icon: 'check_box',
       children: [
-        { label: 'Classic', routerLink: '/checkbox-classic-example' },
+        {
+          type: 'button', 
+          label: 'Classic', 
+          routerLink: `/${appRoutes.CheckboxClassic.path}`,
+        },
       ],
     },
     {
+      type: 'text',
       label: 'Dropdowns',
       icon: 'dropdown_menu',
       children: [
-        { label: 'Classic', routerLink: '/dropdown-classic-example' },
+        {
+          type: 'button',
+          label: 'Classic',
+          routerLink: `/${appRoutes.DropdownClassic.path}`,
+        },
       ],
     },
     {
-      label: 'Grids (WIP)',
+      type: 'text',
+      label: 'Grids',
       icon: 'table_rows',
       children: [
-        { label: 'Classic', routerLink: '/grid-classic-example' },
+        { 
+          type: 'button', 
+          label: 'Classic', 
+          routerLink: `/${appRoutes.GridClassic.path}`,
+        },
       ],
     },
     {
+      type: 'text',
       label: 'Radio buttons',
       icon: 'radio_button_checked',
       children: [
-        { label: 'Classic', routerLink: '/radio-buttons-classic-example' },
+        { 
+          type: 'button',
+          label: 'Classic',
+          routerLink: `/${appRoutes.RadioButtonsClassic.path}`,
+        },
       ],
     },
     {
+      type: 'text',
       label: 'Switches',
       icon: 'switches',
       children: [
-        { label: 'Classic', routerLink: '/switch-classic-example' },
-        // { label: 'Lite', routerLink: '/switch-lite-example', wip: true },
+        { 
+          type: 'button',
+          label: 'Classic',
+          routerLink: `/${appRoutes.SwitchClassic.path}`,
+        },
       ],
     },
     {
+      type: 'text',
       label: 'Textboxes',
       icon: 'crop_16_9',
       children: [
-        { label: 'Classic', routerLink: '/textbox-classic-example' },
+        {
+          type: 'text',
+          label: 'Alphanumeric',
+          children: [
+            {
+              type: 'button',
+              label: 'General',
+              routerLink: `/${appRoutes.TextboxAlphanumeric.path}`,
+            }
+          ],
+        },
+        {
+          type: 'text',
+          label: 'Numeric',
+          children: [
+            {
+              type: 'button',
+              label: 'Overview',
+              routerLink: `/${appRoutes.TextboxNumericOverview.path}`,
+            },
+            {
+              type: 'button',
+              label: 'Style',
+              routerLink: `/${appRoutes.TextboxNumericStyle.path}`,
+              fragment: appRoutes.TextboxNumericStyle.fragment,
+            },
+            {
+              type: 'button',
+              label: 'Effects',
+              routerLink: `/${appRoutes.TextboxNumericEffects.path}`,
+              fragment: appRoutes.TextboxNumericEffects.fragment,
+            },
+            {
+              type: 'button',
+              label: 'Settings',
+              routerLink: `/${appRoutes.TextboxNumericSettings.path}`,
+              fragment: appRoutes.TextboxNumericSettings.fragment,
+            },
+            {
+              type: 'button',
+              label: 'Form',
+              routerLink: `/${appRoutes.TextboxNumericForm.path}`,
+              fragment: appRoutes.TextboxNumericForm.fragment,
+            },
+            {
+              type: 'button',
+              label: 'Events',
+              routerLink: `/${appRoutes.TextboxNumericEvents.path}`,
+              fragment: appRoutes.TextboxNumericEvents.fragment,
+            },
+          ],
+        },
       ],
     },
     {
+      type: 'text',
       label: 'Treeviews',
       icon: 'folder_data',
       children: [
-        { label: 'Classic', routerLink: '/treeview-classic-example' },
+        { 
+          type: 'button',
+          label: 'Classic', 
+          routerLink: `/${appRoutes.TreeviewClassic.path}`,
+        },
       ],
     },
   ]);
 
   protected serviceTreeviewItems = signal<TreeviewNode[]>([
     {
+      type: 'text',
       label: 'Toasts',
       icon: 'notifications',
       children: [
-        { label: 'Classic', routerLink: '/toast-classic-example' },
+        { 
+          type: 'button',
+          label: 'Classic', 
+          routerLink: `/${appRoutes.ToastClassic.path}`,
+        },
       ],
     },
   ]);
@@ -217,7 +312,12 @@ export class AppComponent {
     if (!item.routerLink) {
       return;
     }
-    this.router.navigateByUrl(item.routerLink);
+    void this.router.navigate([item.routerLink], { fragment: item.fragment })
+      .then(navigated => {
+        if (navigated && item.fragment) {
+          this.document.getElementById(item.fragment)?.scrollIntoView({ block: 'start' });
+        }
+      });
   }
 
   private updateDocumentTitle(): void {
