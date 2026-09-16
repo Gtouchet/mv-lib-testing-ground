@@ -69,37 +69,37 @@ export const appRoutes = {
 	// Numeric textbox
 	TextboxNumericOverview: {
 		path: 'textbox/numeric/overview',
-		title: 'Numeric Textbox Overview',
+		title: 'Numeric Textbox - Overview',
 		component: NumericTextboxOverviewComponent,
 	},
 	TextboxNumericStyle: {
 		path: 'textbox/numeric/style',
 		fragment: 'top',
-		title: 'Numeric Textbox Style',
+		title: 'Numeric Textbox - Style',
 		component: NumericTextboxStyleComponent,
 	},
 	TextboxNumericEffects: {
 		path: 'textbox/numeric/effects',
 		fragment: 'top',
-		title: 'Numeric Textbox Effects',
+		title: 'Numeric Textbox - Effects',
 		component: NumericTextboxEffectsComponent,
 	},
 	TextboxNumericSettings: {
 		path: 'textbox/numeric/settings',
 		fragment: 'top',
-		title: 'Numeric Textbox Settings',
+		title: 'Numeric Textbox - Settings',
 		component: NumericTextboxSettingsComponent,
 	},
 	TextboxNumericForm: {
 		path: 'textbox/numeric/form',
 		fragment: 'top',
-		title: 'Numeric Textbox Form',
+		title: 'Numeric Textbox - Form',
 		component: NumericTextboxFormComponent,
 	},
 	TextboxNumericEvents: {
 		path: 'textbox/numeric/events',
 		fragment: 'top',
-		title: 'Numeric Textbox Events',
+		title: 'Numeric Textbox - Events',
 		component: NumericTextboxEventsComponent,
 	},
 

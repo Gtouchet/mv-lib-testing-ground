@@ -21,6 +21,7 @@
 
         <section class="treeview-section">
             <mv-lib-treeview-classic
+                #componentTreeview
                 [items]="componentTreeviewItems()"
             >
                 Components
@@ -39,6 +40,7 @@
                         <mv-lib-button-classic
                             [inputStyle]="treeviewButtonStyle"
                             [inputEffects]="treeviewButtonEffects"
+                            [selected]="router.url.split('#')[0] === item.routerLink"
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">

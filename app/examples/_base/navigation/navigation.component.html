@@ -1,0 +1,14 @@
+@for (link of links(); track link) {
+    <a 
+        [ngStyle]="{
+            'cursor': 'pointer',
+            'text-decoration': 'underline',
+        }"
+        (click)="goTo(link.goTo.path)"
+    >
+        <span>{{ link.label }}</span>
+    </a>
+    @if (!$last) {
+        /
+    }
+}

@@ -1,5 +1,8 @@
 <div class="layout">
     <div id="top" class="content">
+
+        <app-navigation [links]="numericTetxboxNavigation"/>
+        
         <section class="presentation">
             <span class="title">
                 Numeric textbox settings
@@ -17,7 +20,8 @@
                 State
             </span>
             <span class="description">
-                Toggle the disabled and selected states of the numeric textbox.
+                Control the disabled and selected states of the numeric textbox.<br/>
+                This does not affect the form disabled state.
             </span>
             <div class="playground">
                 <div class="configuration">
@@ -53,23 +57,24 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxState
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputEffects]="{
-                        classes: [
-                            mvLibEffects.selected.outlineSolid.class,
-                        ],
-                    }"
-                    [inputSettings]="{
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                    (onSelect)="refreshLog('state')"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxState
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.selected.outlineSolid.class,
+                            ],
+                        }"
+                        [inputSettings]="{
+                            stepperButtons: {
+                                displayed: false,
+                            }
+                        }"
+                        [value]="0"
+                        (onSelect)="refreshLog('state')"
+                    />
+                </div>
             </div>
         </section>
 
@@ -114,12 +119,13 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxMinMax
-                    class="component"
-                    [inputStyle]="style()"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxMinMax
+                        [inputStyle]="style()"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -165,20 +171,21 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxUnit
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputSettings]="{
-                        unit: {
-                            value: '€',
-                        },
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxUnit
+                        [inputStyle]="style()"
+                        [inputSettings]="{
+                            unit: {
+                                value: '€',
+                            },
+                            stepperButtons: {
+                                displayed: false,
+                            }
+                        }"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -239,12 +246,13 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxStepperButtonsSettings
-                    class="component"
-                    [inputStyle]="style()"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxStepperButtonsSettings
+                        [inputStyle]="style()"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -382,22 +390,23 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxComplete
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputSettings]="{
-                        unit: {
-                            value: '$',
-                            placement: 'left',
-                        },
-                        stepperButtons: {
-                            displayed: true,
-                        }
-                    }"
-                    [value]="0"
-                    (onSelect)="refreshLog('complete')"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxComplete
+                        [inputStyle]="style()"
+                        [inputSettings]="{
+                            unit: {
+                                value: '$',
+                                placement: 'left',
+                            },
+                            stepperButtons: {
+                                displayed: true,
+                            }
+                        }"
+                        [value]="0"
+                        (onSelect)="refreshLog('complete')"
+                    />
+                </div>
             </div>
         </section>
     </div>

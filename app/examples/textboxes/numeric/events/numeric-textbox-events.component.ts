@@ -1,12 +1,14 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { INPUTS } from "../../../../inputs/_inputs.export";
 import { MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
 import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
+import { NavigationComponent } from "../../../_base/navigation/navigation.component";
 
 @Component({
     selector: 'app-numeric-textbox-events',
     imports: [
+        NavigationComponent,
         SpecificDemoSidebarComponent,
         MvLibNumericTextboxComponent,
         INPUTS,
@@ -17,8 +19,6 @@ import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
     standalone: true,
 })
 export class NumericTextboxEventsComponent extends SpecificDemoBaseComponent implements AfterViewInit {
-
-    protected textbox = viewChild.required<MvLibNumericTextboxComponent>('textbox');
 
     protected style = signal<Partial<MvLibNumericTextboxStyle>>({
         dimensions: {

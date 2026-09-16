@@ -1,16 +1,31 @@
 import { Directive, signal } from "@angular/core";
 import { MvLibButtonClassicEffects, MvLibButtonClassicStyle } from "mv-lib";
 import { DemoBaseComponent } from "./demo.base";
+import { appRoutes } from "../../app.routes";
 
 type LogProperty = {
     property: string;
     value: (() => unknown) | unknown;
 };
 
+type EventLog<Event = unknown> = {
+    index: number;
+    event: Event;
+};
+
 @Directive({
     standalone: true,
 })
 export abstract class SpecificDemoBaseComponent extends DemoBaseComponent {
+
+    protected numericTetxboxNavigation = [
+        { label: 'Overview', goTo: appRoutes.TextboxNumericOverview },
+        { label: 'Style', goTo: appRoutes.TextboxNumericStyle },
+        { label: 'Effects', goTo: appRoutes.TextboxNumericEffects },
+        { label: 'Settings', goTo: appRoutes.TextboxNumericSettings },
+        { label: 'Form', goTo: appRoutes.TextboxNumericForm },
+        { label: 'Events', goTo: appRoutes.TextboxNumericEvents },
+    ];
 
     protected selectionButton: {
         style: Partial<MvLibButtonClassicStyle>,
@@ -104,5 +119,24 @@ export abstract class SpecificDemoBaseComponent extends DemoBaseComponent {
                     { width: '300px' },
                 )
             );
+    }
+
+    /**
+     * Events
+     */
+    protected eventLogs = signal<Record<string, EventLog[]>>({});
+
+    protected addEventLog<Event>(type: string, event: Event) {
+        this.eventLogs.update(eventLogs => {
+            const logs = eventLogs[type] ?? [];
+
+            return {
+                ...eventLogs,
+                [type]: [
+                    { index: logs.length + 1, event },
+                    ...logs,
+                ],
+            };
+        });
     }
 }

@@ -1,5 +1,8 @@
 <div class="layout">
     <div id="top" class="content">
+
+        <app-navigation [links]="numericTetxboxNavigation"/>
+        
         <section class="presentation">
             <span class="title">
                 Numeric textbox effects
@@ -47,22 +50,23 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxHover
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputEffects]="{
-                        classes: [
-                            mvLibEffects.hover.tint.class,
-                        ],
-                    }"
-                    [inputSettings]="{
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxHover
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.hover.tint.class,
+                            ],
+                        }"
+                        [inputSettings]="{
+                            stepperButtons: {
+                                displayed: false,
+                            }
+                        }"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -113,22 +117,23 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxSelected
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputEffects]="{
-                        classes: [
-                            mvLibEffects.selected.outlineSolid.class,
-                        ],
-                    }"
-                    [inputSettings]="{
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxSelected
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.selected.outlineSolid.class,
+                            ],
+                        }"
+                        [inputSettings]="{
+                            stepperButtons: {
+                                displayed: false,
+                            }
+                        }"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -207,23 +212,24 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxComplete
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputEffects]="{
-                        classes: [
-                            mvLibEffects.hover.tint.class,
-                            mvLibEffects.selected.outlineSolid.class,
-                        ],
-                    }"
-                    [inputSettings]="{
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxComplete
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.hover.tint.class,
+                                mvLibEffects.selected.outlineSolid.class,
+                            ],
+                        }"
+                        [inputSettings]="{
+                            stepperButtons: {
+                                displayed: false,
+                            }
+                        }"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
     </div>

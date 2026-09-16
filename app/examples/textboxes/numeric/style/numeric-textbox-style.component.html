@@ -1,5 +1,8 @@
 <div class="layout">
     <div id="top" class="content">
+
+        <app-navigation [links]="numericTetxboxNavigation"/>
+
         <section class="presentation">
             <span class="title">
                 Numeric textbox styles
@@ -22,7 +25,7 @@
             <div class="playground">
                 <div class="configuration">
                     <div class="panel">
-                        <div class="panel-content" style="margin-top: 8px;">
+                        <div class="panel-content">
                             <app-input-color
                                 [value]="_textboxGeneral().api.style.getBackgroundColor()"
                                 (onChange)="_textboxGeneral().api.style.setBackgroundColor($event); refreshLog('general');"
@@ -45,22 +48,23 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxGeneral
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputEffects]="{
-                        classes: [
-                            mvLibEffects.hover.tint.class,
-                        ],
-                    }"
-                    [inputSettings]="{
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxGeneral
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.hover.tint.class,
+                            ],
+                        }"
+                        [inputSettings]="{
+                            stepperButtons: {
+                                displayed: false,
+                            }
+                        }"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -97,17 +101,13 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxDimensions
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputSettings]="{
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxDimensions
+                        [inputStyle]="style()"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -144,17 +144,18 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxOutline
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputSettings]="{
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxOutline
+                        [inputStyle]="style()"
+                        [inputSettings]="{
+                            stepperButtons: {
+                                displayed: false,
+                            }
+                        }"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -191,17 +192,18 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxFont
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputSettings]="{
-                        stepperButtons: {
-                            displayed: false,
-                        }
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxFont
+                        [inputStyle]="style()"
+                        [inputSettings]="{
+                            stepperButtons: {
+                                displayed: false,
+                            }
+                        }"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -266,12 +268,13 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxStepperButtons
-                    class="component"
-                    [inputStyle]="style()"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxStepperButtons
+                        [inputStyle]="style()"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
 
@@ -376,17 +379,18 @@
                         </div>
                     </div>
                 </div>
-                <mv-lib-numeric-textbox
-                    #textboxComplete
-                    class="component"
-                    [inputStyle]="style()"
-                    [inputEffects]="{
-                        classes: [
-                            mvLibEffects.hover.tint.class,
-                        ],
-                    }"
-                    [value]="0"
-                />
+                <div class="component">
+                    <mv-lib-numeric-textbox
+                        #textboxComplete
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.hover.tint.class,
+                            ],
+                        }"
+                        [value]="0"
+                    />
+                </div>
             </div>
         </section>
     </div>

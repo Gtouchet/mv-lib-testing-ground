@@ -97,18 +97,6 @@ export abstract class DemoBaseComponent {
     }
 
     /**
-     * Events
-     */
-    protected eventLogs = signal<EventLog[]>([]);
-    protected addEventLog(event: string) {
-        const newLog: EventLog = {
-            index: this.eventLogs().length + 1,
-            event: event,
-        };
-        this.eventLogs.update(logs => [newLog, ...logs]);
-    }
-
-    /**
      * Logs
      */
     protected prettify(property: unknown): string {

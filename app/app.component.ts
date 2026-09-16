@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, model, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, model, signal, viewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -52,12 +52,17 @@ export class AppComponent {
   protected themeService = inject(MvLibThemeService);
   private document = inject(DOCUMENT);
 
+  private componentTreeview = viewChild.required<MvLibTreeviewClassicComponent<TreeviewNode>>('componentTreeview');
+
   private mvLibEffects = MV_LIB_EFFECTS;
 
   constructor() {
     this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
-      .subscribe(() => this.updateDocumentTitle());
+      .subscribe(event => {
+        this.updateDocumentTitle();
+        this.expandActiveNavigationPath(event.urlAfterRedirects);
+      });
     this.isThemeModeLight.set(this.themeService.currentTheme()!.mode === 'light');
   }
 
@@ -320,12 +325,17 @@ export class AppComponent {
       });
   }
 
+  private expandActiveNavigationPath(url: string): void {
+    const activePath = url.split(/[?#]/)[0];
+    this.componentTreeview().api.expandItems(item => item.routerLink === activePath);
+  }
+
   private updateDocumentTitle(): void {
     let route = this.router.routerState.root;
     while (route.firstChild) {
       route = route.firstChild;
     }
     const title = route?.snapshot?.data['title'] ?? 'Home';
-    this.titleService.setTitle(`MV Lib - ${title}`);
+    this.titleService.setTitle(title);
   }
 }

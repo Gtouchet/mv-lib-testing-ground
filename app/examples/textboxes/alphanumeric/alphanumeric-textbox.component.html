@@ -122,7 +122,7 @@
             [inputStyle]="style()"
             [inputEffects]="effects()"
             [inputSettings]="settings()"
-            (onValueChange)="
+            (onChange)="
                 forms['default'].get('input')?.setValue($event.value);
                 refreshLastInteractionTime();
                 refreshLog();

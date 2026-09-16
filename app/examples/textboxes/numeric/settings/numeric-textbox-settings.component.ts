@@ -3,10 +3,12 @@ import { INPUTS } from "../../../../inputs/_inputs.export";
 import { MvLibButtonClassicComponent, MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
 import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
+import { NavigationComponent } from "../../../_base/navigation/navigation.component";
 
 @Component({
     selector: 'app-numeric-textbox-settings',
     imports: [
+        NavigationComponent,
         SpecificDemoSidebarComponent,
         MvLibNumericTextboxComponent,
         MvLibButtonClassicComponent,
