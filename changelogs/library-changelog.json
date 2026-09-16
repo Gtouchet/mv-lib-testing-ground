@@ -1,5 +1,12 @@
 [
-        {
+    {
+        "version": "0.1.4 (16/09/26)",
+        "changes": [
+            "Button component: Fixed the content not being centered",
+            "Treeview component: Added API function to expand nodes with a predicate on the items"
+        ]
+    },
+    {
         "version": "0.1.3 (15/09/26)",
         "changes": [
             "Added numeric textbox component",
