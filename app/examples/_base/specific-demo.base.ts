@@ -1,17 +1,22 @@
 import { Directive, signal } from "@angular/core";
-import { MvLibButtonClassicEffects, MvLibButtonClassicStyle } from "mv-lib";
+import { MvLibButtonEffects, MvLibButtonStyle } from "mv-lib";
 import { DemoBaseComponent } from "./demo.base";
-import { appRoutes } from "../../app.routes";
+import { APP_ROUTES } from "../../app.routes";
 
-type LogProperty = {
+type DemoLog = {
+    code?: Code[];
+    event?: Event[];
+}
+
+type Code = {
     property: string;
     value: (() => unknown) | unknown;
-};
+}
 
-type EventLog<Event = unknown> = {
+type Event = {
     index: number;
-    event: Event;
-};
+    event: string;
+}
 
 @Directive({
     standalone: true,
@@ -19,18 +24,18 @@ type EventLog<Event = unknown> = {
 export abstract class SpecificDemoBaseComponent extends DemoBaseComponent {
 
     protected numericTetxboxNavigation = [
-        { label: 'Overview', goTo: appRoutes.TextboxNumericOverview },
-        { label: 'Style', goTo: appRoutes.TextboxNumericStyle },
-        { label: 'Effects', goTo: appRoutes.TextboxNumericEffects },
-        { label: 'Settings', goTo: appRoutes.TextboxNumericSettings },
-        { label: 'Form', goTo: appRoutes.TextboxNumericForm },
-        { label: 'Events', goTo: appRoutes.TextboxNumericEvents },
+        { label: 'Overview', goTo: APP_ROUTES.textboxNumericOverview },
+        { label: 'Style', goTo: APP_ROUTES.textboxNumericStyle },
+        { label: 'Effects', goTo: APP_ROUTES.textboxNumericEffects },
+        { label: 'Settings', goTo: APP_ROUTES.textboxNumericSettings },
+        { label: 'Form', goTo: APP_ROUTES.textboxNumericForm },
+        { label: 'Events', goTo: APP_ROUTES.textboxNumericEvents },
     ];
 
     protected selectionButton: {
-        style: Partial<MvLibButtonClassicStyle>,
-        effects: Partial<MvLibButtonClassicEffects>
-     } = {
+        style: Partial<MvLibButtonStyle>,
+        effects: Partial<MvLibButtonEffects>,
+    } = {
         style: {
             dimensions: {
                 width: '100%',
@@ -46,9 +51,9 @@ export abstract class SpecificDemoBaseComponent extends DemoBaseComponent {
     };
 
     protected copyButton: {
-        style: Partial<MvLibButtonClassicStyle>,
-        effects: Partial<MvLibButtonClassicEffects>
-     } = {
+        style: Partial<MvLibButtonStyle>,
+        effects: Partial<MvLibButtonEffects>,
+    } = {
         style: {
             dimensions: {
                 width: '33%',
@@ -62,36 +67,63 @@ export abstract class SpecificDemoBaseComponent extends DemoBaseComponent {
             ],
         },
     };
+    
+    constructor() {
+        super();
+    }
 
     /**
-     * Log
+     * Logs
      */
-    protected logProperties: Record<string, LogProperty[]> = {};
-    protected logs = signal<Record<string, string>>({});
+    protected logs = signal<Record<string, DemoLog>>({});
 
     protected refreshLog(key: string) {
-        let result = `\n`;
-        const properties = this.logProperties[key] ?? [];
+        this.logs.update(logs => ({
+            ...logs,
+            [key]: { ...logs[key] },
+        }));
+    }
 
+    protected componentCode(key: string) {
+        let result = `\n`;
+        const properties = this.logs()[key]?.code ?? [];
         properties.forEach(property => {
             const value = typeof property.value === 'function'
                 ? property.value()
                 : property.value;
-            result += `    [${property.property}]="${this.prettify(value)}",\n`;
+            const formattedValue = value === undefined
+                ? 'undefined'
+                : `"${this.prettify(value)}"`;
+            result += `    [${property.property}]=${formattedValue},\n`;
         });
-
-        this.logs.update(logs => ({ ...logs, [key]: result }));
+        return result;
     }
 
     protected refreshLogs() {
-        Object.keys(this.logProperties).forEach(key => this.refreshLog(key));
+        Object.keys(this.logs()).forEach(key => this.refreshLog(key));
     }
 
-    /**
-     * Copy component code to clipboard
-     */
+    protected events(key: string) {
+        const logs = this.logs();
+        return key in logs ? logs[key].event : [];
+    }
+
+    protected addEventLog(key: string, event: string) {
+        this.logs.update(logs => {
+            const log = logs[key];
+            const events = log?.event ?? [];
+            return {
+                ...logs,
+                [key]: {
+                    ...log,
+                    event: [{ index: events.length + 1, event }, ...events],
+                },
+            };
+        });
+    }
+
     protected copyComponentCode(key: string) {
-        const componentCode = (this.logProperties[key] ?? [])
+        const componentCode = (this.logs()[key]?.code ?? [])
             .map(property => {
                 const value = typeof property.value === 'function'
                     ? property.value()
@@ -119,24 +151,5 @@ export abstract class SpecificDemoBaseComponent extends DemoBaseComponent {
                     { width: '300px' },
                 )
             );
-    }
-
-    /**
-     * Events
-     */
-    protected eventLogs = signal<Record<string, EventLog[]>>({});
-
-    protected addEventLog<Event>(type: string, event: Event) {
-        this.eventLogs.update(eventLogs => {
-            const logs = eventLogs[type] ?? [];
-
-            return {
-                ...eventLogs,
-                [type]: [
-                    { index: logs.length + 1, event },
-                    ...logs,
-                ],
-            };
-        });
     }
 }

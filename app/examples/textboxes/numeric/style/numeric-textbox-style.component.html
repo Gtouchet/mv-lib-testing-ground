@@ -1,61 +1,74 @@
 <div class="layout">
     <div id="top" class="content">
 
-        <app-navigation [links]="numericTetxboxNavigation"/>
-
         <section class="presentation">
             <span class="title">
                 Numeric textbox styles
             </span>
             <span class="description">
-                Customize every visual aspect of a numeric textbox : its main input area, and its stepper buttons.
+                Use the MVLib numeric textbox's [inputStyle] to customize its input area and stepper buttons.
             </span>
             <span class="last-updated">
-                Last updated: 12/09/2026
+                Last updated: {{ lastUpdated }}
             </span>
         </section>
 
-        <section id="general" class="section">
+        <section id="input-area" class="section">
             <span class="title">
-                General
+                Input area
             </span>
             <span class="description">
-                Customize the general appearance of the numeric textbox.
+                Configure the background color, dimensions, outline, and typography of the input area.
             </span>
             <div class="playground">
                 <div class="configuration">
                     <div class="panel">
                         <div class="panel-content">
                             <app-input-color
-                                [value]="_textboxGeneral().api.style.getBackgroundColor()"
-                                (onChange)="_textboxGeneral().api.style.setBackgroundColor($event); refreshLog('general');"
+                                label="Background color"
+                                [value]="_inputArea().api.style.getBackgroundColor()"
+                                (onChange)="_inputArea().api.style.setBackgroundColor($event); refreshLog('inputArea');"
+                            />
+                            <app-dimensions-inputs
+                                [value]="_inputArea().api.style.getDimensions()"
+                                (onChange)="_inputArea().api.style.setDimensions($event.key, $event.value); refreshLog('inputArea');"
+                            />
+                            <app-outline-inputs
+                                [value]="_inputArea().api.style.getOutline()"
+                                (onChange)="_inputArea().api.style.setOutline($event.key, $event.value); refreshLog('inputArea');"
+                            />
+                            <app-font-inputs
+                                [value]="_inputArea().api.style.getFont()"
+                                (onChange)="_inputArea().api.style.setFont($event.key, $event.value); refreshLog('inputArea');"
                             />
                         </div>
                     </div>
                     <div class="panel">
                         <div class="panel-header">
                             <div class="copy-button">
-                                <mv-lib-button-classic
+                                <mv-lib-button
                                     [content]="'Copy style'"
                                     [inputStyle]="copyButton.style"
                                     [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('general')"
+                                    (onClick)="copyComponentCode('inputArea')"
                                 />
                             </div>
                         </div>
                         <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['general'] }}/&gt;</pre>
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('inputArea') }}/&gt;</pre>
                         </div>
                     </div>
                 </div>
                 <div class="component">
                     <mv-lib-numeric-textbox
-                        #textboxGeneral
+                        #inputArea
                         [inputStyle]="style()"
                         [inputEffects]="{
-                            classes: [
-                                mvLibEffects.hover.tint.class,
-                            ],
+                            textbox: {
+                                classes: [
+                                    mvLibEffects.hover.tint.class,
+                                ],
+                            }
                         }"
                         [inputSettings]="{
                             stepperButtons: {
@@ -68,186 +81,47 @@
             </div>
         </section>
 
-        <section id="dimensions" class="section">
+        <section id="stepper-buttons" class="section">
             <span class="title">
-                Dimensions
+                Stepper button
             </span>
             <span class="description">
-                Set the width and height of the numeric textbox to fit your layout.
+                Set the shared width of both stepper buttons and customize their background colors and icons independently.
             </span>
             <div class="playground">
                 <div class="configuration">
                     <div class="panel">
                         <div class="panel-content">
-                            <app-dimensions-inputs
-                                [dimensions]="_textboxDimensions().api.style.getDimensions()"
-                                (onChangeDimensions)="_textboxDimensions().api.style.setDimensions($event.key, $event.value); refreshLog('dimensions');"
-                            />
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button-classic
-                                    [content]="'Copy style'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('dimensions')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['dimensions'] }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
-                    <mv-lib-numeric-textbox
-                        #textboxDimensions
-                        [inputStyle]="style()"
-                        [value]="0"
-                    />
-                </div>
-            </div>
-        </section>
-
-        <section id="outline" class="section">
-            <span class="title">
-                Outline
-            </span>
-            <span class="description">
-                Configure the textbox's outline width, style, color, corner radius and offset.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
-                            <app-outline-inputs
-                                [outline]="_textboxOutline().api.style.getOutline()"
-                                (onChangeOutline)="_textboxOutline().api.style.setOutline($event.key, $event.value); refreshLog('outline');"
-                            />
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button-classic
-                                    [content]="'Copy style'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('outline')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['outline'] }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
-                    <mv-lib-numeric-textbox
-                        #textboxOutline
-                        [inputStyle]="style()"
-                        [inputSettings]="{
-                            stepperButtons: {
-                                displayed: false,
-                            }
-                        }"
-                        [value]="0"
-                    />
-                </div>
-            </div>
-        </section>
-
-        <section id="font" class="section">
-            <span class="title">
-                Font
-            </span>
-            <span class="description">
-                Customize the size, weight, style and color of the font.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
-                            <app-font-inputs
-                                [font]="_textboxFont().api.style.getFont()"
-                                (onChangeFont)="_textboxFont().api.style.setFont($event.key, $event.value); refreshLog('font');"
-                            />
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button-classic
-                                    [content]="'Copy style'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('font')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['font'] }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
-                    <mv-lib-numeric-textbox
-                        #textboxFont
-                        [inputStyle]="style()"
-                        [inputSettings]="{
-                            stepperButtons: {
-                                displayed: false,
-                            }
-                        }"
-                        [value]="0"
-                    />
-                </div>
-            </div>
-        </section>
-
-         <section id="stepper-buttons" class="section">
-            <span class="title">
-                Stepper buttons
-            </span>
-            <span class="description">
-                Adjust the shared width, background colors, and icons of the increment and decrement buttons.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
-                            <app-inputs-separator title="Both buttons" />
+                            <app-inputs-separator label="Both buttons" />
                             <app-input-text
                                 label="Width"
-                                [value]="_textboxStepperButtons().api.style.stepperButtons.getWidth()"
-                                (onChange)="_textboxStepperButtons().api.style.stepperButtons.setWidth($event); refreshLog('stepperButtons')"
+                                [value]="_stepperButtons().api.style.stepperButtons.getWidth()"
+                                (onChange)="_stepperButtons().api.style.stepperButtons.setWidth($event); refreshLog('stepperButtons')"
                             />
-                            <app-inputs-separator title="Increment button" />
+                            <app-inputs-separator label="Increment button" />
                             <div class="inputs-group">
                                 Background color
                                 <app-input-color
-                                    [value]="_textboxStepperButtons().api.style.stepperButtons.increment.getBackgroundColor()"
-                                    (onChange)="_textboxStepperButtons().api.style.stepperButtons.increment.setBackgroundColor($event); refreshLog('stepperButtons')"
+                                    [value]="_stepperButtons().api.style.stepperButtons.increment.getBackgroundColor()"
+                                    (onChange)="_stepperButtons().api.style.stepperButtons.increment.setBackgroundColor($event); refreshLog('stepperButtons')"
                                 />
                                 Icon
                                 <app-input-text
-                                    [value]="_textboxStepperButtons().api.style.stepperButtons.increment.getIcon()"
-                                    (onChange)="_textboxStepperButtons().api.style.stepperButtons.increment.setIcon($event); refreshLog('stepperButtons')"
+                                    [value]="_stepperButtons().api.style.stepperButtons.increment.getIcon()"
+                                    (onChange)="_stepperButtons().api.style.stepperButtons.increment.setIcon($event); refreshLog('stepperButtons')"
                                 />
                             </div>
-                            <app-inputs-separator title="Decrement button" />
+                            <app-inputs-separator label="Decrement button" />
                             <div class="inputs-group">
                                 Background color
                                 <app-input-color
-                                    [value]="_textboxStepperButtons().api.style.stepperButtons.decrement.getBackgroundColor()"
-                                    (onChange)="_textboxStepperButtons().api.style.stepperButtons.decrement.setBackgroundColor($event); refreshLog('stepperButtons')"
+                                    [value]="_stepperButtons().api.style.stepperButtons.decrement.getBackgroundColor()"
+                                    (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setBackgroundColor($event); refreshLog('stepperButtons')"
                                 />
                                 Icon
                                 <app-input-text
-                                    [value]="_textboxStepperButtons().api.style.stepperButtons.decrement.getIcon()"
-                                    (onChange)="_textboxStepperButtons().api.style.stepperButtons.decrement.setIcon($event); refreshLog('stepperButtons')"
+                                    [value]="_stepperButtons().api.style.stepperButtons.decrement.getIcon()"
+                                    (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setIcon($event); refreshLog('stepperButtons')"
                                 />
                             </div>
                         </div>
@@ -255,7 +129,7 @@
                     <div class="panel">
                         <div class="panel-header">
                             <div class="copy-button">
-                                <mv-lib-button-classic
+                                <mv-lib-button
                                     [content]="'Copy style'"
                                     [inputStyle]="copyButton.style"
                                     [inputEffects]="copyButton.effects"
@@ -264,130 +138,14 @@
                             </div>
                         </div>
                         <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['stepperButtons'] }}/&gt;</pre>
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('stepperButtons') }}/&gt;</pre>
                         </div>
                     </div>
                 </div>
                 <div class="component">
                     <mv-lib-numeric-textbox
-                        #textboxStepperButtons
+                        #stepperButtons
                         [inputStyle]="style()"
-                        [value]="0"
-                    />
-                </div>
-            </div>
-        </section>
-
-        <section id="complete" class="section">
-            <span class="title">
-                Complete style configuration
-            </span>
-            <span class="description">
-                Combine the textbox and stepper button styles to create a complete numeric textbox style.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="selection-buttons">
-                                <mv-lib-button-classic
-                                    [content]="'Textbox'"
-                                    [inputStyle]="selectionButton.style"
-                                    [inputEffects]="selectionButton.effects"
-                                    [selected]="textboxCompleteSelected() === 'textbox'"
-                                    (onClick)="textboxCompleteSelected.set('textbox')"
-                                />
-                                <mv-lib-button-classic
-                                    [content]="'Stepper buttons'"
-                                    [inputStyle]="selectionButton.style"
-                                    [inputEffects]="selectionButton.effects"
-                                    [selected]="textboxCompleteSelected() === 'stepperButtons'"
-                                    (onClick)="textboxCompleteSelected.set('stepperButtons')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            @if (textboxCompleteSelected() === 'textbox') {
-                                <app-input-color
-                                    style="margin-top: 8px;"
-                                    [value]="_textboxComplete().api.style.getBackgroundColor()"
-                                    (onChange)="_textboxComplete().api.style.setBackgroundColor($event); refreshLog('complete');"
-                                />
-                                <app-dimensions-inputs
-                                    [dimensions]="_textboxComplete().api.style.getDimensions()"
-                                    (onChangeDimensions)="_textboxComplete().api.style.setDimensions($event.key, $event.value); refreshLog('complete');"
-                                />
-                                <app-outline-inputs
-                                    [outline]="_textboxComplete().api.style.getOutline()"
-                                    (onChangeOutline)="_textboxComplete().api.style.setOutline($event.key, $event.value); refreshLog('complete');"
-                                />
-                                <app-font-inputs
-                                    [font]="_textboxComplete().api.style.getFont()"
-                                    (onChangeFont)="_textboxComplete().api.style.setFont($event.key, $event.value); refreshLog('complete');"
-                                />
-                            }
-                            @else if (textboxCompleteSelected() === 'stepperButtons') {
-                                <app-inputs-separator title="Both buttons" />
-                                <app-input-text
-                                    label="Width"
-                                    [value]="_textboxComplete().api.style.stepperButtons.getWidth()"
-                                    (onChange)="_textboxComplete().api.style.stepperButtons.setWidth($event); refreshLog('complete')"
-                                />
-                                <app-inputs-separator title="Increment button" />
-                                <div class="inputs-group">
-                                    Background color
-                                    <app-input-color
-                                        [value]="_textboxComplete().api.style.stepperButtons.increment.getBackgroundColor()"
-                                        (onChange)="_textboxComplete().api.style.stepperButtons.increment.setBackgroundColor($event); refreshLog('complete')"
-                                    />
-                                    Icon
-                                    <app-input-text
-                                        [value]="_textboxComplete().api.style.stepperButtons.increment.getIcon()"
-                                        (onChange)="_textboxComplete().api.style.stepperButtons.increment.setIcon($event); refreshLog('complete')"
-                                    />
-                                </div>
-                                <app-inputs-separator title="Decrement button" />
-                                <div class="inputs-group">
-                                    Background color
-                                    <app-input-color
-                                        [value]="_textboxComplete().api.style.stepperButtons.decrement.getBackgroundColor()"
-                                        (onChange)="_textboxComplete().api.style.stepperButtons.decrement.setBackgroundColor($event); refreshLog('complete')"
-                                    />
-                                    Icon
-                                    <app-input-text
-                                        [value]="_textboxComplete().api.style.stepperButtons.decrement.getIcon()"
-                                        (onChange)="_textboxComplete().api.style.stepperButtons.decrement.setIcon($event); refreshLog('complete')"
-                                    />
-                                </div>
-                            }
-                            
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button-classic
-                                    [content]="'Copy style'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('complete')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ logs()['complete'] }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
-                    <mv-lib-numeric-textbox
-                        #textboxComplete
-                        [inputStyle]="style()"
-                        [inputEffects]="{
-                            classes: [
-                                mvLibEffects.hover.tint.class,
-                            ],
-                        }"
                         [value]="0"
                     />
                 </div>
@@ -397,13 +155,8 @@
 
     <app-specific-demo-sidebar
         [contents]="[
-            { label: 'General', goto: 'general' },
-            { label: 'Dimensions', goto: 'dimensions' },
-            { label: 'Outline', goto: 'outline' },
-            { label: 'Font', goto: 'font' },
+            { label: 'Input area', goto: 'input-area' },
             { label: 'Stepper buttons', goto: 'stepper-buttons' },
-            { separator: true },
-            { label: 'Complete', goto: 'complete' },
         ]"
     />
 </div>

@@ -1,17 +1,15 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
 import { INPUTS } from "../../../../inputs/_inputs.export";
-import { MvLibButtonClassicComponent, MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
+import { MvLibButtonComponent, MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
 import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
-import { NavigationComponent } from "../../../_base/navigation/navigation.component";
 
 @Component({
     selector: 'app-numeric-textbox-style',
     imports: [
-        NavigationComponent,
         SpecificDemoSidebarComponent,
         MvLibNumericTextboxComponent,
-        MvLibButtonClassicComponent,
+        MvLibButtonComponent,
         INPUTS,
     ],
     templateUrl: './numeric-textbox-style.component.html',
@@ -21,14 +19,10 @@ import { NavigationComponent } from "../../../_base/navigation/navigation.compon
 })
 export class NumericTextboxStyleComponent extends SpecificDemoBaseComponent implements AfterViewInit {
 
-    protected _textboxGeneral = viewChild.required<MvLibNumericTextboxComponent>('textboxGeneral');
-    protected _textboxDimensions = viewChild.required<MvLibNumericTextboxComponent>('textboxDimensions');
-    protected _textboxOutline = viewChild.required<MvLibNumericTextboxComponent>('textboxOutline');
-    protected _textboxFont = viewChild.required<MvLibNumericTextboxComponent>('textboxFont');
-    protected _textboxStepperButtons = viewChild.required<MvLibNumericTextboxComponent>('textboxStepperButtons');
-    protected _textboxComplete = viewChild.required<MvLibNumericTextboxComponent>('textboxComplete');
+    protected lastUpdated = '12/09/2026';
 
-    protected textboxCompleteSelected = signal('textbox');
+    protected _inputArea = viewChild.required<MvLibNumericTextboxComponent>('inputArea');
+    protected _stepperButtons = viewChild.required<MvLibNumericTextboxComponent>('stepperButtons');
 
     protected style = signal<Partial<MvLibNumericTextboxStyle>>({
         dimensions: {
@@ -38,62 +32,34 @@ export class NumericTextboxStyleComponent extends SpecificDemoBaseComponent impl
     });
 
     ngAfterViewInit() {
-        this.logProperties = {
-            general: [
-                { property: 'inputStyle', value: () => ({
-                    backgroundColor: this._textboxGeneral().api.style.getBackgroundColor(),
-                }) },
-            ],
-            dimensions: [
-                { property: 'inputStyle', value: () => ({
-                    dimensions: this._textboxDimensions().api.style.getDimensions(),
-                }) },
-            ],
-            outline: [
-                { property: 'inputStyle', value: () => ({
-                    outline: this._textboxOutline().api.style.getOutline(),
-                }) },
-            ],
-            font: [
-                { property: 'inputStyle', value: () => ({
-                    font: this._textboxFont().api.style.getFont(),
-                }) },
-            ],
-            stepperButtons: [
-                { property: 'inputStyle', value: () => ({
-                    stepperButtons: {
-                        width: this._textboxStepperButtons().api.style.stepperButtons.getWidth(),
-                        increment: {
-                            backgroundColor: this._textboxStepperButtons().api.style.stepperButtons.increment.getBackgroundColor(),
-                            icon: this._textboxStepperButtons().api.style.stepperButtons.increment.getIcon(),
+        this.logs.set({
+            inputArea: {
+                code: [
+                    { property: 'inputStyle', value: () => ({
+                        backgroundColor: this._inputArea().api.style.getBackgroundColor(),
+                        dimensions: this._inputArea().api.style.getDimensions(),
+                        outline: this._inputArea().api.style.getOutline(),
+                        font: this._inputArea().api.style.getFont(),
+                    }) },
+                ],
+            },
+            stepperButtons: {
+                code: [
+                    { property: 'inputStyle', value: () => ({
+                        stepperButtons: {
+                            width: this._stepperButtons().api.style.stepperButtons.getWidth(),
+                            increment: {
+                                backgroundColor: this._stepperButtons().api.style.stepperButtons.increment.getBackgroundColor(),
+                                icon: this._stepperButtons().api.style.stepperButtons.increment.getIcon(),
+                            },
+                            decrement: {
+                                backgroundColor: this._stepperButtons().api.style.stepperButtons.decrement.getBackgroundColor(),
+                                icon: this._stepperButtons().api.style.stepperButtons.decrement.getIcon(),
+                            },
                         },
-                        decrement: {
-                            backgroundColor: this._textboxStepperButtons().api.style.stepperButtons.decrement.getBackgroundColor(),
-                            icon: this._textboxStepperButtons().api.style.stepperButtons.decrement.getIcon(),
-                        },
-                    },
-                }) },
-            ],
-            complete: [
-                { property: 'inputStyle', value: () => ({
-                    backgroundColor: this._textboxComplete().api.style.getBackgroundColor(),
-                    dimensions: this._textboxComplete().api.style.getDimensions(),
-                    outline: this._textboxComplete().api.style.getOutline(),
-                    font: this._textboxComplete().api.style.getFont(),
-                    stepperButtons: {
-                        width: this._textboxComplete().api.style.stepperButtons.getWidth(),
-                        increment: {
-                            backgroundColor: this._textboxComplete().api.style.stepperButtons.increment.getBackgroundColor(),
-                            icon: this._textboxComplete().api.style.stepperButtons.increment.getIcon(),
-                        },
-                        decrement: {
-                            backgroundColor: this._textboxComplete().api.style.stepperButtons.decrement.getBackgroundColor(),
-                            icon: this._textboxComplete().api.style.stepperButtons.decrement.getIcon(),
-                        },
-                    },
-                }) },
-            ],
-        };
-        this.refreshLogs();
+                    }) },
+                ],
+            },
+        });
     }
 }

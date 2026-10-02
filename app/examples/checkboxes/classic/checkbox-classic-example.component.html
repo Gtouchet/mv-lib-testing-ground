@@ -2,12 +2,12 @@
     <div class="configuration">
         <app-configuration-section title="Styles">
             <app-dimensions-inputs
-                [dimensions]="checkbox().api.style.getDimensions()"
-                (onChangeDimensions)="checkbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
+                [value]="checkbox().api.style.getDimensions()"
+                (onChange)="checkbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
             />
             <app-outline-inputs
-                [outline]="checkbox().api.style.getOutline()"
-                (onChangeOutline)="checkbox().api.style.setOutline($event.key, $event.value); refreshLog();"
+                [value]="checkbox().api.style.getOutline()"
+                (onChange)="checkbox().api.style.setOutline($event.key, $event.value); refreshLog();"
             />
             <app-inputs-separator title="Unchecked" />
             <div class="inputs-group">

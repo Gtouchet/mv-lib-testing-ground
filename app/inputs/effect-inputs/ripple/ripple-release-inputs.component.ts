@@ -16,8 +16,7 @@ import { MvLibRippleEffectStyle } from "mv-lib";
 })
 export class RippleReleaseInputsComponent {
 
-  public title = input<string | undefined>(undefined);
-
+  public label = input<string | undefined>(undefined);
   public enabled = input.required<boolean>();
   public style = input.required<MvLibRippleEffectStyle>();
 

@@ -1,0 +1,93 @@
+<div class="layout">
+    <div id="top" class="content">
+
+        <section class="presentation">
+            <span class="title">
+                Button styles
+            </span>
+            <span class="description">
+                Use the MVLib button's [inputStyle] to customize its colors, dimensions, outline, and typography.
+            </span>
+            <span class="last-updated">
+                Last updated: {{ lastUpdated }}
+            </span>
+        </section>
+
+        <section id="style" class="section">
+            <span class="title">
+                Style configuration
+            </span>
+            <span class="description">
+                Configure each style group below and preview the result immediately.<br/>
+                Click the button to toggle its selected state and compare the default and selected background colors.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel">
+                        <div class="panel-content">
+                            <div class="inputs-group">
+                                Background color
+                                <app-input-color
+                                    [value]="_button().api.style.getBackgroundColor()"
+                                    (onChange)="_button().api.style.setBackgroundColor($event); refreshLog('button');"
+                                />
+                                Selected background color
+                                <app-input-color
+                                    [value]="_button().api.style.getSelectedBackgroundColor()"
+                                    (onChange)="_button().api.style.setSelectedBackgroundColor($event); refreshLog('button');"
+                                />
+                            </div>
+                            <app-dimensions-inputs
+                                [value]="_button().api.style.getDimensions()"
+                                (onChange)="_button().api.style.setDimensions($event.key, $event.value); refreshLog('button');"
+                            />
+                            <app-outline-inputs
+                                [value]="_button().api.style.getOutline()"
+                                (onChange)="_button().api.style.setOutline($event.key, $event.value); refreshLog('button');"
+                            />
+                            <app-font-inputs
+                                [value]="_button().api.style.getFont()"
+                                (onChange)="_button().api.style.setFont($event.key, $event.value); refreshLog('button');"
+                            />
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button
+                                    [content]="'Copy style'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('button')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-button{{ componentCode('button') }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="component">
+                    <mv-lib-button
+                        #button
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.hover.tint.class,
+                            ]
+                        }"
+                        [content]="'Click me'"
+                        [(selected)]="selected"
+                        (onClick)="selected.set(!selected())"
+                    />
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- <app-specific-demo-sidebar
+        [contents]="[
+            { label: 'Style', goto: 'style' },
+        ]"
+    /> -->
+</div>

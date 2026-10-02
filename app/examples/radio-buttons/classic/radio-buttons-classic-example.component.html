@@ -20,12 +20,12 @@
             </div>
             @if (selectedPartStyle() === 'general') {
                 <app-dimensions-inputs
-                    [dimensions]="radioButtons().api.style.getDimensions()"
-                    (onChangeDimensions)="radioButtons().api.style.setDimensions($event.key, $event.value); refreshLog();"
+                    [value]="radioButtons().api.style.getDimensions()"
+                    (onChange)="radioButtons().api.style.setDimensions($event.key, $event.value); refreshLog();"
                 />
                 <app-outline-inputs
-                    [outline]="radioButtons().api.style.getOutline()"
-                    (onChangeOutline)="radioButtons().api.style.setOutline($event.key, $event.value); refreshLog();"
+                    [value]="radioButtons().api.style.getOutline()"
+                    (onChange)="radioButtons().api.style.setOutline($event.key, $event.value); refreshLog();"
                 />
             }
             @else if (selectedPartStyle() === 'button') {
@@ -61,8 +61,8 @@
                     (onChange)="radioButtons().api.style.content.setGap($event); refreshLog();"
                 />
                 <app-font-inputs
-                    [font]="radioButtons().api.style.content.getFont()"
-                    (onChangeFont)="radioButtons().api.style.content.setFont($event.key, $event.value); refreshLog();"
+                    [value]="radioButtons().api.style.content.getFont()"
+                    (onChange)="radioButtons().api.style.content.setFont($event.key, $event.value); refreshLog();"
                 />
             }
         </app-configuration-section>

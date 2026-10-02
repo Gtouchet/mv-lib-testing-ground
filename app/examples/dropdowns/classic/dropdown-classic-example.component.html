@@ -34,16 +34,16 @@
                     />
                 </div>
                 <app-dimensions-inputs
-                    [dimensions]="dropdown().api.style.button.getDimensions()"
-                    (onChangeDimensions)="dropdown().api.style.button.setDimensions($event.key, $event.value); refreshLog();"
+                    [value]="dropdown().api.style.button.getDimensions()"
+                    (onChange)="dropdown().api.style.button.setDimensions($event.key, $event.value); refreshLog();"
                 />
                 <app-outline-inputs
-                    [outline]="dropdown().api.style.button.getOutline()"
-                    (onChangeOutline)="dropdown().api.style.button.setOutline($event.key, $event.value); refreshLog();"
+                    [value]="dropdown().api.style.button.getOutline()"
+                    (onChange)="dropdown().api.style.button.setOutline($event.key, $event.value); refreshLog();"
                 />
                 <app-font-inputs
-                    [font]="dropdown().api.style.button.getFont()"
-                    (onChangeFont)="dropdown().api.style.button.setFont($event.key, $event.value); refreshLog();"
+                    [value]="dropdown().api.style.button.getFont()"
+                    (onChange)="dropdown().api.style.button.setFont($event.key, $event.value); refreshLog();"
                 />
             }
             @else if (selectedPartStyle() === 'list') {
@@ -54,12 +54,12 @@
                     (onChange)="dropdown().api.style.list.setOffsetX($event); refreshLog();"
                 />
                 <app-dimensions-inputs
-                    [dimensions]="dropdown().api.style.list.getDimensions()"
-                    (onChangeDimensions)="dropdown().api.style.list.setDimensions($event.key, $event.value); refreshLog();"
+                    [value]="dropdown().api.style.list.getDimensions()"
+                    (onChange)="dropdown().api.style.list.setDimensions($event.key, $event.value); refreshLog();"
                 />
                 <app-outline-inputs
-                    [outline]="dropdown().api.style.list.getOutline()"
-                    (onChangeOutline)="dropdown().api.style.list.setOutline($event.key, $event.value); refreshLog();"
+                    [value]="dropdown().api.style.list.getOutline()"
+                    (onChange)="dropdown().api.style.list.setOutline($event.key, $event.value); refreshLog();"
                 />
             }
             @else if (selectedPartStyle() === 'items') {
@@ -75,8 +75,8 @@
                     (onChange)="dropdown().api.style.items.setHeight($event); refreshLog();"
                 />
                 <app-font-inputs
-                    [font]="dropdown().api.style.items.getFont()"
-                    (onChangeFont)="dropdown().api.style.items.setFont($event.key, $event.value); refreshLog();"
+                    [value]="dropdown().api.style.items.getFont()"
+                    (onChange)="dropdown().api.style.items.setFont($event.key, $event.value); refreshLog();"
                 />
             }
         </app-configuration-section>

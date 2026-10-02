@@ -17,11 +17,10 @@ import { MvLibFontStyle } from "mv-lib";
 })
 export class FontInputsComponent {
 
-  public title = input<string | undefined>(undefined);
+  public label = input<string | undefined>(undefined);
+  public value = input.required<Partial<MvLibFontStyle>>();
 
-  public font = input.required<Partial<MvLibFontStyle>>();
-
-  public onChangeFont = output<{key: string, value: any}>();
+  public onChange = output<{key: keyof MvLibFontStyle, value: any}>();
 
   protected cssFontSizes = CssFontSize.values;
   protected cssFontWeights = CssFontWeight.values;

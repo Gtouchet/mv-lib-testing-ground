@@ -32,12 +32,12 @@
                     (onChange)="grid().api.style.grid.setDimensions('height', $event); refreshLog();"
                 />
                 <app-dimensions-inputs
-                    [dimensions]="grid().api.style.grid.getDimensions()"
-                    (onChangeDimensions)="grid().api.style.grid.setDimensions($event.key, $event.value); refreshLog();"
+                    [value]="grid().api.style.grid.getDimensions()"
+                    (onChange)="grid().api.style.grid.setDimensions($event.key, $event.value); refreshLog();"
                 />
                 <app-outline-inputs
-                    [outline]="grid().api.style.grid.getOutline()"
-                    (onChangeOutline)="grid().api.style.grid.setOutline($event.key, $event.value); refreshLog();"
+                    [value]="grid().api.style.grid.getOutline()"
+                    (onChange)="grid().api.style.grid.setOutline($event.key, $event.value); refreshLog();"
                 />
             }
             @else if (selectedPartStyle() === 'header row') {

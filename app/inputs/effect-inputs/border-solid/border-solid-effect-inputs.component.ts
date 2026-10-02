@@ -16,8 +16,7 @@ import { GENERIC_INPUTS } from "../../generic-inputs.export";
 })
 export class BorderSolidEffectInputsComponent {
 
-  public title = input<string | undefined>(undefined);
-
+  public label = input<string | undefined>(undefined);
   public enabled = input.required<boolean>();
   public style = input.required<MvLibBorderSolidEffectStyle>();
 

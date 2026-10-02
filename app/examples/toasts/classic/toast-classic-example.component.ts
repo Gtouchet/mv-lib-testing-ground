@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, computed, signal, AfterViewInit, OnInit } from "@angular/core";
-import { MvLibButtonClassicComponent } from "mv-lib";
+import { MvLibButtonComponent } from "mv-lib";
 import { OverviewDemoBaseComponent } from '../../_base/overview-demo.base';
 import { CommonModule, JsonPipe } from "@angular/common";
 import { INPUTS } from "../../../inputs/_inputs.export";
@@ -8,7 +8,7 @@ import { FadeInIdleInputsComponent } from "../../../inputs/effect-inputs/fade-in
 @Component({
     selector: 'app-toast-classic-example',
     imports: [
-    MvLibButtonClassicComponent,
+    MvLibButtonComponent,
     JsonPipe,
     INPUTS,
     CommonModule,

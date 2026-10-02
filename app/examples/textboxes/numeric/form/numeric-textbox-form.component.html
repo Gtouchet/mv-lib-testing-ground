@@ -1,32 +1,30 @@
 <div class="layout">
     <div id="top" class="content">
-
-        <app-navigation [links]="numericTetxboxNavigation"/>
         
         <section class="presentation">
             <span class="title">
-                Numeric textbox forms
+                Numeric textbox form integration
             </span>
             <span class="description">
-                Integrate a numeric textbox with Angular reactive forms, validators, and form controls.
+                The MVLib numeric textbox integrates with Angular reactive forms through the ControlValueAccessor API.
             </span>
             <span class="last-updated">
-                Last updated: 12/09/2026
+                Last updated: {{ lastUpdated }}
             </span>
         </section>
 
         <section id="form-validators" class="section">
             <span class="title">
-                Form validators
+                Reactive form validation
             </span>
             <span class="description">
-                Configure required, minimum, and maximum value validators and inspect the resulting form state.
+                Apply required, minimum, and maximum value validators and inspect the resulting value, interaction state, and validity.
             </span>
             <div class="playground">
                 <div class="configuration">
                     <div class="panel" style="height: 150px;">
                         <div class="panel-content">
-                            <app-inputs-separator title="Form validators" />
+                            <app-inputs-separator label="Form validators" />
                             <div class="inputs-group">
                                 <span
                                     [style.color]="forms['validators'].get('input')?.hasError('required') ?
@@ -85,7 +83,7 @@
                     </div>
                     <div class="panel" style="height: 160px;">
                         <div class="panel-content">
-                            <app-inputs-separator title="Form state"/>
+                            <app-inputs-separator label="Form state"/>
                             <div class="inputs-group">
                                 Value: <span>{{ forms['validators'].get('input')?.value }}</span>
                                 Touched: <span>{{ forms['validators'].touched ? 'Touched' : 'Untouched' }}</span>
@@ -104,9 +102,11 @@
                         formControlName="input"
                         [inputStyle]="style()"
                         [inputEffects]="{
-                            classes: [
-                                mvLibEffects.selected.outlineSolid.class,
-                            ],
+                            textbox: {
+                                classes: [
+                                    mvLibEffects.selected.outlineSolid.class,
+                                ],
+                            }
                         }"
                     />
                 </form>
@@ -116,16 +116,17 @@
         <section id="cva" class="section">
             @let formControl = forms['cva'].get('input')!;
             <span class="title">
-                Control value accessor
+                ControlValueAccessor integration
             </span>
             <span class="description">
-                Use Angular's CVA forms API to control and get the textbox's state.
+                Use Angular's FormControl API to set the value and enable or disable the textbox.<br/>
+                The action log shows the ControlValueAccessor callbacks triggered by these interactions.
             </span>
             <div class="playground">
                 <div class="configuration">
                     <div class="panel" style="height: 130px;">
-                        <div class="panel-content" style="margin-top: 8px;">
-                            <app-inputs-separator title="CVA functions" />
+                        <div class="panel-content">
+                            <app-inputs-separator label="CVA functions" />
                             <div class="inputs-group">
                                 formControl.setValue()
                                 <app-input-number
@@ -135,14 +136,14 @@
                                 formControl.disable() / .enable()
                                 <app-input-checkbox
                                     [checked]="formControl.disabled"
-                                        (onChange)="$event ? formControl.disable() : formControl.enable()"
+                                    (onChange)="$event ? formControl.disable() : formControl.enable()"
                                 />
                             </div>
                         </div>
                     </div>
                     <div class="panel">
                         <div class="panel-content">
-                            <app-inputs-separator title="CVA actions" />
+                            <app-inputs-separator label="CVA actions" />
                             @for (cvaAction of cvaActions(); track cvaAction) {
                                 <div>
                                     {{ cvaAction.index }} - {{ cvaAction.action }}
@@ -160,9 +161,11 @@
                         formControlName="input"
                         [inputStyle]="style()"
                         [inputEffects]="{
-                            classes: [
-                                mvLibEffects.selected.outlineSolid.class,
-                            ],
+                            textbox: {
+                                classes: [
+                                    mvLibEffects.selected.outlineSolid.class,
+                                ],
+                            }
                         }"
                     />
                 </form>

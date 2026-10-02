@@ -8,16 +8,16 @@
                 (onChange)="textbox().api.style.setBackgroundColor($event); refreshLog();"
             />
             <app-dimensions-inputs
-                [dimensions]="textbox().api.style.getDimensions()"
-                (onChangeDimensions)="textbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
+                [value]="textbox().api.style.getDimensions()"
+                (onChange)="textbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
             />
             <app-outline-inputs
-                [outline]="textbox().api.style.getOutline()"
-                (onChangeOutline)="textbox().api.style.setOutline($event.key, $event.value); refreshLog();"
+                [value]="textbox().api.style.getOutline()"
+                (onChange)="textbox().api.style.setOutline($event.key, $event.value); refreshLog();"
             />
             <app-font-inputs
-                [font]="textbox().api.style.getFont()"
-                (onChangeFont)="textbox().api.style.setFont($event.key, $event.value); refreshLog();"
+                [value]="textbox().api.style.getFont()"
+                (onChange)="textbox().api.style.setFont($event.key, $event.value); refreshLog();"
             />
         </app-configuration-section>
 

@@ -1,5 +1,5 @@
 <div class="effect">
-    <app-inputs-separator [title]="title() ?? 'Fade out'">
+    <app-inputs-separator [label]="label() ?? 'Fade out'">
         <app-input-checkbox
             [checked]="enabled()"
             (onChange)="onChangeEnabled.emit($event)"

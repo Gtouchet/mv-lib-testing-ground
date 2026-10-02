@@ -4,12 +4,10 @@ import { MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
 import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
 import { FormControl, ReactiveFormsModule, UntypedFormGroup } from "@angular/forms";
-import { NavigationComponent } from "../../../_base/navigation/navigation.component";
 
 @Component({
     selector: 'app-numeric-textbox-form',
     imports: [
-        NavigationComponent,
         SpecificDemoSidebarComponent,
         MvLibNumericTextboxComponent,
         ReactiveFormsModule,
@@ -22,6 +20,8 @@ import { NavigationComponent } from "../../../_base/navigation/navigation.compon
 })
 export class NumericTextboxFormComponent extends SpecificDemoBaseComponent implements AfterViewInit {
 
+    protected lastUpdated = '12/09/2026';
+    
     protected _textboxValidators = viewChild.required<MvLibNumericTextboxComponent>('textboxValidators');
     protected _textboxCva = viewChild.required<MvLibNumericTextboxComponent>('textboxCva');
 

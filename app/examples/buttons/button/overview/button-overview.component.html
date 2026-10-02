@@ -1,23 +1,29 @@
 <div class="view">
     <div class="configuration">
         <app-configuration-section title="Styles">
-            <app-inputs-separator title="General" />
-            <app-input-color
-                label="Background color"
-                [value]="button().api.style.getBackgroundColor()"
-                (onChange)="button().api.style.setBackgroundColor($event); refreshLog();"
-            />
+            <div class="inputs-group">
+                Background color
+                <app-input-color
+                    [value]="button().api.style.getBackgroundColor()"
+                    (onChange)="button().api.style.setBackgroundColor($event); refreshLog();"
+                />
+                Selected background color
+                <app-input-color
+                    [value]="button().api.style.getSelectedBackgroundColor()"
+                    (onChange)="button().api.style.setSelectedBackgroundColor($event); refreshLog();"
+                />
+            </div>
             <app-dimensions-inputs
-                [dimensions]="button().api.style.getDimensions()"
-                (onChangeDimensions)="button().api.style.setDimensions($event.key, $event.value); refreshLog();"
+                [value]="button().api.style.getDimensions()"
+                (onChange)="button().api.style.setDimensions($event.key, $event.value); refreshLog();"
             />
             <app-outline-inputs
-                [outline]="button().api.style.getOutline()"
-                (onChangeOutline)="button().api.style.setOutline($event.key, $event.value); refreshLog();"
+                [value]="button().api.style.getOutline()"
+                (onChange)="button().api.style.setOutline($event.key, $event.value); refreshLog();"
             />
             <app-font-inputs
-                [font]="button().api.style.getFont()"
-                (onChangeFont)="button().api.style.setFont($event.key, $event.value); refreshLog();"
+                [value]="button().api.style.getFont()"
+                (onChange)="button().api.style.setFont($event.key, $event.value); refreshLog();"
             />
         </app-configuration-section>
 
@@ -62,20 +68,23 @@
     </div>
 
     <div class="render">
-        <mv-lib-button-classic
+        <mv-lib-button
             #mvLibButtonClassic
             class="component"
             [inputStyle]="style()"
             [inputEffects]="effects()"
             [inputSettings]="settings()"
             [disabled]="disabled()"
-            (onClick)="refreshLastInteractionTime()"
+            [(selected)]="selected"
+            (onClick)="
+                selected.set(!selected());
+                refreshLastInteractionTime()"
         >
             <span class="material-symbols-outlined">
                 touch_app
             </span>
             Click
-        </mv-lib-button-classic>
+        </mv-lib-button>
 
         <div class="log">
             Last interaction time: {{ lastInteractionTime() }}

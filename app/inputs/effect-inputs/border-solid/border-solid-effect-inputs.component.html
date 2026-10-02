@@ -1,5 +1,5 @@
 <div class="effect">
-    <app-inputs-separator [title]="title() ?? 'Border solid'">
+    <app-inputs-separator [label]="label() ?? 'Border solid'">
         <app-input-checkbox
             [checked]="enabled()"
             (onChange)="onChangeEnabled.emit($event)"

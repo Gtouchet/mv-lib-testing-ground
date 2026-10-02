@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { ButtonClassicExampleComponent } from './examples/buttons/classic/button-classic-example.component';
+import { ButtonOverviewComponent } from './examples/buttons/button/overview/button-overview.component';
 import { CheckboxClassicExampleComponent } from './examples/checkboxes/classic/checkbox-classic-example.component';
 import { DropdownClassicExampleComponent } from './examples/dropdowns/classic/dropdown-classic-example.component';
 import { GridClassicExampleComponent } from './examples/grids/classic/grid-classic-example.component';
@@ -15,6 +15,8 @@ import { NumericTextboxEffectsComponent } from './examples/textboxes/numeric/eff
 import { NumericTextboxSettingsComponent } from './examples/textboxes/numeric/settings/numeric-textbox-settings.component';
 import { NumericTextboxFormComponent } from './examples/textboxes/numeric/form/numeric-textbox-form.component';
 import { NumericTextboxEventsComponent } from './examples/textboxes/numeric/events/numeric-textbox-events.component';
+import { ButtonStyleComponent } from './examples/buttons/button/style/button-style.component';
+import { ButtonHrefComponent } from './examples/buttons/button/href/button-href.component';
 
 export interface AppRoute {
 	readonly path: string;
@@ -23,92 +25,109 @@ export interface AppRoute {
 	readonly component: any;
 }
 
-export const appRoutes = {
-	Home: {
+export const APP_ROUTES = {
+	home: {
 		path: 'home',
 		title: 'Home',
 		component: HomeComponent,
 	},
 
-	ButtonClassic: {
-		path: 'button-classic-example',
-		title: 'Button classic',
-		component: ButtonClassicExampleComponent,
+	/**
+	 * Button
+	 */
+	buttonOverview: {
+		path: 'buttons/button/overview',
+		title: 'Button - Overview',
+		component: ButtonOverviewComponent,
 	},
+	buttonStyle: {
+		path: 'buttons/button/style',
+		title: 'Button - Style',
+		component: ButtonStyleComponent,
+	},
+	buttonHref: {
+		path: 'buttons/button/href',
+		title: 'Button - HREF',
+		component: ButtonHrefComponent,
+	},
+
 	CheckboxClassic: {
 		path: 'checkbox-classic-example',
 		title: 'Checkbox classic',
 		component: CheckboxClassicExampleComponent,
 	},
-	DropdownClassic: {
+	dropdownClassic: {
 		path: 'dropdown-classic-example',
 		title: 'Dropdown classic',
 		component: DropdownClassicExampleComponent,
 	},
-	GridClassic: {
+	gridClassic: {
 		path: 'grid-classic-example',
 		title: 'Grid classic',
 		component: GridClassicExampleComponent,
 	},
-	RadioButtonsClassic: {
+	radioButtonsClassic: {
 		path: 'radio-buttons-classic-example',
 		title: 'Radio buttons classic',
 		component: RadioButtonsClassicExampleComponent,
 	},
-	SwitchClassic: {
+	switchClassic: {
 		path: 'switch-classic-example',
 		title: 'Switch classic',
 		component: SwitchClassicExampleComponent,
 	},
-	TextboxAlphanumeric: {
+	textboxAlphanumeric: {
 		path: 'textbox/alphanumeric',
 		title: 'Alphanumeric Textbox',
 		component: AlphanumericTextboxComponent,
 	},
 
-	// Numeric textbox
-	TextboxNumericOverview: {
-		path: 'textbox/numeric/overview',
+	/**
+	 * Numeric textbox
+	 */
+	textboxNumericOverview: {
+		path: 'textboxes/numeric/overview',
 		title: 'Numeric Textbox - Overview',
 		component: NumericTextboxOverviewComponent,
 	},
-	TextboxNumericStyle: {
-		path: 'textbox/numeric/style',
+	textboxNumericStyle: {
+		path: 'textboxes/numeric/style',
 		fragment: 'top',
 		title: 'Numeric Textbox - Style',
 		component: NumericTextboxStyleComponent,
 	},
-	TextboxNumericEffects: {
-		path: 'textbox/numeric/effects',
+	textboxNumericEffects: {
+		path: 'textboxes/numeric/effects',
 		fragment: 'top',
 		title: 'Numeric Textbox - Effects',
 		component: NumericTextboxEffectsComponent,
 	},
-	TextboxNumericSettings: {
-		path: 'textbox/numeric/settings',
+	textboxNumericSettings: {
+		path: 'textboxes/numeric/settings',
 		fragment: 'top',
 		title: 'Numeric Textbox - Settings',
 		component: NumericTextboxSettingsComponent,
 	},
-	TextboxNumericForm: {
-		path: 'textbox/numeric/form',
+	textboxNumericForm: {
+		path: 'textboxes/numeric/form',
 		fragment: 'top',
 		title: 'Numeric Textbox - Form',
 		component: NumericTextboxFormComponent,
 	},
-	TextboxNumericEvents: {
-		path: 'textbox/numeric/events',
+	textboxNumericEvents: {
+		path: 'textboxes/numeric/events',
 		fragment: 'top',
 		title: 'Numeric Textbox - Events',
 		component: NumericTextboxEventsComponent,
 	},
 
-	TreeviewClassic: {
+
+	treeviewClassic: {
 		path: 'treeview-classic-example',
 		title: 'Treeview classic',
 		component: TreeviewClassicExampleComponent,
 	},
-	ToastClassic: {
+	toastClassic: {
 		path: 'toast-classic-example',
 		title: 'Toast classic',
 		component: ToastClassicExampleComponent,
@@ -119,9 +138,9 @@ export const routes: Routes = [
 	{ 
 		path: '',
 		pathMatch: 'full',
-		redirectTo: appRoutes.Home.path,
+		redirectTo: APP_ROUTES.home.path,
 	},
-	...Object.values(appRoutes).map(route => ({
+	...Object.values(APP_ROUTES).map(route => ({
 		path: route.path,
 		component: route.component,
 		data: { title: route.title },

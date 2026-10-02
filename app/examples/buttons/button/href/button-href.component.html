@@ -1,0 +1,72 @@
+<div class="layout">
+    <div id="top" class="content">
+
+        <section class="presentation">
+            <span class="title">
+                Button hyperlink
+            </span>
+            <span class="description">
+                The [href] input turns the MVLib button into a native hyperlink and defines its navigation target.
+            </span>
+            <span class="last-updated">
+                Last updated: {{ lastUpdated }}
+            </span>
+        </section>
+
+        <section id="input-area" class="section">
+            <span class="title">
+                HREF input
+            </span>
+            <span class="description">
+                When href contains a non-empty value, the component renders as an &lt;a&gt; element and supports native browser link behavior.<br/>
+                When href is undefined or an empty string, the component renders as a regular button.<br/>
+                A disabled component also renders as a button and does not navigate, even if href is set.
+            </span>
+            <div class="playground">
+                <div class="configuration">
+                    <div class="panel" style="height: 100px;">
+                        <div class="panel-content">
+                            <app-input-text
+                                [label]="'HREF'"
+                                [value]="_button().href()"
+                                (onChange)="_button().href.set($event)"
+                            />
+                            <app-input-checkbox
+                                [label]="'Disabled'"
+                                [checked]="_button().disabled()"
+                                (onChange)="_button().disabled.set($event)"
+                            />
+                        </div>
+                    </div>
+                    <div class="panel" style="height: 100px;">
+                        <div class="panel-header">
+
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-button{{ componentCode('button') }}/&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="component">
+                    <mv-lib-button
+                        #button
+                        [inputStyle]="style()"
+                        [inputEffects]="{
+                            classes: [
+                                mvLibEffects.hover.tint.class,
+                            ]
+                        }"
+                        [content]="'Home'"
+                        [href]="appRoutes.home.path"
+                    />
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- <app-specific-demo-sidebar
+        [contents]="[
+            { label: 'Style', goto: 'style' },
+        ]"
+    /> -->
+</div>

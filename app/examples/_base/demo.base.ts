@@ -1,6 +1,7 @@
 import { Directive, inject, signal } from "@angular/core";
 import { AbstractControl, UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { MV_LIB_EFFECTS, MvLibToastService } from "mv-lib";
+import { APP_ROUTES } from "../../app.routes";
 
 type ValidatorKey =
     | 'required'
@@ -15,17 +16,13 @@ interface CvaAction {
     readonly action: string;
 }
 
-interface EventLog {
-    readonly index: number;
-    readonly event: string;
-}
-
 @Directive({
     standalone: true,
 })
 export abstract class DemoBaseComponent {
     
     protected readonly mvLibEffects = MV_LIB_EFFECTS;
+    protected readonly appRoutes = APP_ROUTES;
     protected readonly toastService = inject(MvLibToastService);
 
     constructor() {
@@ -100,9 +97,10 @@ export abstract class DemoBaseComponent {
      * Logs
      */
     protected prettify(property: unknown): string {
-        return JSON.stringify(property, null, 4)
+        return JSON.stringify(property, (_key, value) => value === undefined ? 'undefined' : value, 4)
             .replace(/"([^"]+)":/g, '$1:')
             .replace(/"/g, "'")
+            .replaceAll('\'undefined\'', 'undefined')
             .replace(/\n/g, '\n    ');
     }
 }

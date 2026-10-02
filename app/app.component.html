@@ -21,7 +21,7 @@
 
         <section class="treeview-section">
             <mv-lib-treeview-classic
-                #componentTreeview
+                #componentsTreeview
                 [items]="componentTreeviewItems()"
             >
                 Components
@@ -37,16 +37,17 @@
                             {{ item.label }}
                         </div>
                     } @else {
-                        <mv-lib-button-classic
+                        <mv-lib-button
                             [inputStyle]="treeviewButtonStyle"
                             [inputEffects]="treeviewButtonEffects"
                             [selected]="router.url.split('#')[0] === item.routerLink"
+                            [href]="getNavigationHref(item)"
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">
                                 {{ item.label }} {{ item.status ? '(' + item.status + ')' : '' }}
                             </div>
-                        </mv-lib-button-classic>
+                        </mv-lib-button>
                     }
                 </ng-template>
             </mv-lib-treeview-classic>
@@ -54,6 +55,7 @@
 
         <section class="treeview-section">
             <mv-lib-treeview-classic
+                #servicesTreeview
                 [items]="serviceTreeviewItems()"
             >
                 Services
@@ -69,15 +71,16 @@
                             {{ item.label }}
                         </div>
                     } @else {
-                        <mv-lib-button-classic
+                        <mv-lib-button
                             [inputStyle]="treeviewButtonStyle"
                             [inputEffects]="treeviewButtonEffects"
+                            [href]="getNavigationHref(item)"
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">
                                 {{ item.label + (item.wip ? ' (WIP)' : '') }}
                             </div>
-                        </mv-lib-button-classic>
+                        </mv-lib-button>
                     }
                 </ng-template>
             </mv-lib-treeview-classic>
@@ -107,7 +110,7 @@
                         </div>
                     }
                     @else {
-                        <mv-lib-button-classic
+                        <mv-lib-button
                             [inputStyle]="treeviewButtonStyle"
                             [inputEffects]="treeviewButtonEffects"
                             (onClick)="onThemeSelect(item.label, $event.event)"
@@ -118,7 +121,7 @@
                                 </span>
                                 {{ item.label }}
                             </div>
-                        </mv-lib-button-classic>
+                        </mv-lib-button>
                     }
                 </ng-template>
             </mv-lib-treeview-classic>

@@ -16,8 +16,7 @@ import { MvLibProgressBarDarkenEffectStyle } from "mv-lib";
 })
 export class ProgressBarDarkenFillInputsComponent {
 
-  public title = input<string | undefined>(undefined);
-
+  public label = input<string | undefined>(undefined);
   public enabled = input.required<boolean>();
   public style = input.required<MvLibProgressBarDarkenEffectStyle>();
 

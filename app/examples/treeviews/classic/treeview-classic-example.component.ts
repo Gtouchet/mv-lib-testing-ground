@@ -1,7 +1,7 @@
 import { OverviewDemoBaseComponent } from '../../_base/overview-demo.base';
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { INPUTS } from '../../../inputs/_inputs.export';
-import { MvLibButtonClassicComponent, MvLibTreeviewClassicComponent, MvLibTreeviewClassicEffects, MvLibTreeviewClassicSettings, MvLibTreeviewClassicStyle, MvLibTreeviewDirectives, MvLibTreeviewToggleEvent } from 'mv-lib';
+import { MvLibButtonComponent, MvLibTreeviewClassicComponent, MvLibTreeviewClassicEffects, MvLibTreeviewClassicSettings, MvLibTreeviewClassicStyle, MvLibTreeviewDirectives, MvLibTreeviewToggleEvent } from 'mv-lib';
 import { CommonModule } from '@angular/common';
 
 interface User {
@@ -20,7 +20,7 @@ interface Contact {
     imports: [
     MvLibTreeviewClassicComponent,
     MvLibTreeviewDirectives,
-    MvLibButtonClassicComponent,
+    MvLibButtonComponent,
     INPUTS,
     CommonModule,
 ],

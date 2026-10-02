@@ -1,27 +1,25 @@
 <div class="layout">
     <div id="top" class="content">
-
-        <app-navigation [links]="numericTetxboxNavigation"/>
         
         <section class="presentation">
             <span class="title">
                 Numeric textbox events
             </span>
             <span class="description">
-                Explore the events emitted when interacting with a numeric textbox and its stepper buttons.
+                The MVLib numeric textbox emits events for selection, value changes, and stepper button interactions.
             </span>
             <span class="last-updated">
-                Last updated: 12/09/2026
+                Last updated: {{ lastUpdated }}
             </span>
         </section>
 
         <section id="on-select" class="section">
             <span class="title">
-                Selection event
+                Selection changes
             </span>
             <span class="description">
-                The (onSelect) event is emitted whenever the textbox is selected or loses focus.<br/>
-                The event object contains readonly information about the selection state and the originating event.
+                The (onSelect) event is emitted when the input area gains or loses focus.<br/>
+                Its readonly payload contains the current selection state and the originating event.
             </span>
             <div class="playground">
                 <div class="configuration">
@@ -40,8 +38,8 @@ MvLibTextboxSelectedEvent:
                     </div>
                     <div class="panel" style="height: 180px;">
                         <div class="panel-content">
-                            <app-inputs-separator title="On select events"/>
-                            @for (log of eventLogs()['onSelect']; track log.index) {
+                            <app-inputs-separator label="On select events"/>
+                            @for (log of events('onSelect'); track log.index) {
                                 <div>
                                     {{ log.index }} - {{ log.event }}
                                 </div>
@@ -51,11 +49,14 @@ MvLibTextboxSelectedEvent:
                 </div>
                 <div class="component">
                     <mv-lib-numeric-textbox
+                        #textboxOnSelect
                         [inputStyle]="style()"
                         [inputEffects]="{
-                            classes: [
-                                mvLibEffects.selected.outlineSolid.class,
-                            ],
+                            textbox: {
+                                classes: [
+                                    mvLibEffects.selected.outlineSolid.class,
+                                ],
+                            }
                         }"
                         (onSelect)="addEventLog('onSelect', `selected: ${$event.selected}`)"
                     />
@@ -65,11 +66,11 @@ MvLibTextboxSelectedEvent:
 
         <section id="on-change" class="section">
             <span class="title">
-                Value change event
+                Value changes
             </span>
             <span class="description">
-                The (onChange) event is emitted whenever the value of the textbox changes.<br/>
-                The event object contains readonly information about the value and the originating event.
+                The (onChange) event is emitted whenever the numeric value changes.<br/>
+                Its readonly payload contains the new value and the originating event.
             </span>
             <div class="playground">
                 <div class="configuration">
@@ -88,8 +89,8 @@ MvLibTextboxChangeEvent:
                     </div>
                     <div class="panel" style="height: 180px;">
                         <div class="panel-content">
-                            <app-inputs-separator title="On change events"/>
-                            @for (log of eventLogs()['onChange']; track log.index) {
+                            <app-inputs-separator label="On change events"/>
+                            @for (log of events('onChange'); track log.index) {
                                 <div>
                                     {{ log.index }} - {{ log.event }}
                                 </div>
@@ -99,11 +100,14 @@ MvLibTextboxChangeEvent:
                 </div>
                 <div class="component">
                     <mv-lib-numeric-textbox
+                        #textboxOnChange
                         [inputStyle]="style()"
                         [inputEffects]="{
-                            classes: [
-                                mvLibEffects.selected.outlineSolid.class,
-                            ],
+                            textbox: {
+                                classes: [
+                                    mvLibEffects.selected.outlineSolid.class,
+                                ],
+                            }
                         }"
                         (onChange)="addEventLog('onChange', `value: ${$event.value}`)"
                     />
@@ -113,11 +117,11 @@ MvLibTextboxChangeEvent:
 
         <section id="on-stepper-button-click" class="section">
             <span class="title">
-                Stepper button click event
+                Stepper button clicks
             </span>
             <span class="description">
-                The (onStepperButtonClick) event is emitted whenever a stepper button is clicked.<br/>
-                The event object contains readonly information about the direction of the click and the originating event.
+                The (onStepperButtonClick) event is emitted whenever an increment or decrement button is clicked.<br/>
+                Its readonly payload contains the step direction and the originating event.
             </span>
             <div class="playground">
                 <div class="configuration">
@@ -136,8 +140,8 @@ MvLibNumericTextboxStepperButtonClickedEvent:
                     </div>
                     <div class="panel" style="height: 180px;">
                         <div class="panel-content">
-                            <app-inputs-separator title="On stepper button click events"/>
-                            @for (log of eventLogs()['onStepperButtonClick']; track log.index) {
+                            <app-inputs-separator label="On stepper button click events"/>
+                            @for (log of events('onStepperButtonClick'); track log.index) {
                                 <div>
                                     {{ log.index }} - {{ log.event }}
                                 </div>
@@ -147,11 +151,14 @@ MvLibNumericTextboxStepperButtonClickedEvent:
                 </div>
                 <div class="component">
                     <mv-lib-numeric-textbox
+                        #textboxOnStepperButtonClick
                         [inputStyle]="style()"
                         [inputEffects]="{
-                            classes: [
-                                mvLibEffects.selected.outlineSolid.class,
-                            ],
+                            textbox: {
+                                classes: [
+                                    mvLibEffects.selected.outlineSolid.class,
+                                ],
+                            }
                         }"
                         (onStepperButtonClick)="addEventLog('onStepperButtonClick', `direction: ${$event.direction}`)"
                     />
@@ -159,14 +166,14 @@ MvLibNumericTextboxStepperButtonClickedEvent:
             </div>
         </section>
 
-        <section id="on-hold" class="section">
+        <section id="on-stepper-button-hold" class="section">
             <span class="title">
-                Hold events
+                Stepper button holds
             </span>
             <span class="description">
-                The (onHoldStart) event is emitted whenever the hold action starts.<br/>
-                The (onHoldEnd) event is emitted whenever the hold action ends.<br/>
-                The event objects contains readonly information about the direction of the hold and the originating event.
+                The (onHoldStart) event is emitted when a stepper button hold begins.<br/>
+                The (onHoldEnd) event is emitted when the hold ends.<br/>
+                Both readonly payloads contain the step direction and the originating event.
             </span>
             <div class="playground">
                 <div class="configuration">
@@ -174,7 +181,7 @@ MvLibNumericTextboxStepperButtonClickedEvent:
                         <div class="panel-content">
 <pre>&lt;mv-lib-numeric-textbox
     (onHoldStart)="doSomething($event)"
-    (onHoldEnd)="doSomething($event)"
+    (onHoldEnd)="doSomethingElse($event)"
 /&gt;
 
 MvLibNumericTextboxHoldStartedEvent:
@@ -192,8 +199,8 @@ MvLibNumericTextboxHoldEndedEvent:
                     </div>
                     <div class="panel" style="height: 180px;">
                         <div class="panel-content">
-                            <app-inputs-separator title="On hold events"/>
-                            @for (log of eventLogs()['onHold']; track log.index) {
+                            <app-inputs-separator label="On stepper button hold events"/>
+                            @for (log of events('onHold'); track log.index) {
                                 <div>
                                     {{ log.index }} - {{ log.event }}
                                 </div>
@@ -203,11 +210,14 @@ MvLibNumericTextboxHoldEndedEvent:
                 </div>
                 <div class="component">
                     <mv-lib-numeric-textbox
+                        #textboxOnHold
                         [inputStyle]="style()"
                         [inputEffects]="{
-                            classes: [
-                                mvLibEffects.selected.outlineSolid.class,
-                            ],
+                            textbox: {
+                                classes: [
+                                    mvLibEffects.selected.outlineSolid.class,
+                                ],
+                            }
                         }"
                         (onHoldStart)="addEventLog('onHold', `hold start direction: ${$event.direction}`)"
                         (onHoldEnd)="addEventLog('onHold', `hold end direction: ${$event.direction}`)"
@@ -219,10 +229,10 @@ MvLibNumericTextboxHoldEndedEvent:
 
     <app-specific-demo-sidebar
         [contents]="[
-            { label: 'On select', goto: 'on-select' },
-            { label: 'On change', goto: 'on-change' },
-            { label: 'On stepper button click', goto: 'on-stepper-button-click' },
-            { label: 'On hold', goto: 'on-hold' },
+            { label: 'Select', goto: 'on-select' },
+            { label: 'Change', goto: 'on-change' },
+            { label: 'Stepper button click', goto: 'on-stepper-button-click' },
+            { label: 'Stepper button hold', goto: 'on-stepper-button-hold' },
         ]"
     />
 </div>

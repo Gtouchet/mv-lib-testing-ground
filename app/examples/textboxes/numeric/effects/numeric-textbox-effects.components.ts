@@ -1,17 +1,15 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
 import { INPUTS } from "../../../../inputs/_inputs.export";
-import { MvLibButtonClassicComponent, MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
+import { MvLibButtonComponent, MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
 import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
-import { NavigationComponent } from "../../../_base/navigation/navigation.component";
 
 @Component({
     selector: 'app-numeric-textbox-effects',
     imports: [
-        NavigationComponent,
         SpecificDemoSidebarComponent,
         MvLibNumericTextboxComponent,
-        MvLibButtonClassicComponent,
+        MvLibButtonComponent,
         INPUTS,
     ],
     templateUrl: './numeric-textbox-effects.component.html',
@@ -21,11 +19,12 @@ import { NavigationComponent } from "../../../_base/navigation/navigation.compon
 })
 export class NumericTextboxEffectsComponent extends SpecificDemoBaseComponent implements AfterViewInit {
 
-    protected _textboxHover = viewChild.required<MvLibNumericTextboxComponent>('textboxHover');
-    protected _textboxSelected = viewChild.required<MvLibNumericTextboxComponent>('textboxSelected');
-    protected _textboxComplete = viewChild.required<MvLibNumericTextboxComponent>('textboxComplete');
+    protected lastUpdated = '21/09/2026';
 
-    protected textboxCompleteSelected = signal('hovered');
+    protected _inputArea = viewChild.required<MvLibNumericTextboxComponent>('inputArea');
+    protected _stepperButtons = viewChild.required<MvLibNumericTextboxComponent>('stepperButtons');
+
+    protected stepperButtonsSelected = signal<'increment' | 'decrement'>('increment');
 
     protected style = signal<Partial<MvLibNumericTextboxStyle>>({
         dimensions: {
@@ -35,37 +34,40 @@ export class NumericTextboxEffectsComponent extends SpecificDemoBaseComponent im
     });
 
     ngAfterViewInit() {
-        this.logProperties = {
-            hovered: [
-                { property: 'inputEffects', value: () => ({
-                    classes: this._textboxHover().getEffects().classes,
-                    styles: {
-                        tintHover: this._textboxHover().getEffects().styles.tintHover,
-                    }
-                }) },
-            ],
-            selected: [
-                { property: 'inputEffects', value: () => ({
-                    classes: this._textboxSelected().getEffects().classes,
-                    styles: {
-                        outlineBlurSelected: this._textboxSelected().getEffects().styles.outlineBlurSelected,
-                        outlineSolidSelected: this._textboxSelected().getEffects().styles.outlineSolidSelected,
-                        tintSelected: this._textboxSelected().getEffects().styles.tintSelected,
-                    },
-                }) },
-            ],
-            complete: [
-                { property: 'inputEffects', value: () => ({
-                    classes: this._textboxComplete().getEffects().classes,
-                    styles: {
-                        tintHover: this._textboxComplete().getEffects().styles.tintHover,
-                        tintSelected: this._textboxComplete().getEffects().styles.tintSelected,
-                        outlineBlurSelected: this._textboxComplete().getEffects().styles.outlineBlurSelected,
-                        outlineSolidSelected: this._textboxComplete().getEffects().styles.outlineSolidSelected,
-                    }
-                }) },
-            ],
-        };
-        this.refreshLogs();
+        this.logs.set({
+            inputArea: {
+                code: [
+                    { property: 'inputEffects', value: () => ({
+                        textbox: {
+                            classes: this._inputArea().getEffects().textbox.classes,
+                            styles: {
+                                tintHover: this._inputArea().getEffects().textbox.styles!.tintHover,
+                                tintSelected: this._inputArea().getEffects().textbox.styles!.tintSelected,
+                                outlineBlurSelected: this._inputArea().getEffects().textbox.styles!.outlineBlurSelected,
+                                outlineSolidSelected: this._inputArea().getEffects().textbox.styles!.outlineSolidSelected,
+                            }
+                        }
+                    }) },
+                ],
+            },
+            stepperButtons: {
+                code: [
+                    { property: 'inputEffects', value: () => ({
+                        incrementButton: {
+                            classes: [],
+                            styles: {
+                                
+                            },
+                        },
+                        decrementButton: {
+                            classes: [],
+                            styles: {
+                                
+                            },
+                        },
+                    }) },
+                ],
+            },
+        });
     }
 }

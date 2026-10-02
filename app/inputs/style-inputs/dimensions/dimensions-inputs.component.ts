@@ -18,9 +18,8 @@ import { MvLibDimensionStyle } from "mv-lib";
 })
 export class DimensionsInputsComponent {
 
-  public title = input<string | undefined>(undefined);
+  public label = input<string | undefined>(undefined);
+  public value = input.required<Partial<MvLibDimensionStyle>>();
 
-  public dimensions = input.required<Partial<MvLibDimensionStyle>>();
-
-  public onChangeDimensions = output<{key: string, value: any}>();
+  public onChange = output<{key: keyof MvLibDimensionStyle, value: any}>();
 }

@@ -1,33 +1,33 @@
-<app-inputs-separator [title]="title() ?? 'Dimensions'" />
+<app-inputs-separator [label]="label() ?? 'Dimensions'" />
 <div class="inputs-group">
     Width
     <app-input-text
-        [value]="dimensions().width"
-        (onChange)="onChangeDimensions.emit({key: 'width', value: $event})"
+        [value]="value().width"
+        (onChange)="onChange.emit({key: 'width', value: $event})"
     />
     Min width
     <app-input-text
-        [value]="dimensions().minWidth"
-        (onChange)="onChangeDimensions.emit({key: 'minWidth', value: $event})"
+        [value]="value().minWidth"
+        (onChange)="onChange.emit({key: 'minWidth', value: $event})"
     />
     Max width
     <app-input-text
-        [value]="dimensions().maxWidth"
-        (onChange)="onChangeDimensions.emit({key: 'maxWidth', value: $event})"
+        [value]="value().maxWidth"
+        (onChange)="onChange.emit({key: 'maxWidth', value: $event})"
     />
     Height
     <app-input-text
-        [value]="dimensions().height"
-        (onChange)="onChangeDimensions.emit({key: 'height', value: $event})"
+        [value]="value().height"
+        (onChange)="onChange.emit({key: 'height', value: $event})"
     />
     Min height
     <app-input-text
-        [value]="dimensions().minHeight"
-        (onChange)="onChangeDimensions.emit({key: 'minHeight', value: $event})"
+        [value]="value().minHeight"
+        (onChange)="onChange.emit({key: 'minHeight', value: $event})"
     />
     Max height
     <app-input-text
-        [value]="dimensions().maxHeight"
-        (onChange)="onChangeDimensions.emit({key: 'maxHeight', value: $event})"
+        [value]="value().maxHeight"
+        (onChange)="onChange.emit({key: 'maxHeight', value: $event})"
     />
 </div>

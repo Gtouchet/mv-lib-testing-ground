@@ -19,11 +19,10 @@ import { MvLibOutlineStyle } from "mv-lib";
 })
 export class OutlineInputsComponent {
 
-  public title = input<string | undefined>(undefined);
-
-  public outline = input.required<Partial<MvLibOutlineStyle>>();
-
-  public onChangeOutline = output<{key: string, value: any}>();
+  public label = input<string | undefined>(undefined);
+  public value = input.required<Partial<MvLibOutlineStyle>>();
+  
+  public onChange = output<{key: keyof MvLibOutlineStyle, value: any}>();
 
   protected cssOutlineStyles = CssOutlineStyle.values;
 }

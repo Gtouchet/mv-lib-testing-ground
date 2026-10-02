@@ -4,42 +4,44 @@
         <app-configuration-section title="Styles">
             <div buttons class="type-buttons">
                 <app-input-button
-                    label="Textbox"
-                    [selected]="selectedPartStyle() === 'textbox'"
-                    (onClick)="selectedPartStyle.set('textbox')"
+                    label="Input area"
+                    [selected]="selectedPartStyle() === 'inputArea'"
+                    (onClick)="selectedPartStyle.set('inputArea')"
                 />
                 <app-input-button
-                    label="Incr. button"
-                    [selected]="selectedPartStyle() === 'incrementButton'"
-                    (onClick)="selectedPartStyle.set('incrementButton')"
-                />            
-                <app-input-button
-                    label="Decr. button"
-                    [selected]="selectedPartStyle() === 'decrementButton'"
-                    (onClick)="selectedPartStyle.set('decrementButton')"
+                    label="Stepper buttons"
+                    [selected]="selectedPartStyle() === 'stepperButtons'"
+                    (onClick)="selectedPartStyle.set('stepperButtons')"
                 />
             </div>
-            @if (selectedPartStyle() === 'textbox') {
+            @if (selectedPartStyle() === 'inputArea') {
+                <app-input-color
+                    label="Background color"
+                    [value]="_textbox().api.style.getBackgroundColor()"
+                    (onChange)="_textbox().api.style.setBackgroundColor($event); refreshLog();"
+                />
                 <app-dimensions-inputs
-                    [dimensions]="_textbox().api.style.getDimensions()"
-                    (onChangeDimensions)="_textbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
+                    [value]="_textbox().api.style.getDimensions()"
+                    (onChange)="_textbox().api.style.setDimensions($event.key, $event.value); refreshLog();"
                 />
                 <app-outline-inputs
-                    [outline]="_textbox().api.style.getOutline()"
-                    (onChangeOutline)="_textbox().api.style.setOutline($event.key, $event.value); refreshLog();"
+                    [value]="_textbox().api.style.getOutline()"
+                    (onChange)="_textbox().api.style.setOutline($event.key, $event.value); refreshLog();"
                 />
                 <app-font-inputs
-                    [font]="_textbox().api.style.getFont()"
-                    (onChangeFont)="_textbox().api.style.setFont($event.key, $event.value); refreshLog();"
+                    [value]="_textbox().api.style.getFont()"
+                    (onChange)="_textbox().api.style.setFont($event.key, $event.value); refreshLog();"
                 />
             }
-            @else if (selectedPartStyle() === 'incrementButton') {
+            @else if (selectedPartStyle() === 'stepperButtons') {
+                <app-inputs-separator label="Both buttons"/>
+                <app-input-text
+                    label="Width"
+                    [value]="_textbox().api.style.stepperButtons.getWidth()"
+                    (onChange)="_textbox().api.style.stepperButtons.setWidth($event); refreshLog();"
+                />
+                <app-inputs-separator label="Increment button"/>
                 <div class="inputs-group">
-                    Width
-                    <app-input-text
-                        [value]="_textbox().api.style.stepperButtons.getWidth()"
-                        (onChange)="_textbox().api.style.stepperButtons.setWidth($event); refreshLog();"
-                    />
                     Background color
                     <app-input-color
                         [value]="_textbox().api.style.stepperButtons.increment.getBackgroundColor()"
@@ -51,14 +53,8 @@
                         (onChange)="_textbox().api.style.stepperButtons.increment.setIcon($event); refreshLog();"
                     />
                 </div>
-            }
-            @else if (selectedPartStyle() === 'decrementButton') {
+                <app-inputs-separator label="Decrement button"/>
                 <div class="inputs-group">
-                    Width
-                    <app-input-text
-                        [value]="_textbox().api.style.stepperButtons.getWidth()"
-                        (onChange)="_textbox().api.style.stepperButtons.setWidth($event); refreshLog();"
-                    />
                     Background color
                     <app-input-color
                         [value]="_textbox().api.style.stepperButtons.decrement.getBackgroundColor()"
@@ -75,55 +71,50 @@
 
         <app-configuration-section title="Effects">
             <app-tint-effect-inputs
-                title="Tint hover"
-                [enabled]="_textbox().api.effects.has(mvLibEffects.hover.tint)"
-                [style]="_textbox().api.effects.getStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="_textbox().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="_textbox().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                label="Tint hover"
+                [enabled]="_textbox().api.effects.textbox.has(mvLibEffects.hover.tint)"
+                [style]="_textbox().api.effects.textbox.getStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="_textbox().api.effects.textbox.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="_textbox().api.effects.textbox.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
             />
             <app-tint-effect-inputs
-                title="Tint selected"
-                [enabled]="_textbox().api.effects.has(mvLibEffects.selected.tint)"
-                [style]="_textbox().api.effects.getStyle(mvLibEffects.selected.tint)"
-                (onChangeEnabled)="_textbox().api.effects.toggle(mvLibEffects.selected.tint, $event); refreshLog();"
-                (onChangeStyle)="_textbox().api.effects.setStyle(mvLibEffects.selected.tint, $event); refreshLog();"
+                label="Tint selected"
+                [enabled]="_textbox().api.effects.textbox.has(mvLibEffects.selected.tint)"
+                [style]="_textbox().api.effects.textbox.getStyle(mvLibEffects.selected.tint)"
+                (onChangeEnabled)="_textbox().api.effects.textbox.toggle(mvLibEffects.selected.tint, $event); refreshLog();"
+                (onChangeStyle)="_textbox().api.effects.textbox.setStyle(mvLibEffects.selected.tint, $event); refreshLog();"
             />
             <app-outline-blur-effect-inputs
-                title="Outline blur selected"
-                [enabled]="_textbox().api.effects.has(mvLibEffects.selected.outlineBlur)"
-                [style]="_textbox().api.effects.getStyle(mvLibEffects.selected.outlineBlur)"
-                (onChangeEnabled)="_textbox().api.effects.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
-                (onChangeStyle)="_textbox().api.effects.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
+                label="Outline blur selected"
+                [enabled]="_textbox().api.effects.textbox.has(mvLibEffects.selected.outlineBlur)"
+                [style]="_textbox().api.effects.textbox.getStyle(mvLibEffects.selected.outlineBlur)"
+                (onChangeEnabled)="_textbox().api.effects.textbox.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
+                (onChangeStyle)="_textbox().api.effects.textbox.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog();"
             />
             <app-outline-solid-effect-inputs
-                title="Outline solid selected"
-                [enabled]="_textbox().api.effects.has(mvLibEffects.selected.outlineSolid)"
-                [style]="_textbox().api.effects.getStyle(mvLibEffects.selected.outlineSolid)"
-                (onChangeEnabled)="_textbox().api.effects.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
-                (onChangeStyle)="_textbox().api.effects.setStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
+                label="Outline solid selected"
+                [enabled]="_textbox().api.effects.textbox.has(mvLibEffects.selected.outlineSolid)"
+                [style]="_textbox().api.effects.textbox.getStyle(mvLibEffects.selected.outlineSolid)"
+                (onChangeEnabled)="_textbox().api.effects.textbox.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
+                (onChangeStyle)="_textbox().api.effects.textbox.setStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog();"
             />
         </app-configuration-section>
 
         <app-configuration-section title="Settings">
             <div buttons class="type-buttons">
                 <app-input-button
-                    label="Textbox"
-                    [selected]="selectedPartSettings() === 'textbox'"
-                    (onClick)="selectedPartSettings.set('textbox')"
+                    label="Input area"
+                    [selected]="selectedPartSettings() === 'inputArea'"
+                    (onClick)="selectedPartSettings.set('inputArea')"
                 />
                 <app-input-button
-                    label="Incr. button"
-                    [selected]="selectedPartSettings() === 'incrementButton'"
-                    (onClick)="selectedPartSettings.set('incrementButton')"
-                />            
-                <app-input-button
-                    label="Decr. button"
-                    [selected]="selectedPartSettings() === 'decrementButton'"
-                    (onClick)="selectedPartSettings.set('decrementButton')"
+                    label="Stepper buttons"
+                    [selected]="selectedPartSettings() === 'stepperButtons'"
+                    (onClick)="selectedPartSettings.set('stepperButtons')"
                 />
             </div>
-            @if (selectedPartSettings() === 'textbox') {
-                <app-inputs-separator title="State"/>
+            @if (selectedPartSettings() === 'inputArea') {
+                <app-inputs-separator label="State"/>
                 <div class="inputs-group">
                     Disabled
                     <app-input-checkbox
@@ -134,9 +125,10 @@
                     <app-input-checkbox
                         [checked]="_textbox().api.getSelected()"
                         (onChange)="_textbox().api.setSelected($event); refreshLog()"
+                        [disabled]="_textbox().api.getDisabled()"
                     />
                 </div>
-                <app-inputs-separator title="Min max"/>
+                <app-inputs-separator label="Min / max values"/>
                 <div class="inputs-group">
                     Min
                     <app-input-number
@@ -149,7 +141,7 @@
                         (onChange)="_textbox().api.settings.setMax($event); refreshLog();"
                     />
                 </div>
-                <app-inputs-separator title="Unit"/>
+                <app-inputs-separator label="Unit"/>
                 <div class="inputs-group">
                     Unit
                     <app-input-text
@@ -163,7 +155,8 @@
                         (onChange)="_textbox().api.settings.unit.setPlacement($any($event)); refreshLog()"
                     />
                 </div>
-                <app-inputs-separator title="Stepper buttons"/>
+            }
+            @else if (selectedPartSettings() === 'stepperButtons') {
                 <div class="inputs-group">
                     Displayed
                     <app-input-checkbox
@@ -193,21 +186,76 @@
                     />
                 </div>
             }
-            @else if (selectedPartSettings() === 'incrementButton') {
-
-            }
-            @else if (selectedPartSettings() === 'decrementButton') {
-
-            }
         </app-configuration-section>
 
         <app-configuration-section title="Form controls">
-            
+            <app-inputs-separator label="Form validators" />
+            <div class="inputs-group">
+                <span
+                    [style.color]="forms['textbox'].get('input')?.hasError('required') ?
+                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                >
+                    Required
+                </span>
+                <app-input-checkbox
+                    [checked]="required()"
+                    (onChange)="
+                        required.set($event);
+                        updateFormValidator(
+                            'textbox',
+                            'input',
+                            'required',
+                            required() ? formValidators.required : null);
+                    "
+                />
+                <span
+                    [style.color]="forms['textbox'].get('input')?.hasError('min') ?
+                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                >
+                    Min value
+                </span>
+                
+                <app-input-number
+                    [value]="min()"
+                    (onChange)="
+                        min.set($event);
+                        updateFormValidator(
+                            'textbox',
+                            'input',
+                            'min',
+                            min() == null ? null : formValidators.min(min()!));
+                    "
+                />
+                <span
+                    [style.color]="forms['textbox'].get('input')?.hasError('max') ?
+                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                >
+                    Max value
+                </span>
+                <app-input-number
+                    [value]="max()"
+                    (onChange)="
+                        max.set($event);
+                        updateFormValidator(
+                            'textbox',
+                            'input',
+                            'max',
+                            max() == null ? null : formValidators.max(max()!));
+                    "
+                />
+            </div>
+            <app-inputs-separator label="Form state"/>
+            <div class="inputs-group">
+                Value: <span>{{ forms['textbox'].get('input')?.value }}</span>
+                Touched: <span>{{ forms['textbox'].touched ? 'Touched' : 'Untouched' }}</span>
+                Dirty: <span>{{ forms['textbox'].dirty ? 'Dirty' : 'Pristine' }}</span>
+                Status: <span>{{ forms['textbox'].disabled ? 'Disabled' : (forms['textbox'].valid ? 'Valid' : 'Invalid') }}</span>
+            </div>
         </app-configuration-section>
     </div>
 
     <form
-        [formGroup]="forms['default']"
+        [formGroup]="forms['textbox']"
         class="render"
     >
         <mv-lib-numeric-textbox
@@ -218,7 +266,7 @@
             [inputEffects]="effects()"
             [inputSettings]="settings()"
             (onChange)="
-                forms['default'].get('input')?.setValue($event.value);
+                forms['textbox'].get('input')?.setValue($event.value);
                 refreshLastInteractionTime();
                 refreshLog();
             "
@@ -230,7 +278,7 @@
 
         <div class="log">
             Last interaction time: {{ lastInteractionTime() }}<br/>
-            <pre>Input: {{ forms['default'].get('input')?.value }}</pre>
+            <pre>Input: {{ forms['textbox'].get('input')?.value }}</pre>
             <app-input-button
                 label="Copy component code"
                 [width]="'25%'"

@@ -1,5 +1,5 @@
 <div class="effect">
-    <app-inputs-separator [title]="title() ?? 'Tint'">
+    <app-inputs-separator [label]="label() ?? 'Tint'">
         <app-input-checkbox
             [checked]="enabled()"
             (onChange)="onChangeEnabled.emit($event)"

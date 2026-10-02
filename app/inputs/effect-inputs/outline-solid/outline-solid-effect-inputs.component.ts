@@ -16,8 +16,7 @@ import { MvLibOutlineSolidEffectStyle } from "mv-lib";
 })
 export class OutlineSolidEffectInputsComponent {
 
-  public title = input<string | undefined>(undefined);
-
+  public label = input<string | undefined>(undefined);
   public enabled = input.required<boolean>();
   public style = input.required<MvLibOutlineSolidEffectStyle>();
 

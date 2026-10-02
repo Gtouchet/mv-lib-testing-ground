@@ -1,16 +1,16 @@
-<app-inputs-separator [title]="title() ?? 'Font'" />
+<app-inputs-separator [label]="label() ?? 'Font'" />
 <div class="inputs-group">
     Size
     <div class="inputs-row">
         <app-input-select
             [values]="cssFontSizes"
-            [selectedValues]="[font().size]"
+            [selectedValues]="[value().size]"
             [width]="100"
-            (onChange)="onChangeFont.emit({key: 'size', value: $event})"
+            (onChange)="onChange.emit({key: 'size', value: $event})"
         />
         <app-input-text
-            [value]="font().size"
-            (onChange)="onChangeFont.emit({key: 'size', value: $event})"
+            [value]="value().size"
+            (onChange)="onChange.emit({key: 'size', value: $event})"
             [style.flex]="1"
         />
     </div>
@@ -18,13 +18,13 @@
     <div class="inputs-row">
         <app-input-select
             [values]="cssFontWeights"
-            [selectedValues]="[font().weight]"
+            [selectedValues]="[value().weight]"
             [width]="100"
-            (onChange)="onChangeFont.emit({key: 'weight', value: $event})"
+            (onChange)="onChange.emit({key: 'weight', value: $event})"
         />
         <app-input-text
-            [value]="font().weight"
-            (onChange)="onChangeFont.emit({key: 'weight', value: $event})"
+            [value]="value().weight"
+            (onChange)="onChange.emit({key: 'weight', value: $event})"
             [style.flex]="1"
         />
     </div>
@@ -32,20 +32,20 @@
     <div class="inputs-row">
         <app-input-select
             [values]="cssFontStyles"
-            [selectedValues]="[font().style]"
+            [selectedValues]="[value().style]"
             [width]="100"
-            (onChange)="onChangeFont.emit({key: 'style', value: $event})"
+            (onChange)="onChange.emit({key: 'style', value: $event})"
         />
         <app-input-text
-            [value]="font().style"
-            (onChange)="onChangeFont.emit({key: 'style', value: $event})"
+            [value]="value().style"
+            (onChange)="onChange.emit({key: 'style', value: $event})"
             [style.flex]="1"
         />
     </div>
     Color
     <app-input-color
-        [value]="font().color"
+        [value]="value().color"
         [width]="100"
-        (onChange)="onChangeFont.emit({key: 'color', value: $event})"
+        (onChange)="onChange.emit({key: 'color', value: $event})"
     />
 </div>

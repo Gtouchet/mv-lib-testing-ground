@@ -1,5 +1,12 @@
 [
     {
+        "version": "0.1.5 (28/09/26)",
+        "changes": [
+            "Removed unused 'classic' tag on components",
+            "Button component: Added href to handle the browser's shortcuts"
+        ]
+    },
+    {
         "version": "0.1.4 (16/09/26)",
         "changes": [
             "Button component: Fixed the content not being centered",

@@ -22,8 +22,8 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         (pointerdown)="handlePointerDown($event)"
         (click)="handleClick($event)"
         [style.margin]="0"
+        [disabled]="disabled()"
       />
-
       <span [style.line-height]="1">
         {{ label() }}
       </span>
@@ -33,6 +33,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 export class InputCheckboxComponent {
   public checked = input<boolean | undefined>(undefined);
   public label = input('');
+  public disabled = input(false);
   public onChange = output<boolean>();
 
   private checkedBeforePointerClick?: boolean;

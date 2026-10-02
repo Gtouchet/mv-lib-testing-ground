@@ -1,5 +1,13 @@
 [
     {
+        "version": "0.1.5 (02/10/26)",
+        "changes": [
+            "Numeric textbox: Better detailled views",
+            "Button: Style and href views",
+            "Removed top navigation bar on detailled views"
+        ]
+    },
+    {
         "version": "0.1.4 (16/09/26)",
         "changes": [
             "Added navigation links on top on the new specific configuration views",

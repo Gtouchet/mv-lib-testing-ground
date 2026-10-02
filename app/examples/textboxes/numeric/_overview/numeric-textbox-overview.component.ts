@@ -38,7 +38,7 @@ export class NumericTextboxOverviewComponent extends OverviewDemoBaseComponent i
   });
 
   protected override initForm() {
-    this.forms['default'] = new UntypedFormGroup({
+    this.forms['textbox'] = new UntypedFormGroup({
       input: new FormControl({
         value: 10,
         disabled: false,
@@ -50,9 +50,8 @@ export class NumericTextboxOverviewComponent extends OverviewDemoBaseComponent i
   }
 
   ngAfterViewInit() {
-    this.selectedPartStyle = signal<string>('textbox');
-    this.selectedPartEffects = signal<string>('textbox');
-    this.selectedPartSettings = signal<string>('textbox');
+    this.selectedPartStyle = signal<string>('inputArea');
+    this.selectedPartSettings = signal<string>('inputArea');
     this.logProperties = [
       { property: 'inputStyle', value: () => this._textbox().getStyle() },
       { property: 'inputEffects', value: () => this._textbox().getEffects() },
