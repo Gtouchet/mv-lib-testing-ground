@@ -35,8 +35,8 @@ export class ButtonStyleComponent extends SpecificDemoBaseComponent implements A
                 code: [
                     { property: 'inputStyle', value: () => ({
                         backgroundColor: {
-                            default: this._button().api.style.backgroundColor.getDefault(),
-                            selected: this._button().api.style.backgroundColor.getSelected(),
+                            default: this._button().api.style.backgroundColor.getForState('idle'),
+                            selected: this._button().api.style.backgroundColor.getForState('idle'),
                         },
                         dimensions: this._button().api.style.getDimensions(),
                         outline: this._button().api.style.getOutline(),

@@ -29,13 +29,13 @@
                             <div class="inputs-group">
                                 Default
                                 <app-input-color
-                                    [value]="_button().api.style.backgroundColor.getDefault()"
-                                    (onChange)="_button().api.style.backgroundColor.setDefault($event); refreshLog('button');"
+                                    [value]="_button().api.style.backgroundColor.getForState('idle')"
+                                    (onChange)="_button().api.style.backgroundColor.setForState('idle', $event); refreshLog('button');"
                                 />
                                 Selected
                                 <app-input-color
-                                    [value]="_button().api.style.backgroundColor.getSelected()"
-                                    (onChange)="_button().api.style.backgroundColor.setSelected($event); refreshLog('button');"
+                                    [value]="_button().api.style.backgroundColor.getForState('selected')"
+                                    (onChange)="_button().api.style.backgroundColor.setForState('selected', $event); refreshLog('button');"
                                 />
                             </div>
                             <app-dimensions-inputs

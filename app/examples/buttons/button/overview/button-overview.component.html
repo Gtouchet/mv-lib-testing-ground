@@ -5,13 +5,13 @@
             <div class="inputs-group">
                 Default
                 <app-input-color
-                    [value]="button().api.style.backgroundColor.getDefault()"
-                    (onChange)="button().api.style.backgroundColor.setDefault($event); refreshLog();"
+                    [value]="button().api.style.backgroundColor.getForState('idle')"
+                    (onChange)="button().api.style.backgroundColor.setForState('idle', $event); refreshLog();"
                 />
                 Selected
                 <app-input-color
-                    [value]="button().api.style.backgroundColor.getSelected()"
-                    (onChange)="button().api.style.backgroundColor.setSelected($event); refreshLog();"
+                    [value]="button().api.style.backgroundColor.getForState('selected')"
+                    (onChange)="button().api.style.backgroundColor.setForState('selected', $event); refreshLog();"
                 />
             </div>
             <app-dimensions-inputs
