@@ -6,7 +6,7 @@
                 Button hyperlink
             </span>
             <span class="description">
-                Use the MVLib button's href in [inputSettings] to define the navigation settings.<br/>
+                Use the MVLib button's href in <code>[inputSettings]</code> to define the navigation settings.<br/>
                 The href settings turns the MVLib button into a native hyperlink and defines its navigation target.
             </span>
             <span class="last-updated">
@@ -21,47 +21,31 @@
             <span class="description">
                 When href contains a non-empty value, the component renders as an &lt;a&gt; element and supports native browser link behavior.<br/>
                 When href is undefined or an empty string, the component renders as a regular button.<br/>
-                When openInNewTab is true, the link opens in a new tab; otherwise, it opens in the current tab when left clicked.<br/>
+                When <code>openInNewTab</code> is true, the link opens in a new tab; otherwise, it opens in the current tab when left clicked.<br/>
                 A disabled component also renders as a regular button and does not navigate, even if href is set.
             </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel" style="height: 130px;">
-                        <div class="panel-content">
-                            <app-input-text
-                                [label]="'HREF'"
-                                [value]="_button().api.settings.href.getUrl()"
-                                (onChange)="_button().api.settings.href.setUrl($event)"
-                            />
-                            <app-input-checkbox
-                                [label]="'Open in new tab'"
-                                [checked]="_button().api.settings.href.getOpenInNewTab()"
-                                (onChange)="_button().api.settings.href.setOpenInNewTab($event)"
-                            />
-                            <app-input-checkbox
-                                [label]="'Disabled'"
-                                [checked]="_button().disabled()"
-                                (onChange)="_button().disabled.set($event)"
-                            />
-                        </div>
-                    </div>
-                    <div class="panel" style="height: 200px;">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy settings'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('button')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-button{{ componentCode('button') }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
+            <app-demo-playground
+                [code]="'<mv-lib-button' + componentCode('button') + '/>'"
+                (onCopy)="copyComponentCode('button')"
+            >
+                <ng-container configuration>
+                    <app-input-text
+                        [label]="'HREF'"
+                        [value]="_button().api.settings.href.getUrl()"
+                        (onChange)="_button().api.settings.href.setUrl($event)"
+                    />
+                    <app-input-checkbox
+                        [label]="'Open in new tab'"
+                        [checked]="_button().api.settings.href.getOpenInNewTab()"
+                        (onChange)="_button().api.settings.href.setOpenInNewTab($event)"
+                    />
+                    <app-input-checkbox
+                        [label]="'Disabled'"
+                        [checked]="_button().disabled()"
+                        (onChange)="_button().disabled.set($event)"
+                    />
+                </ng-container>
+                <ng-container preview>
                     <mv-lib-button
                         #button
                         [inputStyle]="style()"
@@ -78,8 +62,8 @@
                         }"
                         [content]="'Send me there'"
                     />
-                </div>
-            </div>
+                </ng-container>
+            </app-demo-playground>
         </section>
     </div>
 </div>

@@ -1,0 +1,59 @@
+<div class="playground">
+    <div class="panel side" [style.height]="height()">
+        <div class="panel-title tabs-header">
+            <div class="tabs" role="tablist">
+                <button
+                    type="button"
+                    role="tab"
+                    class="tab"
+                    [class.tab--active]="activeTab() === 'configuration'"
+                    [attr.aria-selected]="activeTab() === 'configuration'"
+                    (click)="activeTab.set('configuration')"
+                >
+                    {{ configurationTitle() }}
+                </button>
+                <button
+                    type="button"
+                    role="tab"
+                    class="tab"
+                    [class.tab--active]="activeTab() === 'code'"
+                    [attr.aria-selected]="activeTab() === 'code'"
+                    (click)="activeTab.set('code')"
+                >
+                    {{ codeTitle() }}
+                </button>
+            </div>
+            @if (activeTab() === 'code') {
+                <mv-lib-button
+                    [content]="copyLabel()"
+                    [inputStyle]="copyButtonStyle"
+                    [inputEffects]="copyButtonEffects"
+                    (onClick)="onCopy.emit()"
+                />
+            }
+        </div>
+        <!-- Both tabs stay in the DOM (hidden) so the projected configuration keeps its state -->
+        <div
+            class="panel-content configuration-content"
+            role="tabpanel"
+            [hidden]="activeTab() !== 'configuration'"
+        >
+            <ng-content select="[configuration]" />
+        </div>
+        <div
+            class="panel-content"
+            role="tabpanel"
+            [hidden]="activeTab() !== 'code'"
+        >
+            <pre class="code">{{ code() }}</pre>
+        </div>
+    </div>
+    <div class="panel preview">
+        <div class="panel-title">
+            <span class="panel-title-text">{{ previewTitle() }}</span>
+        </div>
+        <div class="preview-stage">
+            <ng-content select="[preview]" />
+        </div>
+    </div>
+</div>

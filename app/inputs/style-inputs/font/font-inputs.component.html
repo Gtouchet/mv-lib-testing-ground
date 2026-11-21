@@ -1,4 +1,13 @@
-<app-inputs-separator [label]="label() ?? 'Font'" />
+<app-inputs-separator [label]="label() ?? 'Font'">
+    @if (states().length) {
+        <app-input-select
+            separatorEnd
+            [values]="$any(states())"
+            [selectedValues]="[state()]"
+            (onChange)="selectState($event)"
+        />
+    }
+</app-inputs-separator>
 <div class="inputs-group">
     Size
     <div class="inputs-row">
@@ -6,11 +15,11 @@
             [values]="cssFontSizes"
             [selectedValues]="[value().size]"
             [width]="100"
-            (onChange)="onChange.emit({key: 'size', value: $event})"
+            (onChange)="emitChange('size', $event)"
         />
         <app-input-text
             [value]="value().size"
-            (onChange)="onChange.emit({key: 'size', value: $event})"
+            (onChange)="emitChange('size', $event)"
             [style.flex]="1"
         />
     </div>
@@ -20,11 +29,11 @@
             [values]="cssFontWeights"
             [selectedValues]="[value().weight]"
             [width]="100"
-            (onChange)="onChange.emit({key: 'weight', value: $event})"
+            (onChange)="emitChange('weight', $event)"
         />
         <app-input-text
             [value]="value().weight"
-            (onChange)="onChange.emit({key: 'weight', value: $event})"
+            (onChange)="emitChange('weight', $event)"
             [style.flex]="1"
         />
     </div>
@@ -34,11 +43,11 @@
             [values]="cssFontStyles"
             [selectedValues]="[value().style]"
             [width]="100"
-            (onChange)="onChange.emit({key: 'style', value: $event})"
+            (onChange)="emitChange('style', $event)"
         />
         <app-input-text
             [value]="value().style"
-            (onChange)="onChange.emit({key: 'style', value: $event})"
+            (onChange)="emitChange('style', $event)"
             [style.flex]="1"
         />
     </div>
@@ -46,6 +55,6 @@
     <app-input-color
         [value]="value().color"
         [width]="100"
-        (onChange)="onChange.emit({key: 'color', value: $event})"
+        (onChange)="emitChange('color', $event)"
     />
 </div>

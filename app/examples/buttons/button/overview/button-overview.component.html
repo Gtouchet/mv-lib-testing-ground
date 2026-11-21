@@ -19,12 +19,16 @@
                 (onChange)="button().api.style.setDimensions($event.key, $event.value); refreshLog();"
             />
             <app-outline-inputs
-                [value]="button().api.style.getOutline()"
-                (onChange)="button().api.style.setOutline($event.key, $event.value); refreshLog();"
+                [states]="buttonStates"
+                [(state)]="outlineState"
+                [value]="button().api.style.outline.getForState(outlineState())"
+                (onChange)="button().api.style.outline.setForState($event.state ?? 'idle', $event.key, $event.value); refreshLog();"
             />
             <app-font-inputs
-                [value]="button().api.style.getFont()"
-                (onChange)="button().api.style.setFont($event.key, $event.value); refreshLog();"
+                [states]="buttonStates"
+                [(state)]="fontState"
+                [value]="button().api.style.font.getForState(fontState())"
+                (onChange)="button().api.style.font.setForState($event.state ?? 'idle', $event.key, $event.value); refreshLog();"
             />
         </app-configuration-section>
 

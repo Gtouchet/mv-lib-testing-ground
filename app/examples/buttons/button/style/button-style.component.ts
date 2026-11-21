@@ -1,12 +1,14 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
 import { INPUTS } from "../../../../inputs/_inputs.export";
-import { MvLibButtonComponent, MvLibButtonStyle } from "mv-lib";
+import { MvLibButtonComponent, MvLibButtonStyle, MvLibComponentState } from "mv-lib";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
+import { DemoPlaygroundComponent } from "../../../_base/playground/demo-playground.component";
 
 @Component({
     selector: 'app-button-style',
     imports: [
         MvLibButtonComponent,
+        DemoPlaygroundComponent,
         INPUTS,
     ],
     templateUrl: './button-style.component.html',
@@ -16,7 +18,7 @@ import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
 })
 export class ButtonStyleComponent extends SpecificDemoBaseComponent implements AfterViewInit {
 
-    protected lastUpdated = '02/10/2026';
+    protected lastUpdated = '21/11/2026';
 
     protected _button = viewChild.required<MvLibButtonComponent>('button');
 
@@ -29,21 +31,37 @@ export class ButtonStyleComponent extends SpecificDemoBaseComponent implements A
 
     protected selected = signal(false);
 
+    protected buttonStates: MvLibComponentState[] = ['idle', 'hovered', 'selected', 'hoveredSelected'];
+    protected outlineState = signal<MvLibComponentState>('idle');
+    protected fontState = signal<MvLibComponentState>('idle');
+
     ngAfterViewInit() {
         this.logs.set({
             button: {
                 code: [
                     { property: 'inputStyle', value: () => ({
                         backgroundColor: {
-                            default: this._button().api.style.backgroundColor.getForState('idle'),
-                            selected: this._button().api.style.backgroundColor.getForState('idle'),
+                            idle: this._button().api.style.backgroundColor.getForState('idle'),
+                            hovered: this._button().api.style.backgroundColor.getForState('hovered'),
+                            selected: this._button().api.style.backgroundColor.getForState('selected'),
+                            hoveredSelected: this._button().api.style.backgroundColor.getForState('hoveredSelected'),
                         },
                         dimensions: this._button().api.style.getDimensions(),
-                        outline: this._button().api.style.getOutline(),
-                        font: this._button().api.style.getFont(),
+                        outline: {
+                            idle: this._button().api.style.outline.getForState('idle'),
+                            hovered: this._button().api.style.outline.getForState('hovered'),
+                            selected: this._button().api.style.outline.getForState('selected'),
+                            hoveredSelected: this._button().api.style.outline.getForState('hoveredSelected'),
+                        },
+                        font: {
+                            idle: this._button().api.style.font.getForState('idle'),
+                            hovered: this._button().api.style.font.getForState('hovered'),
+                            selected: this._button().api.style.font.getForState('selected'),
+                            hoveredSelected: this._button().api.style.font.getForState('hoveredSelected'),
+                        },
                     }) },
                 ],
             },
-        });
+        }); 
     }
 }

@@ -2,11 +2,13 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } 
 import { INPUTS } from "../../../../inputs/_inputs.export";
 import { MvLibButtonComponent, MvLibButtonStyle } from "mv-lib";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
+import { DemoPlaygroundComponent } from "../../../_base/playground/demo-playground.component";
 
 @Component({
     selector: 'app-button-href',
     imports: [
         MvLibButtonComponent,
+        DemoPlaygroundComponent,
         INPUTS,
     ],
     templateUrl: './button-href.component.html',

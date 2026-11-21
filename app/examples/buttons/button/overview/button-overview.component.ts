@@ -1,7 +1,7 @@
 import { OverviewDemoBaseComponent } from '../../../_base/overview-demo.base';
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { INPUTS } from '../../../../inputs/_inputs.export';
-import { MvLibButtonComponent, MvLibButtonStyle, MvLibButtonEffects, MvLibButtonSettings } from 'mv-lib';
+import { MvLibButtonComponent, MvLibButtonStyle, MvLibButtonEffects, MvLibButtonSettings, MvLibComponentState } from 'mv-lib';
 
 @Component({
   selector: 'app-button-overview',
@@ -39,6 +39,10 @@ export class ButtonOverviewComponent extends OverviewDemoBaseComponent implement
   });
 
   protected selected = signal(false);
+
+  protected buttonStates: MvLibComponentState[] = ['idle', 'hovered', 'selected', 'hoveredSelected'];
+  protected outlineState = signal<MvLibComponentState>('idle');
+  protected fontState = signal<MvLibComponentState>('idle');
 
   ngAfterViewInit() {
     this.logProperties = [

@@ -15,7 +15,7 @@
     min-width: 0;
     min-height: 100%;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 16px 20px 32px;
     background-color: var(--mv-lib-primary-color-2);
 
     > app-navigation {
@@ -23,44 +23,77 @@
     }
 }
 
+.description {
+    font-size: 17px;
+    line-height: 1.6;
+
+    code {
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+        background-color: var(--mv-lib-primary-color-3);
+    }
+
+    p {
+        margin: 0;
+    }
+
+    p + p,
+    p + ul,
+    ul + p {
+        margin-top: 10px;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 22px;
+    }
+
+    li + li {
+        margin-top: 4px;
+    }
+}
+
 .presentation {
     display: flex;
     flex-direction: column;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--mv-lib-tertiary-color-5);
 
     .title {
-        font-size: 40px;
+        font-size: 36px;
         font-weight: bold;
-        text-align: center;
     }
 
     .description {
-        font-size: 20px;
-        margin-top: 25px;
-        margin-left: 25px;
+        margin-top: 16px;
     }
 
     .last-updated {
-        margin-top: 10px;
-        margin-left: 25px;
+        margin-top: 12px;
+        font-size: 13px;
+        opacity: 0.7;
     }
 }
 
 .section {
     display: flex;
     flex-direction: column;
+    margin-top: 48px;
 
     .title {
-        font-size: 32px;
+        font-size: 26px;
         font-weight: bold;
-        margin-top: 50px;
-        margin-left: 50px;
     }
 
     .description {
-        font-size: 20px;
-        margin-top: 15px;
-        margin-bottom: 6px;
-        margin-left: 25px;
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 900px) {
+    .content {
+        padding: 10px 8px 20px;
     }
 }
 
@@ -144,8 +177,10 @@
 .inputs-group {
     display: grid;
     grid-template-columns: max-content 1fr;
-    column-gap: 8px;
-    row-gap: 4px;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 8px;
+    margin-top: 8px;
 }
 
 app-specific-demo-sidebar {

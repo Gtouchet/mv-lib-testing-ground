@@ -27,6 +27,9 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
                 <b>
                     {{ label() }}
                 </b>
+                <div class="separator-end">
+                    <ng-content select="[separatorEnd]" />
+                </div>
                 <hr
                     [ngStyle]="{
                         'flex': '1',
@@ -41,6 +44,16 @@ import { ChangeDetectionStrategy, Component, input } from "@angular/core";
         :host {
             display: block;
             width: 100%;
+        }
+
+        .separator-end {
+            display: flex;
+            align-items: center;
+            margin-left: 8px;
+        }
+
+        .separator-end:empty {
+            display: none;
         }
     `]
 })
