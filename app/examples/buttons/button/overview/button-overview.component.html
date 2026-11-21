@@ -1,16 +1,17 @@
 <div class="view">
     <div class="configuration">
         <app-configuration-section title="Styles">
+            <app-inputs-separator label="Background color"/>
             <div class="inputs-group">
-                Background color
+                Default
                 <app-input-color
-                    [value]="button().api.style.getBackgroundColor()"
-                    (onChange)="button().api.style.setBackgroundColor($event); refreshLog();"
+                    [value]="button().api.style.backgroundColor.getDefault()"
+                    (onChange)="button().api.style.backgroundColor.setDefault($event); refreshLog();"
                 />
-                Selected background color
+                Selected
                 <app-input-color
-                    [value]="button().api.style.getSelectedBackgroundColor()"
-                    (onChange)="button().api.style.setSelectedBackgroundColor($event); refreshLog();"
+                    [value]="button().api.style.backgroundColor.getSelected()"
+                    (onChange)="button().api.style.backgroundColor.setSelected($event); refreshLog();"
                 />
             </div>
             <app-dimensions-inputs

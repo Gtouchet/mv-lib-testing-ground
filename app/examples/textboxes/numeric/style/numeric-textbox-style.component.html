@@ -27,19 +27,19 @@
                             <app-input-color
                                 label="Background color"
                                 [value]="_inputArea().api.style.getBackgroundColor()"
-                                (onChange)="_inputArea().api.style.setBackgroundColor($event); refreshLog('inputArea');"
+                                (onChange)="_inputArea().api.style.setBackgroundColor($event)"
                             />
                             <app-dimensions-inputs
                                 [value]="_inputArea().api.style.getDimensions()"
-                                (onChange)="_inputArea().api.style.setDimensions($event.key, $event.value); refreshLog('inputArea');"
+                                (onChange)="_inputArea().api.style.setDimensions($event.key, $event.value)"
                             />
                             <app-outline-inputs
                                 [value]="_inputArea().api.style.getOutline()"
-                                (onChange)="_inputArea().api.style.setOutline($event.key, $event.value); refreshLog('inputArea');"
+                                (onChange)="_inputArea().api.style.setOutline($event.key, $event.value)"
                             />
                             <app-font-inputs
                                 [value]="_inputArea().api.style.getFont()"
-                                (onChange)="_inputArea().api.style.setFont($event.key, $event.value); refreshLog('inputArea');"
+                                (onChange)="_inputArea().api.style.setFont($event.key, $event.value)"
                             />
                         </div>
                     </div>
@@ -96,19 +96,19 @@
                             <app-input-text
                                 label="Width"
                                 [value]="_stepperButtons().api.style.stepperButtons.getWidth()"
-                                (onChange)="_stepperButtons().api.style.stepperButtons.setWidth($event); refreshLog('stepperButtons')"
+                                (onChange)="_stepperButtons().api.style.stepperButtons.setWidth($event)"
                             />
                             <app-inputs-separator label="Increment button" />
                             <div class="inputs-group">
                                 Background color
                                 <app-input-color
                                     [value]="_stepperButtons().api.style.stepperButtons.increment.getBackgroundColor()"
-                                    (onChange)="_stepperButtons().api.style.stepperButtons.increment.setBackgroundColor($event); refreshLog('stepperButtons')"
+                                    (onChange)="_stepperButtons().api.style.stepperButtons.increment.setBackgroundColor($event)"
                                 />
                                 Icon
                                 <app-input-text
                                     [value]="_stepperButtons().api.style.stepperButtons.increment.getIcon()"
-                                    (onChange)="_stepperButtons().api.style.stepperButtons.increment.setIcon($event); refreshLog('stepperButtons')"
+                                    (onChange)="_stepperButtons().api.style.stepperButtons.increment.setIcon($event)"
                                 />
                             </div>
                             <app-inputs-separator label="Decrement button" />
@@ -116,12 +116,12 @@
                                 Background color
                                 <app-input-color
                                     [value]="_stepperButtons().api.style.stepperButtons.decrement.getBackgroundColor()"
-                                    (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setBackgroundColor($event); refreshLog('stepperButtons')"
+                                    (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setBackgroundColor($event)"
                                 />
                                 Icon
                                 <app-input-text
                                     [value]="_stepperButtons().api.style.stepperButtons.decrement.getIcon()"
-                                    (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setIcon($event); refreshLog('stepperButtons')"
+                                    (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setIcon($event)"
                                 />
                             </div>
                         </div>

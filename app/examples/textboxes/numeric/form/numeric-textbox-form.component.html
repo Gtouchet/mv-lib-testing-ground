@@ -18,11 +18,13 @@
                 Reactive form validation
             </span>
             <span class="description">
-                Apply required, minimum, and maximum value validators and inspect the resulting value, interaction state, and validity.
+                Apply required, minimum, and maximum value validators and inspect the resulting value, interaction state, and validity.<br/>
+                Form validation errors are displayed as text, with customizable messages for each validator.<br/>
+                The displayed value updates immediately, including while holding an increment or decrement button.
             </span>
             <div class="playground">
                 <div class="configuration">
-                    <div class="panel" style="height: 150px;">
+                    <div class="panel" style="height: 250px;">
                         <div class="panel-content">
                             <app-inputs-separator label="Form validators" />
                             <div class="inputs-group">
@@ -79,17 +81,50 @@
                                     "
                                 />
                             </div>
+                            <app-inputs-separator label="Form error labels"/>
+                            <div class="inputs-group">
+                                Required
+                                <app-input-text
+                                    [value]="_textboxValidators().api.form.getRequiredErrorLabel()"
+                                    (onChange)="_textboxValidators().api.form.setRequiredErrorLabel($event)"
+                                />
+                                Min
+                                <app-input-text
+                                    [value]="_textboxValidators().api.form.getMinErrorLabel()"
+                                    (onChange)="_textboxValidators().api.form.setMinErrorLabel($event)"
+                                />
+                                Max
+                                <app-input-text
+                                    [value]="_textboxValidators().api.form.getMaxErrorLabel()"
+                                    (onChange)="_textboxValidators().api.form.setMaxErrorLabel($event)"
+                                />
+                            </div>
                         </div>
                     </div>
                     <div class="panel" style="height: 160px;">
                         <div class="panel-content">
                             <app-inputs-separator label="Form state"/>
                             <div class="inputs-group">
-                                Value: <span>{{ forms['validators'].get('input')?.value }}</span>
+                                Value: <span>{{ validatorValue() }}</span>
                                 Touched: <span>{{ forms['validators'].touched ? 'Touched' : 'Untouched' }}</span>
                                 Dirty: <span>{{ forms['validators'].dirty ? 'Dirty' : 'Pristine' }}</span>
                                 Status: <span>{{ forms['validators'].disabled ? 'Disabled' : (forms['validators'].valid ? 'Valid' : 'Invalid') }}</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="panel" style="height: 250px;">
+                        <div class="panel-header">
+                            <div class="copy-button">
+                                <mv-lib-button
+                                    [content]="'Copy code'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('validators')"
+                                />
+                            </div>
+                        </div>
+                        <div class="panel-content">
+                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('validators') }}/&gt;</pre>
                         </div>
                     </div>
                 </div>
@@ -107,6 +142,11 @@
                                     mvLibEffects.selected.outlineSolid.class,
                                 ],
                             }
+                        }"
+                        [inputFormErrorLabels]="{
+                            required: 'This field is required',
+                            min: 'Value is too low',
+                            max: 'Value is too high'
                         }"
                     />
                 </form>

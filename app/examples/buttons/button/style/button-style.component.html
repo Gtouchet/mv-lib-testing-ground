@@ -25,16 +25,17 @@
                 <div class="configuration">
                     <div class="panel">
                         <div class="panel-content">
+                            <app-inputs-separator label="Background color"/>
                             <div class="inputs-group">
-                                Background color
+                                Default
                                 <app-input-color
-                                    [value]="_button().api.style.getBackgroundColor()"
-                                    (onChange)="_button().api.style.setBackgroundColor($event); refreshLog('button');"
+                                    [value]="_button().api.style.backgroundColor.getDefault()"
+                                    (onChange)="_button().api.style.backgroundColor.setDefault($event); refreshLog('button');"
                                 />
-                                Selected background color
+                                Selected
                                 <app-input-color
-                                    [value]="_button().api.style.getSelectedBackgroundColor()"
-                                    (onChange)="_button().api.style.setSelectedBackgroundColor($event); refreshLog('button');"
+                                    [value]="_button().api.style.backgroundColor.getSelected()"
+                                    (onChange)="_button().api.style.backgroundColor.setSelected($event); refreshLog('button');"
                                 />
                             </div>
                             <app-dimensions-inputs
@@ -84,10 +85,4 @@
             </div>
         </section>
     </div>
-
-    <!-- <app-specific-demo-sidebar
-        [contents]="[
-            { label: 'Style', goto: 'style' },
-        ]"
-    /> -->
 </div>

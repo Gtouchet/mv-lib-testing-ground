@@ -1,13 +1,11 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
 import { INPUTS } from "../../../../inputs/_inputs.export";
 import { MvLibButtonComponent, MvLibButtonStyle } from "mv-lib";
-import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
 
 @Component({
     selector: 'app-button-href',
     imports: [
-        // SpecificDemoSidebarComponent,
         MvLibButtonComponent,
         INPUTS,
     ],
@@ -18,7 +16,7 @@ import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
 })
 export class ButtonHrefComponent extends SpecificDemoBaseComponent implements AfterViewInit {
 
-    protected lastUpdated = '02/10/2026';
+    protected lastUpdated = '18/10/2026';
 
     protected _button = viewChild.required<MvLibButtonComponent>('button');
 
@@ -33,7 +31,12 @@ export class ButtonHrefComponent extends SpecificDemoBaseComponent implements Af
         this.logs.set({
             button: {
                 code: [
-                    { property: 'href', value: () => this._button().href() },
+                    { property: 'inputSettings', value: () => ({
+                        href: {
+                            url: this._button().api.settings.href.getUrl(),
+                            openInNewTab: this._button().api.settings.href.getOpenInNewTab(),
+                        }
+                    }) },
                 ],
             },
         });

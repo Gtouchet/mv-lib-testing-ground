@@ -41,7 +41,11 @@
                             [inputStyle]="treeviewButtonStyle"
                             [inputEffects]="treeviewButtonEffects"
                             [selected]="router.url.split('#')[0] === item.routerLink"
-                            [href]="getNavigationHref(item)"
+                            [inputSettings]="{
+                                href: {
+                                    url: getNavigationHref(item)
+                                }
+                            }"
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">
@@ -74,7 +78,11 @@
                         <mv-lib-button
                             [inputStyle]="treeviewButtonStyle"
                             [inputEffects]="treeviewButtonEffects"
-                            [href]="getNavigationHref(item)"
+                            [inputSettings]="{
+                                href: {
+                                    url: getNavigationHref(item)
+                                }
+                            }"
                             (onClick)="onNavigationItemClick(item, $event.event)"
                         >
                             <div class="treeview-action-content">

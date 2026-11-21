@@ -1,13 +1,11 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
 import { INPUTS } from "../../../../inputs/_inputs.export";
 import { MvLibButtonComponent, MvLibButtonStyle } from "mv-lib";
-import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
 
 @Component({
     selector: 'app-button-style',
     imports: [
-        // SpecificDemoSidebarComponent,
         MvLibButtonComponent,
         INPUTS,
     ],
@@ -36,8 +34,10 @@ export class ButtonStyleComponent extends SpecificDemoBaseComponent implements A
             button: {
                 code: [
                     { property: 'inputStyle', value: () => ({
-                        backgroundColor: this._button().api.style.getBackgroundColor(),
-                        selectedBackgroundColor: this._button().api.style.getSelectedBackgroundColor(),
+                        backgroundColor: {
+                            default: this._button().api.style.backgroundColor.getDefault(),
+                            selected: this._button().api.style.backgroundColor.getSelected(),
+                        },
                         dimensions: this._button().api.style.getDimensions(),
                         outline: this._button().api.style.getOutline(),
                         font: this._button().api.style.getFont(),

@@ -6,7 +6,8 @@
                 Button hyperlink
             </span>
             <span class="description">
-                The [href] input turns the MVLib button into a native hyperlink and defines its navigation target.
+                Use the MVLib button's href in [inputSettings] to define the navigation settings.<br/>
+                The href settings turns the MVLib button into a native hyperlink and defines its navigation target.
             </span>
             <span class="last-updated">
                 Last updated: {{ lastUpdated }}
@@ -20,16 +21,22 @@
             <span class="description">
                 When href contains a non-empty value, the component renders as an &lt;a&gt; element and supports native browser link behavior.<br/>
                 When href is undefined or an empty string, the component renders as a regular button.<br/>
-                A disabled component also renders as a button and does not navigate, even if href is set.
+                When openInNewTab is true, the link opens in a new tab; otherwise, it opens in the current tab when left clicked.<br/>
+                A disabled component also renders as a regular button and does not navigate, even if href is set.
             </span>
             <div class="playground">
                 <div class="configuration">
-                    <div class="panel" style="height: 100px;">
+                    <div class="panel" style="height: 130px;">
                         <div class="panel-content">
                             <app-input-text
                                 [label]="'HREF'"
-                                [value]="_button().href()"
-                                (onChange)="_button().href.set($event)"
+                                [value]="_button().api.settings.href.getUrl()"
+                                (onChange)="_button().api.settings.href.setUrl($event)"
+                            />
+                            <app-input-checkbox
+                                [label]="'Open in new tab'"
+                                [checked]="_button().api.settings.href.getOpenInNewTab()"
+                                (onChange)="_button().api.settings.href.setOpenInNewTab($event)"
                             />
                             <app-input-checkbox
                                 [label]="'Disabled'"
@@ -38,9 +45,16 @@
                             />
                         </div>
                     </div>
-                    <div class="panel" style="height: 100px;">
+                    <div class="panel" style="height: 200px;">
                         <div class="panel-header">
-
+                            <div class="copy-button">
+                                <mv-lib-button
+                                    [content]="'Copy settings'"
+                                    [inputStyle]="copyButton.style"
+                                    [inputEffects]="copyButton.effects"
+                                    (onClick)="copyComponentCode('button')"
+                                />
+                            </div>
                         </div>
                         <div class="panel-content">
                             <pre #code>&lt;mv-lib-button{{ componentCode('button') }}/&gt;</pre>
@@ -56,17 +70,16 @@
                                 mvLibEffects.hover.tint.class,
                             ]
                         }"
-                        [content]="'Home'"
-                        [href]="appRoutes.home.path"
+                        [inputSettings]="{
+                            href: {
+                                url: appRoutes.home.path,
+                                openInNewTab: true,
+                            },
+                        }"
+                        [content]="'Send me there'"
                     />
                 </div>
             </div>
         </section>
     </div>
-
-    <!-- <app-specific-demo-sidebar
-        [contents]="[
-            { label: 'Style', goto: 'style' },
-        ]"
-    /> -->
 </div>
