@@ -5,61 +5,61 @@
             <div class="inputs-group">
                 Default
                 <app-input-color
-                    [value]="button().api.style.backgroundColor.getForState('idle')"
-                    (onChange)="button().api.style.backgroundColor.setForState('idle', $event); refreshLog();"
+                    [value]="_button().api.style.backgroundColor.getForState('idle')"
+                    (onChange)="_button().api.style.backgroundColor.setForState('idle', $event); refreshLog();"
                 />
                 Selected
                 <app-input-color
-                    [value]="button().api.style.backgroundColor.getForState('selected')"
-                    (onChange)="button().api.style.backgroundColor.setForState('selected', $event); refreshLog();"
+                    [value]="_button().api.style.backgroundColor.getForState('selected')"
+                    (onChange)="_button().api.style.backgroundColor.setForState('selected', $event); refreshLog();"
                 />
             </div>
             <app-dimensions-inputs
-                [value]="button().api.style.getDimensions()"
-                (onChange)="button().api.style.setDimensions($event.key, $event.value); refreshLog();"
+                [value]="_button().api.style.getDimensions()"
+                (onChange)="_button().api.style.setDimensions($event.key, $event.value); refreshLog();"
             />
             <app-outline-inputs
                 [states]="buttonStates"
                 [(state)]="outlineState"
-                [value]="button().api.style.outline.getForState(outlineState())"
-                (onChange)="button().api.style.outline.setForState($event.state ?? 'idle', $event.key, $event.value); refreshLog();"
+                [value]="_button().api.style.outline.getForState(outlineState())"
+                (onChange)="_button().api.style.outline.setForState($event.state ?? 'idle', $event.key, $event.value); refreshLog();"
             />
             <app-font-inputs
                 [states]="buttonStates"
                 [(state)]="fontState"
-                [value]="button().api.style.font.getForState(fontState())"
-                (onChange)="button().api.style.font.setForState($event.state ?? 'idle', $event.key, $event.value); refreshLog();"
+                [value]="_button().api.style.font.getForState(fontState())"
+                (onChange)="_button().api.style.font.setForState($event.state ?? 'idle', $event.key, $event.value); refreshLog();"
             />
         </app-configuration-section>
 
         <app-configuration-section title="Effects">
             <app-shadow-effect-inputs
                 title="Shadow idle"
-                [enabled]="button().api.effects.has(mvLibEffects.idle.shadow)"
-                [style]="button().api.effects.getStyle(mvLibEffects.idle.shadow)"
-                (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
-                (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                [enabled]="_button().api.effects.has(mvLibEffects.idle.shadow)"
+                [style]="_button().api.effects.getStyle(mvLibEffects.idle.shadow)"
+                (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.idle.shadow, $event); refreshLog();"
+                (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.idle.shadow, $event); refreshLog();"
             />
             <app-tint-effect-inputs
                 title="Tint hover"
-                [enabled]="button().api.effects.has(mvLibEffects.hover.tint)"
-                [style]="button().api.effects.getStyle(mvLibEffects.hover.tint)"
-                (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
-                (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
+                [enabled]="_button().api.effects.has(mvLibEffects.hover.tint)"
+                [style]="_button().api.effects.getStyle(mvLibEffects.hover.tint)"
+                (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog();"
+                (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog();"
             />
             <app-push-click-inputs
                 title="Push click"
-                [enabled]="button().api.effects.has(mvLibEffects.click.push)"
-                [style]="button().api.effects.getStyle(mvLibEffects.click.push)"
-                (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.click.push, $event); refreshLog();"
-                (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.click.push, $event); refreshLog();"
+                [enabled]="_button().api.effects.has(mvLibEffects.click.push)"
+                [style]="_button().api.effects.getStyle(mvLibEffects.click.push)"
+                (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.click.push, $event); refreshLog();"
+                (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.click.push, $event); refreshLog();"
             />
             <app-ripple-release-inputs
                 title="Ripple release"
-                [enabled]="button().api.effects.has(mvLibEffects.release.ripple)"
-                [style]="button().api.effects.getStyle(mvLibEffects.release.ripple)"
-                (onChangeEnabled)="button().api.effects.toggle(mvLibEffects.release.ripple, $event); refreshLog();"
-                (onChangeStyle)="button().api.effects.setStyle(mvLibEffects.release.ripple, $event); refreshLog();"
+                [enabled]="_button().api.effects.has(mvLibEffects.release.ripple)"
+                [style]="_button().api.effects.getStyle(mvLibEffects.release.ripple)"
+                (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.release.ripple, $event); refreshLog();"
+                (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.release.ripple, $event); refreshLog();"
             />
         </app-configuration-section>
 
@@ -74,7 +74,7 @@
 
     <div class="render">
         <mv-lib-button
-            #mvLibButtonClassic
+            #button
             class="component"
             [inputStyle]="style()"
             [inputEffects]="effects()"

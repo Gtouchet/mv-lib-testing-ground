@@ -72,7 +72,21 @@ export class AppComponent {
    * Components links
    */
   protected componentTreeviewItems = signal<TreeviewNode[]>([
-    {
+    this.buttonsTreeviewItem(),
+    this.checkboxesTreeviewItem(),
+    this.dropdownsTreeviewItem(),
+    this.gridsTreeviewItem(),
+    this.radioButtonsTreeviewItem(),
+    this.switchesTreeviewItem(),
+    this.textboxesTreeviewItem(),
+    this.treeviewsTreeviewItem(),
+  ]);
+
+  /**
+   * Treeview items - Components
+   */
+  private buttonsTreeviewItem(): TreeviewNode {
+    return {
       type: 'text',
       label: 'Buttons',
       icon: 'trackpad_input',
@@ -96,23 +110,35 @@ export class AppComponent {
               label: 'HREF',
               routerLink: `/${APP_ROUTES.buttonHref.path}`,
             },
-          ]
+          ],
         },
       ],
-    },
-    {
+    };
+  }
+
+  private checkboxesTreeviewItem(): TreeviewNode {
+    return {
       type: 'text',
       label: 'Checkboxes',
       icon: 'check_box',
       children: [
         {
-          type: 'button', 
-          label: 'Classic', 
-          routerLink: `/${APP_ROUTES.CheckboxClassic.path}`,
+          type: 'text',
+          label: 'Checkbox',
+          children: [
+            {
+              type: 'button',
+              label: 'Overview',
+              routerLink: `/${APP_ROUTES.checkboxOverview.path}`,
+            },
+          ],
         },
       ],
-    },
-    {
+    };
+  }
+
+  private dropdownsTreeviewItem(): TreeviewNode {
+    return {
       type: 'text',
       label: 'Dropdowns',
       icon: 'dropdown_menu',
@@ -123,44 +149,56 @@ export class AppComponent {
           routerLink: `/${APP_ROUTES.dropdownClassic.path}`,
         },
       ],
-    },
-    {
+    };
+  }
+
+  private gridsTreeviewItem(): TreeviewNode {
+    return {
       type: 'text',
       label: 'Grids',
       icon: 'table_rows',
       children: [
-        { 
-          type: 'button', 
-          label: 'Classic', 
+        {
+          type: 'button',
+          label: 'Classic',
           routerLink: `/${APP_ROUTES.gridClassic.path}`,
         },
       ],
-    },
-    {
+    };
+  }
+
+  private radioButtonsTreeviewItem(): TreeviewNode {
+    return {
       type: 'text',
       label: 'Radio buttons',
       icon: 'radio_button_checked',
       children: [
-        { 
+        {
           type: 'button',
           label: 'Classic',
           routerLink: `/${APP_ROUTES.radioButtonsClassic.path}`,
         },
       ],
-    },
-    {
+    };
+  }
+
+  private switchesTreeviewItem(): TreeviewNode {
+    return {
       type: 'text',
       label: 'Switches',
       icon: 'switches',
       children: [
-        { 
+        {
           type: 'button',
           label: 'Classic',
           routerLink: `/${APP_ROUTES.switchClassic.path}`,
         },
       ],
-    },
-    {
+    };
+  }
+
+  private textboxesTreeviewItem(): TreeviewNode {
+    return {
       type: 'text',
       label: 'Textboxes',
       icon: 'crop_16_9',
@@ -173,7 +211,7 @@ export class AppComponent {
               type: 'button',
               label: 'General',
               routerLink: `/${APP_ROUTES.textboxAlphanumeric.path}`,
-            }
+            },
           ],
         },
         {
@@ -218,69 +256,72 @@ export class AppComponent {
           ],
         },
       ],
-    },
-    {
+    };
+  }
+
+  private treeviewsTreeviewItem(): TreeviewNode {
+    return {
       type: 'text',
       label: 'Treeviews',
       icon: 'folder_data',
       children: [
-        { 
+        {
           type: 'button',
-          label: 'Classic', 
+          label: 'Classic',
           routerLink: `/${APP_ROUTES.treeviewClassic.path}`,
         },
       ],
-    },
-  ]);
+    };
+  }
+
+  /**
+   * Treeview items - Services
+   */
+  private toastsTreeviewItem(): TreeviewNode {
+    return {
+      type: 'text',
+      label: 'Toasts',
+      icon: 'notifications',
+      children: [
+        {
+          type: 'button',
+          label: 'Classic',
+          routerLink: `/${APP_ROUTES.toastClassic.path}`,
+        },
+      ],
+    };
+  }
+
+  /**
+   * Treeview items - Themes
+   */
+  private themeModeTreeviewItem(mode: MvLibThemeDefinition['mode'], label: string, icon: string): TreeviewNode {
+    return {
+      type: 'text',
+      label,
+      icon,
+      children: this.themeService.getThemes()
+        .filter(theme => theme.mode === mode)
+        .map((theme: MvLibThemeDefinition): TreeviewNode => ({
+          type: 'button',
+          label: theme.name,
+        })),
+    };
+  }
 
   /**
    * Services links
    */
   protected serviceTreeviewItems = signal<TreeviewNode[]>([
-    {
-      type: 'text',
-      label: 'Toasts',
-      icon: 'notifications',
-      children: [
-        { 
-          type: 'button',
-          label: 'Classic', 
-          routerLink: `/${APP_ROUTES.toastClassic.path}`,
-        },
-      ],
-    },
+    this.toastsTreeviewItem(),
   ]);
 
   /**
    * Themes links
    */
   protected themeTreeviewItems = signal<TreeviewNode[]>([
-    {
-      type: 'text',
-      label: 'Light',
-      icon: 'light_mode',
-      children: [
-        ...this.themeService.getThemes()
-          .filter(theme => theme.mode === 'light')
-          .map((theme: MvLibThemeDefinition) => ({
-            type: 'button',
-            label: theme.name,
-          })),
-      ] as TreeviewNode[],
-    },
-    {
-      type: 'text',
-      label: 'Dark',
-      icon: 'dark_mode',
-      children: [
-        ...this.themeService.getThemes()
-          .filter(theme => theme.mode === 'dark')
-          .map((theme: MvLibThemeDefinition) => ({
-            type: 'button',
-            label: theme.name,
-          })),
-      ] as TreeviewNode[],
-    }
+    this.themeModeTreeviewItem('light', 'Light', 'light_mode'),
+    this.themeModeTreeviewItem('dark', 'Dark', 'dark_mode'),
   ]);
 
   /**

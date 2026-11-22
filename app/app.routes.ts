@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { ButtonOverviewComponent } from './examples/buttons/button/overview/button-overview.component';
-import { CheckboxClassicExampleComponent } from './examples/checkboxes/classic/checkbox-classic-example.component';
+import { CheckboxOverviewComponent } from './examples/checkboxes/checkbox/overview/checkbox-overview.component';
 import { DropdownClassicExampleComponent } from './examples/dropdowns/classic/dropdown-classic-example.component';
 import { GridClassicExampleComponent } from './examples/grids/classic/grid-classic-example.component';
 import { RadioButtonsClassicExampleComponent } from './examples/radio-buttons/classic/radio-buttons-classic-example.component';
@@ -51,11 +51,17 @@ export const APP_ROUTES = {
 		component: ButtonHrefComponent,
 	},
 
-	CheckboxClassic: {
-		path: 'checkbox-classic-example',
-		title: 'Checkbox classic',
-		component: CheckboxClassicExampleComponent,
+	/**
+	 * Checkbox
+	 */
+	checkboxOverview: {
+		path: 'checkboxes/checkbox/overview',
+		title: 'Checkbox - Overview',
+		component: CheckboxOverviewComponent,
 	},
+
+
+
 	dropdownClassic: {
 		path: 'dropdown-classic-example',
 		title: 'Dropdown classic',

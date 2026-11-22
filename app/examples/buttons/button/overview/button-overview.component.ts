@@ -16,7 +16,7 @@ import { MvLibButtonComponent, MvLibButtonStyle, MvLibButtonEffects, MvLibButton
 })
 export class ButtonOverviewComponent extends OverviewDemoBaseComponent implements AfterViewInit {
 
-  protected button = viewChild.required<MvLibButtonComponent>('mvLibButtonClassic');
+  protected _button = viewChild.required<MvLibButtonComponent>('button');
 
   protected style = signal<Partial<MvLibButtonStyle>>({
     dimensions: {
@@ -46,9 +46,9 @@ export class ButtonOverviewComponent extends OverviewDemoBaseComponent implement
 
   ngAfterViewInit() {
     this.logProperties = [
-      { property: 'inputStyle', value: () => this.button().getStyle() },
-      { property: 'inputEffects', value: () => this.button().getEffects() },
-      { property: 'inputSettings', value: () => this.button().getSettings() },
+      { property: 'inputStyle', value: () => this._button().getStyle() },
+      { property: 'inputEffects', value: () => this._button().getEffects() },
+      { property: 'inputSettings', value: () => this._button().getSettings() },
       { property: 'disabled', value: this.disabled() },
     ];
     this.refreshLog();
