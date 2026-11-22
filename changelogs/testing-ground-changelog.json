@@ -1,5 +1,13 @@
 [
     {
+        "version": "0.1.6 (22/11/26)",
+        "changes": [
+            "Application: Revamp of the app visuals and structure",
+            "Button style view: Added a new input to toggle the tint hover effect on/off",
+            "Button style view: Added state-specific style configurations"
+        ]
+    },
+    {
         "version": "0.1.5 (02/10/26)",
         "changes": [
             "Numeric textbox: Better detailled views",
