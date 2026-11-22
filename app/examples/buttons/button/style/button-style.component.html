@@ -31,6 +31,13 @@
                 [height]="'600px'"
             >
                 <ng-container configuration>
+                    <app-tint-effect-inputs
+                        label="Tint hover"
+                        [enabled]="_button().api.effects.has(mvLibEffects.hover.tint)"
+                        [style]="_button().api.effects.getStyle(mvLibEffects.hover.tint)"
+                        (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog('button');"
+                        (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog('button');"
+                    />
                     <div>
                         <app-inputs-separator label="Background color"/>
                         <div class="inputs-group">
@@ -82,18 +89,20 @@
                     />
                 </ng-container>
                 <ng-container preview>
-                    <mv-lib-button
-                        #button
-                        [inputStyle]="style()"
-                        [inputEffects]="{
-                            classes: [
-                                mvLibEffects.hover.tint.class,
-                            ]
-                        }"
-                        [content]="'Click me'"
-                        [(selected)]="selected"
-                        (onClick)="selected.set(!selected())"
-                    />
+                    <div class="preview-content">
+                        <mv-lib-button
+                            #button
+                            [inputStyle]="style()"
+                            [inputEffects]="{
+                                classes: [
+                                    mvLibEffects.hover.tint.class,
+                                ]
+                            }"
+                            [content]="selected() ? 'Selected' : 'Not selected'"
+                            [(selected)]="selected"
+                            (onClick)="selected.set(!selected())"
+                        />
+                    </div>
                 </ng-container>
             </app-demo-playground>
         </section>
