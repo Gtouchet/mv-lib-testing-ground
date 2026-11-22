@@ -60,6 +60,12 @@ export class ButtonStyleComponent extends SpecificDemoBaseComponent implements A
                             hoveredSelected: this._button().api.style.font.getForState('hoveredSelected'),
                         },
                     }) },
+                    { property: 'inputEffects', value: () => ({
+                        classes: this._button().getEffects().classes,
+                        styles: {
+                            tintHover: this._button().getEffects().styles!.tintHover,
+                        },
+                    }) },
                 ],
             },
         }); 

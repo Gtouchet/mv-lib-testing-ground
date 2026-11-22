@@ -23,6 +23,7 @@
                 Tweak each style group in the Configuration tab.<br/>
                 Every style group is defined per button state (idle, hovered, selected, hovered and selected):
                 pick the state to edit from the dropdown next to the group's title.<br/>
+                You can activate or deactivate the tint hover effect to see how it interacts with the button's background color.<br/>
                 Click the button in the preview to toggle its selected state.
             </div>
             <app-demo-playground
@@ -35,8 +36,8 @@
                         label="Tint hover"
                         [enabled]="_button().api.effects.has(mvLibEffects.hover.tint)"
                         [style]="_button().api.effects.getStyle(mvLibEffects.hover.tint)"
-                        (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog('button');"
                         (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog('button');"
+                        (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog('button');"
                     />
                     <div>
                         <app-inputs-separator label="Background color"/>
