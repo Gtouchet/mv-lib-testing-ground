@@ -1,15 +1,16 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, model, signal, viewChild } from "@angular/core";
 import { INPUTS } from "../../../../inputs/_inputs.export";
-import { MvLibButtonComponent, MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
+import { MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
 import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
+import { DemoPlaygroundComponent } from "../../../_base/playground/demo-playground.component";
 
 @Component({
     selector: 'app-numeric-textbox-settings',
     imports: [
         SpecificDemoSidebarComponent,
         MvLibNumericTextboxComponent,
-        MvLibButtonComponent,
+        DemoPlaygroundComponent,
         INPUTS,
     ],
     templateUrl: './numeric-textbox-settings.component.html',

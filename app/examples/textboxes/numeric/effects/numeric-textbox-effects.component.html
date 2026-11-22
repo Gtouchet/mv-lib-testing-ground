@@ -1,12 +1,13 @@
 <div class="layout">
     <div id="top" class="content">
-        
+
         <section class="presentation">
             <span class="title">
                 Numeric textbox effects
             </span>
             <span class="description">
-                Use the MVLib numeric textbox's [inputEffects] to enable and customize effects for its input area and stepper buttons.
+                Use the MVLib numeric textbox's <code>[inputEffects]</code> to enable and customize effects
+                for its input area and stepper buttons.
             </span>
             <span class="last-updated">
                 Last updated: {{ lastUpdated }}
@@ -17,61 +18,46 @@
             <span class="title">
                 Input area
             </span>
-            <span class="description">
-                Enable and configure tint and outline effects for the hover and selected states.<br/>
-                Select the input area to preview the selected effects.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
-                            <app-tint-effect-inputs
-                                label="Tint hover"
-                                [enabled]="_inputArea().api.effects.textbox.has(mvLibEffects.hover.tint)"
-                                [style]="_inputArea().api.effects.textbox.getStyle(mvLibEffects.hover.tint)"
-                                (onChangeEnabled)="_inputArea().api.effects.textbox.toggle(mvLibEffects.hover.tint, $event); refreshLog('inputArea');"
-                                (onChangeStyle)="_inputArea().api.effects.textbox.setStyle(mvLibEffects.hover.tint, $event); refreshLog('inputArea');"
-                            />
-                            <app-tint-effect-inputs
-                                label="Tint selected"
-                                [enabled]="_inputArea().api.effects.textbox.has(mvLibEffects.selected.tint)"
-                                [style]="_inputArea().api.effects.textbox.getStyle(mvLibEffects.selected.tint)"
-                                (onChangeEnabled)="_inputArea().api.effects.textbox.toggle(mvLibEffects.selected.tint, $event); refreshLog('inputArea');"
-                                (onChangeStyle)="_inputArea().api.effects.textbox.setStyle(mvLibEffects.selected.tint, $event); refreshLog('inputArea');"
-                            />
-                            <app-outline-blur-effect-inputs
-                                label="Outline blur selected"
-                                [enabled]="_inputArea().api.effects.textbox.has(mvLibEffects.selected.outlineBlur)"
-                                [style]="_inputArea().api.effects.textbox.getStyle(mvLibEffects.selected.outlineBlur)"
-                                (onChangeEnabled)="_inputArea().api.effects.textbox.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog('inputArea');"
-                                (onChangeStyle)="_inputArea().api.effects.textbox.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog('inputArea');"
-                            />
-                            <app-outline-solid-effect-inputs
-                                label="Outline solid selected"
-                                [enabled]="_inputArea().api.effects.textbox.has(mvLibEffects.selected.outlineSolid)"
-                                [style]="_inputArea().api.effects.textbox.getStyle(mvLibEffects.selected.outlineSolid)"
-                                (onChangeEnabled)="_inputArea().api.effects.textbox.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog('inputArea');"
-                                (onChangeStyle)="_inputArea().api.effects.textbox.setStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog('inputArea');"
-                            />
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy effects'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('inputArea')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('inputArea') }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
+            <div class="description">
+                Enable and configure tint and outline effects for the hover and selected states in the Configuration tab.<br/>
+                Hover or select the input area in the preview to see the effects.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-numeric-textbox' + componentCode('inputArea') + '/>'"
+                [height]="'520px'"
+                (onCopy)="copyComponentCode('inputArea')"
+            >
+                <ng-container configuration>
+                    <app-tint-effect-inputs
+                        label="Tint hover"
+                        [enabled]="_inputArea().api.effects.textbox.has(mvLibEffects.hover.tint)"
+                        [style]="_inputArea().api.effects.textbox.getStyle(mvLibEffects.hover.tint)"
+                        (onChangeEnabled)="_inputArea().api.effects.textbox.toggle(mvLibEffects.hover.tint, $event); refreshLog('inputArea');"
+                        (onChangeStyle)="_inputArea().api.effects.textbox.setStyle(mvLibEffects.hover.tint, $event); refreshLog('inputArea');"
+                    />
+                    <app-tint-effect-inputs
+                        label="Tint selected"
+                        [enabled]="_inputArea().api.effects.textbox.has(mvLibEffects.selected.tint)"
+                        [style]="_inputArea().api.effects.textbox.getStyle(mvLibEffects.selected.tint)"
+                        (onChangeEnabled)="_inputArea().api.effects.textbox.toggle(mvLibEffects.selected.tint, $event); refreshLog('inputArea');"
+                        (onChangeStyle)="_inputArea().api.effects.textbox.setStyle(mvLibEffects.selected.tint, $event); refreshLog('inputArea');"
+                    />
+                    <app-outline-blur-effect-inputs
+                        label="Outline blur selected"
+                        [enabled]="_inputArea().api.effects.textbox.has(mvLibEffects.selected.outlineBlur)"
+                        [style]="_inputArea().api.effects.textbox.getStyle(mvLibEffects.selected.outlineBlur)"
+                        (onChangeEnabled)="_inputArea().api.effects.textbox.toggle(mvLibEffects.selected.outlineBlur, $event); refreshLog('inputArea');"
+                        (onChangeStyle)="_inputArea().api.effects.textbox.setStyle(mvLibEffects.selected.outlineBlur, $event); refreshLog('inputArea');"
+                    />
+                    <app-outline-solid-effect-inputs
+                        label="Outline solid selected"
+                        [enabled]="_inputArea().api.effects.textbox.has(mvLibEffects.selected.outlineSolid)"
+                        [style]="_inputArea().api.effects.textbox.getStyle(mvLibEffects.selected.outlineSolid)"
+                        (onChangeEnabled)="_inputArea().api.effects.textbox.toggle(mvLibEffects.selected.outlineSolid, $event); refreshLog('inputArea');"
+                        (onChangeStyle)="_inputArea().api.effects.textbox.setStyle(mvLibEffects.selected.outlineSolid, $event); refreshLog('inputArea');"
+                    />
+                </ng-container>
+                <ng-container preview>
                     <mv-lib-numeric-textbox
                         #inputArea
                         [inputStyle]="style()"
@@ -90,75 +76,62 @@
                         }"
                         [value]="0"
                     />
-                </div>
-            </div>
+                </ng-container>
+            </app-demo-playground>
         </section>
 
         <section id="stepper-buttons" class="section">
             <span class="title">
                 Stepper button
             </span>
-            <span class="description">
+            <div class="description">
                 Configure the increment and decrement button effects independently.<br/>
-                Choose a button to edit and preview its effect configuration.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="selection-buttons">
-                                <mv-lib-button
-                                    [content]="'Increment'"
-                                    [inputStyle]="selectionButton.style"
-                                    [inputEffects]="selectionButton.effects"
-                                    [selected]="stepperButtonsSelected() === 'increment'"
-                                    (onClick)="stepperButtonsSelected.set('increment')"
-                                />
-                                <mv-lib-button
-                                    [content]="'Decrement'"
-                                    [inputStyle]="selectionButton.style"
-                                    [inputEffects]="selectionButton.effects"
-                                    [selected]="stepperButtonsSelected() === 'decrement'"
-                                    (onClick)="stepperButtonsSelected.set('decrement')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            @if (stepperButtonsSelected() === 'increment') {
-                                WIP
-                            }
-                            @else if (stepperButtonsSelected() === 'decrement') {
-                                WIP
-                            }
-                        </div>
+                Choose a button to edit at the top of the Configuration tab and preview its effect configuration.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-numeric-textbox' + componentCode('stepperButtons') + '/>'"
+                (onCopy)="copyComponentCode('stepperButtons')"
+                [height]="'400px'"
+            >
+                <ng-container configuration>
+                    <div class="selection-buttons">
+                        <mv-lib-button
+                            [content]="'Increment'"
+                            [inputStyle]="selectionButton.style"
+                            [inputEffects]="selectionButton.effects"
+                            [selected]="stepperButtonsSelected() === 'increment'"
+                            (onClick)="stepperButtonsSelected.set('increment')"
+                        />
+                        <mv-lib-button
+                            [content]="'Decrement'"
+                            [inputStyle]="selectionButton.style"
+                            [inputEffects]="selectionButton.effects"
+                            [selected]="stepperButtonsSelected() === 'decrement'"
+                            (onClick)="stepperButtonsSelected.set('decrement')"
+                        />
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy effects'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('stepperButtons')"
-                                />
-                            </div>
+                    @if (stepperButtonsSelected() === 'increment') {
+                        <div>
+                            WIP
                         </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('stepperButtons') }}/&gt;</pre>
+                    }
+                    @else if (stepperButtonsSelected() === 'decrement') {
+                        <div>
+                            WIP
                         </div>
-                    </div>
-                </div>
-                <div class="component">
+                    }
+                </ng-container>
+                <ng-container preview>
                     <mv-lib-numeric-textbox
                         #stepperButtons
                         [inputStyle]="style()"
                         [inputEffects]="{
-                            
+
                         }"
                         [value]="0"
                     />
-                </div>
-            </div>
+                </ng-container>
+            </app-demo-playground>
         </section>
     </div>
 

@@ -1,17 +1,18 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, signal, viewChild } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { INPUTS } from "../../../../inputs/_inputs.export";
-import { MvLibButtonComponent, MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
+import { MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
 import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
+import { DemoPlaygroundComponent } from "../../../_base/playground/demo-playground.component";
 import { FormControl, ReactiveFormsModule, UntypedFormGroup } from "@angular/forms";
 
 @Component({
     selector: 'app-numeric-textbox-form',
     imports: [
         SpecificDemoSidebarComponent,
-        MvLibButtonComponent,
         MvLibNumericTextboxComponent,
+        DemoPlaygroundComponent,
         ReactiveFormsModule,
         INPUTS,
     ],
@@ -52,8 +53,8 @@ export class NumericTextboxFormComponent extends SpecificDemoBaseComponent imple
             },
         });
 
-        this._textboxCva().registerOnTouched(() => this.addCvaAction('registerOnTouched'));
-        this._textboxCva().registerOnChange(() => this.addCvaAction('registerOnChange'));
+        this._textboxCva().registerOnTouched(() => this.addCvaAction('registerOnTouched()'));
+        this._textboxCva().registerOnChange(() => this.addCvaAction('registerOnChange()'));
     }
 
     protected override initForm() {

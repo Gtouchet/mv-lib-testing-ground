@@ -6,7 +6,7 @@
                 Numeric textbox form integration
             </span>
             <span class="description">
-                The MVLib numeric textbox integrates with Angular reactive forms through the ControlValueAccessor API.
+                The MVLib numeric textbox integrates with Angular reactive forms through the <code>ControlValueAccessor</code> API.
             </span>
             <span class="last-updated">
                 Last updated: {{ lastUpdated }}
@@ -17,119 +17,119 @@
             <span class="title">
                 Reactive form validation
             </span>
-            <span class="description">
-                Apply required, minimum, and maximum value validators and inspect the resulting value, interaction state, and validity.<br/>
-                Form validation errors are displayed as text, with customizable messages for each validator.<br/>
-                The displayed value updates immediately, including while holding an increment or decrement button.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel" style="height: 250px;">
-                        <div class="panel-content">
-                            <app-inputs-separator label="Form validators" />
-                            <div class="inputs-group">
-                                <span
-                                    [style.color]="forms['validators'].get('input')?.hasError('required') ?
-                                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
-                                >
-                                    Required
-                                </span>
-                                <app-input-checkbox
-                                    [checked]="required()"
-                                    (onChange)="
-                                        required.set($event);
-                                        updateFormValidator(
-                                            'validators',
-                                            'input',
-                                            'required',
-                                            required() ? formValidators.required : null);
-                                    "
-                                />
-                                <span
-                                    [style.color]="forms['validators'].get('input')?.hasError('min') ?
-                                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
-                                >
-                                    Min value
-                                </span>
-                                
-                                <app-input-number
-                                    [value]="min()"
-                                    (onChange)="
-                                        min.set($event);
-                                        updateFormValidator(
-                                            'validators',
-                                            'input',
-                                            'min',
-                                            min() == null ? null : formValidators.min(min()!));
-                                    "
-                                />
-                                <span
-                                    [style.color]="forms['validators'].get('input')?.hasError('max') ?
-                                        'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
-                                >
-                                    Max value
-                                </span>
-                                <app-input-number
-                                    [value]="max()"
-                                    (onChange)="
-                                        max.set($event);
-                                        updateFormValidator(
-                                            'validators',
-                                            'input',
-                                            'max',
-                                            max() == null ? null : formValidators.max(max()!));
-                                    "
-                                />
-                            </div>
-                            <app-inputs-separator label="Form error labels"/>
-                            <div class="inputs-group">
+            <div class="description">
+                Apply required, minimum, and maximum value validators in the Configuration tab,
+                and inspect the resulting value, interaction state, and validity in its Form state group.<br/>
+                Form validation errors are displayed as text, with customizable messages for each validator
+                in <code>[inputFormErrorLabels]</code>.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-numeric-textbox' + componentCode('validators') + '/>'"
+                [height]="'470px'"
+                (onCopy)="copyComponentCode('validators')"
+            >
+                <ng-container configuration>
+                    <div>
+                        <app-inputs-separator label="Form validators"/>
+                        <div class="inputs-group">
+                            <span
+                                class="input-label"
+                                [style.color]="forms['validators'].get('input')?.hasError('required') ?
+                                    'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                            >
                                 Required
-                                <app-input-text
-                                    [value]="_textboxValidators().api.form.getRequiredErrorLabel()"
-                                    (onChange)="_textboxValidators().api.form.setRequiredErrorLabel($event)"
-                                />
+                            </span>
+                            <app-input-checkbox
+                                [checked]="required()"
+                                (onChange)="
+                                    required.set($event);
+                                    updateFormValidator(
+                                        'validators',
+                                        'input',
+                                        'required',
+                                        required() ? formValidators.required : null);
+                                "
+                            />
+                            <span
+                                class="input-label"
+                                [style.color]="forms['validators'].get('input')?.hasError('min') ?
+                                    'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                            >
+                                Min value
+                            </span>
+                            <app-input-number
+                                [value]="min()"
+                                (onChange)="
+                                    min.set($event);
+                                    updateFormValidator(
+                                        'validators',
+                                        'input',
+                                        'min',
+                                        min() == null ? null : formValidators.min(min()!));
+                                "
+                            />
+                            <span
+                                class="input-label"
+                                [style.color]="forms['validators'].get('input')?.hasError('max') ?
+                                    'var(--mv-lib-error)' : 'var(--mv-lib-primary-color-8)'"
+                            >
+                                Max value
+                            </span>
+                            <app-input-number
+                                [value]="max()"
+                                (onChange)="
+                                    max.set($event);
+                                    updateFormValidator(
+                                        'validators',
+                                        'input',
+                                        'max',
+                                        max() == null ? null : formValidators.max(max()!));
+                                "
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <app-inputs-separator label="Form error labels"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
+                                Required
+                            </span>
+                            <app-input-text
+                                [value]="_textboxValidators().api.form.getRequiredErrorLabel()"
+                                (onChange)="_textboxValidators().api.form.setRequiredErrorLabel($event); refreshLog('validators');"
+                            />
+                            <span class="input-label">
                                 Min
-                                <app-input-text
-                                    [value]="_textboxValidators().api.form.getMinErrorLabel()"
-                                    (onChange)="_textboxValidators().api.form.setMinErrorLabel($event)"
-                                />
+                            </span>
+                            <app-input-text
+                                [value]="_textboxValidators().api.form.getMinErrorLabel()"
+                                (onChange)="_textboxValidators().api.form.setMinErrorLabel($event); refreshLog('validators');"
+                            />
+                            <span class="input-label">
                                 Max
-                                <app-input-text
-                                    [value]="_textboxValidators().api.form.getMaxErrorLabel()"
-                                    (onChange)="_textboxValidators().api.form.setMaxErrorLabel($event)"
-                                />
-                            </div>
+                            </span>
+                            <app-input-text
+                                [value]="_textboxValidators().api.form.getMaxErrorLabel()"
+                                (onChange)="_textboxValidators().api.form.setMaxErrorLabel($event); refreshLog('validators');"
+                            />
                         </div>
                     </div>
-                    <div class="panel" style="height: 160px;">
-                        <div class="panel-content">
-                            <app-inputs-separator label="Form state"/>
-                            <div class="inputs-group">
-                                Value: <span>{{ validatorValue() }}</span>
-                                Touched: <span>{{ forms['validators'].touched ? 'Touched' : 'Untouched' }}</span>
-                                Dirty: <span>{{ forms['validators'].dirty ? 'Dirty' : 'Pristine' }}</span>
-                                Status: <span>{{ forms['validators'].disabled ? 'Disabled' : (forms['validators'].valid ? 'Valid' : 'Invalid') }}</span>
-                            </div>
+                    <div>
+                        <app-inputs-separator label="Form state"/>
+                        <div class="inputs-group">
+                            <span class="input-label">Value</span>
+                            <span>{{ validatorValue() }}</span>
+                            <span class="input-label">Touched</span>
+                            <span>{{ forms['validators'].touched ? 'Touched' : 'Untouched' }}</span>
+                            <span class="input-label">Dirty</span>
+                            <span>{{ forms['validators'].dirty ? 'Dirty' : 'Pristine' }}</span>
+                            <span class="input-label">Status</span>
+                            <span>{{ forms['validators'].disabled ? 'Disabled' : (forms['validators'].valid ? 'Valid' : 'Invalid') }}</span>
                         </div>
                     </div>
-                    <div class="panel" style="height: 250px;">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy code'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('validators')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('validators') }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
+                </ng-container>
                 <form
-                    class="component"
+                    preview
                     [formGroup]="forms['validators']"
                 >
                     <mv-lib-numeric-textbox
@@ -150,7 +150,7 @@
                         }"
                     />
                 </form>
-            </div>
+            </app-demo-playground>
         </section>
 
         <section id="cva" class="section">
@@ -158,22 +158,24 @@
             <span class="title">
                 ControlValueAccessor integration
             </span>
-            <span class="description">
-                Use Angular's FormControl API to set the value and enable or disable the textbox.<br/>
-                The action log shows the ControlValueAccessor callbacks triggered by these interactions.
-            </span>
+            <div class="description">
+                Use Angular's <code>FormControl</code> API to set the value and enable or disable the textbox.<br/>
+                The action log shows the <code>ControlValueAccessor</code> callbacks triggered by these interactions.
+            </div>
             <div class="playground">
                 <div class="configuration">
-                    <div class="panel" style="height: 130px;">
+                    <div class="panel" style="height: 170px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">CVA functions</span>
+                        </div>
                         <div class="panel-content">
-                            <app-inputs-separator label="CVA functions" />
                             <div class="inputs-group">
-                                formControl.setValue()
+                                <code class="input-label">formControl.setValue()</code>
                                 <app-input-number
                                     [value]="formControl.value"
                                     (onChange)="formControl.setValue($event);"
                                 />
-                                formControl.disable() / .enable()
+                                <code class="input-label">formControl.disable() / .enable()</code>
                                 <app-input-checkbox
                                     [checked]="formControl.disabled"
                                     (onChange)="$event ? formControl.disable() : formControl.enable()"
@@ -182,8 +184,10 @@
                         </div>
                     </div>
                     <div class="panel">
+                        <div class="panel-title">
+                            <span class="panel-title-text">CVA actions</span>
+                        </div>
                         <div class="panel-content">
-                            <app-inputs-separator label="CVA actions" />
                             @for (cvaAction of cvaActions(); track cvaAction) {
                                 <div>
                                     {{ cvaAction.index }} - {{ cvaAction.action }}

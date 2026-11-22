@@ -17,13 +17,17 @@
             <span class="title">
                 Selection changes
             </span>
-            <span class="description">
-                The (onSelect) event is emitted when the input area gains or loses focus.<br/>
-                Its readonly payload contains the current selection state and the originating event.
-            </span>
+            <div class="description">
+                The <code>(onSelect)</code> event is emitted when the input area gains or loses focus.<br/>
+                Its readonly payload contains the current selection state and the originating event.<br/>
+                Click inside and outside the textbox in the preview to see the emitted events in the log.
+            </div>
             <div class="playground">
                 <div class="configuration">
-                    <div class="panel" style="height: 180px;">
+                    <div class="panel" style="height: 275px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">Usage</span>
+                        </div>
                         <div class="panel-content">
 <pre>&lt;mv-lib-numeric-textbox
     (onSelect)="doSomething($event)"
@@ -36,9 +40,11 @@ MvLibTextboxSelectedEvent:
 &#125;</pre>
                         </div>
                     </div>
-                    <div class="panel" style="height: 180px;">
+                    <div class="panel" style="height: 225px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">On select events</span>
+                        </div>
                         <div class="panel-content">
-                            <app-inputs-separator label="On select events"/>
                             @for (log of events('onSelect'); track log.index) {
                                 <div>
                                     {{ log.index }} - {{ log.event }}
@@ -68,13 +74,17 @@ MvLibTextboxSelectedEvent:
             <span class="title">
                 Value changes
             </span>
-            <span class="description">
-                The (onChange) event is emitted whenever the numeric value changes.<br/>
-                Its readonly payload contains the new value and the originating event.
-            </span>
+            <div class="description">
+                The <code>(onChange)</code> event is emitted whenever the numeric value changes.<br/>
+                Its readonly payload contains the new value and the originating event.<br/>
+                Type a value or use the stepper buttons in the preview to see the emitted events in the log.
+            </div>
             <div class="playground">
                 <div class="configuration">
-                    <div class="panel" style="height: 180px;">
+                    <div class="panel" style="height: 275px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">Usage</span>
+                        </div>
                         <div class="panel-content">
 <pre>&lt;mv-lib-numeric-textbox
     (onChange)="doSomething($event)"
@@ -87,9 +97,11 @@ MvLibTextboxChangeEvent:
 &#125;</pre>
                         </div>
                     </div>
-                    <div class="panel" style="height: 180px;">
+                    <div class="panel" style="height: 225px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">On change events</span>
+                        </div>
                         <div class="panel-content">
-                            <app-inputs-separator label="On change events"/>
                             @for (log of events('onChange'); track log.index) {
                                 <div>
                                     {{ log.index }} - {{ log.event }}
@@ -119,13 +131,17 @@ MvLibTextboxChangeEvent:
             <span class="title">
                 Stepper button clicks
             </span>
-            <span class="description">
-                The (onStepperButtonClick) event is emitted whenever an increment or decrement button is clicked.<br/>
-                Its readonly payload contains the step direction and the originating event.
-            </span>
+            <div class="description">
+                The <code>(onStepperButtonClick)</code> event is emitted whenever an increment or decrement button is clicked.<br/>
+                Its readonly payload contains the step direction and the originating event.<br/>
+                Click the stepper buttons in the preview to see the emitted events in the log.
+            </div>
             <div class="playground">
                 <div class="configuration">
-                    <div class="panel" style="height: 180px;">
+                    <div class="panel" style="height: 275px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">Usage</span>
+                        </div>
                         <div class="panel-content">
 <pre>&lt;mv-lib-numeric-textbox
     (onStepperButtonClick)="doSomething($event)"
@@ -138,9 +154,11 @@ MvLibNumericTextboxStepperButtonClickedEvent:
 &#125;</pre>
                         </div>
                     </div>
-                    <div class="panel" style="height: 180px;">
+                    <div class="panel" style="height: 225px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">On stepper button click events</span>
+                        </div>
                         <div class="panel-content">
-                            <app-inputs-separator label="On stepper button click events"/>
                             @for (log of events('onStepperButtonClick'); track log.index) {
                                 <div>
                                     {{ log.index }} - {{ log.event }}
@@ -170,14 +188,18 @@ MvLibNumericTextboxStepperButtonClickedEvent:
             <span class="title">
                 Stepper button holds
             </span>
-            <span class="description">
-                The (onHoldStart) event is emitted when a stepper button hold begins.<br/>
-                The (onHoldEnd) event is emitted when the hold ends.<br/>
-                Both readonly payloads contain the step direction and the originating event.
-            </span>
+            <div class="description">
+                The <code>(onHoldStart)</code> event is emitted when a stepper button hold begins.<br/>
+                The <code>(onHoldEnd)</code> event is emitted when the hold ends.<br/>
+                Both readonly payloads contain the step direction and the originating event.<br/>
+                Hold a stepper button in the preview to see the emitted events in the log.
+            </div>
             <div class="playground">
                 <div class="configuration">
-                    <div class="panel" style="height: 285px;">
+                    <div class="panel" style="height: 415px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">Usage</span>
+                        </div>
                         <div class="panel-content">
 <pre>&lt;mv-lib-numeric-textbox
     (onHoldStart)="doSomething($event)"
@@ -197,9 +219,11 @@ MvLibNumericTextboxHoldEndedEvent:
 &#125;</pre>
                         </div>
                     </div>
-                    <div class="panel" style="height: 180px;">
+                    <div class="panel" style="height: 225px;">
+                        <div class="panel-title">
+                            <span class="panel-title-text">On stepper button hold events</span>
+                        </div>
                         <div class="panel-content">
-                            <app-inputs-separator label="On stepper button hold events"/>
                             @for (log of events('onHold'); track log.index) {
                                 <div>
                                     {{ log.index }} - {{ log.event }}

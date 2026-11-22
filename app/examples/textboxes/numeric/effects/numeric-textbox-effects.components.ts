@@ -3,6 +3,7 @@ import { INPUTS } from "../../../../inputs/_inputs.export";
 import { MvLibButtonComponent, MvLibNumericTextboxComponent, MvLibNumericTextboxStyle } from "mv-lib";
 import { SpecificDemoSidebarComponent } from "../../../_base/sidebar/sidebar.component";
 import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
+import { DemoPlaygroundComponent } from "../../../_base/playground/demo-playground.component";
 
 @Component({
     selector: 'app-numeric-textbox-effects',
@@ -10,6 +11,7 @@ import { SpecificDemoBaseComponent } from "../../../_base/specific-demo.base";
         SpecificDemoSidebarComponent,
         MvLibNumericTextboxComponent,
         MvLibButtonComponent,
+        DemoPlaygroundComponent,
         INPUTS,
     ],
     templateUrl: './numeric-textbox-effects.component.html',

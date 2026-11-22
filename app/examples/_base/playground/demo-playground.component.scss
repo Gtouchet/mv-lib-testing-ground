@@ -3,10 +3,12 @@
     margin-top: 24px;
 }
 
+// The height is set on the row (not on a panel) so both panels always stretch to the exact same height
 .playground {
     display: flex;
     align-items: stretch;
     gap: 8px;
+    height: var(--playground-height);
 }
 
 .side {
@@ -119,14 +121,21 @@
     flex: 1;
     align-items: center;
     justify-content: center;
-    min-height: 320px;
+    // No min-height: the stage must never push the preview panel past the playground height
+    min-height: 0;
     padding: 32px;
     overflow: auto;
 }
 
+// Stacked panels on narrow screens: the height applies to the configuration panel only
 @media (max-width: 900px) {
     .playground {
         flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .side {
+        height: var(--playground-height);
     }
 
     .preview-stage {

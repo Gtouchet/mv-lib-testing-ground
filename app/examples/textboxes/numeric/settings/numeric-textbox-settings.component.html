@@ -1,12 +1,13 @@
 <div class="layout">
     <div id="top" class="content">
-        
+
         <section class="presentation">
             <span class="title">
                 Numeric textbox settings
             </span>
             <span class="description">
-                Use the MVLib numeric textbox's [disabled], [selected], and [inputSettings] inputs to control its state and behavior.
+                Use the MVLib numeric textbox's <code>[disabled]</code>, <code>[selected]</code>, and <code>[inputSettings]</code> inputs
+                to control its state and behavior.
             </span>
             <span class="last-updated">
                 Last updated: {{ lastUpdated }}
@@ -17,60 +18,50 @@
             <span class="title">
                 Component state
             </span>
-            <span class="description">
-                Control the [disabled] and [selected] states through two-way binding or the corresponding API methods.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
-                            <app-inputs-separator label="Two way binding"/>
-                            <div class="inputs-group">
-                                [(disabled)]
-                                <app-input-checkbox
-                                    [checked]="disabled()"
-                                    (onChange)="disabled.set($event); refreshLog('state')"
-                                />
-                                [(selected)]
-                                <app-input-checkbox
-                                    [checked]="selected()"
-                                    (onChange)="selected.set($event); refreshLog('state')"
-                                    [disabled]="disabled()"
-                                />
-                            </div>
-                            <app-inputs-separator label="API"/>
-                            <div class="inputs-group">
-                                api.setDisabled()
-                                <app-input-checkbox
-                                    [checked]="_state().api.getDisabled()"
-                                    (onChange)="_state().api.setDisabled($event); refreshLog('state')"
-                                />
-                                api.setSelected()
-                                <app-input-checkbox
-                                    [checked]="_state().api.getSelected()"
-                                    (onChange)="_state().api.setSelected($event); refreshLog('state')"
-                                    [disabled]="disabled()"
-                                />
-                            </div>
+            <div class="description">
+                Control the <code>[disabled]</code> and <code>[selected]</code> states through two-way binding
+                or the corresponding API methods.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-numeric-textbox' + componentCode('state') + '/>'"
+                (onCopy)="copyComponentCode('state')"
+                [height]="'400px'"
+            >
+                <ng-container configuration>
+                    <div>
+                        <app-inputs-separator label="Two way binding"/>
+                        <div class="inputs-group">
+                            <code class="input-label">[(disabled)]</code>
+                            <app-input-checkbox
+                                [checked]="disabled()"
+                                (onChange)="disabled.set($event); refreshLog('state')"
+                            />
+                            <code class="input-label">[(selected)]</code>
+                            <app-input-checkbox
+                                [checked]="selected()"
+                                (onChange)="selected.set($event); refreshLog('state')"
+                                [disabled]="disabled()"
+                            />
                         </div>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy settings'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('state')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('state') }}/&gt;</pre>
+                    <div>
+                        <app-inputs-separator label="API"/>
+                        <div class="inputs-group">
+                            <code class="input-label">api.setDisabled()</code>
+                            <app-input-checkbox
+                                [checked]="_state().api.getDisabled()"
+                                (onChange)="_state().api.setDisabled($event); refreshLog('state')"
+                            />
+                            <code class="input-label">api.setSelected()</code>
+                            <app-input-checkbox
+                                [checked]="_state().api.getSelected()"
+                                (onChange)="_state().api.setSelected($event); refreshLog('state')"
+                                [disabled]="disabled()"
+                            />
                         </div>
                     </div>
-                </div>
-                <div class="component">
+                </ng-container>
+                <ng-container preview>
                     <mv-lib-numeric-textbox
                         #state
                         [inputStyle]="style()"
@@ -86,70 +77,65 @@
                         [(selected)]="selected"
                         (onSelect)="refreshLog('state')"
                     />
-                </div>
-            </div>
+                </ng-container>
+            </app-demo-playground>
         </section>
 
         <section id="input-area" class="section">
             <span class="title">
                 Value range and unit
             </span>
-            <span class="description">
-                Use [inputSettings] to define the minimum and maximum accepted values.<br/>
+            <div class="description">
+                Use <code>[inputSettings]</code> to define the minimum and maximum accepted values.<br/>
                 You can also display a unit before or after the numeric value.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
-                            <app-inputs-separator label="Min / max values"/>
-                            <div class="inputs-group">
-                                <div class="inputs-group">
-                                    Min
-                                    <app-input-number
-                                        [value]="_inputArea().api.settings.getMin()"
-                                        (onChange)="_inputArea().api.settings.setMin($event); refreshLog('inputArea');"
-                                    />
-                                    Max
-                                    <app-input-number
-                                        [value]="_inputArea().api.settings.getMax()"
-                                        (onChange)="_inputArea().api.settings.setMax($event); refreshLog('inputArea');"
-                                    />
-                                </div>
-                            </div>
-                            <app-inputs-separator label="Unit"/>
-                            <div class="inputs-group">
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-numeric-textbox' + componentCode('inputArea') + '/>'"
+                (onCopy)="copyComponentCode('inputArea')"
+                [height]="'400px'"
+            >
+                <ng-container configuration>
+                    <div>
+                        <app-inputs-separator label="Min / max values"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
+                                Min
+                            </span>
+                            <app-input-number
+                                [value]="_inputArea().api.settings.getMin()"
+                                (onChange)="_inputArea().api.settings.setMin($event); refreshLog('inputArea');"
+                            />
+                            <span class="input-label">
+                                Max
+                            </span>
+                            <app-input-number
+                                [value]="_inputArea().api.settings.getMax()"
+                                (onChange)="_inputArea().api.settings.setMax($event); refreshLog('inputArea');"
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <app-inputs-separator label="Unit"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
                                 Unit
-                                <app-input-text
-                                    [value]="_inputArea().api.settings.unit.getValue() ?? ''"
-                                    (onChange)="_inputArea().api.settings.unit.setValue($event); refreshLog('inputArea')"
-                                />
+                            </span>
+                            <app-input-text
+                                [value]="_inputArea().api.settings.unit.getValue() ?? ''"
+                                (onChange)="_inputArea().api.settings.unit.setValue($event); refreshLog('inputArea')"
+                            />
+                            <span class="input-label">
                                 Placement
-                                <app-input-radio
-                                    [values]="['left', 'right']"
-                                    [selected]="_inputArea().api.settings.unit.getPlacement()"
-                                    (onChange)="_inputArea().api.settings.unit.setPlacement($any($event)); refreshLog('inputArea')"
-                                />
-                            </div>
+                            </span>
+                            <app-input-radio
+                                [values]="['left', 'right']"
+                                [selected]="_inputArea().api.settings.unit.getPlacement()"
+                                (onChange)="_inputArea().api.settings.unit.setPlacement($any($event)); refreshLog('inputArea')"
+                            />
                         </div>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy settings'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('inputArea')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('inputArea') }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
+                </ng-container>
+                <ng-container preview>
                     <mv-lib-numeric-textbox
                         #inputArea
                         [inputStyle]="style()"
@@ -160,75 +146,75 @@
                         }"
                         [value]="10"
                     />
-                </div>
-            </div>
+                </ng-container>
+            </app-demo-playground>
         </section>
 
         <section id="stepper-buttons" class="section">
             <span class="title">
                 Stepper button behavior
             </span>
-            <span class="description">
-                Use [inputSettings] to control the visibility, increment step, and hold-to-repeat timing of the stepper buttons.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
-                            <div class="inputs-group">
+            <div class="description">
+                Use <code>[inputSettings]</code> to control the visibility, increment step, and hold-to-repeat timing
+                of the stepper buttons.<br/>
+                Hold a stepper button in the preview to see the repeat behavior.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-numeric-textbox' + componentCode('stepperButtons') + '/>'"
+                (onCopy)="copyComponentCode('stepperButtons')"
+                [height]="'400px'"
+            >
+                <ng-container configuration>
+                    <div>
+                        <app-inputs-separator label="Stepper buttons"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
                                 Displayed
-                                <app-input-checkbox
-                                    [checked]="_stepperButtons().api.settings.stepperButtons.getDisplayed()"
-                                    (onChange)="_stepperButtons().api.settings.stepperButtons.setDisplayed($event); refreshLog('stepperButtons')"
-                                />
+                            </span>
+                            <app-input-checkbox
+                                [checked]="_stepperButtons().api.settings.stepperButtons.getDisplayed()"
+                                (onChange)="_stepperButtons().api.settings.stepperButtons.setDisplayed($event); refreshLog('stepperButtons')"
+                            />
+                            <span class="input-label">
                                 Allow hold
-                                <app-input-checkbox
-                                    [checked]="_stepperButtons().api.settings.stepperButtons.getAllowHold()"
-                                    (onChange)="_stepperButtons().api.settings.stepperButtons.setAllowHold($event); refreshLog('stepperButtons')"
-                                />
+                            </span>
+                            <app-input-checkbox
+                                [checked]="_stepperButtons().api.settings.stepperButtons.getAllowHold()"
+                                (onChange)="_stepperButtons().api.settings.stepperButtons.setAllowHold($event); refreshLog('stepperButtons')"
+                            />
+                            <span class="input-label">
                                 Hold delay
-                                <app-input-text
-                                    [value]="_stepperButtons().api.settings.stepperButtons.getHoldDelay()"
-                                    (onChange)="_stepperButtons().api.settings.stepperButtons.setHoldDelay($event); refreshLog('stepperButtons')"
-                                />
+                            </span>
+                            <app-input-text
+                                [value]="_stepperButtons().api.settings.stepperButtons.getHoldDelay()"
+                                (onChange)="_stepperButtons().api.settings.stepperButtons.setHoldDelay($event); refreshLog('stepperButtons')"
+                            />
+                            <span class="input-label">
                                 Repeat interval
-                                <app-input-text
-                                    [value]="_stepperButtons().api.settings.stepperButtons.getRepeatInterval()"
-                                    (onChange)="_stepperButtons().api.settings.stepperButtons.setRepeatInterval($event); refreshLog('stepperButtons')"
-                                />
+                            </span>
+                            <app-input-text
+                                [value]="_stepperButtons().api.settings.stepperButtons.getRepeatInterval()"
+                                (onChange)="_stepperButtons().api.settings.stepperButtons.setRepeatInterval($event); refreshLog('stepperButtons')"
+                            />
+                            <span class="input-label">
                                 Step
-                                <app-input-number
-                                    [value]="_stepperButtons().api.settings.stepperButtons.getStep()"
-                                    (onChange)="_stepperButtons().api.settings.stepperButtons.setStep($event ?? 0); refreshLog('stepperButtons')"
-                                    [min]="1"
-                                />
-                            </div>
+                            </span>
+                            <app-input-number
+                                [value]="_stepperButtons().api.settings.stepperButtons.getStep()"
+                                (onChange)="_stepperButtons().api.settings.stepperButtons.setStep($event ?? 0); refreshLog('stepperButtons')"
+                                [min]="1"
+                            />
                         </div>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy settings'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('stepperButtons')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('stepperButtons') }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
+                </ng-container>
+                <ng-container preview>
                     <mv-lib-numeric-textbox
                         #stepperButtons
                         [inputStyle]="style()"
                         [value]="0"
                     />
-                </div>
-            </div>
+                </ng-container>
+            </app-demo-playground>
         </section>
     </div>
 

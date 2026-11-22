@@ -6,7 +6,7 @@
                 Numeric textbox styles
             </span>
             <span class="description">
-                Use the MVLib numeric textbox's [inputStyle] to customize its input area and stepper buttons.
+                Use the MVLib numeric textbox's <code>[inputStyle]</code> to customize its input area and stepper buttons.
             </span>
             <span class="last-updated">
                 Last updated: {{ lastUpdated }}
@@ -17,49 +17,43 @@
             <span class="title">
                 Input area
             </span>
-            <span class="description">
-                Configure the background color, dimensions, outline, and typography of the input area.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
+            <div class="description">
+                The numeric textbox comes with a default style: every property of <code>[inputStyle]</code> is optional,
+                so you only need to set the ones you want to override.<br/>
+                Configure the background color, dimensions, outline, and typography of the input area in the Configuration tab.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-numeric-textbox' + componentCode('inputArea') + '/>'"
+                (onCopy)="copyComponentCode('inputArea')"
+                [height]="'600px'"
+            >
+                <ng-container configuration>
+                    <div>
+                        <app-inputs-separator label="Background color"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
+                                Color
+                            </span>
                             <app-input-color
-                                label="Background color"
                                 [value]="_inputArea().api.style.getBackgroundColor()"
-                                (onChange)="_inputArea().api.style.setBackgroundColor($event)"
-                            />
-                            <app-dimensions-inputs
-                                [value]="_inputArea().api.style.getDimensions()"
-                                (onChange)="_inputArea().api.style.setDimensions($event.key, $event.value)"
-                            />
-                            <app-outline-inputs
-                                [value]="_inputArea().api.style.getOutline()"
-                                (onChange)="_inputArea().api.style.setOutline($event.key, $event.value)"
-                            />
-                            <app-font-inputs
-                                [value]="_inputArea().api.style.getFont()"
-                                (onChange)="_inputArea().api.style.setFont($event.key, $event.value)"
+                                (onChange)="_inputArea().api.style.setBackgroundColor($event); refreshLog('inputArea');"
                             />
                         </div>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy style'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('inputArea')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('inputArea') }}/&gt;</pre>
-                        </div>
-                    </div>
-                </div>
-                <div class="component">
+                    <app-dimensions-inputs
+                        [value]="_inputArea().api.style.getDimensions()"
+                        (onChange)="_inputArea().api.style.setDimensions($event.key, $event.value); refreshLog('inputArea');"
+                    />
+                    <app-outline-inputs
+                        [value]="_inputArea().api.style.getOutline()"
+                        (onChange)="_inputArea().api.style.setOutline($event.key, $event.value); refreshLog('inputArea');"
+                    />
+                    <app-font-inputs
+                        [value]="_inputArea().api.style.getFont()"
+                        (onChange)="_inputArea().api.style.setFont($event.key, $event.value); refreshLog('inputArea');"
+                    />
+                </ng-container>
+                <ng-container preview>
                     <mv-lib-numeric-textbox
                         #inputArea
                         [inputStyle]="style()"
@@ -77,79 +71,84 @@
                         }"
                         [value]="0"
                     />
-                </div>
-            </div>
+                </ng-container>
+            </app-demo-playground>
         </section>
 
         <section id="stepper-buttons" class="section">
             <span class="title">
                 Stepper button
             </span>
-            <span class="description">
-                Set the shared width of both stepper buttons and customize their background colors and icons independently.
-            </span>
-            <div class="playground">
-                <div class="configuration">
-                    <div class="panel">
-                        <div class="panel-content">
-                            <app-inputs-separator label="Both buttons" />
+            <div class="description">
+                Set the shared width of both stepper buttons in <code>stepperButtons.width</code>,
+                and customize their background colors and icons independently
+                in <code>stepperButtons.increment</code> and <code>stepperButtons.decrement</code>.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-numeric-textbox' + componentCode('stepperButtons') + '/>'"
+                (onCopy)="copyComponentCode('stepperButtons')"
+                [height]="'400px'"
+            >
+                <ng-container configuration>
+                    <div>
+                        <app-inputs-separator label="Both buttons"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
+                                Width
+                            </span>
                             <app-input-text
-                                label="Width"
                                 [value]="_stepperButtons().api.style.stepperButtons.getWidth()"
-                                (onChange)="_stepperButtons().api.style.stepperButtons.setWidth($event)"
+                                (onChange)="_stepperButtons().api.style.stepperButtons.setWidth($event); refreshLog('stepperButtons');"
                             />
-                            <app-inputs-separator label="Increment button" />
-                            <div class="inputs-group">
-                                Background color
-                                <app-input-color
-                                    [value]="_stepperButtons().api.style.stepperButtons.increment.getBackgroundColor()"
-                                    (onChange)="_stepperButtons().api.style.stepperButtons.increment.setBackgroundColor($event)"
-                                />
-                                Icon
-                                <app-input-text
-                                    [value]="_stepperButtons().api.style.stepperButtons.increment.getIcon()"
-                                    (onChange)="_stepperButtons().api.style.stepperButtons.increment.setIcon($event)"
-                                />
-                            </div>
-                            <app-inputs-separator label="Decrement button" />
-                            <div class="inputs-group">
-                                Background color
-                                <app-input-color
-                                    [value]="_stepperButtons().api.style.stepperButtons.decrement.getBackgroundColor()"
-                                    (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setBackgroundColor($event)"
-                                />
-                                Icon
-                                <app-input-text
-                                    [value]="_stepperButtons().api.style.stepperButtons.decrement.getIcon()"
-                                    (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setIcon($event)"
-                                />
-                            </div>
                         </div>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <div class="copy-button">
-                                <mv-lib-button
-                                    [content]="'Copy style'"
-                                    [inputStyle]="copyButton.style"
-                                    [inputEffects]="copyButton.effects"
-                                    (onClick)="copyComponentCode('stepperButtons')"
-                                />
-                            </div>
-                        </div>
-                        <div class="panel-content">
-                            <pre #code>&lt;mv-lib-numeric-textbox{{ componentCode('stepperButtons') }}/&gt;</pre>
+                    <div>
+                        <app-inputs-separator label="Increment button"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
+                                Background color
+                            </span>
+                            <app-input-color
+                                [value]="_stepperButtons().api.style.stepperButtons.increment.getBackgroundColor()"
+                                (onChange)="_stepperButtons().api.style.stepperButtons.increment.setBackgroundColor($event); refreshLog('stepperButtons');"
+                            />
+                            <span class="input-label">
+                                Icon
+                            </span>
+                            <app-input-text
+                                [value]="_stepperButtons().api.style.stepperButtons.increment.getIcon()"
+                                (onChange)="_stepperButtons().api.style.stepperButtons.increment.setIcon($event); refreshLog('stepperButtons');"
+                            />
                         </div>
                     </div>
-                </div>
-                <div class="component">
+                    <div>
+                        <app-inputs-separator label="Decrement button"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
+                                Background color
+                            </span>
+                            <app-input-color
+                                [value]="_stepperButtons().api.style.stepperButtons.decrement.getBackgroundColor()"
+                                (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setBackgroundColor($event); refreshLog('stepperButtons');"
+                            />
+                            <span class="input-label">
+                                Icon
+                            </span>
+                            <app-input-text
+                                [value]="_stepperButtons().api.style.stepperButtons.decrement.getIcon()"
+                                (onChange)="_stepperButtons().api.style.stepperButtons.decrement.setIcon($event); refreshLog('stepperButtons');"
+                            />
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container preview>
                     <mv-lib-numeric-textbox
                         #stepperButtons
                         [inputStyle]="style()"
                         [value]="0"
                     />
-                </div>
-            </div>
+                </ng-container>
+            </app-demo-playground>
         </section>
     </div>
 
