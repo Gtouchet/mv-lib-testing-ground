@@ -11,12 +11,13 @@ import { NumericTextboxOverviewComponent } from './examples/textboxes/numeric/_o
 import { TreeviewClassicExampleComponent } from './examples/treeviews/classic/treeview-classic-example.component';
 import { ToastClassicExampleComponent } from './examples/toasts/classic/toast-classic-example.component';
 import { NumericTextboxStyleComponent } from './examples/textboxes/numeric/style/numeric-textbox-style.component';
-import { NumericTextboxEffectsComponent } from './examples/textboxes/numeric/effects/numeric-textbox-effects.components';
+import { NumericTextboxEffectsComponent } from './examples/textboxes/numeric/effects/numeric-textbox-effects.component';
 import { NumericTextboxSettingsComponent } from './examples/textboxes/numeric/settings/numeric-textbox-settings.component';
 import { NumericTextboxFormComponent } from './examples/textboxes/numeric/form/numeric-textbox-form.component';
 import { NumericTextboxEventsComponent } from './examples/textboxes/numeric/events/numeric-textbox-events.component';
 import { ButtonStyleComponent } from './examples/buttons/button/style/button-style.component';
 import { ButtonHrefComponent } from './examples/buttons/button/href/button-href.component';
+import { ButtonEffectsComponent } from './examples/buttons/button/effects/button-effects.component';
 
 export interface AppRoute {
 	readonly path: string;
@@ -44,6 +45,11 @@ export const APP_ROUTES = {
 		path: 'buttons/button/style',
 		title: 'Button - Style',
 		component: ButtonStyleComponent,
+	},
+	buttonEffects: {
+		path: 'buttons/button/effects',
+		title: 'Button - Effects',
+		component: ButtonEffectsComponent,
 	},
 	buttonHref: {
 		path: 'buttons/button/href',

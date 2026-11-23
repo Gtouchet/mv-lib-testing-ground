@@ -1,0 +1,87 @@
+<div class="layout">
+    <div id="top" class="content">
+
+        <section class="presentation">
+            <span class="title">
+                Button effects
+            </span>
+            <span class="description">
+                Use the MVLib button's <code>[inputEffects]</code> to enable and customize its effects.
+            </span>
+            <span class="last-updated">
+                Last updated: {{ lastUpdated }}
+            </span>
+        </section>
+
+        <section id="effects" class="section">
+            <span class="title">
+                Effects configuration
+            </span>
+            <div class="description">
+                Enable and configure the shadow idle, tint hover, push click and ripple release effects in the Configuration tab.<br/>
+                Hover, click and release the button in the preview to see the effects.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-button' + componentCode('button') + '/>'"
+                [height]="'615px'"
+                (onCopy)="copyComponentCode('button')"
+            >
+                <ng-container configuration>
+                    <app-shadow-effect-inputs
+                        label="Shadow idle"
+                        [enabled]="_button().api.effects.has(mvLibEffects.idle.shadow)"
+                        [style]="_button().api.effects.getStyle(mvLibEffects.idle.shadow)"
+                        (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.idle.shadow, $event); refreshLog('button');"
+                        (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.idle.shadow, $event); refreshLog('button');"
+                    />
+                    <app-tint-effect-inputs
+                        label="Tint hover"
+                        [enabled]="_button().api.effects.has(mvLibEffects.hover.tint)"
+                        [style]="_button().api.effects.getStyle(mvLibEffects.hover.tint)"
+                        (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.hover.tint, $event); refreshLog('button');"
+                        (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.hover.tint, $event); refreshLog('button');"
+                    />
+                    <app-push-click-inputs
+                        label="Push click"
+                        [enabled]="_button().api.effects.has(mvLibEffects.click.push)"
+                        [style]="_button().api.effects.getStyle(mvLibEffects.click.push)"
+                        (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.click.push, $event); refreshLog('button');"
+                        (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.click.push, $event); refreshLog('button');"
+                    />
+                    <app-ripple-release-inputs
+                        label="Ripple release"
+                        [enabled]="_button().api.effects.has(mvLibEffects.release.ripple)"
+                        [style]="_button().api.effects.getStyle(mvLibEffects.release.ripple)"
+                        (onChangeEnabled)="_button().api.effects.toggle(mvLibEffects.release.ripple, $event); refreshLog('button');"
+                        (onChangeStyle)="_button().api.effects.setStyle(mvLibEffects.release.ripple, $event); refreshLog('button');"
+                    />
+                </ng-container>
+                <ng-container preview>
+                    <div class="preview-content">
+                        <mv-lib-button
+                            #button
+                            [inputStyle]="style()"
+                            [inputEffects]="{
+                                classes: [
+                                    mvLibEffects.idle.shadow.class,
+                                    mvLibEffects.hover.tint.class,
+                                    mvLibEffects.click.push.class,
+                                    mvLibEffects.release.ripple.class,
+                                ]
+                            }"
+                            [content]="'Button'"
+                            [(selected)]="selected"
+                            (onClick)="selected.set(!selected())"
+                        />
+                    </div>
+                </ng-container>
+            </app-demo-playground>
+        </section>
+    </div>
+
+    <app-specific-demo-sidebar
+        [contents]="[
+            { label: 'Effects configuration', goto: 'effects' },
+        ]"
+    />
+</div>

@@ -107,6 +107,11 @@ export class AppComponent {
             },
             {
               type: 'button',
+              label: 'Effects',
+              routerLink: `/${APP_ROUTES.buttonEffects.path}`,
+            },
+            {
+              type: 'button',
               label: 'HREF',
               routerLink: `/${APP_ROUTES.buttonHref.path}`,
             },
