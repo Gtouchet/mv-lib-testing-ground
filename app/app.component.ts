@@ -73,6 +73,7 @@ export class AppComponent {
    */
   protected componentTreeviewItems = signal<TreeviewNode[]>([
     this.buttonsTreeviewItem(),
+    this.cardsTreeviewItem(),
     this.checkboxesTreeviewItem(),
     this.dropdownsTreeviewItem(),
     this.gridsTreeviewItem(),
@@ -114,6 +115,27 @@ export class AppComponent {
               type: 'button',
               label: 'HREF',
               routerLink: `/${APP_ROUTES.buttonHref.path}`,
+            },
+          ],
+        },
+      ],
+    };
+  }
+
+  private cardsTreeviewItem(): TreeviewNode {
+    return {
+      type: 'text',
+      label: 'Cards',
+      icon: 'crop_landscape',
+      children: [
+        {
+          type: 'text',
+          label: 'Card',
+          children: [
+            {
+              type: 'button',
+              label: 'Style',
+              routerLink: `/${APP_ROUTES.cardStyle.path}`,
             },
           ],
         },

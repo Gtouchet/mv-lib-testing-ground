@@ -1,0 +1,60 @@
+<ng-template #changelogList let-entries>
+    @for (entry of entries; track entry.version) {
+        <mv-lib-card
+            [inputStyle]="{ dimensions: { width: '100%' } }"
+            [inputEffects]="{ classes: [mvLibEffects.idle.shadow.class] }"
+        >
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="version">v{{ entry.version }}</span>
+                    <span class="date">{{ entry.date }}</span>
+                </div>
+                <ul class="changes">
+                    @for (change of entry.changes; track $index) {
+                        <li>
+                            @if (change.scope) {
+                                <span class="scope">{{ change.scope }}:</span>
+                            }
+                            {{ change.text }}
+                        </li>
+                    }
+                </ul>
+            </div>
+        </mv-lib-card>
+    }
+</ng-template>
+
+<div class="home">
+    <section class="intro">
+        <div class="hero">
+            <h1 class="hero-title">Welcome to the MVLib Testing Ground</h1>
+            <p class="hero-lead">
+                A test application for the MVLib library, used to try out its components and their functionalities.
+            </p>
+        </div>
+
+        <div class="features">
+            @for (feature of features; track feature.title) {
+                <div class="feature">
+                    <span class="material-symbols-outlined feature-icon">{{ feature.icon }}</span>
+                    <div class="feature-body">
+                        <span class="feature-title">{{ feature.title }}</span>
+                        <p class="feature-text">{{ feature.text }}</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <div class="changelogs">
+        <section class="column">
+            <h2 class="column-title">Library changelog</h2>
+            <ng-container *ngTemplateOutlet="changelogList; context: { $implicit: libraryChangelog() }" />
+        </section>
+
+        <section class="column">
+            <h2 class="column-title">Testing Ground changelog</h2>
+            <ng-container *ngTemplateOutlet="changelogList; context: { $implicit: testingGroundChangelog() }" />
+        </section>
+    </div>
+</div>

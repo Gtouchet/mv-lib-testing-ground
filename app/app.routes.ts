@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home.component';
+import { HomeComponent } from './home/home.component';
 import { ButtonOverviewComponent } from './examples/buttons/button/overview/button-overview.component';
 import { CheckboxOverviewComponent } from './examples/checkboxes/checkbox/overview/checkbox-overview.component';
 import { DropdownClassicExampleComponent } from './examples/dropdowns/classic/dropdown-classic-example.component';
@@ -18,6 +18,7 @@ import { NumericTextboxEventsComponent } from './examples/textboxes/numeric/even
 import { ButtonStyleComponent } from './examples/buttons/button/style/button-style.component';
 import { ButtonHrefComponent } from './examples/buttons/button/href/button-href.component';
 import { ButtonEffectsComponent } from './examples/buttons/button/effects/button-effects.component';
+import { CardStyleComponent } from './examples/cards/card/style/card-style.component';
 
 export interface AppRoute {
 	readonly path: string;
@@ -55,6 +56,15 @@ export const APP_ROUTES = {
 		path: 'buttons/button/href',
 		title: 'Button - HREF',
 		component: ButtonHrefComponent,
+	},
+
+	/**
+	 * Card
+	 */
+	cardStyle: {
+		path: 'cards/card/style',
+		title: 'Card - Style',
+		component: CardStyleComponent,
 	},
 
 	/**

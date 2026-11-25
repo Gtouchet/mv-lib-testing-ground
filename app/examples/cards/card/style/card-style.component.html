@@ -1,0 +1,103 @@
+<div class="layout">
+    <div id="top" class="content">
+
+        <section class="presentation">
+            <span class="title">
+                Card styles
+            </span>
+            <span class="description">
+                Use the MVLib card's <code>[inputStyle]</code> to customize its background color, dimensions, outline, and typography.
+            </span>
+            <span class="last-updated">
+                Last updated: {{ lastUpdated }}
+            </span>
+        </section>
+
+        <section id="style" class="section">
+            <span class="title">
+                Style configuration
+            </span>
+            <div class="description">
+                The card comes with a default style: every property of <code>[inputStyle]</code> is optional,
+                so you only need to set the ones you want to override.<br/>
+                Tweak each style group in the Configuration tab.<br/>
+                The card is a container: any content can be projected inside it.
+                It has no padding, so the projected content manages its own spacing.
+            </div>
+            <app-demo-playground
+                [code]="'<mv-lib-card' + componentCode('card') + '>\n    ...\n</mv-lib-card>'"
+                (onCopy)="copyComponentCode('card')"
+                [height]="'600px'"
+            >
+                <ng-container configuration>
+                    <div>
+                        <app-inputs-separator label="Background color"/>
+                        <div class="inputs-group">
+                            <span class="input-label">
+                                Color
+                            </span>
+                            <app-input-color
+                                [value]="_card().api.style.backgroundColor.get()"
+                                (onChange)="_card().api.style.backgroundColor.set($event); refreshLog('card');"
+                            />
+                        </div>
+                    </div>
+                    <app-dimensions-inputs
+                        [value]="_card().api.style.getDimensions()"
+                        (onChange)="_card().api.style.setDimensions($event.key, $event.value); refreshLog('card');"
+                    />
+                    <app-outline-inputs
+                        [value]="_card().api.style.outline.get()"
+                        (onChange)="_card().api.style.outline.set($event.key, $event.value); refreshLog('card');"
+                    />
+                    <app-font-inputs
+                        [value]="_card().api.style.font.get()"
+                        (onChange)="_card().api.style.font.set($event.key, $event.value); refreshLog('card');"
+                    />
+                </ng-container>
+                <ng-container preview>
+                    <div class="preview-content">
+                        <mv-lib-card
+                            #card
+                            [inputStyle]="style()"
+                            [inputEffects]="{
+                                classes: [
+                                    mvLibEffects.idle.shadow.class,
+                                ]
+                            }"
+                        >
+                            <div style="
+                                display: flex;
+                                flex-direction: column;
+                                gap: 8px;
+                                padding: 12px;
+                            ">
+                                <strong>
+                                    Card
+                                </strong>
+                                <span>
+                                    A card can hold any kind of content.
+                                </span>
+                                <mv-lib-button
+                                    [inputStyle]="{
+                                        dimensions: {
+                                            width: '100px',
+                                            height: '28px',
+                                        }
+                                    }"
+                                    [inputEffects]="{
+                                        classes: [
+                                            mvLibEffects.hover.tint.class,
+                                            mvLibEffects.click.push.class,
+                                        ]
+                                    }"
+                                    [content]="'Action'"
+                                />
+                            </div>
+                        </mv-lib-card>
+                    </div>
+                </ng-container>
+            </app-demo-playground>
+        </section>
+    </div>
+</div>

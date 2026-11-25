@@ -1,33 +1,38 @@
 [
     {
-        "version": "0.1.6 (22/11/26)",
+        "version": "0.1.6",
+        "date": "22/11/26",
         "changes": [
             "Button: Added state specific style configurations"
         ]
     },
     {
-        "version": "0.1.5 (28/09/26)",
+        "version": "0.1.5",
+        "date": "28/09/26",
         "changes": [
             "Removed unused 'classic' tag on components",
             "Button component: Added href to handle the browser's shortcuts"
         ]
     },
     {
-        "version": "0.1.4 (16/09/26)",
+        "version": "0.1.4",
+        "date": "16/09/26",
         "changes": [
             "Button component: Fixed the content not being centered",
             "Treeview component: Added API function to expand nodes with a predicate on the items"
         ]
     },
     {
-        "version": "0.1.3 (15/09/26)",
+        "version": "0.1.3",
+        "date": "15/09/26",
         "changes": [
             "Added numeric textbox component",
             "Refacto: Removed the textbox component name (Classic), this was an unnecessary layer"
         ]
     },
     {
-        "version": "0.1.2 (10/09/26)",
+        "version": "0.1.2",
+        "date": "10/09/26",
         "changes": [
             "Added checkbox component",
             "Refacto effects: effects now expose their individual properties directly via a function",
@@ -42,14 +47,16 @@
         ]
     },
     {
-        "version": "0.1.1 (06/09/26)",
+        "version": "0.1.1",
+        "date": "06/09/26",
         "changes": [
             "Updated tint effect to support a transition duration",
             "Added tint hover effect for switch component (track and cursor)"
         ]
     },
     {
-        "version": "0.1.0 (05/09/26)",
+        "version": "0.1.0",
+        "date": "05/09/26",
         "changes": [
             "Initial library setup",
             "Set up the library's core component classes",
